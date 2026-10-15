@@ -43,6 +43,7 @@ state: active            # active / consolidated / superseded / duplicate
 consolidated_into: ""
 duplicate_of: ""
 superseded_by: ""
+corrected_by: []
 ---
 ## 結論
 
@@ -58,6 +59,7 @@ MANAGED_DEFAULTS = {
     "consolidated_into": ('""', ""),
     "duplicate_of": ('""', ""),
     "superseded_by": ('""', ""),
+    "corrected_by": ("[]", []),
 }
 REQUIRED = {
     "id": str, "aliases": list, "title": str, "summary": str, "date": (datetime.date, str),
@@ -213,6 +215,18 @@ def set_field(text: str, key: str, value: str) -> str:
     return text[:m.start(1)] + new + text[m.end(1):]
 
 
+def set_corrected_by(text: str, ids: list[str]) -> str:
+    value = json.dumps(ids, ensure_ascii=False)
+    fm = FM_RE.match(text)
+    if re.search(r"^corrected_by:", fm.group(1), re.M):
+        return set_field(text, "corrected_by", value)
+    m = re.search(r"^superseded_by:[^\n]*", fm.group(1), re.M)
+    if not m:
+        raise ValueError("項目が無い: superseded_by")
+    end = fm.start(1) + m.end()
+    return text[:end] + "\ncorrected_by: " + value + text[end:]
+
+
 # ---------- new ----------
 def reserve_number(scope: str) -> int:
     sd = state_dir()
@@ -276,6 +290,9 @@ def build_index(recs: list[Rec]) -> dict[str, str]:
     def title(r):
         return str(r.get("title"))
 
+    def correction(r):
+        return "訂正あり" if r.get("corrected_by", []) else ""
+
     lines = [H, "# 記録の索引", "", "## スコープ別の件数", "", "| scope | 件数 | active |", "|---|---|---|"]
     for s in scopes:
         rs = [r for r in good if r.scope == s]
@@ -315,19 +332,19 @@ def build_index(recs: list[Rec]) -> dict[str, str]:
 
     for s in scopes:
         rs = [r for r in good if r.scope == s]
-        t = [H, "# %s の記録" % s, "", "| ID | 題 | 確度 | 格付け | state |", "|---|---|---|---|---|"]
+        t = [H, "# %s の記録" % s, "", "| ID | 題 | 確度 | 格付け | state | 訂正 |", "|---|---|---|---|---|---|"]
         for r in rs:
-            t.append("| %s | %s | %s | %s | %s |" % (r.id, cell(title(r)), r.get("confidence"),
-                                                     tier_label(str(r.get("by")), models), r.get("state")))
+            t.append("| %s | %s | %s | %s | %s | %s |" % (r.id, cell(title(r)), r.get("confidence"),
+                                                           tier_label(str(r.get("by")), models), r.get("state"), correction(r)))
         out["findings/%s/INDEX.md" % s] = "\n".join(t) + "\n"
         bycat: dict[str, list[Rec]] = {}
         for r in rs:
             bycat.setdefault(str(r.get("category")), []).append(r)
         for c, crs in sorted(bycat.items()):
-            t = [H, "# %s / %s" % (s, c), "", "| ID | 題 | summary | 確度 | 格付け |", "|---|---|---|---|---|"]
+            t = [H, "# %s / %s" % (s, c), "", "| ID | 題 | summary | 確度 | 格付け | 訂正 |", "|---|---|---|---|---|---|"]
             for r in crs:
-                t.append("| %s | %s | %s | %s | %s |" % (r.id, cell(title(r)), cell(r.get("summary")),
-                                                         r.get("confidence"), tier_label(str(r.get("by")), models)))
+                t.append("| %s | %s | %s | %s | %s | %s |" % (r.id, cell(title(r)), cell(r.get("summary")),
+                                                               r.get("confidence"), tier_label(str(r.get("by")), models), correction(r)))
             out["findings/%s/by-category/%s.md" % (s, c)] = "\n".join(t) + "\n"
     return out
 
@@ -383,7 +400,8 @@ def cmd_search(a) -> int:
             continue
         terms = [t for g in groups for t in g]
         hits = [(i, ln) for i, ln in enumerate(r.raw.splitlines(), 1) if any(t in ln.lower() for t in terms)]
-        print("%s  [%s/%s] %s" % (r.id, tier_label(str(r.get("by")), models), r.get("state"), r.get("title")))
+        mark = " 訂正あり" if r.get("corrected_by", []) else ""
+        print("%s  [%s/%s]%s %s" % (r.id, tier_label(str(r.get("by")), models), r.get("state"), mark, r.get("title")))
         for i, ln in hits[:3]:
             print("    L%d: %s" % (i, ln.strip()))
         n += 1
@@ -405,8 +423,72 @@ def cmd_show(a) -> int:
         print("見つからない: " + a.id, file=sys.stderr)
         return 1
     by = str(r.get("by"))
+    if r.get("corrected_by", []):
+        print("訂正: %s" % ", ".join(r.get("corrected_by", [])))
+    if r.get("superseded_by"):
+        print("置き換え: %s" % r.get("superseded_by"))
     print("格付け: %s（by: %s）" % (tier_label(by, load_toml("models.toml")), by or "-"))
     print(r.raw, end="" if r.raw.endswith("\n") else "\n")
+    return 0
+
+
+# ---------- relate ----------
+def cmd_relate(a) -> int:
+    recs = {r.id: r for r in load_records() if not r.err}
+    try:
+        with open(a.file, encoding="utf-8-sig", newline="") as f:
+            reader = csv.DictReader(f, delimiter="\t")
+            if not reader.fieldnames or not {"before", "after", "kind"} <= set(reader.fieldnames):
+                raise ValueError("TSV に before, after, kind 列が必要")
+            rows = list(reader)
+        for i, row in enumerate(rows, 2):
+            before, after, kind = (str(row.get(k) or "").strip() for k in ("before", "after", "kind"))
+            if before not in recs or after not in recs:
+                raise ValueError("%d 行目: 存在しない ID: %s %s" % (i, before, after))
+            if before == after:
+                raise ValueError("%d 行目: 自分自身を参照" % i)
+            if kind not in ("full", "partial"):
+                raise ValueError("%d 行目: kind は full か partial" % i)
+        texts = {rid: r.raw for rid, r in recs.items()}
+        states = {rid: r.get("state") for rid, r in recs.items()}
+        superseded = {rid: r.get("superseded_by") for rid, r in recs.items()}
+        corrected = {}
+        for rid, r in recs.items():
+            value = r.get("corrected_by", [])
+            if not isinstance(value, list):
+                raise ValueError("%s: corrected_by の型が違う" % rid)
+            corrected[rid] = list(value)
+        changes = []
+        for row in rows:
+            before, after, kind = (str(row.get(k) or "").strip() for k in ("before", "after", "kind"))
+            if kind == "full":
+                if states[before] == "superseded" and superseded[before] != after:
+                    print("警告: %s は既に %s に置き換え済み" % (before, superseded[before]), file=sys.stderr)
+                    continue
+                changed = False
+                if states[before] != "superseded":
+                    texts[before] = set_field(texts[before], "state", "superseded")
+                    states[before] = "superseded"
+                    changed = True
+                if superseded[before] != after:
+                    texts[before] = set_field(texts[before], "superseded_by", after)
+                    superseded[before] = after
+                    changed = True
+                if changed:
+                    changes.append("%s: 置き換え: %s" % (before, after))
+            elif after not in corrected[before]:
+                corrected[before].append(after)
+                texts[before] = set_corrected_by(texts[before], corrected[before])
+                changes.append("%s: 訂正: %s" % (before, after))
+    except (OSError, ValueError, csv.Error, TypeError) as e:
+        print("エラー: " + str(e), file=sys.stderr)
+        return 1
+    for change in changes:
+        print(change)
+    for rid, r in recs.items():
+        if texts[rid] != r.raw:
+            if not a.dry_run:
+                write_text(r.path, texts[rid])
     return 0
 
 
@@ -554,6 +636,15 @@ def cmd_lint(a) -> int:
         for k in ("superseded_by", "consolidated_into", "duplicate_of"):
             if m[k] and m[k] not in allids:
                 err("%s の参照先が無い: %s" % (k, m[k]))
+        corrected = m.get("corrected_by", [])
+        if not isinstance(corrected, list):
+            err("corrected_by の型が違う")
+        else:
+            for x in corrected:
+                if not isinstance(x, str) or x not in allids:
+                    err("corrected_by の参照先が無い: %s" % x)
+                if x == r.id:
+                    err("corrected_by は自分自身を指せない: %s" % x)
         if m["by"] != "auto" and canonical_model(m["by"], models) is None:
             err("by が models.toml に無い: %s" % m["by"])
     exp = build_index(recs)
@@ -668,6 +759,10 @@ def main(argv=None) -> int:
     s = sub.add_parser("show")
     s.add_argument("id")
     s.set_defaults(f=cmd_show)
+    s = sub.add_parser("relate")
+    s.add_argument("--file", required=True)
+    s.add_argument("--dry-run", action="store_true")
+    s.set_defaults(f=cmd_relate)
     s = sub.add_parser("addr")
     s.add_argument("addr")
     s.add_argument("--build")

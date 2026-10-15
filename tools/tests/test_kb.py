@@ -36,6 +36,7 @@ def test_new_template_and_sequence(repo):
     text = p1.read_text(encoding="utf-8")
     assert text.startswith("---\nid: ACNL-F0001\naliases: []\n")
     assert "confidence: LOW          # LOW / MEDIUM / HIGH" in text
+    assert 'superseded_by: ""\ncorrected_by: []\n' in text
     assert "build: acnl_jpn_v15" in text
     assert "\r" not in text
     new()
@@ -266,3 +267,71 @@ def test_tags_and_stubs(repo, capsys):
     assert "keyboard" in capsys.readouterr().out
     assert run("impact", "X") == 0
     assert "段階1b" in capsys.readouterr().out
+
+
+def test_corrected_by_lint_and_display(repo, capsys):
+    new(title="first")
+    new(title="second")
+    edit(repo, "ACNL-F0001", "corrected_by: []", "corrected_by: [ACNL-F0002]")
+    run("index")
+    assert lint_out(capsys)[0] == 0
+    run("show", "ACNL-F0001")
+    assert capsys.readouterr().out.startswith("訂正: ACNL-F0002\n格付け:")
+    run("search", "first")
+    assert "ACNL-F0001  [未記入/active] 訂正あり" in capsys.readouterr().out
+    for path in (repo / "findings/acnl/INDEX.md", repo / "findings/acnl/by-category/item.md"):
+        assert "| ACNL-F0001 | first |" in path.read_text(encoding="utf-8")
+        assert "訂正あり |" in path.read_text(encoding="utf-8")
+    edit(repo, "ACNL-F0001", "corrected_by: [ACNL-F0002]", "corrected_by: [ACNL-F0999]")
+    assert "corrected_by の参照先が無い" in lint_out(capsys)[1]
+    edit(repo, "ACNL-F0001", "corrected_by: [ACNL-F0999]", "corrected_by: [ACNL-F0001]")
+    assert "自分自身" in lint_out(capsys)[1]
+    edit(repo, "ACNL-F0001", "corrected_by: [ACNL-F0001]\n", "")
+    assert lint_out(capsys)[0] == 0
+
+
+def test_relate_partial_full_dry_run_and_conflict(repo, tmp_path, capsys):
+    for _ in range(4):
+        new()
+    p = recpath(repo, "ACNL-F0001")
+    edit(repo, "ACNL-F0001", "corrected_by: []\n", "")
+    edit(repo, "ACNL-F0001", 'superseded_by: ""', 'superseded_by: "" # keep')
+    before = p.read_text(encoding="utf-8")
+    tsv = tmp_path / "relations.tsv"
+    tsv.write_text("before\tafter\tkind\nACNL-F0001\tACNL-F0002\tpartial\n"
+                   "ACNL-F0001\tACNL-F0002\tpartial\nACNL-F0003\tACNL-F0004\tfull\n", encoding="utf-8")
+    capsys.readouterr()
+    assert run("relate", "--file", str(tsv), "--dry-run") == 0
+    assert "ACNL-F0001: 訂正: ACNL-F0002" in capsys.readouterr().out
+    assert p.read_text(encoding="utf-8") == before
+    assert run("relate", "--file", str(tsv)) == 0
+    assert 'superseded_by: "" # keep\ncorrected_by: ["ACNL-F0002"]\n---' in p.read_text(encoding="utf-8")
+    assert "state: active" in p.read_text(encoding="utf-8")
+    p3 = recpath(repo, "ACNL-F0003")
+    assert "state: superseded " in p3.read_text(encoding="utf-8")
+    assert "superseded_by: ACNL-F0004" in p3.read_text(encoding="utf-8")
+    run("index")
+    assert lint_out(capsys)[0] == 0
+    capsys.readouterr()
+    assert run("relate", "--file", str(tsv)) == 0
+    assert capsys.readouterr().out == ""
+    tsv.write_text("before\tafter\tkind\nACNL-F0003\tACNL-F0002\tfull\n", encoding="utf-8")
+    assert run("relate", "--file", str(tsv)) == 0
+    assert "既に" in capsys.readouterr().err
+    assert "superseded_by: ACNL-F0004" in p3.read_text(encoding="utf-8")
+    run("show", "ACNL-F0003")
+    assert capsys.readouterr().out.startswith("置き換え: ACNL-F0004")
+
+
+def test_relate_invalid_input_is_atomic(repo, tmp_path, capsys):
+    new()
+    new()
+    p = recpath(repo, "ACNL-F0001")
+    before = p.read_bytes()
+    tsv = tmp_path / "bad.tsv"
+    for bad in ("ACNL-F0999\tpartial", "ACNL-F0001\tpartial", "ACNL-F0002\tunknown"):
+        tsv.write_text("before\tafter\tkind\nACNL-F0001\tACNL-F0002\tpartial\n"
+                       "ACNL-F0001\t" + bad + "\n", encoding="utf-8")
+        assert run("relate", "--file", str(tsv)) == 1
+        assert p.read_bytes() == before
+        capsys.readouterr()
