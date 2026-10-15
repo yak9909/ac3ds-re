@@ -332,19 +332,21 @@ def build_index(recs: list[Rec]) -> dict[str, str]:
 
     for s in scopes:
         rs = [r for r in good if r.scope == s]
-        t = [H, "# %s の記録" % s, "", "| ID | 題 | 確度 | 格付け | state | 訂正 |", "|---|---|---|---|---|---|"]
+        t = [H, "# %s の記録" % s, "", "| ID | 題 | 確度 | 格付け | state | consolidated_into | 訂正 |", "|---|---|---|---|---|---|---|"]
         for r in rs:
-            t.append("| %s | %s | %s | %s | %s | %s |" % (r.id, cell(title(r)), r.get("confidence"),
-                                                           tier_label(str(r.get("by")), models), r.get("state"), correction(r)))
+            t.append("| %s | %s | %s | %s | %s | %s | %s |" % (r.id, cell(title(r)), r.get("confidence"),
+                                                                tier_label(str(r.get("by")), models), r.get("state"),
+                                                                cell(r.get("consolidated_into")), correction(r)))
         out["findings/%s/INDEX.md" % s] = "\n".join(t) + "\n"
         bycat: dict[str, list[Rec]] = {}
         for r in rs:
             bycat.setdefault(str(r.get("category")), []).append(r)
         for c, crs in sorted(bycat.items()):
-            t = [H, "# %s / %s" % (s, c), "", "| ID | 題 | summary | 確度 | 格付け | 訂正 |", "|---|---|---|---|---|---|"]
+            t = [H, "# %s / %s" % (s, c), "", "| ID | 題 | summary | 確度 | 格付け | consolidated_into | 訂正 |", "|---|---|---|---|---|---|---|"]
             for r in crs:
-                t.append("| %s | %s | %s | %s | %s | %s |" % (r.id, cell(title(r)), cell(r.get("summary")),
-                                                               r.get("confidence"), tier_label(str(r.get("by")), models), correction(r)))
+                t.append("| %s | %s | %s | %s | %s | %s | %s |" % (r.id, cell(title(r)), cell(r.get("summary")),
+                                                                    r.get("confidence"), tier_label(str(r.get("by")), models),
+                                                                    cell(r.get("consolidated_into")), correction(r)))
             out["findings/%s/by-category/%s.md" % (s, c)] = "\n".join(t) + "\n"
     return out
 
@@ -427,6 +429,8 @@ def cmd_show(a) -> int:
         print("訂正: %s" % ", ".join(r.get("corrected_by", [])))
     if r.get("superseded_by"):
         print("置き換え: %s" % r.get("superseded_by"))
+    if r.get("consolidated_into"):
+        print("統合先: %s" % r.get("consolidated_into"))
     print("格付け: %s（by: %s）" % (tier_label(by, load_toml("models.toml")), by or "-"))
     print(r.raw, end="" if r.raw.endswith("\n") else "\n")
     return 0
@@ -633,9 +637,16 @@ def cmd_lint(a) -> int:
         for x in m["supersedes"]:
             if x not in allids:
                 err("supersedes の参照先が無い: %s" % x)
-        for k in ("superseded_by", "consolidated_into", "duplicate_of"):
+        for k in ("superseded_by", "duplicate_of"):
             if m[k] and m[k] not in allids:
                 err("%s の参照先が無い: %s" % (k, m[k]))
+        destination = m["consolidated_into"]
+        if destination.startswith("topics/"):
+            if (not re.fullmatch(r"topics/[^/]+/[^/]+\.md", destination)
+                    or ".." in destination.split("/") or not (root() / destination).is_file()):
+                err("consolidated_into の参照先が無い: %s" % destination)
+        elif destination and destination not in allids:
+            err("consolidated_into の参照先が無い: %s" % destination)
         corrected = m.get("corrected_by", [])
         if not isinstance(corrected, list):
             err("corrected_by の型が違う")
