@@ -17,10 +17,10 @@ source: v1:RE/FINDINGS.md:12680-12705
 by: unknown
 original_by: ''
 reviewed_by: []
-state: consolidated
+state: superseded
 consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0696
 ---
 ## F-208: ★★★★★レイアウトごとに投影が違う。相乗り先を変えたら縮尺を測り直す — `HIGH`（実機）
 

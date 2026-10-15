@@ -27,10 +27,10 @@ source: v1:RE/FINDINGS.md:15660-15730
 by: unknown
 original_by: ''
 reviewed_by: []
-state: consolidated
+state: superseded
 consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0697
 ---
 ## F-264: 自前ノードの幅・高さは雛形任せにせず画面実寸を明示する — `HIGH`（静的のみ）
 
