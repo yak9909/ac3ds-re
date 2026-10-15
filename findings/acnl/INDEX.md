@@ -38,8 +38,8 @@
 | ACNL-F0032 | F-154: TextBox emitter直呼びも live DrawContext を二重更新する — `HIGH`（静的＋同一例外の再現） | HIGH | ? | active |  |  |
 | ACNL-F0033 | F-144: 会話 TextBox も batch writer 経路 — `HIGH`（静的＋実機） | HIGH | ? | active |  |  |
 | ACNL-F0034 | F-145: TextBox batch は専用list 32で構築され、メインlistへ再生される — `HIGH`（静的＋実機） | HIGH | ? | active |  |  |
-| ACNL-F0035 | F-149: 会話本文フレームを構成する6 PictureとTextBoxを、相対配置のまま複製できた — `HIGH`（静的＋実機） | HIGH | ? | active |  |  |
-| ACNL-F0036 | F-148: 既存Pictureを非所有cloneして、任意座標の2D背景として追加できた — `HIGH`（静的＋実機） | HIGH | ? | active |  |  |
+| ACNL-F0035 | F-149: 会話本文フレームを構成する6 PictureとTextBoxを、相対配置のまま複製できた — `HIGH`（静的＋実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0036 | F-148: 既存Pictureを非所有cloneして、任意座標の2D背景として追加できた — `HIGH`（静的＋実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0037 | F-147: `nw::lyt::Picture` は TextBox と同じ UI command-list 経路を使う — `HIGH`（静的＋実機） | HIGH | ? | active |  |  |
 | ACNL-F0038 | F-146: TextBox batch は固定0x60-byte seedとglyph/state blockから構成される — `MEDIUM`（静的＋停止中live照合） | MEDIUM | ? | active |  |  |
 | ACNL-F0039 | F-01 ゲーム同定 — `HIGH` | HIGH | ? | active |  |  |
@@ -90,15 +90,15 @@
 | ACNL-F0084 | F-46 実機イメージ `code_runtime.bin` を吸い出した — `HIGH` | HIGH | ? | active |  |  |
 | ACNL-F0085 | F-47 `0x596890` の実態 — 踏みつけ処理 `FieldObj_TrampleAt` — `HIGH` | HIGH | ? | active |  |  |
 | ACNL-F0086 | F-48 静的 IDB を idalib-mcp で常用する — `HIGH` | HIGH | ? | active |  |  |
-| ACNL-F0087 | F-49 メッセージ表示の仕組みと「メニューアニメーションをカット」の副作用 — `HIGH` | HIGH | ? | active |  |  |
-| ACNL-F0088 | F-50 UI アニメと画面遷移（Wipe）— 調整点は `0x568BF8` 一箇所 — `HIGH` | HIGH | ? | active |  |  |
-| ACNL-F0089 | F-51 フェードの正体は `FaderColor`、`FaderMoment` に差し替えれば消える — `HIGH` | HIGH | ? | active |  |  |
+| ACNL-F0087 | F-49 メッセージ表示の仕組みと「メニューアニメーションをカット」の副作用 — `HIGH` | HIGH | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0088 | F-50 UI アニメと画面遷移（Wipe）— 調整点は `0x568BF8` 一箇所 — `HIGH` | HIGH | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0089 | F-51 フェードの正体は `FaderColor`、`FaderMoment` に差し替えれば消える — `HIGH` | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0090 | F-52 静的解析の本体を `code.bin.i64` に移した — `HIGH` | HIGH | ? | active |  |  |
 | ACNL-F0091 | F-53 RTTI から全クラス名をデマングルして命名した — `HIGH` | HIGH | ? | active |  |  |
 | ACNL-F0092 | F-54 CTRPF プラグインの地域別アドレス表 — 本ビルドは **JPN 無印** — `HIGH` | HIGH | ? | active |  |  |
 | ACNL-F0093 | F-55 Vapecord のコードを手がかりにした関数解析（時刻・部屋・通信） — `HIGH` | HIGH | ? | active |  |  |
 | ACNL-F0094 | F-56 `ACNL_ID_Lists-master` との照合 — 4 件確定・1 件は資料側が誤り — `HIGH` | HIGH | ? | active |  |  |
-| ACNL-F0095 | F-57 ゲーム内メニューを ID で開く仕組み — 日付変更ウィンドウは `MenuID 0x2E` — `HIGH` | HIGH | ? | active |  | 訂正あり |
+| ACNL-F0095 | F-57 ゲーム内メニューを ID で開く仕組み — 日付変更ウィンドウは `MenuID 0x2E` — `HIGH` | HIGH | ? | consolidated | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0096 | F-58 【訂正】FOXXY はゲーム本来の日付変更ウィンドウを開いていた — `HIGH` | HIGH | ? | active |  |  |
 | ACNL-F0097 | F-59 FOXXY 時間変更チートの残り 2 パッチ — 演出をメニュー姿勢に差し替えている — `HIGH` | HIGH | ? | active |  |  |
 | ACNL-F0098 | F-60: Vapecord の時間設定チートと、ゲーム自身の時計確定経路 | HIGH | ? | active |  |  |
@@ -112,22 +112,22 @@
 | ACNL-F0106 | F-68: オフラインなら profile の HairStyle だけを書いて `vc_UPDATE` すれば即時・装備保持にできる | HIGH | ? | active |  |  |
 | ACNL-F0107 | F-69: 通常カタログは屋外表示可能。壊れる根因は店内限定の検索 `DICT` | HIGH | ? | active |  |  |
 | ACNL-F0108 | F-70: 標準カタログの家具3Dは `BsFtrMgr` 経路。stock屋外はmanagerを生成しない | HIGH | ? | active |  |  |
-| ACNL-F0109 | F-71: 通常Xの実入口は `sub_6D62AC` の動的menuId呼出し `0x6D6338` | HIGH | ? | active |  |  |
+| ACNL-F0109 | F-71: 通常Xの実入口は `sub_6D62AC` の動的menuId呼出し `0x6D6338` | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0110 | F-72: `0x6D6338` はカタログ起動確認点として正しいが、持ち物全体の置換点としては遅すぎる | HIGH | ? | active |  |  |
 | ACNL-F0111 | F-73: 通常Xのfield側入口は `sub_165B40 -> sub_5C1F08`。診断traceのPC相対LDR移設は不可 | HIGH | ? | active |  |  |
 | ACNL-F0112 | F-74: field持ち物の開始点はplayer state `0x16`。同位置で公式catalog要求へ置換可能 | HIGH | ? | active |  |  |
 | ACNL-F0113 | F-75: 「メニュー切り替え」enter入口なら持ち物UI初期化前に差替えられる | HIGH | ? | active |  |  |
 | ACNL-F0114 | F-76: stock「メニュー終了まで待機」はcatalog終了の橋渡し候補 | HIGH | ? | active |  |  |
 | ACNL-F0115 | F-77: catalog表示後にstock「上タブをすべてアウト」を走らせる構成 | HIGH | ? | active |  |  |
-| ACNL-F0116 | F-78: タブ退場開始条件は要求成功ではなく実画面のmenu flag `0x08` | HIGH | ? | active |  | 訂正あり |
-| ACNL-F0117 | F-79: 実画面生成成功の同期点は `Menu_PollOpen -> UiScreen_OpenById` の戻り | HIGH | ? | active |  | 訂正あり |
-| ACNL-F0118 | F-80: `BsMenuCatalog` は通常下画面メニューの `0x08/0x10` handshakeを実装しない | HIGH | ? | active |  |  |
+| ACNL-F0116 | F-78: タブ退場開始条件は要求成功ではなく実画面のmenu flag `0x08` | HIGH | ? | consolidated | topics/acnl/ui.md | 訂正あり |
+| ACNL-F0117 | F-79: 実画面生成成功の同期点は `Menu_PollOpen -> UiScreen_OpenById` の戻り | HIGH | ? | consolidated | topics/acnl/ui.md | 訂正あり |
+| ACNL-F0118 | F-80: `BsMenuCatalog` は通常下画面メニューの `0x08/0x10` handshakeを実装しない | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0119 | F-81: constructor成功同期版はCatalogを生成後、`0x20`で表示前に自己終了させる | HIGH | ? | active |  |  |
 | ACNL-F0120 | F-82: Catalog終了はfield X ownerを戻さず、3D経路には屋外hard rejectがない | HIGH | ? | active |  |  |
-| ACNL-F0121 | F-83: `BsFtrMgr` のglobal公開は生成完了より早く、完全readyはobject `+19` の下位2bit | MEDIUM | ? | active |  |  |
+| ACNL-F0121 | F-83: `BsFtrMgr` のglobal公開は生成完了より早く、完全readyはobject `+19` の下位2bit | MEDIUM | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0122 | F-84: Catalog actor typeはItemParam由来。`AcFtr` はbank確保、model非同期読込、layer 2登録の3 phase | MEDIUM | ? | active |  |  |
 | ACNL-F0123 | F-85: CameraCatalog、Catalog専用3灯、3つのrenderer layerはroom 0にも存在する | MEDIUM | ? | active |  | 訂正あり |
-| ACNL-F0124 | F-86: parent拒否説を撤回。`ScStage` と`BsMenuTab`はいずれもchild gateを通る | HIGH | ? | active |  |  |
+| ACNL-F0124 | F-86: parent拒否説を撤回。`ScStage` と`BsMenuTab`はいずれもchild gateを通る | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0125 | F-87: room 0の38-bank late allocationがphase 1即時失敗の最有力。容量1版を準備 | MEDIUM | ? | active |  | 訂正あり |
 | ACNL-F0126 | F-88: phase 1公開中にstock previewへ戻るとtype `0xBC`を早期生成してSIGSEGVになる | HIGH | ? | active |  |  |
 | ACNL-F0127 | F-89: 2回目の同一SIGSEGVはmanager phase 3の屋外map走査。Catalog選択品とは別 | HIGH | ? | active |  |  |
@@ -164,8 +164,8 @@
 | ACNL-F0158 | F-120: ★★★TODO-81 達成 — 自前の `FuncNode` から実際に画面へ描画できた | HIGH | ? | active |  |  |
 | ACNL-F0159 | F-121: ★★TODO-84 第1段 — 積まれたコマンドを自分で解釈・書き換え、描画結果を狙って変えられた | HIGH | ? | active |  |  |
 | ACNL-F0160 | F-122: ★★★TODO-84 達成 — 完全自己完結の自前描画。あわせて TODO-83 も解決 | HIGH | ? | active |  |  |
-| ACNL-F0161 | F-123: ★★TODO-87 — 影のテクスチャの実体を特定し、書き換えて画面に反映させた | HIGH | ? | active |  |  |
-| ACNL-F0162 | F-124: ★★★TODO-90 達成 — 自前の画像を任意のフォーマットで画面に表示した | HIGH | ? | active |  |  |
+| ACNL-F0161 | F-123: ★★TODO-87 — 影のテクスチャの実体を特定し、書き換えて画面に反映させた | HIGH | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0162 | F-124: ★★★TODO-90 達成 — 自前の画像を任意のフォーマットで画面に表示した | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0163 | F-125: ★★★テキストを画面に描画した。タイル内 Morton スウィズル順も確定 | HIGH | ? | active |  |  |
 | ACNL-F0164 | F-126: ★★★TODO-94 達成 — UI 層（`nw::lyt::TextBox`）に自前の 2D テキストを出した | HIGH | ? | active |  |  |
 | ACNL-F0165 | F-127: ★★`nw::lyt::TextBox` の構造を実機で確定 — 位置・色・サイズを自由に変えられる | HIGH | ? | active |  |  |
@@ -204,13 +204,13 @@
 | ACNL-F0198 | F-172: ★★★TextBox に依らない発行点を特定。答えは自分の記録の中にあった — `HIGH`（静的＋実機で前提を確認） | HIGH | ? | active |  |  |
 | ACNL-F0199 | F-173: 発行点への注入は成功したが GPU が固まった。捕獲した列は自己完結していない — `HIGH`（実機、フリーズ） | HIGH | ? | active |  |  |
 | ACNL-F0200 | F-174: 発行点への注入は確立したが、GPU 状態の再現は現実的でない。方針を変えるべき — `HIGH`（実機で反復検証） | HIGH | ? | active |  |  |
-| ACNL-F0201 | F-175: ★★★Picture は毎フレーム必ず描かれる。TextBox ではなく Picture に相乗りすべきだった — `HIGH`（実機で計測） | HIGH | ? | active |  |  |
+| ACNL-F0201 | F-175: ★★★Picture は毎フレーム必ず描かれる。TextBox ではなく Picture に相乗りすべきだった — `HIGH`（実機で計測） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0202 | F-176: Picture はコマンドを直接吐かず、描画コンテキストに四角形を溜めて一括で流す — `HIGH`（静的解析） | HIGH | ? | active |  |  |
-| ACNL-F0203 | F-177: ★★★`nwlyt_Pane_DrawRecursive` は 1 フレームも欠けない。TODO-115 の答え — `HIGH`（実機で計測） | HIGH | ? | active |  |  |
+| ACNL-F0203 | F-177: ★★★`nwlyt_Pane_DrawRecursive` は 1 フレームも欠けない。TODO-115 の答え — `HIGH`（実機で計測） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0204 | F-178: 描画コンテキストの四角形配列を解読。`+1648` は F-167 の `c[0x40]` そのもの — `HIGH`（実機で採取） | HIGH | ? | active |  |  |
 | ACNL-F0205 | F-179: Vapecord のマップ上プレイヤー表示は OSD（フレームバッファ直描き）だった — `HIGH`（ソース確認） | HIGH | ? | active |  |  |
 | ACNL-F0206 | F-180: ★★★UI 画像を「足す」ことに成功。TODO-122 の主要部達成 — `HIGH`（実機で視認） | HIGH | ? | active |  | 訂正あり |
-| ACNL-F0207 | F-181: ★★★自前の UI 画像を毎フレーム 1 枚、画面に出せた。アルファブレンドも効く — `HIGH`（実機で視認） | HIGH | ? | active |  |  |
+| ACNL-F0207 | F-181: ★★★自前の UI 画像を毎フレーム 1 枚、画面に出せた。アルファブレンドも効く — `HIGH`（実機で視認） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0208 | F-182: 追加した UI 画像を絶対座標で置けた。複製元は地図の影 — `HIGH`（実機で A/B） | HIGH | ? | active |  |  |
 | ACNL-F0209 | F-183: ★索引エントリの `w3` は「色」。テクスチャはバッチ単位 — `HIGH`（静的解析） | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0210 | F-184: 頂点カラーはアルファだけが効いた。RGB は素材の TexEnv 次第 — `HIGH`（実機で A/B） | HIGH | ? | active |  |  |
@@ -227,16 +227,16 @@
 | ACNL-F0221 | F-196: ★★★★フルカラー画像（RGBA8）の表示を確定 — `HIGH`（実機） | HIGH | ? | active |  |  |
 | ACNL-F0222 | F-197: ★★★コマンドバッファは 1 つではない。`g_GpuCmdPtr` と `g_GpuCmdEnd` は別リストのことがある — `HIGH`（GPU ハングで判明） | HIGH | ? | active |  |  |
 | ACNL-F0223 | F-198: ★★★★7 枚超の描画と、ドット絵をきれいに出すための 4 条件 — `HIGH`（実機） | HIGH | ? | active |  |  |
-| ACNL-F0224 | F-199: ★★★★★UI の座標系を確定。**縦横で縮尺が違う（非等方）** — `HIGH`（実機で段階的に測定） | HIGH | ? | active |  |  |
+| ACNL-F0224 | F-199: ★★★★★UI の座標系を確定。**縦横で縮尺が違う（非等方）** — `HIGH`（実機で段階的に測定） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0225 | F-200: ★★★★★UI は「1 本のコマンド列」ではない。記録と再生に分かれている — 静的解析 |  | ? | active |  | 訂正あり |
 | ACNL-F0226 | F-201: F-200 の検証。**1 件の訂正と、GPU ハングの静的な説明** — 静的解析 | HIGH | ? | active |  |  |
 | ACNL-F0227 | F-202: ★★★メインリストの末尾に積んでも UI は描かれない。2 回目のクラッシュの原因 — `HIGH`（実機） | HIGH | ? | active |  |  |
-| ACNL-F0228 | F-203: ★★★★★最後に再生されるレイアウトは固定。注入点が確定 — `HIGH`（実機 301 フレーム） | HIGH | ? | active |  |  |
-| ACNL-F0229 | F-204: ★★★レイアウトの記録は「記録要求フラグ」が立っているときだけ走る — `HIGH`（静的＋実機） | HIGH | ? | active |  |  |
-| ACNL-F0230 | F-205: ★★★★「最後に再生される」は画面（描画パス）ごとに違う — `HIGH`（実機 120 フレーム） | HIGH | ? | active |  | 訂正あり |
+| ACNL-F0228 | F-203: ★★★★★最後に再生されるレイアウトは固定。注入点が確定 — `HIGH`（実機 301 フレーム） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0229 | F-204: ★★★レイアウトの記録は「記録要求フラグ」が立っているときだけ走る — `HIGH`（静的＋実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0230 | F-205: ★★★★「最後に再生される」は画面（描画パス）ごとに違う — `HIGH`（実機 120 フレーム） | HIGH | ? | consolidated | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0231 | F-206: ★★★★色とテクスチャの出所は「マテリアル」。自前で積まないと直前のペインのものになる — `HIGH`（実機） | HIGH | ? | active |  |  |
 | ACNL-F0232 | F-207: ★★★★★`drawctx+1692` が 0 だと UV が読まれずテクスチャ全面が貼られる — `HIGH`（実機） | HIGH | ? | active |  |  |
-| ACNL-F0233 | F-208: ★★★★★レイアウトごとに投影が違う。相乗り先を変えたら縮尺を測り直す — `HIGH`（実機） | HIGH | ? | active |  |  |
+| ACNL-F0233 | F-208: ★★★★★レイアウトごとに投影が違う。相乗り先を変えたら縮尺を測り直す — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0234 | F-209: ★★★★★TODO-131 完了。自前 GUI が常に最前面に描かれる — `HIGH`（実機） | HIGH | ? | active |  |  |
 | ACNL-F0235 | F-210: ★★★★★狙う相手をリスト id で固定してはいけない。実行時に追いかける — `HIGH`（実機） | HIGH | ? | active |  |  |
 | ACNL-F0236 | F-211: ★★★★マテリアルは「たまたま」ではなく条件で選ぶ — `HIGH`（実機） | HIGH | ? | active |  |  |
@@ -252,22 +252,22 @@
 | ACNL-F0246 | F-221: ★★ゲームのアロケータから取れるのは 0x4000 まで — `HIGH`（実機） | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0247 | F-222: ★★★★★自前チートメニューが実機で動いた。ゲームは止まらない — `HIGH`（実機） | HIGH | ? | active |  |  |
 | ACNL-F0248 | F-223: ★★★★描くものが無いのに記録を強制すると、しばらくして GPU コマンドリストが枯れる — `HIGH`（実機） | HIGH | ? | active |  |  |
-| ACNL-F0249 | F-224: ★★★★★確定した対象を「0 以外のときだけ更新」してはいけない — `HIGH`（実機） | HIGH | ? | active |  |  |
+| ACNL-F0249 | F-224: ★★★★★確定した対象を「0 以外のときだけ更新」してはいけない — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0250 | F-225: ★★★★「開いている間だけ描く」にすると、閉じても最後の絵が残り続ける — `HIGH`（実機） | HIGH | ? | active |  |  |
-| ACNL-F0251 | F-226: ★★★★★相乗り先は「素で記録し直される」ものから選ぶ。強制は廃止 — `HIGH`（実機） | HIGH | ? | active |  |  |
+| ACNL-F0251 | F-226: ★★★★★相乗り先は「素で記録し直される」ものから選ぶ。強制は廃止 — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0252 | F-227: ★★★観測用の領域を、動いている描画の領域と重ねてクラッシュさせた — `HIGH`（実機） | HIGH | ? | active |  |  |
-| ACNL-F0253 | F-228: ★★★★フェードは id 8（上）/ id 9（下）が最後に描く。両方に積めば判別が要らない — `HIGH`（実機） | HIGH | ? | active |  |  |
+| ACNL-F0253 | F-228: ★★★★フェードは id 8（上）/ id 9（下）が最後に描く。両方に積めば判別が要らない — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0254 | F-229: ★★★ケーブどうしの重なりは目視では見つからない。機械的に検査する — `HIGH`（実機） | HIGH | ? | active |  |  |
 | ACNL-F0255 | F-230: ★★★★相乗り先は「候補のうち最後に再生されたもの 1 つ」。両方に積むと二重になる — `HIGH`（実機） | HIGH | ? | active |  | 訂正あり |
-| ACNL-F0256 | F-231: ★★★★★リスト id 0 を「未設定」として弾かないと、id 0 のレイアウトと誤って一致する — `HIGH`（実機） | HIGH | ? | active |  |  |
-| ACNL-F0257 | F-232: ★★★★★レイアウトの記録リストには容量がある。積みすぎると落ちる — `HIGH`（実機） | HIGH | ? | active |  | 訂正あり |
+| ACNL-F0256 | F-231: ★★★★★リスト id 0 を「未設定」として弾かないと、id 0 のレイアウトと誤って一致する — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0257 | F-232: ★★★★★レイアウトの記録リストには容量がある。積みすぎると落ちる — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0258 | F-233: 描画パス末尾と通常場面の実 replay を再監査 — `HIGH`（静的＋実機。ロード画像の順序は未測定） | HIGH | ? | active |  |  |
-| ACNL-F0259 | F-234: ロード画像は上画面で id 8 の後に replay される Layout id 10 — `HIGH`（静的＋実機＋リソース同定） | HIGH | ? | active |  |  |
+| ACNL-F0259 | F-234: ロード画像は上画面で id 8 の後に replay される Layout id 10 — `HIGH`（静的＋実機＋リソース同定） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0260 | F-235: `Frame_EndDrawPass1024` 主リスト末尾の手製 Drawer-state 版は安全な提出経路ではない — `MEDIUM`（静的＋実機失敗） | MEDIUM | ? | active |  |  |
-| ACNL-F0261 | F-238: ロード表示中でも top LayoutList の構成はフェーズで変わる — `MEDIUM`（独立した stopped snapshot＋no-draw 実行標本） | MEDIUM | ? | active |  |  |
+| ACNL-F0261 | F-238: ロード表示中でも top LayoutList の構成はフェーズで変わる — `MEDIUM`（独立した stopped snapshot＋no-draw 実行標本） | MEDIUM | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0262 | F-241: lifecycle trace の block-copy emitter は loader Layout を破損する — `HIGH`（生成命令＋実機レジスタ＋破損メモリ） | HIGH | ? | active |  |  |
 | ACNL-F0263 | F-237: Layout の再生順は `LayoutList_SetDisplay` で局所的に制御できる — `MEDIUM`（静的＋実機 no-draw） | MEDIUM | ? | active |  |  |
-| ACNL-F0264 | F-236: Layout record-list のバッファ本体は安全に差し替える必要がある — `MEDIUM`（静的＋ゼロ長実機経路） | MEDIUM | ? | active |  |  |
+| ACNL-F0264 | F-236: Layout record-list のバッファ本体は安全に差し替える必要がある — `MEDIUM`（静的＋ゼロ長実機経路） | MEDIUM | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0265 | F-242: `GardenSound.bcsar` を解読し、全 4,266 音の名前・ID・カテゴリを確定 — `HIGH`（独立 3 系統の一致） | HIGH | ? | active |  |  |
 | ACNL-F0266 | F-243: CSEQ バイトコードの命令表を確定（ラベル境界一致 100.00%） — `HIGH` | HIGH | ? | active |  |  |
 | ACNL-F0267 | F-244: seq 型サウンド 2,839 件を WAV に合成 — `MEDIUM`（構造は HIGH、包絡の時定数は近似） | MEDIUM | ? | active |  |  |
@@ -278,10 +278,10 @@
 | ACNL-F0272 | F-249: 音量・ベロシティは振幅の 2 乗側 — `HIGH`（実機録音との数値照合 0.3dB 以内） | HIGH | ? | active |  |  |
 | ACNL-F0273 | F-250: 未設定の変数に対する比較が 712 件を無音にしていた — `HIGH`（全件バッチで確認） | HIGH | ? | active |  |  |
 | ACNL-F0274 | F-251: 合成の 4 つの欠陥を実機との聴き比べで修正 — `HIGH`（利用者が実機一致を確認） | HIGH | ? | active |  |  |
-| ACNL-F0275 | F-252: 2D レイアウトの描画は「1 本のリストを画面ごとに 2 回再生」する — `HIGH`（静的。動的照合は未実施） | HIGH | ? | active |  | 訂正あり |
+| ACNL-F0275 | F-252: 2D レイアウトの描画は「1 本のリストを画面ごとに 2 回再生」する — `HIGH`（静的。動的照合は未実施） | HIGH | ? | consolidated | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0276 | F-253: ★★★★★描画パスは 3 本。`Frame_DrawPass1040` は下画面ではなく「上画面の右目」 — `HIGH`（静的＋実機の独立 2 系統） | HIGH | ? | active |  |  |
-| ACNL-F0277 | F-254: ★★★★★自前の Layout ノードを登録すれば、上下とも「最前面」に必ず入れる — `HIGH`（実機） | HIGH | ? | active |  |  |
-| ACNL-F0278 | F-255: 自前 Layout ノードから実際に描けた。ロード画像より前面 — `HIGH`（実機・目視） | HIGH | ? | active |  |  |
+| ACNL-F0277 | F-254: ★★★★★自前の Layout ノードを登録すれば、上下とも「最前面」に必ず入れる — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0278 | F-255: 自前 Layout ノードから実際に描けた。ロード画像より前面 — `HIGH`（実機・目視） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0279 | F-256: ★★★★★ゲームがそのパスで 1 枚も描いていないと、描画コマンドを積んだ瞬間に GPU が止まる — `HIGH`（実機で二分により確定） | HIGH | ? | active |  |  |
 | ACNL-F0280 | F-257: ★★★★F-256 のゲートの正体は「ゲームが**記録し直した**フレームだけ描く」だった — `HIGH`（実機・目視） | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0281 | F-258: 作業配列を自前バッファへ差し替える案は失敗した — `HIGH`（実機・目視） | HIGH | ? | active |  | 訂正あり |
@@ -290,8 +290,8 @@
 | ACNL-F0284 | F-261: ★★★★★Layout の初期化 `sub_5685A4` に「自前リストの正しい作り方」が全部書いてある — `HIGH`（静的のみ） | HIGH | ? | active |  |  |
 | ACNL-F0285 | F-262: 再生の複製経路を逆アセンブルで裏取りし、実装の誤り 2 件を追加で直した — `HIGH`（静的のみ） | HIGH | ? | active |  |  |
 | ACNL-F0286 | F-263: ★★★★★F-257 / F-258 の説明は誤りだった。作業配列は Drawer の**固定メンバ**である — `HIGH`（静的） | HIGH | ? | active |  |  |
-| ACNL-F0287 | F-264: 自前ノードの幅・高さは雛形任せにせず画面実寸を明示する — `HIGH`（静的のみ） | HIGH | ? | active |  |  |
-| ACNL-F0288 | F-265: ★★★★★UI の投影行列の出所を確定した。**Layout+0x34 の 16 語**であり、記録時ではなく**再生時**に GPU へ流れる — `HIGH`（静的のみ） | HIGH | ? | active |  |  |
+| ACNL-F0287 | F-264: 自前ノードの幅・高さは雛形任せにせず画面実寸を明示する — `HIGH`（静的のみ） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0288 | F-265: ★★★★★UI の投影行列の出所を確定した。**Layout+0x34 の 16 語**であり、記録時ではなく**再生時**に GPU へ流れる — `HIGH`（静的のみ） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0289 | F-266: ★★★★★`SetupProjectionMatrix` は **`+0x28` / `+0x2C` しか読まない**。だから自前ノードでもそのまま呼べる — `HIGH`（静的のみ） | HIGH | ? | active |  |  |
 | ACNL-F0290 | F-267: 雛形の複製を廃止した。写し元依存が実装から消えた — `HIGH`（静的のみ） | HIGH | ? | active |  |  |
 | ACNL-F0291 | F-268: ★★★★★Drawer の既定コマンド列には **TEV 段が 1 つも無い**。色は必ずマテリアル由来 — `HIGH`（静的のみ） | HIGH | ? | active |  | 訂正あり |
@@ -306,7 +306,7 @@
 | ACNL-F0300 | F-276: ★★★★★【F-268 の訂正】既定ブロックは **記録時ではなく再生時**に出る。フラグで切り替わる — `HIGH`（アセンブリ） | HIGH | ? | active |  |  |
 | ACNL-F0301 | F-277: 記録 → Commit → 再生の連鎖を端から端まで静的に証明した — `HIGH`（静的のみ） | HIGH | ? | active |  |  |
 | ACNL-F0302 | リテラル参照の値まで検証する道具を追加した |  | ? | active |  |  |
-| ACNL-F0303 | F-278: 座標系を上下とも静的に確定した。**1 単位 = 1px、原点は画面中央**。`c4` は恒久的にゼロ — `HIGH`（静的、実機実測と一致） | HIGH | ? | active |  |  |
+| ACNL-F0303 | F-278: 座標系を上下とも静的に確定した。**1 単位 = 1px、原点は画面中央**。`c4` は恒久的にゼロ — `HIGH`（静的、実機実測と一致） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0304 | F-279: 検証道具を全ケーブに広げ、死語を 1 本落とした — `HIGH` | HIGH | ? | active |  |  |
 | ACNL-F0305 | F-280: ★★★★★メニューを実際に描けるところまで実装した（フォント・レイアウト API・領域拡張） — `HIGH`（静的のみ・未適用） | HIGH | ? | active |  |  |
 | ACNL-F0306 | F-281: ★★★★★実機で描画に成功した。ノイズの原因は**非整数倍の拡大** — `HIGH`（実機） | HIGH | ? | active |  |  |
@@ -316,20 +316,20 @@
 | ACNL-F0310 | F-286 — F-283 / F-285 を捨てて **F-282（実機で描画に成功した版）へ巻き戻した** — `HIGH`（静的検証済み・実機未確認） | HIGH | ? | active |  |  |
 | ACNL-F0311 | F-287 (HIGH) — ★明滅と「文字が板になる」の真因は **観測リングが自前 TEV を毎フレーム潰していた**こと | HIGH | ? | active |  |  |
 | ACNL-F0312 | F-288 — Chokistream の画面を AI が直接見られる（動的解析の目視確認を自動化） |  | ? | active |  |  |
-| ACNL-F0313 | F-289 (HIGH・実機) — ★`nwlyt_Picture_DrawToCommandList` に**自前 Picture** を渡して 1 枚描けた | HIGH | ? | active |  |  |
+| ACNL-F0313 | F-289 (HIGH・実機) — ★`nwlyt_Picture_DrawToCommandList` に**自前 Picture** を渡して 1 枚描けた | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0314 | F-290 (HIGH・実機) — CAVE_Q を `Picture_DrawToCommandList` 呼びへ置き換えた。**座標系は手書き経路と同一** | HIGH | ? | active |  |  |
-| ACNL-F0315 | F-291 (HIGH・静的のみ) — ★正体は **nw::lyt（NintendoWare Layout）**。Picture / Material の構造を静的に確定し、**既存文書の誤り 6 件を訂正** | HIGH | ? | active |  | 訂正あり |
+| ACNL-F0315 | F-291 (HIGH・静的のみ) — ★正体は **nw::lyt（NintendoWare Layout）**。Picture / Material の構造を静的に確定し、**既存文書の誤り 6 件を訂正** | HIGH | ? | consolidated | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0316 | F-292 (HIGH・静的のみ) — ★F-291 を別関数で再検証（矛盾なし）。**正規の手順なら記録ケーブは丸ごと不要** | HIGH | ? | active |  |  |
-| ACNL-F0317 | F-293 (HIGH・実機) — ★★★正規の手順で描けた。**自前の記録ケーブ 205 語を撤去** | HIGH | ? | active |  |  |
+| ACNL-F0317 | F-293 (HIGH・実機) — ★★★正規の手順で描けた。**自前の記録ケーブ 205 語を撤去** | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0318 | F-294 (HIGH・静的のみ) — ★自前フォントで `TextBox` を使えることを確認。`Glyph` 構造を確定 | HIGH | ? | active |  |  |
-| ACNL-F0319 | F-295 (HIGH・実機) — ★方式 (a) 完成。ヒープから借りて**メニュー全体を正規経路で描いた** | HIGH | ? | active |  |  |
+| ACNL-F0319 | F-295 (HIGH・実機) — ★方式 (a) 完成。ヒープから借りて**メニュー全体を正規経路で描いた** | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0320 | F-296 (HIGH・実機) — ★借りた領域を返せる。**確保 → 解放 → 再確保の往復を実機で成立** | HIGH | ? | active |  |  |
-| ACNL-F0321 | F-297 (HIGH・実機) — ★下画面のペインツリーを組んだ。**上下 2 画面が独立した輪で同時に描かれる** | HIGH | ? | active |  |  |
+| ACNL-F0321 | F-297 (HIGH・実機) — ★下画面のペインツリーを組んだ。**上下 2 画面が独立した輪で同時に描かれる** | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0322 | F-298 (HIGH・静的のみ) — ★TextBox 方式は実装可能。**自前フォントの「コード」はほぼ要らない** | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0323 | F-299 (HIGH・静的＋実機の実データ照合) — ★F-298 の検証と**訂正 2 件**。バッチの確保元を特定（残件 1） | HIGH | ? | active |  |  |
 | ACNL-F0324 | F-300 (HIGH・静的＋実機) — ゲーム内フォントを流用しても **TextBox は自前で要る**。ただしフォント側の合成は丸ごと不要になる | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0325 | F-301 (HIGH・静的のみ) — ★F-300 の訂正。**TextBox は必須ではない。**文字描画の本体は `TextWriter` | HIGH | ? | active |  |  |
-| ACNL-F0326 | F-302 (HIGH・実機) — ★★TextBox が実機で描けた。**作業オブジェクト = `LayoutMgr + 0x1C`**。コードケーブ 0 語 | HIGH | ? | active |  |  |
+| ACNL-F0326 | F-302 (HIGH・実機) — ★★TextBox が実機で描けた。**作業オブジェクト = `LayoutMgr + 0x1C`**。コードケーブ 0 語 | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0327 | F-303 (HIGH・実機) — ★借りた nw::lyt ヒープは **GPU 可視**。自前フォント資源の設計を確定（描画は未達） | HIGH | ? | active |  |  |
 | ACNL-F0328 | F-304 (HIGH・実機) — ★`FINF+0x07` は**文字ストリーム読み取り器の選択**。1 以外だと PC=0 で落ちる | HIGH | ? | active |  |  |
 | ACNL-F0329 | F-305 (HIGH・実機) — ★★★自前フォントで実機に描けた。`nw::font` の構造を**全欄**確定 | HIGH | ? | active |  |  |
@@ -449,7 +449,7 @@
 | ACNL-F0443 | アニメ本体は g3d の自前クラス。nw::gfx::AnimEvaluator を使うと落ちる（2026-09-21、HIGH、実機・自己訂正） | HIGH | ? | active |  |  |
 | ACNL-F0444 | 自前資源のマテリアルアニメを生成し、自前instanceへ結線できた（2026-09-21、HIGH、実機） | HIGH | ? | active |  |  |
 | ACNL-F0445 | アニメのフレームは実機で進んだ（適用段は IDA-opus-5-F013 で解決）（2026-09-21、HIGH、実機） | HIGH | ? | active |  |  |
-| ACNL-F0446 | アニメの適用段は sub_48A844。画面で動いた（2026-09-21、HIGH、実機） | HIGH | ? | active |  |  |
+| ACNL-F0446 | アニメの適用段は sub_48A844。画面で動いた（2026-09-21、HIGH、実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0447 | 外部 nw4c ヘッダとの照合。実測は全て一致し、引数の解釈を2点訂正（2026-09-21、HIGH、静的＋実機照合） | HIGH | ? | active |  |  |
 | ACNL-F0448 | ModelInstance_Create の a5/a6/a7 を実機で分離（2026-09-21、HIGH、実機A/B/C） | HIGH | ? | active |  |  |
 | ACNL-F0449 | アニメが何を動かすかは資源から読める。UnitCursor は色定数2本とUV平行移動（2026-09-21、HIGH、静的） | HIGH | ? | active |  |  |
@@ -463,7 +463,7 @@
 | ACNL-F0457 | `G3dResHolder_Dtor` はヒープ破棄の**前**に呼ぶこと。逆にすると SIGILL（2026-09-21、HIGH、実機） | HIGH | ? | active |  |  |
 | ACNL-F0458 | 模様替えカーソルは大きさを変えていない。V2-F019 の「範囲の形」は誤り（2026-09-21、HIGH、静的） | HIGH | ? | superseded |  |  |
 | ACNL-F0459 | 消した・動かした建物の当たり判定が残る理由と、再起動なしで直す 2 関数（2026-09-23、HIGH（静的）） | HIGH | S | active |  |  |
-| ACNL-F0460 | ゲーム共通の 8 行リスト InstSelect<8> を下画面だけ借りる部品の作り（2026-09-25、MEDIUM: 静的＋実機の欄の読み取り。描画は未試験） | MEDIUM | S | active |  |  |
+| ACNL-F0460 | ゲーム共通の 8 行リスト InstSelect<8> を下画面だけ借りる部品の作り（2026-09-25、MEDIUM: 静的＋実機の欄の読み取り。描画は未試験） | MEDIUM | S | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0461 | 建物の影の表は一覧 0x67CC と同じ番号で並び、場面を作るときにしか作られない（2026-09-25、HIGH: 静的＋実機のクラッシュ時の値） | HIGH | S | active |  |  |
 | ACNL-F0462 | アニメ 0x1E1（seo_down1）を途中で切ると縮んだまま残る — 骨 root の拡大を書くアニメがほぼ無い（2026-09-30、MEDIUM: 資源の全数調査＋静的。実機未観測。ゲームの骨格更新が「書かれない骨を戻さない」ことは推定） | MEDIUM | S | active |  |  |
 | ACNL-F0463 | ゆうめいなキノコで大きくなる仕組みと、プレイヤーの大きさは通信に乗らないこと（2026-09-30、MEDIUM: 静的＋Vapecord の送信側の形と受信側の独立一致。実機未観測） | MEDIUM | S | active |  |  |
@@ -474,7 +474,7 @@
 | ACNL-F0468 | マップエディターのスポイトモード（一覧 4 行・窓の拡張）、Y、モードごとの UnitCursor の色、下画面左上の箱、マスの色の手直し（2026-09-28、MEDIUM: 静的＋描画器＋ホスト試験。gohan 実機未確認） | MEDIUM | S | active |  |  |
 | ACNL-F0469 | マップエディターのマスの色 — 上画面の単色の四角形（UnitCursor 資源の別の体）と盤面の 5x5 の輪郭（2026-09-28、MEDIUM: 既存の実機知見の組み合わせ＋描画器。gohan 実機未確認） | MEDIUM | S | active |  |  |
 | ACNL-F0470 | マップエディターの盤面を 9x9 へ（chip_room_00 の大きさの規則）と、L / R の音（2026-09-28、MEDIUM: 静的＋描画器。gohan 実機未確認） | MEDIUM | S | active |  |  |
-| ACNL-F0471 | 村の下画面の建物一覧（BsMenuMapList）の作りと、マップエディターのモード一覧への流用（2026-09-28、MEDIUM: 静的＋描画器での照合。gohan 実機未確認） | MEDIUM | S | active |  |  |
+| ACNL-F0471 | 村の下画面の建物一覧（BsMenuMapList）の作りと、マップエディターのモード一覧への流用（2026-09-28、MEDIUM: 静的＋描画器での照合。gohan 実機未確認） | MEDIUM | S | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0472 | UnitCursor を村の物体の下に描く — 地面に張り付く物の材質と、深度書き込みの出どころ（2026-09-28、MEDIUM: 静的のみ。gohan f47f5af、実機未確認） | MEDIUM | S | active |  |  |
 | ACNL-F0473 | 持ち物の選択窓（ItemSelectWindow）のキー操作 — 十字・A・B の実装（2026-09-28、MEDIUM: 静的のみ。gohan d6b8470 で使用、実機未確認） | MEDIUM | S | active |  |  |
 | ACNL-F0474 | 1 つの体を行列だけ変えて何か所にも描く（描画ノード FuncNode）（2026-09-28、MEDIUM: 静的のみ。gohan 4fb9e33 で使用、実機未確認） | MEDIUM | S | active |  |  |
@@ -494,10 +494,10 @@
 | ACNL-F0488 | キーボードのキーの見た目・テクスチャの取り方・開閉アニメ・切り替え音・カーソル設定の引数（2026-09-26、MEDIUM: 静的＋romfs。実機未確認） | MEDIUM | S | active |  |  |
 | ACNL-F0489 | 文字の挿入・削除・選択・確定、キーの経路、チャットの送信、入力欄の「未確定」と「選択」の飾り（2026-09-25、MEDIUM: 静的のみ。実機未確認） | MEDIUM | S | active |  |  |
 | ACNL-F0490 | 文字入力（チャット・手紙・掲示板共通）の sys::TextManager の欄とカーソル・未確定の扱い（2026-09-25、MEDIUM: 静的のみ。実機未確認） | MEDIUM | S | active |  |  |
-| ACNL-F0491 | 共通ボタン（cmn_btn / btn_pos）・時計とベルの箱（time_bel_win）の組み立てと状態の規則（2026-09-25、HIGH: 静的＋実機画像 2 枚） | HIGH | S | active |  |  |
-| ACNL-F0492 | 一覧の選択中の行とスクロールバー（CommonScrollBar）の見た目の規則（2026-09-25、HIGH: 静的＋実機画像 1 枚との照合） | HIGH | S | active |  |  |
+| ACNL-F0491 | 共通ボタン（cmn_btn / btn_pos）・時計とベルの箱（time_bel_win）の組み立てと状態の規則（2026-09-25、HIGH: 静的＋実機画像 2 枚） | HIGH | S | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0492 | 一覧の選択中の行とスクロールバー（CommonScrollBar）の見た目の規則（2026-09-25、HIGH: 静的＋実機画像 1 枚との照合） | HIGH | S | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0493 | nw::lyt / nw::font の描画規則（ウィンドウ枠・テクスチャ座標・合成・アルファ・文字配置・アニメ曲線）を静的に確定（2026-09-25、HIGH: 静的＋実機画像 1 枚との照合） | HIGH | S | active |  |  |
-| ACNL-F0494 | 一覧の切り抜きは N_frame_00 から作るシザー。一覧の Layout は自前のデータで先に組み立てられる（2026-09-25、MEDIUM: 静的＋利用者の見た目の報告。組み立ては実機未確認） | MEDIUM | S | active |  |  |
+| ACNL-F0494 | 一覧の切り抜きは N_frame_00 から作るシザー。一覧の Layout は自前のデータで先に組み立てられる（2026-09-25、MEDIUM: 静的＋利用者の見た目の報告。組み立ては実機未確認） | MEDIUM | S | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0495 | 一覧の行の文字の TagProcessor は script::RenderMain。タグ 0x0E/0/2 = 大きさ（縦横）、タブは 4 × 文字幅（2026-09-25、MEDIUM: 静的のみ。実機未確認） | MEDIUM | S | active |  |  |
 | ACNL-F0496 | プラグインから GPU 可視メモリを確保できた＝Luma の svcControlMemoryUnsafe で SYSTEM 領域から空き番地へ貼る（2026-09-25、HIGH: 実機 2 回＋Luma の公式ソース） | HIGH | S | active |  |  |
 | ACNL-F0497 | ゲームの SVC は 32 種類・745 か所（2026-09-25、HIGH: 命令語＋逆アセンブル、名前は libctru と 3dbrew の 2 資料で一致） | HIGH | S | active |  |  |
@@ -529,7 +529,7 @@
 | ACNL-F0523 | 建物の資源は 2 系統。共有 64 枠（公共事業など 7 クラス、1 種類 2 枠）と、役場・店の専用ヒープ（2026-09-23、HIGH（静的＋実機）） | HIGH | S | active |  |  |
 | ACNL-F0524 | その場で作った建物は資源の枠を部屋が片付くまで返さない。尽きると読み込みスレッドが落ちる（2026-09-23、MEDIUM（静的＋実機のクラッシュダンプ）） | MEDIUM | S | active |  |  |
 | ACNL-F0525 | 地図のアイコン枠は数を見ずに割り当てられ、溢れると星アイコン・柵の消滅・クラッシュになる（2026-09-23、HIGH（静的＋実機のクラッシュダンプ）） | HIGH | S | active |  |  |
-| ACNL-F0526 | 足元のアイテムは Field_MarkDirty で、下画面の地図は作成段 9 の呼び直しで更新できる（2026-09-23、**HIGH（静的＋実機）**） | HIGH | S | active |  |  |
+| ACNL-F0526 | 足元のアイテムは Field_MarkDirty で、下画面の地図は作成段 9 の呼び直しで更新できる（2026-09-23、**HIGH（静的＋実機）**） | HIGH | S | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0527 | 村の建物の実体は BsStrcMgr が作る。1 件分を写せば読み直さずに出せる（2026-09-23、**HIGH（静的＋実機）**） | HIGH | S | active |  |  |
 | ACNL-F0528 | 建物の高さは属性ブロックから。カタログ表示の読み込み手順（2026-09-23、MEDIUM（静的）） | MEDIUM | S | active |  |  |
 | ACNL-F0529 | 公共事業は ID → 名前 1 つでモデルと足元が引ける。設置関数は見た目を作らない（2026-09-23、静的） | HIGH | S | active |  |  |
@@ -554,7 +554,7 @@
 | ACNL-F0548 | 屋外座標の曲面変換は部屋フラグで切り替わる。165部屋中37部屋（2026-09-20、HIGH、静的＋実機） | HIGH | ? | active |  |  |
 | ACNL-F0549 | 不可視だった UnitCursor は生のゲーム座標に置かれていた（2026-09-20、HIGH、静的＋実機、自己訂正） | HIGH | ? | active |  |  |
 | ACNL-F0550 | 木1体の専用材質で透明度変更（2026-09-20、HIGH） | HIGH | ? | active |  |  |
-| ACNL-F0551 | 専用view/projectionで画面固定、pixel配置・倍率・alpha併用（2026-09-20、HIGH） | HIGH | ? | active |  |  |
+| ACNL-F0551 | 専用view/projectionで画面固定、pixel配置・倍率・alpha併用（2026-09-20、HIGH） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0552 | 独立した木を表示・非表示。ゲーム座標には曲面変換が必要（2026-09-20、HIGH） | HIGH | ? | active |  |  |
 | ACNL-F0553 | 行列経路は正常だった。残る差は node+0x228 / +0x22C（2026-09-19、HIGH、実機＋対照） | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0554 | 実機測定で IDA-unknown-F027 を棄却。頂点バッファの束縛は正しい（2026-09-18、HIGH、実機） | HIGH | ? | active |  |  |
@@ -572,7 +572,7 @@
 | ACNL-F0566 | sub_5C9C24 は夢見の館で落とした町を読み込んだ直後の作り直し（2026-09-18、MEDIUM） | MEDIUM | ? | active |  |  |
 | ACNL-F0567 | 日替わり処理の成長・郵便・「アイテム消えない」の中身（2026-09-18、MEDIUM） | MEDIUM | ? | active |  |  |
 | ACNL-F0568 | 準備中の日替わり処理に掲示板・雑草・住民の引っ越しがある（2026-09-17、MEDIUM＋実機傍証） | MEDIUM | ? | active |  |  |
-| ACNL-F0569 | しずえ画面「準備中」の仕事はSvProc種別4、中で日替わり処理と寝癖（2026-09-17、HIGH） | HIGH | ? | active |  |  |
+| ACNL-F0569 | しずえ画面「準備中」の仕事はSvProc種別4、中で日替わり処理と寝癖（2026-09-17、HIGH） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0570 | 店の営業時間判定は店・用途ごとに複製、共通の入口なし（2026-09-17、MEDIUM） | MEDIUM | ? | active |  |  |
 | ACNL-F0571 | 木と家具の共通モデル生成・姿勢設定（2026-09-14、MEDIUM） | MEDIUM | ? | active |  |  |
 | ACNL-F0572 | 木の実体とSeason資源を原本照合（2026-09-17、MEDIUM） | MEDIUM | ? | active |  |  |
@@ -591,13 +591,13 @@
 | ACNL-F0585 | Pretendoの公表したACNL RCE対策は `0x81` 掲示板パケット（2026-10-04、MEDIUM） | MEDIUM | ? | active |  |  |
 | ACNL-F0586 | 下位 `0x0C` でgohanの壁抜けを相手へ強制できるか（2026-10-04、MEDIUM） | MEDIUM | ? | active |  |  |
 | ACNL-F0587 | 屋外XYZを下位 `0x0C` で書くための条件と副作用（2026-10-04、静的MEDIUM／実用性LOW） |  | ? | active |  |  |
-| ACNL-F0588 | nw::lyt の Window は 1 枠でも描ける（2026-10-05、MEDIUM: 静的 + designer の再現がスクショと一致） | MEDIUM | S | active |  |  |
-| ACNL-F0589 | 自前の DARC をメモリから渡して下画面にレイアウトを出せる（2026-10-05、HIGH: 静的 + 実機） | HIGH | S | active |  |  |
+| ACNL-F0588 | nw::lyt の Window は 1 枠でも描ける（2026-10-05、MEDIUM: 静的 + designer の再現がスクショと一致） | MEDIUM | S | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0589 | 自前の DARC をメモリから渡して下画面にレイアウトを出せる（2026-10-05、HIGH: 静的 + 実機） | HIGH | S | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0590 | HHD の顔の画面が ACNL の下画面の最前面に予想どおり出る・必要なメモリ（2026-10-05、HIGH: 実機の画面と designer の予想の照合 + 実機のメモリ） | HIGH | S | active |  |  |
 | ACNL-F0591 | ウィンドウの中身にテクスチャがあるなら UV の組が要る（無いと nwlyt_CalcTexCoordsForGpu が落ちる）（2026-10-05、HIGH: 実機のクラッシュ + 静的） | HIGH | S | active |  |  |
 | ACNL-F0592 | 実行時のテクスチャ差し替えと性別の読み方を実機で確認（2026-10-05、HIGH: 静的 + 実機） | HIGH | S | active |  |  |
-| ACNL-F0593 | カタログを開くときの遷移は BsMenuBg の切り替え（クロスフェード）と画面自身の in アニメ。Fade / Wipe / Fader は使わない（2026-10-05、HIGH: 静的 + 実機の否定観測） | HIGH | S | active |  |  |
-| ACNL-F0594 | HHD の「ペインに投影」の座標生成を ACNL の UV で再現する規則（HHD-T006 の水玉の謎の答え）（2026-10-05、MEDIUM: レイアウトのデータ 2 種と HHD のスクショの照合。HHD のコードは未読） | MEDIUM | S | active |  |  |
+| ACNL-F0593 | カタログを開くときの遷移は BsMenuBg の切り替え（クロスフェード）と画面自身の in アニメ。Fade / Wipe / Fader は使わない（2026-10-05、HIGH: 静的 + 実機の否定観測） | HIGH | S | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0594 | HHD の「ペインに投影」の座標生成を ACNL の UV で再現する規則（HHD-T006 の水玉の謎の答え）（2026-10-05、MEDIUM: レイアウトのデータ 2 種と HHD のスクショの照合。HHD のコードは未読） | MEDIUM | S | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0595 | HHD の BFLAN を ACNL の BCLAN に変換できる（書き出しは ACNL の実物 727 本でバイト一致）・不透明度の伝播の旗（2026-10-05、HIGH: 実物との照合） | HIGH | S | active |  |  |
 | ACNL-F0596 | ACNL の見た目の記録と色の表。HHD の番号がそのまま使える（2026-10-05、MEDIUM〜HIGH: 静的 2 経路（命令の復元と HHD のデータ）の一致。実機での反映は未） | MEDIUM | S | active |  |  |
 | ACNL-F0597 | HHD のキャラクリ画面から ACNL のプレイヤーの見た目を変えられる（実機 全 PASS）（2026-10-05、HIGH: 静的 F080 + 実機） | HIGH | S | active |  |  |
@@ -614,7 +614,7 @@
 | ACNL-F0608 | 訪問者のプロフィールは固定領域にある（2026-10-06、HIGH: 静的 + 実機の症状が一致） | HIGH | S | active |  |  |
 | ACNL-F0609 | gohan の他機能の「自分のプレイヤー」— 問題が出た所と出なかった所の理由（2026-10-06、MEDIUM: 静的 + 利用者の実機の結果） | MEDIUM | S | active |  |  |
 | ACNL-F0610 | gohan のリソースを sdmc:/gohan に（2026-10-06、設計 + 静的検査。実機未確認） |  | S | active |  |  |
-| ACNL-F0611 | Layout ノード 1 つにつき 1 枚のシザー（自前の候補欄の切り抜きに使う）（2026-10-06、HIGH: 静的 + 実機。縦の向きは実機で訂正） | HIGH | S | active |  |  |
+| ACNL-F0611 | Layout ノード 1 つにつき 1 枚のシザー（自前の候補欄の切り抜きに使う）（2026-10-06、HIGH: 静的 + 実機。縦の向きは実機で訂正） | HIGH | S | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0612 | ゲームのフォント（Garden_msg_size16）で描けない文字 = 代わりの字形 0xE03A（2026-10-06、MEDIUM: 実機の写し + 元の ARM との照合。候補の除外は実機未確認） | MEDIUM | S | active |  |  |
 | ACNL-F0613 | 建物プレビューのファイル読み込みは既にゲームの読み込み係のスレッドで非同期（2026-10-06、MEDIUM: 静的） | MEDIUM | S | active |  |  |
 | ACNL-F0614 | 公共事業エディターのプレビュー切り替えの実測（2026-10-06、HIGH: 実機の計測。gohan work/preview-probe 1836acd） | HIGH | S | active |  |  |
@@ -631,7 +631,7 @@
 | ACNL-F0625 | 模様替え UI を開いたまま家具を出す手順の詰め（2026-10-07、MEDIUM: 静的のみ。利用者の 5 時間枠で打ち切り） | MEDIUM | A | active |  |  |
 | ACNL-F0626 | T022 カタログの生成器（Codex 依頼 t022_catalog_arc、gpt-6.1-sol xhigh、2026-10-07。打ち切り。記録 ID なし = 道具と生成物） |  | ? | active |  |  |
 | ACNL-F0627 | 服・ワンピース・K.K. の曲を部屋に置くときの品番（2026-10-07、MEDIUM: 静的 2 経路） | MEDIUM | A | active |  |  |
-| ACNL-F0628 | HHD と ACNL でアニメのコマ数の数え方が 1 つ違う（2026-10-07、HIGH: 静的＋実機の症状） | HIGH | S | active |  |  |
+| ACNL-F0628 | HHD と ACNL でアニメのコマ数の数え方が 1 つ違う（2026-10-07、HIGH: 静的＋実機の症状） | HIGH | S | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0629 | T022 の窓が開かないのは読み込みのヒープ不足（2026-10-08、HIGH: 実機の値＋静的） | HIGH | S | active |  |  |
 | ACNL-F0630 | T022 カタログの実機不具合 8 件の原因と修正（2026-10-08、MEDIUM: 静的。実機未確認） | MEDIUM | A | active |  |  |
 | ACNL-F0631 | 家具が置けない・壁紙が張り替わらない原因（2026-10-08、HIGH: 実機 BP＋静的） | HIGH | A | active |  |  |

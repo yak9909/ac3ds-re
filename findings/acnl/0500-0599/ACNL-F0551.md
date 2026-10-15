@@ -20,8 +20,8 @@ source: IDA:work/FINDINGS.md:4118-4125
 by: gpt-6
 original_by: ''
 reviewed_by: []
-state: active
-consolidated_into: ''
+state: consolidated
+consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
 superseded_by: ''
 ---

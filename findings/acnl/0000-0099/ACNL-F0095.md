@@ -36,8 +36,8 @@ source: v1:RE/FINDINGS.md:3315-3409
 by: unknown
 original_by: ''
 reviewed_by: []
-state: active
-consolidated_into: ''
+state: consolidated
+consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
 superseded_by: ''
 corrected_by: ["ACNL-F0096"]
