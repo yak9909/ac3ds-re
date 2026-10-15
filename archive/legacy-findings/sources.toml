@@ -1,0 +1,22 @@
+# 原本の SHA256 と公開のための伏せ字。伏せた値は記載しない。
+
+[[sources]]
+name = "v1:RE/FINDINGS.md"
+sha256 = "0dc6af5b0d0fe2f53cef98865775ec49935b9b669bd929c7f94f8c909fb08dd7"
+
+[[sources]]
+name = "IDA:work/FINDINGS.md"
+sha256 = "90ba9e0e6b19a8c9e2b64814affa615408a7e4a23b230591bf08909ee00445f2"
+
+[[sources]]
+name = "IDA:work/hhd/FINDINGS.md"
+sha256 = "5116d351d3c284903146ca73c3f27c09d90444b12a4899d747d2ffd93e913b7e"
+
+[[sources]]
+name = "Ghidra:work/FINDINGS.md"
+sha256 = "f4e24d0708799fc03e3e6d7d2ec37152f48bfebfe299efe55e7a57dd19a775ea"
+
+[[redactions]]
+id = "ACNL-F0090"
+line = 46
+kind = "個人の情報: Windows のユーザーのパス"
