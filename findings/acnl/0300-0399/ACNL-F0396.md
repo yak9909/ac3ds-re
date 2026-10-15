@@ -5,7 +5,7 @@ aliases:
 title: 'F-369（2026-09-08）: クラッシュ原因は遷移フレームでの発火。安定ゲートで対策'
 summary: F-368 からの続き。利用者の申告： 項目ON・通知なし・
 date: '2026-09-08'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

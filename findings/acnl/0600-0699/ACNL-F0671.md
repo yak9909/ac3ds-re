@@ -6,7 +6,7 @@ aliases:
 title: 0x0A visual生成を外し、stock post-visual field commitだけ再利用
 summary: 'Ghidra-gpt-sol-5.6-F031 hardware result:'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: Ghidra

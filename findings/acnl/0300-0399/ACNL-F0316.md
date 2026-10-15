@@ -5,7 +5,7 @@ aliases:
 title: F-292 (HIGH・静的のみ) — ★F-291 を別関数で再検証（矛盾なし）。**正規の手順なら記録ケーブは丸ごと不要**
 summary: 全文は `scratchpad/MEMO_f292_proper_way.md`。
 date: '2026-09-04'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

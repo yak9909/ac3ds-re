@@ -5,7 +5,7 @@ aliases:
 title: 'F-243: CSEQ バイトコードの命令表を確定（ラベル境界一致 100.00%） — `HIGH`'
 summary: '`SOUND/cseq.py`。引数長は推測せず、**CSEQ が自前で持つ 33,344 個の `LABL` オフセットが'
 date: '2026-09-01'
-category: _triage
+category: sound
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

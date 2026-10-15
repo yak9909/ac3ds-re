@@ -6,7 +6,7 @@ aliases:
 title: custom guard依存を廃止し、menu-open中の0x16→0x06を直接抑止する
 summary: '**確度: MEDIUM（静的検証済み、実機未検証）。**'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: Ghidra

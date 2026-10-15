@@ -5,7 +5,7 @@ aliases:
 title: アニメ本体は g3d の自前クラス。nw::gfx::AnimEvaluator を使うと落ちる（2026-09-21、HIGH、実機・自己訂正）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。**F009 に「未検証の仮説」と書いた箇所を実機で突いて反証された。**'
 date: '2026-09-21'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

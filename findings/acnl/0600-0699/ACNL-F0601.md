@@ -5,7 +5,7 @@ aliases:
 title: '目の色は頭のキー、目の形は作るときだけ — 複製の目をすぐ反映する方法（2026-10-05、MEDIUM: 静的のみ。gohan は実機未確認）'
 summary: '解析モデル opus-5.5。IDB: `PlayerFaceSlot_RequestLoad 0x2711AC` / `PlayerFaceSlot_Unload 0x2711A4` を命名・注記。'
 date: '2026-10-05'
-category: _product
+category: actor
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

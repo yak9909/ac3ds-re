@@ -5,7 +5,7 @@ aliases:
 title: 'F-277: 記録 → Commit → 再生の連鎖を端から端まで静的に証明した — `HIGH`（静的のみ）'
 summary: 「実装したものがどう影響するか」を、関数ごとに全部読んで繋いだ。
 date: '2026-09-01'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-131: TextBoxの折り返しはpane幅、縦方向は非clip。右端欠けの境界はCWDH glyphWidth'
 summary: 'confidence: **折り返し・縦方向非clip・描画矩形 HIGH** / **右端の見た目の最終原因 MEDIUM**'
 date: '2026-08-24'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

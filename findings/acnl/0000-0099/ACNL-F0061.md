@@ -5,7 +5,7 @@ aliases:
 title: F-23 進行中アクションテーブル `0x9AE1A4` — `HIGH`
 summary: 5 バイト × 32 エントリ。`g_FieldActionQueue`(`0x9AE15C`, 18B×4) の直後に隣接する
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

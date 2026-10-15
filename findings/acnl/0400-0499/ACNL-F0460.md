@@ -5,7 +5,7 @@ aliases:
 title: 'ゲーム共通の 8 行リスト InstSelect<8> を下画面だけ借りる部品の作り（2026-09-25、MEDIUM: 静的＋実機の欄の読み取り。描画は未試験）'
 summary: '公共事業のリストは `PWorkList : InstSelect<8> : SelectBase : CatalogBase`（RTTI）。`InstSelect<8>`（vtbl `0x8E54B4`、ctor `sub_7C6EB0`、4,812 B）は派生 10 種が共有する**ゲーム共通の 8 行リスト**で、純粋仮想は vt[13]（一覧を作る・件数 +2500）と vt[25]（i 行目の語）だけ。'
 date: '2026-09-25'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

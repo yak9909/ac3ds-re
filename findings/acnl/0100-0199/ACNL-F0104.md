@@ -5,7 +5,7 @@ aliases:
 title: 'F-66: オンライン髪型変更は虫取り網アクションから美容室状態 `0xB9` への迂回'
 summary: 'confidence: **MEDIUM**（独立した複数の静的経路で一致。実機・通信相手を使った動的検証は未実施）'
 date: '2026-09-08'
-category: _product
+category: actor
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

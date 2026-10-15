@@ -5,7 +5,7 @@ aliases:
 title: PlayerModel と部品バンク。複製はゲーム自身の作成・片付け関数と「プロフィールの写し」で作れる（2026-09-24、HIGH（静的＋実機 BP・実機の読み取り）。複製の作成は未実施）
 summary: '**構造**: AcPlayer+436 = PlayerModel（RTTI 11PlayerModel、vtbl 0x8E5F74、624 B）。pm+548 髪型 / +552 髪色 / +556 目の色 / +512 服 8 枠。'
 date: '2026-09-24'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

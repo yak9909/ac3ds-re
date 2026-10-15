@@ -5,7 +5,7 @@ aliases:
 title: 'ゲームの SVC は 32 種類・745 か所（2026-09-25、HIGH: 命令語＋逆アセンブル、名前は libctru と 3dbrew の 2 資料で一致）'
 summary: 再現 `tools/svc/scan_svc.py` → `work/evidence/svc/svc_sites.json`。文書 `docs/topics/svc.md`。
 date: '2026-09-25'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

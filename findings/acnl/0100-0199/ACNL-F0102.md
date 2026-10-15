@@ -5,7 +5,7 @@ aliases:
 title: 'F-64: FOXXY の `pseudoType0x21` と、FOXXY 用 USA→JPN 変換'
 summary: 'confidence: **HIGH**（仕組みとアドレス対応）/ **LOW**（画面上の見た目）'
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

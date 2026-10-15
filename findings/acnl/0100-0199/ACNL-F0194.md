@@ -5,7 +5,7 @@ aliases:
 title: 'F-168: ★★★任意の大きさの四角形を描けた。TODO-119 達成 — `HIGH`（実機で視認）'
 summary: '適用: `PATCHES/cave_own_quad.py`'
 date: '2026-08-28'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

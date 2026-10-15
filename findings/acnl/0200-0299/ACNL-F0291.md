@@ -5,7 +5,7 @@ aliases:
 title: 'F-268: ★★★★★Drawer の既定コマンド列には **TEV 段が 1 つも無い**。色は必ずマテリアル由来 — `HIGH`（静的のみ）'
 summary: 「`DrawBegin1` の既定 TEV で LA4 アトラス × 頂点カラーが合成されるか」（F-260 の未検証項目）に
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

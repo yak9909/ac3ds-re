@@ -5,7 +5,7 @@ aliases:
 title: 'F-119: ★★TODO-80 完了 — 自前の `g3d::FuncNode` を生成し、毎フレーム呼ばせることに成功'
 summary: 'confidence: **HIGH**（実機。生成物の型・コールバック回数を直接確認）'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

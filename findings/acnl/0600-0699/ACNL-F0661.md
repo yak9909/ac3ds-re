@@ -6,7 +6,7 @@ aliases:
 title: Ghidra-gpt-sol-5.6-F022後に残るdirect 0x16→0x06を観測する
 summary: '**確度: HIGH（hook ABI/分岐/cave collision静的検証。caller実機値待ち）。**'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: Ghidra

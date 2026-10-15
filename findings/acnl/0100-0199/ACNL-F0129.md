@@ -5,7 +5,7 @@ aliases:
 title: 'F-91: `1UPキノコ` はfamily 3/type `0xBD`でも同じvptr+8 crash。preview特殊type全域を基底化'
 summary: 'confidence: **HIGH**（例外register/stack、ItemParam record、family table、復旧create、実機patch読戻しを照合）'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

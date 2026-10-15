@@ -5,7 +5,7 @@ aliases:
 title: 'F-395: UI単文節経路と直接連文節APIの区別'
 summary: MEDIUM。UI caller 0x10996Cは111FD4(ctx,1,text,0,0,55)を呼ぶが、最下層1145ACの
 date: '2026-09-10'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

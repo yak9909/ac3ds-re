@@ -5,7 +5,7 @@ aliases:
 title: F-16 v1 の 3x3 ケーブがクラッシュした原因 — バグの存在は `HIGH` / 因果は `MEDIUM`
 summary: '**原因A（コード上は確定）**: テールジャンプ前に R0-R3 を復元していなかった。'
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

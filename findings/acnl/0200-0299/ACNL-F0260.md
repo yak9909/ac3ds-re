@@ -5,7 +5,7 @@ aliases:
 title: 'F-235: `Frame_EndDrawPass1024` 主リスト末尾の手製 Drawer-state 版は安全な提出経路ではない — `MEDIUM`（静的＋実機失敗）'
 summary: '`PATCHES/cave_tail_sprite.py` は `0x5A27C8` で、捕獲済み material と inline Drawer を用いて'
 date: '2026-09-01'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

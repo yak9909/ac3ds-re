@@ -5,7 +5,7 @@ aliases:
 title: F-05 アニメ名テーブル基準は `0x0085FFB0` — `HIGH`
 summary: 16B × 約1028（終端未検証）。`+0` 未使用 / `+4` 本体名 / `+8` `_e1` / `+12` `_m1`。
 date: '2026-09-08'
-category: _triage
+category: actor
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

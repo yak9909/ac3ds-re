@@ -5,7 +5,7 @@ aliases:
 title: 'F-372: ACNL既存APTの実行文脈候補と失敗分岐のPC検証（2026-09-08）'
 summary: '**MEDIUM、実機アクセスなし。** 利用者が既存APT経路を第一候補に指定し、実機操作を保留。'
 date: '2026-09-08'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

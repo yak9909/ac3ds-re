@@ -6,7 +6,7 @@ aliases:
 title: Scene_SubmitNode のシーン番号は 0=通常描画・1=別モード・2=影マップ（2026-09-18、MEDIUM）
 summary: Render_InitGlobal 0x4E97CC が SceneContext/SceneTraverser を 3 本作る（g_SceneContexts 0x9C3098 / g_SceneTraversers 0x9C30A4）。Scene_DrawLayers 0x4EB840 の呼び出し元は 2 つで、Render_DrawScene2 0x4E976C が影マップ（g_SceneContext_2、IDA-unknown-F008）、Render_DrawSc
 date: '2026-09-18'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

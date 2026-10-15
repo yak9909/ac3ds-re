@@ -6,7 +6,7 @@ aliases:
 title: dit (post Ghidra-gpt-sol-5.6-F032)
 summary: 'User correction accepted: ACNL already owns the drop queue; adding a second custom busy lock before fully understanding the native lifecycle was the wrong integration direction.'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: Ghidra

@@ -5,7 +5,7 @@ aliases:
 title: 'F-341（2026-09-07）: 費用の式を「当てはめ」から「逆アセンブルの写し」へ'
 summary: '**confidence: HIGH**（実機 19 点で誤差 0。うち **3 点は式を書いたあとに予言してから測った**）'
 date: '2026-09-07'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

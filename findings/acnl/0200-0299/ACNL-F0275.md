@@ -5,7 +5,7 @@ aliases:
 title: 'F-252: 2D レイアウトの描画は「1 本のリストを画面ごとに 2 回再生」する — `HIGH`（静的。動的照合は未実施）'
 summary: '> **★F-253 で大幅に訂正した。単体で読まないこと。** リストは 1 本ではなく 2 本（`mgr+0x04`=上画面 / `mgr+0x10`=下画面）、'
 date: '2026-09-01'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

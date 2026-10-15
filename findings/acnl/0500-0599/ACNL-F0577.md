@@ -6,7 +6,7 @@ aliases:
 title: 旧プロジェクトの内部保存
 summary: 旧原本・資料・キャッシュ32395ファイル、7271181421 bytesをコピー元とSHA-256照合して保存。
 date: '2026-09-13'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

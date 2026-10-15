@@ -6,7 +6,7 @@ aliases:
 title: custom falling objectをbusy tokenにしてdrop queueをlock
 summary: 'Ghidra-gpt-sol-5.6-F032 hardware success後の残課題:'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: Ghidra

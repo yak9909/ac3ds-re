@@ -5,7 +5,7 @@ aliases:
 title: SkeletalModelも描けた。node+0x228/+0x22C は不可視の原因ではない（2026-09-21、HIGH、実機）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。**`UnitCursor`（`0x40000092` = `nw::gfx::SkeletalModel`）を'
 date: '2026-09-21'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

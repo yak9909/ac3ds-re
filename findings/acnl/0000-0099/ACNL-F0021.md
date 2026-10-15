@@ -5,7 +5,7 @@ aliases:
 title: 'F-393: 通常フックのR0保持不足によるOFF時SIGSEGV'
 summary: HIGH（故障箇所と引数破壊。修正は未実施）。利用者のしずえスキップOFF時のSIGSEGVを
 date: '2026-09-10'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

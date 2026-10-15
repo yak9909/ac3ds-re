@@ -5,7 +5,7 @@ aliases:
 title: 'F-221: ★★ゲームのアロケータから取れるのは 0x4000 まで — `HIGH`（実機）'
 summary: グリフアトラスを 256x128 LA4（32KB）にしようとして `Alloc(0x8000, 0x80)` を試したが
 date: '2026-09-01'
-category: _product
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

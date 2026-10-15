@@ -5,7 +5,7 @@ aliases:
 title: 'F-206: ★★★★色とテクスチャの出所は「マテリアル」。自前で積まないと直前のペインのものになる — `HIGH`（実機）'
 summary: '`nwlyt_Picture_DrawToCommandList` は必ず先頭でこう呼ぶ。'
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

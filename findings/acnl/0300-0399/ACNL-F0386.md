@@ -5,7 +5,7 @@ aliases:
 title: 'F-358（2026-09-08）: `BsFgProc::Setup` の正体 — `fgobj::Proc` のセットアップ段（＋しずえ会話スキップの下調べ）'
 summary: 'confidence: **MEDIUM〜HIGH（静的のみ）**。**この作業中デバッガは切断されていた**（`is_debugger_on()==False`）。'
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-362: 内蔵日本語辞書6本の取得・主要辞書75,770件の読み/候補を抽出（2026-09-08）'
 summary: '**confidence: MEDIUM**。複数静的証拠とPC内での元ARM命令実行で検証。'
 date: '2026-09-08'
-category: _product
+category: text
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

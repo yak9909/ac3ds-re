@@ -5,7 +5,7 @@ aliases:
 title: F-24 キューに積んでも実行段階は 1 マスしか処理しない — `HIGH`
 summary: 'F-22 の修正でケーブは正しく動くようになった。実機で確認できたこと:'
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

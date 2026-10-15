@@ -5,7 +5,7 @@ aliases:
 title: '相手側のアクセサリーを残す状態 0xBA、送れなかった件（2026-10-06、MEDIUM: 静的のみ。gohan 未実機）'
 summary: '解析モデル opus-5.5。IDB: `PlayerState_HeadGoodsExit 0x68A6AC` / `PlayerState_HeadGoodsSyncRemote 0x68C538`（関数を定義）を命名・注記。'
 date: '2026-10-06'
-category: _product
+category: actor
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

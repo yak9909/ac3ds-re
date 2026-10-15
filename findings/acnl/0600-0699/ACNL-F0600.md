@@ -5,7 +5,7 @@ aliases:
 title: '部屋の内部名の表、メッシュ 1 つを半透明で描く命令の挟み方、T018 第 1 段の実機（2026-10-05、HIGH（部屋の表: ID 一覧とゲームの表の 2 経路）/ MEDIUM（半透明: 静的、実機未確認））'
 summary: '解析モデル opus-5.5。IDB: `g_RoomInternalNames 0x9515F0`（命名・注記）、`gfx_DrawMesh 0x48D26C` に注記。'
 date: '2026-10-05'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

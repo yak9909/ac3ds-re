@@ -5,7 +5,7 @@ aliases:
 title: 'F-76: stock「メニュー終了まで待機」はcatalog終了の橋渡し候補'
 summary: 'confidence: **HIGH**（状態recordとupdate処理を `code.bin.i64` で確認）、'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

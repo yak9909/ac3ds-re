@@ -5,7 +5,7 @@ aliases:
 title: 'F-272: F-264〜F-271 の整合監査。独立な結果と突き合わせて 1 件の誤りを訂正し、`SET_PROJECTION` を廃止した — `HIGH`'
 summary: 新しい結論が既存の独立した結果と矛盾しないかを、6 点について確かめた。
 date: '2026-09-01'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

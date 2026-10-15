@@ -6,7 +6,7 @@ aliases:
 title: Volta の shim が引数を改行で切り落とす（このPC全体の問題）
 summary: '`node` の実体は `C:/Program Files/Volta/node.exe`（Volta 2.0.2 の shim）。'
 date: '2024-07-12'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

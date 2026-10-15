@@ -5,7 +5,7 @@ aliases:
 title: F-21 `FieldAction_Dispatch` の case 3 へは case 7 から来る — `MEDIUM`
 summary: '```'
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

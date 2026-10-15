@@ -5,7 +5,7 @@ aliases:
 title: '村のマスにアイテムを置く・消す手順（2026-09-27、MEDIUM: 静的のみ。gohan のマップエディター段階 2 は実機未確認）'
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。マップエディター（gohan Issue #16）の配置・削除モードのため。'
 date: '2026-09-27'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

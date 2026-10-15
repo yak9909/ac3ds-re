@@ -5,7 +5,7 @@ aliases:
 title: F-53 RTTI から全クラス名をデマングルして命名した — `HIGH`
 summary: '`code.bin.i64`（セッション `acnl_code`）に **クラス 2,895 件・名前 5,481 件**を入れた。'
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

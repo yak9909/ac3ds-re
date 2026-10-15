@@ -5,7 +5,7 @@ aliases:
 title: 'F-147: `nw::lyt::Picture` は TextBox と同じ UI command-list 経路を使う — `HIGH`（静的＋実機）'
 summary: '`ti_nw_lyt_Picture=0x8C9B9C` / `vtbl_nw_lyt_Picture=0x8FBFFC` の Pane draw slot'
 date: '2026-09-08'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

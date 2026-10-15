@@ -5,7 +5,7 @@ aliases:
 title: 'F-202: ★★★メインリストの末尾に積んでも UI は描かれない。2 回目のクラッシュの原因 — `HIGH`（実機）'
 summary: F-200 / F-201 の静的解析に基づき、**`Frame_DrawPass1024` の末尾**
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

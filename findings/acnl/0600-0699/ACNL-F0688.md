@@ -6,7 +6,7 @@ aliases:
 title: player/town name tag sanitizer
 summary: group5/type0 current player name -> Insert method 0x5ECAB8.
 date: '2026-09-19'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: ''
 tool: Ghidra

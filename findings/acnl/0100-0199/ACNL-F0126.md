@@ -5,7 +5,7 @@ aliases:
 title: 'F-88: phase 1公開中にstock previewへ戻るとtype `0xBC`を早期生成してSIGSEGVになる'
 summary: 'confidence: **HIGH**（例外PC・全register・stack・actor/manager memoryと静的呼出し経路を照合）'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

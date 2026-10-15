@@ -5,7 +5,7 @@ aliases:
 title: F-26 【成功】直接書き込み方式で隣マスに穴が空いた — `HIGH`
 summary: 状態機械・レコードを一切通さず、隣マスのアイテムを直接書き換える。
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-84: Catalog actor typeはItemParam由来。`AcFtr` はbank確保、model非同期読込、layer 2登録の3 phase'
 summary: 'confidence: **MEDIUM**（Item.bin loader、family table、AcFtr vtableと各phaseの静的照合）'
 date: '2026-08-24'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

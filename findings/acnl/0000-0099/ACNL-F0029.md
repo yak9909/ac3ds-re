@@ -5,7 +5,7 @@ aliases:
 title: 'F-151: native TextBox draw の descriptor は `R2=0x330A605C` — `HIGH`（trace＋既存実測照合）'
 summary: '`scratchpad/trace_textbox_draw_args.py` を `nwlyt_TextBox_DrawToCommandList`'
 date: '2026-09-08'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-308: 大量の文字を登録したときの天井（TextWriter 直呼び方式の評価） — HIGH'
 summary: '> 問い: 自前チートメニューで**自前フォントの文字を大量に登録**する可能性がある。'
 date: '2026-09-06'
-category: _product
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

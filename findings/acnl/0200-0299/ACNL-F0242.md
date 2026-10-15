@@ -5,7 +5,7 @@ aliases:
 title: 'F-217: ★★★★SD から任意の画像を読む（TODO-130 完了）— `HIGH`（実機）'
 summary: 3DS の GPU は **8x8 タイル + Morton 順**で、幅・高さは 2 の冪しか読めない。
 date: '2026-09-01'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

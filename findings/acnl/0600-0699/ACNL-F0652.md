@@ -6,7 +6,7 @@ aliases:
 title: 0x838080 dead-cave再利用は実機runtimeと衝突する
 summary: '**確度: HIGH（crash_dump_00000009＋enable直後再現）。**'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: Ghidra

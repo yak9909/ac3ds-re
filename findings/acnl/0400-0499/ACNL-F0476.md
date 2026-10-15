@@ -5,7 +5,7 @@ aliases:
 title: 'モデルの資源の Setup と後片付け — 自前の体を壊すと元の資源の LUT 参照が外れる（2026-09-28、HIGH: 静的＋停止中の実機の読み取り）'
 summary: '解析ソフト: IDA（主 IDB を idalib-mcp で静的、停止中の実機を ida-pro-mcp で読み取りのみ）/ 解析モデル: opus-5.5。'
 date: '2026-09-28'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 姿勢を直接書くだけでは描かれない。骨格の更新が要る（2026-09-21、HIGH、実機。**F017 の訂正**）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。**利用者の指摘（「UnitCursor が画面内に描画されていない」）から判明した。**'
 date: '2026-09-21'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

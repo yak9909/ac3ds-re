@@ -6,7 +6,7 @@ aliases:
 title: mode1 sender bypass preserves tags on hardware
 summary: '**Hardware-confirmed.**'
 date: '2026-09-19'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: ''
 tool: Ghidra

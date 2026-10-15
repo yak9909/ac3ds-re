@@ -5,7 +5,7 @@ aliases:
 title: 公共事業は ID → 名前 1 つでモデルと足元が引ける。設置関数は見た目を作らない（2026-09-23、静的）
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。（旧表記 `IDA-opus-5-F039`、次の TODO は `IDA-opus-5-T026`〜`T028`。担当モデルを取り違えていたのを 2026-09-23 に訂正。番号は再利用しない）'
 date: '2026-09-23'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

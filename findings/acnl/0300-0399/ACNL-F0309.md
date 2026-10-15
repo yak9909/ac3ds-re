@@ -5,7 +5,7 @@ aliases:
 title: F-284 (HIGH) — 自前 GUI（F-283 版）のクラッシュ `PC=0x839004` は「.text のゼロ埋めを NOP スライドして飛び出した」結果
 summary: '**根拠**（静的。`idalib-mcp` / `code.bin.i64`）'
 date: '2026-09-01'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

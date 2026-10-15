@@ -4,7 +4,7 @@ aliases: []
 title: '`SET_PROJECTION` を廃止した'
 summary: 上の 3 番で、**ビューポートは各パスが `RecordChildren` の後・`SetDisplay`（replay）の前に
 date: '2026-09-01'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-61: `REFERENCES/CHEATS/drop.cpp` の「host drop」の正体'
 summary: 'confidence: **HIGH**（静的解析。素の命令・分岐先・Vapecord の表が三方で一致）'
 date: '2026-09-08'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

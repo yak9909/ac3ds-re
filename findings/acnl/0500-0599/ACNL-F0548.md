@@ -5,7 +5,7 @@ aliases:
 title: 屋外座標の曲面変換は部屋フラグで切り替わる。165部屋中37部屋（2026-09-20、HIGH、静的＋実機）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。`FieldPosition_ToRenderSpace 0x0052CDD8` は'
 date: '2026-09-20'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

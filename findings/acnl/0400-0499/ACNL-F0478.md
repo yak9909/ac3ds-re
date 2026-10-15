@@ -5,7 +5,7 @@ aliases:
 title: '村のアイテムの実体（fgobj）の辿り方とモデルの引き方（2026-09-27、MEDIUM: 静的のみ。gohan 165b571 で使用、実機未確認）'
 summary: '解析ソフト: IDA（主 IDB）/ 解析モデル: opus-5.5。マップエディターの上画面（赤いハイライト・移動の複製）のため。設計 docs/topics/map_editor_3d.md（D004）。'
 date: '2026-09-27'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: F-32 CTRPF の空ページ `0x01E81000` は実行可能 — `HIGH`
 summary: CTRPluginFramework が起動時に確保する空メモリページ。
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -6,7 +6,7 @@ aliases:
 title: action 0x12誤用を撤回し、stock action 0x0Aでimpact定着
 summary: 'Ghidra-gpt-sol-5.6-F029 hardware result:'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: Ghidra

@@ -5,7 +5,7 @@ aliases:
 title: 'F-175: ★★★Picture は毎フレーム必ず描かれる。TextBox ではなく Picture に相乗りすべきだった — `HIGH`（実機で計測）'
 summary: '適用: `PATCHES/measure_picture_draws.py`'
 date: '2026-08-28'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

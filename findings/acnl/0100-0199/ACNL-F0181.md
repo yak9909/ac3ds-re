@@ -5,7 +5,7 @@ aliases:
 title: 'F-139: ResFont→CMAP→batch quad の実機経路を確認 — `HIGH`（経路・引数・構造）'
 summary: 2026-08-28、Remote GDB を停止／再開し、文字更新中の同一呼び出しを breakpoint で採取した。
 date: '2026-08-28'
-category: _product
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

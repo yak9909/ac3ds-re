@@ -5,7 +5,7 @@ aliases:
 title: 地形のマス情報は 10 バイト（角の高さ 4 個＋属性）で、足元データと同じ形／橋の四角の外周は必ず端のマス（2026-09-24、MEDIUM（静的＋romfs 全 24 本）。実機の見た目は未確認）
 summary: '**地形の高さ**: `Field_GetGroundHeightAtWorld 0x6C69C0` -> `sub_6C6A60` -> `sub_6A8C80`。区画ブロック + 28 から'
 date: '2026-09-24'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

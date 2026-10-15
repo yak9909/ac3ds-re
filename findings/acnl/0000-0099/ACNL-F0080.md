@@ -5,7 +5,7 @@ aliases:
 title: F-42 【完成】木にぶつかって切り倒す — `HIGH`
 summary: 実機で確認済み。**パッチは 1 つも当てず、フック 1 箇所だけで完結する。**
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

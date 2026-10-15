@@ -5,7 +5,7 @@ aliases:
 title: 'F-65: 通常ドロップの入口と、種別を変える AR コード'
 summary: 'confidence: **HIGH**（静的解析。チートの復元値と逆コンパイルが一致）/ 実機未検証'
 date: '2026-09-08'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

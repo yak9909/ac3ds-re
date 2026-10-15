@@ -5,7 +5,7 @@ aliases:
 title: ModelInstance_Create の a5/a6/a7 を実機で分離（2026-09-21、HIGH、実機A/B/C）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。IDA-opus-5-F014 の仮説を実機で検証。'
 date: '2026-09-21'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

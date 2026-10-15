@@ -5,7 +5,7 @@ aliases:
 title: 'F-145: TextBox batch は専用list 32で構築され、メインlistへ再生される — `HIGH`（静的＋実機）'
 summary: software BPを使わず、`scratchpad/trace_text_batch_submit.py` で会話名TextBoxのbatch
 date: '2026-09-08'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

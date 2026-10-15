@@ -5,7 +5,7 @@ aliases:
 title: 'F-111: ★★TODO-60 解決 — ノードをシーンに載せる仕組み（`Scene_SubmitNode`）'
 summary: 'confidence: **HIGH**（当初 MEDIUM。**F-112 の実機観測で昇格**）'
 date: '2026-08-24'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

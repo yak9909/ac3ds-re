@@ -5,7 +5,7 @@ aliases:
 title: F-10 掘る経路の後段にアクションID 上書きがある — `MEDIUM`
 summary: 掘る経路 `0x5984F0` (`R4=19`, `R1=158`) に入った**後**、
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

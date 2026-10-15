@@ -5,7 +5,7 @@ aliases:
 title: 'F-207: ★★★★★`drawctx+1692` が 0 だと UV が読まれずテクスチャ全面が貼られる — `HIGH`（実機）'
 summary: '`nwlyt_Picture_DrawToCommandList` より:'
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

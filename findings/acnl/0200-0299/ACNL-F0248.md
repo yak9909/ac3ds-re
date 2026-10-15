@@ -5,7 +5,7 @@ aliases:
 title: 'F-223: ★★★★描くものが無いのに記録を強制すると、しばらくして GPU コマンドリストが枯れる — `HIGH`（実機）'
 summary: 自前 GUI を ON にして**しばらく遊ぶと**クラッシュした。
 date: '2026-09-01'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

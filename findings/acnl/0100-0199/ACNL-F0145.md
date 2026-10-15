@@ -5,7 +5,7 @@ aliases:
 title: 'F-107: ★`g3d::FuncNode` の実在を確認。コールバック登録 API まで判明'
 summary: 'confidence: **MEDIUM**（静的解析のみ。ただし独立した 2 経路から裏付け）'
 date: '2026-08-24'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

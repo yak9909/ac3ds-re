@@ -5,7 +5,7 @@ aliases:
 title: 'F-95: GPU コマンドバッファ `g_GpuCmdPtr` の特定'
 summary: 'confidence: **MEDIUM**（逆コンパイルでヘッダ定数と書き込み手順を直接確認。**静的解析のみ**、F-101 で訂正）'
 date: '2026-08-24'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

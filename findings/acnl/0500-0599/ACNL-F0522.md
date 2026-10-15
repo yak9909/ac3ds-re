@@ -5,7 +5,7 @@ aliases:
 title: 読み直しへ逃がしても必要量は同じ。ゲームでも落ちる状態は置く前に断る。地図は星アイコンまでゲームと同じに（2026-09-23、**HIGH（静的＋実機）**）
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。F008 の版の実機結果（利用者）: 建物はその場で出るようになった。置き続けると'
 date: '2026-09-23'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

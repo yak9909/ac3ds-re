@@ -5,7 +5,7 @@ aliases:
 title: '建物プレビューのファイル読み込みは既にゲームの読み込み係のスレッドで非同期（2026-10-06、MEDIUM: 静的）'
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。'
 date: '2026-10-06'
-category: _product
+category: system
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

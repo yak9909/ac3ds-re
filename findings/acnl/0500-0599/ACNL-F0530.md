@@ -5,7 +5,7 @@ aliases:
 title: 更新タイトルの RomFS は開けなかった（2026-09-22、HIGH（事実）、原因は未解明）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。利用者の実機報告：'
 date: '2026-09-22'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

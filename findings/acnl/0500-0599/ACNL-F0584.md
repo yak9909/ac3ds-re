@@ -5,7 +5,7 @@ aliases:
 title: 下位種別12の受信に町サイズ上限がない（2026-10-04、MEDIUM）
 summary: '解析ソフト IDA（idalib-mcp）、解析モデル gpt-6-sol。日本語版更新 `artifacts/update/exefs/code.bin`、SHA-256 `c635af8f08937b66f123b91b02391a68c034393320cdb94d603b9291383faabb`。通常送信 `sub_61FE5C` は町全量 `0x71880` Bで止まるが、非ホスト受信 `sub_187030` は先頭4Bオフセットが `>=0x10EA` なら '
 date: '2026-10-04'
-category: _triage
+category: network
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

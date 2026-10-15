@@ -5,7 +5,7 @@ aliases:
 title: 'F-314: F-313 の裏取り。1 件は誤り、2 件は独立に裏付けが取れた — HIGH'
 summary: '> 「決め付けず裏取りする」ため、F-313 の結論を他の点・他のプログラムと突き合わせた。'
 date: '2026-09-06'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

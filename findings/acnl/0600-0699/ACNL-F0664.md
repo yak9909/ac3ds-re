@@ -6,7 +6,7 @@ aliases:
 title: actor identity guard keeps inventory Player state 0x16
 summary: '**確度: VERIFIED ON HARDWARE.**'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: Ghidra

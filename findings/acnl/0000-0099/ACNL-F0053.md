@@ -5,7 +5,7 @@ aliases:
 title: F-15 `Player_StartFieldAction` の呼び出し規約 — `HIGH`
 summary: '`0x598660`-`0x598688` の assembly から確定。'
 date: '2026-09-08'
-category: _triage
+category: actor
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

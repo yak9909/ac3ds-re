@@ -5,7 +5,7 @@ aliases:
 title: 'F-117: ★TODO-79 完了 — `DUP=True` はハングしなかった。F-116 の「ハングの疑い」は誤り'
 summary: 'confidence: **HIGH**（実機。ベースラインとの対照実験）'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

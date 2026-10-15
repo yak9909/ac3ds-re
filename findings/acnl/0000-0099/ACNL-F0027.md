@@ -5,7 +5,7 @@ aliases:
 title: 'F-364: ACNLの内蔵キーボード起動候補経路・APT/GSP契約・ABIの検証（2026-09-08）'
 summary: '**confidence MEDIUM。** `code.bin.i64`の静的解析、停止中実機の読み取り、原本ARMの局所実行。'
 date: '2026-09-08'
-category: _product
+category: system
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

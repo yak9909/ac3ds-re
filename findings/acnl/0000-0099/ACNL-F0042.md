@@ -5,7 +5,7 @@ aliases:
 title: F-04 型ID 113-122 は ASCII ではない — `HIGH`
 summary: '`FieldObj_ResolveResultItem` (`0x597148`) が比較する 113-122 は'
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

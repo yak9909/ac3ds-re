@@ -4,7 +4,7 @@ aliases: []
 title: リテラル参照の値まで検証する道具を追加した
 summary: '`PATCHES/verify_literals.py`。`audit_node_cave.py` は'
 date: '2026-09-01'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

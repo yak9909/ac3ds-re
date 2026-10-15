@@ -5,7 +5,7 @@ aliases:
 title: F-40 赤いバラの正体 — `FieldObj_FellObject` の `a2` が空だと `a1` から ID を流用する — `HIGH`
 summary: '**衝突経路で「赤いバラの見た目をしたオブジェクト」が倒木演出中ずっと表示され、'
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

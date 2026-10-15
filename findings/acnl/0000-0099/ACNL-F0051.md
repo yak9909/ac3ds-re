@@ -5,7 +5,7 @@ aliases:
 title: F-13 掘削適用は 32 スロットのレコード配列経由 — `HIGH`
 summary: '`sub_5A16B0(actionID, playerIdx, item0, item1, item2, X, Y, a8, a9, a10)` が'
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

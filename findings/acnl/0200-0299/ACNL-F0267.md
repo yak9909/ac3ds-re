@@ -5,7 +5,7 @@ aliases:
 title: 'F-244: seq 型サウンド 2,839 件を WAV に合成 — `MEDIUM`（構造は HIGH、包絡の時定数は近似）'
 summary: '`SOUND/synth.py` + `SOUND/render.py`。CSEQ を実行してボイスを取り出し、'
 date: '2026-09-01'
-category: _triage
+category: sound
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

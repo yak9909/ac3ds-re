@@ -5,7 +5,7 @@ aliases:
 title: 'F-177: ★★★`nwlyt_Pane_DrawRecursive` は 1 フレームも欠けない。TODO-115 の答え — `HIGH`（実機で計測）'
 summary: '適用: `PATCHES/measure_pane_draws.py`'
 date: '2026-08-28'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

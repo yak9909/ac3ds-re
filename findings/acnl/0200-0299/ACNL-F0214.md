@@ -5,7 +5,7 @@ aliases:
 title: 'F-189: ★★★色ブロックの並びを確定。4 隅は「左上→右上→左下→右下」 — `HIGH`（実機で直接可視化）'
 summary: 色つきバッチ（カウンタ `+36=1 +37=7 +38=2`）で、
 date: '2026-08-30'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

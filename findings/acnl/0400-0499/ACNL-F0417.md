@@ -5,7 +5,7 @@ aliases:
 title: T015の再実機訂正（2026-10-13）
 summary: GPT-6/idalib、MEDIUM。pocket singleton0x9499ECをLoadStep/Disposeと原STRで照合。screen list先頭だけの取得を修正。trash cleanupはsource有効又はtarget drag可を音条件とするため、消去icon更新/非drag trashの組合せでは音が抑制される。成功時一度明示再生する。
 date: '2026-10-13'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

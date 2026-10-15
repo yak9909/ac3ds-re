@@ -5,7 +5,7 @@ aliases:
 title: 'F-166: ★★★GPU 可視性を証明した。ゲームのアロケータから GPU が読めるメモリを得られる — `HIGH`（実機で視認）'
 summary: '`g_GfxAllocator` から確保したバッファを **GPU が実際に読んだ。**'
 date: '2026-08-28'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

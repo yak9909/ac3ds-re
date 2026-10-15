@@ -6,7 +6,7 @@ aliases:
 title: 二系統の独立再解析は主要結論で一致し、旧timing説明だけが矛盾していた
 summary: '**確度: HIGH（main raw bytesのfresh Ghidra decompile + raw ModuleVillage.cro命令列 + 既存hardware observations）。Ghidra-gpt-sol-5.6-F039 AR実装自体は未実機。**'
 date: '2026-09-19'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: Ghidra

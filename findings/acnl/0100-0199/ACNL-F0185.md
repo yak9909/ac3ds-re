@@ -5,7 +5,7 @@ aliases:
 title: 'F-159: コードケーブに使える領域は `0x01E82000` で終わる — `HIGH`（実機で読み書き検証）'
 summary: '`0x01E82000`-`0x01E821FF` は **128 ワードすべて `0xFFFFFFFF`**、'
 date: '2026-08-28'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

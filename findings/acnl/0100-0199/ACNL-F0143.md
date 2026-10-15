@@ -5,7 +5,7 @@ aliases:
 title: 'F-105: ★MCP 側から Suspend できる（CLAUDE.md の記述を訂正）'
 summary: 'confidence: **HIGH**（実機で制御実験）'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

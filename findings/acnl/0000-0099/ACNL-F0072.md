@@ -5,7 +5,7 @@ aliases:
 title: F-34 【完成】3x3 マス掘り — `HIGH`
 summary: 周囲 8 マスに穴・抉れパーティクル・土しぶきパーティクルが、
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

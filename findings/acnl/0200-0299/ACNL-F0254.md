@@ -5,7 +5,7 @@ aliases:
 title: 'F-229: ★★★ケーブどうしの重なりは目視では見つからない。機械的に検査する — `HIGH`（実機）'
 summary: '```'
 date: '2026-09-01'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

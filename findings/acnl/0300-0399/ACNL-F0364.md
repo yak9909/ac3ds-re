@@ -5,7 +5,7 @@ aliases:
 title: 'F-338（2026-09-07）: 記録量の式を実機で確定'
 summary: '**confidence: HIGH**（実機 4 点 + 見せる本数 4 通り。コードは新規注入なし）'
 date: '2026-09-07'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-73: 通常Xのfield側入口は `sub_165B40 -> sub_5C1F08`。診断traceのPC相対LDR移設は不可'
 summary: 'confidence: **HIGH**（実機のLR・trace buffer・SIGSEGV時レジスタと `code.bin.i64` を照合）'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

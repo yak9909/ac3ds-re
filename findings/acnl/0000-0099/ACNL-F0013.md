@@ -5,7 +5,7 @@ aliases:
 title: 'F-401: 静的再配置315語・50比較一致・内蔵FS読取り条件'
 summary: 2026-09-10。DOCS/system_keyboard_relocation_audit.md参照。idalibの完全な命令列とxref/原本値から315語（旧52語を包含）を生成。直接参照243アドレスの未取得queue/エラー0、15 switch table、未解決literal/未処理switch 0。出力省略7件は完全版で回収し命令数を照合。静的根拠はMEDIUM、PC試験成功を実機HIGHへ昇格させない。
 date: '2026-09-10'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

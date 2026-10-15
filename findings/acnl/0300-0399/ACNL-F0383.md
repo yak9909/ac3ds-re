@@ -5,7 +5,7 @@ aliases:
 title: 'F-357（2026-09-08）: ★FPS だけ上げてゲーム速度を据え置くことはできない（実機計測つき）'
 summary: 'confidence: **HIGH**（静的にループ構造を確定 + 実機で周期を計測）'
 date: '2026-09-08'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

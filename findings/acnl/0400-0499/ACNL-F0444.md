@@ -5,7 +5,7 @@ aliases:
 title: 自前資源のマテリアルアニメを生成し、自前instanceへ結線できた（2026-09-21、HIGH、実機）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。**自分で読み込んだ `UnitCursor.bcres` のアニメを、'
 date: '2026-09-21'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

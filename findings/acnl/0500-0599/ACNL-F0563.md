@@ -6,7 +6,7 @@ aliases:
 title: 模様替えの家具の下の範囲表示は UnitCursor モデル、屋外では資源もクラスも無い（2026-09-18、MEDIUM）
 summary: 正体はパーティクルでなく 3D モデル romfs/Ftr/Chip/UnitCursor.bcres（モデル UnitCursor/UnitCursorLine/UnitCursorNG/UnitCursorRotate、m_UnitCursor の Visibility/MaterialColor アニメ）。読み込みは ScStage_LoadIndoorRes 0x611928 が部屋フラグ8（屋内、ItemIndoor.bin と同条件）のときだけ専用ヒープ Unit
 date: '2026-09-18'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

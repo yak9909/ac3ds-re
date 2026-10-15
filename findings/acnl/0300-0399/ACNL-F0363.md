@@ -5,7 +5,7 @@ aliases:
 title: 'F-337（2026-09-07）: 共有バッチ（§3.2）へ移る前の静的解析'
 summary: '**confidence: MEDIUM〜HIGH**（すべて idalib で逆アセンブル。実機の裏取りはこれから）'
 date: '2026-09-07'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: '橋の高さは村の中で一定＝「村の川底で一番多い段 + flt_6DE560」（2026-09-24、HIGH（静的＋実機の地形全体・実物の橋 y と一致＋利用者の実機確認）。gohan 1754f62 は利用者が実機で確認: 橋を出しているとき、どこにカーソルがあっても UnitCursor とカメラは同じ高さ）'
 summary: '**利用者の前提**: 橋の描画は海でも陸でも川でも崖でも常に同じ高さ。物理的な位置だけが下の地形で変わる（海へ動かすと下がる）。'
 date: '2026-09-24'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

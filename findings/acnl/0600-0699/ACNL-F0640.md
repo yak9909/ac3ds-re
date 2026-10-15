@@ -6,7 +6,7 @@ aliases:
 title: パチンコ弾はPlayer内の固定3スロットで管理される
 summary: '**確度: MEDIUM（複数の独立した静的証拠。実機メモリ観測は未実施）**'
 date: '2026-09-19'
-category: _triage
+category: actor
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: Ghidra

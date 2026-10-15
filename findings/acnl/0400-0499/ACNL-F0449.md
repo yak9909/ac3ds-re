@@ -5,7 +5,7 @@ aliases:
 title: アニメが何を動かすかは資源から読める。UnitCursor は色定数2本とUV平行移動（2026-09-21、HIGH、静的）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。外部資料（[captainsouthbird/CGFXModel](https://github.com/captainsouthbird/CGFXModel)）は'
 date: '2026-09-21'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

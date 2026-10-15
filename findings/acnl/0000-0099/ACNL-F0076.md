@@ -5,7 +5,7 @@ aliases:
 title: F-38 「揺すると木を切る」パッチと通常経路 — `HIGH`
 summary: '`Player_BeginFieldObjAction` (`0x595A8C`) の mode 分岐:'
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

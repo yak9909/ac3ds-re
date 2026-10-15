@@ -5,7 +5,7 @@ aliases:
 title: F-39 【危険】レコード枯渇で範囲外書き込み → SIGSEGV — `HIGH`
 summary: セッション4 で**実際にクラッシュした**（`got SIGSEGV signal, exc.code b`）。
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -6,7 +6,7 @@ aliases:
 title: IDA9.3のGhidra XML Exporter導入・主IDB出力
 summary: ローカルGhidra11.0.1の7xx版はIDA9のAPIに非対応。公式Ghidra12.1.3付属9xx版（Exporter 5.0.2）を原本のままユーザーIDAのpython/idaxml.pyとplugins/xml_exporter.pyへ配置。原本manifestと配置先SHAが一致する。IDA SDK930でplugin読み込み・XML出力を確認。
 date: '2024-07-12'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

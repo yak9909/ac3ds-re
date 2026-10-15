@@ -5,7 +5,7 @@ aliases:
 title: 'F-279: 検証道具を全ケーブに広げ、死語を 1 本落とした — `HIGH`'
 summary: '`build_v` / `build_pass` / `build_t` は生の語列を返すので、'
 date: '2026-09-01'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

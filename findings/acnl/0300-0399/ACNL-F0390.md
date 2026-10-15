@@ -5,7 +5,7 @@ aliases:
 title: 'F-363: 内蔵キーボードの候補順位・文節変換・学習を原本ARMで再現（2026-09-08）'
 summary: '**confidence: MEDIUM。** SWKBD専用idalib IDBの静的解析＋PC上のUnicorn実行。'
 date: '2026-09-08'
-category: _product
+category: text
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

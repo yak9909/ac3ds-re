@@ -5,7 +5,7 @@ aliases:
 title: 'F-247: 実機との聴き比べで、包絡とビブラートの定数を較正 — `HIGH`（実機一致を利用者が確認）'
 summary: 実機の対応表が無い箇所は、**変種を書き出して利用者に選んでもらう**形で決めた。
 date: '2026-09-01'
-category: _triage
+category: sound
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

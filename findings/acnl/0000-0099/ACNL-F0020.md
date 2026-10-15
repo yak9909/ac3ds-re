@@ -5,7 +5,7 @@ aliases:
 title: 'F-394: callback境界のレジスタ保存でF-393を修正'
 summary: '**HIGH（利用者が自前メニュー復帰・しずえスキップ成功を実機確認）。**'
 date: '2026-09-10'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

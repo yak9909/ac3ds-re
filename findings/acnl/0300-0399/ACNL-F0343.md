@@ -5,7 +5,7 @@ aliases:
 title: 'F-315 追記: 1 度目のクラッシュについて（原因は未確定）'
 summary: 同じ構成（借用 `0x50000` + `LIST_SIZE 0x10000`）が **2 回目は問題なく動いた**。
 date: '2026-09-06'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

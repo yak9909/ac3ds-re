@@ -5,7 +5,7 @@ aliases:
 title: 複製の光＝BsLightMgr の組のフラグメント方向光・アンビエント・半球。向きはゲームのカメラの view で変換されるので専用カメラと食い違う。描く間だけ自前の組に差し替える（2026-09-24、MEDIUM（静的＋実機の読み取り）。gohan の直しは実機未確認）
 summary: '**利用者の実機確認（gohan 8908f5d）**: ズボンは付いてくる、髪 -1 で戻る（F032 の 2 点は確認済み）。傾きは 45 度ぐらいが良い。傾けるとポリゴンがおかしい／影が変な所に出来る気がする。'
 date: '2026-09-24'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

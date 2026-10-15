@@ -5,7 +5,7 @@ aliases:
 title: F-299 (HIGH・静的＋実機の実データ照合) — ★F-298 の検証と**訂正 2 件**。バッチの確保元を特定（残件 1）
 summary: '| 主張 | 裏取り |'
 date: '2026-09-04'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

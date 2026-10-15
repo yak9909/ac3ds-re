@@ -5,7 +5,7 @@ aliases:
 title: F-07 アイテムID 158 は「穴」 — `MEDIUM`
 summary: '**根拠**: 多くの掘る系アクションの結果として 158 が生成され、'
 date: '2026-09-08'
-category: _triage
+category: item
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: F-25 レコードを積んでも反映されない — 反映側は 1 マスしか見ない — `HIGH`
 summary: 'v5（`0x59E9CC` = `BL FieldObj_ApplyDigRecord` をフックし X+1 で再度呼ぶ）の実測:'
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

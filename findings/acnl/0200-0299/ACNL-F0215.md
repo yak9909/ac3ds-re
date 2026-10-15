@@ -5,7 +5,7 @@ aliases:
 title: 'F-190: ★★★★色・位置・大きさの完全制御を達成。詰まっていた原因は**アンカー** — `HIGH`（実機）'
 summary: '`PATCHES/cave_add_sprite2.py`（色つきバッチに相乗り）。'
 date: '2026-08-30'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

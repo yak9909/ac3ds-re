@@ -5,7 +5,7 @@ aliases:
 title: F-340 — 色替え・書体替えの費用を分解し、記録量の式を完成させた（2026-09-07・実機）
 summary: '**confidence: HIGH**（実機 15 点で誤差 0。うち 2 点は**式を作ったあとに予言してから測った**）'
 date: '2026-09-07'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

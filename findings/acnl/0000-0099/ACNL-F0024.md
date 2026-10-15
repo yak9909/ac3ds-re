@@ -5,7 +5,7 @@ aliases:
 title: 'F-383: 通常チャットのキーボード生成入口（2026-09-09）'
 summary: MEDIUM。利用者指定でフレンドチャットを除外、通常チャットを対象にする。
 date: '2026-09-09'
-category: _product
+category: text
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

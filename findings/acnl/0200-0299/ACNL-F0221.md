@@ -5,7 +5,7 @@ aliases:
 title: 'F-196: ★★★★フルカラー画像（RGBA8）の表示を確定 — `HIGH`（実機）'
 summary: 64x64 の RGBA8 テスト画像を自前バッファに置き、120x120 で表示した。
 date: '2026-08-30'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

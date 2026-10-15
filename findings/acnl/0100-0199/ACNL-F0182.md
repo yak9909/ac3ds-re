@@ -5,7 +5,7 @@ aliases:
 title: 'F-156: ★★★submit descriptor を静的に全導出。F-155a の observer は不要になった'
 summary: 'confidence: **HIGH**（静的。decompile とアセンブリの両方で照合）'
 date: '2026-08-28'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

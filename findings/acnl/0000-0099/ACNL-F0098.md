@@ -5,7 +5,7 @@ aliases:
 title: 'F-60: Vapecord の時間設定チートと、ゲーム自身の時計確定経路'
 summary: 'confidence: **HIGH**（静的解析。Vapecord のソースと逆コンパイルが独立に一致）'
 date: '2026-09-08'
-category: _product
+category: time
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

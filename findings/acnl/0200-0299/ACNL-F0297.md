@@ -5,7 +5,7 @@ aliases:
 title: 'F-273: ★★★★★致命的なバグ。記録スロットのエピローグが `R4` = drawctx のまま `Commit` していた — `HIGH`（静的のみ・未適用）'
 summary: F-267 の教訓「生成器を変えたらケーブ 1 本を丸ごと IDA に通す」に従って
 date: '2026-09-01'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: マス数変更中のクラッシュと、縞模様の 45 度（2026-09-22、HIGH、クラッシュダンプ＋静的）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。'
 date: '2026-09-22'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

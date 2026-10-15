@@ -5,7 +5,7 @@ aliases:
 title: 'F-310: 場面転換をまたぐと空きは 1.2MB → 0.6MB まで落ちる — HIGH'
 summary: '> F-309 の残件。**利用者に操作してもらって**測った（タイトル画面から進める・住民に話しかける等）。'
 date: '2026-09-06'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

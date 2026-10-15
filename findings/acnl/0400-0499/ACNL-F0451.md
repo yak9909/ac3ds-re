@@ -5,7 +5,7 @@ aliases:
 title: 骨アニメが結線できる条件と、実機に触れずに選んだ資源の組（2026-09-21、HIGH、静的＋実機読み出し）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。IDA-opus-5-T009 の前段。**実機へは一切書いていない**（読み出しのみ）。'
 date: '2026-09-21'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

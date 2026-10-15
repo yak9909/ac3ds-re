@@ -5,7 +5,7 @@ aliases:
 title: 'F-353（2026-09-07）: ★SELECT のビットは `0x800` — libctru の並びと違った（実測で確定）'
 summary: '**confidence: HIGH（実機で実測。基準値も取った）**'
 date: '2026-09-07'
-category: _triage
+category: input
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

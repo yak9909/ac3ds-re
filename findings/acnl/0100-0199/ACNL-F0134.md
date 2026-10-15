@@ -5,7 +5,7 @@ aliases:
 title: 'F-96: コマンドリストの終端・提出経路と GX API 一式'
 summary: 'confidence: **MEDIUM**（型値と引数位置を直接確認。**静的解析のみ**、F-101 で訂正）'
 date: '2026-08-24'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

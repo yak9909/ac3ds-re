@@ -5,7 +5,7 @@ aliases:
 title: 'F-263: ★★★★★F-257 / F-258 の説明は誤りだった。作業配列は Drawer の**固定メンバ**である — `HIGH`（静的）'
 summary: Drawer（＝drawctx）のコンストラクタ `sub_4D7364`（`nw::font::RectDrawer` 派生）が
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

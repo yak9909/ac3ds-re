@@ -5,7 +5,7 @@ aliases:
 title: 'F-180: ★★★UI 画像を「足す」ことに成功。TODO-122 の主要部達成 — `HIGH`（実機で視認）'
 summary: '適用: `PATCHES/cave_add_quad.py`'
 date: '2026-08-30'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

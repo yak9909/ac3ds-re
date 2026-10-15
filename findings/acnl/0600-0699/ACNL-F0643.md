@@ -6,7 +6,7 @@ aliases:
 title: crash_dump_00000005 の直接fault
 summary: '**確度: HIGH（dump＋本体命令列）。根本原因の旧帰属は撤回。**'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: Ghidra

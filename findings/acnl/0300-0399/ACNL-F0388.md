@@ -5,7 +5,7 @@ aliases:
 title: 'F-361（2026-09-08）: ★★★ACNL は CRO 動的モジュールを使う — しずえ画面を静的に解いた'
 summary: 'confidence: **HIGH（静的で完結。実機のバイト列と 1 命令も違わず一致）**。'
 date: '2026-09-08'
-category: _product
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

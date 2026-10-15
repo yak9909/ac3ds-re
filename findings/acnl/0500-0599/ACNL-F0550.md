@@ -5,7 +5,7 @@ aliases:
 title: 木1体の専用材質で透明度変更（2026-09-20、HIGH）
 summary: '解析ソフト: IDA / 解析モデル: gpt-6-astra。ゲームのcopy関数0x4ADD44(mask0x800)で専用ResMaterialを作りMaterial+80をredirect。SimpleMaterialActivator0x4A17B8はMaterial+8のみを読むので、それだけでは無効。このinstanceのRTTI/vtable4slotを複製しActivateだけgeneric0x49C08Cへ替えると、constant-alpha RGB b'
 date: '2026-09-20'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

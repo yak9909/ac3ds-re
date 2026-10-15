@@ -6,7 +6,7 @@ aliases:
 title: trace領域をARで0固定していたためGhidra-gpt-sol-5.6-F019/Ghidra-gpt-sol-5.6-F020 traceは観測不能だった
 summary: '**確度: HIGH（AR実行モデルと現行コードの直接確認）。**'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: Ghidra

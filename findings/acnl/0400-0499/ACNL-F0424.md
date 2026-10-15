@@ -5,7 +5,7 @@ aliases:
 title: nativeクローゼットとmenu intrusive node（2026-10-12）
 summary: IDA（idalib）/GPT-6、MEDIUM。更新SHA c635af8f.../ARM11/ARM32LE/imagebase0/主要10地点T=0を確認。原code.binのARMとRTTI/生table/ctor/索引consumerを独立照合。BsMenuChestは38708B、actualprimary0x8E5BB0（旧Explorer0x8E5BA8はheader）/25method。通常child ChangeStockItemは15528B、prima
 date: '2026-10-12'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

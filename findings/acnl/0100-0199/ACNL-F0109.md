@@ -5,7 +5,7 @@ aliases:
 title: 'F-71: 通常Xの実入口は `sub_6D62AC` の動的menuId呼出し `0x6D6338`'
 summary: 'confidence: **HIGH**（`code.bin.i64` の制御フローと実機breakpoint・引数・LRを照合）'
 date: '2026-08-24'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

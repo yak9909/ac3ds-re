@@ -5,7 +5,7 @@ aliases:
 title: 画面固定の複製でズボンが止まる＝部品のスキニング行列は Scene の更新が計算する。光はフラグメントライティングではない（★光の部分は F033 で訂正：読んだ組が違った）（2026-09-24、MEDIUM（実機の読み取り＋静的）。gohan 8908f5d は実機未確認）
 summary: '**利用者の実機確認（gohan 246865a）**: 上画面の決まった位置に固定・世界の物に隠れない（2D UI には隠れる）・部品は欠けない・設定は全部効く。'
 date: '2026-09-24'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

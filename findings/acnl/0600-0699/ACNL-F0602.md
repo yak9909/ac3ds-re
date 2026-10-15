@@ -5,7 +5,7 @@ aliases:
 title: 'プレイヤー本人の目の形をその場で変える手順・レイアウトの色の 1 要素の読み書き・書体の私用領域の記号（2026-10-06、MEDIUM: 静的のみ。gohan は実機未確認）'
 summary: '解析モデル opus-5.5。IDB: `nwlyt_Pane_GetColorElement 0x73B508` / `nwlyt_Picture_GetVtxColorElement 0x73CB40` / `nwlyt_Material_SetColorElement 0x4BCC7C` /'
 date: '2026-10-06'
-category: _product
+category: text
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

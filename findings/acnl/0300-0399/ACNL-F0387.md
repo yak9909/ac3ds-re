@@ -5,7 +5,7 @@ aliases:
 title: 'F-359（2026-09-08）: ★起動シーケンスと「しずえ画面 → 村へ出る」経路（＋未知のコード領域の発見）'
 summary: 'confidence: **HIGH**（静的 + 実機 bp で確定）。詳細は `scratchpad/MEMO_f359_boot_sequence.md`。'
 date: '2026-09-08'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

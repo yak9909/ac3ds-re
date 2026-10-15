@@ -14,24 +14,26 @@
 
 | scope | category | 件数 |
 |---|---|---|
-| acnl | _product | 203 |
-| acnl | _triage | 326 |
-| acnl | actor | 10 |
-| acnl | field | 5 |
-| acnl | input | 4 |
-| acnl | item | 32 |
-| acnl | network | 4 |
-| acnl | render | 36 |
-| acnl | sound | 6 |
-| acnl | system | 9 |
-| acnl | text | 24 |
-| acnl | ui | 32 |
-| hhd | _product | 1 |
-| hhd | _triage | 10 |
-| hhd | item | 3 |
-| hhd | render | 1 |
+| acnl | _product | 220 |
+| acnl | actor | 27 |
+| acnl | field | 56 |
+| acnl | input | 6 |
+| acnl | item | 45 |
+| acnl | misc | 2 |
+| acnl | network | 14 |
+| acnl | render | 139 |
+| acnl | save | 1 |
+| acnl | sound | 11 |
+| acnl | system | 48 |
+| acnl | text | 61 |
+| acnl | time | 2 |
+| acnl | ui | 59 |
+| hhd | input | 1 |
+| hhd | item | 4 |
+| hhd | render | 2 |
 | hhd | sound | 1 |
-| hhd | ui | 4 |
+| hhd | system | 1 |
+| hhd | ui | 11 |
 
 ## 要再解析（by の格付けが ?）
 
@@ -1907,9 +1909,14 @@
 
 ## 10件を超えた未消化カテゴリ
 
-- acnl/_product: 203件
-- acnl/_triage: 326件
-- acnl/item: 32件
-- acnl/render: 36件
-- acnl/text: 24件
-- acnl/ui: 32件
+- acnl/_product: 220件
+- acnl/actor: 27件
+- acnl/field: 56件
+- acnl/item: 45件
+- acnl/network: 14件
+- acnl/render: 139件
+- acnl/sound: 11件
+- acnl/system: 48件
+- acnl/text: 61件
+- acnl/ui: 59件
+- hhd/ui: 11件

@@ -5,7 +5,7 @@ aliases:
 title: 外部 nw4c ヘッダとの照合。実測は全て一致し、引数の解釈を2点訂正（2026-09-21、HIGH、静的＋実機照合）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。利用者提供の [SMBNext/nsmb2-headers](https://github.com/SMBNext/nsmb2-headers)'
 date: '2026-09-21'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

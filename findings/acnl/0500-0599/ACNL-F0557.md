@@ -6,7 +6,7 @@ aliases:
 title: 過去の静的解析の誤り 2 件と見落とし 1 件（2026-09-18、HIGH）
 summary: 自前の UnitCursor が「描画経路のふるいを全部通るのに画素が 1 つも出ない」という実機結果を受けて、記録済みの静的結論を洗い直した。3 件の瑕疵が見つかった。
 date: '2026-09-18'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

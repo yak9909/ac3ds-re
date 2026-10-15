@@ -5,7 +5,7 @@ aliases:
 title: park の BP は焼き付かない。直前に外した番地だけが一時的に拒む（2026-09-21、HIGH、実機）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。'
 date: '2026-09-21'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

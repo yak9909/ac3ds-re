@@ -5,7 +5,7 @@ aliases:
 title: widget画像の参照寿命とcloset帰還・page待ち（2026-10-12）
 summary: '2026-10-13追加: 原hand/touch controlは+216 counter/+220 threshold、初回11/連続3を確認。node112/152が決定アニメ。owned pageは待機を省いて親1C38A0を同Calcで完了。退場はchild outer996/pocket1988の終端→元unbind/状態移行→Actor_RequestDestroy。キーボタン解放をchat入場条件にせず、held入力だけ暫定遮断。NativeEngine::L'
 date: '2026-10-12'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 骨アニメを実機で結線し、骨が動いた（2026-09-21、HIGH、実機）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。IDA-opus-5-T009。資源は IDA-opus-5-F018 が選んだ'
 date: '2026-09-21'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: '目の形を通信相手へ伝える経路の調査（T020、2026-10-06、MEDIUM: 静的のみ。実装・実機なし）'
 summary: '解析モデル opus-5.5。IDB: `sub_61F3DC`（参加時の転送の段階）/ `sub_51C720` / `vc_PLOAD` に注記（意味が LOW のものは改名しない）。'
 date: '2026-10-06'
-category: _product
+category: network
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

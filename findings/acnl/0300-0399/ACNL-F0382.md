@@ -5,7 +5,7 @@ aliases:
 title: 'F-356（2026-09-07）: ★「ゲームスピード変更」チート `0054C6E8` の正体 — フレームペーシングの無効化'
 summary: 'confidence: **HIGH（静的）** / 実機での効果確認は未実施（利用者の報告のみ）'
 date: '2026-09-07'
-category: _product
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

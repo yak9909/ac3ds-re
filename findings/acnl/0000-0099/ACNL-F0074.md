@@ -5,7 +5,7 @@ aliases:
 title: F-36 木にぶつかったときの経路 — `HIGH`
 summary: '**`Player_BeginFieldObjAction` も `FieldObj_ResolveResultItem` も通らない**別系統だった'
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

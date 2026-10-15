@@ -5,7 +5,7 @@ aliases:
 title: アニメ機構は ModelInstance_Create の引数で作られる（**a5 ではなく a6。IDA-opus-5-F015 で確定**）（2026-09-21、HIGH、実機A/B）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。**同じ資源・同じモデルで第5引数だけ変えた対照実験**を実機で行った。'
 date: '2026-09-21'
-category: _triage
+category: actor
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

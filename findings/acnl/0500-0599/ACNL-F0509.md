@@ -5,7 +5,7 @@ aliases:
 title: 更新データの RomFS は ARCHIVE_ROMFS をファイルパス {5,0,0} で開く（ゲーム自身の開き方）（2026-09-24、MEDIUM（静的＋実機で失敗の側を確認））
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。利用者の報告「0xFA・0xFB はプレビューが無いと通知されるが、置くとモデルがある」。'
 date: '2026-09-24'
-category: _product
+category: system
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

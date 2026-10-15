@@ -5,7 +5,7 @@ aliases:
 title: 建物の資源は 2 系統。共有 64 枠（公共事業など 7 クラス、1 種類 2 枠）と、役場・店の専用ヒープ（2026-09-23、HIGH（静的＋実機））
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。F007 の版で「全建物が置くたびに読み直し」「公共事業を複数置いたらクラッシュ（ダンプ 3）」の報告を受けて、'
 date: '2026-09-23'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

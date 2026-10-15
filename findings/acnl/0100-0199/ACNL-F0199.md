@@ -5,7 +5,7 @@ aliases:
 title: 'F-173: 発行点への注入は成功したが GPU が固まった。捕獲した列は自己完結していない — `HIGH`（実機、フリーズ）'
 summary: '適用: `PATCHES/cave_replay_draw.py`'
 date: '2026-08-28'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

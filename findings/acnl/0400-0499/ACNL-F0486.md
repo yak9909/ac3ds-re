@@ -5,7 +5,7 @@ aliases:
 title: '持ち物へアイテムを入れるゲーム自身の処理と、持ち物画面のアイコンの作り直し（2026-09-26、MEDIUM: 静的＋実機実績のある外部実装と独立一致。gohan の実装は実機未確認）'
 summary: ポケットアイテム（gohan.md §17.5）の下調べ。資料の ID 一覧に頼らず、ゲーム自身の処理を使う（2026-09-17 の利用者判断）。
 date: '2026-09-26'
-category: _product
+category: item
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

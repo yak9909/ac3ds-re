@@ -6,7 +6,7 @@ aliases:
 title: direct 0x958108-pointee test negative; parse is still post-submit
 summary: '**Hardware observation:** a valid Color-tag sequence written to the current pointee read from `0x958108` did not visibly decorate chat.'
 date: '2026-09-19'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: ''
 tool: Ghidra

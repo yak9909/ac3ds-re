@@ -5,7 +5,7 @@ aliases:
 title: 'F-246: ポルタメントの2つの誤り — `HIGH`（実機との聴き比べで確定）'
 summary: '`SOUND/synth.py` / `SOUND/render.py`。**命令表の一致率 100%・検証 20/20 を通っても'
 date: '2026-09-01'
-category: _triage
+category: sound
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

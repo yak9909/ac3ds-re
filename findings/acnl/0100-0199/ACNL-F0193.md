@@ -5,7 +5,7 @@ aliases:
 title: 'F-167: ★★★テキストのグリフは「定数から四角形を生成するシェーダ」で描かれる。頂点データが存在しない — `HIGH`（実機の batch を解読）'
 summary: '適用: `scratchpad/decode_text_batch.py`'
 date: '2026-08-28'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

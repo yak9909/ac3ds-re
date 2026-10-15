@@ -6,7 +6,7 @@ aliases:
 title: crash_dump_00000006 の直接fault
 summary: '**確度: HIGH（dump＋本体命令列）。timing raceという旧帰属は撤回。**'
 date: '2026-09-19'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: Ghidra

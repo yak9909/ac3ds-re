@@ -5,7 +5,7 @@ aliases:
 title: 'F-253: ★★★★★描画パスは 3 本。`Frame_DrawPass1040` は下画面ではなく「上画面の右目」 — `HIGH`（静的＋実機の独立 2 系統）'
 summary: F-252 で「Layout 用のリストは 1 本だけ」「投影は上下とも 400x240」と書いたのは**誤り**である。
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

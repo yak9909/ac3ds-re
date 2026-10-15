@@ -5,7 +5,7 @@ aliases:
 title: 'F-251: 合成の 4 つの欠陥を実機との聴き比べで修正 — `HIGH`（利用者が実機一致を確認）'
 summary: 全件バッチの成果物を聴いた利用者が 3 件の異常を報告し、そこから 4 つの欠陥が出た。
 date: '2026-09-01'
-category: _triage
+category: sound
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-132: 非整数倍率が右端の不均一さを生む — `HIGH`'
 summary: F-131 の折り返しを除くため `T_time_0` の pane width を 40.0px にした状態で、同じ
 date: '2026-08-24'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

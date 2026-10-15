@@ -5,7 +5,7 @@ aliases:
 title: 'F-185: ★★★フック地点で **`R1` がコマンドカーソル**。任意の GPU コマンドを発行できる — `HIGH`（実機のコマンド列で確認）'
 summary: '```'
 date: '2026-08-30'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

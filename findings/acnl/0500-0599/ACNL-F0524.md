@@ -5,7 +5,7 @@ aliases:
 title: その場で作った建物は資源の枠を部屋が片付くまで返さない。尽きると読み込みスレッドが落ちる（2026-09-23、MEDIUM（静的＋実機のクラッシュダンプ））
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。番人方式（F006 §4 旧版）の実機確認（利用者）:「枠を越えても置けるが、'
 date: '2026-09-23'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

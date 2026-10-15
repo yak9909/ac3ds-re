@@ -5,7 +5,7 @@ aliases:
 title: '0xAA7994 はホストの枠 — 自分のプレイヤーは [自分の通信番号]（2026-10-06、HIGH: 静的（vc_PLAYERINSTANCE の索引）＋実機の症状が一致）'
 summary: 解析モデル opus-5.5。
 date: '2026-10-06'
-category: _triage
+category: network
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-63: `REFERENCES/CHEATS/drop.txt` の「host drop」— `drop.cpp` にない 6 行'
 summary: 'confidence: **HIGH**（静的解析。素の命令・分岐先・Vapecord の表・ID 一覧が整合）'
 date: '2026-09-08'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

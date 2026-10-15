@@ -5,7 +5,7 @@ aliases:
 title: 'F-72: `0x6D6338` はカタログ起動確認点として正しいが、持ち物全体の置換点としては遅すぎる'
 summary: 'confidence: **HIGH**（実機画面結果、実行時オブジェクト、`code.bin.i64` のstock初期化/終了経路を照合）'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

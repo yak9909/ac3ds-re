@@ -5,7 +5,7 @@ aliases:
 title: 'ACNL の見た目の記録と色の表。HHD の番号がそのまま使える（2026-10-05、MEDIUM〜HIGH: 静的 2 経路（命令の復元と HHD のデータ）の一致。実機での反映は未）'
 summary: '解析ソフト IDA（idalib-mcp）、解析モデル opus-5.5。段階 3（プレイヤーへの反映）。利用者指示: 反映するのは髪型・髪色・目の形・目の色・肌の色、まずオフラインだけ。'
 date: '2026-10-05'
-category: _triage
+category: actor
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: Editorキャッシュの再記録・チップ複製・内装保存/交換（2026-10-10、MEDIUM、実機未確認）
 summary: '追補F017: 長押し窓と縞アニメは利用者実機で不具合。F016のnative Select/取消/親整理stub検査はstatic記録とアニメgateを覆えていなかった。上記F017の原ARM再現/修正で補正。他F016項目の実機結果は未報告。'
 date: '2026-10-10'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-348（2026-09-07）: 基準仕様 v3 を制定した'
 summary: '**confidence: HIGH**（`verify_spec_v3.py` 8 群 異常 0 件）'
 date: '2026-09-07'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'アニメ 0x1E1（seo_down1）を途中で切ると縮んだまま残る — 骨 root の拡大を書くアニメがほぼ無い（2026-09-30、MEDIUM: 資源の全数調査＋静的。実機未観測。ゲームの骨格更新が「書かれない骨を戻さない」ことは推定）'
 summary: '解析ソフト: IDA（主 IDB）＋ romfs の HumanAnim / 解析モデル: opus-5.5。利用者の観察: 骨格アニメ 0x1E1 で小さくなっている途中にアクション解除（0x06）や他のアクションへ'
 date: '2026-09-30'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: '村の実体の材質は同じモデルで共有、書き換えるとゲームの書き出しが落ちる／参照表の安全条件（2026-09-28、HIGH: 実機のクラッシュと静的）'
 summary: '解析ソフト: IDA（ida-pro-mcp で停止中の実機を読み取りのみ、主 IDB）/ 解析モデル: opus-5.5。gohan 165b571 の実機確認で「触っていない同じモデルも赤い」「しばらく使うと落ちる」。'
 date: '2026-09-28'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

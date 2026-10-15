@@ -6,7 +6,7 @@ aliases:
 title: local/self and inline tag scope
 summary: '**確度: HIGH (static JPN v1.5 path analysis; hardware tagged-chat test still pending).**'
 date: '2026-09-19'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: Ghidra

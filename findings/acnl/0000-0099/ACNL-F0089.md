@@ -5,7 +5,7 @@ aliases:
 title: F-51 フェードの正体は `FaderColor`、`FaderMoment` に差し替えれば消える — `HIGH`
 summary: F-50 で「`0x568BF8` が唯一の調整点」と書いたが、**フェードには効かない。**
 date: '2026-09-08'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

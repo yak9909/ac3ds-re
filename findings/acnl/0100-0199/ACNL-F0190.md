@@ -5,7 +5,7 @@ aliases:
 title: 'F-164: `g_GfxAllocator` の正体と呼び出し規約を確定 — `HIGH`（静的解析、assembly まで確認）'
 summary: '`Render_InitGlobal`(`0x4E97CC`) が組み立てている:'
 date: '2026-08-28'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -6,7 +6,7 @@ aliases:
 title: custom AcBalloon* identityでterminal A4だけ抑止
 summary: 'Ghidra-gpt-sol-5.6-F024実機trace:'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: Ghidra

@@ -5,7 +5,7 @@ aliases:
 title: 'F-62: チート「ドロップ16x16」（`REFERENCES/CHEATS/drop.txt`）'
 summary: 'confidence: **HIGH**（静的解析。off ブロック 113 word が実バイナリと完全一致し、'
 date: '2026-09-08'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

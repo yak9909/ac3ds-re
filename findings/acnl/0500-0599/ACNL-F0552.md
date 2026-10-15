@@ -5,7 +5,7 @@ aliases:
 title: 独立した木を表示・非表示。ゲーム座標には曲面変換が必要（2026-09-20、HIGH）
 summary: '解析ソフト: IDA / 解析モデル: gpt-6-astra。実機の準備済みSeason資源から `fg_treeA_4` のordinary Modelを独立生成し、player右36・倍率0.5で表示、OFFで消去を確認。マップの設置データは変更していない。主題・限界は [tree_live_plan](../docs/topics/tree_live_plan.md)。'
 date: '2026-09-20'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

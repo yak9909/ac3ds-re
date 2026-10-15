@@ -5,7 +5,7 @@ aliases:
 title: 'F-148: 既存Pictureを非所有cloneして、任意座標の2D背景として追加できた — `HIGH`（静的＋実機）'
 summary: F-147で確定したPane-treeのcommit直前、`nwlyt_DrawPaneTreeToCurrentList` (`0x4D7174`) の
 date: '2026-09-08'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-205: ★★★★「最後に再生される」は画面（描画パス）ごとに違う — `HIGH`（実機 120 フレーム）'
 summary: '> **★F-253 で一部訂正した。単体で読まないこと。** 描画パスは 2 本ではなく **3 本**あり、'
 date: '2026-09-01'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

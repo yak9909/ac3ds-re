@@ -5,7 +5,7 @@ aliases:
 title: 'F-154: TextBox emitter直呼びも live DrawContext を二重更新する — `HIGH`（静的＋同一例外の再現）'
 summary: F-153を通過したdirect-emitter版（`TextBox_EmitBatchToGpuCommands=0x4B7CE0`）は、wrapperを
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

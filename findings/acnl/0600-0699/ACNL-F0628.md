@@ -5,7 +5,7 @@ aliases:
 title: 'HHD と ACNL でアニメのコマ数の数え方が 1 つ違う（2026-10-07、HIGH: 静的＋実機の症状）'
 summary: 'ACNL の UiAnim_Step 0x568964: +0x14 bit0（ループしない）なら frame は frameSize(+4) − 1 で頭打ち、bit0 が無ければ frameSize で巻き戻す。UiAnim_IsFinished 0x74F58C も frame >= frameSize − 1。ACNL の BCLAN（ループしない）は最後のキーが frameSize − 1 に 527 件（frameSize ちょうどは 7 件）。'
 date: '2026-10-07'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

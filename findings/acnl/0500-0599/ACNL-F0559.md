@@ -6,7 +6,7 @@ aliases:
 title: 屋外表示の未解明点のうち4件を解決（ホルダ型・Create引数・マス換算・フック候補）（2026-09-18、MEDIUM）
 summary: '(1) 資源ホルダ: ScStage ctor 0x7F195C（ScStage は 3504B）から、ScStage+0x418 = ssys::ma::HeapAllocator（8B、ctor HeapAllocator_Ctor 0x5667E8 / dtor 0x317CBC）、ScStage+0x420 = G3D 資源ホルダ（g3d::ResourceLoader＋ResourceSet、**264B**、0x420〜0x528。ctor G3dResHolde'
 date: '2026-09-18'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

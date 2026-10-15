@@ -5,7 +5,7 @@ aliases:
 title: F-09 掘れる/掘れないの判定は 4 段構成 — `HIGH`
 summary: スコップ振り下ろしから穴が空くまでに、少なくとも 4 段のガードがある。
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

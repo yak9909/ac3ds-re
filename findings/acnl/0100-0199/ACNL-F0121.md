@@ -5,7 +5,7 @@ aliases:
 title: 'F-83: `BsFtrMgr` のglobal公開は生成完了より早く、完全readyはobject `+19` の下位2bit'
 summary: 'confidence: **MEDIUM**（`code.bin.i64` のvtable、create wrapper、3 phaseを静的照合）'
 date: '2026-08-24'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

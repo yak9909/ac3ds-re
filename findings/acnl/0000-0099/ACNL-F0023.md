@@ -5,7 +5,7 @@ aliases:
 title: 'F-391: case 0を含むしずえスキップ常設版（2026-09-09、使用禁止）'
 summary: '**不採用。** case 0の呼出契約は有効だが、MITMフックの契約違反がある。'
 date: '2026-09-09'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

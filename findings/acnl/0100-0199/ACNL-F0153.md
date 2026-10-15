@@ -5,7 +5,7 @@ aliases:
 title: 'F-115: ★F-110〜F-114 の精査（TODO-75 の前の検証）— 誤り 2 件・過剰主張 3 件を訂正'
 summary: 'confidence: **HIGH**（訂正内容はいずれも一次証拠で確認）'
 date: '2026-08-24'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

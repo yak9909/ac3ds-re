@@ -5,7 +5,7 @@ aliases:
 title: '村の下画面の建物一覧（BsMenuMapList）の作りと、マップエディターのモード一覧への流用（2026-09-28、MEDIUM: 静的＋描画器での照合。gohan 実機未確認）'
 summary: '解析ソフト: IDA（主 IDB を idalib-mcp で静的）＋ acnl-ui-designer の描画器 / 解析モデル: opus-5.5。利用者指示: 地図の右の建物一覧をマップエディターの下画面左端に出し、'
 date: '2026-09-28'
-category: _product
+category: ui
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

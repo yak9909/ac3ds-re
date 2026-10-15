@@ -5,7 +5,7 @@ aliases:
 title: 'F-214: ★★★★★中立なマテリアルが 1 つも無い場面がある。定数色は借りる側で中立化する — `HIGH`（実機）'
 summary: プラグインで動くようになった後、**タイトル画面とロード画面だけ**
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

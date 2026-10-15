@@ -5,7 +5,7 @@ aliases:
 title: F-56 `ACNL_ID_Lists-master` との照合 — 4 件確定・1 件は資料側が誤り — `HIGH`
 summary: Vapecord 作者による ID 一覧 `REFERENCES/IDS/ACNL_ID_Lists-master` と、
 date: '2026-09-08'
-category: _triage
+category: item
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

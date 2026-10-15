@@ -5,7 +5,7 @@ aliases:
 title: 'HHD の BFLAN を ACNL の BCLAN に変換できる（書き出しは ACNL の実物 727 本でバイト一致）・不透明度の伝播の旗（2026-10-05、HIGH: 実物との照合）'
 summary: 解析モデル opus-5.5。段階 2 の遷移（開閉のアニメ）。
 date: '2026-10-05'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

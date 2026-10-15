@@ -5,7 +5,7 @@ aliases:
 title: 'アイテムの名前とアイコンの決まり方、没アイテムの割り出し（2026-09-27、MEDIUM: 静的＋ROM の実データ。Ghidra-gpt-sol-5.6-ITEM-T011 と独立一致。gohan の名前差し替えは実機未確認）'
 summary: '**名前** `ItemName_ResolvePhrase 0x56D274`(phrase, &item, a3): phrase を空に（vt+28）→ 通常の ID は `STR_Item_name` の (ID&0x7FFF)−0x2000 番'
 date: '2026-09-27'
-category: _product
+category: item
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

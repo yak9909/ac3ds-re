@@ -5,7 +5,7 @@ aliases:
 title: 'F-146: TextBox batch は固定0x60-byte seedとglyph/state blockから構成される — `MEDIUM`（静的＋停止中live照合）'
 summary: '`TextBatch_BuildCommandStream` (`0x4D6570`) の命令列を、F-145 の同一会話名'
 date: '2026-09-08'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

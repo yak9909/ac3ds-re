@@ -6,7 +6,7 @@ aliases:
 title: 日替わり処理の成長・郵便・「アイテム消えない」の中身（2026-09-18、MEDIUM）
 summary: Field_GrowUp 0x104B54 のコールバックを romfs Fg/Param/Fg.bin（16B×254、tools/fg_param_dump.py、旧実測カテゴリ7件一致）と IDS のアイテムIDで特定。苗の成長 Field_GrowUpSaplings 0x2FD778→Field_GrowUpAdvanceStage（+6の次段階、最大4段）、無効な位置（外周・草地以外・周囲障害物・密集）の苗は Field_GrowUpWiltSapling 0x3
 date: '2026-09-18'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

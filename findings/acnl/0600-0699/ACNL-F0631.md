@@ -5,7 +5,7 @@ aliases:
 title: '家具が置けない・壁紙が張り替わらない原因（2026-10-08、HIGH: 実機 BP＋静的）'
 summary: '解析: 親（opus-5.5）が ida-pro-mcp の BP で測定、Codex gpt-6.1-sol xhigh（依頼 t022_catalog_fix2、--allow-gohan）が静的解析と修正。根拠 **work/evidence/t022_catalog_fix2/report.md**。gohan 1746df8。'
 date: '2026-10-08'
-category: _product
+category: item
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

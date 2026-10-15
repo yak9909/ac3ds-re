@@ -5,7 +5,7 @@ aliases:
 title: 'F-183: ★索引エントリの `w3` は「色」。テクスチャはバッチ単位 — `HIGH`（静的解析）'
 summary: F-180 で索引エントリの `w3` を「マテリアル関連」と書いたが、**誤り。**
 date: '2026-08-30'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

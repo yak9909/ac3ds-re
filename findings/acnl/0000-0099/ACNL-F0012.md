@@ -5,7 +5,7 @@ aliases:
 title: 'F-402進行中: ACNL自身の内蔵タイトルFS経路（MEDIUM）'
 summary: 'idalib code.bin.i64: sub_1304C8はIPC0x08030204、TLS+0x80へarchive/fileのbinary pathを詰めSVC32。sub_346AB8はarchive0x2345678A/16byte archive/20byte file/READ1で同関数を呼び、sessionはdword_96EF28。独立caller sub_1290C4も同sessionを使用。libctru fs.cのOpenFileDirectly定'
 date: '2026-09-11'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA
