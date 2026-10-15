@@ -90,3 +90,111 @@ def test_import_report_skipped(capsys):
                                        "failed": [{"key": "0x00001000", "reason": "bad"}]}
     rep.print()
     assert "対象外      2" in capsys.readouterr().out
+
+def test_compare_all_type_headers(tmp_path):
+    a, b = tmp_path / 'a', tmp_path / 'b'
+    for root in (a, b):
+        (root / 'types').mkdir(parents=True)
+    (a / 'types' / 'extra.h').write_text('// type: Extra\nstruct Extra { int x; };\n')
+    res, ok = restore_test.compare_dirs(a, b)
+    assert not ok and res['types']['only_a'] == ['Extra']
+    (b / 'types' / 'local_types.h').write_text('// type: Extra\nstruct Extra { int x; };\n')
+    assert restore_test.compare_dirs(a, b)[1]
+
+
+def test_import_types_cross_header_dependencies(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    (tmp_path / 'types').mkdir()
+    (tmp_path / 'types' / 'a.h').write_text('struct Dependency;\n// type: Owner\nstruct Owner { Dependency d; };\n')
+    (tmp_path / 'types' / 'z.h').write_text('// type: Dependency\nstruct Dependency { int x; };\n')
+    parsed = []
+    monkeypatch.setitem(sys.modules, 'ida_typeinf', SimpleNamespace(
+        get_idati=lambda: None, HTI_DCL=1,
+        parse_decls=lambda til, text, printer, flags: parsed.append(text) or 0))
+    rep = import_symbols.Report()
+    import_symbols.import_types(tmp_path, rep)
+    assert parsed == ['struct Dependency;\n', 'struct Dependency { int x; };\n',
+                      'struct Owner { Dependency d; };\n']
+    assert rep.sections['types']['ok'] == 2
+
+
+def test_export_unnamed_typed_global(monkeypatch):
+    from types import SimpleNamespace as NS
+    import export_symbols as ex
+    ea = 0x955FF4
+    monkeypatch.setitem(sys.modules, 'ida_name', NS(get_name=lambda addr: 'stru_955FF4'))
+    monkeypatch.setitem(sys.modules, 'ida_nalt', NS(is_userti=lambda addr: addr == ea))
+    monkeypatch.setitem(sys.modules, 'ida_bytes', NS(
+        get_flags=lambda addr: 0, is_code=lambda flags: False, has_user_name=lambda flags: False))
+    monkeypatch.setitem(sys.modules, 'idautils', NS(Names=lambda: [], Heads=lambda: [ea]))
+    monkeypatch.setattr(ex, '_func_start', lambda addr: False)
+    monkeypatch.setattr(ex, 'user_tinfo', lambda addr: NS(get_size=lambda: 4))
+    monkeypatch.setattr(ex, 'tinfo_text', lambda tif: 'struct ItemID')
+    rows = ex.export_globals(set(), {})
+    assert len(rows) == 1
+    assert (rows[0]['address'], rows[0]['name'], rows[0]['type']) == ('0x00955FF4', '', 'struct ItemID')
+
+
+@pytest.mark.parametrize('case,thumb', [('extend', False), ('shrink', False), ('tail', False),
+                                       ('middle', False), ('new', True), ('wrong_mode', True)])
+def test_function_boundaries(monkeypatch, case, thumb):
+    from types import SimpleNamespace as NS
+    ea, end = 0x1000, 0x1010
+    funcs = {}
+    tails = {}
+    modes = {ea: 0, end: 0}
+    def add(start, stop):
+        funcs[start] = NS(start_ea=start, end_ea=stop, flags=0)
+        return True
+    if case == 'extend':
+        add(ea, ea + 4)
+        add(ea + 4, end)
+    elif case == 'shrink':
+        add(ea, end + 2)
+    elif case == 'middle':
+        add(ea - 4, end)
+    elif case == 'tail':
+        add(ea - 0x100, ea - 0xF0)
+        tails[ea] = NS(start_ea=ea, end_ea=end, flags=1)
+    elif case == 'wrong_mode':
+        add(ea, end)
+    def chunk(addr):
+        return next((f for f in [*funcs.values(), *tails.values()]
+                     if f.start_ea <= addr < f.end_ea), None)
+    def get_func(addr):
+        f = chunk(addr)
+        return funcs[ea - 0x100] if f and f.flags else f
+    def set_end(start, stop):
+        f = funcs[start]
+        # 拡張時の別関数と、命令途中の縮小を IDA と同様に拒む。
+        if any(g.start_ea != start and start < g.start_ea < stop for g in funcs.values()):
+            return False
+        if case == 'shrink' and f.end_ea == end + 2:
+            return False
+        f.end_ea = stop
+        return True
+    def delete(start):
+        return funcs.pop(start, None) is not None
+    def remove_tail(f, start):
+        return tails.pop(start, None) is not None
+    monkeypatch.setitem(sys.modules, 'ida_funcs', NS(
+        FUNC_TAIL=1, get_fchunk=chunk, get_func=get_func,
+        get_next_fchunk=lambda addr: next(iter(sorted(
+            (f for f in [*funcs.values(), *tails.values()] if f.start_ea > addr),
+            key=lambda f: f.start_ea)), None),
+        func_parent_iterator_t=lambda f: [ea - 0x100], remove_func_tail=remove_tail,
+        append_func_tail=lambda *a: True, set_func_end=set_end, del_func=delete, add_func=add,
+        get_func_cmt=lambda *a: 'preserved', set_func_cmt=lambda *a: True))
+    monkeypatch.setitem(sys.modules, 'ida_idp', NS(str2reg=lambda name: 0))
+    monkeypatch.setitem(sys.modules, 'ida_segregs', NS(
+        SR_user=1, get_sreg=lambda addr, reg: modes.get(addr, 0),
+        split_sreg_range=lambda addr, reg, val, source: modes.__setitem__(addr, val)))
+    monkeypatch.setitem(sys.modules, 'ida_bytes', NS(DELIT_SIMPLE=0, del_items=lambda *a: True))
+    monkeypatch.setitem(sys.modules, 'ida_ua', NS(create_insn=lambda ea: True))
+    assert import_symbols._ensure_function(ea, end - ea, thumb) is None
+    assert (get_func(ea).start_ea, get_func(ea).end_ea) == (ea, end)
+    assert modes[ea] == int(thumb)
+    if case == 'middle':
+        assert funcs[ea - 4].end_ea == ea
+    if case == 'tail':
+        assert not tails
