@@ -19,10 +19,10 @@ source: v1:RE/FINDINGS.md:14983-15022
 by: unknown
 original_by: ''
 reviewed_by: []
-state: consolidated
+state: superseded
 consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0695
 ---
 ## F-255: 自前 Layout ノードから実際に描けた。ロード画像より前面 — `HIGH`（実機・目視）
 
