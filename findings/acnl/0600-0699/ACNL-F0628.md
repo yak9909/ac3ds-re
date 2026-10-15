@@ -19,8 +19,8 @@ source: IDA:work/FINDINGS.md:4944-4953
 by: opus-5.5
 original_by: ''
 reviewed_by: []
-state: active
-consolidated_into: ''
+state: consolidated
+consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
 superseded_by: ''
 ---

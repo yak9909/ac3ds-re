@@ -16,8 +16,8 @@ source: v1:RE/FINDINGS.md:13583-13620
 by: unknown
 original_by: ''
 reviewed_by: []
-state: active
-consolidated_into: ''
+state: consolidated
+consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
 superseded_by: ''
 ---

@@ -25,8 +25,8 @@ source: IDA:work/FINDINGS.md:492-570
 by: unknown
 original_by: ''
 reviewed_by: []
-state: active
-consolidated_into: ''
+state: consolidated
+consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
 superseded_by: ''
 ---
