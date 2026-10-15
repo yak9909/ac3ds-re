@@ -699,6 +699,6 @@
 | ACNL-F0693 | Layout 描画は上左右目と下の三パスで、上下の二リストを使う（再解析） | MEDIUM | A | active |  |  |
 | ACNL-F0694 | Layout の優先度は安定な昇順挿入であり、末尾は登録時点に依存する（再解析） | MEDIUM | A | active |  |  |
 | ACNL-F0695 | Layout 再生時の主リスト記帳は条件付きで未提出範囲を取り込む（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0696 | Layout の正射影とペインから画素への換算は Layout 寸法と viewport の比で決まる（再解析） | MEDIUM | 未記入 | active |  |  |
-| ACNL-F0697 | Layout 再生の通常シザーは mode 0 であり寸法不一致だけでは切り抜きを有効にしない（再解析） | MEDIUM | 未記入 | active |  |  |
-| ACNL-F0698 | Layout 投影 uniform の c4 は毎再生前に設定され初期化後のゼロ固定ではない（再解析） | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0696 | Layout の正射影とペインから画素への換算は Layout 寸法と viewport の比で決まる（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0697 | Layout 再生の通常シザーは mode 0 であり寸法不一致だけでは切り抜きを有効にしない（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0698 | Layout 投影 uniform の c4 は毎再生前に設定され初期化後のゼロ固定ではない（再解析） | MEDIUM | A | active |  |  |
