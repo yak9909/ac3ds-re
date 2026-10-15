@@ -20,6 +20,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0258"]
 ---
 ## F-230: ★★★★相乗り先は「候補のうち最後に再生されたもの 1 つ」。両方に積むと二重になる — `HIGH`（実機）
 

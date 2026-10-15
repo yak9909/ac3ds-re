@@ -21,6 +21,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0346"]
 ---
 ## F-318: F-317 の削除を実装。実機で **132,192 B が丸ごと戻った** — HIGH
 

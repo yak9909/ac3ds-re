@@ -29,6 +29,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0139"]
 ---
 ## F-96: コマンドリストの終端・提出経路と GX API 一式
 

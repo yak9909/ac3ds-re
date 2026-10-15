@@ -40,6 +40,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0153"]
 ---
 ## F-112: ★★実機で F-111 を検証（TODO-64 完了）— 確度 `HIGH` へ。配列 #5 の記述を訂正
 

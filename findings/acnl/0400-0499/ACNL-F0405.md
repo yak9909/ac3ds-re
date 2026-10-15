@@ -16,10 +16,10 @@ source: v1:RE/FINDINGS.md:24251-24265
 by: unknown
 original_by: ''
 reviewed_by: []
-state: active
+state: superseded
 consolidated_into: ''
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0406
 ---
 ## F-378（2026-09-08）: 実行構成がどのビルドとも一致しない
 

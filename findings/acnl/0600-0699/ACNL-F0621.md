@@ -26,6 +26,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0623"]
 ---
 ## IDA-opus-5.5-F105: 模様替え UI のドラッグ・離す・チップと家具の記録の関係（2026-10-07、MEDIUM: 静的のみ。ModuleIndoor.elf / ModuleFtr.elf と主 IDB）
 

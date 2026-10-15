@@ -18,10 +18,10 @@ source: Ghidra:work/FINDINGS.md:786-831
 by: gpt-sol-5.6
 original_by: ''
 reviewed_by: []
-state: active
+state: superseded
 consolidated_into: ''
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0659
 ---
 ## Ghidra-gpt-sol-5.6-F020: shared page書込み可否とActor_SetState hook到達を分離診断
 

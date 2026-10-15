@@ -11,14 +11,14 @@
 | ACNL-F0049 | F-11 岩・構造物は cat10 経路の末端で脱落 — `HIGH` | 対象 ID 153（cat10）は `0x59836C` で cat10 経路へ分岐し、 | HIGH | ? |  |
 | ACNL-F0051 | F-13 掘削適用は 32 スロットのレコード配列経由 — `HIGH` | `sub_5A16B0(actionID, playerIdx, item0, item1, item2, X, Y, a8, a9, a10)` が | HIGH | ? |  |
 | ACNL-F0052 | F-14 フィールドアクションの実行経路 — `HIGH` | スコップのアクション決定から掘削レコード登録までの全経路が判明した。 | HIGH | ? |  |
-| ACNL-F0057 | F-19 18B キューのスロットは解放されないと枯渇する — `HIGH` | `0x595EA8`-`0x595EC0` がスロットの確保・初期化を行う: | HIGH | ? |  |
+| ACNL-F0057 | F-19 18B キューのスロットは解放されないと枯渇する — `HIGH` | `0x595EA8`-`0x595EC0` がスロットの確保・初期化を行う: | HIGH | ? | 訂正あり |
 | ACNL-F0059 | F-21 `FieldAction_Dispatch` の case 3 へは case 7 から来る — `MEDIUM` | ``` | MEDIUM | ? |  |
 | ACNL-F0060 | F-22 隣マスが掘れない原因は対象アイテムの照合 — `HIGH` | 複数マス掘りで隣マスに穴が空かず、かつキューが詰まる原因は**同一**だった。 | HIGH | ? |  |
 | ACNL-F0061 | F-23 進行中アクションテーブル `0x9AE1A4` — `HIGH` | 5 バイト × 32 エントリ。`g_FieldActionQueue`(`0x9AE15C`, 18B×4) の直後に隣接する | HIGH | ? |  |
 | ACNL-F0062 | F-24 キューに積んでも実行段階は 1 マスしか処理しない — `HIGH` | F-22 の修正でケーブは正しく動くようになった。実機で確認できたこと: | HIGH | ? |  |
 | ACNL-F0063 | F-25 レコードを積んでも反映されない — 反映側は 1 マスしか見ない — `HIGH` | v5（`0x59E9CC` = `BL FieldObj_ApplyDigRecord` をフックし X+1 で再度呼ぶ）の実測: | HIGH | ? |  |
 | ACNL-F0065 | F-27 地面更新のダーティビットマップ — `HIGH` | `sub_59DA7C(X, Y)` (`0x59DA7C`) と `sub_599814(X, Y)` (`0x599814`) は | HIGH | ? |  |
-| ACNL-F0066 | F-28 マスへのアイテム書き込み API — `MEDIUM` | `sub_168E08(X, Y, flag, pNo, item)` (`0x168E08`): | MEDIUM | ? |  |
+| ACNL-F0066 | F-28 マスへのアイテム書き込み API — `MEDIUM` | `sub_168E08(X, Y, flag, pNo, item)` (`0x168E08`): | MEDIUM | ? | 訂正あり |
 | ACNL-F0067 | F-29 掘削の実処理は `FieldObj_ApplyRecordByAction` の jumptable — `HIGH` | `0x5A06D4`-`0x5A0C1C`。`rec[16]`（actionID）で 29 ケースに分岐する。 | HIGH | ? |  |
 | ACNL-F0068 | F-30 掘る動作のエフェクトは 3 系統 — `HIGH` | 状態 79 (`ShovelState_DigUpdate` = `0x65BC7C`) がアニメ ID で分岐して出す。 | HIGH | ? |  |
 | ACNL-F0073 | F-35 【訂正】`FieldObj_RevertRecord` は「結果を確定させる」処理 — `HIGH` | F-28 で「レコードをキャンセルするときに元のアイテムへ戻す処理」と記録したが**誤り**。 | HIGH | ? |  |
@@ -26,7 +26,7 @@
 | ACNL-F0078 | F-40 赤いバラの正体 — `FieldObj_FellObject` の `a2` が空だと `a1` から ID を流用する — `HIGH` | **衝突経路で「赤いバラの見た目をしたオブジェクト」が倒木演出中ずっと表示され、 | HIGH | ? |  |
 | ACNL-F0079 | F-41 `FieldObj_FinalizeRecord` (0x5A10AC) — 伐採の終端処理 — `HIGH` | レコードが完了したときに `FieldObj_FellObject` を呼ぶ側。斧経路の呼び出し元 `0x5A1198` | HIGH | ? |  |
 | ACNL-F0085 | F-47 `0x596890` の実態 — 踏みつけ処理 `FieldObj_TrampleAt` — `HIGH` | `REFERENCES/CHEATS/outdoor.txt` の「歩いた場所の物を消す」が書き換えるアドレス。 | HIGH | ? |  |
-| ACNL-F0099 | F-61: `REFERENCES/CHEATS/drop.cpp` の「host drop」の正体 | confidence: **HIGH**（静的解析。素の命令・分岐先・Vapecord の表が三方で一致） | HIGH | ? |  |
+| ACNL-F0099 | F-61: `REFERENCES/CHEATS/drop.cpp` の「host drop」の正体 | confidence: **HIGH**（静的解析。素の命令・分岐先・Vapecord の表が三方で一致） | HIGH | ? | 訂正あり |
 | ACNL-F0100 | F-62: チート「ドロップ16x16」（`REFERENCES/CHEATS/drop.txt`） | confidence: **HIGH**（静的解析。off ブロック 113 word が実バイナリと完全一致し、 | HIGH | ? |  |
 | ACNL-F0101 | F-63: `REFERENCES/CHEATS/drop.txt` の「host drop」— `drop.cpp` にない 6 行 | confidence: **HIGH**（静的解析。素の命令・分岐先・Vapecord の表・ID 一覧が整合） | HIGH | ? |  |
 | ACNL-F0103 | F-65: 通常ドロップの入口と、種別を変える AR コード | confidence: **HIGH**（静的解析。チートの復元値と逆コンパイルが一致）/ 実機未検証 | HIGH | ? |  |

@@ -22,6 +22,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0016"]
 ---
 ## F-397: 予測モードにも複合候補の文節リストがある
 

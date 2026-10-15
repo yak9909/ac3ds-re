@@ -19,10 +19,10 @@ source: v1:RE/FINDINGS.md:7619-7697
 by: unknown
 original_by: ''
 reviewed_by: []
-state: active
+state: superseded
 consolidated_into: ''
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0158
 ---
 ## F-118: ★★注入した描画が画面に出ることを視覚的に確認。影は「アルファのみ」
 

@@ -32,6 +32,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0080"]
 ---
 ## F-38 「揺すると木を切る」パッチと通常経路 — `HIGH`
 

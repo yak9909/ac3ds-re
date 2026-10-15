@@ -23,10 +23,10 @@ source: v1:RE/FINDINGS.md:17535-17698
 by: unknown
 original_by: ''
 reviewed_by: []
-state: active
+state: superseded
 consolidated_into: ''
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0335
 ---
 ## F-282: CTRPF プラグインへ移植した。**ビルド環境なしで移植の正しさを照合できる** — `HIGH`（静的のみ・未ビルド）
 

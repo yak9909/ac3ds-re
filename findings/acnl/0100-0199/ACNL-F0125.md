@@ -24,6 +24,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0126"]
 ---
 ## F-87: room 0の38-bank late allocationがphase 1即時失敗の最有力。容量1版を準備
 

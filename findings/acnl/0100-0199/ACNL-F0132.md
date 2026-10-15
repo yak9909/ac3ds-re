@@ -36,6 +36,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0133", "ACNL-F0139"]
 ---
 ## F-94: 描画スタックの同定と GSP IPC 層
 

@@ -40,6 +40,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0096"]
 ---
 ## F-57 ゲーム内メニューを ID で開く仕組み — 日付変更ウィンドウは `MenuID 0x2E` — `HIGH`
 

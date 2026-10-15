@@ -21,6 +21,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0496"]
 ---
 ## F-163: ★CTRPF プラグインは GPU 可視メモリを確保できない — `HIGH`（実機で検証、結果コードまで確認）
 

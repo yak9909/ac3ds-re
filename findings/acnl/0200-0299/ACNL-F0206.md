@@ -20,6 +20,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0209", "ACNL-F0212"]
 ---
 ## F-180: ★★★UI 画像を「足す」ことに成功。TODO-122 の主要部達成 — `HIGH`（実機で視認）
 

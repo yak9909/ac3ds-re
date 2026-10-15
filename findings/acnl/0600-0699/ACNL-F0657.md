@@ -20,10 +20,10 @@ source: Ghidra:work/FINDINGS.md:741-785
 by: gpt-sol-5.6
 original_by: ''
 reviewed_by: []
-state: active
+state: superseded
 consolidated_into: ''
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0659
 ---
 ## Ghidra-gpt-sol-5.6-F019: menu-open中にstate 0x16から離れる最初のActor_SetStateを記録する診断AR
 

@@ -20,6 +20,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0319"]
 ---
 ## F-221: ★★ゲームのアロケータから取れるのは 0x4000 まで — `HIGH`（実機）
 

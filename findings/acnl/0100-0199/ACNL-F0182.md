@@ -23,6 +23,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0183"]
 ---
 ## F-156: ★★★submit descriptor を静的に全導出。F-155a の observer は不要になった
 

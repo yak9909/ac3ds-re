@@ -24,6 +24,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0186"]
 ---
 ## F-158: ★★自前の変換行列でテキストを任意位置に描けた — `HIGH`（静的導出＋実機で視認）
 

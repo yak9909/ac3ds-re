@@ -36,6 +36,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0146"]
 ---
 ## F-107: ★`g3d::FuncNode` の実在を確認。コールバック登録 API まで判明
 

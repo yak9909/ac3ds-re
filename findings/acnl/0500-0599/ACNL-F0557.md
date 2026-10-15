@@ -27,6 +27,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0554"]
 ---
 ## IDA-unknown-F025: 過去の静的解析の誤り 2 件と見落とし 1 件（2026-09-18、HIGH）
 

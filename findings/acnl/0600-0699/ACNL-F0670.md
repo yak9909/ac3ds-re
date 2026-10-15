@@ -27,6 +27,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0671"]
 ---
 ## Ghidra-gpt-sol-5.6-F031: Player-origin updaterを外し、balloon impact位置からpersistent ground objectを生成
 

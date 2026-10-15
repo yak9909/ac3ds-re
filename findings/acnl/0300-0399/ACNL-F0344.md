@@ -21,6 +21,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0345"]
 ---
 ## F-317: ★取り外しでコマンドリストを削除しておらず nngx ヒープが漏れる — HIGH
 

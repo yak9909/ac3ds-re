@@ -16,7 +16,7 @@
 | ACNL-F0115 | F-77: catalog表示後にstock「上タブをすべてアウト」を走らせる構成 | confidence: **HIGH**（状態record・enter/update・遷移callを `code.bin.i64` で確認）、 | HIGH | ? |  |
 | ACNL-F0119 | F-81: constructor成功同期版はCatalogを生成後、`0x20`で表示前に自己終了させる | confidence: **HIGH**（3 hookの静的制御フロー、`MENU_FLAGS`契約、直近実機症状を照合） | HIGH | ? |  |
 | ACNL-F0120 | F-82: Catalog終了はfield X ownerを戻さず、3D経路には屋外hard rejectがない | confidence: **HIGH**（Catalog end、field X開始、通常持ち物終了の静的比較）、 | HIGH | ? |  |
-| ACNL-F0123 | F-85: CameraCatalog、Catalog専用3灯、3つのrenderer layerはroom 0にも存在する | confidence: **MEDIUM**（各ctor/createとroom分岐、global renderer loopを静的照合） | MEDIUM | ? |  |
+| ACNL-F0123 | F-85: CameraCatalog、Catalog専用3灯、3つのrenderer layerはroom 0にも存在する | confidence: **MEDIUM**（各ctor/createとroom分岐、global renderer loopを静的照合） | MEDIUM | ? | 訂正あり |
 | ACNL-F0127 | F-89: 2回目の同一SIGSEGVはmanager phase 3の屋外map走査。Catalog選択品とは別 | confidence: **HIGH**（2回目のstack、Item request、phase 3逆アセンブル、命令stepを照合） | HIGH | ? |  |
 | ACNL-F0128 | F-90: 3回目は選択Item `0x2EA3` のtype `0xBC`。基底`AcFtr`置換でgeneric create完了 | confidence: **HIGH**（例外register/stack、ItemParam record、3 virtual targetとreturnを命令stepで照合し、 | HIGH | ? |  |
 | ACNL-F0130 | F-92: rev7は家具3Dには成功。壁紙・絨毯は非表示、服カテゴリは`ModelInstance_SetRenderLayer`でSIGSEGV | confidence: **HIGH**（家具表示結果とcrash PCを既解析の静的関数へ照合）、 | HIGH | ? |  |
@@ -32,7 +32,7 @@
 | ACNL-F0615 | ゲームのカタログのプレビューは 2 枠を交互に使い、替えた前の枠は 1 フレーム後にすぐ壊す（2026-10-06、MEDIUM: 静的） | 解析ソフト: IDA / 解析モデル: opus-5.5。 | MEDIUM | S |  |
 | ACNL-F0618 | ACNL の部屋の家具の持ち方と「かざる」「拾う」の入口（2026-10-06、LOW〜MEDIUM: 静的 + 先行資料。途中） | 解析ソフト: IDA / 解析モデル: opus-5.5。T022 の ACNL 側の下調べ。 | LOW | S |  |
 | ACNL-F0620 | 家具をその場で消すゲーム自身の手順（2026-10-06、MEDIUM: 静的。実機は試験 4 待ち） | 解析ソフト: IDA / 解析モデル: opus-5.5。T022。 | MEDIUM | S |  |
-| ACNL-F0621 | 模様替え UI のドラッグ・離す・チップと家具の記録の関係（2026-10-07、MEDIUM: 静的のみ。ModuleIndoor.elf / ModuleFtr.elf と主 IDB） | 解析ソフト: IDA / 解析モデル: opus-5.5。T022（ゴミ箱・家具リスト）の前提。番地は cro_to_elf の便宜上の基準（text 0x00B00000）。名前は work/cache/cro_elf の両 IDB に付けた（キャッシュは再生成で消えるのでここが正）。 | MEDIUM | S |  |
+| ACNL-F0621 | 模様替え UI のドラッグ・離す・チップと家具の記録の関係（2026-10-07、MEDIUM: 静的のみ。ModuleIndoor.elf / ModuleFtr.elf と主 IDB） | 解析ソフト: IDA / 解析モデル: opus-5.5。T022（ゴミ箱・家具リスト）の前提。番地は cro_to_elf の便宜上の基準（text 0x00B00000）。名前は work/cache/cro_elf の両 IDB に付けた（キャッシュは再生成で消えるのでここが正）。 | MEDIUM | S | 訂正あり |
 | ACNL-F0623 | 模様替え UI を開いたまま家具を出す材料（2026-10-07、MEDIUM: 静的のみ。途中で打ち切り） | 解析ソフト: IDA（idalib）/ 解析モデル: **gpt-6.1-sol（推論 xhigh）**、Codex CLI のサブエージェント（依頼 work/codex/tasks/t022_spawn.md）。利用者の 5 時間枠の都合で途中で打ち切り、同じセッションを再開してまとめさせた（IDB には触れさせず）。記録・採番・照合は親（opus-5.5）。 | MEDIUM | A |  |
 | ACNL-F0624 | HHD と ACNL の品の名前での突き合わせと、ACNL の Item.bin のカテゴリ（2026-10-07、MEDIUM: 静的 + ROM の実データ） | 解析ソフト: IDA（capstone で code.bin を直接）/ 解析モデル: opus-5.5。T022 の品の対応（F101 の「曖昧な 1,410 件」）。 | MEDIUM | S |  |
 | ACNL-F0625 | 模様替え UI を開いたまま家具を出す手順の詰め（2026-10-07、MEDIUM: 静的のみ。利用者の 5 時間枠で打ち切り） | 解析ソフト: IDA（idalib）/ 解析モデル: **gpt-6.1-sol（推論 xhigh）**、Codex CLI のサブエージェント（依頼 work/codex/tasks/t022_spawn2.md、F001 の続き）。採番・照合・記録は親（opus-5.5）。 | MEDIUM | A |  |
@@ -41,11 +41,11 @@
 | ACNL-F0646 | カスタム風船drop中にinventory Player stateが0x16→0x06へ遷移する | **確度: HIGH（実機挙動）。旧FieldAction原因仮説は棄却。** | HIGH | B |  |
 | ACNL-F0648 | inventory drop完了はFieldAction handleのstatus 2待ちで成立する | **確度: HIGH（添付bytesの命令列＋実機症状が一致）。** | HIGH | B |  |
 | ACNL-F0650 | synthetic completion handleでinventory完了契約だけをエミュレートする | **確度: MEDIUM（静的検証済み、実機未検証）。** | MEDIUM | B |  |
-| ACNL-F0651 | custom balloon drop中のinventory state 0x16→0x06をmenu-open guardで抑止する | **確度: MEDIUM（静的検証済み、実機未検証）。** | MEDIUM | B |  |
+| ACNL-F0651 | custom balloon drop中のinventory state 0x16→0x06をmenu-open guardで抑止する | **確度: MEDIUM（静的検証済み、実機未検証）。** | MEDIUM | B | 訂正あり |
 | ACNL-F0656 | stock inventory dropはPlayer stateを変更しない。state 0x16はmenu open時に明示設定される | **確度: HIGH（main .textのcall chainを入口からcompletionまで静的追跡）。** | HIGH | B |  |
 | ACNL-F0665 | terminal landingをcustom AcBalloon identityで識別し、元Inventory Itemをpayloadにする | Ghidra-gpt-sol-5.6-F025実機成功後、fieldへ落ちるItemがなお 0x2036 のプレゼント（中身ランダム）だった。 |  | B |  |
 | ACNL-F0667 | custom Item substitutionをstock landing persistence経路へ戻す | Ghidra-gpt-sol-5.6-F027 hardware result: |  | B |  |
-| ACNL-F0668 | direct falling visualを維持し、impact時だけground itemを確定 | Ghidra-gpt-sol-5.6-F028 hardware result: |  | B |  |
+| ACNL-F0668 | direct falling visualを維持し、impact時だけground itemを確定 | Ghidra-gpt-sol-5.6-F028 hardware result: |  | B | 訂正あり |
 | ACNL-F0675 | stock inventory-call signature for native queue interception | Ghidra-gpt-sol-5.6-F034 hardware result: |  | B |  |
 | ACNL-F0690 | item name/icon resource pipeline | Normal Item ID index: `((id & 0x7FFF)-0x2000)`, valid for index < `0x172B`. |  | B |  |
 | ACNL-F0691 | low field-object display fallback | User hardware observation: Item IDs 0x0000..0x00FA appear with one shared furniture/default icon and name `???`. |  | B |  |

@@ -33,6 +33,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0139"]
 ---
 ## F-100: 再々精査 — GX 5 本の type バイト確定、「実装位置」表記の誤りを訂正
 

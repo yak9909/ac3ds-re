@@ -9,10 +9,10 @@
 | ACNL-F0087 | F-49 メッセージ表示の仕組みと「メニューアニメーションをカット」の副作用 — `HIGH` | `REFERENCES/CHEATS/ui.txt` の「メニューアニメーションをカット」で | HIGH | ? |  |
 | ACNL-F0088 | F-50 UI アニメと画面遷移（Wipe）— 調整点は `0x568BF8` 一箇所 — `HIGH` | 「持ち物・マイデザを開くときの画面遷移を一瞬にしたい」の解析。**静的 IDB のみで実施。** | HIGH | ? |  |
 | ACNL-F0089 | F-51 フェードの正体は `FaderColor`、`FaderMoment` に差し替えれば消える — `HIGH` | F-50 で「`0x568BF8` が唯一の調整点」と書いたが、**フェードには効かない。** | HIGH | ? |  |
-| ACNL-F0095 | F-57 ゲーム内メニューを ID で開く仕組み — 日付変更ウィンドウは `MenuID 0x2E` — `HIGH` | 「ゲーム内の時間変更ウィンドウを呼び出すチートがあったはず」という問いの答え。 | HIGH | ? |  |
+| ACNL-F0095 | F-57 ゲーム内メニューを ID で開く仕組み — 日付変更ウィンドウは `MenuID 0x2E` — `HIGH` | 「ゲーム内の時間変更ウィンドウを呼び出すチートがあったはず」という問いの答え。 | HIGH | ? | 訂正あり |
 | ACNL-F0109 | F-71: 通常Xの実入口は `sub_6D62AC` の動的menuId呼出し `0x6D6338` | confidence: **HIGH**（`code.bin.i64` の制御フローと実機breakpoint・引数・LRを照合） | HIGH | ? |  |
-| ACNL-F0116 | F-78: タブ退場開始条件は要求成功ではなく実画面のmenu flag `0x08` | confidence: **HIGH**（`sub_6D6060` / `Menu_PollOpen` を `code.bin.i64` で確認、 | HIGH | ? |  |
-| ACNL-F0117 | F-79: 実画面生成成功の同期点は `Menu_PollOpen -> UiScreen_OpenById` の戻り | confidence: **HIGH**（`Menu_PollOpen` disassemblyと実機pending残留を照合）、 | HIGH | ? |  |
+| ACNL-F0116 | F-78: タブ退場開始条件は要求成功ではなく実画面のmenu flag `0x08` | confidence: **HIGH**（`sub_6D6060` / `Menu_PollOpen` を `code.bin.i64` で確認、 | HIGH | ? | 訂正あり |
+| ACNL-F0117 | F-79: 実画面生成成功の同期点は `Menu_PollOpen -> UiScreen_OpenById` の戻り | confidence: **HIGH**（`Menu_PollOpen` disassemblyと実機pending残留を照合）、 | HIGH | ? | 訂正あり |
 | ACNL-F0118 | F-80: `BsMenuCatalog` は通常下画面メニューの `0x08/0x10` handshakeを実装しない | confidence: **HIGH**（`code.bin.i64` の全直接xref、`BsMenuItem` と | HIGH | ? |  |
 | ACNL-F0121 | F-83: `BsFtrMgr` のglobal公開は生成完了より早く、完全readyはobject `+19` の下位2bit | confidence: **MEDIUM**（`code.bin.i64` のvtable、create wrapper、3 phaseを静的照合） | MEDIUM | ? |  |
 | ACNL-F0124 | F-86: parent拒否説を撤回。`ScStage` と`BsMenuTab`はいずれもchild gateを通る | confidence: **HIGH**（`UiScreen_OpenChild` の静的条件と停止中実機byteの精密再読を照合） | HIGH | ? |  |
@@ -24,18 +24,18 @@
 | ACNL-F0224 | F-199: ★★★★★UI の座標系を確定。**縦横で縮尺が違う（非等方）** — `HIGH`（実機で段階的に測定） | \| 項目 \| 値 \| | HIGH | ? |  |
 | ACNL-F0228 | F-203: ★★★★★最後に再生されるレイアウトは固定。注入点が確定 — `HIGH`（実機 301 フレーム） | `PATCHES/probe_layout_order.py`。 | HIGH | ? |  |
 | ACNL-F0229 | F-204: ★★★レイアウトの記録は「記録要求フラグ」が立っているときだけ走る — `HIGH`（静的＋実機） | `0x568770` の NOP に相乗りしたのに **発火 0 回**だった。原因は入口の門番。 | HIGH | ? |  |
-| ACNL-F0230 | F-205: ★★★★「最後に再生される」は画面（描画パス）ごとに違う — `HIGH`（実機 120 フレーム） | > **★F-253 で一部訂正した。単体で読まないこと。** 描画パスは 2 本ではなく **3 本**あり、 | HIGH | ? |  |
+| ACNL-F0230 | F-205: ★★★★「最後に再生される」は画面（描画パス）ごとに違う — `HIGH`（実機 120 フレーム） | > **★F-253 で一部訂正した。単体で読まないこと。** 描画パスは 2 本ではなく **3 本**あり、 | HIGH | ? | 訂正あり |
 | ACNL-F0233 | F-208: ★★★★★レイアウトごとに投影が違う。相乗り先を変えたら縮尺を測り直す — `HIGH`（実機） | リスト id 15 のレイアウトの座標系は **等方で 1 単位 = 1px、原点は画面中央、320x240**。 | HIGH | ? |  |
 | ACNL-F0249 | F-224: ★★★★★確定した対象を「0 以外のときだけ更新」してはいけない — `HIGH`（実機） | F-223 の対策を入れてもまだ落ちた。ただし条件がはっきりした。 | HIGH | ? |  |
 | ACNL-F0251 | F-226: ★★★★★相乗り先は「素で記録し直される」ものから選ぶ。強制は廃止 — `HIGH`（実機） | F-223 / F-224 の対策を入れても、しばらく遊ぶとまだ落ちた。 | HIGH | ? |  |
 | ACNL-F0253 | F-228: ★★★★フェードは id 8（上）/ id 9（下）が最後に描く。両方に積めば判別が要らない — `HIGH`（実機） | ロード時のフェードで自前 GUI も一緒に暗くなる、という報告から。 | HIGH | ? |  |
 | ACNL-F0256 | F-231: ★★★★★リスト id 0 を「未設定」として弾かないと、id 0 のレイアウトと誤って一致する — `HIGH`（実機） | デバッガから入れたケーブでは正しく動くのに、**プラグインでは** | HIGH | ? |  |
-| ACNL-F0257 | F-232: ★★★★★レイアウトの記録リストには容量がある。積みすぎると落ちる — `HIGH`（実機） | 自前メニューを描かせたら、ロード画面へ入るところで落ちた。 | HIGH | ? |  |
+| ACNL-F0257 | F-232: ★★★★★レイアウトの記録リストには容量がある。積みすぎると落ちる — `HIGH`（実機） | 自前メニューを描かせたら、ロード画面へ入るところで落ちた。 | HIGH | ? | 訂正あり |
 | ACNL-F0259 | F-234: ロード画像は上画面で id 8 の後に replay される Layout id 10 — `HIGH`（静的＋実機＋リソース同定） | ユーザーがロード画像を目視した状態で Suspend し、再開すればロードが終わる条件だったため、 | HIGH | ? |  |
 | ACNL-F0261 | F-238: ロード表示中でも top LayoutList の構成はフェーズで変わる — `MEDIUM`（独立した stopped snapshot＋no-draw 実行標本） | F-234 の replay ring は、ロード中の一つの上画面 pass で id `0x08 -> 0x0A` を記録した。 | MEDIUM | ? |  |
 | ACNL-F0262 | F-241: lifecycle trace の block-copy emitter は loader Layout を破損する — `HIGH`（生成命令＋実機レジスタ＋破損メモリ） | `probe_loader_submit_lifecycle.py` の F-240 emitter は安全ではなかった。`LOG=0x009B3000` 自体は | HIGH | ? |  |
 | ACNL-F0264 | F-236: Layout record-list のバッファ本体は安全に差し替える必要がある — `MEDIUM`（静的＋ゼロ長実機経路） | 外部会話ログ `REFERENCES/TEXTS/render.txt` は「描画コマンド追加・順番変更・コマンド | MEDIUM | ? |  |
-| ACNL-F0275 | F-252: 2D レイアウトの描画は「1 本のリストを画面ごとに 2 回再生」する — `HIGH`（静的。動的照合は未実施） | > **★F-253 で大幅に訂正した。単体で読まないこと。** リストは 1 本ではなく 2 本（`mgr+0x04`=上画面 / `mgr+0x10`=下画面）、 | HIGH | ? |  |
+| ACNL-F0275 | F-252: 2D レイアウトの描画は「1 本のリストを画面ごとに 2 回再生」する — `HIGH`（静的。動的照合は未実施） | > **★F-253 で大幅に訂正した。単体で読まないこと。** リストは 1 本ではなく 2 本（`mgr+0x04`=上画面 / `mgr+0x10`=下画面）、 | HIGH | ? | 訂正あり |
 | ACNL-F0277 | F-254: ★★★★★自前の Layout ノードを登録すれば、上下とも「最前面」に必ず入れる — `HIGH`（実機） | F-253 で分かった `LayoutMgr_AddLayout` を使い、**自前の偽 Layout ノード**を毎フレーム | HIGH | ? |  |
 | ACNL-F0278 | F-255: 自前 Layout ノードから実際に描けた。ロード画像より前面 — `HIGH`（実機・目視） | F-254 の空ノードに描画を載せた。`PATCHES/cave_node_draw.py` | HIGH | ? |  |
 | ACNL-F0287 | F-264: 自前ノードの幅・高さは雛形任せにせず画面実寸を明示する — `HIGH`（静的のみ） | `Layout_ReplayRecordedList`（`0x5682DC`）は scissor コマンドの値を | HIGH | ? |  |
@@ -43,7 +43,7 @@
 | ACNL-F0303 | F-278: 座標系を上下とも静的に確定した。**1 単位 = 1px、原点は画面中央**。`c4` は恒久的にゼロ — `HIGH`（静的、実機実測と一致） | `nwlyt_Drawer_EmitProjectionUniform` が吐く 24 語を機械的に展開した。 | HIGH | ? |  |
 | ACNL-F0312 | F-288 — Chokistream の画面を AI が直接見られる（動的解析の目視確認を自動化） | **結論: 見られる。** `PATCHES/grab_screen.ps1` で PNG にすれば、そのまま読める。 |  | ? |  |
 | ACNL-F0313 | F-289 (HIGH・実機) — ★`nwlyt_Picture_DrawToCommandList` に**自前 Picture** を渡して 1 枚描けた | `0x73CB58 nwlyt_Picture_DrawToCommandList(picture, cursor, a3, drawctx)` は | HIGH | ? |  |
-| ACNL-F0315 | F-291 (HIGH・静的のみ) — ★正体は **nw::lyt（NintendoWare Layout）**。Picture / Material の構造を静的に確定し、**既存文書の誤り 6 件を訂正** | `code.bin.i64` だけで詰めた（動的解析なし）。全文は `scratchpad/MEMO_f291_nwlyt_static.md`。 | HIGH | ? |  |
+| ACNL-F0315 | F-291 (HIGH・静的のみ) — ★正体は **nw::lyt（NintendoWare Layout）**。Picture / Material の構造を静的に確定し、**既存文書の誤り 6 件を訂正** | `code.bin.i64` だけで詰めた（動的解析なし）。全文は `scratchpad/MEMO_f291_nwlyt_static.md`。 | HIGH | ? | 訂正あり |
 | ACNL-F0317 | F-293 (HIGH・実機) — ★★★正規の手順で描けた。**自前の記録ケーブ 205 語を撤去** | F-292 の設計を実装し実機で成功した。道具は `PATCHES/build_pane_tree.py`。 | HIGH | ? |  |
 | ACNL-F0319 | F-295 (HIGH・実機) — ★方式 (a) 完成。ヒープから借りて**メニュー全体を正規経路で描いた** | 道具は `PATCHES/alloc_lyt_heap.py`（確保）と `PATCHES/build_pane_tree.py`（組み立て）。 | HIGH | ? |  |
 | ACNL-F0321 | F-297 (HIGH・実機) — ★下画面のペインツリーを組んだ。**上下 2 画面が独立した輪で同時に描かれる** | F-295 の時点では下画面のノード（`0x9B5400`）は用意だけされていて | HIGH | ? |  |

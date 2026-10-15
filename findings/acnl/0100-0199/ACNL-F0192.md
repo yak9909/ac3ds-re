@@ -20,6 +20,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0193"]
 ---
 ## F-166: ★★★GPU 可視性を証明した。ゲームのアロケータから GPU が読めるメモリを得られる — `HIGH`（実機で視認）
 

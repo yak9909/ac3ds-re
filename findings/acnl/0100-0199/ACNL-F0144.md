@@ -24,6 +24,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0146"]
 ---
 ## F-106: ★`g3d::FuncNode` — 描画中に任意の関数を呼べるシーンノード
 

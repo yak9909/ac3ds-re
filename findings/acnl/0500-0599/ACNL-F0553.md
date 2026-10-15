@@ -21,6 +21,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0543"]
 ---
 ## IDA-unknown-F029: 行列経路は正常だった。残る差は node+0x228 / +0x22C（2026-09-19、HIGH、実機＋対照）
 

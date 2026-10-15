@@ -35,6 +35,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0539"]
 ---
 ## IDA-opus-5-F017: 同じモデル・アニメ12体の同時描画。実機で30.67fpsを維持し、submit先は溢れない（2026-09-21、HIGH、静的＋実機）
 

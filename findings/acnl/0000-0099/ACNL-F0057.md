@@ -32,6 +32,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0058"]
 ---
 ## F-19 18B キューのスロットは解放されないと枯渇する — `HIGH`
 

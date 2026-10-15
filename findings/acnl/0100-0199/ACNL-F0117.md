@@ -28,6 +28,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0118"]
 ---
 ## F-79: 実画面生成成功の同期点は `Menu_PollOpen -> UiScreen_OpenById` の戻り
 

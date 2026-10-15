@@ -27,6 +27,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0340"]
 ---
 ## F-313: 「実測でないと決められない」は誤り。静的に決着した — HIGH
 

@@ -20,6 +20,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0360"]
 ---
 ## F-333（2026-09-07）: トグル実行エンジン（壁抜け仕様の一般化）
 

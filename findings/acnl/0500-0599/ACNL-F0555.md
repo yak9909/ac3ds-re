@@ -19,10 +19,10 @@ source: IDA:work/FINDINGS.md:4174-4191
 by: unknown
 original_by: ''
 reviewed_by: []
-state: active
+state: superseded
 consolidated_into: ''
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0554
 ---
 ## IDA-unknown-F027: 頂点バッファの番地は VA→GPU 変換を通り、対応外の領域では黙って 0 になる（2026-09-18、HIGH、静的）
 

@@ -23,6 +23,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0645"]
 ---
 ## Ghidra-gpt-sol-5.6-F005: crash_dump_00000005 の直接fault
 

@@ -30,6 +30,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0258"]
 ---
 ## F-200: ★★★★★UI は「1 本のコマンド列」ではない。記録と再生に分かれている — 静的解析
 
