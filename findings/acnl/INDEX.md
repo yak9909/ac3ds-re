@@ -461,7 +461,7 @@
 | ACNL-F0455 | 描画中に instance を解放しても何も起きない。ただし理由は2つある（2026-09-21、HIGH、実機） | HIGH | ? | active |
 | ACNL-F0456 | 描画中に資源を潰しても落ちない。モデルが黙って消えるだけ（2026-09-21、HIGH、実機） | HIGH | ? | active |
 | ACNL-F0457 | `G3dResHolder_Dtor` はヒープ破棄の**前**に呼ぶこと。逆にすると SIGILL（2026-09-21、HIGH、実機） | HIGH | ? | active |
-| ACNL-F0458 | 模様替えカーソルは大きさを変えていない。V2-F019 の「範囲の形」は誤り（2026-09-21、HIGH、静的） | HIGH | ? | active |
+| ACNL-F0458 | 模様替えカーソルは大きさを変えていない。V2-F019 の「範囲の形」は誤り（2026-09-21、HIGH、静的） | HIGH | ? | superseded |
 | ACNL-F0459 | 消した・動かした建物の当たり判定が残る理由と、再起動なしで直す 2 関数（2026-09-23、HIGH（静的）） | HIGH | S | active |
 | ACNL-F0460 | ゲーム共通の 8 行リスト InstSelect<8> を下画面だけ借りる部品の作り（2026-09-25、MEDIUM: 静的＋実機の欄の読み取り。描画は未試験） | MEDIUM | S | active |
 | ACNL-F0461 | 建物の影の表は一覧 0x67CC と同じ番号で並び、場面を作るときにしか作られない（2026-09-25、HIGH: 静的＋実機のクラッシュ時の値） | HIGH | S | active |
@@ -566,7 +566,7 @@
 | ACNL-F0560 | Scene_SubmitNode のシーン番号は 0=通常描画・1=別モード・2=影マップ（2026-09-18、MEDIUM） | MEDIUM | ? | active |
 | ACNL-F0561 | UnitCursor を屋外で出すための足場と不足（2026-09-18、MEDIUM） | MEDIUM | ? | active |
 | ACNL-F0562 | 家具モデルは屋外でも出る（部屋ごとの収容数）。UnitCursor だけが屋内限定（2026-09-18、MEDIUM） | MEDIUM | ? | active |
-| ACNL-F0563 | 模様替えの家具の下の範囲表示は UnitCursor モデル、屋外では資源もクラスも無い（2026-09-18、MEDIUM） | MEDIUM | ? | active |
+| ACNL-F0563 | 模様替えの家具の下の範囲表示は UnitCursor モデル、屋外では資源もクラスも無い（2026-09-18、MEDIUM） | MEDIUM | ? | superseded |
 | ACNL-F0564 | 手紙の ID 種別 3=名前差し込み無しのプレイヤー・4=同住民・6=自分自身（2026-09-18、MEDIUM） | MEDIUM | ? | active |
 | ACNL-F0565 | 郵便ポストの手紙は「通信相手から」を判定できる／sub_6070CC・sub_606964 はデバッグ判定（2026-09-18、MEDIUM） | MEDIUM | ? | active |
 | ACNL-F0566 | sub_5C9C24 は夢見の館で落とした町を読み込んだ直後の作り直し（2026-09-18、MEDIUM） | MEDIUM | ? | active |
