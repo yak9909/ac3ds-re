@@ -35,6 +35,10 @@ tier = "B"
 [models."gpt-6-luna"]
 tier = "C"
 
+[models."haiku-5.5"]
+tier = "C"
+aliases = ["claude-haiku-5-5"]
+
 [models."gpt-6"]
 tier = "?"
 
