@@ -175,6 +175,27 @@ def read_all(d: Path) -> dict[str, list[dict]]:
     return {t: read_csv(Path(d) / (t + ".csv"), t) for t in COLUMNS}
 
 
+# ---- IDB の範囲 ----
+
+def split_by_segments(table: str, rows: list[dict], segments: list[tuple[int, int]]) -> tuple[list[dict], list[dict]]:
+    """行を IDB のセグメント内と外に分ける。範囲の終わりは含まない。"""
+    column = "function" if table == "lvars" else "address"
+    inside, outside = [], []
+    for row in rows:
+        ea = parse_addr(row[column])
+        if table in ("functions", "lvars"):
+            ea &= ~1  # CSV の Thumb フラグは IDB の番地には含まれない
+        (inside if any(start <= ea < end for start, end in segments) else outside).append(row)
+    return inside, outside
+
+
+def retain_outside_segments(table: str, new_rows: list[dict], old_rows: list[dict],
+                            segments: list[tuple[int, int]]) -> tuple[list[dict], int]:
+    """IDB に無い番地の既存行を、IDB から書き出した行へ加える。"""
+    _, outside = split_by_segments(table, old_rows, segments)
+    return sort_rows(table, new_rows + outside), len(outside)
+
+
 # ---- 引き継ぎ ----
 
 def carry_over(table: str, new_rows: list[dict], old_rows: list[dict], default_source: str = "analysis") -> list[dict]:

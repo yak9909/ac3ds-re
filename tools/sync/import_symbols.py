@@ -23,7 +23,7 @@ class Report:
         self.sections: dict[str, dict] = {}
 
     def sec(self, name: str) -> dict:
-        return self.sections.setdefault(name, {"total": 0, "ok": 0, "failed": []})
+        return self.sections.setdefault(name, {"total": 0, "ok": 0, "skipped": 0, "failed": []})
 
     def ok(self, name: str, n: int = 1):
         s = self.sec(name)
@@ -35,9 +35,15 @@ class Report:
         s["total"] += 1
         s["failed"].append({"key": key, "reason": reason})
 
+    def skip(self, name: str, n: int):
+        s = self.sec(name)
+        s["total"] += n
+        s["skipped"] += n
+
     def print(self, examples: int = 3):
         for name, s in self.sections.items():
-            print("%-10s 全部 %6d  成功 %6d  失敗 %5d" % (name, s["total"], s["ok"], len(s["failed"])))
+            print("%-10s 全部 %6d  成功 %6d  対象外 %6d  失敗 %5d" %
+                  (name, s["total"], s["ok"], s["skipped"], len(s["failed"])))
             for f in s["failed"][:examples]:
                 print("    失敗例: %s: %s" % (f["key"], f["reason"]))
 
@@ -376,9 +382,15 @@ def import_lvars(rows: list[dict], rep: Report):
 
 def import_all(symdir: Path, report: Path | None = None) -> Report:
     import ida_auto
+    import ida_segment
 
     t = sl.read_all(symdir)
     rep = Report()
+    segments = [(ida_segment.getnseg(i).start_ea, ida_segment.getnseg(i).end_ea)
+                for i in range(ida_segment.get_segm_qty())]
+    for table, rows in t.items():
+        t[table], outside = sl.split_by_segments(table, rows, segments)
+        rep.skip(table, len(outside))
     t0 = time.time()
     import_types(symdir, rep)
     import_functions(t["functions"], rep)

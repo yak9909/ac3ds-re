@@ -9,6 +9,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "sync"))
 import byte_diff  # noqa: E402
 import create_idb  # noqa: E402
 import idacommon as ic  # noqa: E402
+import import_symbols  # noqa: E402
 import restore_test  # noqa: E402
 import symlib as sl  # noqa: E402
 
@@ -78,3 +79,14 @@ def test_compare_dirs(tmp_path):
     sl.write_csv(b / "functions.csv", "functions", rows)
     res, ok = restore_test.compare_dirs(a, b)
     assert not ok and res["types"]["only_a"] == ["A"]
+
+
+def test_import_report_skipped(capsys):
+    rep = import_symbols.Report()
+    rep.skip("functions", 2)
+    rep.ok("functions")
+    rep.fail("functions", "0x00001000", "bad")
+    assert rep.dump()["functions"] == {"total": 4, "ok": 1, "skipped": 2,
+                                       "failed": [{"key": "0x00001000", "reason": "bad"}]}
+    rep.print()
+    assert "対象外      2" in capsys.readouterr().out
