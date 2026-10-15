@@ -29,6 +29,7 @@ state: superseded
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ACNL-F0692
+corrected_by: ["ACNL-F0562"]
 ---
 ## IDA-unknown-F019: 模様替えの家具の下の範囲表示は UnitCursor モデル、屋外では資源もクラスも無い（2026-09-18、MEDIUM）
 

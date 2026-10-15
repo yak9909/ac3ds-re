@@ -25,6 +25,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0673"]
 ---
 ## Ghidra-gpt-sol-5.6-F033: custom falling objectをbusy tokenにしてdrop queueをlock
 

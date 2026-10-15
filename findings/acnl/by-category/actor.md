@@ -9,11 +9,11 @@
 | ACNL-F0046 | F-08 アクター状態テーブルは基準 `0x00843634` / エントリ `0x1C` — 基準は `HIGH` / 個々の割り当ては混在 | 状態 N のエントリ関数 = `[0x843634 + N*0x1C]`。 | HIGH | ? |  |
 | ACNL-F0053 | F-15 `Player_StartFieldAction` の呼び出し規約 — `HIGH` | `0x598660`-`0x598688` の assembly から確定。 | HIGH | ? |  |
 | ACNL-F0056 | F-18 `Player_StartFieldAction` の呼び出し元は 16 箇所 — `HIGH` | `0x590000`-`0x5B0000` の BL 全走査で 16 件。 | HIGH | ? |  |
-| ACNL-F0075 | F-37 `FieldObj_InitFallActor` の `kind` が演出を決める — `HIGH` | `FieldObj_SpawnFallActor` は `FieldObj_InitFallActor(obj, item*, X, Y, kind)` を呼ぶ。 | HIGH | ? |  |
+| ACNL-F0075 | F-37 `FieldObj_InitFallActor` の `kind` が演出を決める — `HIGH` | `FieldObj_SpawnFallActor` は `FieldObj_InitFallActor(obj, item*, X, Y, kind)` を呼ぶ。 | HIGH | ? | 訂正あり |
 | ACNL-F0104 | F-66: オンライン髪型変更は虫取り網アクションから美容室状態 `0xB9` への迂回 | confidence: **MEDIUM**（独立した複数の静的経路で一致。実機・通信相手を使った動的検証は未実施） | MEDIUM | ? |  |
 | ACNL-F0105 | F-67: 髪型変更状態 `0xB9` が帽子・アクセサリを消し、2 段アニメが反映を遅らせる | confidence: **MEDIUM**（削除先・同期先・アニメ分岐を静的に確認。提案パッチは実機未検証） | MEDIUM | ? |  |
 | ACNL-F0106 | F-68: オフラインなら profile の HairStyle だけを書いて `vc_UPDATE` すれば即時・装備保持にできる | confidence: **HIGH**（静的経路に加え、オフライン実機で即時反映・衣装8枠維持を確認） | HIGH | ? |  |
-| ACNL-F0442 | アニメ機構は ModelInstance_Create の引数で作られる（**a5 ではなく a6。IDA-opus-5-F015 で確定**）（2026-09-21、HIGH、実機A/B） | 解析ソフト: IDA / 解析モデル: opus-5。**同じ資源・同じモデルで第5引数だけ変えた対照実験**を実機で行った。 | HIGH | ? |  |
+| ACNL-F0442 | アニメ機構は ModelInstance_Create の引数で作られる（**a5 ではなく a6。IDA-opus-5-F015 で確定**）（2026-09-21、HIGH、実機A/B） | 解析ソフト: IDA / 解析モデル: opus-5。**同じ資源・同じモデルで第5引数だけ変えた対照実験**を実機で行った。 | HIGH | ? | 訂正あり |
 | ACNL-F0458 | 模様替えカーソルは大きさを変えていない。V2-F019 の「範囲の形」は誤り（2026-09-21、HIGH、静的） | 解析ソフト: IDA / 解析モデル: opus-5。**既存記録 V2-F019 の訂正**（`work/evidence/unit_cursor/README.md` §5.3〜5.4、 | HIGH | ? |  |
 | ACNL-F0463 | ゆうめいなキノコで大きくなる仕組みと、プレイヤーの大きさは通信に乗らないこと（2026-09-30、MEDIUM: 静的＋Vapecord の送信側の形と受信側の独立一致。実機未観測） | 解析ソフト: IDA（主 IDB）/ 解析モデル: opus-5.5。利用者の問い: 椅子の座る高さはオンラインに反映される（他人にも見える高さ変更チートがある）。 | MEDIUM | S |  |
 | ACNL-F0464 | 住民の AI（第 2 段まで）— 行動の要求・行動表・外の住民のクラス・家の出入り・花植え・傘（2026-09-29、MEDIUM: 静的＋Vapecord の使い方と一致。実機未観測） | 解析ソフト: IDA（主 IDB acnl、CRO の ELF の IDB outdoor）＋ Vapecord の NPC 機能 / 解析モデル: opus-5.5。 | MEDIUM | S |  |

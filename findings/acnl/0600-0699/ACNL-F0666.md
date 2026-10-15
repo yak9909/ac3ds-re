@@ -22,6 +22,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0680"]
 ---
 ## Ghidra-gpt-sol-5.6-F027: landing identityをstate helper内でpre-arm
 

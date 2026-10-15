@@ -40,6 +40,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0153"]
 ---
 ## F-113: ★★TODO-68 完了 — `BsShadowViewMgr` が実例。フレーム描画の全体像と `1024`/`1040` の正体
 

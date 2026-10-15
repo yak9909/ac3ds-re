@@ -23,6 +23,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0680"]
 ---
 ## Ghidra-gpt-sol-5.6-F025: custom AcBalloon* identityでterminal A4だけ抑止
 

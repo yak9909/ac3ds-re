@@ -21,6 +21,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0557"]
 ---
 ## IDA-unknown-F011: サイズqueryとOOM・ready・owner寿命（2026-09-17、MEDIUM）
 

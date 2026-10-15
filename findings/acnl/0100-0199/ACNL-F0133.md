@@ -27,6 +27,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0139"]
 ---
 ## F-95: GPU コマンドバッファ `g_GpuCmdPtr` の特定
 

@@ -30,10 +30,10 @@ source: Ghidra:work/FINDINGS.md:1969-2064
 by: gpt-sol-5.6
 original_by: ''
 reviewed_by: []
-state: active
+state: superseded
 consolidated_into: ''
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0678
 ---
 ## Ghidra-gpt-sol-5.6-F036: native DropData allocation from the Ghidra-gpt-sol-5.6-F032 callsite context
 

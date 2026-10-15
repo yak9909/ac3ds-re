@@ -23,6 +23,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0645"]
 ---
 ## Ghidra-gpt-sol-5.6-F004: 通常ドロップをAcBalloon経由へ置換するAR実装
 

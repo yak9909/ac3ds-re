@@ -25,10 +25,10 @@ source: Ghidra:work/FINDINGS.md:1258-1327
 by: gpt-sol-5.6
 original_by: ''
 reviewed_by: []
-state: active
+state: superseded
 consolidated_into: ''
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0668
 ---
 ## Ghidra-gpt-sol-5.6-F028: custom Item substitutionをstock landing persistence経路へ戻す
 

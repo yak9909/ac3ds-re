@@ -23,6 +23,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0153"]
 ---
 ## F-110: ★`Use stepping support` を OFF にしても、ヒットした bp の削除は必要（TODO-54 完了）
 

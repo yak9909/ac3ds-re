@@ -26,6 +26,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0118"]
 ---
 ## F-78: タブ退場開始条件は要求成功ではなく実画面のmenu flag `0x08`
 

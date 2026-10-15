@@ -26,6 +26,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0124"]
 ---
 ## F-85: CameraCatalog、Catalog専用3灯、3つのrenderer layerはroom 0にも存在する
 

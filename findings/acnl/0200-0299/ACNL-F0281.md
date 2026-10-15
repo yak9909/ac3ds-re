@@ -20,6 +20,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0286"]
 ---
 ## F-258: 作業配列を自前バッファへ差し替える案は失敗した — `HIGH`（実機・目視）
 

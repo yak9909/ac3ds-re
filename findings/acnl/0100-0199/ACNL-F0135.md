@@ -28,6 +28,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0139"]
 ---
 ## F-97: `GpuCmd_GetProperty` と、自前コマンド追加の定石
 

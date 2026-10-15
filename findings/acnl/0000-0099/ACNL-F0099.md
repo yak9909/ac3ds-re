@@ -40,6 +40,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0102"]
 ---
 ## F-61: `REFERENCES/CHEATS/drop.cpp` の「host drop」の正体
 

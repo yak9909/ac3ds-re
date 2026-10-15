@@ -26,6 +26,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0153", "ACNL-F0159"]
 ---
 ## F-114: ★★TODO-71 完了 — 描画コールバックが積むものの全体像（自前描画の手本）
 

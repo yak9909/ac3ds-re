@@ -28,6 +28,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0653", "ACNL-F0652"]
 ---
 ## Ghidra-gpt-sol-5.6-F013: custom balloon drop中のinventory state 0x16→0x06をmenu-open guardで抑止する
 

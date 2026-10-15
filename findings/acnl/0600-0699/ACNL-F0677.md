@@ -35,10 +35,10 @@ source: Ghidra:work/FINDINGS.md:2065-2161
 by: gpt-sol-5.6
 original_by: ''
 reviewed_by: []
-state: active
+state: superseded
 consolidated_into: ''
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0678
 ---
 ## Ghidra-gpt-sol-5.6-F037: Ghidra-gpt-sol-5.6-F036 crash-dump root cause and ABI-safe bridge
 

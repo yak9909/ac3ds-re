@@ -30,10 +30,10 @@ source: Ghidra:work/FINDINGS.md:2302-2338
 by: gpt-sol-5.6
 original_by: ''
 reviewed_by: []
-state: active
+state: superseded
 consolidated_into: ''
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0685
 ---
 ## Ghidra-gpt-sol-5.6-CHAT-T002: remote chat Size/Color tags survive transport and render
 

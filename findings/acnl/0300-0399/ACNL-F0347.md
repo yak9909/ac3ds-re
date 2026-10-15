@@ -20,6 +20,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0006"]
 ---
 ## F-320（2026-09-06）: クラッシュダンプの読み方と `threadCreate` の落とし穴
 

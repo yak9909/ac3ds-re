@@ -29,6 +29,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0139"]
 ---
 ## F-98: TODO-37 の否定と、描画解析の全体精査
 

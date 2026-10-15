@@ -22,6 +22,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0078"]
 ---
 ## F-37 `FieldObj_InitFallActor` の `kind` が演出を決める — `HIGH`
 

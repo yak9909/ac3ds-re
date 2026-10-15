@@ -20,6 +20,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0139"]
 ---
 ## F-99: 描画解析の再精査 — 数値変換 2 件とレジスタ名 3 件の誤りを訂正
 

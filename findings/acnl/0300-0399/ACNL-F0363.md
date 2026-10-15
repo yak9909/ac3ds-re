@@ -30,6 +30,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0367"]
 ---
 ## F-337（2026-09-07）: 共有バッチ（§3.2）へ移る前の静的解析
 
