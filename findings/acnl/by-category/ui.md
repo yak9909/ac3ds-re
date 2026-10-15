@@ -65,3 +65,6 @@
 | ACNL-F0628 | HHD と ACNL でアニメのコマ数の数え方が 1 つ違う（2026-10-07、HIGH: 静的＋実機の症状） | ACNL の UiAnim_Step 0x568964: +0x14 bit0（ループしない）なら frame は frameSize(+4) − 1 で頭打ち、bit0 が無ければ frameSize で巻き戻す。UiAnim_IsFinished 0x74F58C も frame >= frameSize − 1。ACNL の BCLAN（ループしない）は最後のキーが frameSize − 1 に 527 件（frameSize ちょうどは 7 件）。 | HIGH | S | topics/acnl/ui.md |  |
 | ACNL-F0693 | Layout 描画は上左右目と下の三パスで、上下の二リストを使う（再解析） | LayoutMgr は上の左右目に同じリスト、下に別リストを用いる。上左は記録巡回と再生、上右は再生後に上リスト解除、下は記録巡回と再生後に下リスト解除を行う。 | MEDIUM | A |  |  |
 | ACNL-F0694 | Layout の優先度は安定な昇順挿入であり、末尾は登録時点に依存する（再解析） | LayoutMgr_AddLayout は Layout+0x0C の符号なしバイトで安定な昇順挿入を行う。最大優先度も後続の同値登録に先行するため、最後の再生や最前面の画素を無条件には保証しない。 | MEDIUM | A |  |  |
+| ACNL-F0696 | Layout の正射影とペインから画素への換算は Layout 寸法と viewport の比で決まる（再解析） | 基底 Layout の正射影は自身の幅・高さから作る。無追加変換時の画素倍率は viewport 幅/Layout 幅、viewport 高/Layout 高であり、1 単位＝1 画素は寸法一致時の条件付きの結論である。 | MEDIUM | 未記入 |  |  |
+| ACNL-F0697 | Layout 再生の通常シザーは mode 0 であり寸法不一致だけでは切り抜きを有効にしない（再解析） | Layout 再生は自身の寸法からシザー語を組むが、+0x138 が1でない通常分岐はmode 0を送る。寸法不一致だけを理由に切り抜きが有効になるとは言えない。 | MEDIUM | 未記入 |  |  |
+| ACNL-F0698 | Layout 投影 uniform の c4 は毎再生前に設定され初期化後のゼロ固定ではない（再解析） | 投影uniformのc4はDrawer+0x74..+0x80。再生直前のsetterが立体視変位・LayoutMgrの値・0・0を書き、初期化以降ずっとゼロという説は成立しない。 | MEDIUM | 未記入 |  |  |

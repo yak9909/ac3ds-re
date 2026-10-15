@@ -2612,14 +2612,9 @@ TextDraw_BuildFourCornerColors で再展開するので、
 0x004D5788,repeatable,"F-131 HIGH: resolves one UTF-16 code unit to a glyph through Font vtable+0x40, emits its quad, then advances cursor X by CWDH advance*horizontalScale (or fixed width)."
 0x004D581C,line,F-131 HIGH: normal cursor advance = signed glyph CWDH advance byte (+6) * writer horizontal scale (+0x24).
 0x004D5858,func,"F-140 static: R0=TextWriter; writer+0x40 is the persistent font/GPU context. The routine clears context+0xE4, configures texture/shader/attribute state, calls sub_4D54B4, then prepares immediate/batch text drawing. Live call-site capture is pending."
-0x004D5C9C,line,"F-262: ★名前が誤解を招く。これは「drawctx を取得する」関数ではない。
-  a1+116 へ float 3 つと 0 を書いて a1+116 を返す setter。
-  別の drawctx オブジェクトは存在せず、**Drawer（mgr+0x364）自身が drawctx** である。
-  裏付け: sub_4D7274（DrawBegin 実体）が a1+1684..1698 を触る。"
-0x004D5C9C,repeatable,"F-262: ★名前が誤解を招く。これは「drawctx を取得する」関数ではない。
-  a1+116 へ float 3 つと 0 を書いて a1+116 を返す setter。
-  別の drawctx オブジェクトは存在せず、**Drawer（mgr+0x364）自身が drawctx** である。
-  裏付け: sub_4D7274（DrawBegin 実体）が a1+1684..1698 を触る。"
+0x004D5C9C,func,"[ACNL-F0698] MEDIUM/static reanalysis: existing GetDrawCtxForList name is misleading. R0=Drawer; writes S0,S1,S2,0 to +0x74..+0x80 and returns that address. Sole direct caller 0x5683A8 passes stereo offset, LayoutMgr+0x350,0. This updates c4 before projection-uniform emission; initialization zeros do not persist necessarily. Shader effect/hardware values unverified."
+0x004D5C9C,line,"[ACNL-F0698] MEDIUM/static reanalysis: existing GetDrawCtxForList name is misleading. R0=Drawer; writes S0,S1,S2,0 to +0x74..+0x80 and returns that address. Sole direct caller 0x5683A8 passes stereo offset, LayoutMgr+0x350,0. This updates c4 before projection-uniform emission; initialization zeros do not persist necessarily. Shader effect/hardware values unverified."
+0x004D5C9C,repeatable,"[ACNL-F0698] MEDIUM/static reanalysis: existing GetDrawCtxForList name is misleading. R0=Drawer; writes S0,S1,S2,0 to +0x74..+0x80 and returns that address. Sole direct caller 0x5683A8 passes stereo offset, LayoutMgr+0x350,0. This updates c4 before projection-uniform emission; initialization zeros do not persist necessarily. Shader effect/hardware values unverified."
 0x004D5CB0,line,"★TextDraw_EmitStatePrefix(drawctx, cursor) — 行列＋色のステージングを流す — F-158 / F-160 / F-192
 
 drawctx+568 から 16*(drawctx+37)+16 バイトを Mem_Copy するだけ。
@@ -2674,35 +2669,13 @@ drawctx+568 から 16*(drawctx+37)+16 バイトを Mem_Copy するだけ。
 0x004D6570,line,"F-146: TextBox_RebuildBatchWriter's context R0 + stack TextWriter R1 builds reusable batch command stream at [TextWriter+0x44]. Batch+0x10 is command source; +0x1C is dword count. Static body seeds first 0x60 bytes from 0x8ADA30, appends grouped glyph/state blocks, and RangeCacheOp's final range when control byte+9 bit1 is set."
 0x004D6570,repeatable,"F-146: TextBox_RebuildBatchWriter's context R0 + stack TextWriter R1 builds reusable batch command stream at [TextWriter+0x44]. Batch+0x10 is command source; +0x1C is dword count. Static body seeds first 0x60 bytes from 0x8ADA30, appends grouped glyph/state blocks, and RangeCacheOp's final range when control byte+9 bit1 is set."
 0x004D65D8,line,F-146: copies fixed 0x60-byte PICA command template 0x8ADA30 to batch+0x10 and initializes command count to 24 dwords. Live T_nam_00 batch source began with the exact same 0x60 bytes.
-0x004D6C90,line,"★F-265: nwlyt_Drawer_EmitProjectionUniform(drawer, cursor, DrawInfo+4 = Layout+0x34)
-
-  Mtx44_Copy16Words(drawer+0x34, Layout+0x34)   ; 投影行列 16 語をコピー
-  drawer+0x30 = 元の drawer+0x34 の先頭語
-  drawer+0x34 = 0x013F02C1                      ; VSH_FLOATUNIFORM_DATA, mask 0xF, extra 19
-  drawer+0x84 = 0
-  Mem_Copy(cursor, drawer+0x28, 0x60)           ; 24 語を吐く
-
-吐かれる 24 語 = [0x28]=uniform index 値 / [0x2C]=0x000F02C0 / [0x30]=m[0] /
-[0x34]=0x013F02C1 / [0x38..0x74]=m[1..15] / [0x78..0x84]=残り 4 語（c4）。
-
-★★これが UI の投影の**唯一の出所**。自前ノードで再生関数を使うなら、
-  投影は **自前ノード+0x34** が決める。雛形の写し元任せにしてはいけない。"
-0x004D6C90,repeatable,"★F-265: nwlyt_Drawer_EmitProjectionUniform(drawer, cursor, DrawInfo+4 = Layout+0x34)
-
-  Mtx44_Copy16Words(drawer+0x34, Layout+0x34)   ; 投影行列 16 語をコピー
-  drawer+0x30 = 元の drawer+0x34 の先頭語
-  drawer+0x34 = 0x013F02C1                      ; VSH_FLOATUNIFORM_DATA, mask 0xF, extra 19
-  drawer+0x84 = 0
-  Mem_Copy(cursor, drawer+0x28, 0x60)           ; 24 語を吐く
-
-吐かれる 24 語 = [0x28]=uniform index 値 / [0x2C]=0x000F02C0 / [0x30]=m[0] /
-[0x34]=0x013F02C1 / [0x38..0x74]=m[1..15] / [0x78..0x84]=残り 4 語（c4）。
-
-★★これが UI の投影の**唯一の出所**。自前ノードで再生関数を使うなら、
-  投影は **自前ノード+0x34** が決める。雛形の写し元任せにしてはいけない。"
+0x004D6C90,func,"[ACNL-F0696][ACNL-F0698] MEDIUM/static reanalysis: copy Layout matrix16 to Drawer+0x34..+0x70; move m0 to +0x30; replace +0x34 with header 0x013F02C1. Payload m1..m15 at +0x38..+0x70; c4 at +0x74..+0x80, NOT +0x78..+0x84. +0x84 is padding. c4 is set before replay by 0x4D5C9C, NOT permanently zero."
+0x004D6C90,line,"[ACNL-F0696][ACNL-F0698] MEDIUM/static reanalysis: copy Layout matrix16 to Drawer+0x34..+0x70; move m0 to +0x30; replace +0x34 with header 0x013F02C1. Payload m1..m15 at +0x38..+0x70; c4 at +0x74..+0x80, NOT +0x78..+0x84. +0x84 is padding. c4 is set before replay by 0x4D5C9C, NOT permanently zero."
+0x004D6C90,repeatable,"[ACNL-F0696][ACNL-F0698] MEDIUM/static reanalysis: copy Layout matrix16 to Drawer+0x34..+0x70; move m0 to +0x30; replace +0x34 with header 0x013F02C1. Payload m1..m15 at +0x38..+0x70; c4 at +0x74..+0x80, NOT +0x78..+0x84. +0x84 is padding. c4 is set before replay by 0x4D5C9C, NOT permanently zero."
 0x004D6CA4,line,F-234: sub_148D30 は Layout+0x34 から Drawer+0x34 へ16 word/0x40-byte copy。後続で先頭 word を Drawer+0x30 へ移し、Drawer+0x34 は PICA header に上書きされる。
 0x004D6CB4,line,F-234: コピー元先頭 word（旧 Drawer+0x34）を Drawer+0x30 へ移す。従って照合条件は Drawer+0x30==Layout+0x34 と Drawer+0x38..+0x70==Layout+0x38..+0x70。
 0x004D6CBC,line,F-234: Drawer+0x34 を 0x013F02C1（PICA command header）で上書きする。raw 0x40-byte equality では Layout を検索できない。
+0x004D6CCC,line,"[ACNL-F0698] R4 has advanced to original Drawer+0x34 by writeback STRs; STR [R4,#0x50] zeros original +0x84 padding, NOT a c4 component."
 0x004D6CE0,line,"F-146: internal TextBatch builder flush. Copies accumulated context-owned GPU-state blocks into batch+0x10 at current batch+0x1C dword offset, resets pending counters; called when glyph grouping/state capacity requires it and once at end."
 0x004D6CE0,repeatable,"F-146: internal TextBatch builder flush. Copies accumulated context-owned GPU-state blocks into batch+0x10 at current batch+0x1C dword offset, resets pending counters; called when glyph grouping/state capacity requires it and once at end."
 0x004D6FE8,line,"F-146: appends final per-flush command words and a fixed 0x40-byte block from 0x8ADBC8, then advances batch+0x1C. Exact PICA register semantics are not yet decoded."
@@ -3370,30 +3343,10 @@ while(1) { vtbl[0x64](this); }  = Framework_ProcOneFrame を回すだけ。
 他地域: USA=00569118  EUR=00568160  KOR=00567770
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x00567BAC,func,"IDA-gpt-6-F008: Layout wrapper+32 object's virtual+44 receives name inR1 and recursive flag1; callers use it for named CLYT panes. Original callsites + ChangeStockItem layout tree confirm pane resolution. Wrapper RTTI/class identity not confirmed, so retain sub-name; next trace ctor/vtable+44 before class-qualified rename."
-0x00567BC0,line,"★F-265: Layout vtable +0x18 = SetupProjectionMatrix。render.txt の m_ProjectionDirty 経路。
-sub_73BAC0(&rect, Layout+0x10) でペインツリーの矩形 (l=v24, t=v25, r=v26, b=v27) を取り、
-直交行列（row-major 4x4）を組んで Mtx44_RotateForScreen(m,1) で 3DS の 90 度回転をかけ、
-DrawInfo_SetProjectionMatrix(Layout+0x30, m) = **Layout+0x34 の 16 語**へ書く。
-
-  m0=2/(r-l) m3=-(r+l)/(r-l) m5=2/(t-b) m7=-(t+b)/(t-b) m10=0.001 m11=-0.5 m15=1.0 他 0
-  回転(1) 後: row0<-row1 / row1<--row0
-  原点が画面中央（l=-W/2, r=W/2, t=H/2, b=-H/2）なら
-    非ゼロは m1=2/H, m4=-2/W, m10=0.001, m11=-0.5, m15=1.0 だけ。
-
-0.001f = 0x3A83126F（リテラル 0x567D40）/ -0.5f = 0xBF000000（0x567D44）。
-★GPU へ流れるのは記録時ではなく **再生時**（Layout_ReplayRecordedList -> 0x4B8C34 -> 0x4D6C90）。"
-0x00567BC0,repeatable,"★F-265: Layout vtable +0x18 = SetupProjectionMatrix。render.txt の m_ProjectionDirty 経路。
-sub_73BAC0(&rect, Layout+0x10) でペインツリーの矩形 (l=v24, t=v25, r=v26, b=v27) を取り、
-直交行列（row-major 4x4）を組んで Mtx44_RotateForScreen(m,1) で 3DS の 90 度回転をかけ、
-DrawInfo_SetProjectionMatrix(Layout+0x30, m) = **Layout+0x34 の 16 語**へ書く。
-
-  m0=2/(r-l) m3=-(r+l)/(r-l) m5=2/(t-b) m7=-(t+b)/(t-b) m10=0.001 m11=-0.5 m15=1.0 他 0
-  回転(1) 後: row0<-row1 / row1<--row0
-  原点が画面中央（l=-W/2, r=W/2, t=H/2, b=-H/2）なら
-    非ゼロは m1=2/H, m4=-2/W, m10=0.001, m11=-0.5, m15=1.0 だけ。
-
-0.001f = 0x3A83126F（リテラル 0x567D40）/ -0.5f = 0xBF000000（0x567D44）。
-★GPU へ流れるのは記録時ではなく **再生時**（Layout_ReplayRecordedList -> 0x4B8C34 -> 0x4D6C90）。"
+0x00567BC0,func,"[ACNL-F0696] MEDIUM/static reanalysis: base Layout reads its own +0x28/+0x2C through (Layout+0x10)+0x18/+0x1C; NOT root-Pane/tree bounds. +0x121==1 selects perspective. Ortho then rotation(1) produces m1=2/H,m4=-2/W,m10=.001,m11=-.5,m15=1, stored at +0x34. Cache gate +0x11F is in RecordPaneTree. Pixel scale Vw/W,Vh/H is conditional on no extra transforms/offsets; hardware untested."
+0x00567BC0,line,"[ACNL-F0696] MEDIUM/static reanalysis: base Layout reads its own +0x28/+0x2C through (Layout+0x10)+0x18/+0x1C; NOT root-Pane/tree bounds. +0x121==1 selects perspective. Ortho then rotation(1) produces m1=2/H,m4=-2/W,m10=.001,m11=-.5,m15=1, stored at +0x34. Cache gate +0x11F is in RecordPaneTree. Pixel scale Vw/W,Vh/H is conditional on no extra transforms/offsets; hardware untested."
+0x00567BC0,repeatable,"[ACNL-F0696] MEDIUM/static reanalysis: base Layout reads its own +0x28/+0x2C through (Layout+0x10)+0x18/+0x1C; NOT root-Pane/tree bounds. +0x121==1 selects perspective. Ortho then rotation(1) produces m1=2/H,m4=-2/W,m10=.001,m11=-.5,m15=1, stored at +0x34. Cache gate +0x11F is in RecordPaneTree. Pixel scale Vw/W,Vh/H is conditional on no extra transforms/offsets; hardware untested."
+0x00567BD8,line,[ACNL-F0696] Argument R1=Layout+0x10; callee reads +0x18/+0x1C => Layout width/height +0x28/+0x2C. No root Pane dereference.
 0x00567DA4,repeatable,"Vapecord plugin ADDRESSES: DATA3
 他地域: USA=0056946C  EUR=005684B4  KOR=00567AC4
 （プラグイン作者のラベル。検証済みの識別ではない）"
@@ -3411,9 +3364,11 @@ IDA-gpt-6-F014: T017 calls native LayoutCalc for the current pocket background w
 これが **this+0x34 の 16 語を VSH float uniform（投影行列）として吐く**。
 従って自前ノードがこの関数を再生スロットに使う場合、投影は自前ノード +0x34 で決まる。"
 0x0056832C,line,"IDA-opus-5.5-F095 (HIGH: static + hardware 2026-10-06): Layout+0x138 (u8) == 1 -> PICA scissor mode 3 (reg 0x65) from floats +0x13C/+0x140/+0x144/+0x148, in framebuffer orientation (both axes reversed). low16 = +0x140 .. +0x140+(+0x148)-1 (clamped by +0x2C), high16 = +0x13C .. +0x13C+(+0x144)-1 (clamped by +0x28). Bottom-screen pixel rect [x0,x1)x[y0,y1): +0x13C = 320-x1, +0x140 = 240-y1, +0x144 = x1-x0, +0x148 = y1-y0 (hardware: +0x140 = y0 cut everything; 240-y1 clipped exactly at the rect). Emitted every replay even when +0x108==0. Else: mode 0 full screen."
+0x00568330,line,"[ACNL-F0697] Normal scissor branch: data at 0x8A8550 is mode=0, header=0x802F0065, pos=0. Dimension endpoint is built from Layout W,H but mode 0 disables scissor; width mismatch alone does not enable clipping."
 0x0056835C,line,"F-240 static: Layout+0x108 <= 0 returns before Drawer setup or GpuCmd_ReplayRecordedListRange. Dynamic user-visible-loader stop had current top Layout 0x3225B070 with +0x108=0, so that node cannot be the direct replay source at that instant."
 0x00568368,line,"[ACNL-F0693] display affects stereo offset, not replay filter. Conditional byte at +0x120 (NOT +0x320); +0x124 is negated for 0x400."
 0x00568374,line,"[ACNL-F0693] R5=Layout+0x100, displacement=0x20 => Layout+0x120. Old +0x320 annotation is incorrect."
+0x005683A8,line,"[ACNL-F0698] Setter, despite existing name: Drawer+0x74..+0x80 = (stereo offset, mgr+0x350 float, 0, 0), then BeginLayoutReplayState emits it as c4."
 0x005683C4,line,"F-234: replay 前に sub_4B8C34(Drawer, Layout+0x30, 0) で Layout の描画コンテキストを inline Drawer へ反映する。sub_4D6C90 の変換後 fingerprint で実機 Layout を独立同定可能。"
 0x005683E4,line,"F-233/F-234 訂正: 引数は Layout+0x100=id, +0x104=start, +0x108=length, +0x10C=aux。通常場面の一標本は id30。ロード画像表示中の上 pass は低レベル trace で id8 len0x180 → id10 len0x2C0。id10 は save_wait/load リソースを直接保持する現在のロード画像 Layout。旧「ロード中 id30」は誤り。"
 0x005685A4,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。Layout_Buildはcommandを0x121988経由のa1[5]へ、nwlyt資源実体を全体allocator0x96F150へ分ける。holderを変えても後者の割当先は変わらない。ゲーム全体allocatorを一時差替える移設案は採用しない。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
@@ -4678,6 +4633,7 @@ IDA-gpt-6-F002 MEDIUM: state6 table0x843634 stride28 selects this idle entry (se
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x00659244,line,actor
 0x00659288,line,actor
+0x006592C0,line,actor
 0x0065BF08,repeatable,"Vapecord plugin ADDRESSES: PICKUPANIMID
 他地域: USA=0065D410  EUR=0065C448  KOR=0065BAB0
 （プラグイン作者のラベル。検証済みの識別ではない）"
@@ -4687,6 +4643,7 @@ IDA-gpt-6-F002 MEDIUM: state6 table0x843634 stride28 selects this idle entry (se
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x0065EC60,line,"埋めるアニメの再生速度を S18 へロード (リテラル 0x65EF50)。
 0x65EC98 の VMOV.F32 S1,S18 で速度として渡る。参照はこ1箇所のみ。"
+0x0065ED80,line,AcnlMenuScreenNodeF006 *
 0x0065EF50,line,"【スコップ速度】scoop_bury1 (79) モノを埋める本体
 上位HW書換アドレス = 0x65EF52
 実機検証済み
@@ -4960,6 +4917,7 @@ IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: 対品番の再変換なし。
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x00691AD4,func,"IDA-gpt-6.1-sol-F001 / MEDIUM: 0x691F34..0x691F68がRoom_TryPutFurnitureAtの全10引数を組む。回転=playerYaw四分円の反対から4方向を試し、層は1→0、パターン0..4。探索そのものは記録作成で配置しない。第5引数は0x690D50で入口SPに置かれる。
 IDA-gpt-6.1-sol-F002: MEDIUM追補: 0x691B94の丸めは((yaw+0x2000)&0xFFFF)>>14、HHD0x4F99C0と全65536角で一致。0=+Z/1=+X/2=-Z/3=-Xは両版atanのcardinal分岐と照合。探索順と置く家具rotを分離する。"
+0x00691BD4,line,item
 0x006920CC,func,"IDA-gpt-6.1-sol-F001 / MEDIUM（今回静的）: R0=12B出力記録、R1=x、R2=z、R3=向き0..3、入口SP+0x00=Item*、+0x04=層、+0x08=playerX、+0x0C=playerZ、+0x10=player向き四分円、+0x14=探索パターン。0x691F34..0x691F68の積み方と本体で照合。部屋/家具を直接書かず成功時に記録だけ作る（0x6928D8..0x6928F0）。戻り0=可、3=壁側制約、4=通常不可、5=壁家具の占有/向き制約。全分岐をreport参照。HIGHはF103/F104の既存実機経路だけ。
 IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: 入力品番を配置記録へそのまま保存（0x6928C0/0x6928D8）、クリアするのはflagsの向きbit。147/148/49を直渡しすると壁class5分岐を使う: 0x692230壁判定、0x6922A4/class5、0x692468適格セル、0x6924A8向き検査。任意床位置へは置けない。6/7/47は通常『へやにかざる』と同じ品番。
 IDA-gpt-6.1-sol-F012 / MEDIUM追補。壁class4/5も入力層0のままrecord+7に保存し、品番変換なし。HHD壁探索のrot3/1/0/2をACNLの各壁へ対応。表には147/148/49等の壁用品番が必要。画面操作中のplayerX/Z=-1は既存非占有経路で、同じcallback引数（pattern0）を使う。全空き・隣接・壁側制約は維持。
