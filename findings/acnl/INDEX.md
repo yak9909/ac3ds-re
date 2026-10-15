@@ -696,3 +696,6 @@
 | ACNL-F0690 | item name/icon resource pipeline |  | B | active |  |  |
 | ACNL-F0691 | low field-object display fallback |  | B | active |  |  |
 | ACNL-F0692 | AcObjUnitCursor の尺度は家具サイズ、Rotate アニメは UV 回転で決まる（F0563 再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0693 | Layout 描画は上左右目と下の三パスで、上下の二リストを使う（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0694 | Layout の優先度は安定な昇順挿入であり、末尾は登録時点に依存する（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0695 | Layout 再生時の主リスト記帳は条件付きで未提出範囲を取り込む（再解析） | MEDIUM | A | active |  |  |

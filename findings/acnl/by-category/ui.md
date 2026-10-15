@@ -63,3 +63,5 @@
 | ACNL-F0594 | HHD の「ペインに投影」の座標生成を ACNL の UV で再現する規則（HHD-T006 の水玉の謎の答え）（2026-10-05、MEDIUM: レイアウトのデータ 2 種と HHD のスクショの照合。HHD のコードは未読） | 解析ソフト: なし（3DSkit の BFLYT の読み + acnl-ui-designer の描画）。解析モデル opus-5.5。段階 2（上画面）の変換で判明。 | MEDIUM | S | topics/acnl/ui.md |  |
 | ACNL-F0611 | Layout ノード 1 つにつき 1 枚のシザー（自前の候補欄の切り抜きに使う）（2026-10-06、HIGH: 静的 + 実機。縦の向きは実機で訂正） | 解析ソフト: IDA / 解析モデル: opus-5.5。 | HIGH | S | topics/acnl/ui.md |  |
 | ACNL-F0628 | HHD と ACNL でアニメのコマ数の数え方が 1 つ違う（2026-10-07、HIGH: 静的＋実機の症状） | ACNL の UiAnim_Step 0x568964: +0x14 bit0（ループしない）なら frame は frameSize(+4) − 1 で頭打ち、bit0 が無ければ frameSize で巻き戻す。UiAnim_IsFinished 0x74F58C も frame >= frameSize − 1。ACNL の BCLAN（ループしない）は最後のキーが frameSize − 1 に 527 件（frameSize ちょうどは 7 件）。 | HIGH | S | topics/acnl/ui.md |  |
+| ACNL-F0693 | Layout 描画は上左右目と下の三パスで、上下の二リストを使う（再解析） | LayoutMgr は上の左右目に同じリスト、下に別リストを用いる。上左は記録巡回と再生、上右は再生後に上リスト解除、下は記録巡回と再生後に下リスト解除を行う。 | MEDIUM | A |  |  |
+| ACNL-F0694 | Layout の優先度は安定な昇順挿入であり、末尾は登録時点に依存する（再解析） | LayoutMgr_AddLayout は Layout+0x0C の符号なしバイトで安定な昇順挿入を行う。最大優先度も後続の同値登録に先行するため、最後の再生や最前面の画素を無条件には保証しない。 | MEDIUM | A |  |  |

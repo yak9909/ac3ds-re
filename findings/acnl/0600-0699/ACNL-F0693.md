@@ -12,7 +12,7 @@ addresses: [0x1b7090, 0x1b71c4, 0x1b72e4, 0x566df8, 0x5692b0, 0x568f98, 0x569180
 tags: [layout]
 supersedes: ["ACNL-F0230", "ACNL-F0276"]
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
-by: auto
+by: gpt-6.1-sol
 original_by: ""
 reviewed_by: []
 state: active            # active / consolidated / superseded / duplicate

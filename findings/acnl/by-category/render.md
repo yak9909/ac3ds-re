@@ -144,3 +144,4 @@
 | ACNL-F0617 | ACNL の品番 → モデル名の表と、HHD との品物の突き合わせ（2026-10-06、MEDIUM〜HIGH: 静的 2 本 + ROM の実データ） | 解析ソフト: IDA / 解析モデル: opus-5.5。T022 の下調べ。 | MEDIUM | S |  |  |
 | ACNL-F0645 | balloon ARの旧code caveが既存描画caveと衝突していた | **確度: HIGH（添付Ghidra XMLの既存allocation map＋crash_dump_00000007＋ユーザー実機挙動）。** | HIGH | B |  |  |
 | ACNL-F0692 | AcObjUnitCursor の尺度は家具サイズ、Rotate アニメは UV 回転で決まる（F0563 再解析） | AcObjUnitCursor は家具サイズによる5種類の尺度と、家具角度による4種類のUV回転を別々に設定する。UnitCursor.bcres は1モデル・3本のマテリアルアニメを持ち、標準の読み込みは部屋フラグ0x8に依存する。追加・削除はModuleFtrのimport経由で呼ばれる。 | MEDIUM | A |  |  |
+| ACNL-F0695 | Layout 再生時の主リスト記帳は条件付きで未提出範囲を取り込む（再解析） | 再生関数は主リストの現在位置と提出済み位置を比較し、条件により分割提出または最初のコマンドエントリへの結合を行う。主リストへの直接追記が常に提出・表示されるという保証ではない。 | MEDIUM | A |  |  |
