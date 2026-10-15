@@ -235,6 +235,24 @@ def test_stamp_overwrites_and_restores(repo, capsys):
     assert "by: opus-5.5\n" in p.read_text(encoding="utf-8")
 
 
+def test_stamp_skips_legacy_source(repo, capsys):
+    new()
+    new()
+    edit(repo, "ACNL-F0001", "tool: IDA\n", "tool: IDA\nsource: old.md:10\n")
+    edit(repo, "ACNL-F0001", "by: auto", "by: forged")
+    edit(repo, "ACNL-F0001", 'original_by: ""', "original_by: me")
+    edit(repo, "ACNL-F0001", "state: active ", "state: superseded ")
+    p1, p2 = recpath(repo, "ACNL-F0001"), recpath(repo, "ACNL-F0002")
+    before = p1.read_text(encoding="utf-8")
+    capsys.readouterr()
+    assert run("stamp", "--model", "claude-sonnet-5-5", str(p1), str(p2)) == 0
+    assert p1.read_text(encoding="utf-8") == before
+    out, err = capsys.readouterr()
+    assert "ACNL-F0001.md 旧記録のため飛ばした（by は forged のまま）" in out
+    assert "管理項目" not in err
+    assert "by: sonnet-5.5\n" in p2.read_text(encoding="utf-8")
+
+
 def test_stamp_untracked_autodetect(repo):
     g = os.environ.get("AC3DS_GIT") or "git"
     subprocess.run([g, "init", "-q"], cwd=repo, check=True)

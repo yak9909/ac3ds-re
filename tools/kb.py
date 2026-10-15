@@ -608,6 +608,9 @@ def cmd_stamp(a) -> int:
         if r.err:
             print("警告: %s: %s" % (p, r.err), file=sys.stderr)
             continue
+        if "source" in r.meta:
+            print("stamp: %s 旧記録のため飛ばした（by は %s のまま）" % (p.name, r.get("by")))
+            continue
         for k, (lit, val) in MANAGED_DEFAULTS.items():
             if r.meta.get(k, val) != val:
                 print("警告: %s: 管理項目 %s を既定値に戻した" % (p.name, k), file=sys.stderr)
