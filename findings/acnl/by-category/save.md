@@ -2,6 +2,6 @@
 
 # acnl / save
 
-| ID | 題 | summary | 確度 | 格付け | 訂正 |
-|---|---|---|---|---|---|
-| ACNL-F0391 | F-362（2026-09-08）: case 5 の `0x00606D78` と「準備しています」の出どころ | 詳細は `scratchpad/MEMO_f362_savemsg.md`。 | HIGH | ? |  |
+| ID | 題 | summary | 確度 | 格付け | consolidated_into | 訂正 |
+|---|---|---|---|---|---|---|
+| ACNL-F0391 | F-362（2026-09-08）: case 5 の `0x00606D78` と「準備しています」の出どころ | 詳細は `scratchpad/MEMO_f362_savemsg.md`。 | HIGH | ? |  |  |

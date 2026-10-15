@@ -191,6 +191,39 @@ def test_lint_clean_and_errors(repo, capsys):
     assert rc == 0, out
 
 
+def test_consolidated_into_topic_or_record(repo, capsys):
+    new(title="first")
+    new(title="second")
+    topic = repo / "topics/acnl/item.md"
+    topic.parent.mkdir(parents=True)
+    topic.write_text("# item\n", encoding="utf-8")
+    edit(repo, "ACNL-F0001", "state: active ", "state: consolidated ")
+    edit(repo, "ACNL-F0001", 'consolidated_into: ""', "consolidated_into: topics/acnl/item.md")
+    run("index")
+    assert run("lint", "--strict") == 0
+    capsys.readouterr()
+    assert run("show", "ACNL-F0001") == 0
+    assert "統合先: topics/acnl/item.md" in capsys.readouterr().out
+    for path in (repo / "findings/acnl/INDEX.md", repo / "findings/acnl/by-category/item.md"):
+        assert "| ACNL-F0001 | first |" in path.read_text(encoding="utf-8")
+        assert "| topics/acnl/item.md |" in path.read_text(encoding="utf-8")
+
+    edit(repo, "ACNL-F0001", "topics/acnl/item.md", "ACNL-F0002")
+    assert lint_out(capsys)[0] == 0
+    edit(repo, "ACNL-F0001", "ACNL-F0002", "ACNL-F0999")
+    rc, out = lint_out(capsys)
+    assert rc == 1 and "consolidated_into の参照先が無い: ACNL-F0999" in out
+    edit(repo, "ACNL-F0001", "ACNL-F0999", "topics/acnl/missing.md")
+    rc, out = lint_out(capsys)
+    assert rc == 1 and "consolidated_into の参照先が無い: topics/acnl/missing.md" in out
+    (repo / "outside.md").write_text("outside\n", encoding="utf-8")
+    edit(repo, "ACNL-F0001", "topics/acnl/missing.md", "topics/../outside.md")
+    assert "consolidated_into の参照先が無い" in lint_out(capsys)[1]
+    edit(repo, "ACNL-F0001", "topics/../outside.md", '""')
+    rc, out = lint_out(capsys)
+    assert rc == 1 and "state consolidated なのに consolidated_into が空" in out
+
+
 def test_lint_missing_field_and_source_blank(repo, capsys):
     new()
     run("index")
