@@ -68,6 +68,37 @@ def test_allow_list():
     assert reasons("C:" + "\\Users\\bob\\x", allow=allow)
 
 
+def test_decompiler_output():
+    call = "int __" + "fastcall f(void)"
+    local_reg = "  _" + "BYTE *v2; // r9"
+    local_stack = "  int v5; // [sp+4h] [bp-1Ch]"
+    macro = "LOB" + "YTE(v2) = 1;"
+    assert not reasons("\n".join((call, local_reg)))
+    for lines in ((call, local_reg, local_stack),
+                  ("_" + "DWORD x;", "_" + "WORD y;", "__" + "int8 z;"),
+                  (macro, macro, macro)):
+        ps = audit.scan_text("findings/acnl/a.md", "\n".join(lines), [])
+        assert len(ps) == 1
+        assert ps[0].line == 1
+        assert "3 行" in ps[0].reason
+        assert "_DWORD" not in str(ps[0])
+    assert reasons("\n".join(("| " + macro[:-5] + " |",) * 3))
+    assert file_reasons("docs/a.json", "\n".join((call, local_reg, local_stack)).encode("utf-8"))
+    assert not reasons("\n".join(("0x001000,4,F," + call,) * 3), path="symbols/acnl/functions.csv")
+    assert len(audit.scan_text("docs/a.md", call + " " + macro + " " + local_reg, [])) == 0
+    allow = [{"path": "findings/*", "pattern": "疑似C", "reason": "quoted example"}]
+    assert not reasons("\n".join((call, local_reg, local_stack)), path="findings/acnl/a.md", allow=allow)
+    assert reasons("\n".join((call, local_reg, local_stack)), path="docs/a.md", allow=allow)
+    digest = audit.scan_text("docs/a.md", "\n".join((call, local_reg, local_stack)), [])[0].match
+    exact = [{"path": "findings/*", "pattern": "^" + digest + "$", "reason": "old quote"}]
+    assert not reasons("\n".join((call, local_reg, local_stack)), path="findings/acnl/a.md", allow=exact)
+    assert reasons("\n".join((call, local_reg, local_stack, macro)), path="findings/acnl/a.md", allow=exact)
+    fields = "  unsigned __" + "int8 mode;\n  signed __" + "int8 state;\n  __" + "int8 value;\n"
+    assert not reasons(fields, path="symbols/acnl_jpn_v15/types/local_types.h")
+    assert reasons(fields, path="docs/a.md")
+    assert reasons("\n".join((call, local_reg, macro)), path="symbols/acnl_jpn_v15/types/local_types.h")
+
+
 def file_reasons(path, data, **kw):
     return [p.reason for p in audit.scan_file(path, data, [], **kw)]
 
@@ -81,6 +112,14 @@ def test_forbidden_and_location():
     assert not file_reasons("tools/audit.py", b"x\n")
     assert any(".task" in r for r in file_reasons(".task/report.md", b"x\n", main_mode=True))
     assert not file_reasons(".task/report.md", b"x\n")
+
+
+def test_task_files():
+    for path in (".task/notes.md", ".task/report.md"):
+        assert not file_reasons(path, b"x" * (64 * 1024))
+        assert any("64KB" in r for r in file_reasons(path, b"x" * (64 * 1024 + 1)))
+    for path in (".task/dump.c", ".task/sub/report.md", ".task/notes.txt"):
+        assert any("許可されていない" in r for r in file_reasons(path, b"x\n"))
 
 
 def test_encoding():
@@ -124,8 +163,11 @@ def test_modes(repo, monkeypatch, capsys):
     assert audit.main(["--staged"]) == 0
     assert audit.main(["--ci"]) == 0
     (repo / ".task").mkdir()
-    (repo / ".task/r.md").write_bytes(b"x\n")
+    (repo / ".task/report.md").write_bytes(b"x\n")
     assert audit.main([]) == 0
+    (repo / ".task/dump.txt").write_bytes(b"x\n")
+    assert audit.main([]) == 1
+    (repo / ".task/dump.txt").unlink()
     assert audit.main(["--main"]) == 1
     monkeypatch.setenv("GITHUB_REF", "refs/heads/main")
     assert audit.main([]) == 1
