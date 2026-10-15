@@ -100,10 +100,16 @@ def _func_start(ea: int) -> bool:
 def export_globals(vtbl_addrs: set[int], comment_refs: dict[int, list[str]]) -> list[dict]:
     import ida_bytes
     import ida_name
+    import ida_nalt
     import idautils
 
     rows = []
-    for ea, name in idautils.Names():
+    names = dict(idautils.Names())
+    # 構造体などの自動名は名前一覧に入らない。型だけを指定した大域も拾う。
+    for ea in idautils.Heads():
+        if ea not in names and ida_nalt.is_userti(ea) and not ida_bytes.is_code(ida_bytes.get_flags(ea)):
+            names[ea] = ida_name.get_name(ea)
+    for ea, name in sorted(names.items()):
         if ea in vtbl_addrs or _func_start(ea):
             continue
         fl = ida_bytes.get_flags(ea)

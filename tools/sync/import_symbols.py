@@ -77,18 +77,20 @@ def import_types(symdir: Path, rep: Report):
 
     til = T.get_idati()
     flags = T.HTI_DCL | T.HTI_PAKDEF if hasattr(T, "HTI_PAKDEF") else T.HTI_DCL
+    blocks = {}
     for h in sorted((symdir / "types").glob("*.h")) if (symdir / "types").is_dir() else []:
         text = h.read_text(encoding="utf-8")
         head = text.split("// type: ", 1)[0]
         fwd = [l for l in head.splitlines() if l.strip() and not l.startswith("//")]
         if fwd:
             T.parse_decls(til, "\n".join(fwd) + "\n", None, flags)
-        for name, body in sl.split_type_blocks(text):
-            errs = T.parse_decls(til, body + "\n", None, flags)
-            if errs:
-                rep.fail("types", name, "C 宣言の解釈で %d 件の誤り" % errs)
-            else:
-                rep.ok("types")
+        blocks.update(sl.split_type_blocks(text))
+    for name in sl.order_type_blocks(blocks):
+        errs = T.parse_decls(til, blocks[name] + "\n", None, flags)
+        if errs:
+            rep.fail("types", name, "C 宣言の解釈で %d 件の誤り" % errs)
+        else:
+            rep.ok("types")
 
 
 # ---- 関数 ----
@@ -117,6 +119,34 @@ def _ensure_function(ea: int, size: int, thumb: bool) -> str | None:
     want = 1 if thumb else 0
     treg = ida_idp.str2reg("T")
     end = ea + size if size > 0 else 0xFFFFFFFF
+    cmts = None
+    # get_func() はテールの所有者を返すため、チャンクを調べて全所有者から外す。
+    pos = ea
+    while pos < (end if size > 0 else ea + 1):
+        chunk = ida_funcs.get_fchunk(pos)
+        if chunk is None:
+            nxt = ida_funcs.get_next_fchunk(pos)
+            if nxt is None or size <= 0 or nxt.start_ea >= end:
+                break
+            pos = nxt.start_ea
+            continue
+        start, stop = chunk.start_ea, chunk.end_ea
+        if chunk.flags & ida_funcs.FUNC_TAIL:
+            parents = list(ida_funcs.func_parent_iterator_t(chunk))
+            for parent in parents:
+                if not ida_funcs.remove_func_tail(ida_funcs.get_func(parent), start):
+                    return "共有テール 0x%X を外せない" % start
+            if start < ea:
+                for parent in parents:
+                    if not ida_funcs.append_func_tail(ida_funcs.get_func(parent), start, ea):
+                        return "テールの前半 0x%X を残せない" % start
+        elif start < ea:
+            if not ida_funcs.set_func_end(start, ea):
+                return "別の関数 0x%X を手前で終わらせられない" % start
+        elif start != ea:
+            if not ida_funcs.del_func(start):
+                return "重複する関数 0x%X を除けない" % start
+        pos = stop
     f = ida_funcs.get_func(ea)
     if f is not None and f.start_ea != ea:
         # 自動解析が作った関数の途中から始まる関数: 手前の関数を ea で切る
@@ -131,20 +161,34 @@ def _ensure_function(ea: int, size: int, thumb: bool) -> str | None:
     if f is not None:
         if size > 0 and f.end_ea != ea + size:
             if not ida_funcs.set_func_end(ea, ea + size):
-                return SOFT + "関数の終わりを 0x%X にできない（今は 0x%X）" % (ea + size, f.end_ea)
-        return None
+                # 間違った命令長などで境界が項目の途中にある場合は再作成する。
+                cmts = [ida_funcs.get_func_cmt(f, repeat) for repeat in (False, True)]
+                ida_funcs.del_func(ea)
+                ida_bytes.del_items(ea, ida_bytes.DELIT_SIMPLE, size)
+                f = None
+            else:
+                return None
+        else:
+            return None
     if ida_segregs.get_sreg(ea, treg) != want:
         prev_end = ida_segregs.get_sreg(end, treg) if size > 0 else None
         ida_segregs.split_sreg_range(ea, treg, want, ida_segregs.SR_user)
         if prev_end is not None and ida_segregs.get_sreg(end, treg) != prev_end:
             ida_segregs.split_sreg_range(end, treg, prev_end, ida_segregs.SR_user)
-    if ida_funcs.add_func(ea, end):
-        return None
-    ida_bytes.del_items(ea, ida_bytes.DELIT_SIMPLE, max(size, 2))
-    ida_ua.create_insn(ea)
-    if ida_funcs.add_func(ea, end):
-        return None
-    return "関数を作れない"
+    if not ida_funcs.add_func(ea, end):
+        ida_bytes.del_items(ea, ida_bytes.DELIT_SIMPLE, max(size, 2))
+        ida_ua.create_insn(ea)
+        if not ida_funcs.add_func(ea, end):
+            return "関数を作れない"
+    f = ida_funcs.get_func(ea)
+    if cmts is not None:
+        for repeat, cmt in zip((False, True), cmts):
+            if cmt:
+                ida_funcs.set_func_cmt(f, cmt, repeat)
+    if size > 0 and f.end_ea != end:
+        if not ida_funcs.set_func_end(ea, end):
+            return SOFT + "関数の終わりを 0x%X にできない（今は 0x%X）" % (end, f.end_ea)
+    return None
 
 
 def _import_function_row(r: dict) -> tuple[str, str] | None:

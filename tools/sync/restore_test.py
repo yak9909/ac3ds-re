@@ -33,11 +33,12 @@ def compare_dirs(a: Path, b: Path) -> tuple[dict, bool]:
         res = sl.compare_tables(t, ta[t], tb[t], ignore=ign)
         result[t] = res
         ok &= sl.tables_equal(res)
-    ha, hb = a / "types" / "local_types.h", b / "types" / "local_types.h"
-    ra = ha.read_text(encoding="utf-8") if ha.exists() else ""
-    rb = hb.read_text(encoding="utf-8") if hb.exists() else ""
-    ba = dict(sl.split_type_blocks(ra))
-    bb = dict(sl.split_type_blocks(rb))
+    def type_blocks(root):
+        blocks = {}
+        for header in sorted((root / "types").glob("*.h")):
+            blocks.update(sl.split_type_blocks(header.read_text(encoding="utf-8")))
+        return blocks
+    ba, bb = type_blocks(a), type_blocks(b)
     tres = {"only_a": sorted(ba.keys() - bb.keys()), "only_b": sorted(bb.keys() - ba.keys()),
             "changed": sorted(k for k in ba.keys() & bb.keys() if ba[k] != bb[k]), "same": 0}
     tres["same"] = len(ba) - len(tres["changed"]) - len(tres["only_a"])
@@ -46,8 +47,9 @@ def compare_dirs(a: Path, b: Path) -> tuple[dict, bool]:
     return result, ok
 
 
-def run(build: str, symbols: Path, keep: bool = False, fresh: bool = False, report: Path | None = None) -> bool:
-    cache = ic.build_dir(build) / "ida" / "restore-test"
+def run(build: str, symbols: Path, keep: bool = False, fresh: bool = False, report: Path | None = None,
+        work_root: Path | None = None) -> bool:
+    cache = work_root / build if work_root else ic.build_dir(build) / "ida" / "restore-test"
     cache.mkdir(parents=True, exist_ok=True)
     base = cache / (build + "_empty.i64")
     if fresh and base.exists():
@@ -62,11 +64,17 @@ def run(build: str, symbols: Path, keep: bool = False, fresh: bool = False, repo
     try:
         with ic.OpenDb(work, save=True) as _:
             rep = import_symbols.import_all(symbols, work_dir / "import_report.json")
+        import_ok = not any(s.get("failed") for s in rep.sections.values())
         rep.sections.pop("_meta", None)
         rep.print()
+        # 通常の書き出しと同じく、IDB 外（未ロードの CRO 等）の行は保持する。
+        # これらは import_report の skipped に計上され、復元済みとは扱わない。
+        for table, rows in sl.read_all(symbols).items():
+            sl.write_csv(out / (table + ".csv"), table, rows)
         with ic.OpenDb(work, save=False) as _:
             export_symbols.export_all(build, out, "restore-test")
         res, ok = compare_dirs(symbols, out)
+        ok &= import_ok
         for t, r in res.items():
             if t == "types":
                 print("%-10s same=%d only_a=%d only_b=%d changed=%d" % (t, r["same"], len(r["only_a"]), len(r["only_b"]),
@@ -102,8 +110,9 @@ def main(argv=None) -> int:
     ap.add_argument("--keep", action="store_true", help="作業用の IDB と書き出しを残す")
     ap.add_argument("--fresh", action="store_true", help="キャッシュした空の IDB を作り直す")
     ap.add_argument("--report", help="差の詳細を書く JSON")
+    ap.add_argument("--work-root", type=Path, help="空の IDB・作業用 IDB・書き出しを置く親フォルダ")
     a = ap.parse_args(argv)
-    ok = run(a.build, Path(a.symbols), a.keep, a.fresh, Path(a.report) if a.report else None)
+    ok = run(a.build, Path(a.symbols), a.keep, a.fresh, Path(a.report) if a.report else None, a.work_root)
     return 0 if ok else 1
 
 
