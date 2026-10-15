@@ -1464,7 +1464,7 @@ IDA-gpt-6-F009 / GPT-6 (MEDIUM): Touch repeat independently confirms control216 
 0x002F75CC,repeatable,"Vapecord plugin ADDRESSES: GETROOM
 他地域: USA=002F7384  EUR=002F73AC  KOR=002F7488
 （プラグイン作者のラベル。検証済みの識別ではない）"
-0x002F75E4,func,V2-F019 MEDIUM: ビット 8 = 屋内（室内）。g_RoomFlagTable 0x883328 を数えると 200 部屋中 118 件が bit8 を持ち、駅・プレイヤーの家(0x188)・NPC の家(0x148)・店・テントなど室内だけ。村・Downtown・島の外・タイトルは持たない（RoomID.txt と照合）
+0x002F75E4,func,"[ACNL-F0692] Mask check on g_RoomFlagTable; roomId0xA5 is special and returns false. Valid room descriptor domain0..0xA4; 117 of165 flags have mask0x8. Old V2-F019 count200/118 was incorrect. 0x8 selects Indoor/Ftr in the explicit module branch, but extra module lists can also load them."
 0x002F75E4,line,"Room_HasFlags(mask, roomId) (F-55)
   return roomId != 165 && (mask & ~g_RoomFlagTable[roomId]) == 0;
 部屋 ID を添字に g_RoomFlagTable(0x883328) を引き、mask のビットを全部持つか返す。
@@ -4466,8 +4466,7 @@ NOP にすると R0 = R4 (非ゼロ) のまま CMP/MOVNE を通るので即座�
 0x006070CC,func,V2-F017 MEDIUM: byte_94B490(セーブアーカイブ準備済み、sub_1B8868が1) かつ dword_94B498(入出力中のオフセット)==0 かつ dword_94B49C(入出力中のサイズ)==sub_7573AC()=0x89A60 を返すだけ。両変数は sub_1B908C / sub_1B935C（sead::FileHandle で読み書き、終わると0）が設定。Save_GetTownBase / sub_2FB8CC / sub_2FB900 等27か所で sub_606964 と対で呼ばれるが、戻り値は使われない（Save_GetTownBase は直後に LDR R0 で上書き）。デバッグ用のアサートの残骸と推定。動作に影響なし
 0x0060BA04,line,anim
 0x00611618,func,V2-F019 MEDIUM: 部屋フラグ 8 のとき UnitCursor の資源（ScStage+0x420）と専用ヒープ（+0x418）を解放
-0x00611928,func,"V2-F019 MEDIUM: 部屋フラグ 8（屋内。同じ関数群で Item/Param/ItemIndoor.bin も読む）のときだけ、専用ヒープ ""UnitCursorRes""（20480 B、ScStage+0x418）を作り Ftr/Chip/UnitCursor.bcres を ScStage+0x420 へ読む。模様替えで家具の下に出る範囲表示（AcObjUnitCursor、ModuleIndoor.cro）のモデル資源。屋外ではこの読み込み自体が走らない
-V2-F020 訂正: この bit8 条件は **UnitCursor の資源だけ**の話。家具モデル自体は g_RoomFurnitureCapacity が非0 の屋外の部屋（村 38、オートキャンプ場 10）でも BsFtrMgr が扱う。ItemIndoor.bin の方は ScStage_PrepareStep で bit8 または bit28(0x10000000=オートキャンプ場 0x9F/0xA0)・bit29(0x20000000=カー内部 0xA1/0xA2) で読まれる"
+0x00611928,func,"[ACNL-F0692] UnitCursor load is conditional on Room_HasFlags(0x8,current). Heap allocator this+0x418 (heap pointer+0x41C), size0x5000, name UnitCursorRes; resource holder this+0x420 for Ftr/Chip/UnitCursor.bcres. ItemIndoor.bin has a different condition (0x8 OR 0x10000000 at 0x610A94); flag0x20000000 is used later for camping car info."
 0x006165A8,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。memoryType0x10000はa1[5] ExpHeap vtable+0x18へR0=heap/R1=stack上a5のsize/R2=整列でtail call。0x20000/0x30000はa1[6]/[7]のVRAM。0x105整列種別は16 Bに変換。command/icon移設先の根拠。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
 0x00616818,repeatable,"Vapecord plugin ADDRESSES: SENDDATA1
 他地域: USA=00617D20  EUR=00616D58  KOR=006163C0
@@ -4942,7 +4941,7 @@ IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: 対品番の再変換なし。
 0x006900E4,line,g_BsFtrMgr publication occurs inside phase 1. Non-null is not ready; require (manager[0x13]&3)==3 before any Catalog preview actor creation.
 0x00690588,func,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: 目の前の家具の検索は0x691730へ出力を渡す（BL0x690668）。出力+0x0C=生配置Item、+0x10=ポケット用Item。sub_6907E0/Player_TryPickUpFurnitureへつながる。
 0x006907E0,func,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: PlayerObjectの位置/向きからsub_690588の家具検索を呼ぶ。出力+0x10は壁掛け逆変換済みItem。Player_TryPickUpFurnitureがplayer+2980へ出力を作るためplayer+2996に通常品番。
-0x00690B68,func,V2-F019 MEDIUM: アイテム ID の上位ニブル v=(id>>12)&0xF から (v+2)>>2 を返す（0・1 → 0、2〜5 → 1、6〜9 → 2、以降 3）。AcObjUnitCursor のカーソル追加（ModuleIndoor.cro 0x…19FFC）がこの値 0〜3 をそのままアニメ UnitCursorRotate（枠3本目、枠+88、全 3 フレーム）のフレーム 0.0/1.0/2.0/3.0 にして速度 0 で止める＝家具の大きさで範囲の形を選ぶ
+0x00690B68,func,"[ACNL-F0692] Supersedes V2-F019 comment: input points to u16 angle, not item ID. Computes quadrant with u32 overflow: nibble0,1->0;2..5->1;6..9->2;10..13->3;14,15->0. UnitCursor uses it for material UV rotation. Furniture size is obtained separately via 0x303128."
 0x00690D24,func,IDA-gpt-6.1-sol-F001 / MEDIUM: R0=配置記録*、R1=Item*、R2=探索オプション。GetPlayerObjectは実際にはR0=4/R1=0で呼ぶ（0x690D38..0x690D40）。player+20 XYZ、+46 u16向きを0x691AD4へ渡す。0x691AD4には第5引数=オプション、第6引数の追加半語保存も存在しdecompileの4引数表示を信用しない。
 0x00690EF4,line,Catalog preview cache is updated before actor creation succeeds. A failed/null spawn is not retried until selection/cache changes.
 0x00690FCC,line,F-90/F-91: default family 1 call; valid ItemParam +0x11 overrides it. Runtime: 0x2EA3 and 0x2E78 family 1 -> 0xBC; 0x2C89 family 3 -> 0xBD.
@@ -4967,7 +4966,7 @@ IDA-gpt-6.1-sol-F004 / MEDIUM追補: 探索起点とは別の引数playerX/playe
 0x0069D848,line,"V2-F012 LOW: 住民 10 人の現在地(villager+0x250F)を検査し、店が閉まっていれば別の状態(sub_113A14(v,2))へ戻す。5=Re-Tail, 21=エイブル, 22=sub_112004 ほか"
 0x0069D848,repeatable,"V2-F012 LOW: 住民 10 人の現在地(villager+0x250F)を検査し、店が閉まっていれば別の状態(sub_113A14(v,2))へ戻す。5=Re-Tail, 21=エイブル, 22=sub_112004 ほか"
 0x006A21FC,func,"IDA-gpt-6-F001 MEDIUM: generic tiled byte-grid writer: index from grid+4 width/grid+8 height and x/y, STRB value into *grid+index. Callers besides daily grass update exist, so this function is not grass-specific. Returns the index still in R0; original fourth argument is consumed only as a byte."
-0x006A3AD8,func,"V2-F020 MEDIUM: 次の部屋に応じて読む CRO を積む（名前は Module%s.cro へ、読み込みは sub_6A469C）。先頭で Room_HasFlags(8)＝屋内のときだけ ""Indoor"" と ""Ftr"" を積む（""Ftr"" の参照はこの 1 か所だけ）。オートキャンプ場は部屋 ID の分岐で ""AutoCamp""。よって AcObjUnitCursor（ModuleIndoor.cro）は屋外では存在しないが、家具モデルの表示自体は code.bin の BsFtrMgr 側なので屋外でも動く"
+0x006A3AD8,func,"[ACNL-F0692] The explicit 0x8 branch registers Indoor and Ftr; the alternative 0x4 branch registers Outdoor. This is not the only selection path: room-specific extra lists at the end add Ftr for rooms0x9F/0xA0, Indoor+AmiiboCamera for0xA4, all without flag0x8. UnitCursor resource loading remains a separate 0x8 condition."
 0x006A4ED0,line,"フェーダ 9 個を作って g_FaderRegistry (0x94C64C) に登録 (F-51)。
  [1]FaderColor黒/上 [2][3]FaderColor白/上 [4]FaderWipe/上 [5]FaderMoment/上
  [6]FaderColor黒/下 [7][8]FaderColor白/下 [9]FaderMoment/下"
@@ -5784,7 +5783,8 @@ IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: const char* const[5931]。Item
 0x00880F14,repeatable,"Vapecord plugin ADDRESSES: SP6
 他地域: USA=00887C68  EUR=00886AF4  KOR=0087FF14
 （プラグイン作者のラベル。検証済みの識別ではない）"
-0x00883328,line,"部屋ごとのフラグ表 u32 x 166 (F-55/F-56)。index = 部屋 ID (0-164, 165=なし)。
+0x00883328,line,"[ACNL-F0692] 165 room flags (IDs0..0xA4), 117 have mask0x8. The next table starts at0x8835BC; old array[166] included its first word.
+部屋フラグ表 u32 x 165 (ACNL-F0692)。ID 0..164、165は表外の番兵。
 
 ★Room_IDS.txt の Outdoor/Indoor 分類と照合して得た bit の意味:
   bit1 / bit2 = 屋外   (Outdoor 21/23、Indoor 0/94)
@@ -5796,8 +5796,7 @@ IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: const char* const[5931]。Item
   FieldObj_ResolveAxeAction Room_HasFlags(32, ...) = 村か
 
 bit2 の無い Outdoor は Wii U 連携ミニゲーム 2 部屋のみ (flags=0x08000000)。
-V2-F019: 部屋 ID → フラグの表。bit8 = 屋内（ScStage_LoadIndoorRes の条件）。200 件中 118 件が bit8
-IDA-gpt-6.1-sol-F014 MEDIUM (static + original ARM1176 partial execution). Evidence work/evidence/hhd_room_camera/, design docs/topics/hhd_room_camera_design.md. No hardware test. Port house gate is (flags&0x108)==0x108 and (flags&0xC0)!=0. Original table pairs player-house0x188, NPC-house0x148. Uses room capability fl"
+IDA-gpt-6.1-sol-F014 MEDIUM (static + original ARM1176 partial execution). Evidence work/evidence/hhd_room_camera/, design docs/topics/hhd_room_camera_design.md. No hardware test. Port house gate is (flags&0x108)==0x108 and (flags&0xC0)!=0. Original table pairs player-house0x188, NPC-house0x148. Uses room "
 0x00889550,repeatable,"Vapecord plugin ADDRESSES: EMOTICONS
 他地域: USA=008902A4  EUR=0088F130  KOR=00888500
 （プラグイン作者のラベル。検証済みの識別ではない）"
@@ -6157,3 +6156,8 @@ confidence **HIGH**（静的 + 実機観測。F-102）。
 0x00ADF864,repeatable,"Vapecord plugin ADDRESSES: NPCCODES_DATA1
 他地域: USA=00AE6864  EUR=00AE5864  KOR=00ADE864
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x00B19CEC,func,"[ACNL-F0692] 64 slots at this+0x5C, stride124. Model at slot+12; three material animations at slot+24+32*k, names at 0xB8E124. Publishes this at 0xB8E118. MEDIUM: instructions, resource dictionaries, RTTI."
+0x00B19FFC,func,"[ACNL-F0692] R1=size class from ItemParam+0x17 low nibble; R2=ModuleFtr furniture index. Slot+120=size, +121=furniture index. Calls scale selector 0xB27C14; angle quadrant selects UV rotation animation at slot+88. ModuleFtr seg0+0x890C/+0x1CA04 call via anonymous import. Convenience CRO mapping, not runtime address."
+0x00B1A15C,func,"[ACNL-F0692] Follows ModuleFtr furniture entry (seg0+0x1CF2C), sets translation and Y rotation, evaluates animations, updates world/skeleton. Unit-scale pose matrix does not erase the separate node scale at +0x7C..+0x84. vtable slot9."
+0x00B1A2F0,func,"[ACNL-F0692] Removes slot R1, resets +121=0xFF, +120=5, unlinks list. ModuleFtr seg0+0x8104/+0x83B4/+0x9400/+0x1CE38 call through import stub seg0+0x668."
+0x00B27C14,func,"[ACNL-F0692] slot+120 selects XYZ scale: 0=(1,1,1),1=(2,1,1),2=(2,1,2),3=(3,1,2),4=(3,1,3); calls TransformNodeHolder_SetScale. Called by cursor add at 0xB1A08C. Class is not asserted for this slot helper."
