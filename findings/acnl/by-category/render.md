@@ -143,3 +143,4 @@
 | ACNL-F0600 | 部屋の内部名の表、メッシュ 1 つを半透明で描く命令の挟み方、T018 第 1 段の実機（2026-10-05、HIGH（部屋の表: ID 一覧とゲームの表の 2 経路）/ MEDIUM（半透明: 静的、実機未確認）） | 解析モデル opus-5.5。IDB: `g_RoomInternalNames 0x9515F0`（命名・注記）、`gfx_DrawMesh 0x48D26C` に注記。 | HIGH | S |
 | ACNL-F0617 | ACNL の品番 → モデル名の表と、HHD との品物の突き合わせ（2026-10-06、MEDIUM〜HIGH: 静的 2 本 + ROM の実データ） | 解析ソフト: IDA / 解析モデル: opus-5.5。T022 の下調べ。 | MEDIUM | S |
 | ACNL-F0645 | balloon ARの旧code caveが既存描画caveと衝突していた | **確度: HIGH（添付Ghidra XMLの既存allocation map＋crash_dump_00000007＋ユーザー実機挙動）。** | HIGH | B |
+| ACNL-F0692 | AcObjUnitCursor の尺度は家具サイズ、Rotate アニメは UV 回転で決まる（F0563 再解析） | AcObjUnitCursor は家具サイズによる5種類の尺度と、家具角度による4種類のUV回転を別々に設定する。UnitCursor.bcres は1モデル・3本のマテリアルアニメを持ち、標準の読み込みは部屋フラグ0x8に依存する。追加・削除はModuleFtrのimport経由で呼ばれる。 | MEDIUM | A |

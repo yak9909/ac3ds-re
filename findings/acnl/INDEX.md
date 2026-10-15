@@ -695,3 +695,4 @@
 | ACNL-F0689 | dedicated ruby font |  | B | active |
 | ACNL-F0690 | item name/icon resource pipeline |  | B | active |
 | ACNL-F0691 | low field-object display fallback |  | B | active |
+| ACNL-F0692 | AcObjUnitCursor の尺度は家具サイズ、Rotate アニメは UV 回転で決まる（F0563 再解析） | MEDIUM | A | active |
