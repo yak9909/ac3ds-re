@@ -1,1 +1,0 @@
-事前確認: precheck と consolidate-category を読了。kb.py search で画面・ui・Layout を検索。topics は未作成、glossary は無し。ui 索引と実記録は ACNL 59 件、HHD 11 件。全件 active。訂正元 ACNL-F0095/F0116/F0117/F0230/F0257/F0275/F0315 の corrected_by を追って統合する。ゲームの事実だけを抽出し、格付け ? のみの結論には要確認を付ける。
