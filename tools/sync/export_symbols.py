@@ -336,6 +336,7 @@ def export_types() -> str:
 
 def export_all(build: str, outdir: Path, source: str = "analysis", console: bool = False) -> dict:
     import ida_nalt
+    import ida_segment
 
     outdir = Path(outdir)
     old = sl.read_all(outdir)
@@ -352,6 +353,12 @@ def export_all(build: str, outdir: Path, source: str = "analysis", console: bool
     types_text = export_types()
 
     tables = {"functions": funcs, "globals": globs, "comments": comments, "vtables": vtables, "lvars": lvars}
+    segments = [(ida_segment.getnseg(i).start_ea, ida_segment.getnseg(i).end_ea)
+                for i in range(ida_segment.get_segm_qty())]
+    retained = 0
+    for t, rows in tables.items():
+        tables[t], count = sl.retain_outside_segments(t, rows, old[t], segments)
+        retained += count
     for t, rows in tables.items():
         sl.write_csv(outdir / (t + ".csv"), t, rows)
     tdir = outdir / "types"
@@ -375,7 +382,7 @@ def export_all(build: str, outdir: Path, source: str = "analysis", console: bool
         "counts": {t: len(r) for t, r in tables.items()} | {"types": types_text.count("// type: ")},
     }
     (outdir / "meta.toml").write_text(sl.dumps_meta(meta), encoding="utf-8", newline="\n")
-    return meta["counts"] | {"build": build}
+    return meta["counts"] | {"retained": retained, "build": build}
 
 
 def main(argv=None) -> int:

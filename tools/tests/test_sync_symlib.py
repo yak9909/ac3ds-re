@@ -105,6 +105,49 @@ def test_carry_over():
     assert out[2]["source"] == "legacy-idb"  # アドレスが違えば新しい行
 
 
+@pytest.mark.parametrize("table,column", [
+    ("functions", "address"), ("globals", "address"), ("comments", "address"),
+    ("vtables", "address"), ("lvars", "function"),
+])
+def test_split_by_segments(table, column):
+    rows = [{column: a, "name": str(i)} for i, a in enumerate([
+        "0x00000FFF", "0x00001000", "0x000010FF", "0x00001100", "0x00B00000",
+    ])]
+    inside, outside = sl.split_by_segments(table, rows, [(0x1000, 0x1100)])
+    assert [r["name"] for r in inside] == ["1", "2"]
+    assert [r["name"] for r in outside] == ["0", "3", "4"]
+
+
+def test_thumb_address_at_segment_end():
+    rows = [{"address": "0x00001001"}, {"address": "0x00001101"}]
+    inside, outside = sl.split_by_segments("functions", rows, [(0x1000, 0x1100)])
+    assert inside == rows[:1]
+    assert outside == rows[1:]
+
+
+@pytest.mark.parametrize("table,column", [
+    ("functions", "address"), ("globals", "address"), ("comments", "address"),
+    ("vtables", "address"), ("lvars", "function"),
+])
+def test_retain_outside_segments(table, column):
+    old = [{column: "0x00001000", "name": "deleted"},
+           {column: "0x00B00000", "name": "ModuleIndoor", "text": "そのまま,\n保存"},
+           {column: "0x00C00000", "name": "ModuleFtr"}]
+    new = [{column: "0x00001004", "name": "from IDB"}]
+    merged, retained = sl.retain_outside_segments(table, new, old, [(0x1000, 0x1100)])
+    assert retained == 2
+    assert merged == [new[0], old[1], old[2]]
+    assert old[0] not in merged  # IDB 内で消された行は戻らない
+
+
+def test_retained_csv_row_survives_write_and_read():
+    old = [{"address": "0x00B00000", "kind": "line", "text": "CRO,\nコメント"}]
+    new = [{"address": "0x00001000", "kind": "line", "text": "IDB のコメント"}]
+    rows, retained = sl.retain_outside_segments("comments", new, old, [(0x1000, 0x1100)])
+    assert retained == 1
+    assert sl.loads_csv("comments", sl.dumps_csv("comments", rows)) == [new[0], old[0]]
+
+
 def test_compare_tables():
     a = [{"address": "0x1", "size": "4", "name": "A", "prototype": "", "source": "x"},
          {"address": "0x2", "size": "4", "name": "B", "prototype": "", "source": "x"},
