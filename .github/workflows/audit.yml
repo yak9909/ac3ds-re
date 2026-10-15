@@ -1,0 +1,25 @@
+name: audit
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r tools/requirements.txt
+      - name: 公開前の検査
+        run: python tools/audit.py --ci
+      - name: 記録の検査
+        run: python tools/kb.py lint
+      - name: 道具の試験
+        run: python -m pytest -q tools/tests

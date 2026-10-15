@@ -1,0 +1,553 @@
+"""
+Nintendo 3DS loader.
+- Kynex7510
+"""
+
+import enum
+from pathlib import Path
+
+import ida_loader
+import ida_entry
+import ida_segment
+import ida_kernwin
+import ida_bytes
+import ida_lines
+import ida_ida
+import ida_idp
+
+# Globals
+
+SCRIPT_NAME = "ctr_loader.py"
+REPO_URL = "https://github.com/kynex7510/3ds_ida"
+
+PAGE_SIZE = 0x1000
+MEDIA_UNIT = 0x200
+MAX_EXEFS_ENTRIES = 10
+FIRM_MODULES = [
+    0x1002, # sm
+    0x1102, # fs
+    0x1202, # pm
+    0x1302, # loader
+    0x1402, # pxi
+]
+
+# Helpers
+
+def blz_decompress(input_data):
+    delta_size = int.from_bytes(input_data[-4:], 'little')
+    ranges = int.from_bytes(input_data[-8:-4], 'little')
+    current_out = len(input_data) + delta_size
+    current_in = len(input_data) - (ranges >> 24)
+    end = len(input_data) - (ranges & 0xFFFFFF)
+    buffer = [b'\0'] * (len(input_data) + delta_size)
+    buffer[:len(input_data)] = input_data
+
+    while current_in > end:
+        current_in -= 1
+        control = buffer[current_in]
+        for _ in range(8):
+            if control & 0x80:
+                current_in -= 1
+                b1 = buffer[current_in]
+                current_in -= 1
+                b2 = buffer[current_in]
+                index = ((b2 | (int(b1) << 8)) & 0xFFFF0FFF) + 2
+                loops = (b1 >> 4) + 2
+                while True:
+                    b = buffer[current_out + index]
+                    current_out -= 1
+                    buffer[current_out] = b
+                    loops -= 1
+                    if loops < 0:
+                        break
+            else:
+                current_out -= 1
+                current_in -= 1
+                buffer[current_out] = buffer[current_in]
+
+            control = (control << 1) & 0xFF
+            if current_in <= end:
+                return bytes(buffer)
+
+    return bytes(buffer)
+
+
+def read_bytes(f, off, size):
+    f.seek(off)
+    b = f.read(size)
+    if len(b) < size:
+        raise Exception("Could not read bytes from file")
+    return b
+
+
+def read_hword(f, off):
+    return int.from_bytes(read_bytes(f, off, 2), 'little')
+
+
+def read_dword(f, off):
+    return int.from_bytes(read_bytes(f, off, 4), 'little')
+
+
+def read_qword(f, off):
+    return int.from_bytes(read_bytes(f, off, 8), 'little')
+
+
+def read_string(f, off, len):
+    return str(read_bytes(f, off, len).decode()).rstrip('\0')
+
+
+def add_segment(start, size, name, perms) -> None:
+    if perms & ida_segment.SEGPERM_EXEC:
+        sclass = "CODE"
+    elif perms == ida_segment.SEGPERM_READ:
+        sclass = "CONST"
+    elif name == ".bss":
+        sclass = "BSS"
+    else:
+        sclass = "DATA"
+    if not ida_segment.add_segm(0, start, start + size, name, sclass):
+        raise Exception(f"Could not add segment {name}")
+    seg = ida_segment.get_segm_by_name(name)
+    ida_segment.set_segm_addressing(seg, 1)
+    seg.perm = perms
+
+
+def extract_code_bin(exefs_bytes):
+    for i in range(MAX_EXEFS_ENTRIES):
+        file_name = str(exefs_bytes[0x10 * i:0x10*i + 8].decode()).rstrip('\0')
+        if file_name == ".code":
+            file_off = int.from_bytes(exefs_bytes[0x10*i + 0x8:0x10*i + 0xC], 'little')
+            file_size = int.from_bytes(exefs_bytes[0x10*i + 0xC:0x10*i + 0x10], 'little')
+            return exefs_bytes[0x200 + file_off:0x200 + file_off + file_size]
+
+    ida_kernwin.warning("ExeFS does not contain a .code file.")
+    return None
+
+# CodeInfo
+
+class CodeInfo:
+    def __init__(self):
+        self._name = "(UNKNOWN)"
+        self._title_id = "(UNKNOWN)"
+        self._code_compressed = False
+        self._header_offset = 0
+        self._header_base = 0
+        self._header_size = 0
+        self._text_offset = 0
+        self._text_base = 0
+        self._text_size = 0
+        self._rodata_offset = 0
+        self._rodata_base = 0
+        self._rodata_size = 0
+        self._data_offset = 0
+        self._data_base = 0
+        self._data_size = 0
+        self._bss_size = 0
+        self._symbols = {}
+
+    @staticmethod
+    def load_from_file(f, off):
+        cinfo = CodeInfo()
+
+        # Load title info.
+        cinfo._name = read_string(f, off, 8)
+        cinfo._title_id = hex(read_qword(f, off + 0x200))[2:].zfill(16).upper()
+        cinfo._code_compressed = read_bytes(f, off + 0x0D, 1)[0] & 1 == 1
+
+        # Load section info.
+        cinfo._text_base = read_dword(f, off + 0x10)
+        cinfo._text_size = read_dword(f, off + 0x18)
+        cinfo._text_offset = 0
+
+        cinfo._rodata_base = read_dword(f, off + 0x20)
+        cinfo._rodata_size = read_dword(f, off + 0x28)
+
+        # If this is a firm module, the next section starts right after.
+        if (cinfo.is_firm_module()):
+            cinfo._rodata_offset = cinfo._text_offset + cinfo._text_size
+        else:
+            # Otherwise, the next section starts aligned.
+            cinfo._rodata_offset = cinfo._rodata_base - cinfo._text_base
+        
+        cinfo._data_base = read_dword(f, off + 0x30)
+        cinfo._data_size = read_dword(f, off + 0x38)
+
+        if (cinfo.is_firm_module()):
+            cinfo._data_offset = cinfo._rodata_offset + cinfo._rodata_size
+        else:
+            cinfo._data_offset = cinfo._data_base - cinfo._text_base
+
+        cinfo._bss_size = read_dword(f, off + 0x3C)
+
+        return cinfo
+
+    @staticmethod
+    def load_from_input():
+        cinfo = CodeInfo()
+        cinfo._code_compressed = ida_kernwin.ask_yn(ida_kernwin.ASKBTN_NO, "Is the code compressed?") == ida_kernwin.ASKBTN_YES
+        cinfo._text_base = ida_kernwin.ask_addr(0x00100000, "Enter the base address for the .text section:")
+        cinfo._text_size = ida_kernwin.ask_long(0x1000, "Enter the size of the .text section:")
+        cinfo._rodata_base = ida_kernwin.ask_addr(0, "Enter the base address for the .rodata section:")
+        cinfo._rodata_size = ida_kernwin.ask_long(0x1000 if cinfo._rodata_base else 0, "Enter the size of the .rodata section:")
+        cinfo._data_base = ida_kernwin.ask_addr(0, "Enter the base address for the .data section:")
+        cinfo._data_size = ida_kernwin.ask_long(0x1000 if cinfo._data_base else 0, "Enter the size for the .data section:")
+        cinfo._bss_size = ida_kernwin.ask_long(0x1000, "Enter the size for the .bss section:")
+        return cinfo
+
+    @staticmethod
+    def load_from_3dsx(f):
+        cinfo = CodeInfo()
+
+        # We don't have title info, so fake it.
+        cinfo._name = "Homebrew"
+        cinfo._title_id = "0000000000000000"
+        cinfo._code_compressed = False
+
+        # .text base is at header + exheader + code reloc header + rodata reloc header + data reloc header.
+        # .rodata, .data are after .text.
+        header_size = read_hword(f, 0x04)
+        reloc_header_size = read_hword(f, 0x06)
+
+        # Load section info.
+        cinfo._text_offset = header_size + (3 * reloc_header_size)
+        cinfo._text_size = read_dword(f, 0x10)
+        cinfo._text_base = 0x100000
+
+        cinfo._rodata_offset = cinfo._text_offset + cinfo._text_size
+        cinfo._rodata_size = read_dword(f, 0x14)
+        cinfo._rodata_base = (cinfo._text_base + cinfo._text_size + 0xFFF) & 0xFFFFF000
+
+        cinfo._data_offset = cinfo._rodata_offset + cinfo._rodata_size
+        cinfo._data_size = read_dword(f, 0x18) # Includes .bss size.
+        cinfo._data_base = (cinfo._rodata_base + cinfo._rodata_size + 0xFFF) & 0xFFFFF000
+
+        cinfo._bss_size = read_dword(f, 0x1C)
+        cinfo._data_size -= cinfo._bss_size
+
+        return cinfo
+
+    @staticmethod
+    def load_from_tgx(f):
+        cinfo = CodeInfo()
+
+        # We don't have title info, so fake it.
+        cinfo._name = "Plugin"
+        cinfo._title_id = "0000000000000000"
+        cinfo._code_compressed = False
+
+        # Segment data is at magic (0x8) + version (0x4) + reserved (0x4) + info (0x48)
+        exec_offset = 0x8 + 0x4 + 0x4 + 0x48
+
+        # Load section info.
+        cinfo._header_offset = 0
+        cinfo._text_offset = read_dword(f, exec_offset)
+        cinfo._rodata_offset = read_dword(f, exec_offset + 0x4)
+        cinfo._data_offset = read_dword(f, exec_offset + 0x8)
+
+        cinfo._header_size = cinfo._text_offset # Assume code is right after header.
+        cinfo._text_size = read_dword(f, exec_offset + 0xC)
+        cinfo._rodata_size = read_dword(f, exec_offset + 0x10)
+        cinfo._data_size = read_dword(f, exec_offset + 0x14)
+        cinfo._bss_size = read_dword(f, exec_offset + 0x18)
+
+        cinfo._header_base = 0x7000000
+        cinfo._text_base =  cinfo._header_base + cinfo._text_offset
+        cinfo._rodata_base = cinfo._header_base + cinfo._rodata_offset
+        cinfo._data_base = cinfo._header_base + cinfo._data_offset
+
+        # Load function info.
+        exe_load_func_offset = read_dword(f, exec_offset + 0x1C)
+        if exe_load_func_offset:
+            cinfo._symbols[cinfo._header_base + exe_load_func_offset] = "loadExeFunc"
+
+        swap_save_func_offset = read_dword(f, exec_offset + 0x20)
+        if swap_save_func_offset:
+            cinfo._symbols[cinfo._header_base + swap_save_func_offset] = "swapSaveFunc"
+
+        swap_load_func_offset = read_dword(f, exec_offset + 0x24)
+        if swap_load_func_offset:
+            cinfo._symbols[cinfo._header_base + swap_load_func_offset] = "swapLoadFunc"
+
+        return cinfo
+
+    def get_name(self):
+        return self._name
+
+    def get_title_id(self):
+        return self._title_id
+
+    def is_code_compressed(self):
+        return self._code_compressed
+
+    def is_sysmodule(self):
+        return self._title_id.startswith("00040130")
+    
+    def is_firm_module(self):
+        low = int(self._title_id[8:], base=16) & 0xFFFFFFFE # Clear SAFE_MODE bit.
+        return True if low in FIRM_MODULES else False
+
+    def get_header_offset(self):
+        return self._header_offset
+
+    def get_header_base(self):
+        return self._header_base
+
+    def get_header_size(self):
+        return self._header_size
+
+    def has_header(self):
+        return self._header_base and self._header_size
+
+    def get_text_offset(self):
+        return self._text_offset
+
+    def get_text_base(self):
+        return self._text_base
+
+    def get_text_size(self):
+        return self._text_size
+
+    def has_text(self):
+        return self._text_base and self._text_size
+
+    def get_rodata_offset(self):
+        return self._rodata_offset
+
+    def get_rodata_base(self):
+        return self._rodata_base
+
+    def get_rodata_size(self):
+        return self._rodata_size
+
+    def has_rodata(self):
+        return self._rodata_base and self._rodata_size
+
+    def get_data_offset(self):
+        return self._data_offset
+
+    def get_data_base(self):
+        return self._data_base
+
+    def get_data_size(self):
+        return self._data_size
+
+    def has_data(self):
+        return self._data_base and self._data_size
+
+    def get_bss_base(self):
+        base = 0
+        size = 0
+
+        if self.has_data():
+            base = self.get_data_base()
+            size = self.get_data_size()
+        elif self.has_rodata():
+            base = self.get_rodata_base()
+            size = self.get_rodata_size()
+        else:
+            base = self.get_text_base()
+            size = self.get_text_size()
+
+        return base + size
+
+    def get_bss_size(self):
+        return self._bss_size
+
+    def has_bss(self):
+        return self._bss_size
+
+    def symbols(self):
+        return self._symbols
+
+# FileFormat
+
+class FileFormat(enum.Enum):
+    Raw = 0
+    ExeFS = 1
+    CXI = 2
+    TDSX = 3
+    TGX = 4
+
+    @staticmethod
+    def get_from_file(f):
+        try:
+            ncch_magic = read_string(f, 0x100, 4)
+            crypto_method = read_bytes(f, 0x18B, 1)[0]
+            content_type = read_bytes(f, 0x18D, 1)[0]
+            if ncch_magic == "NCCH" and (content_type & 0x02):
+                # Warn user about encryption.
+                if crypto_method != 0x00:
+                    ida_kernwin.warning("Encrypted CXI file detected. Please decrypt it before loading it.")
+                else:
+                    return FileFormat.CXI
+        except:
+            pass
+
+        try:
+            tdsx_magic = read_string(f, 0x0, 4)
+            if tdsx_magic == "3DSX":
+                return FileFormat.TDSX
+        except:
+            pass
+
+        try:
+            tgx_magic = read_string(f, 0x0, 8)
+            if tgx_magic == "3GX$0002":
+                return FileFormat.TGX
+        except:
+            pass
+
+        return None
+
+    @staticmethod
+    def get_from_path(path):
+        name = Path(path).name.lower()
+
+        if name == "code.bin":
+            return FileFormat.Raw
+        elif name.endswith(".exefs"):
+            return FileFormat.ExeFS
+
+        return None
+
+    @staticmethod
+    def get_from_format_string(format_string: str):
+        for i in range(len(FileFormat)):
+            if format_string.find(FileFormat(i).name) != -1:
+                return FileFormat(i)
+
+        return None
+
+# Loader
+
+def setup_sections(cinfo, code_bin_data):
+    # Add sections.
+    if cinfo.has_header():
+        add_segment(cinfo.get_header_base(), cinfo.get_header_size(), ".header", ida_segment.SEGPERM_READ | ida_segment.SEGPERM_EXEC)
+        header_bytes = code_bin_data[cinfo.get_header_offset():cinfo.get_header_offset() + cinfo.get_header_size()]
+        ida_bytes.put_bytes(cinfo.get_header_base(), header_bytes)
+
+    if cinfo.has_text():
+        add_segment(cinfo.get_text_base(), cinfo.get_text_size(), ".text", ida_segment.SEGPERM_READ | ida_segment.SEGPERM_EXEC)
+        code_bytes = code_bin_data[cinfo.get_text_offset():cinfo.get_text_offset() + cinfo.get_text_size()]
+        ida_bytes.put_bytes(cinfo.get_text_base(), code_bytes)
+
+    if cinfo.has_rodata():
+        add_segment(cinfo.get_rodata_base(), cinfo.get_rodata_size(), ".rodata", ida_segment.SEGPERM_READ)
+        rodata_bytes = code_bin_data[cinfo.get_rodata_offset():cinfo.get_rodata_offset() + cinfo.get_rodata_size()]
+        ida_bytes.put_bytes(cinfo.get_rodata_base(), rodata_bytes)
+
+    if cinfo.has_data():
+        add_segment(cinfo.get_data_base(), cinfo.get_data_size(), ".data", ida_segment.SEGPERM_READ | ida_segment.SEGPERM_WRITE)
+        data_bytes = code_bin_data[cinfo.get_data_offset():cinfo.get_data_offset() + cinfo.get_data_size()]
+        ida_bytes.put_bytes(cinfo.get_data_base(), data_bytes)
+
+    if cinfo.has_bss():
+        add_segment(cinfo.get_bss_base(), cinfo.get_bss_size(), ".bss", ida_segment.SEGPERM_READ | ida_segment.SEGPERM_WRITE)
+
+    # Set entrypoint.
+    ida_entry.add_entry(cinfo.get_text_base(), cinfo.get_text_base(), "start", True)
+
+    # Set additional symbols.
+    for addr in cinfo.symbols():
+        ida_entry.add_entry(addr, addr, cinfo.symbols()[addr], True)
+
+
+def load_code_info(f, format):
+    # CXI: read from exheader.
+    if format == FileFormat.CXI:
+        return CodeInfo.load_from_file(f, 0x200)
+
+    # Raw/ExeFS: load from external exheader/user input.
+    if format in [FileFormat.Raw, FileFormat.ExeFS]:
+        import os  # ac3ds: ExHeader の場所は環境変数で渡す（ヘッドレス用）
+        exh_path = os.environ.get("AC3DS_EXHEADER") or ida_kernwin.ask_file(False, "exheader.bin", "Choose ExHeader file")
+        if exh_path:
+            with open(exh_path, "rb") as f:
+                return CodeInfo.load_from_file(f, 0)
+        else:
+            return CodeInfo.load_from_input()
+
+    # 3DSX: load from header.
+    if format == FileFormat.TDSX:
+        return CodeInfo.load_from_3dsx(f)
+
+    # 3GX: load from header.
+    if format == FileFormat.TGX:
+        return CodeInfo.load_from_tgx(f)
+
+    # Unreachable.
+    raise Exception("Invalid format")
+
+
+def load_code(f, format, cinfo):
+    code_bin_data = None
+
+    # CXI: read .code from exefs.
+    if format == FileFormat.CXI:
+        exefs_off = read_dword(f, 0x1A0) * MEDIA_UNIT
+        exefs_size = read_dword(f, 0x1A4) * MEDIA_UNIT
+        exefs_bytes = read_bytes(f, exefs_off, exefs_size)
+        code_bin_data = extract_code_bin(exefs_bytes)
+        if not code_bin_data:
+            return False
+
+    # ExeFS: read .code.
+    if format == FileFormat.ExeFS:
+        f.seek(0, 2)
+        exefs_bytes = read_bytes(f, 0, f.tell())
+        code_bin_data = extract_code_bin(exefs_bytes)
+        if not code_bin_data:
+            return False
+
+    # Raw: load from file.
+    if format == FileFormat.Raw:
+        f.seek(0, 2)
+        code_bin_data = read_bytes(f, 0, f.tell())
+
+    # TDSX/TGX: load from file, up to the required size.
+    if format in [ FileFormat.TDSX, FileFormat.TGX ]:
+        code_bin_data = read_bytes(f, 0, cinfo.get_data_offset() + cinfo.get_data_size())
+
+    # Decompress if needed.
+    if cinfo.is_code_compressed():
+        code_bin_data = blz_decompress(code_bin_data)
+
+    setup_sections(cinfo, code_bin_data)
+    return True
+
+
+def accept_file(f, path):
+    format = FileFormat.get_from_file(f)
+    if not format:
+        format = FileFormat.get_from_path(path)
+
+    if format:
+        return {
+            "format": f"Nintendo 3DS ({format.name})",
+            "processor": "ARM",
+            "options": 1 | ida_loader.ACCEPT_FIRST,
+        }
+
+    return 0
+
+
+def load_file(f, neflags, format_string):
+    # IDA 9.3 idalib does not set processor from accept_file metadata.
+    if not ida_idp.set_processor_type("ARM", ida_idp.SETPROC_LOADER):
+        raise RuntimeError("Cannot select ARM processor")
+    format = FileFormat.get_from_format_string(format_string)
+    cinfo = load_code_info(f, format)
+
+    if load_code(f, format, cinfo):
+        ida_ida.idainfo_set_64bit(False)
+        ida_lines.add_extra_line(cinfo.get_text_base(), True, f"; Loaded with {SCRIPT_NAME}")
+        ida_lines.add_extra_line(cinfo.get_text_base(), True, f"; {REPO_URL}")
+        ida_lines.add_extra_line(cinfo.get_text_base(), True, f"; Name: {cinfo.get_name()}")
+        ida_lines.add_extra_line(cinfo.get_text_base(), True, f"; Title ID: {cinfo.get_title_id()}")
+        ida_lines.add_extra_line(cinfo.get_text_base(), True, f"; Is compressed? {'Yes' if cinfo.is_code_compressed() else 'No'}")
+        ida_lines.add_extra_line(cinfo.get_text_base(), True, f"; Is sysmodule? {'Yes' if cinfo.is_sysmodule() else 'No'}")
+        ida_lines.add_extra_line(cinfo.get_text_base(), True, f"; Is FIRM module? {'Yes' if cinfo.is_firm_module() else 'No'}")
+        return 1
+
+    return 0

@@ -1,0 +1,103 @@
+# 記録の tags に使える語彙。登録外のタグは監査でエラーになる。
+# 新しいタグは報告で提案し、オーケストラが取り込みのときに加える。
+# 書式: [tags.<タグ>] description = "説明", synonyms = ["同義語", ...]
+
+[tags.chat]
+description = "チャット（普通チャット・キーボード入力の画面）"
+synonyms = ["チャット"]
+
+[tags.keyboard]
+description = "ソフトウェアキーボード（ゲーム内・システム）"
+synonyms = ["キーボード", "swkbd"]
+
+[tags.menu]
+description = "メニュー画面とその遷移"
+synonyms = ["メニュー"]
+
+[tags.layout]
+description = "画面レイアウト（BCLYT・nw::lyt）"
+synonyms = ["レイアウト", "lyt", "bclyt"]
+
+[tags.inventory]
+description = "持ち物（ポケット）"
+synonyms = ["持ち物", "ポケット", "pocket"]
+
+[tags.storage]
+description = "収納（タンス・倉庫）"
+synonyms = ["収納", "倉庫", "closet"]
+
+[tags.catalog]
+description = "カタログ"
+synonyms = ["カタログ"]
+
+[tags.furniture]
+description = "家具"
+synonyms = ["家具"]
+
+[tags.player]
+description = "プレイヤーキャラクター"
+synonyms = ["プレイヤー"]
+
+[tags.villager]
+description = "住民"
+synonyms = ["住民", "npc"]
+
+[tags.player-state]
+description = "プレイヤーの状態遷移・モーション"
+synonyms = ["状態遷移", "motion"]
+
+[tags.map]
+description = "村・島のマップ、エーカー"
+synonyms = ["マップ", "acre"]
+
+[tags.island]
+description = "島"
+synonyms = ["島"]
+
+[tags.building]
+description = "建物・公共事業"
+synonyms = ["建物", "公共事業", "pwp"]
+
+[tags.camera]
+description = "カメラ"
+synonyms = ["カメラ"]
+
+[tags.model]
+description = "3D モデル（BCRES）"
+synonyms = ["モデル", "bcres"]
+
+[tags.message]
+description = "メッセージ・文字列資源（MSBT）"
+synonyms = ["メッセージ", "msbt"]
+
+[tags.font]
+description = "フォント"
+synonyms = ["フォント", "bcfnt"]
+
+[tags.touch]
+description = "タッチパネル入力"
+synonyms = ["タッチ"]
+
+[tags.button]
+description = "ボタン入力"
+synonyms = ["ボタン", "hid"]
+
+[tags.save-data]
+description = "セーブデータ"
+synonyms = ["セーブ", "garden"]
+
+[tags.rtti]
+description = "C++ の RTTI・vtable"
+synonyms = ["vtable", "typeinfo"]
+
+[tags.heap]
+description = "メモリ確保・ヒープ"
+synonyms = ["ヒープ", "allocator"]
+
+[tags.sead]
+description = "sead ライブラリ"
+synonyms = []
+
+[tags.hook]
+description = "フックに使える場所（呼び出し点・関数の入り口）"
+synonyms = ["フック"]

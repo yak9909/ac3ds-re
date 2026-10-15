@@ -1,0 +1,42 @@
+# モデルの格付け。利用者が管理する（変更には利用者の承認が必要）。
+# 記録の by にはここの名前（または aliases）を使う。登録されていないモデルは C として扱う。
+
+[tiers]
+S = "最上位。採点・深い検証・矛盾の最終判断"
+A = "高性能。解析の主力"
+B = "標準"
+C = "安価。結果は A 以上の確認が前提"
+"?" = "要再解析。再解析が済むまで C と同じ扱い"
+
+[models."opus-5.5"]
+tier = "S"
+aliases = ["claude-opus-5-5"]
+
+[models."sonnet-5.5"]
+tier = "A"
+aliases = ["claude-sonnet-5-5"]
+
+[models."gpt-6.1-sol"]
+tier = "A"
+
+[models."gpt-6-astra"]
+tier = "A"
+
+[models."opus-5"]
+tier = "B"
+aliases = ["claude-opus-5"]
+
+[models."gpt-sol-5.6"]
+tier = "B"
+
+[models."gpt-6-sol"]
+tier = "B"
+
+[models."gpt-6-luna"]
+tier = "C"
+
+[models."gpt-6"]
+tier = "?"
+
+[models."unknown"]
+tier = "?"

@@ -1,0 +1,10 @@
+# 参考資料（REFERENCES）の台帳。本体は _local/refs/<名前>/ に置き、ここには出所と照合値だけを書く。
+# 取り込みは段階1b。使い方はスキル use-references。
+# 書式:
+# [refs.<名前>]
+# description = "内容"
+# source = "入手元（URL など）"
+# license = "ライセンス（不明なら unknown）"
+# path = "_local/refs/<名前>/ からの相対パス"
+# sha256 = "原本の SHA256"
+# encoding = "utf-8 / shift_jis"

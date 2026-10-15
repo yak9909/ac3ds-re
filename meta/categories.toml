@@ -1,0 +1,34 @@
+# 記録のカテゴリ（frontmatter の category）。スコープごとの固定リスト。
+
+[scopes.acnl]
+categories = ["system", "ui", "text", "input", "render", "item", "field", "actor", "save", "network", "sound", "time", "misc"]
+
+[scopes.hhd]
+categories = ["system", "ui", "text", "input", "render", "item", "field", "actor", "save", "network", "sound", "time", "misc"]
+
+[scopes.3ds]
+categories = ["sdk", "lib", "format", "misc"]
+
+[special]
+# どのスコープでも使える。_product は旧資料の取り込み専用（新規の記録には使わない）
+categories = ["_triage", "_product"]
+
+[descriptions]
+system = "起動、メモリ・ヒープ、スレッド、SVC、FS、APT、CRO/CRS"
+ui = "画面レイアウト、メニュー、リスト部品、画面遷移"
+text = "文字列、メッセージ、フォント、キーボード・チャット入力"
+input = "ボタン、タッチ、入力の遮断"
+render = "描画、3D モデル、テクスチャ、カメラ"
+item = "アイテム ID、持ち物、収納、カタログ、家具"
+field = "マップ、地面のオブジェクト（木・岩・花）、建物、公共事業、ドロップ"
+actor = "プレイヤー、住民、状態遷移、モーション"
+save = "セーブデータの構造、暗号化、チェックサム"
+network = "通信、パケット"
+sound = "音"
+time = "時計、天気、イベント"
+misc = "上記以外"
+sdk = "nn:: など SDK の関数"
+lib = "nw::lyt・sead などのライブラリ"
+format = "ファイル形式（BCLYT・BCRES・MSBT・SARC・BFLYT など）"
+_triage = "分類待ち"
+_product = "旧資料のうち製品（派生プロジェクト）の記録。履歴として残す"

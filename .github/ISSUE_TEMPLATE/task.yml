@@ -1,0 +1,46 @@
+name: 解析のタスク
+description: 解析・取り込み・消化・再解析などの作業を1件登録する
+title: "[ACNL] "
+body:
+  - type: dropdown
+    id: scope
+    attributes:
+      label: スコープ
+      options: [acnl, hhd, 3ds]
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: 種類
+      options: [analysis, import, triage, consolidate, reanalyze, review, tooling]
+    validations:
+      required: true
+  - type: dropdown
+    id: difficulty
+    attributes:
+      label: 難易度
+      options: [easy, normal, hard]
+    validations:
+      required: true
+  - type: textarea
+    id: goal
+    attributes:
+      label: 目的と完了条件
+      description: 何が分かれば（何ができれば）完了か
+    validations:
+      required: true
+  - type: textarea
+    id: target
+    attributes:
+      label: 対象
+      description: アドレス・範囲・画面・ファイルなど
+    validations:
+      required: true
+  - type: textarea
+    id: materials
+    attributes:
+      label: 関係する資料
+      description: 記録 ID・topics・参考資料など（無ければ「なし」）
+    validations:
+      required: true

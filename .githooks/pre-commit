@@ -1,0 +1,4 @@
+#!/bin/sh
+# 公開前の検査（ステージした物）と記録の検査。bootstrap が core.hooksPath に設定する。
+python tools/audit.py --staged || exit 1
+python tools/kb.py lint --quiet || exit 1

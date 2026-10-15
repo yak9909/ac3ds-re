@@ -1,0 +1,4 @@
+# idalib の venv（_local/venv/idalib）。idapro は PyPI ではなく IDA 同梱の whl から入れ、py-activate-idalib.py で IDA の場所を登録する。
+# pip install "<IDA>/idalib/python/idapro-0.0.7-py3-none-any.whl"
+# python "<IDA>/idalib/python/py-activate-idalib.py" -d "<IDA>"
+idapro==0.0.7

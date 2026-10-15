@@ -1,0 +1,16 @@
+build = "hhd_jpn_v11"
+source = "legacy-idb"
+idb_input_sha256 = "9866fec7cb2b1cd82016844874765dcb353fd701843f69f25a10407f22966fb5"
+code_sha256 = "42a4e486d2cdec4fa6f6920a17212edd77610e7ea0539165bee1273d19a219c4"
+idb_input_is_code_bin = false
+ida_version = "9.3"
+tool_version = "1"
+exported_at = "2026-10-14T23:55:39Z"
+
+[counts]
+functions = 420
+globals = 62
+comments = 381
+vtables = 0
+lvars = 0
+types = 51

@@ -1,0 +1,42 @@
+# 解析の対象のビルド。アドレスは仮想アドレス、範囲は [始まり, 終わり)。
+
+[builds.acnl_jpn_v15]
+scope = "acnl"
+title = "とびだせ どうぶつの森（日本版、無印＋更新）"
+title_id = "0004000000086200"
+update_title_id = "0004000E00086200"
+note = "通称 v1.5。更新 CIA の TMD の TitleVersion は 0。コードは更新側（update）を使う"
+code_size = 8900608
+code_sha256 = "c635af8f08937b66f123b91b02391a68c034393320cdb94d603b9291383faabb"
+base_cia_sha256 = "f280713050689258d40a6f21f6be3fe674f14c382558b3a1becd827fb9fc2dc5"
+update_cia_sha256 = "01ad6913c0b59ead2c6b400697f2b294b077549475d344d5ebd28020de17bdc5"
+cpu = "ARM11 MPCore (ARMv6K), 32-bit little-endian, VFPv2"
+
+[builds.acnl_jpn_v15.segments]
+text = ["0x100000", "0x838018"]
+rodata = ["0x839000", "0x93EF94"]
+data = ["0x93F000", "0x97C768"]
+bss = ["0x97C768", "0xAF2694"]
+
+[builds.hhd_jpn_v11]
+scope = "hhd"
+title = "どうぶつの森 ハッピーホームデザイナー（日本版 v1.1）"
+title_id = "000400000014F000"
+note = "Rev 1、TitleVersion v2080、ExHeader remaster 2。RTTI は無い"
+code_size = 6696960
+code_sha256 = "42a4e486d2cdec4fa6f6920a17212edd77610e7ea0539165bee1273d19a219c4"
+cci_sha256 = "e009b3ab84233e7ce0a4e168c370245ac61128e9920a8fb9bee53f820dab8f03"
+cpu = "ARM11 MPCore (ARMv6K), 32-bit little-endian, VFPv2"
+
+[builds.hhd_jpn_v11.segments]
+text = ["0x100000", "0x637A10"]
+rodata = ["0x638000", "0x7272E4"]
+data = ["0x728000", "0x762188"]
+bss = ["0x762188", "0x868868"]
+
+[builds.hhd_jpn_v10]
+scope = "hhd"
+title = "どうぶつの森 ハッピーホームデザイナー（日本版 v1.0）"
+title_id = "000400000014F000"
+note = "保管だけ（解析の対象ではない）"
+cci_sha256 = "d611f72524bbcb37ad3f29ef05ac465388c286cf1ff93c56efa1364ded753b5f"
