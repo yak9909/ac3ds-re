@@ -25,10 +25,10 @@ source: IDA:work/FINDINGS.md:4255-4259
 by: unknown
 original_by: ''
 reviewed_by: []
-state: active
+state: superseded
 consolidated_into: ''
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0692
 ---
 ## IDA-unknown-F019: 模様替えの家具の下の範囲表示は UnitCursor モデル、屋外では資源もクラスも無い（2026-09-18、MEDIUM）
 

@@ -18,10 +18,10 @@ source: IDA:work/FINDINGS.md:1223-1280
 by: unknown
 original_by: ''
 reviewed_by: []
-state: active
+state: superseded
 consolidated_into: ''
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0692
 ---
 ## IDA-opus-5-F028: 模様替えカーソルは大きさを変えていない。V2-F019 の「範囲の形」は誤り（2026-09-21、HIGH、静的）
 
