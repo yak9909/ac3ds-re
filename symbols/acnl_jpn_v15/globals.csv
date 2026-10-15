@@ -358,7 +358,7 @@ address,size,name,type,confidence,source,refs
 0x00880C04,1,vc_SP3,,,legacy-idb,
 0x00880C64,4,vc_SP5,,,legacy-idb,
 0x00880F14,4,vc_SP6,,,legacy-idb,
-0x00883328,664,g_RoomFlagTable,unsigned int[166],,legacy-idb,
+0x00883328,660,g_RoomFlagTable,unsigned int[165],MEDIUM,analysis,ACNL-F0692
 0x008835BC,660,g_RoomFurnitureCapacity,,,legacy-idb,
 0x008889D0,4,_ZTVN47_GLOBAL__N__23_dSvInsectConvention_cpp_5e7668e423KameyamaForeachFunctionE,,,legacy-idb,
 0x008889DC,4,_ZTIN47_GLOBAL__N__23_dSvInsectConvention_cpp_5e7668e423KameyamaForeachFunctionE,,,legacy-idb,
