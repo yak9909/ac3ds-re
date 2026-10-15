@@ -5,7 +5,7 @@ aliases:
 title: 建物ごとのモデルはゲームのデータから集められる。写しの置き場は gohan 自身のメモリでよい（2026-09-23、HIGH（静的＋実機））
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。利用者の依頼「建物ごとの対応表を自前で用意せず、ゲーム内から取得できないか」「写しの置き場を調査」。'
 date: '2026-09-23'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

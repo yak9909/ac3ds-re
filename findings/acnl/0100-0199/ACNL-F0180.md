@@ -5,7 +5,7 @@ aliases:
 title: 'F-142: EmitGlyphQuad は会話外 UI でも共有される — `HIGH`（実機）'
 summary: 会話を開いていない状態で `0x4D4EAC` に software breakpoint を置くと実際に停止した。
 date: '2026-08-24'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

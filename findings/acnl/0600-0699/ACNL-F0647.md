@@ -6,7 +6,7 @@ aliases:
 title: 持ち物画面はBsMenuItem UI stateとPlayer state 0x16の二重state machineで成立する
 summary: '**確度: HIGH（添付Ghidra XML/bytesの独立静的解析＋実機state観測）。state 0x16→0x06のcallerだけ未確定。**'
 date: '2026-09-19'
-category: _triage
+category: actor
 build: acnl_jpn_v15
 confidence: HIGH
 tool: Ghidra

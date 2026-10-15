@@ -5,7 +5,7 @@ aliases:
 title: 'F-170: CTRPF は発行点の問題を解決しない。cursor は値渡しでグローバルに無い — `HIGH`（静的解析、assembly で確認）'
 summary: 「発行点の問題は CTRPF で実行すれば解決するのでは」という指摘を受けて確かめた。
 date: '2026-08-28'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

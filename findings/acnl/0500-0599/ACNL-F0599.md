@@ -5,7 +5,7 @@ aliases:
 title: '上画面の描画順と「メニューの 3D」モード（Scene 1）、美容室の小物の音、複製の帽子・肌の欄（2026-10-05、MEDIUM: 静的のみ。gohan での使用は実機未確認）'
 summary: '解析モデル opus-5.5。IDB: `Player_SetHeadGoodsWithSound 0x68B238` を命名・注記。'
 date: '2026-10-05'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 家の足元は名前表に無い → ゲームが読み込み済みの足元を使う／0x05 は属性を書き換えない（F019・F020 の訂正）（2026-09-24、HIGH（実機の占有＋静的））
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。利用者の報告「住民の家の UnitCursor が 1x1」「ベンチの周りは物を置ける。花を植えられるは物を置けるの十分条件」。'
 date: '2026-09-24'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

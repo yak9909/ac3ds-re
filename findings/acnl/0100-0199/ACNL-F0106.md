@@ -5,7 +5,7 @@ aliases:
 title: 'F-68: オフラインなら profile の HairStyle だけを書いて `vc_UPDATE` すれば即時・装備保持にできる'
 summary: 'confidence: **HIGH**（静的経路に加え、オフライン実機で即時反映・衣装8枠維持を確認）'
 date: '2026-08-24'
-category: _product
+category: actor
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

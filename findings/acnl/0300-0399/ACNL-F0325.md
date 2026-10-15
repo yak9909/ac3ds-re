@@ -5,7 +5,7 @@ aliases:
 title: F-301 (HIGH・静的のみ) — ★F-300 の訂正。**TextBox は必須ではない。**文字描画の本体は `TextWriter`
 summary: 利用者の指摘を受けて詰め直したところ、F-300 の
 date: '2026-09-04'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

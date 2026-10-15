@@ -5,7 +5,7 @@ aliases:
 title: park 用の BP は `0x1B721C` では張れなくなる。`0x1B7220` が同値（2026-09-21、HIGH、実機）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。同じ boot の前半では `0x001B721C` への'
 date: '2026-09-21'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

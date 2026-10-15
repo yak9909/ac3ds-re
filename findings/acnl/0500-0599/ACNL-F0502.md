@@ -5,7 +5,7 @@ aliases:
 title: 髪は毎フレームの部品更新が pm+548 から読む。複製は本物のプロフィールで作り pm+548/+552 を書くだけでよい（F028 の一部訂正）（2026-09-24、MEDIUM（静的。複製での実機確認は未実施））
 summary: '`PlayerModel_UpdateParts 0x1D0AEC`（旧 vc_UPDATETANOFFSET）: 各バンクの枠の部品と望む値を比べ、違えば入れ替え式で読み直す。頭の望む値は'
 date: '2026-09-24'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: F-305 (HIGH・実機) — ★★★自前フォントで実機に描けた。`nw::font` の構造を**全欄**確定
 summary: F-303 / F-304 の 2 度のクラッシュを受けて、**推測を一切残さず**構造を確定してから適用した。
 date: '2026-09-06'
-category: _product
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

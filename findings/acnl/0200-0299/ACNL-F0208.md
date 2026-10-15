@@ -5,7 +5,7 @@ aliases:
 title: 'F-182: 追加した UI 画像を絶対座標で置けた。複製元は地図の影 — `HIGH`（実機で A/B）'
 summary: '適用: `PATCHES/cave_add_sprite.py`'
 date: '2026-08-30'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

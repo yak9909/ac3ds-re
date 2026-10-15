@@ -6,7 +6,7 @@ aliases:
 title: 木と家具の共通モデル生成・姿勢設定（2026-09-14、MEDIUM）
 summary: 木を含むfieldオブジェクトはItem_GetFieldObjDef→def+0xC→manager+0x414の22-byte shape表→名前+5→0x5992D4→0x4A5F20→0x58EEC0→0x4F048C。家具も同じModelInstance_Createに到達する。holder経由のtranslation/matrix/scaleと破棄入口を特定・命名。Create返値成功だけではholder+4非nullを保証しない。
 date: '2026-09-14'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

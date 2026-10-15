@@ -5,7 +5,7 @@ aliases:
 title: 'F-101: CLAUDE.md 準拠での再精査 — confidence の系統的誤り'
 summary: 'confidence: **MEDIUM**（本項自体も静的解析のみ）'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

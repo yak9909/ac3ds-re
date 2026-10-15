@@ -5,7 +5,7 @@ aliases:
 title: F-402 実機結果更新
 summary: ACNLから内蔵辞書のOpen/Size2045891/先頭256byte Read/Close/Releaseが成功。読取りsampleは提供NCCHの0x1200と一意一致（HIGH:静的経路と実測）。SWKBD codeはkind1OpenがE0E046BE、kind2 .codeはOpen/Size471668成功。先頭256byte ReadはE0C046F9、全体471668byte Readは成功。FSのRead返信byte数も471668。全bytes同一性は
 date: '2026-09-11'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

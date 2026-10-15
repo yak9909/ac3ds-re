@@ -5,7 +5,7 @@ aliases:
 title: 'F-161: ★★ケーブは `.text` 末尾のゼロ埋めに置く。ただし `.text` へは書けない — `HIGH`（実機の SIGSEGV と復帰で確認）'
 summary: これまで全ケーブが使っていた `0x01E81000`-`0x01E81FFF` は、
 date: '2026-08-28'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

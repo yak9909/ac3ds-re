@@ -5,7 +5,7 @@ aliases:
 title: F-11 岩・構造物は cat10 経路の末端で脱落 — `HIGH`
 summary: 対象 ID 153（cat10）は `0x59836C` で cat10 経路へ分岐し、
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

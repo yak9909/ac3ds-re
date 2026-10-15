@@ -5,7 +5,7 @@ aliases:
 title: 'F-165: ゲームのアロケータをフックから呼べた。0x80 境界・linear 窓内 — `HIGH`（実機）'
 summary: '適用: `PATCHES/cave_gfxalloc_probe.py`'
 date: '2026-08-28'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

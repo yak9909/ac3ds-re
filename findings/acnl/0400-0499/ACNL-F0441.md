@@ -5,7 +5,7 @@ aliases:
 title: 下位種別12の送信APIと2台同時接続時の座標宛先（2026-10-04、静的＋実測）
 summary: NEW 3DS LLとOLD 3DSを同じ村に同時接続した屋外で、両機とも `Town=0x31F49A80`、`XYZ=0x33099E50` と実測。Python計算で下位種別12の累積オフセットは `0x11514BA`、16B本文は `[u32 streamOffset, X, Y, Z]`。汎用 `NetTransfer_SendSegments 0x616E10` は町サイズで制限しないが、通常町送信 `0x61FE5C` は制限する。送信の9引数ABI、2Bヘッ
 date: '2026-10-04'
-category: _triage
+category: network
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-269: TEV を自前で組んだ。**設計から借り物が消えた** — `HIGH`（静的のみ）'
 summary: F-268 でマテリアルのテンプレートの符号化が全部割れたので、
 date: '2026-09-01'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

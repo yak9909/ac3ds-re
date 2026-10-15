@@ -5,7 +5,7 @@ aliases:
 title: 'F-210: ★★★★★狙う相手をリスト id で固定してはいけない。実行時に追いかける — `HIGH`（実機）'
 summary: START のセーブ確認メッセージウィンドウを出すと、自前スプライトが消えた。
 date: '2026-09-01'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

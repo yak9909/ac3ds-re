@@ -5,7 +5,7 @@ aliases:
 title: 'F-316: ★シート記述子 `+0x0C` は **`(幅<<16) | 高さ`** — HIGH'
 summary: 256x128 のシートに載せ替えたら、**文字が完全に化けた**（画素が散る）。
 date: '2026-09-06'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

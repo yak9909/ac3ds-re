@@ -5,7 +5,7 @@ aliases:
 title: '持ち物の選択窓（ItemSelectWindow）と模様替えの範囲の枠（CollectChip）の作り（2026-09-27、MEDIUM: 静的のみ。gohan のマップエディター段階 3 は実機未確認）'
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。マップエディターの範囲選択（利用者の決定: 案 B）のため。'
 date: '2026-09-27'
-category: _product
+category: item
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

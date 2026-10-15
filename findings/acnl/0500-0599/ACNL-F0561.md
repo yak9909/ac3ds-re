@@ -6,7 +6,7 @@ aliases:
 title: UnitCursor を屋外で出すための足場と不足（2026-09-18、MEDIUM）
 summary: '資源読み込みの入口を確定: G3dResHolder_RequestLoad 0x317920 → FileRes_RequestLoadAligned 0x569D94 → FileRes_RequestLoadAsync 0x569BA0。後者は**非同期**でホルダ+232 が状態（0未要求/1要求/2同期/3,4,5完了）、+68 パス・+204 ヒープ・+228 アライン・+233 非同期旗。戻り値は完了か。完了まで毎フレーム呼び直す必要があり（ScStage_Pr'
 date: '2026-09-18'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

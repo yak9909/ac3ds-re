@@ -5,7 +5,7 @@ aliases:
 title: F-22 隣マスが掘れない原因は対象アイテムの照合 — `HIGH`
 summary: 複数マス掘りで隣マスに穴が空かず、かつキューが詰まる原因は**同一**だった。
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

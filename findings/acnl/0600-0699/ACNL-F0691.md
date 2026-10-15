@@ -6,7 +6,7 @@ aliases:
 title: low field-object display fallback
 summary: 'User hardware observation: Item IDs 0x0000..0x00FA appear with one shared furniture/default icon and name `???`.'
 date: '2026-09-19'
-category: _triage
+category: item
 build: acnl_jpn_v15
 confidence: ''
 tool: Ghidra

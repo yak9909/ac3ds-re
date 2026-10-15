@@ -5,7 +5,7 @@ aliases:
 title: 'F-209: ★★★★★TODO-131 完了。自前 GUI が常に最前面に描かれる — `HIGH`（実機）'
 summary: '`PATCHES/cave_draw_topmost.py`。フックは 4 つ。'
 date: '2026-09-01'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-201: F-200 の検証。**1 件の訂正と、GPU ハングの静的な説明** — 静的解析'
 summary: F-200 を疑って再検証した。**ユーザーの指示「confidence HIGH でも信用しきらない」に従う。**
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

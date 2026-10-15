@@ -5,7 +5,7 @@ aliases:
 title: 'F-75: 「メニュー切り替え」enter入口なら持ち物UI初期化前に差替えられる'
 summary: 'confidence: **HIGH**（状態記述子・関数入口・命令を `code.bin.i64` と実機で照合）、'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

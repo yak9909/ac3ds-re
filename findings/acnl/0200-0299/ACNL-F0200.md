@@ -5,7 +5,7 @@ aliases:
 title: 'F-174: 発行点への注入は確立したが、GPU 状態の再現は現実的でない。方針を変えるべき — `HIGH`（実機で反復検証）'
 summary: '適用: `PATCHES/cave_replay_draw.py`、`scratchpad/dump_frame_cmdlist.py`、'
 date: '2026-08-28'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

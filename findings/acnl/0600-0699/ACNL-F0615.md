@@ -5,7 +5,7 @@ aliases:
 title: 'ゲームのカタログのプレビューは 2 枠を交互に使い、替えた前の枠は 1 フレーム後にすぐ壊す（2026-10-06、MEDIUM: 静的）'
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。'
 date: '2026-10-06'
-category: _product
+category: item
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

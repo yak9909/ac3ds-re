@@ -6,7 +6,7 @@ aliases:
 title: sub_5C9C24 は夢見の館で落とした町を読み込んだ直後の作り直し（2026-09-18、MEDIUM）
 summary: Dream_RebuildDownloadedTown 0x5C9C24 の呼び出し元は DreamNet_ApplyDownloadedTown 0x6E205C だけ。こちらは受信 465024 B（0x71880）を TownBase へ複写し vc_PLOAD の後に呼ぶ。そこへ入る状態を設定する DreamNet_BeginDownloadTown 0x6E2850 / DreamNet_BeginDownloadListedTown 0x6E2774 の呼び出し元
 date: '2026-09-18'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

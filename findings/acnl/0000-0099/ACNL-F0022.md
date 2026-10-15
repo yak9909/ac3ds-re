@@ -5,7 +5,7 @@ aliases:
 title: 'F-392: しずえスキップの通常フック化（2026-09-09）'
 summary: '**MEDIUM。** フリーズ原因と修正後生成物は静的に確定。修正版の実機確認は未実施。'
 date: '2026-09-09'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

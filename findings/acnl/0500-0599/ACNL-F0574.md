@@ -6,7 +6,7 @@ aliases:
 title: サイズqueryとOOM・ready・owner寿命（2026-09-17、MEDIUM）
 summary: 元命令を原本codeと照合し、ARM11MPCoreでquery経路のみ実行。独立allocation ledgerと23 Season×mask0/0x10の46ケース一致。932/1664 bytes・最大alignment32はbuilder見積もりで、heap管理・size+align・資源/GPUメモリを除く。OOM時は0x4AB4A0でnull vtable参照、Setup結果も伝播されず事後検査だけでは安全でない。fgobj::ProcはSetup完了前にglo
 date: '2026-09-17'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

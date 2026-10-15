@@ -5,7 +5,7 @@ aliases:
 title: 'F-355（2026-09-07）: ★★ゲームは SELECT を START に読み替えている — 真因と正しい直し方'
 summary: '**confidence: HIGH（逆アセンブル + 実機で確認。利用者「START が効き、SELECT が効きません。成功です」）**'
 date: '2026-09-07'
-category: _triage
+category: input
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

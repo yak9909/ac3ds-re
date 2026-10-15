@@ -5,7 +5,7 @@ aliases:
 title: 屋外XYZを下位 `0x0C` で書くための条件と副作用（2026-10-04、静的MEDIUM／実用性LOW）
 summary: 解析ソフト IDA（idalib-mcp）、解析モデル gpt-6-sol。対象は日本語版無印＋更新、原本SHA-256 `c635af8f08937b66f123b91b02391a68c034393320cdb94d603b9291383faabb`。利用者指定の屋外XYZ `0x33099E50` は2026-09-18のgohan実機記録と、別日のプレイヤー実体 `0x33099E3C` に対する静的 `+0x14` が一致する。前回答の「実体の位置が不明」はこの屋外
 date: '2026-10-04'
-category: _product
+category: network
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

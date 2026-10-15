@@ -5,7 +5,7 @@ aliases:
 title: 'F-102: ★実機観測でコマンドバッファ構造を確定（初の HIGH）'
 summary: 'confidence: **HIGH**（CLAUDE.md の定義どおり**静的解析と動的観測の双方**で確認）'
 date: '2026-08-24'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

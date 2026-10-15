@@ -6,7 +6,7 @@ aliases:
 title: 0x958108 is pointer storage
 summary: '`0x958108` is a global dword pointer slot, not inline UTF-16 storage.'
 date: '2026-09-19'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: ''
 tool: Ghidra

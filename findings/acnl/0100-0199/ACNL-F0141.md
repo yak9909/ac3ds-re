@@ -5,7 +5,7 @@ aliases:
 title: 'F-103: ★GX キューを実機で直接読み、1 フレームの構成を観測'
 summary: 'confidence: **HIGH**（静的 + 動的。TODO-48）'
 date: '2026-08-24'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-149: 会話本文フレームを構成する6 PictureとTextBoxを、相対配置のまま複製できた — `HIGH`（静的＋実機）'
 summary: F-148のcommit点を使い、list 32の末尾へ `P_bg_L_00` / `P_bg_R_00` / `P_soft_L` /
 date: '2026-09-08'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

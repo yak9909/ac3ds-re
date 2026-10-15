@@ -5,7 +5,7 @@ aliases:
 title: F-30 掘る動作のエフェクトは 3 系統 — `HIGH`
 summary: 状態 79 (`ShovelState_DigUpdate` = `0x65BC7C`) がアニメ ID で分岐して出す。
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

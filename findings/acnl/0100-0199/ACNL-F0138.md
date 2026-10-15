@@ -5,7 +5,7 @@ aliases:
 title: 'F-100: 再々精査 — GX 5 本の type バイト確定、「実装位置」表記の誤りを訂正'
 summary: 'confidence: **MEDIUM**（**静的解析のみ**、F-101 で訂正。表題の「HIGH 化」も撤回）'
 date: '2026-08-24'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

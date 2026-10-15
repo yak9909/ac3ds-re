@@ -5,7 +5,7 @@ aliases:
 title: Controller画素座標/vtableとchat画面引継ぎ（2026-10-12）
 summary: GPT-6 / IDA（idalib）、MEDIUM。更新SHA/ARM/imagebase/Tを確認しproducer540870/542D78/542E88とconsumer74F3FC/73BAC0/Matrix/Paneの独立ARM経路・旧input資料/sourceで照合。Controller+276/+280は画素float、TouchState+32/+36とは異なる。F004中心座標注記は撤回。53CDC4のvtable+24 BLXから+0はvtable、t
 date: '2026-10-12'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

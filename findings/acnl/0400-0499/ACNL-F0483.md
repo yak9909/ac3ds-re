@@ -5,7 +5,7 @@ aliases:
 title: '模様替え UI（BsMenuInteriorEditor）の作りと、持ち物欄の名前の吹き出し（ItemSelectNameWindow）の使い方（2026-09-27、MEDIUM: 静的のみ（逆アセンブル＋romfs）。実機未確認）'
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。利用者の依頼「マップエディター（gohan Issue #16）」の下調べ。'
 date: '2026-09-27'
-category: _product
+category: item
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

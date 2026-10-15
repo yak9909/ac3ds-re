@@ -5,7 +5,7 @@ aliases:
 title: 'F-276: ★★★★★【F-268 の訂正】既定ブロックは **記録時ではなく再生時**に出る。フラグで切り替わる — `HIGH`（アセンブリ）'
 summary: F-268 で「Drawer の既定 begin ブロックは記録の先頭で出る」と書いたのは**誤り**だった。
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

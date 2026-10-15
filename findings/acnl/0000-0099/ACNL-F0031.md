@@ -5,7 +5,7 @@ aliases:
 title: 'F-153: direct-emitter patch generator 監査 — `MEDIUM`（独立の静的照合）'
 summary: '`PATCHES/cave_ui_picture_clone.py` の `MODE=audit` はゲームメモリを書き換えず、生成された'
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

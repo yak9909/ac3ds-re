@@ -5,7 +5,7 @@ aliases:
 title: 消した・動かした建物の当たり判定が残る理由と、再起動なしで直す 2 関数（2026-09-23、HIGH（静的））
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。利用者の実機検証:「Vapecord で設置した建物には当たり判定があった。'
 date: '2026-09-23'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

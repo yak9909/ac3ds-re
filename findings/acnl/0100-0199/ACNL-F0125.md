@@ -5,7 +5,7 @@ aliases:
 title: 'F-87: room 0の38-bank late allocationがphase 1即時失敗の最有力。容量1版を準備'
 summary: 'confidence: **MEDIUM**（create/destroy経路と確保量は静的確定、容量1版の実機結果は未確認）'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

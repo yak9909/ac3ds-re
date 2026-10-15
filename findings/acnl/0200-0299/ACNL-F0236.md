@@ -5,7 +5,7 @@ aliases:
 title: 'F-211: ★★★★マテリアルは「たまたま」ではなく条件で選ぶ — `HIGH`（実機）'
 summary: F-206 では「そのフレームで最初のフラッシュ時点のマテリアル」を流用していた。
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

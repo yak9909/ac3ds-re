@@ -6,7 +6,7 @@ aliases:
 title: Player-origin updaterを外し、balloon impact位置からpersistent ground objectを生成
 summary: 'Ghidra-gpt-sol-5.6-F030 hardware result:'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: Ghidra

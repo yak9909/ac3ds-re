@@ -5,7 +5,7 @@ aliases:
 title: 'F-126: ★★★TODO-94 達成 — UI 層（`nw::lyt::TextBox`）に自前の 2D テキストを出した'
 summary: 'confidence: **HIGH**（実機。住民名が `あんこ` → `テスト` に変わることを目視確認）'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

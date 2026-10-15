@@ -5,7 +5,7 @@ aliases:
 title: 建物エディターの下調べ — カメラ・プレイヤーの停止・占有マップ・足元の読み方（2026-09-23、MEDIUM（静的。実機未確認））
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。利用者の依頼「Vapecord の MapEditor のカメラを参考に、建物を遠隔で建てる。プレイヤーは操作不可」。'
 date: '2026-09-23'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

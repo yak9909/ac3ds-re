@@ -6,7 +6,7 @@ aliases:
 title: e-analysis after Ghidra-gpt-sol-5.6-F037
 summary: 'Current implementation status:'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: Ghidra

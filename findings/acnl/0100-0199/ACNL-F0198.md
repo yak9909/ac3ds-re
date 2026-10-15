@@ -5,7 +5,7 @@ aliases:
 title: 'F-172: ★★★TextBox に依らない発行点を特定。答えは自分の記録の中にあった — `HIGH`（静的＋実機で前提を確認）'
 summary: 「UI が何も出ていない状態では、CTRPF を含めどんな方法でも自前 GUI は不可能か」
 date: '2026-08-28'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

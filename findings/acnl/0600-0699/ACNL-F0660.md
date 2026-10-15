@@ -6,7 +6,7 @@ aliases:
 title: AcBalloon terminal dropがPlayer state 0xA4 reactionを明示要求し、desired=0x06へ戻る
 summary: '**確度: HIGH（実機trace＋ModuleVillage.cro＋main static call chainが一致）。**'
 date: '2026-09-19'
-category: _triage
+category: actor
 build: acnl_jpn_v15
 confidence: HIGH
 tool: Ghidra

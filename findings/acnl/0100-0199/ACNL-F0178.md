@@ -5,7 +5,7 @@ aliases:
 title: 'F-141: TextWriter wrapper のコピー範囲と reset の実体 — `HIGH`（静的命令列）'
 summary: '`sub_7E7F48` (`0x7E7F48`) は caller が渡した writer から **0x64 bytes 全体**を stack-local'
 date: '2026-08-24'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

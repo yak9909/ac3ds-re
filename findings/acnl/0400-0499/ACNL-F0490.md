@@ -5,7 +5,7 @@ aliases:
 title: '文字入力（チャット・手紙・掲示板共通）の sys::TextManager の欄とカーソル・未確定の扱い（2026-09-25、MEDIUM: 静的のみ。実機未確認）'
 summary: 漢字変換の候補欄とかな入力のコンポジション（利用者の依頼）の下調べ。取っ掛かりは AnimalBytes `Sources/ACNL/Chat.cpp`（入力欄の UTF-16 = [0x958108]、文字数 = [0x958114]+8）。
 date: '2026-09-25'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

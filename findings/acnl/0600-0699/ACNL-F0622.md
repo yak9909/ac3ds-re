@@ -5,7 +5,7 @@ aliases:
 title: '家の部屋の壁紙・床をその場で替えるゲーム自身の手順（2026-10-07、MEDIUM: 静的 2 経路。実機未確認）'
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。T022 の壁紙・床紙リストの前提。主 IDB に命名・注記・保存済み。'
 date: '2026-10-07'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

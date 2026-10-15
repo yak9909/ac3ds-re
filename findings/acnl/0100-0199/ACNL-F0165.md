@@ -5,7 +5,7 @@ aliases:
 title: 'F-127: ★★`nw::lyt::TextBox` の構造を実機で確定 — 位置・色・サイズを自由に変えられる'
 summary: 'confidence: **HIGH**（実機。1 項目ずつ A/B で目視確認）'
 date: '2026-08-24'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

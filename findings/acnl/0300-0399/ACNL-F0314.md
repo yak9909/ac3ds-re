@@ -5,7 +5,7 @@ aliases:
 title: F-290 (HIGH・実機) — CAVE_Q を `Picture_DrawToCommandList` 呼びへ置き換えた。**座標系は手書き経路と同一**
 summary: 2026-09-04 深夜〜2026-09-05。設計は `scratchpad/DESIGN_caveq_picture.md`、
 date: '2026-09-04'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

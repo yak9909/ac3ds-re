@@ -5,7 +5,7 @@ aliases:
 title: F-57 ゲーム内メニューを ID で開く仕組み — 日付変更ウィンドウは `MenuID 0x2E` — `HIGH`
 summary: 「ゲーム内の時間変更ウィンドウを呼び出すチートがあったはず」という問いの答え。
 date: '2026-09-08'
-category: _product
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

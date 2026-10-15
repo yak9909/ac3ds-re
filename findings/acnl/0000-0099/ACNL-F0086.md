@@ -5,7 +5,7 @@ aliases:
 title: F-48 静的 IDB を idalib-mcp で常用する — `HIGH`
 summary: '`code_runtime.bin` (F-46) を **最小の ARM ELF ヘッダで包んで** idalib-mcp に読ませた。'
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

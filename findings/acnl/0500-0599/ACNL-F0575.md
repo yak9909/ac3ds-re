@@ -6,7 +6,7 @@ aliases:
 title: resource描画属性・scene番号・画面を区別（2026-09-14、MEDIUM）
 summary: 0x317BD0の旧名ModelInstance_SetRenderLayerは誤解を招く。0x58E978のcallerは資源lookup結果を渡した後でinstanceを作り、関数内も相対辞書を変更する。ResModel_SetRenderLayerへ改名。共有資源を個別instanceの設定として変更しない。
 date: '2026-09-14'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

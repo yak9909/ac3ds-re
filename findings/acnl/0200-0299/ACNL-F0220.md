@@ -5,7 +5,7 @@ aliases:
 title: 'F-195: ★★★★★自前ビットマップフォントで文字列を描画。描画順も制御 — `HIGH`（実機）'
 summary: '`PATCHES/cave_draw_sprites.py`。**「ACNL が地図の上に表示され、読めました」**（ユーザー確認）。'
 date: '2026-08-30'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

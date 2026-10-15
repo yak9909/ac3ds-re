@@ -5,7 +5,7 @@ aliases:
 title: 'F-212: ★★★★★マテリアルには名前と定数色が入っている — `HIGH`（実機）'
 summary: 自前スプライトが「たまに別の色を拾う」症状の正体。
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

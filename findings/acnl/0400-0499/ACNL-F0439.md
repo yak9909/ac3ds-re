@@ -5,7 +5,7 @@ aliases:
 title: 下位送信のBusyは未確認フレーム数、F008待機中拒否の再検証（2026-10-04、静的＋利用者実測）
 summary: F008試作で待機中にも`Net=1 Busy=1`が持続し、旧版では同じ接続内で複数回送信できたと利用者が確認。送信バッチ`0x62710C`は管理`+156+peer`のbyteを+1、受信下位ヘッダ低2bitの処理`0x62A0B4`は負deltaで減らす。これは未確認フレーム数であり、F008の「転送枠使用中」だけの解釈を訂正。`SendSegments`も同じゲートを呼ぶため、同じ瞬間の値1なら旧通常送信も失敗する。新事前呼出しが値1を作った証拠はなく、版差/タイミ
 date: '2026-10-04'
-category: _product
+category: network
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

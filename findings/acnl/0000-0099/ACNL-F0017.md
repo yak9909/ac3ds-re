@@ -5,7 +5,7 @@ aliases:
 title: 'F-397: 予測モードにも複合候補の文節リストがある'
 summary: HIGH（今回の未確定入力について）。実機「わたしはねこがすきです」はmode0/予測6件。
 date: '2026-09-10'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

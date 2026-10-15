@@ -5,7 +5,7 @@ aliases:
 title: 'F-130: ResFontのCMAP代替処理を確定。全liveフォントは2種の線形フィルタflagがON'
 summary: 'confidence: **CMAPと代替処理 HIGH** / **filter flagの意味 HIGH**'
 date: '2026-08-24'
-category: _product
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

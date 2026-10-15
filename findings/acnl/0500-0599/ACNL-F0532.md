@@ -5,7 +5,7 @@ aliases:
 title: RomFS の開き方を 3 箱所間違えていた（2026-09-22、HIGH、実機＋libctru ソース）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。利用者報告:「一覧を作るを押すと'
 date: '2026-09-22'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

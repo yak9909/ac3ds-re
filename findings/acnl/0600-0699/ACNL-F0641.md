@@ -6,7 +6,7 @@ aliases:
 title: 村の風船は `AcBalloon` Actorで、生成・破裂・プレゼント配置を既存経路から制御できる
 summary: '**確度: HIGH（静的実装経路を複数箇所で確認）。チートとしての実機実行は未確認。**'
 date: '2026-09-19'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: Ghidra

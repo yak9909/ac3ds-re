@@ -5,7 +5,7 @@ aliases:
 title: 'F-192: ★★★★フラッシュは配列の `[0].w0` を破壊する。退避先はポインタ −4 — `HIGH`（静的＋実機）'
 summary: '`TextDraw_EmitStatePrefix`（`0x4D5CB0`）も `DrawCtx_FlushBatch`（`0x4B8360`）も、'
 date: '2026-08-30'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: F-41 `FieldObj_FinalizeRecord` (0x5A10AC) — 伐採の終端処理 — `HIGH`
 summary: レコードが完了したときに `FieldObj_FellObject` を呼ぶ側。斧経路の呼び出し元 `0x5A1198`
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

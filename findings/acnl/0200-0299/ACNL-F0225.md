@@ -5,7 +5,7 @@ aliases:
 title: 'F-200: ★★★★★UI は「1 本のコマンド列」ではない。記録と再生に分かれている — 静的解析'
 summary: '> **2026-09-01 訂正（F-233）:** 記録／再生の構造は維持するが、下の'
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

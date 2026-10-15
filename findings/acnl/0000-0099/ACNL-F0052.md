@@ -5,7 +5,7 @@ aliases:
 title: F-14 フィールドアクションの実行経路 — `HIGH`
 summary: スコップのアクション決定から掘削レコード登録までの全経路が判明した。
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

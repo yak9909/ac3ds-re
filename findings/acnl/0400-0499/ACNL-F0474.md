@@ -5,7 +5,7 @@ aliases:
 title: '1 つの体を行列だけ変えて何か所にも描く（描画ノード FuncNode）（2026-09-28、MEDIUM: 静的のみ。gohan 4fb9e33 で使用、実機未確認）'
 summary: '解析ソフト: IDA（主 IDB を idalib-mcp で静的）/ 解析モデル: opus-5.5。利用者指示（2026-09-28）: ヒープの上限を越えたときの扱いを再設計。'
 date: '2026-09-28'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

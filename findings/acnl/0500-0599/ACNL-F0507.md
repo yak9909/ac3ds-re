@@ -5,7 +5,7 @@ aliases:
 title: 橋のモデル行列は平行移動 (x, 0, 0) ＋曲面の回転だけ（地面の高さを使わない）（2026-09-24、HIGH）
 summary: '**結論**: 村の橋（`12AcStrcBridge`）は、描画用の平行移動が **(x, 0, 0)** で、曲面の回転（X 軸まわり）だけが載る。'
 date: '2026-09-24'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

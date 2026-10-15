@@ -5,7 +5,7 @@ aliases:
 title: 骨・アニメの構造。node+0x228 は AnimGroup で、F029 の2語の正体（2026-09-21、HIGH、静的＋実機）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。**アニメを結線するには instance 側に「アニメ枠」が要る。**'
 date: '2026-09-21'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

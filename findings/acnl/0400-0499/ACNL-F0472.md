@@ -5,7 +5,7 @@ aliases:
 title: 'UnitCursor を村の物体の下に描く — 地面に張り付く物の材質と、深度書き込みの出どころ（2026-09-28、MEDIUM: 静的のみ。gohan f47f5af、実機未確認）'
 summary: '解析ソフト: IDA（主 IDB を idalib-mcp で静的）/ 解析モデル: opus-5.5。利用者指示: マイデザイン等の極薄・地面に吸着したモデルに UnitCursor が被さる → 常に対象マスのモデルより下／背面。公共事業エディターも共通。'
 date: '2026-09-28'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

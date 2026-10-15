@@ -5,7 +5,7 @@ aliases:
 title: 'F-163: ★CTRPF プラグインは GPU 可視メモリを確保できない — `HIGH`（実機で検証、結果コードまで確認）'
 summary: '`Plugin/CTRPluginFramework-BlankTemplate-0.8.0` に検証エントリを追加して実機で実行。'
 date: '2026-08-28'
-category: _product
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

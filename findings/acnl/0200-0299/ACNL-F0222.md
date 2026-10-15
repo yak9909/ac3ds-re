@@ -5,7 +5,7 @@ aliases:
 title: 'F-197: ★★★コマンドバッファは 1 つではない。`g_GpuCmdPtr` と `g_GpuCmdEnd` は別リストのことがある — `HIGH`（GPU ハングで判明）'
 summary: 「そのフレームの最後のフラッシュ」を予測する方式が破綻したので
 date: '2026-08-30'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

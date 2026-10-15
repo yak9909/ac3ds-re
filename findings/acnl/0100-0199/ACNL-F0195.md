@@ -5,7 +5,7 @@ aliases:
 title: 'F-169: ★★★自前テクスチャを自前サイズの四角形に貼れた。TODO-120 達成 — `HIGH`（実機で視認）'
 summary: '適用: `PATCHES/cave_own_texture.py`'
 date: '2026-08-28'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

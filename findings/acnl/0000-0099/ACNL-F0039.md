@@ -5,7 +5,7 @@ aliases:
 title: F-01 ゲーム同定 — `HIGH`
 summary: 'とびだせ どうぶつの森 (Animal Crossing: New Leaf)。'
 date: '2026-09-08'
-category: _triage
+category: misc
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

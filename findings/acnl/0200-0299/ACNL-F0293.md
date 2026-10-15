@@ -5,7 +5,7 @@ aliases:
 title: 'F-270: ★★★★DrawBegin1 は **テクスチャユニットを全部無効にする**。自前記録では立て直さないとテクスチャが読まれない — `HIGH`（静的 + 過去の実測列）'
 summary: 自前記録の設計（F-259 以降）に残っていた穴。**これは `OWN_TEV` とは独立の問題である。**
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

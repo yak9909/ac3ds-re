@@ -5,7 +5,7 @@ aliases:
 title: 'nw::lyt / nw::font の描画規則（ウィンドウ枠・テクスチャ座標・合成・アルファ・文字配置・アニメ曲線）を静的に確定（2026-09-25、HIGH: 静的＋実機画像 1 枚との照合）'
 summary: 'UI 設計ツール `src/acnl-ui-designer`（利用者指示: 規則は静的解析で割り出し、画像は検証だけに使う）の描画器の根拠。全規則と番地の表は同リポジトリの `docs/verification.md`。'
 date: '2026-09-25'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

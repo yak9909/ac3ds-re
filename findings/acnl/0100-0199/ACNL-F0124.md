@@ -5,7 +5,7 @@ aliases:
 title: 'F-86: parent拒否説を撤回。`ScStage` と`BsMenuTab`はいずれもchild gateを通る'
 summary: 'confidence: **HIGH**（`UiScreen_OpenChild` の静的条件と停止中実機byteの精密再読を照合）'
 date: '2026-08-24'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

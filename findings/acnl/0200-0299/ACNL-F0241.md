@@ -5,7 +5,7 @@ aliases:
 title: 'F-216: ★★★★★`reg 0x082` は `(幅<<16)|高さ`。正方形しか試していないと気付けない — `HIGH`（実機）'
 summary: 自前 GUI はずっと `((TEX_H << 16) | TEX_W, 0x082)` と書いていた。
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: F-27 地面更新のダーティビットマップ — `HIGH`
 summary: '`sub_59DA7C(X, Y)` (`0x59DA7C`) と `sub_599814(X, Y)` (`0x599814`) は'
 date: '2026-09-08'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

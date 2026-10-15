@@ -5,7 +5,7 @@ aliases:
 title: F-20 【訂正】滞留の原因は PUSH 後のスタック引数のずれ — `HIGH`
 summary: '**当初「滞留 4 件は `0x598688` 由来ではない」と結論したが、これは誤り。**'
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

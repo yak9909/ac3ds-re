@@ -6,7 +6,7 @@ aliases:
 title: 行列経路は正常だった。残る差は node+0x228 / +0x22C（2026-09-19、HIGH、実機＋対照）
 summary: 設計（`docs/topics/unit_cursor_hw_plan.md` §9）→ 検証（51 件 ok）→ 実装 → 検査（0 failed）→ 適用の順で測定した。
 date: '2026-09-19'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

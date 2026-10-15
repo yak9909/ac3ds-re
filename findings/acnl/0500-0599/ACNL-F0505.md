@@ -5,7 +5,7 @@ aliases:
 title: '橋のカーソルの高さの出どころ（川の判定・ゲームの橋の置き方・岸の高さ）（2026-09-24、HIGH（川の判定: 静的＋実機の地形）／MEDIUM（岸＝最寄りの陸）。gohan へは未実装）'
 summary: '**背景**: F025（足元の四角の地面の最大）は、四角が全部川の中だと川底の高さになり、カーソルとカメラが上下した（利用者の実機確認）。'
 date: '2026-09-24'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

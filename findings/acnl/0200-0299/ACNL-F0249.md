@@ -5,7 +5,7 @@ aliases:
 title: 'F-224: ★★★★★確定した対象を「0 以外のときだけ更新」してはいけない — `HIGH`（実機）'
 summary: F-223 の対策を入れてもまだ落ちた。ただし条件がはっきりした。
 date: '2026-09-01'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

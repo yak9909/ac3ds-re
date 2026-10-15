@@ -5,7 +5,7 @@ aliases:
 title: 建物の衝突判定 = 花を植えられない属性（byte_957A35 == 0）。利用者の正解と一致／プレビューが作れないのは親ヒープの断片化（2026-09-24、HIGH（利用者の正解と静的な表の一致）／HIGH（実機の読み取り））
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。利用者の正解: ベンチ 2x1、街灯 1x1、噴水 3x3、交番 [[1,1,1],[1,1,1],[1,1,1],[0,1,0]]（3x3 と下段中央の突起）。'
 date: '2026-09-24'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

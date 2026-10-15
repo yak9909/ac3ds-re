@@ -5,7 +5,7 @@ aliases:
 title: F-295 (HIGH・実機) — ★方式 (a) 完成。ヒープから借りて**メニュー全体を正規経路で描いた**
 summary: 道具は `PATCHES/alloc_lyt_heap.py`（確保）と `PATCHES/build_pane_tree.py`（組み立て）。
 date: '2026-09-04'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

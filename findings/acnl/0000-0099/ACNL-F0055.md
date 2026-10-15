@@ -5,7 +5,7 @@ aliases:
 title: F-17 コードケーブとして使える範囲 — `HIGH`
 summary: '`Shovel_DecideState` (`0x662E68`-`0x663450`) 内で、パッチ `0x663294 = EA000028`'
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -6,7 +6,7 @@ aliases:
 title: Create全引数・instance共有範囲・更新/破棄（2026-09-17、MEDIUM）
 summary: 正常callerのR0=holder、R1=ResModel、R2/R3=HeapAllocator、stack=mask0/flag0/count1をassembly照合。普通Model本体0x220、holderのRTTIとは別。mesh記述子等はinstanceへコピーするがgeometry/textureとmask0のmaterial fieldは共有。Material_GetResourceForMaskが資源/privateを選ぶ。world更新→条件付き骨格更新
 date: '2026-09-17'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

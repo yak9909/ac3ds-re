@@ -5,7 +5,7 @@ aliases:
 title: 'F-375（2026-09-08）: タイトルで即クラッシュ — 空リスト＋陳旧リンクの永久スキップ'
 summary: 利用者の申告： タイトル画面で自前メニューONにしただけで動かなくなる。
 date: '2026-09-08'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

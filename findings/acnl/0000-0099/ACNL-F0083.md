@@ -5,7 +5,7 @@ aliases:
 title: F-45 `NCCH/exefs/code.bin` は実機とは別ビルド — アドレスが対応しない — `HIGH`
 summary: ExeFS の `.code` は `0x00100000` にロードされ、`.text` / `.rodata` / `.data` が
 date: '2026-09-08'
-category: _product
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

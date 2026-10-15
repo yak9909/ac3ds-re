@@ -5,7 +5,7 @@ aliases:
 title: 'F-230: ★★★★相乗り先は「候補のうち最後に再生されたもの 1 つ」。両方に積むと二重になる — `HIGH`（実機）'
 summary: F-228 で「通常用（id 15 / id 16）とフェード用（id 9 / id 8）の**両方に積む**」ことにした。
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

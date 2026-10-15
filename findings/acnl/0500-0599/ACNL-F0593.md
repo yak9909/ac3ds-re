@@ -5,7 +5,7 @@ aliases:
 title: 'カタログを開くときの遷移は BsMenuBg の切り替え（クロスフェード）と画面自身の in アニメ。Fade / Wipe / Fader は使わない（2026-10-05、HIGH: 静的 + 実機の否定観測）'
 summary: '解析ソフト IDA（idalib-mcp / ida-pro-mcp）、解析モデル opus-5.5。段階 2（上画面と遷移）の下調べ。**既存資料**: 旧 RE/FINDINGS.md F-50（Wipe、UiAnim のレート）/ F-51（Fade・Fader 9 個と Fader_SetKind の種類）、'
 date: '2026-10-05'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

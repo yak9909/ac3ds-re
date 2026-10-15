@@ -5,7 +5,7 @@ aliases:
 title: 'ソフトウェアキーボードのキーの「次の入力までの待ち」の正体（2026-09-26、MEDIUM: 静的のみ（逆アセンブル＋成果物の照合）。実機未確認）'
 summary: 利用者の指示「ゲーム内のキー入力で、一度入力してから次に入力できるまでの短い待ちを無くす」の下調べ（gohan で対応、下記）。
 date: '2026-09-26'
-category: _product
+category: text
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: F-18 `Player_StartFieldAction` の呼び出し元は 16 箇所 — `HIGH`
 summary: '`0x590000`-`0x5B0000` の BL 全走査で 16 件。'
 date: '2026-09-08'
-category: _triage
+category: actor
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

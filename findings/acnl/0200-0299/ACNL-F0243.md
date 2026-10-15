@@ -5,7 +5,7 @@ aliases:
 title: 'F-218: ★★★半透明（アルファブレンド）は使える — `HIGH`（実機）'
 summary: OSD を避けた理由の 1 つが「アルファブレンドが使えない」ことだった（ユーザー指摘）。
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

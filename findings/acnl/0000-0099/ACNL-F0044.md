@@ -5,7 +5,7 @@ aliases:
 title: F-06 アニメ再生速度は VFP の S1 — `HIGH`
 summary: '`Actor_PlayAnim` (`0x0068D0EC`) の引数:'
 date: '2026-09-08'
-category: _triage
+category: actor
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

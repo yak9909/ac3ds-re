@@ -5,7 +5,7 @@ aliases:
 title: 'F-138: ida-pro-mcp の実機接続経路を復旧・検証 — `HIGH`'
 summary: IDA GUI の Remote GDB 接続や RPC 自体が壊れていたのではなく、Codex のMCP設定から
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

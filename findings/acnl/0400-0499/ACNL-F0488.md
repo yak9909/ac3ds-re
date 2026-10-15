@@ -5,7 +5,7 @@ aliases:
 title: 'キーボードのキーの見た目・テクスチャの取り方・開閉アニメ・切り替え音・カーソル設定の引数（2026-09-26、MEDIUM: 静的＋romfs。実機未確認）'
 summary: チャットの自前キー（全選択・左右）をゲームのキーで描き、開閉アニメに追従させるための下調べ（gohan 058e1a5）。
 date: '2026-09-26'
-category: _product
+category: text
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

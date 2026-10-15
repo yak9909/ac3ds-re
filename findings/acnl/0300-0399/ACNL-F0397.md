@@ -5,7 +5,7 @@ aliases:
 title: 'F-370（2026-09-08）: クラッシュ再発。犯人は呼び出し元の this=NULL'
 summary: 前回と同じ PC=`0x0054C438`（`LDR R0,[R4,#0x148]`）だが今回は R4=`0x0`。
 date: '2026-09-08'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

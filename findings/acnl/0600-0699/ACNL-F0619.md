@@ -5,7 +5,7 @@ aliases:
 title: ACNL の「かざる」の部品と、データだけ書いたときの振る舞い（2026-10-06、静的 + 実機 2 回。置く部品は実機未確認）
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。'
 date: '2026-10-06'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

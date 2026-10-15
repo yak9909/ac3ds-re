@@ -5,7 +5,7 @@ aliases:
 title: 'F-97: `GpuCmd_GetProperty` と、自前コマンド追加の定石'
 summary: 'confidence: **MEDIUM**（getter の switch を逆コンパイルで直接確認。**静的解析のみ**、F-101 で訂正）'
 date: '2026-08-24'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

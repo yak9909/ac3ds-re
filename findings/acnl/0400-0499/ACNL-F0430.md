@@ -5,7 +5,7 @@ aliases:
 title: 収録チートの天気返却と島チャット数字制限の意味（2026-10-11）
 summary: '解析: IDA/idalib-mcp、実モデルgpt-6。主IDB acnl_jpn_v15_annotated.i64、code SHA c635af8f08937b66f123b91b02391a68c034393320cdb94d603b9291383faabb。既存gohan.md §17.8/JOKER・Adios・Vapecord原sourceの出自は変更しない。実機は操作せず確度MEDIUM（複数静的根拠）。'
 date: '2026-10-11'
-category: _product
+category: misc
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-158: ★★自前の変換行列でテキストを任意位置に描けた — `HIGH`（静的導出＋実機で視認）'
 summary: 住民名 `T_nam_00` の **赤い複製が、元の緑の名前から右へずれた位置に描かれた。**
 date: '2026-08-28'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

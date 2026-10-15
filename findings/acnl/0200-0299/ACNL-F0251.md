@@ -5,7 +5,7 @@ aliases:
 title: 'F-226: ★★★★★相乗り先は「素で記録し直される」ものから選ぶ。強制は廃止 — `HIGH`（実機）'
 summary: F-223 / F-224 の対策を入れても、しばらく遊ぶとまだ落ちた。
 date: '2026-09-01'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

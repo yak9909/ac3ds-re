@@ -5,7 +5,7 @@ aliases:
 title: 地図のアイコン枠は数を見ずに割り当てられ、溢れると星アイコン・柵の消滅・クラッシュになる（2026-09-23、HIGH（静的＋実機のクラッシュダンプ））
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。F005 の実機確認（利用者）で (1)〜(5) は OK。ただし:'
 date: '2026-09-23'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

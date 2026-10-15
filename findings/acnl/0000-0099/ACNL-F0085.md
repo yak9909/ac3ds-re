@@ -5,7 +5,7 @@ aliases:
 title: F-47 `0x596890` の実態 — 踏みつけ処理 `FieldObj_TrampleAt` — `HIGH`
 summary: '`REFERENCES/CHEATS/outdoor.txt` の「歩いた場所の物を消す」が書き換えるアドレス。'
 date: '2026-09-08'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: F-55 Vapecord のコードを手がかりにした関数解析（時刻・部屋・通信） — `HIGH`
 summary: F-54 の対応表を使い、プラグインが実際に呼んでいる関数を本ビルドで解析した。
 date: '2026-09-08'
-category: _product
+category: network
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

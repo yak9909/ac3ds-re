@@ -5,7 +5,7 @@ aliases:
 title: F-29 掘削の実処理は `FieldObj_ApplyRecordByAction` の jumptable — `HIGH`
 summary: '`0x5A06D4`-`0x5A0C1C`。`rec[16]`（actionID）で 29 ケースに分岐する。'
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

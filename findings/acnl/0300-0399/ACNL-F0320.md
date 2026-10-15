@@ -5,7 +5,7 @@ aliases:
 title: F-296 (HIGH・実機) — ★借りた領域を返せる。**確保 → 解放 → 再確保の往復を実機で成立**
 summary: F-295 で `nw::lyt` のヒープから 64KB 借りたが、**返す手段が無かった**。
 date: '2026-09-04'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

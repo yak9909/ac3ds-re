@@ -6,7 +6,7 @@ aliases:
 title: 頂点バッファの番地は VA→GPU 変換を通り、対応外の領域では黙って 0 になる（2026-09-18、HIGH、静的）
 summary: IDA-unknown-F026 で「頂点属性コマンド列は sub_7E5710 が組み立てる」と分かったので中身を読んだ。
 date: '2026-09-18'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

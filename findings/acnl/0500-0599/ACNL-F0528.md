@@ -5,7 +5,7 @@ aliases:
 title: 建物の高さは属性ブロックから。カタログ表示の読み込み手順（2026-09-23、MEDIUM（静的））
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。利用者の指摘「建物配置における地面判定の高さ算出方法」に対する途中経過。'
 date: '2026-09-23'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

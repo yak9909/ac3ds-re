@@ -5,7 +5,7 @@ aliases:
 title: 'F-315: F-312〜F-314 を実機で検証。**結論はすべて正しかった** — HIGH'
 summary: 自前ノードのコマンドリストが両画面とも作れた。
 date: '2026-09-06'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

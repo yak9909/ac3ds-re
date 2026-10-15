@@ -6,7 +6,7 @@ aliases:
 title: メッシュのコマンド列は誰が作るか。「ジオメトリが欠けている」仮説の反証（2026-09-18、HIGH、静的）
 summary: IDA-unknown-F025 で「メッシュの GPU コマンド列は 2 本ある」と分かったので、1 本目（頂点属性・バッファ束縛）の出どころを追った。
 date: '2026-09-18'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

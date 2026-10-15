@@ -5,7 +5,7 @@ aliases:
 title: 'nw::lyt の Window は 1 枠でも描ける（2026-10-05、MEDIUM: 静的 + designer の再現がスクショと一致）'
 summary: 解析ソフト IDA（idalib-mcp）、解析モデル opus-5.5。HHD の画面を ACNL で再現する作業（D005 / T011）の周辺で確認。
 date: '2026-10-05'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

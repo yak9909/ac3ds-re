@@ -5,7 +5,7 @@ aliases:
 title: 'レイアウトの材質の TEV の段と座標生成の意味（2026-10-05、HIGH 相当: 逆アセンブル + ACNL の実在の材質 215 個と照合。実機の描画は未確認）'
 summary: '解析モデル opus-5.5。IDB: `nwlyt_Material_EmitTevStages 0x4B8790`（命名・注記）、`nwlyt_CalcTexCoordsForGpu 0x73B650`（注記）。'
 date: '2026-10-05'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

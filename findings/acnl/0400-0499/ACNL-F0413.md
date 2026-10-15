@@ -5,7 +5,7 @@ aliases:
 title: 'F-388: ACNLのSuspendでは動作中SWKBDプロセスは停止しない（2026-09-09）'
 summary: 利用者が内蔵キーボードへ未確定の`かんじ`を入力したまま現在のIDAでSuspendしたところ、
 date: '2026-09-09'
-category: _product
+category: system
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

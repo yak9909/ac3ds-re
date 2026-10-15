@@ -5,7 +5,7 @@ aliases:
 title: F-293 (HIGH・実機) — ★★★正規の手順で描けた。**自前の記録ケーブ 205 語を撤去**
 summary: F-292 の設計を実装し実機で成功した。道具は `PATCHES/build_pane_tree.py`。
 date: '2026-09-04'
-category: _product
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

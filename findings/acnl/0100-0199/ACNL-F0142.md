@@ -5,7 +5,7 @@ aliases:
 title: 'F-104: ★single-step 無効なら breakpoint が使える。`GpuCmd_SplitAndSubmit` の呼び出し元を捕捉'
 summary: 'confidence: **HIGH**（実機で breakpoint ヒットを観測）'
 date: '2026-08-24'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'ゆうめいなキノコで大きくなる仕組みと、プレイヤーの大きさは通信に乗らないこと（2026-09-30、MEDIUM: 静的＋Vapecord の送信側の形と受信側の独立一致。実機未観測）'
 summary: '解析ソフト: IDA（主 IDB）/ 解析モデル: opus-5.5。利用者の問い: 椅子の座る高さはオンラインに反映される（他人にも見える高さ変更チートがある）。'
 date: '2026-09-30'
-category: _product
+category: actor
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

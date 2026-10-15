@@ -5,7 +5,7 @@ aliases:
 title: 'F-135: `code.bin.i64` と `code_runtime.elf.i64` の独立照合 — `HIGH`（同一バイト列・アドレス）/ `MEDIUM`（実機での意味づけ）'
 summary: 前回の「確定」を、別 IDB と別経路で再監査した。`code_runtime.elf.i64` は実機から取得した
 date: '2026-08-24'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

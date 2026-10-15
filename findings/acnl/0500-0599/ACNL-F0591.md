@@ -5,7 +5,7 @@ aliases:
 title: 'ウィンドウの中身にテクスチャがあるなら UV の組が要る（無いと nwlyt_CalcTexCoordsForGpu が落ちる）（2026-10-05、HIGH: 実機のクラッシュ + 静的）'
 summary: 解析ソフト IDA（ida-pro-mcp / idalib-mcp）、解析モデル opus-5.5。T013 段 2 の実機試験。
 date: '2026-10-05'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

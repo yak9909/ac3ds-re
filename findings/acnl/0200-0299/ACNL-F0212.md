@@ -5,7 +5,7 @@ aliases:
 title: 'F-186: ★索引エントリの意味を静的に確定。色は複製先ではなく**複製元**に出る — `HIGH`（静的＋実機 A/B 多数）'
 summary: '```c'
 date: '2026-08-30'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

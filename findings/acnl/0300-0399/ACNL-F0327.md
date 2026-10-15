@@ -5,7 +5,7 @@ aliases:
 title: F-303 (HIGH・実機) — ★借りた nw::lyt ヒープは **GPU 可視**。自前フォント資源の設計を確定（描画は未達）
 summary: これまでアトラスは `g_GfxAllocator`（`*(0x0094CA30)`）から `0x4000` 借りていた（F-166 / F-221）。
 date: '2026-09-06'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

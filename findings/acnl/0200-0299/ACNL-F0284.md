@@ -5,7 +5,7 @@ aliases:
 title: 'F-261: ★★★★★Layout の初期化 `sub_5685A4` に「自前リストの正しい作り方」が全部書いてある — `HIGH`（静的のみ）'
 summary: F-260 の実装を静的に検証する過程で見つけた。**私の実装には致命的な誤りが 2 つあった。**
 date: '2026-09-01'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

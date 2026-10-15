@@ -5,7 +5,7 @@ aliases:
 title: '一覧の選択中の行とスクロールバー（CommonScrollBar）の見た目の規則（2026-09-25、HIGH: 静的＋実機画像 1 枚との照合）'
 summary: 設計ツール `src/acnl-ui-designer`（3af30a5）の `instselect.mjs` / `scrollbar.mjs` の根拠。表は同リポジトリ `docs/verification.md`。
 date: '2026-09-25'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

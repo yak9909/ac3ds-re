@@ -5,7 +5,7 @@ aliases:
 title: 'F-275: 自前ノードに対してゲームが呼ぶのは vtable `+0x08` と `+0x14` の 2 つだけ — `HIGH`（静的）'
 summary: '`CAVE_N`（安全スタブ、常に `R0 = 0` を返す）が危険なスロットに置かれていないかを確認した。'
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

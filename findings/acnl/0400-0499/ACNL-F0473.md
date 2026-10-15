@@ -5,7 +5,7 @@ aliases:
 title: '持ち物の選択窓（ItemSelectWindow）のキー操作 — 十字・A・B の実装（2026-09-28、MEDIUM: 静的のみ。gohan d6b8470 で使用、実機未確認）'
 summary: '解析ソフト: IDA（主 IDB を idalib-mcp で静的）/ 解析モデル: opus-5.5。利用者指示: 一覧が出ている間、ゲームと同じく十字で選択・A で決定・B でやめる（推測で自前実装しない）。'
 date: '2026-09-28'
-category: _product
+category: item
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

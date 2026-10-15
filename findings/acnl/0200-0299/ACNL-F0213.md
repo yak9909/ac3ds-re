@@ -5,7 +5,7 @@ aliases:
 title: 'F-187: ★ゲーム自身の「色つきスプライト」を実測。構造は自前と同一だった — `HIGH`（実機フック）'
 summary: '`PATCHES/probe_vertex_color.py`（`0x4B8348` と `0x73CD1C` の 2 点フック）で、'
 date: '2026-08-30'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: F-289 (HIGH・実機) — ★`nwlyt_Picture_DrawToCommandList` に**自前 Picture** を渡して 1 枚描けた
 summary: '`0x73CB58 nwlyt_Picture_DrawToCommandList(picture, cursor, a3, drawctx)` は'
 date: '2026-09-06'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: F-43 RTTI からクラス名を引ける — `HIGH`
 summary: '出典: `REFERENCES/TEXTS/classes.txt` / `2.txt` / `1.txt`。**実機メモリで裏取り済み。**'
 date: '2026-09-08'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -6,7 +6,7 @@ aliases:
 title: type 0x10 completion token案は実機クラッシュで棄却
 summary: '**確度: HIGH（crash_dump_00000008＋静的再監査）。**'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: Ghidra

@@ -5,7 +5,7 @@ aliases:
 title: F-19 18B キューのスロットは解放されないと枯渇する — `HIGH`
 summary: '`0x595EA8`-`0x595EC0` がスロットの確保・初期化を行う:'
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

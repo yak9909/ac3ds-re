@@ -5,7 +5,7 @@ aliases:
 title: 'F-368（2026-09-08）: クラッシュ点の特定（実機デバッグ。ida-pro-mcp 直読み）'
 summary: F-367 の静的監査に続き、ライブセッションへ接続して PC・レジスタ・
 date: '2026-09-08'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

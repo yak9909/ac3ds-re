@@ -5,7 +5,7 @@ aliases:
 title: 'F-199: ★★★★★UI の座標系を確定。**縦横で縮尺が違う（非等方）** — `HIGH`（実機で段階的に測定）'
 summary: '| 項目 | 値 |'
 date: '2026-08-30'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

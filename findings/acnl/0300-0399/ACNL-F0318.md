@@ -5,7 +5,7 @@ aliases:
 title: F-294 (HIGH・静的のみ) — ★自前フォントで `TextBox` を使えることを確認。`Glyph` 構造を確定
 summary: 利用者の要望は「ゲームのフォントではなく**自前フォント**で描くこと」。**可能**である。
 date: '2026-09-04'
-category: _product
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

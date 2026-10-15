@@ -5,7 +5,7 @@ aliases:
 title: F-49 メッセージ表示の仕組みと「メニューアニメーションをカット」の副作用 — `HIGH`
 summary: '`REFERENCES/CHEATS/ui.txt` の「メニューアニメーションをカット」で'
 date: '2026-09-08'
-category: _product
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

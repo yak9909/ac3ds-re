@@ -5,7 +5,7 @@ aliases:
 title: 'F-162: ★★★「好きな位置に好きなテキストを好きな色で」が通った — `HIGH`（実機で視認＋メモリで確認）'
 summary: 会話ウィンドウの住民名を対象に、画面上に **4 つの「テスト」**が出た。
 date: '2026-08-28'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

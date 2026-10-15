@@ -5,7 +5,7 @@ aliases:
 title: 'F-144: 会話 TextBox も batch writer 経路 — `HIGH`（静的＋実機）'
 summary: 会話表示中に `0x4BAFFC`（`sub_4BAFB0` 内の `sub_7E7F48` 呼出し）へ software
 date: '2026-09-08'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

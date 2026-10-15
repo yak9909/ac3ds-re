@@ -5,7 +5,7 @@ aliases:
 title: 'F-112: ★★実機で F-111 を検証（TODO-64 完了）— 確度 `HIGH` へ。配列 #5 の記述を訂正'
 summary: 'confidence: **HIGH**（静的解析と実機観測の双方で一致。CLAUDE.md の `HIGH` 定義を満たす）'
 date: '2026-08-24'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: '文字の挿入・削除・選択・確定、キーの経路、チャットの送信、入力欄の「未確定」と「選択」の飾り（2026-09-25、MEDIUM: 静的のみ。実機未確認）'
 summary: F043 の続き。かな入力のコンポジションと漢字変換（利用者の依頼）の土台。
 date: '2026-09-25'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

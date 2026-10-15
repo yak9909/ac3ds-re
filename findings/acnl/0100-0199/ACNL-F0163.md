@@ -5,7 +5,7 @@ aliases:
 title: 'F-125: ★★★テキストを画面に描画した。タイル内 Morton スウィズル順も確定'
 summary: 'confidence: **HIGH**（実機。文字が読めた＝スウィズル順が正しいことの証明）'
 date: '2026-08-24'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

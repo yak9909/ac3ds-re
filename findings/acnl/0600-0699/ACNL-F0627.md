@@ -5,7 +5,7 @@ aliases:
 title: '服・ワンピース・K.K. の曲を部屋に置くときの品番（2026-10-07、MEDIUM: 静的 2 経路）'
 summary: '解析ソフト: IDA（idalib）/ 解析モデル: **gpt-6.1-sol（推論 xhigh）**、Codex CLI のサブエージェント（依頼 work/codex/tasks/t022_pair_ids.md、アプリサーバー経由）。採番・照合・記録は親（opus-5.5）。根拠 **work/evidence/t022_pair_ids/report.md**。主 IDB に命名 13 関数・2 表、型 19、構造体 2、カテゴリの Enum、コメント 58（ID '
 date: '2026-10-07'
-category: _triage
+category: item
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -6,7 +6,7 @@ aliases:
 title: 実機測定で IDA-unknown-F027 を棄却。頂点バッファの束縛は正しい（2026-09-18、HIGH、実機）
 summary: 設計（docs/topics/unit_cursor_hw_plan.md）→ 検証（tools/hw/verify_unitcursor_hw.py、45 件 ok）→ 実装（tools/hw/unitcursor_probe.py）
 date: '2026-09-18'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

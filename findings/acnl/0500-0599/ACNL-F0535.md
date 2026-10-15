@@ -5,7 +5,7 @@ aliases:
 title: 村の 1 マス = world 32 単位。UnitCursor の原点は quad の中心（2026-09-22、HIGH、実機＋CGFX）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。**独立な 2 経路が一致したので確定とする。**'
 date: '2026-09-22'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

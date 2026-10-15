@@ -5,7 +5,7 @@ aliases:
 title: 衝突判定（歩けないマス）= 足元の属性コードをゲームの分類表 byte_957B34 で引いて 0 でないマス／プレビューの無限ロードとクラッシュの原因（2026-09-24、MEDIUM（静的＋利用者の説明と一致。実機の歩行では未確認））
 summary: '解析ソフト: IDA / 解析モデル: opus-5.5。利用者の報告（配置の切り替えで無限ロード・SIGSEGV、UnitCursor が衝突判定準拠でない ほか）。'
 date: '2026-09-24'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-108: FuncNode 解析の精査 — 前提の再検証と 1 件の見落とし'
 summary: 'confidence: **MEDIUM**（静的解析のみ）'
 date: '2026-08-24'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: F-28 マスへのアイテム書き込み API — `MEDIUM`
 summary: '`sub_168E08(X, Y, flag, pNo, item)` (`0x168E08`):'
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 'F-67: 髪型変更状態 `0xB9` が帽子・アクセサリを消し、2 段アニメが反映を遅らせる'
 summary: 'confidence: **MEDIUM**（削除先・同期先・アニメ分岐を静的に確認。提案パッチは実機未検証）'
 date: '2026-09-08'
-category: _triage
+category: actor
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: '村の物体の描画の仕組み — 1 体ずつ色を変える入口と、カーソルが消えた原因（2026-09-28、MEDIUM: 静的＋停止中の実機の読み取り。赤の割り込みは実機未確認）'
 summary: '解析ソフト: IDA（主 IDB を idalib-mcp で静的、停止中の実機を ida-pro-mcp で読み取りのみ）/ 解析モデル: opus-5.5。'
 date: '2026-09-28'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

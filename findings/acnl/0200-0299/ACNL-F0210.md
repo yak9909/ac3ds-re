@@ -5,7 +5,7 @@ aliases:
 title: 'F-184: 頂点カラーはアルファだけが効いた。RGB は素材の TexEnv 次第 — `HIGH`（実機で A/B）'
 summary: '適用: `PATCHES/cave_add_sprite.py`'
 date: '2026-08-30'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

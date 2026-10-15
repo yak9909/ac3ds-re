@@ -5,7 +5,7 @@ aliases:
 title: 'F-118: ★★注入した描画が画面に出ることを視覚的に確認。影は「アルファのみ」'
 summary: '> **【後日訂正】本項 §3 の「重ねがけが濃くならないのは深度テストで落ちるから」という'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

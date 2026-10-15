@@ -5,7 +5,7 @@ aliases:
 title: 'F-385: 通常チャットから内蔵SWKBDの起動・キャンセル復帰に成功（2026-09-09）'
 summary: F-384を適用した実機で通常チャットを開くと、内蔵ソフトウェアキーボードが起動した。
 date: '2026-09-09'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

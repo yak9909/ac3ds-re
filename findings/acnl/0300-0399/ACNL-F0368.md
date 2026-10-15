@@ -5,7 +5,7 @@ aliases:
 title: 'F-342（2026-09-07）: 共有バッチの設計 — ★費用の 8 割は「コマンド語の器の取りすぎ」'
 summary: '**confidence: HIGH**（静的解析 + 実機で確認。設計の数字は `PATCHES/design_shared_batch.py`）'
 date: '2026-09-07'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

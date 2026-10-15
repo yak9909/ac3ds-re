@@ -5,7 +5,7 @@ aliases:
 title: 'F-274: `sub_2F858C` は **3 引数の memcpy**。decompiler が R1/R2 を落としていた — `HIGH`（アセンブリ）'
 summary: '`GpuCmd_ReplayRecordedListRange` の末尾を Hex-Rays で読むと'
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: '模様替えの範囲選択・移動の吸着と音、持ち物の選択窓（ItemSelectWindow）の正しい使い方（2026-09-27、MEDIUM: 静的のみ。gohan のマップエディター段階 3 手直しは実機未確認）'
 summary: '解析ソフト: IDA（主 IDB）＋ CRO の逆アセンブル（tools/patches/cro_rtti.py）/ 解析モデル: opus-5.5。利用者の指摘（範囲がマスに吸着しない・音が無い・'
 date: '2026-09-27'
-category: _product
+category: item
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: '`ARCHIVE_ROMFS` が返すのは **base だけ**。8,629 本（2026-09-22、HIGH、実機計測）'
 summary: '解析ソフト: IDA / 解析モデル: opus-5。利用者が実機で「一覧を作る」を押した結果。'
 date: '2026-09-22'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

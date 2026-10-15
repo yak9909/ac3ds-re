@@ -5,7 +5,7 @@ aliases:
 title: 'F-120: ★★★TODO-81 達成 — 自前の `FuncNode` から実際に画面へ描画できた'
 summary: 'confidence: **HIGH**（実機。ユーザーの目視による決定的な A/B）'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

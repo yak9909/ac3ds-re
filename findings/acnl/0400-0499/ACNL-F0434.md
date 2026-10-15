@@ -5,7 +5,7 @@ aliases:
 title: チップ長押しのstatic記録拒否と選択アニメ再開始（2026-10-10、MEDIUM）
 summary: 解析ソフトIDA（idalib-mcp）/解析モデルgpt-6.1-sol。F016配布で利用者が「窓未表示/縞アニメ振動」を実機報告。修正版はPC検査のみ、実機未確認。日本語無印ACNL＋更新、main SHA c635af8f08937b66f123b91b02391a68c034393320cdb94d603b9291383faabb、ModuleFtr.cro SHA d2a65c85909782a66a5300df7f26f76289db69f7474f563d59
 date: '2026-10-10'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

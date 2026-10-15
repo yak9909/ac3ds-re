@@ -5,7 +5,7 @@ aliases:
 title: 'F-136: atlas flush wrapper の同一視を撤回 — `MEDIUM`（呼び出し規約）/ `LOW`（command 名）'
 summary: 再監査で、従来 `0x143718` を `GSPGPU_FlushDataCache`、`0xFFFF8001` を「flush command」と
 date: '2026-08-24'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

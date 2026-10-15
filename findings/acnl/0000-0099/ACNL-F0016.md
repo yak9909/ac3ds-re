@@ -5,7 +5,7 @@ aliases:
 title: 'F-398: 関数型辞書の登録でPC候補列が実機保存値に一致（HIGH）'
 summary: 0x18CDDCの日本語分岐はslot7=0x19BECC、8=0x19C334、9=0x16B890を登録。
 date: '2026-09-10'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

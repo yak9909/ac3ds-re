@@ -5,7 +5,7 @@ aliases:
 title: Pretendoの公表したACNL RCE対策は `0x81` 掲示板パケット（2026-10-04、MEDIUM）
 summary: 解析ソフト IDA（idalib-mcp）、解析モデル gpt-6-sol。対象は日本語版更新 `artifacts/update/exefs/code.bin`、SHA-256 `c635af8f08937b66f123b91b02391a68c034393320cdb94d603b9291383faabb`。Pretendo Nimbusの[公開ソース](https://github.com/PretendoNetwork/nimbus/blob/fc2d813412a6
 date: '2026-10-04'
-category: _product
+category: network
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

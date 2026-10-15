@@ -6,7 +6,7 @@ aliases:
 title: Ghidra-gpt-sol-5.6-F016 AR先頭E blockの最終行が1word欠けていた
 summary: '**確度: HIGH（ARテキスト構文再検査）。**'
 date: '2026-09-19'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: Ghidra

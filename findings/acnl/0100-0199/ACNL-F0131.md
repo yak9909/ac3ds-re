@@ -5,7 +5,7 @@ aliases:
 title: 'F-93: ドロップの可否判定は 2 段。F-65 コード B が無効だった理由'
 summary: 'confidence: **HIGH**（実機で検証。コード A・B の結果が予測と一致／不一致を確定させた）'
 date: '2026-08-24'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

@@ -5,7 +5,7 @@ aliases:
 title: 模様替えカーソルは大きさを変えていない。V2-F019 の「範囲の形」は誤り（2026-09-21、HIGH、静的）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。**既存記録 V2-F019 の訂正**（`work/evidence/unit_cursor/README.md` §5.3〜5.4、'
 date: '2026-09-21'
-category: _triage
+category: actor
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

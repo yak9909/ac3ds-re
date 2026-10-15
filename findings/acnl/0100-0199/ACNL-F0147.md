@@ -5,7 +5,7 @@ aliases:
 title: 'F-109: ★★実機で `g3d::FuncNode` の実在とコールバックを確認（HIGH 達成）'
 summary: 'confidence: **HIGH**（CLAUDE.md の定義どおり**静的解析と動的観測の双方**で確認）'
 date: '2026-08-24'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

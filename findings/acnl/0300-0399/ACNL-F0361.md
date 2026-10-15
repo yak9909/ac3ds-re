@@ -5,7 +5,7 @@ aliases:
 title: 'F-335（2026-09-07）: 複数パッチ切替と押し続け移動の再設計'
 summary: 利用者の壁抜け（複数アドレス×複数値）・座標移動（ホットキー＋押下方向へ
 date: '2026-09-07'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: ''
 tool: IDA

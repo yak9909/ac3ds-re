@@ -5,7 +5,7 @@ aliases:
 title: 'F-80: `BsMenuCatalog` は通常下画面メニューの `0x08/0x10` handshakeを実装しない'
 summary: 'confidence: **HIGH**（`code.bin.i64` の全直接xref、`BsMenuItem` と'
 date: '2026-08-24'
-category: _product
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

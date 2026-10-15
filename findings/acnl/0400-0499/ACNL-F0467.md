@@ -5,7 +5,7 @@ aliases:
 title: 'マイデザインは村の物体の「層 1 の一覧」で描かれる — F064 の訂正と、カーソルを「マイデザインより上・それ以外より下」にする設計（2026-09-28、MEDIUM: 静的＋実機の結果と整合。設計は未実装）'
 summary: '解析ソフト: IDA（主 IDB を idalib-mcp で静的）＋ romfs の Fg.bin / FgShape.bin / 解析モデル: opus-5.5。'
 date: '2026-09-28'
-category: _product
+category: field
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: IDA

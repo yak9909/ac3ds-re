@@ -5,7 +5,7 @@ aliases:
 title: 'F-228: ★★★★フェードは id 8（上）/ id 9（下）が最後に描く。両方に積めば判別が要らない — `HIGH`（実機）'
 summary: ロード時のフェードで自前 GUI も一緒に暗くなる、という報告から。
 date: '2026-09-01'
-category: _triage
+category: ui
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

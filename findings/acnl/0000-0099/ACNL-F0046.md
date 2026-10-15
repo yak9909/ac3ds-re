@@ -5,7 +5,7 @@ aliases:
 title: F-08 アクター状態テーブルは基準 `0x00843634` / エントリ `0x1C` — 基準は `HIGH` / 個々の割り当ては混在
 summary: 状態 N のエントリ関数 = `[0x843634 + N*0x1C]`。
 date: '2026-09-08'
-category: _triage
+category: actor
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

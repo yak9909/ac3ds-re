@@ -5,7 +5,7 @@ aliases:
 title: F-306 (HIGH・実機) — ★★★TextWriter 直呼びで描けた。TextBox の DrawSelf を通さない
 summary: F-301 で「TextBox は必須ではない」と結論した経路を実機で成立させた。
 date: '2026-09-06'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

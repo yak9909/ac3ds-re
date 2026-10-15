@@ -5,7 +5,7 @@ aliases:
 title: '実行時のテクスチャ差し替えと性別の読み方を実機で確認（2026-10-05、HIGH: 静的 + 実機）'
 summary: 解析ソフト IDA（idalib-mcp）、解析モデル opus-5.5。T013 段 3（gohan work/hhd-charcreate 4c6db33、3gx fda07ad4…d0c5）。
 date: '2026-10-05'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

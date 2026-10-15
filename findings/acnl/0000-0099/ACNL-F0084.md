@@ -5,7 +5,7 @@ aliases:
 title: F-46 実機イメージ `code_runtime.bin` を吸い出した — `HIGH`
 summary: '`dump_code.py` で実行中プロセスから吸い出した。**`NCCH/exefs/code_runtime.bin`、10,485,760 バイト。**'
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

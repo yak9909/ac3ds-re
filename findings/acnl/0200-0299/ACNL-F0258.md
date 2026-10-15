@@ -5,7 +5,7 @@ aliases:
 title: 'F-233: 描画パス末尾と通常場面の実 replay を再監査 — `HIGH`（静的＋実機。ロード画像の順序は未測定）'
 summary: '`HANDOFF_CHEATMENU.md` と F-200 / F-230 の前提を、`code.bin.i64` と'
 date: '2026-09-01'
-category: _product
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

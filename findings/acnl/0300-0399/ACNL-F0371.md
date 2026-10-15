@@ -5,7 +5,7 @@ aliases:
 title: 'F-345（2026-09-07）: 手紙は **2 つの大きな塊**を要る — 借りっぱなしでは通せない'
 summary: '**confidence: HIGH**（実機の停止位置・オブジェクトの中身 + `sub_1FC55C` の逆コンパイル）'
 date: '2026-09-07'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

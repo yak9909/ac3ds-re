@@ -5,7 +5,7 @@ aliases:
 title: 'F-194: ★★★UV の座標系を確定。アトラスから切り出せる — `HIGH`（実機で 3 段階の A/B）'
 summary: 追加幾何エントリ（索引エントリの `w2` が指す先）の 4 float が UV。
 date: '2026-08-30'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

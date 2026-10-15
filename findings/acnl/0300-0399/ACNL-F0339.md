@@ -5,7 +5,7 @@ aliases:
 title: 'F-313: 「実測でないと決められない」は誤り。静的に決着した — HIGH'
 summary: '> F-312 D で `LIST_SIZE` を上げられるか・1 文字あたり何バイトかを'
 date: '2026-09-06'
-category: _triage
+category: system
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

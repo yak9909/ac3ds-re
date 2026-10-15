@@ -5,7 +5,7 @@ aliases:
 title: 'F-257: ★★★★F-256 のゲートの正体は「ゲームが**記録し直した**フレームだけ描く」だった — `HIGH`（実機・目視）'
 summary: '> **★F-263 で説明を訂正した。** 「作業配列はフレームごとに使い回される」という説明は**誤り**。'
 date: '2026-09-01'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

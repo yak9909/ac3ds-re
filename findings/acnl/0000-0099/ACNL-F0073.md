@@ -5,7 +5,7 @@ aliases:
 title: F-35 【訂正】`FieldObj_RevertRecord` は「結果を確定させる」処理 — `HIGH`
 summary: F-28 で「レコードをキャンセルするときに元のアイテムへ戻す処理」と記録したが**誤り**。
 date: '2026-09-08'
-category: _triage
+category: field
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

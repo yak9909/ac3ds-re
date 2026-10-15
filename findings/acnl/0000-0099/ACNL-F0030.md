@@ -5,7 +5,7 @@ aliases:
 title: 'F-152: commit中の `TextBox_Draw` wrapper再入は不可 — `HIGH`（static＋実機例外）'
 summary: F-151のdescriptorを渡してcommit hookから `TextBox_Draw (0x73CF48)` を呼ぶ試行は、
 date: '2026-09-08'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

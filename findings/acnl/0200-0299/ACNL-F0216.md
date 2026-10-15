@@ -5,7 +5,7 @@ aliases:
 title: 'F-191: ★★★★自前テクスチャの適用に成功。欠けていたのは `reg 0x083` — `HIGH`（実機）'
 summary: '`PATCHES/cave_add_sprite2.py`（`EMIT_TEX = True`）。'
 date: '2026-08-30'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

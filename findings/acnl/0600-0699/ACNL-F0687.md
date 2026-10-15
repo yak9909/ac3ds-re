@@ -6,7 +6,7 @@ aliases:
 title: sender local Color render hardware success
 summary: '**Hardware-confirmed.**'
 date: '2026-09-19'
-category: _triage
+category: text
 build: acnl_jpn_v15
 confidence: ''
 tool: Ghidra

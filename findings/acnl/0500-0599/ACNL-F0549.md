@@ -5,7 +5,7 @@ aliases:
 title: 不可視だった UnitCursor は生のゲーム座標に置かれていた（2026-09-20、HIGH、静的＋実機、自己訂正）
 summary: '解析ソフト: IDA / 解析モデル: opus-5。`tools/hw/unitcursor_hw.py:356` は node行列を'
 date: '2026-09-20'
-category: _triage
+category: render
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA

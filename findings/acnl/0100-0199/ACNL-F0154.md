@@ -5,7 +5,7 @@ aliases:
 title: 'F-116: ★★TODO-75 第1段達成 — シーンへノードを追加できた。あわせて Suspend の条件を確定'
 summary: 'confidence: **HIGH**（実機。対照実験つき）'
 date: '2026-08-24'
-category: _triage
+category: _product
 build: acnl_jpn_v15
 confidence: HIGH
 tool: IDA
