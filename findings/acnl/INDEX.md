@@ -233,7 +233,7 @@
 | ACNL-F0227 | F-202: ★★★メインリストの末尾に積んでも UI は描かれない。2 回目のクラッシュの原因 — `HIGH`（実機） | HIGH | ? | active |  |  |
 | ACNL-F0228 | F-203: ★★★★★最後に再生されるレイアウトは固定。注入点が確定 — `HIGH`（実機 301 フレーム） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0229 | F-204: ★★★レイアウトの記録は「記録要求フラグ」が立っているときだけ走る — `HIGH`（静的＋実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
-| ACNL-F0230 | F-205: ★★★★「最後に再生される」は画面（描画パス）ごとに違う — `HIGH`（実機 120 フレーム） | HIGH | ? | consolidated | topics/acnl/ui.md | 訂正あり |
+| ACNL-F0230 | F-205: ★★★★「最後に再生される」は画面（描画パス）ごとに違う — `HIGH`（実機 120 フレーム） | HIGH | ? | superseded | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0231 | F-206: ★★★★色とテクスチャの出所は「マテリアル」。自前で積まないと直前のペインのものになる — `HIGH`（実機） | HIGH | ? | active |  |  |
 | ACNL-F0232 | F-207: ★★★★★`drawctx+1692` が 0 だと UV が読まれずテクスチャ全面が貼られる — `HIGH`（実機） | HIGH | ? | active |  |  |
 | ACNL-F0233 | F-208: ★★★★★レイアウトごとに投影が違う。相乗り先を変えたら縮尺を測り直す — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
@@ -279,9 +279,9 @@
 | ACNL-F0273 | F-250: 未設定の変数に対する比較が 712 件を無音にしていた — `HIGH`（全件バッチで確認） | HIGH | ? | active |  |  |
 | ACNL-F0274 | F-251: 合成の 4 つの欠陥を実機との聴き比べで修正 — `HIGH`（利用者が実機一致を確認） | HIGH | ? | active |  |  |
 | ACNL-F0275 | F-252: 2D レイアウトの描画は「1 本のリストを画面ごとに 2 回再生」する — `HIGH`（静的。動的照合は未実施） | HIGH | ? | consolidated | topics/acnl/ui.md | 訂正あり |
-| ACNL-F0276 | F-253: ★★★★★描画パスは 3 本。`Frame_DrawPass1040` は下画面ではなく「上画面の右目」 — `HIGH`（静的＋実機の独立 2 系統） | HIGH | ? | active |  |  |
-| ACNL-F0277 | F-254: ★★★★★自前の Layout ノードを登録すれば、上下とも「最前面」に必ず入れる — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
-| ACNL-F0278 | F-255: 自前 Layout ノードから実際に描けた。ロード画像より前面 — `HIGH`（実機・目視） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0276 | F-253: ★★★★★描画パスは 3 本。`Frame_DrawPass1040` は下画面ではなく「上画面の右目」 — `HIGH`（静的＋実機の独立 2 系統） | HIGH | ? | superseded |  |  |
+| ACNL-F0277 | F-254: ★★★★★自前の Layout ノードを登録すれば、上下とも「最前面」に必ず入れる — `HIGH`（実機） | HIGH | ? | superseded | topics/acnl/ui.md |  |
+| ACNL-F0278 | F-255: 自前 Layout ノードから実際に描けた。ロード画像より前面 — `HIGH`（実機・目視） | HIGH | ? | superseded | topics/acnl/ui.md |  |
 | ACNL-F0279 | F-256: ★★★★★ゲームがそのパスで 1 枚も描いていないと、描画コマンドを積んだ瞬間に GPU が止まる — `HIGH`（実機で二分により確定） | HIGH | ? | active |  |  |
 | ACNL-F0280 | F-257: ★★★★F-256 のゲートの正体は「ゲームが**記録し直した**フレームだけ描く」だった — `HIGH`（実機・目視） | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0281 | F-258: 作業配列を自前バッファへ差し替える案は失敗した — `HIGH`（実機・目視） | HIGH | ? | active |  | 訂正あり |
@@ -298,7 +298,7 @@
 | ACNL-F0292 | F-269: TEV を自前で組んだ。**設計から借り物が消えた** — `HIGH`（静的のみ） | HIGH | ? | active |  |  |
 | ACNL-F0293 | F-270: ★★★★DrawBegin1 は **テクスチャユニットを全部無効にする**。自前記録では立て直さないとテクスチャが読まれない — `HIGH`（静的 + 過去の実測列） | HIGH | ? | active |  |  |
 | ACNL-F0294 | F-271: ★★★★★`TextBox_UpdateDrawState`(`0x4B7DEC`) が「テクスチャ付き描画へ切り替える」全手順。実測列の全項目がこれで説明できた — `HIGH`（静的 + F-124 の実測列） | HIGH | ? | active |  |  |
-| ACNL-F0295 | F-272: F-264〜F-271 の整合監査。独立な結果と突き合わせて 1 件の誤りを訂正し、`SET_PROJECTION` を廃止した — `HIGH` | HIGH | ? | active |  |  |
+| ACNL-F0295 | F-272: F-264〜F-271 の整合監査。独立な結果と突き合わせて 1 件の誤りを訂正し、`SET_PROJECTION` を廃止した — `HIGH` | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0296 | `SET_PROJECTION` を廃止した |  | ? | active |  |  |
 | ACNL-F0297 | F-273: ★★★★★致命的なバグ。記録スロットのエピローグが `R4` = drawctx のまま `Commit` していた — `HIGH`（静的のみ・未適用） | HIGH | ? | active |  |  |
 | ACNL-F0298 | F-274: `sub_2F858C` は **3 引数の memcpy**。decompiler が R1/R2 を落としていた — `HIGH`（アセンブリ） | HIGH | ? | active |  |  |
