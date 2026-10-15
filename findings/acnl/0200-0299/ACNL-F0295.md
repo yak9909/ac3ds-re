@@ -29,6 +29,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0693", "ACNL-F0694"]
 ---
 ## F-272: F-264〜F-271 の整合監査。独立な結果と突き合わせて 1 件の誤りを訂正し、`SET_PROJECTION` を廃止した — `HIGH`
 

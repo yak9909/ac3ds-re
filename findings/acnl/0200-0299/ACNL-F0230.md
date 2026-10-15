@@ -17,10 +17,10 @@ source: v1:RE/FINDINGS.md:12590-12617
 by: unknown
 original_by: ''
 reviewed_by: []
-state: consolidated
+state: superseded
 consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0693
 corrected_by: ["ACNL-F0276"]
 ---
 ## F-205: ★★★★「最後に再生される」は画面（描画パス）ごとに違う — `HIGH`（実機 120 フレーム）

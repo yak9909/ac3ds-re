@@ -39,7 +39,7 @@ state: consolidated
 consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
 superseded_by: ''
-corrected_by: ["ACNL-F0276", "ACNL-F0295"]
+corrected_by: ["ACNL-F0276", "ACNL-F0295", "ACNL-F0693"]
 ---
 ## F-252: 2D レイアウトの描画は「1 本のリストを画面ごとに 2 回再生」する — `HIGH`（静的。動的照合は未実施）
 

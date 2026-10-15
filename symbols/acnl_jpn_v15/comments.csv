@@ -849,8 +849,9 @@ IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent calle
 0x001B71C4,line,F-233 dynamic: pass 1024（上画面）の次に pass 1040、さらに次フレームの 1024。thread 219 / caller LR=0x543C6C。
 0x001B71C4,repeatable,F-233 dynamic: pass 1024（上画面）の次に pass 1040、さらに次フレームの 1024。thread 219 / caller LR=0x543C6C。
 0x001B72B8,line,F-233: Frame_EndDrawPass1024 呼出し。全 scene/layout 処理後の位置だが、callee は通常早期 return。上画面末尾注入の候補。stock の SplitAndSubmit を前提にしない。
-0x001B72E4,func,V2-F024: F-253（実測 HIGH）のとおり display=0x410 は**上画面の右目**で下画面ではない。実行順は 0x400（上左）→ 0x410（上右）→ 0x401（下）で、Render_FrameEnd はこのパスの末尾。したがって **1 フレームに 1 回、上左パスの前に submit すれば両目に描かれる**
-0x001B72E4,line,F-233 dynamic: pass 1040（下画面）は pass 1024 の後、Render_FrameEnd の前。次は pass 1024。thread 219 / caller LR=0x543C6C。
+0x001B72E4,func,"[ACNL-F0693][ACNL-F0694] MEDIUM: display 0x410 is top-right, not bottom. Layout replay is followed by Render_DrawScene1. Full runtime pass order remains unverified here.
+V2-F024: F-253（実測 HIGH）のとおり display=0x410 は**上画面の右目**で下画面ではない。実行順は 0x400（上左）→ 0x410（上右）→ 0x401（下）で、Render_FrameEnd はこのパスの末尾。したがって **1 フレームに 1 回、上左パスの前に submit すれば両目に描かれる**"
+0x001B72E4,line,[ACNL-F0693] top-right pass (0x410). Old bottom-screen annotation rejected; frame-wide runtime order not remeasured.
 0x001B72E4,repeatable,F-233 dynamic: pass 1040（下画面）は pass 1024 の後、Render_FrameEnd の前。次は pass 1024。thread 219 / caller LR=0x543C6C。
 0x001B739C,line,F-233: Frame_EndDrawPass1040 呼出し。callee は通常早期 return。直後の Render_FrameEnd も scene/context reset であり、この2関数を通常 submit と誤認しない。
 0x001B7874,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Full40B native touch recurrence independently rechecked for chat overlay routing; inherited MapModeList TouchNext reproduces this recurrence for raw CTRPF input. No GPU/hardware claim.
@@ -3329,7 +3330,7 @@ while(1) { vtbl[0x64](this); }  = Framework_ProcOneFrame を回すだけ。
 0x00566A30,repeatable,"Vapecord plugin ADDRESSES: HORPLAYER
 他地域: USA=005680F8  EUR=00567140  KOR=00566750
 （プラグイン作者のラベル。検証済みの識別ではない）"
-0x00566DF8,func,"F-237 HIGH: upper-screen layout phase. Calls LayoutList vslot +0x08 (RecordChildren), sets 400x240, then calls LayoutList_SetDisplay(list, 0x400). Dynamic title BP hit at child call: LR=0x1B7294 (Frame_DrawPass1024), R0=root+4, R1=0x400."
+0x00566DF8,func,"[ACNL-F0693] MEDIUM: top-left Layout phase: RecordChildren(mgr+4), viewport 400x240, replay display 0x400. Retains list until top-right phase. Viewport is separate from per-Layout projection."
 0x00566DF8,line,"F-237 HIGH: 上画面のレイアウトフェーズ。
   (1) LayoutList vslot +0x08 = RecordChildren(mgr+4)   ← ここで各 Layout の記録が走る
   (2) SetDisplaySize(mgr, 400, 240)                     ← ビューポート。主リストへ直接出る
@@ -3352,13 +3353,13 @@ while(1) { vtbl[0x64](this); }  = Framework_ProcOneFrame を回すだけ。
     投影は **各 Layout の +0x28 / +0x2C**（幅・高さ）から作られる（F-265 / F-266）。
   ・旧経路の「横 0.8 / 縦 1.0」は、相乗り先の Layout 自身の +0x28 が 400 だったからであり、
     パスの SetDisplaySize のせいではない。F-208「レイアウトごとに投影が違う」が正しい。"
-0x00566E1C,line,"F-252: 上画面も SetDisplaySize(0x190,0xF0)=400x240。直後の SetDisplay には display=0x400 を渡す。投影幅が両画面 400 なので、実幅 320 の下画面では 1 単位 = 0.8px。F-208 の実測「横 0.8 / 縦 1.0」と独立に一致する。"
-0x00566E2C,line,F-252: 上画面 display = 0x400 = 1024。SetDisplaySize は下画面と同じ 400x240。投影が両画面 400 幅なので、下画面（実幅 320）では 1 単位 = 0.8px になる。F-208 で実測した「横 0.8 / 縦 1.0」と独立に一致する。
-0x00566E30,func,"F-237 HIGH: iterates LayoutList child links in +8 order; for each Layout writes display token to +0x134 then calls Layout vslot +0x08 (Layout_ReplayRecordedList). This is the safe order-control hook point: defer a chosen target once and replay it after the other nodes, without persistently modifying +4/+8 links. External gokiro render.txt independently describes the same RenderTop/SetDisplay separation."
+0x00566E1C,line,[ACNL-F0693] viewport 400x240 for top-left; bottom separately sets 320x240. Not a common projection matrix.
+0x00566E2C,line,[ACNL-F0693] source NOP falls through to SetDisplay at 0x566E30; R1=0x400. Per-Layout projection is separate.
+0x00566E30,func,"[ACNL-F0693][ACNL-F0694] MEDIUM: head/list+4, next/node+8; set node+0x134=display then invoke node vslot+8. Exit means synchronous callbacks returned, not GPU completion or unconditional frontmost pixels."
 0x00566E30,line,"F-237: replay-order loop, not record loop. Iterates LayoutList+4 via node+8; writes Layout+0x134=display and calls Layout vslot +0x08 (ReplayRecordedList). Safe ordering probe defers only a pointer found in current top list; no node links changed."
 0x00566E30,repeatable,"F-237: replay-order loop, not record loop. Iterates LayoutList+4 via node+8; writes Layout+0x134=display and calls Layout vslot +0x08 (ReplayRecordedList). Safe ordering probe defers only a pointer found in current top list; no node links changed."
-0x00566E64,line,F-252: LayoutList_SetDisplay の唯一の出口。ここに到達した時点でその画面の全 Layout の replay が済んでいる。R5 には display トークン（0x400=上 / 0x410=下）が残っている（callee-saved かつ入口以降未変更）。自前 GUI を「その画面の最前面」に積む注入点の第一候補。Layout の記録リスト（容量 0x1000 級）ではなく主リストへ積めるため F-232 の容量超過を回避できる。
-0x00566E68,line,F-253: LayoutMgr_AddLayout の挿入本体。list+4 から node+8 を辿り、Layout+0x0C（バイト）の昇順で挿入位置を決める。描画順＝この優先度順。
+0x00566E64,line,"[ACNL-F0693][ACNL-F0695] end of this pass list callback walk; R5 preserves display (0x400/0x410 top eyes, 0x401 bottom). Not GPU completion, fixed projection, or unlimited capacity."
+0x00566E68,line,"[ACNL-F0694] insertion body: LDRB priorities; BLS advances over <=, so equal values preserve registration order."
 0x00566EA0,func,"F-236 MEDIUM: RTTI LayoutList vtable entry. Static body walks list+4, follows each node+8, and calls child vslot +0x14. Layout's vslot +0x14 is Layout_RecordPaneTree (0x5686D4); this is the record-children walk (external render.txt matches the shape but is non-primary)."
 0x00567244,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。ArcResAccReader_LoadArcStepのarc写しは0x96FC40側のallocator/heapへ渡る。nwlytのBuild/UiAnim実体は別の全体allocator0x96F150だが初期化では同じheap。arc写しの移設は今回未採用。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
 0x00567244,line,"IDA-opus-5.5-F036: arc 読み込み(holder, path)。終わるまで 0 を返すので毎フレーム呼ぶ。テクスチャは VRAM"
@@ -3402,6 +3403,7 @@ IDA-gpt-6-F014: T017 calls native LayoutCalc for the current pocket background w
 0x00568030,repeatable,"Vapecord plugin ADDRESSES: ACSYSTEM_DATA2
 他地域: USA=005696F8  EUR=00568740  KOR=00567D50
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x005682DC,func,"[ACNL-F0693][ACNL-F0695] MEDIUM: scissor precedes recorded-length gate. Stereo condition is Layout+0x120 (R5=Layout+0x100, LDRB [R5,#0x20]), NOT +0x320. +0x124 sign differs for 0x400/0x410; recorded replay arguments exclude display."
 0x005682DC,line,"★F-265 追記: +0x108 > 0 のとき sub_4B8C34(drawer, this+0x30, 0) を呼ぶ。
 これが **this+0x34 の 16 語を VSH float uniform（投影行列）として吐く**。
 従って自前ノードがこの関数を再生スロットに使う場合、投影は自前ノード +0x34 で決まる。"
@@ -3410,7 +3412,8 @@ IDA-gpt-6-F014: T017 calls native LayoutCalc for the current pocket background w
 従って自前ノードがこの関数を再生スロットに使う場合、投影は自前ノード +0x34 で決まる。"
 0x0056832C,line,"IDA-opus-5.5-F095 (HIGH: static + hardware 2026-10-06): Layout+0x138 (u8) == 1 -> PICA scissor mode 3 (reg 0x65) from floats +0x13C/+0x140/+0x144/+0x148, in framebuffer orientation (both axes reversed). low16 = +0x140 .. +0x140+(+0x148)-1 (clamped by +0x2C), high16 = +0x13C .. +0x13C+(+0x144)-1 (clamped by +0x28). Bottom-screen pixel rect [x0,x1)x[y0,y1): +0x13C = 320-x1, +0x140 = 240-y1, +0x144 = x1-x0, +0x148 = y1-y0 (hardware: +0x140 = y0 cut everything; 240-y1 clipped exactly at the rect). Emitted every replay even when +0x108==0. Else: mode 0 full screen."
 0x0056835C,line,"F-240 static: Layout+0x108 <= 0 returns before Drawer setup or GpuCmd_ReplayRecordedListRange. Dynamic user-visible-loader stop had current top Layout 0x3225B070 with +0x108=0, so that node cannot be the direct replay source at that instant."
-0x00568368,line,F-252: Layout+0x134 は SetDisplay が書いた display トークン。ここは画面フィルタではなく立体視/画面別オフセットの選択である。0x400/0x410 かつ Layout+0x320 のバイトが 1 の時だけ 0x568574 へ行き、Layout+0x124 の float を S17 に読む（0x400 側は符号反転）。replay 自体は display に関係なく実行される。
+0x00568368,line,"[ACNL-F0693] display affects stereo offset, not replay filter. Conditional byte at +0x120 (NOT +0x320); +0x124 is negated for 0x400."
+0x00568374,line,"[ACNL-F0693] R5=Layout+0x100, displacement=0x20 => Layout+0x120. Old +0x320 annotation is incorrect."
 0x005683C4,line,"F-234: replay 前に sub_4B8C34(Drawer, Layout+0x30, 0) で Layout の描画コンテキストを inline Drawer へ反映する。sub_4D6C90 の変換後 fingerprint で実機 Layout を独立同定可能。"
 0x005683E4,line,"F-233/F-234 訂正: 引数は Layout+0x100=id, +0x104=start, +0x108=length, +0x10C=aux。通常場面の一標本は id30。ロード画像表示中の上 pass は低レベル trace で id8 len0x180 → id10 len0x2C0。id10 は save_wait/load リソースを直接保持する現在のロード画像 Layout。旧「ロード中 id30」は誤り。"
 0x005685A4,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。Layout_Buildはcommandを0x121988経由のa1[5]へ、nwlyt資源実体を全体allocator0x96F150へ分ける。holderを変えても後者の割当先は変わらない。ゲーム全体allocatorを一時差替える移設案は採用しない。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
@@ -3456,20 +3459,24 @@ SetFrame: UiAnim+0x08/+0x0C、AnimTransform+0x10へ時刻値を設定する。Pa
 0x00568C00,repeatable,IDA-opus-5.5-F036: UiAnim_SetFrame(anim)。値は VFP s0。+8/+12 と結合先(+24)+16 に書く
 0x00568CFC,func,"IDA-opus-5.5-F073: ArcResAccReader のテクスチャ登録。holder+8 の DARC の timg/*.bclim を nwlyt_ArcResourceAccessor_GetTexture で VRAM へ。holder+8 とアクセサだけを読む（読み込み係 +0x15C は見ない）。
 IDA-gpt-6.1-sol-F009 / T022 fix6 / MEDIUM: T022では所属arcのtimg全件登録が対象。未使用mainのBCLIMとBCLANを分離するため、家具329256 B/壁床184488 Bの各DARCへ必要な参照だけを同梱。CPU解析・独立DARC/BCLYT/CLANの所属参照検査で照合。GPUが読むテクスチャの割当先やアドレス変換は変更していない。"
-0x00568F98,func,IDA-gpt-6.1-sol-F002: MEDIUM追補: 下画面リストmgr+16の記録/replay後0x133B20で全nodeのnext/prevを0にする。inactive chipだけではリスト未所属を保証できず、再構築にはこの終了境界/所属照合が必要。
+0x00568F98,func,"[ACNL-F0693] MEDIUM: bottom Layout phase: RecordChildren(mgr+0x10), viewport 320x240, replay 0x401, then clear list/node links.
+IDA-gpt-6.1-sol-F002: MEDIUM追補: 下画面リストmgr+16の記録/replay後0x133B20で全nodeのnext/prevを0にする。inactive chipだけではリスト未所属を保証できず、再構築にはこの終了境界/所属照合が必要。"
 0x00568F98,line,"F-253 HIGH: ★下画面の LayoutMgr 側。mgr+0x10 のリストを記録し、SetDisplaySize(0x140,0xF0)=320x240 を設定し、display=0x401 で replay してから UnlinkAll する。render.txt の LayoutMgr::RenderBottom はこの関数に対応する（0x5692B0 ではない）。"
 0x00568F98,repeatable,"F-253 HIGH: ★下画面の LayoutMgr 側。mgr+0x10 のリストを記録し、SetDisplaySize(0x140,0xF0)=320x240 を設定し、display=0x401 で replay してから UnlinkAll する。render.txt の LayoutMgr::RenderBottom はこの関数に対応する（0x5692B0 ではない）。"
-0x00569180,line,F-252: LayoutMgr の生成。mgr+0x00=vtbl_LayoutMgr / mgr+0x04=LayoutList（12バイト: vtable/head/tail）/ mgr+0x10 は同じく LayoutList の vtable で初期化されるが sub_566F44 が vtbl_ssys_ma_lyt_TexBufList へ差し替える派生である。したがって ACNL JPN の LayoutMgr が持つ Layout 用のリストは mgr+4 の 1 本だけ。render.txt の m_LayoutListTop / m_LayoutListBottom という 2 本構成とは異なる。
+0x00569180,func,"[ACNL-F0693] MEDIUM: creates TWO LayoutList objects at mgr+4 and mgr+0x10 with the same vtable. sub_566F44 is a separate TexBufList destruction path, not called here."
+0x00569180,line,[ACNL-F0693] constructor writes LayoutList vtable at mgr+4 and mgr+0x10. TexBufList destructor is unrelated.
 0x00569180,repeatable,F-252: LayoutMgr の生成。mgr+0x00=vtbl_LayoutMgr / mgr+0x04=LayoutList（12バイト: vtable/head/tail）/ mgr+0x10 は同じく LayoutList の vtable で初期化されるが sub_566F44 が vtbl_ssys_ma_lyt_TexBufList へ差し替える派生である。したがって ACNL JPN の LayoutMgr が持つ Layout 用のリストは mgr+4 の 1 本だけ。render.txt の m_LayoutListTop / m_LayoutListBottom という 2 本構成とは異なる。
 0x005691F4,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。HIGH（親の両allocator heap実値一致と静的）。2D_UI_Heapを一度生成し、0x96FC3Cと0x96FC40のssys::ma::Allocator+4へ同じheapを設定。前者のnwlyt/UiAnimと後者のarc写しはheapを共有する。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
-0x0056928C,func,"IDA-gpt-6.1-sol-F002: MEDIUM追補: Layout+12の優先度でintrusive listへ挿入し次node+8を使う。同フレーム同じLayoutをEditor全体/親経由で重複追加しない。新品Chipは次回Editor_SubmitLayoutsへ任せる。
+0x0056928C,func,"[ACNL-F0694] MEDIUM: screen 0 -> mgr+4, 1 -> mgr+0x10; unsigned byte priority at node+0x0C, stable ascending insertion. 0xFF is tail AT INSERTION; later equal-priority registration can follow. Membership validation is incomplete.
+IDA-gpt-6.1-sol-F002: MEDIUM追補: Layout+12の優先度でintrusive listへ挿入し次node+8を使う。同フレーム同じLayoutをEditor全体/親経由で重複追加しない。新品Chipは次回Editor_SubmitLayoutsへ任せる。
 IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). F012 confirms ascending priority by original sort branch and ItemDragWindow priority0x83 caller. Private trash0x84 is in front of pocket background, below native option window; hardware ordering pending."
-0x0056928C,line,"F-253 HIGH: ★LayoutMgr::AddLayout(mgr, layout, screen)。screen=0 → mgr+4（上画面）、screen=1 → mgr+0x10（下画面）、それ以外は何もしない。挿入は loc_566E68 の昇順ソートで、キーは【Layout+0x0C のバイト】。node[+0x0C] <= 新規[+0x0C] の間だけ進むので、0xFF を入れれば必ず末尾＝最前面になる。リストは毎フレーム UnlinkAll されるため、毎フレーム登録し直す設計になっている。"
+0x0056928C,line,"[ACNL-F0694] stable ascending unsigned byte priority; 0xFF tail only at insertion, later equal values follow."
 0x0056928C,repeatable,"F-253 HIGH: ★LayoutMgr::AddLayout(mgr, layout, screen)。screen=0 → mgr+4（上画面）、screen=1 → mgr+0x10（下画面）、それ以外は何もしない。挿入は loc_566E68 の昇順ソートで、キーは【Layout+0x0C のバイト】。node[+0x0C] <= 新規[+0x0C] の間だけ進むので、0xFF を入れれば必ず末尾＝最前面になる。リストは毎フレーム UnlinkAll されるため、毎フレーム登録し直す設計になっている。"
 0x0056929C,line,list
-0x005692B0,line,F-253 HIGH: ★これは下画面ではなく【上画面の右目】。display=0x410、投影 400x240、リストは mgr+4 で RenderTop と同一。記録し直さず replay だけ行い、最後に mgr+4 を UnlinkAll する。実測で 0x400 と 0x410 の Layout 再生数は完全に一致（7/7）、0x401 だけ 8 で別リストであることを裏付けた。F-205 の「パス1040=下画面」は、当時 3 本目のパスに印を付けていなかったための誤りである。
+0x005692B0,func,"[ACNL-F0693] MEDIUM: top-right Layout phase: viewport 400x240, replay mgr+4 with 0x410, then UnlinkAll(mgr+4). No record walk. Table placement alone does not prove runtime frame order."
+0x005692B0,line,"[ACNL-F0693] top-right: viewport 400x240, replay shared top list, then unlink; no record walk."
 0x005692B0,repeatable,F-253 HIGH: ★これは下画面ではなく【上画面の右目】。display=0x410、投影 400x240、リストは mgr+4 で RenderTop と同一。記録し直さず replay だけ行い、最後に mgr+4 を UnlinkAll する。実測で 0x400 と 0x410 の Layout 再生数は完全に一致（7/7）、0x401 だけ 8 で別リストであることを裏付けた。F-205 の「パス1040=下画面」は、当時 3 本目のパスに印を付けていなかったための誤りである。
-0x005692C4,line,F-252: 下画面 display = 0x410 = 1040。Frame_DrawPass1040 が Render_DrawScene0/1 に渡す 1040 と同じ値。
+0x005692C4,line,[ACNL-F0693] 0x410 = top-right eye. Bottom pass uses 0x401.
 0x005692DC,line,"★F-265 / F-272: これが出すのは **ビューポート**であって投影行列ではない。
   h*0.5 / 2.0/h / w*0.5 / 2.0/w / 深度範囲 を float24 へ符号化し、
   56 バイト + unk_8A8668 の 64 バイトを sub_7AFDD0 で積む。
@@ -5610,6 +5617,7 @@ IDA-gpt-6.1-sol-F012 / MEDIUM追補。壁も層0/親なし・Finalize bit1後な
   *a1 = start（=dword_AD9A28）/ *a2 = len（現在 offset - start）/
   *a3 = qStart（=dword_AD9A2C）/ *a4 = qCount（件数 - qStart）を書き出す。
   Layout では a1..a4 = L+0x104 / +0x108 / +0x10C / +0x110。"
+0x007B0A28,func,"[ACNL-F0695] MEDIUM: refresh current offset from cursor-base, compare submitted offset. Depending on argument7/queue count/type, split or merge pending range into first command entry. No unconditional submission/display guarantee."
 0x007B0A28,line,"★★GpuCmd_ReplayRecordedListRange(listId, off, len, qStart, qCount, flags, allowNoSplit)
   — 記録済みリストを現在のリストへ**再生**する — F-145 / F-200 / F-201
 
