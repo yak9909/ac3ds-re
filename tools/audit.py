@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import fnmatch
+import hashlib
 import os
 import re
 import subprocess
@@ -17,6 +18,8 @@ FORBIDDEN_EXT = {".cia", ".3ds", ".cci", ".cxi", ".app", ".bin", ".elf", ".3gx",
                  ".id1", ".id2", ".nam", ".til", ".gpr", ".rep", ".sav", ".dmp", ".zip", ".7z"}
 TEXT_EXT = {".md", ".toml", ".py", ".yml", ".yaml", ".csv", ".h", ".txt", ".json", ".ps1"}
 MAX_SIZE = 1024 * 1024
+TASK_MAX_SIZE = 64 * 1024
+TASK_FILES = {".task/notes.md", ".task/report.md"}
 # .gitignore のホワイトリストと同じ一覧
 ALLOWED_TOP_FILES = {".gitignore", ".gitattributes", "README.md", "AGENTS.md", "CLAUDE.md", "LICENSE"}
 ALLOWED_TOP_DIRS = {".github", ".githooks", "skills", "meta", "findings", "topics", "symbols", "archive",
@@ -77,7 +80,7 @@ def _emails(line: str):
     """(アドレス, ドメイン) を返す。@ ごとに前後の限られた範囲だけを調べるので、行の長さに対して線形。"""
     i = line.find("@")
     while i != -1:
-        if i > 0 and line[i - 1] in _LOCAL_CH:
+        if i > 0 and line[i - 1] in _LOCAL_CH and line.find(".", i + 1, i + 1 + 255) != -1:
             lm = _LOCAL_TAIL.search(line, max(0, i - 64), i)
             dm = _DOMAIN.match(line, i + 1, min(len(line), i + 1 + 255))
             if lm and dm:
@@ -94,6 +97,13 @@ SECRETS = [
     (re.compile(r"\bAKIA[0-9A-Z]{16}"), "AWS のアクセスキーらしい値"),
     (re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"), "秘密鍵"),
 ]
+DECOMP_CALL = re.compile(r"\b__(?:fast" r"call|cdecl|stdcall|thiscall|usercall)\b")
+DECOMP_TYPE = re.compile(r"\b(?:_(?:BYTE|WORD|DWORD|QWORD|OWORD)|__int(?:8|16|32|64))\b")
+DECOMP_MACRO = re.compile(r"\b(?:LO|HI)(?:BYTE|WORD|DWORD)\s*\(")
+DECOMP_LOCAL = re.compile(
+    r"^\s*(?:(?:const|signed|unsigned)\s+)*(?:[A-Za-z_]\w*\s+)+\**\s*v\d+\s*(?:\[[^]]+\])?\s*;"
+    r"\s*//\s*(?:r\d+\b|\[sp[^]]*\]\s*\[bp[^]]*\])"
+)
 
 
 def _name_ignored(n: str) -> bool:
@@ -106,12 +116,21 @@ def scan_text(path: str, text: str, allow: list[dict] | None = None) -> list[Pro
         allow = load_allow()
     path = path.replace("\\", "/")
     out: list[Problem] = []
+    decomp_lines: list[tuple[int, str]] = []
 
     def add(ln: int, reason: str, match: str) -> None:
         if not is_allowed(path, match, allow):
             out.append(Problem(path, ln, reason, match))
 
     for ln, line in enumerate(text.split("\n"), 1):
+        # symbols の CSV は型・関数宣言、型ヘッダはフィールド定義を正規データとして持つ。
+        csv_row = path.endswith(".csv") and re.match(r"^0x[0-9A-Fa-f]+,", line)
+        type_hit = (DECOMP_TYPE.search(line) and ";" in line
+                    and not fnmatch.fnmatchcase(path, "symbols/*/types/*.h") and not csv_row)
+        macro_hit = DECOMP_MACRO.search(line)
+        call_hit = DECOMP_CALL.search(line) and not csv_row
+        if call_hit or macro_hit or DECOMP_LOCAL.search(line) or type_hit:
+            decomp_lines.append((ln, line.strip()))
         for rx, label in ((WIN_USER, "Windows のユーザーのパス"), (HOME_USER, "/home のユーザーのパス"),
                           (MAC_USER, "/Users のユーザーのパス")):
             for m in rx.finditer(line):
@@ -135,6 +154,9 @@ def scan_text(path: str, text: str, allow: list[dict] | None = None) -> list[Pro
         for rx, label in SECRETS:
             for m in rx.finditer(line):
                 add(ln, "秘密: " + label, m.group(0))
+    if len(decomp_lines) >= 3:
+        digest = hashlib.sha256("\n".join(line for _, line in decomp_lines).encode("utf-8")).hexdigest()
+        add(decomp_lines[0][0], "逆コンパイラの出力らしい行が %d 行" % len(decomp_lines), "疑似C:" + digest)
     return out
 
 
@@ -159,6 +181,11 @@ def scan_file(path: str, data: bytes, allow: list[dict], main_mode: bool = False
             add("許可された場所の外のファイル")
     elif top not in ALLOWED_TOP_DIRS:
         add("許可された場所の外のファイル")
+    if top == ".task":
+        if path not in TASK_FILES:
+            add(".task/ に許可されていないファイル")
+        elif len(data) > TASK_MAX_SIZE:
+            add(".task/ のファイルが 64KB を超えている")
     if main_mode and top == ".task":
         add(".task/ は main に置けない")
     # 大きさ
