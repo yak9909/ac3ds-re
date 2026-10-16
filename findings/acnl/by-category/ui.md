@@ -74,7 +74,7 @@
 | ACNL-F0702 | Fade とロード画像の登録順・状態別の描画元（再解析） | Fade と BlackWait の loader は優先度0xFFを共有し、確認した更新経路ではFadeが先に登録される。loaderの登録有無は状態、画像資源は種類欄で変わる。 | MEDIUM | A |  |  |
 | ACNL-F0703 | loader ID の十進10と0x10は異なり、旧bucket照合は0x0Aを指す（再解析） | 0xAD9904はID 10（0x0A）のbucketであり、ID 0x10は0xAD991Cを使う。F0261の同ID・同managerという照合は成立しない。 | MEDIUM | A |  |  |
 | ACNL-F0704 | Fade の記録保持とゼロ長Layoutから画像源を判定する限界（再解析） | 保存長は記録要求やFade状態とは独立するが、Fade終了処理も再計算を要求する。ゼロ長guardが止めるのは記録範囲の再生であり、過去に表示された画像の出どころまでは決めない。 | MEDIUM | A |  |  |
-| ACNL-F0705 | Picture・Material の別確保と可変長ブロックの実配置（再解析） | Picture は 0x158 バイトで、Material 0x50 バイトと座標配列を別に確保する。Material の可変長領域は容量欄で区切られ、TEV は AlphaCompare・BlendMode より後ろにある。 | MEDIUM | 未記入 |  |  |
-| ACNL-F0706 | TexMap のレジスタ派生値と Picture の UV キャッシュ（再解析） | TexMap の +0x14/+0x18/+0x1C は再生成される値で、Picture の UV 結果は別の二つの有効フラグにより再計算する。CPU キャッシュ更新と GPU 状態送出は別処理である。 | MEDIUM | 未記入 |  |  |
-| ACNL-F0707 | Pane 木の可視走査と Layout 記録・Picture 描画（再解析） | 基底 Layout は可視 root の Pane 木を子リンク順に記録し、Picture は材質状態と幾何・色・UVをバッチへ追加する。頂点色の入力と TEV 構成、バッチ残量の検査とコマンド領域容量は別である。 | MEDIUM | 未記入 |  |  |
-| ACNL-F0708 | Picture の材質共有は無効化・所有と資源寿命の条件を持つ（再解析） | Picture は共有 Material を直接読む一方、UV 有効フラグを書き換える。標準破棄はフラグ次第で Material と別配列を解放するため、共有描画から安全な寿命や再確保は保証できない。 | MEDIUM | 未記入 |  |  |
+| ACNL-F0705 | Picture・Material の別確保と可変長ブロックの実配置（再解析） | Picture は 0x158 バイトで、Material 0x50 バイトと座標配列を別に確保する。Material の可変長領域は容量欄で区切られ、TEV は AlphaCompare・BlendMode より後ろにある。 | MEDIUM | A |  |  |
+| ACNL-F0706 | TexMap のレジスタ派生値と Picture の UV キャッシュ（再解析） | TexMap の +0x14/+0x18/+0x1C は再生成される値で、Picture の UV 結果は別の二つの有効フラグにより再計算する。CPU キャッシュ更新と GPU 状態送出は別処理である。 | MEDIUM | A |  |  |
+| ACNL-F0707 | Pane 木の可視走査と Layout 記録・Picture 描画（再解析） | 基底 Layout は可視 root の Pane 木を子リンク順に記録し、Picture は材質状態と幾何・色・UVをバッチへ追加する。頂点色の入力と TEV 構成、バッチ残量の検査とコマンド領域容量は別である。 | MEDIUM | A |  |  |
+| ACNL-F0708 | Picture の材質共有は無効化・所有と資源寿命の条件を持つ（再解析） | Picture は共有 Material を直接読む一方、UV 有効フラグを書き換える。標準破棄はフラグ次第で Material と別配列を解放するため、共有描画から安全な寿命や再確保は保証できない。 | MEDIUM | A |  |  |
