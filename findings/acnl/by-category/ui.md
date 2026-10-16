@@ -40,13 +40,13 @@
 | ACNL-F0278 | F-255: 自前 Layout ノードから実際に描けた。ロード画像より前面 — `HIGH`（実機・目視） | F-254 の空ノードに描画を載せた。`PATCHES/cave_node_draw.py` | HIGH | ? | topics/acnl/ui.md |  |
 | ACNL-F0287 | F-264: 自前ノードの幅・高さは雛形任せにせず画面実寸を明示する — `HIGH`（静的のみ） | `Layout_ReplayRecordedList`（`0x5682DC`）は scissor コマンドの値を | HIGH | ? | topics/acnl/ui.md |  |
 | ACNL-F0288 | F-265: ★★★★★UI の投影行列の出所を確定した。**Layout+0x34 の 16 語**であり、記録時ではなく**再生時**に GPU へ流れる — `HIGH`（静的のみ） | 長年「投影は直前の有効 Layout が Drawer に残した状態へ依存する」（F-233/F-234） | HIGH | ? | topics/acnl/ui.md |  |
-| ACNL-F0303 | F-278: 座標系を上下とも静的に確定した。**1 単位 = 1px、原点は画面中央**。`c4` は恒久的にゼロ — `HIGH`（静的、実機実測と一致） | `nwlyt_Drawer_EmitProjectionUniform` が吐く 24 語を機械的に展開した。 | HIGH | ? | topics/acnl/ui.md |  |
+| ACNL-F0303 | F-278: 座標系を上下とも静的に確定した。**1 単位 = 1px、原点は画面中央**。`c4` は恒久的にゼロ — `HIGH`（静的、実機実測と一致） | `nwlyt_Drawer_EmitProjectionUniform` が吐く 24 語を機械的に展開した。 | HIGH | ? | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0312 | F-288 — Chokistream の画面を AI が直接見られる（動的解析の目視確認を自動化） | **結論: 見られる。** `PATCHES/grab_screen.ps1` で PNG にすれば、そのまま読める。 |  | ? |  |  |
 | ACNL-F0313 | F-289 (HIGH・実機) — ★`nwlyt_Picture_DrawToCommandList` に**自前 Picture** を渡して 1 枚描けた | `0x73CB58 nwlyt_Picture_DrawToCommandList(picture, cursor, a3, drawctx)` は | HIGH | ? | topics/acnl/ui.md |  |
 | ACNL-F0315 | F-291 (HIGH・静的のみ) — ★正体は **nw::lyt（NintendoWare Layout）**。Picture / Material の構造を静的に確定し、**既存文書の誤り 6 件を訂正** | `code.bin.i64` だけで詰めた（動的解析なし）。全文は `scratchpad/MEMO_f291_nwlyt_static.md`。 | HIGH | ? | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0317 | F-293 (HIGH・実機) — ★★★正規の手順で描けた。**自前の記録ケーブ 205 語を撤去** | F-292 の設計を実装し実機で成功した。道具は `PATCHES/build_pane_tree.py`。 | HIGH | ? | topics/acnl/ui.md |  |
 | ACNL-F0319 | F-295 (HIGH・実機) — ★方式 (a) 完成。ヒープから借りて**メニュー全体を正規経路で描いた** | 道具は `PATCHES/alloc_lyt_heap.py`（確保）と `PATCHES/build_pane_tree.py`（組み立て）。 | HIGH | ? | topics/acnl/ui.md |  |
-| ACNL-F0321 | F-297 (HIGH・実機) — ★下画面のペインツリーを組んだ。**上下 2 画面が独立した輪で同時に描かれる** | F-295 の時点では下画面のノード（`0x9B5400`）は用意だけされていて | HIGH | ? | topics/acnl/ui.md |  |
+| ACNL-F0321 | F-297 (HIGH・実機) — ★下画面のペインツリーを組んだ。**上下 2 画面が独立した輪で同時に描かれる** | F-295 の時点では下画面のノード（`0x9B5400`）は用意だけされていて | HIGH | ? | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0326 | F-302 (HIGH・実機) — ★★TextBox が実機で描けた。**作業オブジェクト = `LayoutMgr + 0x1C`**。コードケーブ 0 語 | F-301 の結論を実機で検証し、残っていた「作業オブジェクト」を解明した。 | HIGH | ? | topics/acnl/ui.md |  |
 | ACNL-F0446 | アニメの適用段は sub_48A844。画面で動いた（2026-09-21、HIGH、実機） | 解析ソフト: IDA / 解析モデル: opus-5。**F012 で欠けていた「適用」段を特定し、実機で絵が変わった。** | HIGH | ? | topics/acnl/ui.md |  |
 | ACNL-F0460 | ゲーム共通の 8 行リスト InstSelect<8> を下画面だけ借りる部品の作り（2026-09-25、MEDIUM: 静的＋実機の欄の読み取り。描画は未試験） | 公共事業のリストは `PWorkList : InstSelect<8> : SelectBase : CatalogBase`（RTTI）。`InstSelect<8>`（vtbl `0x8E54B4`、ctor `sub_7C6EB0`、4,812 B）は派生 10 種が共有する**ゲーム共通の 8 行リスト**で、純粋仮想は vt[13]（一覧を作る・件数 +2500）と vt[25]（i 行目の語）だけ。 | MEDIUM | S | topics/acnl/ui.md |  |
@@ -65,3 +65,6 @@
 | ACNL-F0628 | HHD と ACNL でアニメのコマ数の数え方が 1 つ違う（2026-10-07、HIGH: 静的＋実機の症状） | ACNL の UiAnim_Step 0x568964: +0x14 bit0（ループしない）なら frame は frameSize(+4) − 1 で頭打ち、bit0 が無ければ frameSize で巻き戻す。UiAnim_IsFinished 0x74F58C も frame >= frameSize − 1。ACNL の BCLAN（ループしない）は最後のキーが frameSize − 1 に 527 件（frameSize ちょうどは 7 件）。 | HIGH | S | topics/acnl/ui.md |  |
 | ACNL-F0693 | Layout 描画は上左右目と下の三パスで、上下の二リストを使う（再解析） | LayoutMgr は上の左右目に同じリスト、下に別リストを用いる。上左は記録巡回と再生、上右は再生後に上リスト解除、下は記録巡回と再生後に下リスト解除を行う。 | MEDIUM | A |  |  |
 | ACNL-F0694 | Layout の優先度は安定な昇順挿入であり、末尾は登録時点に依存する（再解析） | LayoutMgr_AddLayout は Layout+0x0C の符号なしバイトで安定な昇順挿入を行う。最大優先度も後続の同値登録に先行するため、最後の再生や最前面の画素を無条件には保証しない。 | MEDIUM | A |  |  |
+| ACNL-F0696 | Layout の正射影とペインから画素への換算は Layout 寸法と viewport の比で決まる（再解析） | 基底 Layout の正射影は自身の幅・高さから作る。無追加変換時の画素倍率は viewport 幅/Layout 幅、viewport 高/Layout 高であり、1 単位＝1 画素は寸法一致時の条件付きの結論である。 | MEDIUM | A |  |  |
+| ACNL-F0697 | Layout 再生の通常シザーは mode 0 であり寸法不一致だけでは切り抜きを有効にしない（再解析） | Layout 再生は自身の寸法からシザー語を組むが、+0x138 が1でない通常分岐はmode 0を送る。寸法不一致だけを理由に切り抜きが有効になるとは言えない。 | MEDIUM | A |  |  |
+| ACNL-F0698 | Layout 投影 uniform の c4 は毎再生前に設定され初期化後のゼロ固定ではない（再解析） | 投影uniformのc4はDrawer+0x74..+0x80。再生直前のsetterが立体視変位・LayoutMgrの値・0・0を書き、初期化以降ずっとゼロという説は成立しない。 | MEDIUM | A |  |  |
