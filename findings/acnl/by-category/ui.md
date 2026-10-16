@@ -68,3 +68,6 @@
 | ACNL-F0696 | Layout の正射影とペインから画素への換算は Layout 寸法と viewport の比で決まる（再解析） | 基底 Layout の正射影は自身の幅・高さから作る。無追加変換時の画素倍率は viewport 幅/Layout 幅、viewport 高/Layout 高であり、1 単位＝1 画素は寸法一致時の条件付きの結論である。 | MEDIUM | A |  |  |
 | ACNL-F0697 | Layout 再生の通常シザーは mode 0 であり寸法不一致だけでは切り抜きを有効にしない（再解析） | Layout 再生は自身の寸法からシザー語を組むが、+0x138 が1でない通常分岐はmode 0を送る。寸法不一致だけを理由に切り抜きが有効になるとは言えない。 | MEDIUM | A |  |  |
 | ACNL-F0698 | Layout 投影 uniform の c4 は毎再生前に設定され初期化後のゼロ固定ではない（再解析） | 投影uniformのc4はDrawer+0x74..+0x80。再生直前のsetterが立体視変位・LayoutMgrの値・0・0を書き、初期化以降ずっとゼロという説は成立しない。 | MEDIUM | A |  |  |
+| ACNL-F0699 | Layout の記録要求と保存範囲の再利用（再解析） | 記録要求があるときだけ専用リストを消去して再記録する。再生は要求フラグと独立し、保存範囲を利用する。 | MEDIUM | ? |  |  |
+| ACNL-F0700 | Layout と記録 ID の生成・解放・再利用および ID 0（再解析） | Layout の ID は構築前に0で、Build時に生成し破棄時に非ゼロIDを解放する。解放IDは再利用でき、IDだけでは寿命を特定できない。 | MEDIUM | ? |  |  |
+| ACNL-F0701 | 記録 manager の容量・保存 offset と live cursor は異なる（再解析） | manager のbase・容量・保存offsetとglobal cursorは別である。記録/主リストに有限の領域があるが、旧クラッシュ原因と安全量は未確定。 | MEDIUM | ? |  |  |
