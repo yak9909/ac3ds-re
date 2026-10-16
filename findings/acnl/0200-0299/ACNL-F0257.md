@@ -21,7 +21,7 @@ state: consolidated
 consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
 superseded_by: ''
-corrected_by: ["ACNL-F0276"]
+corrected_by: ["ACNL-F0276", "ACNL-F0701"]
 ---
 ## F-232: ★★★★★レイアウトの記録リストには容量がある。積みすぎると落ちる — `HIGH`（実機）
 

@@ -20,6 +20,7 @@ state: consolidated
 consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0699"]
 ---
 ## F-226: ★★★★★相乗り先は「素で記録し直される」ものから選ぶ。強制は廃止 — `HIGH`（実機）
 

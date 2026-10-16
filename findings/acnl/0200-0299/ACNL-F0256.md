@@ -21,6 +21,7 @@ state: consolidated
 consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0700"]
 ---
 ## F-231: ★★★★★リスト id 0 を「未設定」として弾かないと、id 0 のレイアウトと誤って一致する — `HIGH`（実機）
 
