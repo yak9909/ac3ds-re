@@ -91,7 +91,8 @@ address,kind,text
 ★未知の id を渡すと 68 バイトのヘッダをゼロ埋めで作るだけで base/size は 0 のまま。
   その状態では g_GpuCmdPtr = g_GpuCmdEnd = 0 になり sub_7B01CC も何もしない。
   自前リストを持つなら base(+0x04) と size(+0x08) を自分で入れること。"
-0x001216C4,line,"F-234: list manager bucket = 0x00AD98C0 + ((id & 0x1F)<<2) + 0x1C、同 bucket は manager+0x40 を exact id まで辿る。ロード画像 id10 は実機 manager=0x327AE21C, size=0x1000, offset=0x2C0, remaining=0xD40。"
+0x001216C4,line,"[ACNL-F0703] MEDIUM/static correction: bucket=0xAD98C0+4*(id&31)+0x1C; decimal 10 (0x0A) -> 0xAD9904; ID 0x10 -> 0xAD991C. F0261 same-ID/bucket inference is invalid. Exact ID is checked at 0x1216DC..E4.
+F-234: list manager bucket = 0x00AD98C0 + ((id & 0x1F)<<2) + 0x1C、同 bucket は manager+0x40 を exact id まで辿る。ロード画像 id10 は実機 manager=0x327AE21C, size=0x1000, offset=0x2C0, remaining=0xD40。"
 0x001217C0,line,"F-239 static: on a list switch, save prior g_GpuCmdPtr - prior manager->base into prior manager+0x0C. This manager state is independent of any current Layout object with the same list id."
 0x001217E8,line,"F-239 static: select R4 manager; g_GpuCmdPtr = manager->base + manager->offset (+0x4/+0xC). Do not identify a rendered Layout from Layout+0x100 id alone; correlate Layout pointer, manager base/offset, and replay."
 0x00121988,func,"IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。command本体size+28*qCountをcallback(memoryType0x10000)から確保。a1[5]側の消費で2D_UI_Heap側へ加算しない。GenCmdlists0x121B34は別にmanager68 Bを同じcallback(type0x10000,kind0x100)から確保する。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。"
@@ -3144,6 +3145,8 @@ IDA-gpt-6-F002 MEDIUM: shared keyboard result publisher, ready in R0, signed res
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x00528C60,func,"SWKBD hook study 2026-09-09: id 0x23E creates an asynchronous BsSkb child and returns its pointer, not text/result. Callers e.g. 21C24C and 285C94 subsequently write child+4424; 2AE3C0 saves child for a later vtable+0x44 close. Preserve child/parent lifecycle. APT invocation should be deferred to existing game APT context, not assumed safe inside this factory call.
 IDA-gpt-6.1-sol-F002: MEDIUM追補: OpenChild後にactor+15(破棄要求)を見てnullを返す。CreatePrepareまで実行されてからの失敗でも戻り0になり得る。nullだけで家具マップ/記録/家具表の不変を保証しない。"
+0x00529190,func,[ACNL-F0704] MEDIUM/static: completion hides N_fade_00 then calls Layout calc 0x568030 -> record request +0x11D. Fade end does NOT imply no future rerecord; saved length is replaced on subsequent recording.
+0x005292DC,func,[ACNL-F0702][ACNL-F0704] MEDIUM/static: execute Fade state then register embedded Layout +0x24 to screen at +0x480. Idle still registers. Update caller registers Fade before BlackWait.
 0x0052958C,line,"Fade の初期化 (F-51)。Layout/Wipe/fade.arc を読み、5 つの .bclan を UiAnim_Load で作る。
 ★起動時に 1 度だけ実行されるので、レートはその時点の g_UiAnimRate が焼き付く。"
 0x0052958C,repeatable,"Fade の初期化 (F-51)。Layout/Wipe/fade.arc を読み、5 つの .bclan を UiAnim_Load で作る。
@@ -3365,7 +3368,8 @@ IDA-gpt-6-F014: T017 calls native LayoutCalc for the current pocket background w
 従って自前ノードがこの関数を再生スロットに使う場合、投影は自前ノード +0x34 で決まる。"
 0x0056832C,line,"IDA-opus-5.5-F095 (HIGH: static + hardware 2026-10-06): Layout+0x138 (u8) == 1 -> PICA scissor mode 3 (reg 0x65) from floats +0x13C/+0x140/+0x144/+0x148, in framebuffer orientation (both axes reversed). low16 = +0x140 .. +0x140+(+0x148)-1 (clamped by +0x2C), high16 = +0x13C .. +0x13C+(+0x144)-1 (clamped by +0x28). Bottom-screen pixel rect [x0,x1)x[y0,y1): +0x13C = 320-x1, +0x140 = 240-y1, +0x144 = x1-x0, +0x148 = y1-y0 (hardware: +0x140 = y0 cut everything; 240-y1 clipped exactly at the rect). Emitted every replay even when +0x108==0. Else: mode 0 full screen."
 0x00568330,line,"[ACNL-F0697] Normal scissor branch: data at 0x8A8550 is mode=0, header=0x802F0065, pos=0. Dimension endpoint is built from Layout W,H but mode 0 disables scissor; width mismatch alone does not enable clipping."
-0x0056835C,line,"F-240 static: Layout+0x108 <= 0 returns before Drawer setup or GpuCmd_ReplayRecordedListRange. Dynamic user-visible-loader stop had current top Layout 0x3225B070 with +0x108=0, so that node cannot be the direct replay source at that instant."
+0x0056835C,line,"[ACNL-F0704] MEDIUM/static correction: signed length<=0 skips recorded range replay for THIS invocation. Scissor commands already emitted at 0x568358. Current zero length does not exclude past replay or prove source of displayed framebuffer. F0261 old current node actual ID unverified; see F0703.
+F-240 static: Layout+0x108 <= 0 returns before Drawer setup or GpuCmd_ReplayRecordedListRange. Dynamic user-visible-loader stop had current top Layout 0x3225B070 with +0x108=0, so that node cannot be the direct replay source at that instant."
 0x00568368,line,"[ACNL-F0693] display affects stereo offset, not replay filter. Conditional byte at +0x120 (NOT +0x320); +0x124 is negated for 0x400."
 0x00568374,line,"[ACNL-F0693] R5=Layout+0x100, displacement=0x20 => Layout+0x120. Old +0x320 annotation is incorrect."
 0x005683A8,line,"[ACNL-F0698] Setter, despite existing name: Drawer+0x74..+0x80 = (stereo offset, mgr+0x350 float, 0, 0), then BeginLayoutReplayState emits it as c4."
@@ -4960,6 +4964,7 @@ IDA-gpt-6.1-sol-F004 / MEDIUM追補: 探索起点とは別の引数playerX/playe
 他地域: USA=006A6EE0  EUR=006A5F18  KOR=006A5558
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x006A6364,func,"V2-F023 MEDIUM: マス座標→ワールド座標。**x = 32*tileX + 16、z = 32*tileY + 16**（つまり 1 マス = 32 単位、中心は +16）、y = Field_GetGroundHeight(tileX, tileY, 0)。地形の高さを別に取れるので、屋外の任意座標へモデルを置くにはこの式だけで足りる"
+0x006A9114,func,"[ACNL-F0702] MEDIUM/static: holder +0xEC, Build <base>.bclyt with R3 capacity, priority +0x0C=0xFF; load <base>_loop.bclan and G_loop. Called for five BlackWait variants."
 0x006A9E70,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Calls existing Menu_RegisterScreen on embedded link this+20 then generic UiScreen method51FF7C. Do not infer concrete subclass name from surrounding clock callers.
 IDA-gpt-6-F006 / GPT-6 MEDIUM correction: 6D1B34 detaches (old inherited Register name was reversed). Generic51FF7C is a stub; no concrete clock subclass inferred."
 0x006A9F30,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): On predicate528D6C success calls existing Menu_UnregisterScreen on embedded link this+20, sets link payload+32 and menuId byte+36. No independent RTTI confirmation for this method name; preserve original.
@@ -5007,6 +5012,13 @@ IDA-gpt-6-F008 / GPT-6 (2026-10-12, MEDIUM): T011 user lowID/unsupported extract
 0x006CB3EC,repeatable,IDA-opus-5.5-F006: skip-icon test for MapBase_PlaceBuildingIcons. Only ids in the resident-house table 0x8887A0 get a save-dependent answer (villager slot at garden+0x292A4); every other id returns 0 at 0x6CB460.
 0x006CC12C,line,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: ローカルItemを壁掛け→通常品番（147→6/148→7/49→47）に正規化するcaller。元入力を直接書き換えない。この上位処理の全用途は今回未確定のため推測renameしない。
 0x006CC194,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): Same storage formula, copies old ItemID into caller output then copies replacement. Args5/6 loaded from incoming stack, R0 old_out/R1 base/R2 tab/R3 page0; preserve ARM stack ABI."
+0x006CD9B0,func,"[ACNL-F0702] MEDIUM/static: update +0xA12 from current/next room and flags. Kind 0..4 selects load_wait, _b, _w, _p, _h; not the state or record ID."
+0x006CDAC0,func,[ACNL-F0702] MEDIUM/static: Disp update; step selected kind loop; when kind<5 and global+0xFB0==0 calculate selected Layout and register top screen=0. Conditional timed return Idle.
+0x006CDC54,func,[ACNL-F0702] MEDIUM/static: Idle update from state table. No loader registration here; conditional transition to DispWait.
+0x006CDE8C,func,"[ACNL-F0702] MEDIUM/static: DispWait update; no loader registration. Conditional tick threshold to Disp, or return Idle."
+0x006CE0B8,func,[ACNL-F0702] MEDIUM/static: CompelDisp update while +0xA10==1; selected loop and top registration under same kind/global gate as Disp.
+0x006CE2C0,func,"[ACNL-F0702] MEDIUM/static: load Layout/common/save_wait.arc, build five load_wait variants, load kind animation; state table 0x845FEC. IDs are allocated by Layout_Build, not fixed 10."
+0x006CE404,func,"[ACNL-F0702] MEDIUM/static: execute state member at +0x0C/+0x10, then update kind; force CompelDisp if +0xA10==1; clear +0xA11. Called after Fade registration in 0x1B6B84."
 0x006D102C,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Rechecked list/open-state path: if list membership test is false, list operation runs then open-state3 becomes1. Existing Register/Unregister names predate this audit; list ownership semantics are not renamed without checking the list primitive.
 IDA-gpt-6-F006 / GPT-6, MEDIUM (2026-10-12): Menu_AttachScreenNode. Native ARM independently checked against original code.bin; caller/RTTI/data accesses corroborate the contract. Correction of earlier inherited Menu_UnregisterScreen: actually attaches embedded actor+20 node; list+4/+8 are node head/tail, node+12 actor. Hardware unverified; no LOW rename."
 0x006D1074,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Independent assembly and tab-close caller: true iff open-state==1 and registered menu list head0x986500==0. No read/write of field/tab restoration."

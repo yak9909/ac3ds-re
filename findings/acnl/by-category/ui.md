@@ -71,3 +71,6 @@
 | ACNL-F0699 | Layout の記録要求と保存範囲の再利用（再解析） | 記録要求があるときだけ専用リストを消去して再記録する。再生は要求フラグと独立し、保存範囲を利用する。 | MEDIUM | A |  |  |
 | ACNL-F0700 | Layout と記録 ID の生成・解放・再利用および ID 0（再解析） | Layout の ID は構築前に0で、Build時に生成し破棄時に非ゼロIDを解放する。解放IDは再利用でき、IDだけでは寿命を特定できない。 | MEDIUM | A |  |  |
 | ACNL-F0701 | 記録 manager の容量・保存 offset と live cursor は異なる（再解析） | manager のbase・容量・保存offsetとglobal cursorは別である。記録/主リストに有限の領域があるが、旧クラッシュ原因と安全量は未確定。 | MEDIUM | A |  |  |
+| ACNL-F0702 | Fade とロード画像の登録順・状態別の描画元（再解析） | Fade と BlackWait の loader は優先度0xFFを共有し、確認した更新経路ではFadeが先に登録される。loaderの登録有無は状態、画像資源は種類欄で変わる。 | MEDIUM | A |  |  |
+| ACNL-F0703 | loader ID の十進10と0x10は異なり、旧bucket照合は0x0Aを指す（再解析） | 0xAD9904はID 10（0x0A）のbucketであり、ID 0x10は0xAD991Cを使う。F0261の同ID・同managerという照合は成立しない。 | MEDIUM | A |  |  |
+| ACNL-F0704 | Fade の記録保持とゼロ長Layoutから画像源を判定する限界（再解析） | 保存長は記録要求やFade状態とは独立するが、Fade終了処理も再計算を要求する。ゼロ長guardが止めるのは記録範囲の再生であり、過去に表示された画像の出どころまでは決めない。 | MEDIUM | A |  |  |
