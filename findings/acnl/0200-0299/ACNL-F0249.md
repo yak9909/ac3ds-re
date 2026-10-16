@@ -20,6 +20,7 @@ state: consolidated
 consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0700"]
 ---
 ## F-224: ★★★★★確定した対象を「0 以外のときだけ更新」してはいけない — `HIGH`（実機）
 

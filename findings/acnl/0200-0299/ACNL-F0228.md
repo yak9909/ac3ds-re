@@ -24,10 +24,10 @@ source: v1:RE/FINDINGS.md:12483-12547
 by: unknown
 original_by: ''
 reviewed_by: []
-state: consolidated
+state: superseded
 consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0699
 ---
 ## F-203: ★★★★★最後に再生されるレイアウトは固定。注入点が確定 — `HIGH`（実機 301 フレーム）
 

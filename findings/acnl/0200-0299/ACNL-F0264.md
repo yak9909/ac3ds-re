@@ -24,10 +24,10 @@ source: v1:RE/FINDINGS.md:14134-14181
 by: unknown
 original_by: ''
 reviewed_by: []
-state: consolidated
+state: superseded
 consolidated_into: topics/acnl/ui.md
 duplicate_of: ''
-superseded_by: ''
+superseded_by: ACNL-F0701
 ---
 ## F-236: Layout record-list のバッファ本体は安全に差し替える必要がある — `MEDIUM`（静的＋ゼロ長実機経路）
 

@@ -231,8 +231,8 @@
 | ACNL-F0225 | F-200: ★★★★★UI は「1 本のコマンド列」ではない。記録と再生に分かれている — 静的解析 |  | ? | active |  | 訂正あり |
 | ACNL-F0226 | F-201: F-200 の検証。**1 件の訂正と、GPU ハングの静的な説明** — 静的解析 | HIGH | ? | active |  |  |
 | ACNL-F0227 | F-202: ★★★メインリストの末尾に積んでも UI は描かれない。2 回目のクラッシュの原因 — `HIGH`（実機） | HIGH | ? | active |  |  |
-| ACNL-F0228 | F-203: ★★★★★最後に再生されるレイアウトは固定。注入点が確定 — `HIGH`（実機 301 フレーム） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
-| ACNL-F0229 | F-204: ★★★レイアウトの記録は「記録要求フラグ」が立っているときだけ走る — `HIGH`（静的＋実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0228 | F-203: ★★★★★最後に再生されるレイアウトは固定。注入点が確定 — `HIGH`（実機 301 フレーム） | HIGH | ? | superseded | topics/acnl/ui.md |  |
+| ACNL-F0229 | F-204: ★★★レイアウトの記録は「記録要求フラグ」が立っているときだけ走る — `HIGH`（静的＋実機） | HIGH | ? | superseded | topics/acnl/ui.md |  |
 | ACNL-F0230 | F-205: ★★★★「最後に再生される」は画面（描画パス）ごとに違う — `HIGH`（実機 120 フレーム） | HIGH | ? | superseded | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0231 | F-206: ★★★★色とテクスチャの出所は「マテリアル」。自前で積まないと直前のペインのものになる — `HIGH`（実機） | HIGH | ? | active |  |  |
 | ACNL-F0232 | F-207: ★★★★★`drawctx+1692` が 0 だと UV が読まれずテクスチャ全面が貼られる — `HIGH`（実機） | HIGH | ? | active |  |  |
@@ -252,14 +252,14 @@
 | ACNL-F0246 | F-221: ★★ゲームのアロケータから取れるのは 0x4000 まで — `HIGH`（実機） | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0247 | F-222: ★★★★★自前チートメニューが実機で動いた。ゲームは止まらない — `HIGH`（実機） | HIGH | ? | active |  |  |
 | ACNL-F0248 | F-223: ★★★★描くものが無いのに記録を強制すると、しばらくして GPU コマンドリストが枯れる — `HIGH`（実機） | HIGH | ? | active |  |  |
-| ACNL-F0249 | F-224: ★★★★★確定した対象を「0 以外のときだけ更新」してはいけない — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0249 | F-224: ★★★★★確定した対象を「0 以外のときだけ更新」してはいけない — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0250 | F-225: ★★★★「開いている間だけ描く」にすると、閉じても最後の絵が残り続ける — `HIGH`（実機） | HIGH | ? | active |  |  |
-| ACNL-F0251 | F-226: ★★★★★相乗り先は「素で記録し直される」ものから選ぶ。強制は廃止 — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0251 | F-226: ★★★★★相乗り先は「素で記録し直される」ものから選ぶ。強制は廃止 — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0252 | F-227: ★★★観測用の領域を、動いている描画の領域と重ねてクラッシュさせた — `HIGH`（実機） | HIGH | ? | active |  |  |
 | ACNL-F0253 | F-228: ★★★★フェードは id 8（上）/ id 9（下）が最後に描く。両方に積めば判別が要らない — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0254 | F-229: ★★★ケーブどうしの重なりは目視では見つからない。機械的に検査する — `HIGH`（実機） | HIGH | ? | active |  |  |
 | ACNL-F0255 | F-230: ★★★★相乗り先は「候補のうち最後に再生されたもの 1 つ」。両方に積むと二重になる — `HIGH`（実機） | HIGH | ? | active |  | 訂正あり |
-| ACNL-F0256 | F-231: ★★★★★リスト id 0 を「未設定」として弾かないと、id 0 のレイアウトと誤って一致する — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0256 | F-231: ★★★★★リスト id 0 を「未設定」として弾かないと、id 0 のレイアウトと誤って一致する — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0257 | F-232: ★★★★★レイアウトの記録リストには容量がある。積みすぎると落ちる — `HIGH`（実機） | HIGH | ? | consolidated | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0258 | F-233: 描画パス末尾と通常場面の実 replay を再監査 — `HIGH`（静的＋実機。ロード画像の順序は未測定） | HIGH | ? | active |  |  |
 | ACNL-F0259 | F-234: ロード画像は上画面で id 8 の後に replay される Layout id 10 — `HIGH`（静的＋実機＋リソース同定） | HIGH | ? | consolidated | topics/acnl/ui.md |  |
@@ -267,7 +267,7 @@
 | ACNL-F0261 | F-238: ロード表示中でも top LayoutList の構成はフェーズで変わる — `MEDIUM`（独立した stopped snapshot＋no-draw 実行標本） | MEDIUM | ? | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0262 | F-241: lifecycle trace の block-copy emitter は loader Layout を破損する — `HIGH`（生成命令＋実機レジスタ＋破損メモリ） | HIGH | ? | active |  |  |
 | ACNL-F0263 | F-237: Layout の再生順は `LayoutList_SetDisplay` で局所的に制御できる — `MEDIUM`（静的＋実機 no-draw） | MEDIUM | ? | active |  |  |
-| ACNL-F0264 | F-236: Layout record-list のバッファ本体は安全に差し替える必要がある — `MEDIUM`（静的＋ゼロ長実機経路） | MEDIUM | ? | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0264 | F-236: Layout record-list のバッファ本体は安全に差し替える必要がある — `MEDIUM`（静的＋ゼロ長実機経路） | MEDIUM | ? | superseded | topics/acnl/ui.md |  |
 | ACNL-F0265 | F-242: `GardenSound.bcsar` を解読し、全 4,266 音の名前・ID・カテゴリを確定 — `HIGH`（独立 3 系統の一致） | HIGH | ? | active |  |  |
 | ACNL-F0266 | F-243: CSEQ バイトコードの命令表を確定（ラベル境界一致 100.00%） — `HIGH` | HIGH | ? | active |  |  |
 | ACNL-F0267 | F-244: seq 型サウンド 2,839 件を WAV に合成 — `MEDIUM`（構造は HIGH、包絡の時定数は近似） | MEDIUM | ? | active |  |  |
@@ -702,3 +702,6 @@
 | ACNL-F0696 | Layout の正射影とペインから画素への換算は Layout 寸法と viewport の比で決まる（再解析） | MEDIUM | A | active |  |  |
 | ACNL-F0697 | Layout 再生の通常シザーは mode 0 であり寸法不一致だけでは切り抜きを有効にしない（再解析） | MEDIUM | A | active |  |  |
 | ACNL-F0698 | Layout 投影 uniform の c4 は毎再生前に設定され初期化後のゼロ固定ではない（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0699 | Layout の記録要求と保存範囲の再利用（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0700 | Layout と記録 ID の生成・解放・再利用および ID 0（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0701 | 記録 manager の容量・保存 offset と live cursor は異なる（再解析） | MEDIUM | A | active |  |  |
