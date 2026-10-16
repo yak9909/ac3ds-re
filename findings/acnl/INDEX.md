@@ -705,6 +705,6 @@
 | ACNL-F0699 | Layout の記録要求と保存範囲の再利用（再解析） | MEDIUM | A | active |  |  |
 | ACNL-F0700 | Layout と記録 ID の生成・解放・再利用および ID 0（再解析） | MEDIUM | A | active |  |  |
 | ACNL-F0701 | 記録 manager の容量・保存 offset と live cursor は異なる（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0702 | Fade とロード画像の登録順・状態別の描画元（再解析） | MEDIUM | 未記入 | active |  |  |
-| ACNL-F0703 | loader ID の十進10と0x10は異なり、旧bucket照合は0x0Aを指す（再解析） | MEDIUM | 未記入 | active |  |  |
-| ACNL-F0704 | Fade の記録保持とゼロ長Layoutから画像源を判定する限界（再解析） | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0702 | Fade とロード画像の登録順・状態別の描画元（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0703 | loader ID の十進10と0x10は異なり、旧bucket照合は0x0Aを指す（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0704 | Fade の記録保持とゼロ長Layoutから画像源を判定する限界（再解析） | MEDIUM | A | active |  |  |
