@@ -702,6 +702,6 @@
 | ACNL-F0696 | Layout の正射影とペインから画素への換算は Layout 寸法と viewport の比で決まる（再解析） | MEDIUM | A | active |  |  |
 | ACNL-F0697 | Layout 再生の通常シザーは mode 0 であり寸法不一致だけでは切り抜きを有効にしない（再解析） | MEDIUM | A | active |  |  |
 | ACNL-F0698 | Layout 投影 uniform の c4 は毎再生前に設定され初期化後のゼロ固定ではない（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0699 | Layout の記録要求と保存範囲の再利用（再解析） | MEDIUM | ? | active |  |  |
-| ACNL-F0700 | Layout と記録 ID の生成・解放・再利用および ID 0（再解析） | MEDIUM | ? | active |  |  |
-| ACNL-F0701 | 記録 manager の容量・保存 offset と live cursor は異なる（再解析） | MEDIUM | ? | active |  |  |
+| ACNL-F0699 | Layout の記録要求と保存範囲の再利用（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0700 | Layout と記録 ID の生成・解放・再利用および ID 0（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0701 | 記録 manager の容量・保存 offset と live cursor は異なる（再解析） | MEDIUM | A | active |  |  |

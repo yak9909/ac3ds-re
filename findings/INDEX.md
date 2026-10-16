@@ -548,9 +548,6 @@
 - ACNL-F0586 下位 `0x0C` でgohanの壁抜けを相手へ強制できるか（2026-10-04、MEDIUM）
 - ACNL-F0587 屋外XYZを下位 `0x0C` で書くための条件と副作用（2026-10-04、静的MEDIUM／実用性LOW）
 - ACNL-F0626 T022 カタログの生成器（Codex 依頼 t022_catalog_arc、gpt-6.1-sol xhigh、2026-10-07。打ち切り。記録 ID なし = 道具と生成物）
-- ACNL-F0699 Layout の記録要求と保存範囲の再利用（再解析）
-- ACNL-F0700 Layout と記録 ID の生成・解放・再利用および ID 0（再解析）
-- ACNL-F0701 記録 manager の容量・保存 offset と live cursor は異なる（再解析）
 
 ## 未レビュー（reviewed_by が空）
 
