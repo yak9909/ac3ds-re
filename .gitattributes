@@ -1,1 +1,2 @@
 * text=auto eol=lf
+symbols/*/*/*.csv merge=ac3ds-symbols

@@ -1,5 +1,4 @@
 function,name,type,location
-0x001844B4,post,,stk:0@0x001844DC
 0x00677E44,sound_id,,reg:40@0x00677E75
 0x00677E44,exit_state,,reg:44@0x00677E59
 0x00677E44,duration_frames,,reg:48@0x00677E6D

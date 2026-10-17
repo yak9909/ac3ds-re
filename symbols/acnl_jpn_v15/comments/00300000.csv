@@ -1,0 +1,189 @@
+address,kind,text
+0x0030010C,line,"IDA-opus-5.5-F019: マス (x,y) に物を置けるか。上 2 マスの属性 3（崖？）を先に見てから FieldAttr_CanPlaceItem。"
+0x0030010C,repeatable,"IDA-opus-5.5-F019: マス (x,y) に物を置けるか。上 2 マスの属性 3（崖？）を先に見てから FieldAttr_CanPlaceItem。"
+0x00300914,repeatable,"Vapecord plugin ADDRESSES: GAMEKEYBOARD_FUNC5
+他地域: USA=00300838  EUR=003008C0  KOR=00300AF4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00301330,func,IDA-gpt-6-sol-F004: initializes 0x1AC-byte ACNL_BbsPost; +0x1AA stateFlags bit0 marks occupied.
+0x00302280,line,V2-F014 MEDIUM: 掲示板記事を組む(メッセージアーカイブ名 BBS_Pworks/BBS_Event/BBS_Kodanuki と番号)
+0x00302280,repeatable,V2-F014 MEDIUM: 掲示板記事を組む(メッセージアーカイブ名 BBS_Pworks/BBS_Event/BBS_Kodanuki と番号)
+0x00302300,line,V2-F014 MEDIUM: 掲示板(TownBase+451128)へ記事を追加。呼出 20 箇所(日替わり系 0x107xxx/0x108xxx、SvProc 種別 0/2/7 の sub_1082E4 ほか)
+0x00302300,repeatable,V2-F014 MEDIUM: 掲示板(TownBase+451128)へ記事を追加。呼出 20 箇所(日替わり系 0x107xxx/0x108xxx、SvProc 種別 0/2/7 の sub_1082E4 ほか)
+0x00303128,line,IDA-opus-5.5-F050: 家具の大きさ = ItemParam+23 & 0xF（0 1x1 / 1 1x2 / 2 2x2 / 3 2x3 / 4 3x3、5 以上は 0、記録なしは 5）。模様替えのチップの大きさ
+0x00303128,repeatable,IDA-opus-5.5-F050: 家具の大きさ = ItemParam+23 & 0xF（0 1x1 / 1 1x2 / 2 2x2 / 3 2x3 / 4 3x3、5 以上は 0、記録なしは 5）。模様替えのチップの大きさ
+0x00303404,repeatable,"Vapecord plugin ADDRESSES: MONEYSET
+他地域: USA=003036A4  EUR=00303738  KOR=003034C0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00303530,repeatable,"Vapecord plugin ADDRESSES: MONEYGET
+他地域: USA=003037DC  EUR=00303874  KOR=003035EC
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x003046C0,line,V2-F013 MEDIUM: 『SvProc Thread』(ProcThread) を作り desc を +144 に保持、desc+44=1 にして開始。フラグで byte_956354/955F99 等
+0x003046C0,repeatable,V2-F013 MEDIUM: 『SvProc Thread』(ProcThread) を作り desc を +144 に保持、desc+44=1 にして開始。フラグで byte_956354/955F99 等
+0x00304A44,func,IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): Reads current Controller+272 hold mask (not TouchState). Native scroll and Touch_UpdateState request mask0x8000.
+0x00304A44,repeatable,"Vapecord plugin ADDRESSES: CONTROLLERINPUTCHECK
+他地域: USA=00304A14  EUR=00304AA4  KOR=003049F4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00304A94,repeatable,"Vapecord plugin ADDRESSES: ROOMFUNC
+他地域: USA=00304A60  EUR=00304AEC  KOR=00304A3C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x003055CC,func,"IDA-gpt-6.1-sol-F001 / MEDIUM: R0=Item*。ItemParam+23下位4bit、5以上/家具族なし/パラメータなしは0。0x4E8880→0x744BFCと原本0x94CA08表を照合。種類は0..4、0向きのX×Z寸法は1×1,2×1,2×2,3×2,3×3。"
+0x00305688,repeatable,"Vapecord plugin ADDRESSES: GETMONEYFUNC
+他地域: USA=003055C8  EUR=003055D4  KOR=00305640
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00305F54,repeatable,"Vapecord plugin ADDRESSES: GAME_2_GTYPE
+他地域: USA=00305ED8  EUR=00305ED8  KOR=00305F24
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00305F6C,line,"IDA-gpt-6-sol-F007: public own-player index helper; returns Net_GetLocalPlayerIndex only while both manager+0x132AC and +0x132AE flags are nonzero, else 0. Thus room=0 slot=0 observations alone do not prove both peers' net slots are 0."
+0x00305F6C,repeatable,"Vapecord plugin ADDRESSES: A_GETONLINEPLAYERINDEX
+他地域: USA=00305EF0  EUR=00305EF0  KOR=00305F3C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00308110,repeatable,"Vapecord plugin ADDRESSES: ROOMDAT
+他地域: USA=00308154  EUR=003081F4  KOR=00308198
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x003081C8,repeatable,"Vapecord plugin ADDRESSES: SETNPCFUNC
+他地域: USA=003081A8  EUR=00308234  KOR=003081DC
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00308204,repeatable,"Vapecord plugin ADDRESSES: SETUPSTACK
+他地域: USA=003081E8  EUR=00308270  KOR=00308218
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0030822C,repeatable,"Vapecord plugin ADDRESSES: NPC_3_SETUP
+他地域: USA=00308210  EUR=00308298  KOR=00308240
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00308474,repeatable,"Vapecord plugin ADDRESSES: DELETENPCFUNC
+他地域: USA=0030836C  EUR=00308384  KOR=0030832C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00309310,line,V2-F012 MEDIUM(静的2経路): 営業時間判定。時刻=Date_GetRaw()[1]>>24、条例=sub_7585A0/C4。emulate(tools/patches/shop_hours.py): 通常9-23/早起き6-23/夜ふかし9-翌2時。GTYPE==3 または player+0x5701 bit1==0 なら閉店。店名は Vapecord SHOPRETAIL と、呼出し側の引数 garden+0x668A0(Vapecord 構造体の Re-Tail 欄)。出口 0x003093BC
+0x00309310,repeatable,V2-F012 MEDIUM(静的2経路): 営業時間判定。時刻=Date_GetRaw()[1]>>24、条例=sub_7585A0/C4。emulate(tools/patches/shop_hours.py): 通常9-23/早起き6-23/夜ふかし9-翌2時。GTYPE==3 または player+0x5701 bit1==0 なら閉店。店名は Vapecord SHOPRETAIL と、呼出し側の引数 garden+0x668A0(Vapecord 構造体の Re-Tail 欄)。出口 0x003093BC
+0x003093BC,repeatable,"Vapecord plugin ADDRESSES: SHOPRETAIL
+他地域: USA=00309348  EUR=00309344  KOR=0030935C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x003093F8,line,V2-F012 MEDIUM: Re-Tail の営業時間だけを見る(ShopHours_ReTail_IsOpen と同じ時間帯・player/GTYPE 判定なし・sub_56B504 もなし)。呼出: sub_112104(住民の外出先 5 の可否)で IsOpen と併用、ModuleShop.cro の条件分岐(case 0、引数 garden+0x668A0)。ShopsAlwaysOpen は未パッチ
+0x003093F8,repeatable,V2-F012 MEDIUM: Re-Tail の営業時間だけを見る(ShopHours_ReTail_IsOpen と同じ時間帯・player/GTYPE 判定なし・sub_56B504 もなし)。呼出: sub_112104(住民の外出先 5 の可否)で IsOpen と併用、ModuleShop.cro の条件分岐(case 0、引数 garden+0x668A0)。ShopsAlwaysOpen は未パッチ
+0x0030B820,line,アイテムIDを返す。LDRH [R0] して bit15 を落とすだけ。呼び出し元261箇所
+0x0030B820,repeatable,アイテムIDを返す。LDRH [R0] して bit15 を落とすだけ。呼び出し元261箇所
+0x0030B82C,line,"★Net_IsHost() — 自分がホスト（プレイヤー番号 0）か (F-61)。
+  return Net_GetLocalPlayerIndex(g_NetSession) == 0
+切断中も 0 を返すので true になるが、呼び出し側は常に
+Net_IsMultiplayer() と AND を取るので問題にならない。
+根拠: ガードが崩れた側で Net_SendPacket(58, **0**, ...) = プレイヤー 0 宛てに送る
+（Item_PlaceItem 0x59E728）。つまり 0 番 = ホスト。
+呼び出し元は 30 件以上の汎用述語（drop 専用ではない）。"
+0x0030B82C,repeatable,"★Net_IsHost() — 自分がホスト（プレイヤー番号 0）か (F-61)。
+  return Net_GetLocalPlayerIndex(g_NetSession) == 0
+切断中も 0 を返すので true になるが、呼び出し側は常に
+Net_IsMultiplayer() と AND を取るので問題にならない。
+根拠: ガードが崩れた側で Net_SendPacket(58, **0**, ...) = プレイヤー 0 宛てに送る
+（Item_PlaceItem 0x59E728）。つまり 0 番 = ホスト。
+呼び出し元は 30 件以上の汎用述語（drop 専用ではない）。"
+0x0030B844,line,"★MOVNE R0, #0 — Net_IsHost の戻り値を作る命令 (F-62)。
+チート「ドロップ 15x15」はここを 13A00001 (MOVNE R0,#1) にして
+★Net_IsHost() を常に真にする。F-61 の host drop と同じ「ホストを騙る」手。
+影響範囲は drop だけではない（呼び出し元 30 件以上）。"
+0x0030B844,repeatable,"Vapecord plugin ADDRESSES: DROPM2
+他地域: USA=0030B83C  EUR=0030B820  KOR=0030B7EC
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0030C9B8,func,"IDA-gpt-6-F001 MEDIUM: 3.4.1 JPN KEEP_GRASS_STATE points to this writer thunk. Town_DayChangeGrassAndStructures calls it after GrassBaldness data/daily recovery calculations, with grid descriptor, world cell x/y and computed byte. Master JPN row instead targets 0x30CB7C resource cleanup; do not treat the two regional tables as identical."
+0x0030C9C4,line,V2-F014 MEDIUM: 住民の日次処理(byte_956231 で boot 中 1 回、a2≠ 0 なら再実行)。sub_10D980(日次リセット)→sub_110CFC(住民イベントの抽選)→Villager_MailNpcBirthday→住民の品配置(ItemToPlace)→Villager_AssignStayHome→sub_10CCB8(外出先)→Villager_MailPlayerBirthday
+0x0030C9C4,repeatable,V2-F014 MEDIUM: 住民の日次処理(byte_956231 で boot 中 1 回、a2≠ 0 なら再実行)。sub_10D980(日次リセット)→sub_110CFC(住民イベントの抽選)→Villager_MailNpcBirthday→住民の品配置(ItemToPlace)→Villager_AssignStayHome→sub_10CCB8(外出先)→Villager_MailPlayerBirthday
+0x0030CB7C,func,"IDA-gpt-6-F001: master JPN source labels this KEEP_GRASS_STATE, but current binary tail-calls sub_814EA0, which resets resource handles, releases linked records and destroys their heap. Daily caller already wrote grass cells through 0x30C9B8 before this call. Grass-freeze meaning remains LOW here, unlike 3.4.1's writer address."
+0x0030CB7C,repeatable,"Vapecord plugin ADDRESSES: KEEP_GRASS_STATE
+他地域: USA=0030CB34  EUR=0030CCF8  KOR=0030CB28
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0030DB6C,line,V2-F014 MEDIUM: 手紙 Mail_MoveCancell(引越し取り消し)を送る
+0x0030DB6C,repeatable,V2-F014 MEDIUM: 手紙 Mail_MoveCancell(引越し取り消し)を送る
+0x0030F5F4,repeatable,"Vapecord plugin ADDRESSES: CONVERTTODATE
+他地域: USA=0030F6DC  EUR=0030F78C  KOR=0030F6B0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0030F88C,func,IDA-gpt-6.1-sol-F005 / MEDIUM: 元の地域/プラグイン由来ラベルを保存。引数R0=家記録配列先頭、R1=番号。番号<4ならliteral581×番号をLSL#3して加算（4648/0x1228）。0x2EC1BCの日替り索引と独立一致。
+0x0030F88C,repeatable,"Vapecord plugin ADDRESSES: GET_HOUSE_SAVE_FROM_PLAYER_OFFSET
+他地域: USA=0030F770  EUR=0030F820  KOR=0030F744
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00311958,func,IDA-gpt-6.1-sol-F001 / MEDIUM: R0=Item出力*、R1=Item入力*、R2=向き0..3。家具族のときだけコピーしflags上位2bitを向きにする。0x692164で作った一時Itemを0x4E8880が読む。最終配置記録のItemは0x6B9278で回転bitを除き、別欄+6で渡す。
+0x003126F8,repeatable,"Vapecord plugin ADDRESSES: NPC_1_SETUP
+他地域: USA=00312610  EUR=003127EC  KOR=00312B3C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00313DC8,line,max
+0x00315688,func,"IDA-gpt-6.1-sol-F013 / MEDIUM; evidence work/evidence/t022_room_capabilities. Converts global cell x,z via 0x6A6468 then obtains current field/tile attribute at layer. Wall placement and class5 eligibility both consume this attribute. Independent caller paths corroborate role."
+0x003159F2,repeatable,"Vapecord plugin ADDRESSES: NEVER_WILT_CALLER_5
+他地域: USA=003159FA  EUR=00315A72  KOR=00315FDA
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00315A7A,repeatable,"Vapecord plugin ADDRESSES: NEVER_WILT_CALLER_1
+他地域: USA=00315A82  EUR=00315AFA  KOR=00316062
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00315B08,repeatable,"Vapecord plugin ADDRESSES: NEVER_WILT_CALLER_2
+他地域: USA=00315B10  EUR=00315B88  KOR=003160F0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00316392,repeatable,"Vapecord plugin ADDRESSES: NEVER_WILT_CALLER_4
+他地域: USA=0031607E  EUR=00315EEE  KOR=0031624A
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00316412,repeatable,"Vapecord plugin ADDRESSES: NEVER_WILT_CALLER_3
+他地域: USA=003160FE  EUR=0031602E  KOR=003162CA
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00316ECC,repeatable,"Vapecord plugin ADDRESSES: GET_HOUSE_CHECK_DATA
+他地域: USA=00316F40  EUR=00316E84  KOR=00316EDC
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00317090,func,"IDA-gpt-6.1-sol-F001 / MEDIUM: R0=x出力int*、R1=z出力int*、R2=XYZ float[3]*。正座標ではtrunc(x)>>5 / trunc(z)>>5。負座標は切捨て除算後さらに1減算（負の32整数倍は単純floorと異なる）。0x690D24/0x691AD4のplayer+20経路と0x6A54B4の32*cell+16を照合。
+IDA-gpt-6.1-sol-F002: MEDIUM追補: HHD0x50A640の16単位変換と独立照合、ACNLは32単位。X/Zの順序/符号は同じ。HHDマス差は軸交換/符号反転せず、ACNLマス差として用いる。負world値の補正は元関数に従う。"
+0x0031785C,line,"IDA-opus-5-F031 HIGH: 呼び出し規約の注意。第5引数 flag は呼び出し元 SP+0、第6引数 fill(float) は呼び出し元 SP+4 から読む（0x317878 ldr r5,[sp,#40] / 0x31787C vldr s16,[sp,#44]。prologue は push 6 本 24B + vpush d8 8B + sub sp,#8 = 40B）。つまり fill は s0 ではなく『スタックの語』で渡す。-mfloat-abi=hard の C/C++ から float 型で宣言して呼ぶと s0 に載り、SP+4 にはゴミが残る。プラグインから呼ぶときは第6引数を u32 として 0 を渡すこと（0 = 0.0f）。"
+0x0031785C,repeatable,"IDA-opus-5-F031 HIGH: 呼び出し規約の注意。第5引数 flag は呼び出し元 SP+0、第6引数 fill(float) は呼び出し元 SP+4 から読む（0x317878 ldr r5,[sp,#40] / 0x31787C vldr s16,[sp,#44]。prologue は push 6 本 24B + vpush d8 8B + sub sp,#8 = 40B）。つまり fill は s0 ではなく『スタックの語』で渡す。-mfloat-abi=hard の C/C++ から float 型で宣言して呼ぶと s0 に載り、SP+4 にはゴミが残る。プラグインから呼ぶときは第6引数を u32 として 0 を渡すこと（0 = 0.0f）。"
+0x0031787C,line,第6引数 fill。呼び出し元 SP+4 のスタック語。s0 ではない（IDA-opus-5-F031）
+0x00317920,func,"V2-F021 MEDIUM: G3D 資源ホルダへの読み込み要求。holder+28 を FileRes_RequestLoadAligned(パス, ヒープ, アライン) へ渡し、完了したら holder[1]/holder[2]（+4/+8）に資源の先頭を入れる。ScStage_LoadIndoorRes の実例: G3dResHolder_RequestLoad(ScStage+0x420, ""Ftr/Chip/UnitCursor.bcres"", heap, 128)
+V2-F025 訂正（HIGH）: FileRes 部分は **holder+28**（a1+7 語）。したがって FileRes 内の欄はすべて +28 を足して holder 基準に直すこと：状態バイト = **holder+260**。また `a1[59]`（= **holder+236**）が読み込んだ資源の先頭で、完了時に holder+4 / holder+8 へ複写される"
+0x00317958,func,"V2-F021 MEDIUM: 読み込んだ G3D 資源の Setup（GPU 側の割り当て）。holder[2]（資源先頭）を sub_4A5A74 で初期化し、各 CMDL の各マテリアルを見て ""DefaultShader"" 以外なら +652 を差し替える。**読み込み完了後に必ず呼ぶ**（ScStage_LoadIndoorRes: G3dResHolder_Setup(holder, ヒープ, 0, 1)）"
+0x00317BD0,func,"V2-F008 (2026-09-14), MEDIUM, supersedes historical name ModelInstance_SetRenderLayer: R0 is a model RESOURCE returned by 0x4A5F20, not a holder or its instance pointer. Independent caller 0x58EA60->0x58EA78 uses the resource before 0x58EA98/0x58EEC0 creates an instance; AcFtr uses vtable+0xD8 resource getter at 0x56D9A4. Assembly walks self-relative entries via resource+0xBC/+0xC0, stride 0x10, entry relptr +0x28; writes entry+0x298 and clears +0x2BC/+0x2C0/+0x2C4. Do not change a shared source resource for one display instance. This layer value is not Scene_SubmitNode's sceneIndex or a display ID. Exact per-instance isolation still unverified."
+0x0031C128,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): RTTI ChangeStockWarehouse branch for menu137, cng_strg_base/cng_strg_itm and separate tab group table. Same observed prefix size but backing getter/setter differ; do not mix it with normal ChangeStockItem."
+0x0031D908,line,"IDA-opus-5.5-F050: 位置 = 基準ペインの大域位置(+140,+156)+ずれ。y+高さ/2 > 120 なら下側へ反転、横は ±160 に収める"
+0x0031D908,repeatable,"IDA-opus-5.5-F050: 位置 = 基準ペインの大域位置(+140,+156)+ずれ。y+高さ/2 > 120 なら下側へ反転、横は ±160 に収める"
+0x0031DB88,line,"IDA-opus-5.5-F050: (窓, 語, 基準ペイン(+964), &ずれ[3](+1248))。語の文字列を T_itm_nm_00 へ。出ていなければ状態 1（入場）へ、出ていれば幅と位置を直す"
+0x0031DB88,repeatable,"IDA-opus-5.5-F050: (窓, 語, 基準ペイン(+964), &ずれ[3](+1248))。語の文字列を T_itm_nm_00 へ。出ていなければ状態 1（入場）へ、出ていれば幅と位置を直す"
+0x0031DEB0,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): Registers existing ItemSelectNameWindow base_layout624 on display1. Confirmed from LayoutMgr consumer; preserve prior ItemSelectNameWindow actual names/attribution."
+0x0031DECC,line,"IDA-opus-5.5-F050: 実体は ItemSelectNameWindow の組み立て(窓, 保持体 or 0=自前 +36)。itm_slct_win.bclyt を +624 に、in/out_itm_nm を +972/+1012、T_itm_nm_00 を +968、W_itm_nm_00 を +956。Vapecord の FACE_EXPRESSION は誤名"
+0x0031DECC,repeatable,"Vapecord plugin ADDRESSES: FACE_EXPRESSION
+他地域: USA=0031DDE4  EUR=0031D138  KOR=0031CCA4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0031E028,repeatable,"Vapecord plugin ADDRESSES: FACE_EXPRESSION
+他地域: USA=0031DF40  EUR=0031D518  KOR=0031CDE0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0031E7B8,func,"IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). LetterDragItemWindow update delegates base control update then dispatches derived state PMF at+8520/+8524."
+0x0031E8D0,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). LetterDragItemWindow: builds native open-letters button atself+8664; B_btn pane, UI index19; attaches to DragIconGroup at+8968. Ordinary BsMenuItem owns letter window via+41768. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls."
+0x0031EA74,func,"IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). LetterDragItemWindow ctor: base+600 Layout, +8664 PartsDragIconNode, +8968 DragIconGroup, +9288=0. RTTI vtable0x8EEB40 primary."
+0x0031F2B8,func,"IDA-gpt-6-F014 / MEDIUM: RootPane at self+632 is removed from previous parent at+976, then attached to new parent with native AppendChild. BsMenuItem_LoadStep passes background N_pos_ltr, so hiding this root can freeze button child world matrices during pocket entrance. Original ARM 0x31F2C0/CC/D0/D8/E8 and independent matrix-tree probe agree."
+0x0031F5BC,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). LetterDragWindowBase: binds item_scrn_ltr, creates ten692B letter widgets in two groups, source base20, initializes controls at+8220. Open button19 differs from ItemDragWindow action target17. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls."
+0x0031FA44,func,"IDA-gpt-6-F011 (MEDIUM: original ARM RemoveChild + FindPane567BAC/vtable + letter setup). Child letter Layout at+600 has root Pane pointer+632, attached parent+976; teardown unlinks this exact Pane. Root alpha alone does not promise descendants hide (alpha inheritance flag). T014 uses root visible flag183 bit0 and restores original visibility/letter input enable on detach; actual GPU visibility still needs hardware."
+0x0031FA84,func,"IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). Base update ticks DragIconControl at letter+8220. UI hit/hold/release behavior must use actual drag control vtable0x8EABB8; 0x8EE23C is ButtonActionControl."
+0x0031FC08,func,"IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). LetterDragWindowBase ctor: arc at+16, layout600, ten692B letter widgets980+, group7900, control8220. Derived open-letter button is a separate node/group."
+0x0031FDE8,repeatable,"Vapecord plugin ADDRESSES: RELOADOFFSET
+他地域: USA=00320DE0  EUR=00320134  KOR=0031FCA0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0032248C,func,"IDA-gpt-6-F008 / GPT-6 (2026-10-12, MEDIUM): WriteSlotChecked copies candidate -> Item_NormalizeForPocket -> inventory slot, can map low field IDs into another ID or empty yet return success. Separate getter display rejection at7238C0. T011 owned chest setter writes raw4byte+flag0 instead; global routine remains unchanged. Evidence: docs/topics/closet_direct_design.md; work/evidence/gohan_closet_direct/{static,original_assembly,layout_input}.json. New behavior hardware-unverified."
+0x0032248C,line,IDA-opus-5.5-F047: writes slot after Item_NormalizeForPocket passes; inv+64+slot = lock byte (2 if item param +2 bit7).
+0x0032248C,repeatable,IDA-opus-5.5-F047: writes slot after Item_NormalizeForPocket passes; inv+64+slot = lock byte (2 if item param +2 bit7).
+0x0032251C,repeatable,"Vapecord plugin ADDRESSES: CFOFFSET
+他地域: USA=00323514  EUR=00322868  KOR=003223D4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0032592C,repeatable,IDA-gpt-6.1-sol-F004 / MEDIUM（静的2経路）: rom_lgtとrom_chip/rom_strgをBuild。Layout+0x0Cの優先度=0x87（0x325950/0x325954と0x325A54/0x325A80）。N_angl_00のポインタをthis+0x474へ保存。独立CLYTのN_angl_00→P_pct_00は左下の視点操作案内。LayoutMgr_AddLayoutの昇順とRecordChildrenの巡回でカタログ0x80が背面になることを照合。
+0x00325B78,repeatable,"Vapecord plugin ADDRESSES: MOVEFURNPATCH
+他地域: USA=00326B98  EUR=00325EEC  KOR=00325A30
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x003267C8,repeatable,"Vapecord plugin ADDRESSES: LIGHTSWITCH_FUNCTION
+他地域: USA=003277E8  EUR=00326B3C  KOR=00326680
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x003269AC,repeatable,"Vapecord plugin ADDRESSES: LIGHTSWITCH_VISIBLE
+他地域: USA=003279CC  EUR=00326D20  KOR=00326864
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00326CC8,repeatable,"IDA-gpt-6.1-sol-F004 / MEDIUM: vtable0x8EF3A8+0x30。this+2748が非0ならLayoutMgr_AddLayout(mgr,this+0x38,1)。電気スイッチ/操作案内は同じrom_lgtのペイン木。"
+0x00326CF8,repeatable,IDA-gpt-6.1-sol-F004 / MEDIUM: vtable0x8EF3A8+0x0Cと入口PUSH、this=R0。BuildLayouts後g_BsMenuRoomLightSwitch(旧vc_DATA)=this。
+0x00326F60,repeatable,IDA-gpt-6.1-sol-F004 / MEDIUM: vtable0x8EF3A8+0x18。レイアウト/資源を片付け、g_BsMenuRoomLightSwitch(旧vc_DATA)=0。抑制後の復元では現在の所有者とthis+0x474のペインを照合し、破棄済みポインタへ書かない。
+0x00329994,line,IDA-opus-5.5-F029: 頭の読み込みキー = pm+548 の髪型[0]・髪色/目の色[4..11]・[16..19] + 帽子の Item + 日焼け色。
+0x00329994,repeatable,IDA-opus-5.5-F029: 頭の読み込みキー = pm+548 の髪型[0]・髪色/目の色[4..11]・[16..19] + 帽子の Item + 日焼け色。
+0x0032C1EC,func,IDA-gpt-6.1-sol-F005 / MEDIUM: 家記録の現在外観種別+0x4=0と外観属性を初期化し、予定領域+0xDへ写す。0x1B169C→0x1BCF74の独立表示経路では0がテント資源に対応。0x32C234は同じ命令列の別入口。
+0x0032C234,func,IDA-gpt-6.1-sol-F005 / MEDIUM: 現在外観種別+0x4=0、予定+0xDへ同じ外観を書き初期化。0x24E098から呼ばれ、部屋の壁紙/床初期化も続く。0x32C1ECの同内容の別入口と命令列照合。
+0x0034F8C8,func,"[IDA-gpt-6-F001 MEDIUM] Reads 4 bytes of system configuration block 0xB0000 and returns its high byte as country ID. Corroboration: JOKER OnlineIsland.cpp patches return site 0x34F8F8 with JP/GB/KR/FR/US IDs; index/stride and code bytes of 0x96EBC8 map those to matching ISO strings. Caller 0x604BC4 also uses this for news URLs, so the patch is not exclusive to island selection. Original cheat build and runtime destination unverified."
+0x0034FA24,func,"[IDA-gpt-6-F001 MEDIUM] Country ID -> nullable ISO country string. CMP #0xBB bounds check; pointer table 0x96EBC8 indexed with LSL #2. Whole table compared against current input code bytes; sample IDs 1 JP, 0x31 US, 0x6E GB, 0x88 KR, 0x4D FR. Missing entries return NULL."
+0x003D9504,repeatable,"Vapecord plugin ADDRESSES: OFFSETPATCH_O3DS2
+他地域: USA=003DA824  EUR=003D986C  KOR=003D93C4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x003D975C,repeatable,"Vapecord plugin ADDRESSES: OFFSETPATCH_O3DS1
+他地域: USA=003DAA7C  EUR=003D9AC4  KOR=003D961C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x003DEBD8,func,"IDA-gpt-6-F001 / gpt-6 / 2026-10-11, MEDIUM static: count numeric characters in NUL-terminated UTF-16; NULL returns -1. Counts ASCII/fullwidth digits, superscript/subscript, Roman/circled forms, and selected single number codepoints. Character ranges and count loop checked in ARM assembly; sole wrappers at 0x747408 and 0x747454 consume count for text validation. Name is an analysis name, not RTTI."

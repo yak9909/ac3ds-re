@@ -1,0 +1,9 @@
+address,size,name,type,confidence,source,refs
+0x0047D0D0,4,vc_CORRUPT,,,legacy-idb,
+0x0047D16C,4,vc_FOV,,,legacy-idb,
+0x004A20A8,4,vc_ADDRESS,,,legacy-idb,
+0x004AFD84,4,vc_DAY1,,,legacy-idb,
+0x004AFD8C,4,vc_DAY3,,,legacy-idb,
+0x004AFDA8,4,vc_DAY4,,,legacy-idb,
+0x004E0364,4,vc_MOVING_FURNITURE,,,legacy-idb,
+0x004E64EC,4,vc_PLACING_FURNITURE3,,,legacy-idb,

@@ -1,0 +1,4 @@
+address,size,name,prototype,confidence,source,refs,clone_of
+0x0020AA70,192,HHD_Room_RequestWallpaperChange,,,legacy-idb,,
+0x0020AEAC,220,HHD_Room_RequestFlooringChange,,,legacy-idb,,
+0x00211688,132,,,,legacy-idb,,

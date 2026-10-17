@@ -139,10 +139,11 @@ def test_addr(repo, capsys, tmp_path):
     out = capsys.readouterr().out
     assert "symbols に該当なし" in out and "ACNL-F0001" not in out
     sym = repo / "symbols/acnl_jpn_v15"
-    sym.mkdir(parents=True)
-    (sym / "functions.csv").write_text("address,size,name,prototype,confidence,source,refs,clone_of\n"
+    (sym / "functions").mkdir(parents=True)
+    (sym / "globals").mkdir()
+    (sym / "functions/00100000.csv").write_text("address,size,name,prototype,confidence,source,refs,clone_of\n"
                                        "0x00100000,0x40,Foo_Bar,void f(),,analysis,,\n", encoding="utf-8")
-    (sym / "globals.csv").write_text("address,size,name,type,confidence,source,refs\n"
+    (sym / "globals/00900000.csv").write_text("address,size,name,type,confidence,source,refs\n"
                                      "0x00900000,4,g_X,int,,analysis,\n", encoding="utf-8")
     (tmp_path / "state" / "issues.json").write_text(json.dumps([
         {"number": 7, "title": "open", "body": "see 0x00100020 here", "state": "open"},
@@ -154,6 +155,20 @@ def test_addr(repo, capsys, tmp_path):
     assert "Foo_Bar" not in capsys.readouterr().out
     run("addr", "0x900002")
     assert "g_X" in capsys.readouterr().out
+
+
+def test_addr_crosses_shard_boundary(repo, capsys):
+    from sync import symlib as sl
+
+    sym = repo / "symbols/acnl_jpn_v15"
+    sl.write_table(sym, "functions", [{"address": "0x001FFFF0", "size": "0x40", "name": "CrossRange"}])
+    sl.write_table(sym, "globals", [{"address": "0x009FFFFC", "size": "8", "name": "g_CrossRange"}])
+    run("addr", "0x200010")
+    assert "CrossRange" in capsys.readouterr().out
+    run("addr", "0xA00000")
+    assert "g_CrossRange" in capsys.readouterr().out
+    run("addr", "0x200030")
+    assert "CrossRange" not in capsys.readouterr().out
 
 
 def lint_out(capsys):

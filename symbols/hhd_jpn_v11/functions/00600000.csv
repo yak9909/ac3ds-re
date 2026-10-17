@@ -1,0 +1,3 @@
+address,size,name,prototype,confidence,source,refs,clone_of
+0x0061360C,72,StateID_Init,,,legacy-idb,,
+0x0061AC1C,108,Float_ApproachWithMaxStep,"bool __usercall@<R0>(float *value@<R0>, float target@<S0>, float step@<S1>)",,legacy-idb,,

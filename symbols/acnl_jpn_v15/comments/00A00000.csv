@@ -1,0 +1,50 @@
+address,kind,text
+0x00A124C4,line,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: 家具族indexのu16 actor profile表。Item.bin+0x11がindex。family30→0xCD=AcFtrCloth、family74→0xE2=AcFtrMusicJacket。0x79ED34の初期化/0x7479CCの索引/実名descriptorで照合。
+0x00A7DAF0,repeatable,"Vapecord plugin ADDRESSES: NNPCMODELDATA
+他地域: USA=00A84AF0  EUR=00A83AF0  KOR=00A7CAF0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00AA7994,line,"プレイヤーオブジェクト配列 (4人分)。実機確認: [0] のみ有効
++0x14 座標XYZ(float), +0x171 フラグ(bit5=掘れる対象あり), +0x22C 埋め込みサブオブジェクト
++0x3EC スケール, +0x8CA/+0x8CB 対象マスXY, +0xBDC/+0xBDD 対象マスXY(状態遷移用)
++0xBDE 次の状態ID, +0xBDF サブモード
+アニメスロット: +0x29C, +0x2B4, +0x2CC, +0x2E4 (ストライド0x18)
+スロット+0x30 からフレーム制御 (vtable x2):
+  +0x38/+0x3C 区間, +0x40 再生レート(全スロット1.0), +0x44 現在フレーム,
+  +0x48 総フレーム数, +0x4C 超過処理 (0x4D3EFC=clamp単発 / 0x4D3E70=wrapループ)
+IDA-gpt-6-sol-F006: four player-actor pointers indexed by player number. vc_PLAYERINSTANCE 0x5C27D8 reads base 0xAA7994; reset functions 0x5BEF9C/0x5BEFDC/0x5C85D4 clear four slots. Runtime outdoor slot 0 measured 0x33099E3C in 2026-09-19 evidence; not a universal address claim."
+0x00ACF6B0,line,IDA-gpt-6-F002: Date_GetRaw returns this 12-byte current date; Time_SetFromDate and original epoch conversion independently match GohanNativeDate layout. Changes must go through native time/save APIs.
+0x00AD0158,line,"IDA-gpt-6-F001 / gpt-6 / 2026-10-11, MEDIUM static: game text-input constraint flags, broader than the old Vapecord NUMBERS label. bit 0 enables numeric-character filter at 0x522894 (also guarded by word_AD0164); bit 0x20 selects submit-time numeric-count validation via BsSkb 0x57D840 / 0x57DA98 -> 0x57D9A8 -> 0x747430 -> 0x3DEBD8. Island chat initializes 0x20 at 0x193A88. Vapecord morenumberisland/JPN AR writes low byte 2, clearing submit-validation bit. Does not establish all input restrictions or a universal 3-character threshold."
+0x00AD0158,repeatable,"Vapecord plugin ADDRESSES: NUMBERS
+他地域: USA=00AD7158  EUR=00AD6158  KOR=00ACF158
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00AD0253,repeatable,"Vapecord plugin ADDRESSES: KEYENTER
+他地域: USA=00AD7253  EUR=00AD6253  KOR=00ACF253
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00AD05C0,repeatable,"Vapecord plugin ADDRESSES: KEYAT
+他地域: USA=00AD75C0  EUR=00AD65C0  KOR=00ACF5C0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00AD0630,repeatable,"Vapecord plugin ADDRESSES: CUSTOMKEY
+他地域: USA=00AD7630  EUR=00AD6630  KOR=00ACF630
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00AD995C,line,"★g_GpuCmdListMgr — 構築中のコマンドリスト管理オブジェクトへのポインタ。
+confidence **HIGH**（静的 + 実機観測。F-102）。
+
+★実機で確定したレイアウト（2 マネージャ x 2 標本で恒等式が成立）:
+  [0] id（1 または 2）
+  [1] バッファ基底
+  [2] バッファサイズ = 0x100000 (1MB)
+  [3] 現在オフセット      -> [1]+[3] = g_GpuCmdPtr ★
+  [5] 前回提出済みオフセット
+  [6] GX キュー基底        = [1]+[2] = g_GpuCmdEnd ★（バッファ直後）
+  [7] 0xC00 （両インスタンスで同値。意味未確定）
+  [8] 積んだ数（実測では常に 0xC = 12/フレーム）
+  [9] GxQueue_Dispatch の処理カーソル
+  [10] [9] とは別。役割未確定
+  [11] 0x300 （両インスタンスで同値。意味未確定）
+
+★**dword_AD9960 とはフレームごとに入れ替わる（実機で直接観測）。**
+  1回目: こちら=0x323B20D0(id2) / AD9960=0x3229D06C(id1)
+  2回目: こちら=0x3229D06C(id1) / AD99"
+0x00ADF864,repeatable,"Vapecord plugin ADDRESSES: NPCCODES_DATA1
+他地域: USA=00AE6864  EUR=00AE5864  KOR=00ADE864
+（プラグイン作者のラベル。検証済みの識別ではない）"

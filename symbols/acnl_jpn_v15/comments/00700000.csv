@@ -1,0 +1,478 @@
+address,kind,text
+0x0070CBB0,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): UI index dispatch: cabinet vt11/vt13 for storage, pocket <=15 via ItemDragWindow, otherwise empty sentinel. Custom storage indices must retain native pocket/control partition."
+0x0070CC60,repeatable,"Vapecord plugin ADDRESSES: ALLITEMSBUYABLE
+他地域: USA=0070E494  EUR=0070D4B4  KOR=0070C808
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0070FF64,line,V2-F012 MEDIUM: 通常10-20/早起き7-20/夜ふかし10-23、player+0x5701 bit1 も見る。Vapecord SHOPKICKS。出口 0x00710000
+0x0070FF64,repeatable,V2-F012 MEDIUM: 通常10-20/早起き7-20/夜ふかし10-23、player+0x5701 bit1 も見る。Vapecord SHOPKICKS。出口 0x00710000
+0x00710000,repeatable,"Vapecord plugin ADDRESSES: SHOPKICKS
+他地域: USA=0071184C  EUR=00710854  KOR=0070FBA8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00710054,line,V2-F012 MEDIUM: Nookling 系の営業時間。[a1+0x14]=段階0-4 で時間帯が変わる(通常 8-22/7-24/9-20/10-23/9-21)。Vapecord SHOPNOOKLING。出口 0x007102C8
+0x00710054,repeatable,V2-F012 MEDIUM: Nookling 系の営業時間。[a1+0x14]=段階0-4 で時間帯が変わる(通常 8-22/7-24/9-20/10-23/9-21)。Vapecord SHOPNOOKLING。出口 0x007102C8
+0x007102C8,repeatable,"Vapecord plugin ADDRESSES: SHOPNOOKLING
+他地域: USA=00711B14  EUR=00710B1C  KOR=0070FE70
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x007102D0,line,V2-F012 MEDIUM(店名 LOW): [a1+0x10]=2 は自前(通常9-20)、3/4 は sub_56B504 と ShopHours_Nookling_IsOpenByStage。Vapecord SHOPGARDEN。出口 0x00710380
+0x007102D0,repeatable,V2-F012 MEDIUM(店名 LOW): [a1+0x10]=2 は自前(通常9-20)、3/4 は sub_56B504 と ShopHours_Nookling_IsOpenByStage。Vapecord SHOPGARDEN。出口 0x00710380
+0x00710380,repeatable,"Vapecord plugin ADDRESSES: SHOPGARDEN
+他地域: USA=00711BCC  EUR=00710BD4  KOR=0070FF28
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x007103A0,line,V2-F012: 関数未定義の入口。!sub_56B504() && ShopHours_Nookling_IsOpenByStage(a1)。sub_70C58C から呼ばれる
+0x007117DC,func,"IDA-gpt-6-F010 / GPT-6, MEDIUM: native constructor/group registration + original ARM cleanup29B364 corroborate enabled=node217 && group292.flags316. Group must exist (native registered widgets satisfy it). Fixture source without group was invalid; create group before testing real cleanup."
+0x00711A90,line,IDA-opus-5.5-F059: 1024 のとき +164 = 視点行列 3x4。fgobj_DrawList は &unk_ABD380 を渡す
+0x00711F0C,func,IDA-opus-5.5-F080: 見た目の記録（profile+4）: +0 髪型 <34 / +1 髪色 <16 / +2 顔（目の形）<12 / +3 目の色 <6 / +4 日焼け 0..15（見た目は >>1 で 8 段階、vc_GETTANDATAOFFSET）。
+0x00711F4C,repeatable,"Vapecord plugin ADDRESSES: GETTANDATAOFFSET
+他地域: USA=00713798  EUR=007127A0  KOR=00711AF4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x007123E8,line,V2-F012: ShopHours_Ables_IsOpen と挙動が同一(エミュレーションで全時刻・全条例一致)。唯一の使用は橋渡し 0x003097D4 経由の sub_1120B8(住民の外出先 21=エイブル の可否)で IsOpen と並べて呼ばれる。別に存在する理由は LOW(未解明)。ShopsAlwaysOpen は未パッチ
+0x007123E8,repeatable,V2-F012: ShopHours_Ables_IsOpen と挙動が同一(エミュレーションで全時刻・全条例一致)。唯一の使用は橋渡し 0x003097D4 経由の sub_1120B8(住民の外出先 21=エイブル の可否)で IsOpen と並べて呼ばれる。別に存在する理由は LOW(未解明)。ShopsAlwaysOpen は未パッチ
+0x007125E8,line,V2-F012 MEDIUM: 営業時間 通常10-21/早起き7-21/夜ふかし10-24。引数 garden+0x622EC(Vapecord AblesItems)。Vapecord SHOPABLES。出口 0x00712664。橋渡し 0x003097D0
+0x007125E8,repeatable,V2-F012 MEDIUM: 営業時間 通常10-21/早起き7-21/夜ふかし10-24。引数 garden+0x622EC(Vapecord AblesItems)。Vapecord SHOPABLES。出口 0x00712664。橋渡し 0x003097D0
+0x00712664,repeatable,"Vapecord plugin ADDRESSES: SHOPABLES
+他地域: USA=00713EB0  EUR=00712EB8  KOR=0071220C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x007158D4,func,IDA-gpt-6.1-sol-F005 / MEDIUM: 家+0x4の外観種別と区別。こちらは部屋サイズbyte（家+0x36）と追加部屋の有効性から段階を導く。外観+0x4をこの増築段階の値として扱わない。
+0x00715E78,line,V2-F012 MEDIUM: 窓の外で 1 を返す(通常/早起き 20-翌2時、夜ふかし 20-翌5時)。sub_3004C4 の値の第 2 語のバイト!=6 と town+0x6ADD4[+14]!=0x2007 の条件つき。店名は未確定(LOW)。呼出 sub_30A014(住民の外出先 9)ほか
+0x00715E78,repeatable,V2-F012 MEDIUM: 窓の外で 1 を返す(通常/早起き 20-翌2時、夜ふかし 20-翌5時)。sub_3004C4 の値の第 2 語のバイト!=6 と town+0x6ADD4[+14]!=0x2007 の条件つき。店名は未確定(LOW)。呼出 sub_30A014(住民の外出先 9)ほか
+0x007167A0,line,V2-F012 MEDIUM: 通常9-19/早起き6-19/夜ふかし9-23。Vapecord SHOPKATRINA。出口 0x0071684C
+0x007167A0,repeatable,V2-F012 MEDIUM: 通常9-19/早起き6-19/夜ふかし9-23。Vapecord SHOPKATRINA。出口 0x0071684C
+0x0071684C,repeatable,"Vapecord plugin ADDRESSES: SHOPKATRINA
+他地域: USA=00718098  EUR=007170A0  KOR=007163F4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00716860,line,"V2-F012 MEDIUM: ShopHours_Redd_IsOpen の時間帯だけ(品の状態・player フラグを見ない)。呼出: ModuleIndoor.cro 0x..B5A674 相当で `sub_70C58C() ? !this(garden+0x66730) : 0`。sub_70C58C=オフライン && !sub_316E7C(14,0) && Nookling 閉店。用途 LOW。ShopsAlwaysOpen は未パッチ"
+0x00716860,repeatable,"V2-F012 MEDIUM: ShopHours_Redd_IsOpen の時間帯だけ(品の状態・player フラグを見ない)。呼出: ModuleIndoor.cro 0x..B5A674 相当で `sub_70C58C() ? !this(garden+0x66730) : 0`。sub_70C58C=オフライン && !sub_316E7C(14,0) && Nookling 閉店。用途 LOW。ShopsAlwaysOpen は未パッチ"
+0x00716B1C,line,V2-F012 MEDIUM: 通常10-24/早起き7-24/夜ふかし10-翌4時。加えて a1+16..19 の 4 バイトが全部非0なら閉店(引数 garden+0x66730=Vapecord ReddItems[4]、直後 4 バイトは品ごとの状態と推定 LOW)と player+0x5701 bit1。Vapecord SHOPREDD。出口 0x00716BF8
+0x00716B1C,repeatable,V2-F012 MEDIUM: 通常10-24/早起き7-24/夜ふかし10-翌4時。加えて a1+16..19 の 4 バイトが全部非0なら閉店(引数 garden+0x66730=Vapecord ReddItems[4]、直後 4 バイトは品ごとの状態と推定 LOW)と player+0x5701 bit1。Vapecord SHOPREDD。出口 0x00716BF8
+0x00716BF8,repeatable,"Vapecord plugin ADDRESSES: SHOPREDD
+他地域: USA=00718444  EUR=0071744C  KOR=007167A0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00717F70,func,"IDA-gpt-6-F009 / GPT-6 additional timing/memory fix (2026-10-12, MEDIUM): ItemDragWindow_IsTransitioning. Original ARM + RTTI/caller/state-table corroboration. Native child outer exit uses996; pocket exit uses active animation pointer1988 and native unbind/idle. Parent leave waits both before Actor_RequestDestroy. DragControl finish retains selection in hand mode but clears decided and returns native wait. Hand/touch repeat uses counters216/threshold220 (11 then3). Owned search accelerates only exit/page animations and completes parent page wait same Calc. Source ERROR2/STAGE1 = 5MiB engine allocation failure; free search metadata/capacity before reopening. Evidence docs/topics/closet_followup_design.md and work/evidence/gohan_closet_followup/static_timing.json; new hardware behavior unverified."
+0x0071A054,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): True only ui_index in [item_index_base,item_index_base+10). Independent setup loop and getter caller corroborate ten-slot page."
+0x0071A080,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): R1 is required ui_index, saved in R5 before vt11 BLX. Returns index-base or -1; old decompiler omitted R1 in the virtual Contains call."
+0x0071A0B8,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): R1 forwarded to vt10 (UI->local slot); storage base *(0xAA914C)+0x92F0, current_tab6236, page_by_tab6240[tab]-1. Calls ClosetItems_GetAddress. Getter alone is insufficient to isolate search data."
+0x0071A23C,func,"IDA-gpt-6-F008 / GPT-6 (2026-10-12, MEDIUM): Drag target endpoint: control+260 -> node+200 UI index, -1 if absent; native WaitInput destination copy and completion29B364 distinguish it from +180 source. Evidence: docs/topics/closet_direct_design.md; work/evidence/gohan_closet_direct/{static,original_assembly,layout_input}.json. New behavior hardware-unverified."
+0x0071A288,func,"IDA-gpt-6-F008 / GPT-6 (2026-10-12, MEDIUM): Drag source endpoint: control+180 -> node+200 UI index, -1 if absent; original ARM primitive and WaitInput source copy/Set ordering corroborate. Pocket->storage discard can identify source slot before native cleanup. Evidence: docs/topics/closet_direct_design.md; work/evidence/gohan_closet_direct/{static,original_assembly,layout_input}.json. New behavior hardware-unverified."
+0x0071BB98,line,V2-F012 MEDIUM: 通常10-20/早起き7-20/夜ふかし10-23。Vapecord SHOPSHAMPOODLE。出口 0x0071BBE0
+0x0071BB98,repeatable,V2-F012 MEDIUM: 通常10-20/早起き7-20/夜ふかし10-23。Vapecord SHOPSHAMPOODLE。出口 0x0071BBE0
+0x0071BBE0,repeatable,"Vapecord plugin ADDRESSES: SHOPSHAMPOODLE
+他地域: USA=0071D42C  EUR=0071C434  KOR=0071B788
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0071C260,line,soundId
+0x0071C294,func,"IDA-gpt-6-F011 (MEDIUM: original ARM + ButtonActionNode/PartsDragIconNode shared vt+20 + Layout_TransformTouchPixelsToLocal F005 + native hit-test fixture). Uses raw touch pixel halfwords ACF6EA/ACF6EC, transforms via node+28 Layout's viewport/inverse matrix, then tests node+12 Pane. Identity transform mocks or an uninitialized layout viewport hide the required pixel-to-local conversion. Native private trash layout must be fully built before registration."
+0x0071C330,line,"IDA-opus-5.5-F041: node vt+8 = enabled flag (+217, signed byte). Ctor sets 1."
+0x0071C330,repeatable,"IDA-opus-5.5-F041: node vt+8 = enabled flag (+217, signed byte). Ctor sets 1."
+0x0071C338,line,IDA-opus-5.5-F054: ButtonActionNode の決定音 +204 を Game_PlaySound（+218 が真のとき）。
+0x0071C338,repeatable,IDA-opus-5.5-F054: ButtonActionNode の決定音 +204 を Game_PlaySound（+218 が真のとき）。
+0x0071C610,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). ItemSelectWindow idle predicate: state calc+12==0x2B9F5C and zero PMF adjustment+16. BsMenuItem action dispatch waits this after native choice exit. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls."
+0x0071C610,repeatable,"Vapecord plugin ADDRESSES: SUB_71DE5C
+他地域: USA=0071DE5C  EUR=0071CE64  KOR=0071C1B8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0071DD38,line,V2-F012 MEDIUM: 通常10-20/早起き7-20/夜ふかし10-24。先頭で player([0x00AA914C])+0x5704 の bit6/bit7 と +0x5701 bit1 を見て閉店へ抜ける分岐あり。Vapecord SHOPNOOKS。出口 0x0071DE08
+0x0071DD38,repeatable,V2-F012 MEDIUM: 通常10-20/早起き7-20/夜ふかし10-24。先頭で player([0x00AA914C])+0x5704 の bit6/bit7 と +0x5701 bit1 を見て閉店へ抜ける分岐あり。Vapecord SHOPNOOKS。出口 0x0071DE08
+0x0071DE08,repeatable,"Vapecord plugin ADDRESSES: SHOPNOOKS
+他地域: USA=0071F654  EUR=0071E65C  KOR=0071D9B0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0071FBB4,repeatable,"Vapecord plugin ADDRESSES: PARTC3
+他地域: USA=00721418  EUR=00720420  KOR=0071F75C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00723854,func,IDA-gpt-6-F006 / GPT-6 MEDIUM: ItemDragWindow/UI get reads current player's real inventory at Save_GetCurrentPlayer()+27600 via Inventory_GetSlot. No deferred UI copy; this is distinct from closet Save+0x92F0. Original ARM and Chest get/transfer caller corroborate. Preserve prior vc alias and provenance.
+0x00723854,repeatable,"Vapecord plugin ADDRESSES: GET_ITEM
+他地域: USA=007250B8  EUR=007240C0  KOR=007233FC
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00723878,func,"IDA-gpt-6-F008 / GPT-6 (2026-10-12, MEDIUM): F048 hidden-item branch0x7238C0 filters returned pointer, does not erase saved item. T011 owned closet LoadStep/Calc scope returns raw current-player inventory slot; scope-out/other-container follows original current BEQ/NOP. Raw read alone does not bypass setter normalization. Evidence: docs/topics/closet_direct_design.md; work/evidence/gohan_closet_direct/{static,original_assembly,layout_input}.json. New behavior hardware-unverified."
+0x00723878,line,"★Inventory_GetSlot(container, index, pOutFlag, dflt) — ポケットのスロット取得 (F-63)。
+  index < 0x10（16 枚）かつ（Item_IsEmpty または sub_768FFC）なら &container[index]
+  そうでなければ &ItemToPlace（0x955FF4 = 空アイテム）を返す
+アイテム 4B x 16 = 64B、その後の +64 にスロット毎のバイト。
+ラッパ vc_GET_ITEM(0x723854) = Inventory_GetSlot(sub_2FB900() + 27600, index)。
+★チート host drop は 0x7238C0 の BEQ を NOP にして
+  常に実スロットを返させる（空アイテムへのフォールバックを潰す）。"
+0x00723878,repeatable,"★Inventory_GetSlot(container, index, pOutFlag, dflt) — ポケットのスロット取得 (F-63)。
+  index < 0x10（16 枚）かつ（Item_IsEmpty または sub_768FFC）なら &container[index]
+  そうでなければ &ItemToPlace（0x955FF4 = 空アイテム）を返す
+アイテム 4B x 16 = 64B、その後の +64 にスロット毎のバイト。
+ラッパ vc_GET_ITEM(0x723854) = Inventory_GetSlot(sub_2FB900() + 27600, index)。
+★チート host drop は 0x7238C0 の BEQ を NOP にして
+  常に実スロットを返させる（空アイテムへのフォールバックを潰す）。"
+0x007238B8,repeatable,"Vapecord plugin ADDRESSES: IIOFFSET
+他地域: USA=0072511C  EUR=00724124  KOR=00723460
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x007238C0,line,IDA-opus-5.5-F048: gohan 没アイテム表示 (Issue #15) writes NOP here (same as public cheat) via PatchListSetActive; 78 callers of Inventory_GetSlot see hidden items.
+0x007239CC,func,"IDA-gpt-6-F008 / GPT-6 (2026-10-12, MEDIUM): 16-slot pocket per-slot byte inventory+64+index; slot>=16 returns0. Raw scoped closet reads preserve this out-flag ABI. Evidence: docs/topics/closet_direct_design.md; work/evidence/gohan_closet_direct/{static,original_assembly,layout_input}.json. New behavior hardware-unverified."
+0x00724890,func,IDA-gpt-6.1-sol-F005 / MEDIUM: 現在外観属性+0x5..+0xCと予定+0xE..+0x15を比較する。日替り0x10BA08の現在/予定コピーと独立一致。外観種別+0x4/+0xDはこの比較の対象外。
+0x0072721C,line,IDA-opus-5.5-F058: TEV 段 24 B → 6 語。[0]RGB合成 [1..3]演算子 [4..6]入力 [7]倍率 [9]α合成 [10..12] [13..15] [16] [18..20]定数RGB [21]定数α [22]u16 レジスタ。ヘッダ 0x804F0000|レジスタ
+0x0072721C,repeatable,IDA-opus-5.5-F058: TEV 段 24 B → 6 語。[0]RGB合成 [1..3]演算子 [4..6]入力 [7]倍率 [9]α合成 [10..12] [13..15] [16] [18..20]定数RGB [21]定数α [22]u16 レジスタ。ヘッダ 0x804F0000|レジスタ
+0x007364FC,line,"V2-F011: query-only original ARM code executed with Unicorn ARM11MPCore and strict code/read/write bounds; independent allocation ledger agrees for fg_treeA_4 in 23 Seasons x masks 0/0x10 (46 cases). mask0=932 bytes; mask0x10=1664; max alignment32. These are builder estimates, excluding allocator size+alignment overhead, heap metadata, assets and GPU buffers. Not a hardware allocation/rendering test."
+0x0073AA30,repeatable,"Vapecord plugin ADDRESSES: TPOSE
+他地域: USA=0073C290  EUR=0073B298  KOR=0073A5D8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0073B43C,func,"IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Pane local rectangle from width+72/height+76 and origin nibble at+182 (mod3 horizontal, div3 vertical); Y bounds decrease downward in layout space.
+IDA-gpt-6-F010 / GPT-6, MEDIUM: private HHD trash B_Base_00 is left-anchored; align rectangle center, not raw pane translation, to native letter B_btn center. Uses existing native local rect + source affine matrix; keeps root N_Pos_00 outside animation group. Original ARM and DARC JSON corroborate anchor distinction."
+0x0073B508,line,"IDA-opus-5.5-F086: nw::lyt::Pane vt+0x14 GetColorElement(idx): 16 = pane alpha (+0xB4), else vt+0x1C GetVtxColorElement. Same slot in Picture/TextBox vtables (0x8FC010 / 0x8FC090). Pair of nwlyt_Pane_SetColorElement (vt+0x18). gohan HhdScreen ReadColor uses it."
+0x0073B508,repeatable,"IDA-opus-5.5-F086: nw::lyt::Pane vt+0x14 GetColorElement(idx): 16 = pane alpha (+0xB4), else vt+0x1C GetVtxColorElement. Same slot in Picture/TextBox vtables (0x8FC010 / 0x8FC090). Pair of nwlyt_Pane_SetColorElement (vt+0x18). gohan HhdScreen ReadColor uses it."
+0x0073B524,func,"IDA-gpt-6.1-sol-F015 MEDIUM: visible bit0 at flags+183; DrawSelf virtual+104 receives pane/globalAlpha+181; recursive child list sentinel pane+20, child next link at child+4. Original traversal + linked tree fixture independently verify all panes and byte restoration (including depth/capacity fallback)."
+0x0073B524,line,"★nwlyt_Pane_DrawRecursive(pane, cursor, ...) — UI の Pane 走査本体 — F-147 / F-177
+
+★★**常時描ける相乗り点。** 60 秒の実測で**ゼロフレームは 0.00%**（Pane 161251 回 / Picture 65315 回）。
+  Picture 層は 1.1% のゼロフレームがあるので、
+  「いついかなる時も描画する」要件にはこちらを使う（F-177）。"
+0x0073B524,repeatable,"★nwlyt_Pane_DrawRecursive(pane, cursor, ...) — UI の Pane 走査本体 — F-147 / F-177
+
+★★**常時描ける相乗り点。** 60 秒の実測で**ゼロフレームは 0.00%**（Pane 161251 回 / Picture 65315 回）。
+  Picture 層は 1.1% のゼロフレームがあるので、
+  「いついかなる時も描画する」要件にはこちらを使う（F-177）。"
+0x0073B550,line,F-145: virtual Pane draw slot +0x68; returned command pointer becomes input for each visible child recursively.
+0x0073B5C4,line,"★nwlyt_Pane_GetAnchorOffset — F-291 で逆アセンブルから確定。code = pane[0xB6] & 0xF。横 = code%3: 0->S0=0 / 1->S0=-幅/2 / 2->S0=-幅。縦 = code/3: 0->S1=0 / 1->★S1=+高さ/2 / 2->S1=+高さ。★旧コメントは「1 -> 高さ*0.5」の分岐を書き落としていた（0x73B630 に実在）。中央揃え(code=4)なら (-幅/2,+高さ/2) で、行列の平行移動が矩形の中心になる。"
+0x0073B5C4,repeatable,"★nwlyt_Pane_GetAnchorOffset — F-291 で逆アセンブルから確定。code = pane[0xB6] & 0xF。横 = code%3: 0->S0=0 / 1->S0=-幅/2 / 2->S0=-幅。縦 = code/3: 0->S1=0 / 1->★S1=+高さ/2 / 2->S1=+高さ。★旧コメントは「1 -> 高さ*0.5」の分岐を書き落としていた（0x73B630 に実在）。中央揃え(code=4)なら (-幅/2,+高さ/2) で、行列の平行移動が矩形の中心になる。"
+0x0073B650,func,"IDA-opus-5.5-F075: 第3引数 = UV の組の配列（32 B/組）。材質にテクスチャ（座標生成）があるのに配列が 0 だと 0x73B8B4 で落ちる（実機 SIGSEGV、R10=0）。ウィンドウの中身は *(win+348) を渡すので、bclyt の wnd1 の中身に UV の組が要る。
+IDA-opus-5.5-F082: 座標生成（bclyt mat1 の 4 B、Clypo は float で持つ）は +1 バイト目 = 使う UV の組の番号だけ。投影は無い。SRT: t = R(θ)diag(sx,sy)(uv-0.5) + 0.5 + T（θ = 0 かつ拡大 1 なら省略の経路）。"
+0x0073B650,line,"IDA-opus-5.5-F040: texcoord for GPU: u=(u+tx)*ratio, t=1-(v+ty)*ratio; rotate/scale about (0.5,0.5); layout v=0 is image top; translate in v-down space."
+0x0073B650,repeatable,"IDA-opus-5.5-F040: texcoord for GPU: u=(u+tx)*ratio, t=1-(v+ty)*ratio; rotate/scale about (0.5,0.5); layout v=0 is image top; translate in v-down space."
+0x0073BAC0,func,"IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Inherited F065 confirmed: viewport+24/+28 width/height -> rect(-W/2,H/2,W/2,-H/2). Caller 74F3FC uses this to convert screen pixels into layout coordinates."
+0x0073BAC0,line,"IDA-opus-5.5-F065: ortho rect from (arg1+0x18,+0x1C) = Layout+0x28/+0x2C: l=-W/2, t=H/2, r=W/2, b=-H/2. Called every LayoutCalc (0x5681BC) and by SetupProjectionMatrix 0x567BC0."
+0x0073BAC0,repeatable,"IDA-opus-5.5-F065: ortho rect from (arg1+0x18,+0x1C) = Layout+0x28/+0x2C: l=-W/2, t=H/2, r=W/2, b=-H/2. Called every LayoutCalc (0x5681BC) and by SetupProjectionMatrix 0x567BC0."
+0x0073BB44,func,"IDA-opus-5.5-F072: frame count 1 -> l = r = frame 0 texture width, t = b = frame 0 texture height (0x73BB74). 4/8 -> per-frame as above."
+0x0073BB44,line,"IDA-opus-5.5-F040: frame size from texMap image size (+8 w,+0xA h): l=LB w, r=RT w, t=LT h, b=RB h."
+0x0073BB44,repeatable,"IDA-opus-5.5-F040: frame size from texMap image size (+8 w,+0xA h): l=LB w, r=RT w, t=LT h, b=RB h."
+0x0073BCBC,line,"IDA-opus-5.5-F040: Window slot26 draw. 4 frames: LT (left,top) size (w-r,t); RT (left+w-r,top) (r,h-b); RB (left+l,top-h+b) (w-l,b); LB (left,top-t) (l,h-t). l/r/t/b from nwlyt_Window_GetFrameSize. Content = inside frames + inflation."
+0x0073BCBC,repeatable,"IDA-opus-5.5-F040: Window slot26 draw. 4 frames: LT (left,top) size (w-r,t); RT (left+w-r,top) (r,h-b); RB (left+l,top-h+b) (w-l,b); LB (left,top-t) (l,h-t). l/r/t/b from nwlyt_Window_GetFrameSize. Content = inside frames + inflation."
+0x0073BE6C,line,"IDA-opus-5.5-F072: frame count 1: frame 0 material drawn 4 times, LT flip 0 / RT flip 1 / RB flip 4 / LB flip 2, same quads as 4 frames. Content is always drawn (no NW4F 'do not draw content' flag)."
+0x0073CB40,line,"IDA-opus-5.5-F086: Picture vt+0x1C GetVtxColorElement(idx) = byte [this+0x140+idx] (idx 0..15 = LT,RT,LB,RB x RGBA). Pair of nwlyt_Picture_SetVtxColorElement."
+0x0073CB40,repeatable,"IDA-opus-5.5-F086: Picture vt+0x1C GetVtxColorElement(idx) = byte [this+0x140+idx] (idx 0..15 = LT,RT,LB,RB x RGBA). Pair of nwlyt_Picture_SetVtxColorElement."
+0x0073CB58,line,"★nwlyt_Picture_DrawToCommandList(picture, ?, ?, drawctx) — F-176 / F-185 / F-190
+
+冒頭で Material_EmitState(drawctx, cursor, *(picture + 316)) を呼ぶ。
+**picture + 316 がマテリアル**（色とテクスチャの出所）。
+
+Picture は GPU コマンドを直接吐かない。drawctx の 3 配列にエントリを溜め、
+DrawCtx_FlushBatch が一括で流す。
+
+★★末尾の索引エントリ組み立て（0x73CD1C の STM）がすべてを決める:
+
+  v22 = *(drawctx+1640) + 16 * (drawctx+36);
+  v22[0] = *(drawctx+1624);   // 行列の索引        -> 位置
+  v22[1] = *(drawctx+1628);   // 自分の幾何の索引  -> 大きさ・アンカー
+  v22[2] = *(drawctx+1632);   // 追加幾何の索引    -> UV
+  v22[3] = *(drawctx+1636);   // 色の索引（sub_4B8090 が作る）
+
+★F-180 の「w1 = 幾何+1、w2 = 幾何」は誤り。
+  正しくは **w1 = 自分の幾何、w2 = 追加幾何**。
+
+★幾何エントリ = (幅, 高さ, アンカーX, アンカーY)。
+  0x73CCE0 の VSTM "
+0x0073CB58,repeatable,"★nwlyt_Picture_DrawToCommandList(picture, ?, ?, drawctx) — F-176 / F-185 / F-190
+
+冒頭で Material_EmitState(drawctx, cursor, *(picture + 316)) を呼ぶ。
+**picture + 316 がマテリアル**（色とテクスチャの出所）。
+
+Picture は GPU コマンドを直接吐かない。drawctx の 3 配列にエントリを溜め、
+DrawCtx_FlushBatch が一括で流す。
+
+★★末尾の索引エントリ組み立て（0x73CD1C の STM）がすべてを決める:
+
+  v22 = *(drawctx+1640) + 16 * (drawctx+36);
+  v22[0] = *(drawctx+1624);   // 行列の索引        -> 位置
+  v22[1] = *(drawctx+1628);   // 自分の幾何の索引  -> 大きさ・アンカー
+  v22[2] = *(drawctx+1632);   // 追加幾何の索引    -> UV
+  v22[3] = *(drawctx+1636);   // 色の索引（sub_4B8090 が作る）
+
+★F-180 の「w1 = 幾何+1、w2 = 幾何」は誤り。
+  正しくは **w1 = 自分の幾何、w2 = 追加幾何**。
+
+★幾何エントリ = (幅, 高さ, アンカーX, アンカーY)。
+  0x73CCE0 の VSTM R2,{S0-S1} が後ろ 2 ワードを書くが、
+  直前の BL sub_73B5C4 が S0 を上書きするので
+  **入るのは行列索引ではなくアンカーのオフセット**（F-188）。
+
+★自前の UI 画像を 1 枚足す実装は PATCHES/cave_add_sprite2.py。"
+0x0073CD94,line,"IDA-opus-5.5-F040: text origin = pane top-left + (0|w/2|w, -(0|h/2|h)) by basePosition; textPosition at +0xFC."
+0x0073CD94,repeatable,"IDA-opus-5.5-F040: text origin = pane top-left + (0|w/2|w, -(0|h/2|h)) by basePosition; textPosition at +0xFC."
+0x0073CE64,line,"★TextBox の描画行列を組む — sub_73CE64(textbox, float* mtx) — F-158 / F-160
+
+呼び出し: TextBox_EmitBatchToGpuCommands 内 0x4B7D2C で
+  sub_73CE64(textbox, *(drawctx + 0x66C))
+
+★第 2 引数は **drawctx+580 = TextDraw_EmitStatePrefix のステージング内**。
+  ここに書いた float[12] がそのまま PICA の reg 0x2C1 へ流れる。
+
+sub_135C28(mtx, textbox+128) で pane の行列を展開したあと:
+  mtx[1], mtx[5], mtx[9]    を負号反転   = **Y 列の反転**
+                                              （レイアウト Y 下向き → クリップ Y 上向き）
+  mtx[3], mtx[7], mtx[11]   にオフセットを加算 = **平行移動**
+
+この 2 つの位置から、行内の並びが (x, y, z, w) であることが確定できる。"
+0x0073CE64,repeatable,"★TextBox の描画行列を組む — sub_73CE64(textbox, float* mtx) — F-158 / F-160
+
+呼び出し: TextBox_EmitBatchToGpuCommands 内 0x4B7D2C で
+  sub_73CE64(textbox, *(drawctx + 0x66C))
+
+★第 2 引数は **drawctx+580 = TextDraw_EmitStatePrefix のステージング内**。
+  ここに書いた float[12] がそのまま PICA の reg 0x2C1 へ流れる。
+
+sub_135C28(mtx, textbox+128) で pane の行列を展開したあと:
+  mtx[1], mtx[5], mtx[9]    を負号反転   = **Y 列の反転**
+                                              （レイアウト Y 下向き → クリップ Y 上向き）
+  mtx[3], mtx[7], mtx[11]   にオフセットを加算 = **平行移動**
+
+この 2 つの位置から、行内の並びが (x, y, z, w) であることが確定できる。"
+0x0073CF48,func,"F-143/F-144: vtable TextBox rendering wrapper. Checks length/font/material and dirty/processor flags, then calls sub_4BAFB0(a1,R3) to rebuild the batch writer; this is the active path for clock/conversation-style UI, not sub_4D5858."
+0x0073CF48,line,"★TextBox 描画ラッパ（vtable 経由）。F-143 / F-144 / F-157
+
+末尾で:
+  TextBox_EmitBatchToGpuCommands(a4, v11, a1, *(a1 + 256), a3)
+                                             ^^^^^^^^^^^^^
+★第4引数 = **マテリアル**（textbox+256 のデリファレンス）。
+  0x73CF6C の早期 return も *(a1+256)==0 を弾いており、
+  +256 がマテリアルポインタであることの裏付けになる。
+  マテリアル +16 / +20 が submit descriptor の +0x00 / +0x04 になる。
+  +20 が本体色（影 pane は黒、本文 pane は白）— F-128 / F-157。"
+0x0073CF48,repeatable,"★TextBox 描画ラッパ（vtable 経由）。F-143 / F-144 / F-157
+
+末尾で:
+  TextBox_EmitBatchToGpuCommands(a4, v11, a1, *(a1 + 256), a3)
+                                             ^^^^^^^^^^^^^
+★第4引数 = **マテリアル**（textbox+256 のデリファレンス）。
+  0x73CF6C の早期 return も *(a1+256)==0 を弾いており、
+  +256 がマテリアルポインタであることの裏付けになる。
+  マテリアル +16 / +20 が submit descriptor の +0x00 / +0x04 になる。
+  +20 が本体色（影 pane は黒、本文 pane は白）— F-128 / F-157。"
+0x0073CF54,line,"F-144 live clock capture: TextBox R0=0x32D07674, string ptr=0x32D07790 containing UTF-16 '00', font=0x3302ABE0, material=0x32D07BA0, length=2; proves the sampled non-conversation hit was the clock."
+0x0073D000,line,nwlyt_Material_GetTexSRTs — *(mat+52) + 32*(texMap 数)。texSRT は 1 個 20 バイト（平行移動2/回転1/拡大2）。F-291
+0x0073D000,repeatable,nwlyt_Material_GetTexSRTs — *(mat+52) + 32*(texMap 数)。texSRT は 1 個 20 バイト（平行移動2/回転1/拡大2）。F-291
+0x0073D0A0,line,nwlyt_Material_GetTexCoordGens — texSRT の直後。1 個 4 バイト。sub_73B650 は [4*i+1] を座標セットの索引に使う。F-291
+0x0073D0A0,repeatable,nwlyt_Material_GetTexCoordGens — texSRT の直後。1 個 4 バイト。sub_73B650 は [4*i+1] を座標セットの索引に使う。F-291
+0x00743694,line,ResFont vtable slot: return FINF[20] - FINF[22]. F-129。
+0x00743694,repeatable,ResFont vtable slot: return FINF[20] - FINF[22]. F-129。
+0x007436A8,line,ResFont vtable slot: return signed FINF[1] (line feed field in live CFNU). F-129。
+0x007436A8,repeatable,ResFont vtable slot: return signed FINF[1] (line feed field in live CFNU). F-129。
+0x00743768,func,"F-139 live: tid=219, R0=0x3302ABE0 (ResFont 17x24), R1=0x904A (U+904A). 0x74385C returns glyph index 0x0A01; ResFont cache +0x14/+0x16 becomes 0x904A/0x0A01."
+0x00743768,line,"F-130 HIGH: ResFont CMAP lookup. input UTF-16 code; walks chained CMAP nodes, supports method 0 direct / 1 table / 2 scan, returns glyph index or 0xFFFF. Runtime: 7px font lacks U+0030/U+0036/U+0037; fallback glyph 0 reverse-maps to U+3041."
+0x00743768,repeatable,"F-130 HIGH: ResFont CMAP lookup. input UTF-16 code; walks chained CMAP nodes, supports method 0 direct / 1 table / 2 scan, returns glyph index or 0xFFFF. Runtime: 7px font lacks U+0030/U+0036/U+0037; fallback glyph 0 reverse-maps to U+3041."
+0x0074385C,line,F-139 live return: R0=0x0A01 for input U+904A; confirms CMAP result and cache update.
+0x007438A4,func,"F-133 static: ResFont vtable slot 26 getter; returns LE16(TGLP+8), the glyph-sheet count."
+0x007438B4,line,"F-130 HIGH: builds glyph data after CMAP lookup; if lookup returns 0xFFFF, substitutes FINF alternate glyph index at info+2, then resolves CWDH and TGLP sheet coordinates."
+0x007438B4,repeatable,"F-130 HIGH: builds glyph data after CMAP lookup; if lookup returns 0xFFFF, substitutes FINF alternate glyph index at info+2, then resolves CWDH and TGLP sheet coordinates."
+0x0074397C,line,F-131 HIGH: copy CWDH left bearing and glyphWidth to glyph record +4/+5.
+0x00743984,line,F-131 HIGH: copy CWDH advance to glyph record +6.
+0x007439F8,line,"F-131 HIGH: glyph cell U starts at one-pixel-padded coordinate (cellWidth+1)*column+1; EmitGlyphQuad adds glyphWidth, not full TGLP cellWidth."
+0x00743A18,line,F-130 MEDIUM: returns ResFont this+16 bit1; likely IsLinearFilterEnabledAtLarge(). Companion 0x743A28 returns bit2.
+0x00743A18,repeatable,F-130 MEDIUM: returns ResFont this+16 bit1; likely IsLinearFilterEnabledAtLarge(). Companion 0x743A28 returns bit2.
+0x00743A28,line,F-130 MEDIUM: returns ResFont this+16 bit2; likely IsLinearFilterEnabledAtSmall(). Companion 0x743A18 returns bit1.
+0x00743A28,repeatable,F-130 MEDIUM: returns ResFont this+16 bit2; likely IsLinearFilterEnabledAtSmall(). Companion 0x743A18 returns bit1.
+0x00743A40,line,ResFont vtable slot: return *(u8 *)(FINF + 21). F-129。
+0x00743A40,repeatable,ResFont vtable slot: return *(u8 *)(FINF + 21). F-129。
+0x00743A68,line,ResFont vtable slot: return *(u8 *)(FINF + 22). F-129。
+0x00743A68,repeatable,ResFont vtable slot: return *(u8 *)(FINF + 22). F-129。
+0x00743A74,line,ResFont vtable slot: return *(u8 *)(FINF + 20). F-129。
+0x00743A74,repeatable,ResFont vtable slot: return *(u8 *)(FINF + 20). F-129。
+0x00744958,func,IDA-gpt-6.1-sol-F002: MEDIUM: R0=u32索引へのpointer。負値、現在室capacity、48の最大範囲を検査し0x9C19F4[index]非nullならtrue。生成完了bit/actor state/破棄要求は検査しない。ModuleFtr IsAliveと登録が使う。
+0x0074499C,func,IDA-gpt-6.1-sol-F002: MEDIUM: R0=u32索引へのpointer。IsAliveと同じ範囲で0x9C19F4[index]を返す。ModuleFtrのactor同一性/親記録索引の消費経路と照合。
+0x007449D4,func,"IDA-gpt-6.1-sol-F001 / MEDIUM: R0=AcFtr*表。Room_GetFurnitureActorCapacity枠の非0を数え、capacity-countを返す。0x68FADCと0x691B00の空き判定、0x4E8730の登録と照合。
+IDA-gpt-6.1-sol-F002: MEDIUM追補: 室別capacityのnull slot数を返す。通常Spawnは結果0でPrepare前に拒否。ModuleFtr112枠/Chip112枠の空き数とは別々に確認。"
+0x00744AB0,func,IDA-gpt-6.1-sol-F001 / MEDIUM: R0=Footprint*、R1=XYZ出力*、R2=基準マスX、R3=基準マスZ。全占有セルの32*cell+16を平均し家具中心にする。0x691EC0の細長家具向き判定と原本の相対セル表で照合。
+0x00744BDC,func,IDA-gpt-6.1-sol-F001 / MEDIUM: R0=Footprint*。種類<5ならg_FurnitureFootprintDescriptors[kind]+16のu8個数、他0。原本表から1/2/4/6/9を照合。
+0x00744BFC,func,"IDA-gpt-6.1-sol-F001 / MEDIUM: R0=Footprint*、R1=セル索引。表[kind]の4方向ポインタ[(rot&3)] + 8*i、戻りはsigned int32(dx,dz)*。範囲外は0x85F8D4の(0,0)。0x6921F0..0x692210と原本表で照合。"
+0x007461D0,line,"IDA-opus-5.5-F045: lyt::Object FindPane(obj, name) = (*(obj+72))->vt+44(name, recursive 1). obj+72 = root pane."
+0x007461D0,repeatable,"IDA-opus-5.5-F045: lyt::Object FindPane(obj, name) = (*(obj+72))->vt+44(name, recursive 1). obj+72 = root pane."
+0x00746A38,line,IDA-gpt-6-sol-F008: reads connection object byte +40 under lock at +12.
+0x00746A38,repeatable,IDA-gpt-6-sol-F008: reads connection object byte +40 under lock at +12.
+0x00747430,func,"IDA-gpt-6-F001 / gpt-6, MEDIUM static: obtains text from provider vtable +0xC, counts numeric characters with Utf16_CountNumericCharacters, and returns count > argument limit. NULL provider returns false. Caller BsSkb 0x57D9EC passes limit 3 or 5 according to screen state. Provider class identity unresolved; preserve original function name."
+0x0074798C,func,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: 有効家具族（+0x11が1以上0x56未満）かつ(+0x19>>4)が4または5を壁配置家具として判定。TryPutが壁の側/向き/適格セルの分岐に利用。ROM147/148/49は全件class5、通常6/7は0、47は3。+0x1Bの意味から判断しない。
+0x00747B54,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). ItemParam price ushort+2 times signed multiplier+14. Effective-money routine305688 and native wallet collection2BFB5C consume this; do not mistake categories41/42 for bells (bells category2). Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls."
+0x00747B64,func,"IDA-gpt-6.1-sol-F001 / MEDIUM: R0=ItemParam*。+25の上位4bit、6以上は0。配置時の上置き判定が2/3を許し、0x74798Cは4/5を壁族として扱う。
+IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: ItemParamRecord+0x19の上位4bitを配置classとして返す（6以上は0）。ROM通常服/ワンピース=0、通常曲=3、147/148/49=5。0x74798C/Room_TryPutFurnitureAtの壁分岐と照合。下位4bitと+0x1Bの意味は今回未確定。"
+0x0074D744,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。自由リストpayloadを合算する総空き。管理ヘッダの増減・整列によりGPU/CPU要求payload合計と単純一致しない。別heap移設は総空きと0x74D8B0の最大連続空きを別々に検査する。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
+0x0074D8B0,func,"IDA-gpt-6.1-sol-F006（親 opus-5.5 照合）: (heap, align) → 整列込みの最大連続確保可能量。sead::ExpHeap vtable 0x8FFEF8 の +64（+60 = getFreeSize 0x74D744 の次）。T022 の窓はアイコン枠 184,320 B を合計空きでなくこの値で判定し、最初に確保する（家具の生成後の断片化対策）。
+IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。R0=ExpHeap/R1=signed alignment→最大連続量。符号はheap+0x50 directionと掛ける。iconは絶対末尾確保の前後、構築後に余白検査。原本ExpHeap+リンク済み新APIで正/反方向・fragment・返却を照合。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。"
+0x0074DC18,func,IDA-gpt-6.1-sol-F010 / MEDIUM: R0=ExpHeap、R1=size、R2=正alignment、R3=heap+0x74 の探索mode。free list末尾 heap+0x78 からprevへ探索。0x74DC60以降でend-sizeの整列切下げとpadding込みfitを判定。原本ARM1176の末尾alloc 12例と返却を照合。PUSH/POP R4-R7、BX LR。
+0x0074F3FC,func,"IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): R0 layout, R1 pixel point, R2 output local point. Computes centered ortho bounds from layout+16, shifts pixel X by -width/2 and flips Y about height/2, then applies inverse layout matrix at+116. Identity-transform test endpoints hide incorrect pixel/centered routing."
+0x0074F58C,line,IDA-opus-5.5-F108: 順再生(+0x14==1)は frame(+8) >= frameSize(+4) − 1 で終わり、逆再生(==3)は frame <= 0。ループは終わらない
+0x0074F58C,repeatable,IDA-opus-5.5-F108: 順再生(+0x14==1)は frame(+8) >= frameSize(+4) − 1 で終わり、逆再生(==3)は frame <= 0。ループは終わらない
+0x00750814,func,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: AcFtr+0x5E4の配置ItemIDへのポインタを返す。CreatePrepareの記録コピー先、Room検索の生品番コピー、AcFtr_CopyItemForPocketのコピー元と一致。
+0x00750A38,func,"IDA-gpt-6.1-sol-F016 MEDIUM: current anchor from cache actor+1884/+1888 else footprint scan in live FieldMap. R0=actor,R1=x*,R2=z*,R3=override position (0 stock), stack arg=rotation pointer. Stock caller 0x4E7F64 uses R3=0 and u16 rotation[4]={0}; longpress clone copies matching map Item, not stale CreatePrepare x/z."
+0x00750BB8,func,IDA-gpt-6.1-sol-F002: MEDIUM: actor+1528==2だけ。AcFtr vtable+144とゲーム家具操作の呼び手で照合。+102 bit1の生成最終化完了判定とは別。
+0x00750BCC,func,IDA-gpt-6.1-sol-F002: MEDIUM: 通常はactor+1352のmatrix translation(+1364/+1380/+1396)を出力。壁家具は0x750204から組み立て、mode2では別補正。ModuleFtr0xB0F86C→位置投影→Chip_SyncPositionの入力。actor+20の生座標だけでは同等にならない。
+0x00751220,func,"IDA-gpt-6.1-sol-F002: MEDIUM: R0=actor,R1=matrix,R2=追加XYZまたはnull,R3=yaw差pointer,SP+0=描画補正flag。親+1548があれば親matrixへ相対XYZ+1552/相対yaw+1550を合成。0x56FD70がflag0でactor+1352へ、Chip位置取得0x750BCCがtranslationを消費。
+IDA-gpt-6.1-sol-F007 / MEDIUM: 下層(1972=0)・親索引1548=-1・create+0x66 bit1後なら、R0=actor,R1=actor+1352,R2=null,R3=&u16(0),SP+0=0でanchorを初回計算できる静的根拠。actorの状態+0x5F8=2をこの関数は要求しない。Setup/Chip_SyncPositionが読む0x750BCC側と合致。生成資源未完成のactorへの適用や上載せには一般化しない。配置演出中のチップ追加は未実機。
+IDA-gpt-6.1-sol-F012 / MEDIUM追補。壁も層0/親なし・Finalize bit1後なら同じflag0のanchor計算。壁の座標取得/Setupの入口自体が壁家具を除外しない（Indoor CreateChips/Chip_BuildのW分岐）。親または層1を持つ上載せへ一般化しない。実機で壁chipの位置/向き/ドラッグ/ゴミ箱を確認する。"
+0x007514F0,func,IDA-gpt-6.1-sol-F016 MEDIUM: actor+1520 parameter pointer -> unsigned placement class (not ItemParamRecord* return); TryPutFurnitureAt 0x692800 uses class result.
+0x0075725C,func,"IDA-gpt-6-F001 MEDIUM: wraps tile columns/rows using unsigned division remainder by dimensions>>3, then tileIndex*64 + table[y&7][x&7]. Entire 8x8 u32 table matches input and independent Morton bit interleaving. Descriptor prefix data/width/height at0/4/8; unknown later fields excluded."
+0x007577C4,repeatable,"Vapecord plugin ADDRESSES: BYP4
+他地域: USA=00759024  EUR=0075802C  KOR=0075736C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x007578E4,func,V2-F017 MEDIUM: 宛先(種別1/3/6なら +22 の町ID・+24 町名18B・+42、種別2/4 なら +0/+2/+20)を自分の町 [garden+401848](u16 ID、+2 名前18B、+20) と比べ、違えば 1。PersonalID の配置: +0 u16 プレイヤーID、+2 名前、+20、+22 u16 町ID、+24 町名、+42
+0x007579C0,func,V2-F018 MEDIUM: 手紙一覧の見出しを SYS_2D_Mail から選ぶ。letter+625(特殊差出人番号)が非0なら dword_888AAC[番号]（番号27は差出人種別7のときだけ）。書いた手紙(+624下位3bit=3): 宛先6→#2「みらいのじぶんへ」、1/3→#1「〜さんへ」(プレイヤー名)、2/4→#0(住民名)。受け取った手紙: 宛先6→#5「むかしの〜より」、差出人1/3/6→#4(プレイヤー名)、2/4→#3(住民名)
+0x00758198,func,V2-F018 MEDIUM: IDブロックの名前を引数に。種別1/6(と 3)は +2 のプレイヤー名、2 は住民、7 はブロック先頭の自由文字列(24文字)。種別7を書く箇所は未発見(LOW)
+0x00758648,line,"IDA-opus-5.5-F008: VillageBook vtable +0x10 = count = garden+0x4BE84 (u8). Counts ALL buildings in the table (35 in the measured village), not only public works."
+0x00758648,repeatable,"IDA-opus-5.5-F008: VillageBook vtable +0x10 = count = garden+0x4BE84 (u8). Counts ALL buildings in the table (35 in the measured village), not only public works."
+0x007592C8,repeatable,"Vapecord plugin ADDRESSES: SUB_75AB28
+他地域: USA=0075AB28  EUR=00759B30  KOR=00758E70
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x007592D4,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). Virtual dispatch system vt+24 -> clear selection. Keep original system/window completion lifecycle; do not substitute an early visual close. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls."
+0x007592D4,repeatable,"Vapecord plugin ADDRESSES: SUB_75AB34
+他地域: USA=0075AB34  EUR=00759B3C  KOR=00758E7C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x007592E0,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). Virtual dispatch system vt+20 -> selected row; BsMenuItem dispatch reads row+168 action. Synthetic0x40..0x43 are intercepted only private owned option rows, never indexed into native PMF table. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls."
+0x007592E0,repeatable,"Vapecord plugin ADDRESSES: SUB_75AB40
+他地域: USA=0075AB40  EUR=00759B48  KOR=00758E88
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0075A54C,repeatable,"Vapecord plugin ADDRESSES: ACMESSAGEBOX_FUNC4
+他地域: USA=0075BDAC  EUR=0075ADB4  KOR=0075A0F4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0075B8A8,repeatable,"Vapecord plugin ADDRESSES: NPC_2_SETUP
+他地域: USA=0075D108  EUR=0075C110  KOR=0075B450
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0075CAB4,line,"IDA-gpt-6-astra-F001: r0=curve coefficients, r1=out xyz, r2=in game xyz. radius=in.y+coeff[0]; angle=u16(trunc(float32(float32(coeff[1]*in.z)*182.04444885253906))). out=(in.x,cos16(angle)*radius,sin16(angle)*radius); r0 returns angle. ARM11 assembly + captured lookup + independent Python matched all float32 values. Not an ordinary affine translation."
+0x0075CAB4,repeatable,"IDA-gpt-6-astra-F001: r0=curve coefficients, r1=out xyz, r2=in game xyz. radius=in.y+coeff[0]; angle=u16(trunc(float32(float32(coeff[1]*in.z)*182.04444885253906))). out=(in.x,cos16(angle)*radius,sin16(angle)*radius); r0 returns angle. ARM11 assembly + captured lookup + independent Python matched all float32 values. Not an ordinary affine translation."
+0x0075CDC4,line,"IDA-opus-5.5-F026: 区画ブロックのマス (x&15, y&15) の属性コード = block + 0x1C + 160*y + 10*x の +8 バイト。+0/+2/+4/+6 は 4 隅の u16（下位 5 ビット x8 = 高さ、sub_6A8C80）、+9 bit6 = 平ら。"
+0x0075CDC4,repeatable,"IDA-opus-5.5-F026: 区画ブロックのマス (x&15, y&15) の属性コード = block + 0x1C + 160*y + 10*x の +8 バイト。+0/+2/+4/+6 は 4 隅の u16（下位 5 ビット x8 = 高さ、sub_6A8C80）、+9 bit6 = 平ら。"
+0x0075D798,repeatable,"Vapecord plugin ADDRESSES: GETPLAYER2
+他地域: USA=0075EFF8  EUR=0075E000  KOR=0075D340
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0075D7A4,line,"IDA-gpt-6-sol-F007: returns manager+78440 local network index only if two connection flags at +78508/+78510 are nonzero; otherwise returns 0. This can explain probe slot=0, so raw network fields must be observed."
+0x0075D7A4,repeatable,"IDA-gpt-6-sol-F007: returns manager+78440 local network index only if two connection flags at +78508/+78510 are nonzero; otherwise returns 0. This can explain probe slot=0, so raw network fields must be observed."
+0x0075D7B0,repeatable,"Vapecord plugin ADDRESSES: PLAYSELECTOR
+他地域: USA=0075F010  EUR=0075E018  KOR=0075D358
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0075DF48,line,IDA-gpt-6-sol-F007: compute peer frame write pointer from scratch base and cursor for peer 0..3; returns 0 on invalid peer. Used by lower-transfer sender before copying header and segments.
+0x0075DF48,repeatable,IDA-gpt-6-sol-F007: compute peer frame write pointer from scratch base and cursor for peer 0..3; returns 0 on invalid peer. Used by lower-transfer sender before copying header and segments.
+0x0075DF68,line,IDA-gpt-6-sol-F009: reads manager+156+peer outstanding-frame counter under manager+78464 lock. CanQueueForPeer rejects payload when nonzero. Previous F008 name IsPeerFrameBusy was imprecise; user measured persistent value 1 while idle.
+0x0075DF68,repeatable,IDA-gpt-6-sol-F009: reads manager+156+peer outstanding-frame counter under manager+78464 lock. CanQueueForPeer rejects payload when nonzero. Previous F008 name IsPeerFrameBusy was imprecise; user measured persistent value 1 while idle.
+0x0075DFEC,repeatable,"Vapecord plugin ADDRESSES: EXISTSFUNCTION
+他地域: USA=0075F84C  EUR=0075E854  KOR=0075DB94
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0075E1B4,line,"IDA-gpt-6-sol-F009: returns peer pending ACK count at manager+112+peer (a1=manager+88, member +24+peer), 0 for invalid peer; consumed in outgoing lower-transfer header bits[1:0]."
+0x0075E1B4,repeatable,"IDA-gpt-6-sol-F009: returns peer pending ACK count at manager+112+peer (a1=manager+88, member +24+peer), 0 for invalid peer; consumed in outgoing lower-transfer header bits[1:0]."
+0x0075E724,line,"IDA-gpt-6-sol-F009 correction: reject special peer-session state only when a1[2]==0xFFFFFFFD (-3) AND a1[3]==0xFFFFFFFF (-1), per ARM AND/EOR test. Prior F008 comment incorrectly said a1[2]==2. Otherwise check connection object +40 active flag if present."
+0x0075E724,repeatable,"IDA-gpt-6-sol-F009 correction: reject special peer-session state only when a1[2]==0xFFFFFFFD (-3) AND a1[3]==0xFFFFFFFF (-1), per ARM AND/EOR test. Prior F008 comment incorrectly said a1[2]==2. Otherwise check connection object +40 active flag if present."
+0x0075EC04,line,"IDA-gpt-6-sol-F008: resolves 24-byte peer session entry in manager+176, calls NetPeerSession_IsUsable under manager+78464 lock; false if peer>=4."
+0x0075EC04,repeatable,"IDA-gpt-6-sol-F008: resolves 24-byte peer session entry in manager+176, calls NetPeerSession_IsUsable under manager+78464 lock; false if peer>=4."
+0x00761AAC,repeatable,"Vapecord plugin ADDRESSES: ACTOR_GET_FACING_POSITION
+他地域: USA=0076330C  EUR=00762314  KOR=00761654
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0076225C,repeatable,"Vapecord plugin ADDRESSES: MOVE5
+他地域: USA=00763ABC  EUR=00762AC4  KOR=00761E04
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00762CA4,repeatable,"Vapecord plugin ADDRESSES: CAMERAASM
+他地域: USA=00764504  EUR=0076350C  KOR=0076284C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x007642B4,repeatable,"Vapecord plugin ADDRESSES: WFLOWER
+他地域: USA=00765B14  EUR=00764B1C  KOR=00763E5C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00765620,func,"IDA-gpt-6.1-sol-F012 / MEDIUM。R2=s16壁角度、戻りS0=float、R0/R1入力は不使用。vc_CAMERA1 nullでS0=0。nonnullはcamera+0x50と角度をtail0x1A1910へ。0xC000/0x8000/0x4000/0に対してcamera+0x50/+0x58/+0x60/+0x68を読む。RoomWall calc0x529E84はR0=BsCamera,R1=位置,R2=壁角度で呼びS0を壁alphaに使う。camera更新0x1A2580→0x1A1948とも照合。T022はHHD0x4F3850と同じalpha>0の優先壁を直接読取り。softfpのfloat戻りC関数として呼ばない。"
+0x007657C8,repeatable,"Vapecord plugin ADDRESSES: DEVER5
+他地域: USA=00767028  EUR=00766030  KOR=00765370
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x007683E4,line,IDA-opus-5.5-F066: (*(u16*)item & 0x7FFF) == 0x9D (157). 0x9D = Pattern (ID list); Fg.bin[0x9D]+12 = shape 76 = fg_mydesign (the only item with that shape).
+0x007683E4,repeatable,IDA-opus-5.5-F066: (*(u16*)item & 0x7FFF) == 0x9D (157). 0x9D = Pattern (ID list); Fg.bin[0x9D]+12 = shape 76 = fg_mydesign (the only item with that shape).
+0x00768448,func,"IDA-gpt-6.1-sol-F016 MEDIUM: parameter exists, family guard, placementClass==1. Prior F050 comment retained. Confirmed class accessor 0x747B64 and chip P/tabletop placement paths; no device observation in F016."
+0x00768448,line,IDA-opus-5.5-F050: 上に物を置ける家具か（模様替えのチップ P）
+0x00768448,repeatable,IDA-opus-5.5-F050: 上に物を置ける家具か（模様替えのチップ P）
+0x0076855C,line,IDA-opus-5.5-F101: actually the item param index: (id & 0x7FFF) - 0x2000 if < 0x172B else -1 (Vapecord label READSTACK kept for its cheat table).
+0x0076855C,repeatable,"Vapecord plugin ADDRESSES: READSTACK
+他地域: USA=00769DBC  EUR=00768DC4  KOR=00768104
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00768B28,func,IDA-gpt-6.1-sol-F016 MEDIUM: raw ARM family guard then Item.flags>>14; independent stock PopulateRoom and Footprint_Init call sites. Flags lower 14 bits retain remake state; persisted rotation is separate.
+0x00769034,repeatable,"Vapecord plugin ADDRESSES: NONSEED
+他地域: USA=0076A894  EUR=0076989C  KOR=00768BDC
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00769A3C,func,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: 有効家具族かつ壁掛け対を持つカテゴリ/個別品番を判定。6/7/47および147/148/49を含む。Pocket_CanOfferWallHang→ItemMenu_Buildで『カベにかける』を出し、変換関数のカテゴリ対と一致する。
+0x0076A020,repeatable,"Vapecord plugin ADDRESSES: PLACING_FURNITURE1
+他地域: USA=0076B880  EUR=0076A888  KOR=00769BC8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0076A390,func,"IDA-gpt-6.1-sol-F016 MEDIUM: raw ItemParam category==0x47, independent PocketMenu wallpaper/floor + HouseRoom setter uses as custom-design alternative. Retain provenance, no device confirmation."
+0x0076D888,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). Loan eligibility checks two unknown player flags then returns decrypted loan+0x6B94. Flag semantics not named without evidence; balance identity corroborated by ATM repayment and vendor struct. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls."
+0x0076E460,repeatable,"Vapecord plugin ADDRESSES: TOURPATCH
+他地域: USA=0076FCC0  EUR=0076ECC8  KOR=0076E008
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0076E680,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): Storage pointer formula base +4*(slot+10*(page0+6*tab)); arithmetic verified from original ARM add/shift sequence independently of setter. ItemID4B id/flags."
+0x0076EB48,line,IDA-opus-5.5-F037 (HIGH): StrcMgr list 0x67CC[i] ->vt+0xA0. i >= count -> R0=0 and 0x76EB64 derefs NULL (SIGSEGV seen 2026-09-25 when gohan removed a bridge without shrinking the shadow table).
+0x0076EB48,repeatable,IDA-opus-5.5-F037 (HIGH): StrcMgr list 0x67CC[i] ->vt+0xA0. i >= count -> R0=0 and 0x76EB64 derefs NULL (SIGSEGV seen 2026-09-25 when gohan removed a bridge without shrinking the shadow table).
+0x007799D0,line,IDA-opus-5.5-F040: ceilf; used by ApplyAlignment 0x7E782C (centre: x -= ceil(W/2)).
+0x007799D0,repeatable,IDA-opus-5.5-F040: ceilf; used by ApplyAlignment 0x7E782C (centre: x -= ceil(W/2)).
+0x00795F38,func,IDA-opus-5.5-F080: 見た目の色の表を即値で書く初期化（MOV / STRB / ADD だけ。tools/acnl_look/decode_look_colors.py が復元）。目の色 6×RGB 0xACF5D8、肌（日焼け 8 段階）6 0xACF5EA、髪の色 16×RGB 0xACF602。HHD の色見本と同じ番号順（肌 2 だけ B が 0x85 / HHD 0x8D）。
+0x0079ED34,func,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: 家具族→actor profileの静的初期化。family30の0xA12500へ0xCD（0x79EEB4）、family74の0xA12558へ0xE2（0x79F064）。Item.bin全対の+0x11、family getterのu16 stride、profile実名/constructor表を照合。
+0x007A6558,func,F-134 caller-specific note: glyph path uses this generic GPU state dispatcher with target 3553 and the descriptor/shared texture handle; function has many non-font callers and remains generically named.
+0x007A7FAC,func,"F-134 caller-specific note: native glyph tail call uses arguments (6,0,4); function is a generic GPU draw/state dispatcher with only one known font caller."
+0x007A8B08,func,F-134 caller-specific note: nwfont_CharWriter_EmitGlyphQuad invokes this generic texture-ID allocator with count=1 only when a glyph descriptor handle is zero; function remains generically named.
+0x007B0044,line,"IDA-opus-5.5-F045 addendum 5 (MEDIUM static): queues GX command type 0 {src, dst, size} into g_GpuCmdListMgr's list (28 B entries) and dispatches only if the queue is idle -> the copy is asynchronous. ssys_LoadBclimToVram uses it for the VRAM upload, so a texture fetched for the first time is not in VRAM yet."
+0x007B0044,repeatable,"IDA-opus-5.5-F045 addendum 5 (MEDIUM static): queues GX command type 0 {src, dst, size} into g_GpuCmdListMgr's list (28 B entries) and dispatches only if the queue is idle -> the copy is asynchronous. ssys_LoadBclimToVram uses it for the VRAM upload, so a texture fetched for the first time is not in VRAM yet."
+0x007B013C,line,"F-356: qword_AD9A14 の lo/hi（画面 0/1 の VBlank カウンタ）を返す。
+1024=lo / 1025=hi / 1026=古い方（0x7FFFFFFE で折り返す）"
+0x007B013C,repeatable,"F-356: qword_AD9A14 の lo/hi（画面 0/1 の VBlank カウンタ）を返す。
+1024=lo / 1025=hi / 1026=古い方（0x7FFFFFFE で折り返す）"
+0x007B01CC,line,"F-259: nngxClearCmdlist 相当。GX キュー配列をゼロ埋めし、offset/提出済み/件数などを 0 にして
+  g_GpuCmdPtr = base, g_GpuCmdEnd = base + size に戻す。base も +0x18 も 0 なら何もしない。"
+0x007B01CC,repeatable,"F-259: nngxClearCmdlist 相当。GX キュー配列をゼロ埋めし、offset/提出済み/件数などを 0 にして
+  g_GpuCmdPtr = base, g_GpuCmdEnd = base + size に戻す。base も +0x18 も 0 なら何もしない。"
+0x007B05B0,line,"F-259: nngxStartCmdlistSave 相当。8 バイト境界へパディングし、
+  dword_AD9A28 = 現在オフセット、dword_AD9A2C = GX キュー件数 を控える。"
+0x007B05B0,repeatable,"F-259: nngxStartCmdlistSave 相当。8 バイト境界へパディングし、
+  dword_AD9A28 = 現在オフセット、dword_AD9A2C = GX キュー件数 を控える。"
+0x007B0694,line,"F-259: nngxStopCmdlistSave 相当。パディング後、
+  *a1 = start（=dword_AD9A28）/ *a2 = len（現在 offset - start）/
+  *a3 = qStart（=dword_AD9A2C）/ *a4 = qCount（件数 - qStart）を書き出す。
+  Layout では a1..a4 = L+0x104 / +0x108 / +0x10C / +0x110。"
+0x007B0694,repeatable,"F-259: nngxStopCmdlistSave 相当。パディング後、
+  *a1 = start（=dword_AD9A28）/ *a2 = len（現在 offset - start）/
+  *a3 = qStart（=dword_AD9A2C）/ *a4 = qCount（件数 - qStart）を書き出す。
+  Layout では a1..a4 = L+0x104 / +0x108 / +0x10C / +0x110。"
+0x007B0A28,func,"[ACNL-F0695] MEDIUM: refresh current offset from cursor-base, compare submitted offset. Depending on argument7/queue count/type, split or merge pending range into first command entry. No unconditional submission/display guarantee."
+0x007B0A28,line,"★★GpuCmd_ReplayRecordedListRange(listId, off, len, qStart, qCount, flags, allowNoSplit)
+  — 記録済みリストを現在のリストへ**再生**する — F-145 / F-200 / F-201
+
+GX キューのエントリ（28 バイト）をメインリストに積み、
+g_GpuCmdPtr を記録長ぶん進める（＝場所を予約する）。
+
+★★**UI の描画順は「記録した順」ではなく「これが呼ばれた順」で決まる。**
+
+★★【重要】内部で GpuCmd_SplitAndSubmit を呼ぶが、
+  **その前に v14 = g_GpuCmdPtr / v15 = g_GpuCmdPtr - mgr[1] をキャッシュしている**。
+  戻ったあと `*v14 = 0; g_GpuCmdPtr = v14 + 2;` で古い値を使うので、
+  SplitAndSubmit をフックしてカーソルを動かすと**巻き戻されて壊れる**（F-201）。"
+0x007B0A28,repeatable,"★★GpuCmd_ReplayRecordedListRange(listId, off, len, qStart, qCount, flags, allowNoSplit)
+  — 記録済みリストを現在のリストへ**再生**する — F-145 / F-200 / F-201
+
+GX キューのエントリ（28 バイト）をメインリストに積み、
+g_GpuCmdPtr を記録長ぶん進める（＝場所を予約する）。
+
+★★**UI の描画順は「記録した順」ではなく「これが呼ばれた順」で決まる。**
+
+★★【重要】内部で GpuCmd_SplitAndSubmit を呼ぶが、
+  **その前に v14 = g_GpuCmdPtr / v15 = g_GpuCmdPtr - mgr[1] をキャッシュしている**。
+  戻ったあと `*v14 = 0; g_GpuCmdPtr = v14 + 2;` で古い値を使うので、
+  SplitAndSubmit をフックしてカーソルを動かすと**巻き戻されて壊れる**（F-201）。"
+0x007B0AC0,line,"F-145: conditional immediate split before replay. Live list32 case had allow_no_split=1 and direct split count 0, so it merged into main list and was submitted later by the normal frame path."
+0x007B0E08,line,"F-262: ★記録の本体を主リストへ複製する唯一の経路。
+  src = 送り元マネージャ->base(+0x04) + start(a2) + 既コピー済み
+  dst = g_GpuCmdPtr、size = len(a3) - 既コピー済み
+  ★ここは a7（= Layout+0x11C）が真のときだけ実行される。
+  0 のままだとキューのエントリに印を付けるだけで 1 バイトも積まない。
+  sub_5685A4 が +0x11C = 1 を書いていることと合わせて確定。"
+0x007B0E2C,line,"★F-274: Mem_CopyBytes3(dst = g_GpuCmdPtr, src = srcMgr->base + off + copied, size = len - copied)
+  R0 = g_GpuCmdPtr / R1 = [R7,#4] + (off + copied) / R2 = len - copied
+**記録したバイト列はここで物理的に主リストへコピーされる。**
+直後の ADD g_GpuCmdPtr, (len - copied) & ~3 はカーソルを進めるだけ。"
+0x007C6EB0,line,IDA-opus-5.5-F036 MEDIUM: InstSelect<8> ctor (4812 B). ゲーム共通の 8 行リスト。純粋仮想 vt[13]=一覧を作る(件数+2500) / vt[25]=i 行目の語(vt[3] が UTF-16)。docs/topics/game_list.md
+0x007C6EB0,repeatable,IDA-opus-5.5-F036 MEDIUM: InstSelect<8> ctor (4812 B). ゲーム共通の 8 行リスト。純粋仮想 vt[13]=一覧を作る(件数+2500) / vt[25]=i 行目の語(vt[3] が UTF-16)。docs/topics/game_list.md
+0x007C847C,line,"IDA-opus-5.5-F086 (MEDIUM, static): head slot double buffer step. cur = [data+36]&1, loaded keys data+64+20*cur, pending key +40, loading flags +60/+61/+62. Key mismatch -> load into the other buffer (PlayerHeadSlot_LoadStep) then ++[data+36]. gohan PlayerClone::ReloadRealFace breaks byte 0 of the current key (0xFE) to force a reload with new face slots."
+0x007C847C,repeatable,"IDA-opus-5.5-F086 (MEDIUM, static): head slot double buffer step. cur = [data+36]&1, loaded keys data+64+20*cur, pending key +40, loading flags +60/+61/+62. Key mismatch -> load into the other buffer (PlayerHeadSlot_LoadStep) then ++[data+36]. gohan PlayerClone::ReloadRealFace breaks byte 0 of the current key (0xFE) to force a reload with new face slots."
+0x007E5710,func,"V2-F027 HIGH: **頂点属性コマンド列（mesh+0x60）を組み立てる**。sub_4A8B44 から `(buf, mesh, desc)` で呼ばれる。★要点: `v13 = sub_143B54(頂点バッファの VA)` を **`*(mesh+52)` へ保存し、`buf[8] = v13 >> 3` として PICA の頂点バッファ基底に書く**（>>3 は PICA の番地規約）。各属性のオフセットも `sub_143B54(...) - v90` として基底からの差分で出す。**sub_143B54 が 0 を返すと基底も差分も 0 になり、エラーも例外も無いまま GPU が物理番地 0 から頂点を読む**。属性番号は `desc[usage + 76]` で引く（sub_4A8B44 側には `>= 0` の除外判定があるがこちらには無い）"
+0x007E782C,line,F-131 HIGH: computes initial writer cursor from horizontal/vertical text-alignment flags and measured string extents.
+0x007E782C,repeatable,F-131 HIGH: computes initial writer cursor from horizontal/vertical text-alignment flags and measured string extents.
+0x007E7A78,line,IDA-opus-5.5-F040: line rect height = lineFeed*scaleV.
+0x007E7A78,repeatable,IDA-opus-5.5-F040: line rect height = lineFeed*scaleV.
+0x007E7F48,func,"F-141 static: wrapper copies exactly 0x64 bytes from caller writer to a stack-local writer, calls DrawString(local,R1,R2), then copies only local +0x2C/+0x30 cursor back. R3 is not read."
+0x007E7FA4,line,F-131 HIGH: TextWriter string layout/draw loop. Supports optional width wrapping; no pane-height rejection or vertical clipping check is present in this function.
+0x007E7FA4,repeatable,F-131 HIGH: TextWriter string layout/draw loop. Supports optional width wrapping; no pane-height rejection or vertical clipping check is present in this function.
+0x007E7FEC,line,F-131 HIGH: writer+0x4C is the finite wrap-width limit copied from TextBox pane width. Values below FLT_MAX enable wrapping.
+0x007E8378,line,F-131 HIGH: load wrap limit (writer+0x4C) and compare it with accumulated scaled line width.
+0x007E8388,line,"F-131 HIGH: when accumulated width exceeds the limit, synthesize U+000A/newline and re-enter the line-layout path."
+0x007E83B8,line,F-131 HIGH: obtain Font linefeed through vtable+0x4C; scaled by writer vertical scale and applied to the cursor. There is no pane-height comparison.
+0x007EA690,func,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: profile0xCDのfactory。descriptor0x94E964の実名AcFtrCloth、8 B ctor/destructor表0x950424のctorポインタで照合。服/ワンピースの通常・壁対はItem.bin家具族30で同じprofileへ。派生実体/描画は未ロードCROのstub0x15048C以降で未確認。
+0x007EAF50,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): Allocates 38708 bytes then Chest ctor; registry entry 0x950F3C points here. RTTI/vtable ctor corroboration; ordinary menu61 vs Warehouse137 chosen later."
+0x007ECF98,line,"IDA-opus-5.5-F004: profile 0x80 AcStrcFieldObj factory: new 0x254 then ModuleOutdoor ctor via import veneer 0x1507CC (static.crs anonymous import, CRO seg0 0x00B28D98 at convenience base)."
+0x007ECF98,repeatable,"IDA-opus-5.5-F004: profile 0x80 AcStrcFieldObj factory: new 0x254 then ModuleOutdoor ctor via import veneer 0x1507CC (static.crs anonymous import, CRO seg0 0x00B28D98 at convenience base)."
+0x007EE558,func,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: profile0xE2のfactory。descriptor0x94EA60の実名AcFtrMusicJacket、8 B ctor/destructor表0x9504CCのctorポインタで照合。曲47/49は家具族74で同じprofileへ。派生実体/描画は未ロードCROのstub0x15056C以降で未確認。
+0x007F1E3C,line,F-90: Type 0xBC factory overwrites the AcFtr base vptrs. Static literal at 0x7F1E48 is 0x7B1428; runtime/code_runtime resolves it to 0x7B1430. Outdoor generic create then reads vptr+8 as ARM instruction 0xE1A04000. Base AcFtr vptrs completed pre/create/post with result 2.

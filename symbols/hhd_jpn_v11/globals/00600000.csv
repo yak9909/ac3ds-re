@@ -1,0 +1,10 @@
+address,size,name,type,confidence,source,refs
+0x00646949,4,g_HhdRoomSplineProfileIds,const unsigned __int8[4],,legacy-idb,
+0x00646980,12,g_HhdRoomZoomSegmentSteps,const float[3],,legacy-idb,
+0x00663354,4,HHD_Tum15_StatePmfTable,,,legacy-idb,
+0x00675BD4,4,HHD_WallSearch_CandidateRotations,,,legacy-idb,
+0x00675BF4,16,HHD_WallSearch_CandidateAngles,,,legacy-idb,
+0x00697BC8,4,k_HhdAngleUnitsPerDegree,,,legacy-idb,
+0x006E5264,4,HHD_MainTop_VTable,,,legacy-idb,
+0x006E8750,4,HHD_Tum15_VTable,,,legacy-idb,
+0x006EBE60,4,HHD_WinItem_VTable,,,legacy-idb,

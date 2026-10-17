@@ -1,0 +1,40 @@
+address,kind,text
+0x007335C4,line,"IDA-gpt-6.1-sol-F014 MEDIUM (static + original ARM1176 partial execution). Evidence work/evidence/hhd_room_camera/, design docs/topics/hhd_room_camera_design.md. No hardware test. 18 records, stride16 {enter PMF8,calc PMF8}; continuous input permitted0/13/14/15/17;17 photo-specific."
+0x0077E124,line,IDA-gpt-6.1-sol-F002: MEDIUM: 家具actorポインタ66枠。0x3FD38Cがworld→家具grid索引から取得、0x45D9CC/0x3FD110が配置を書き込む。0x3FBD8Cはここから押し引き中のactorの移動方向を読み、cameraではない。
+0x0078F328,line,"IDA-opus-5.5-HHD-F004: ボタンのアニメ枠 0..14 = ng, touch, touch_ok, select, select_ok, in, out, drag, drop, drop2, r90, r180, r270, r360, kind（静的初期化 0x5B9240）"
+0x00790490,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x007904C0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x007904F0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00790520,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00790550,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00790580,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x007905B0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x007905E0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00790610,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00790640,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00790670,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x007906A0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x007906D0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00790700,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00790730,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00790760,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00790790,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00792CE8,line,"IDA-opus-5.5-HHD-F001: {haircolor, eyecolor, skincolor} → 色見本のアニメ枠 11/12/13"
+0x00792E50,line,"IDA-opus-5.5-HHD-F001: 文字列参照 2 個 {""B"",""G""}（静的初期化 0x5C0568）。性別 0=男の子 B / 1=女の子 G"
+0x00792E60,line,"IDA-opus-5.5-HHD-F001: {eyecolor, skincolor} → 目のボタンのアニメ枠 11/12"
+0x00792FA8,line,"IDA-opus-5.5-HHD-F001: {haircolor, skincolor} → 髪のボタンのアニメ枠 11/12"
+0x00793DB0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 の状態実名と ROM vtable 0x6ebe60 の対応を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00793DE0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 の状態実名と ROM vtable 0x6ebe60 の対応を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00793E10,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 の状態実名と ROM vtable 0x6ebe60 の対応を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00793E40,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 の状態実名と ROM vtable 0x6ebe60 の対応を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00793E70,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 の状態実名と ROM vtable 0x6ebe60 の対応を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00793EA0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 の状態実名と ROM vtable 0x6ebe60 の対応を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x007953F8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 の状態実名と ROM vtable 0x6e5264 の対応を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00795428,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 の状態実名と ROM vtable 0x6e5264 の対応を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00795458,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 の状態実名と ROM vtable 0x6e5264 の対応を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00795488,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 の状態実名と ROM vtable 0x6e5264 の対応を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x007954B8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 の状態実名と ROM vtable 0x6e5264 の対応を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00798A40,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BA884 の実名 StateID と ROM PMF/vtable、0x391258 の登録を照合。待機。enter/exec/exit は実質空。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00798B00,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BA884 の実名 StateID と ROM PMF/vtable、0x391258 の登録を照合。enter で入力を有効。A/B は event2/3。L/R・端部入力は event4/5 と Slide。PageSlider +174 で Drag。Swap は +321 と +280 と管理+54を要求。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00798C20,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BA884 の実名 StateID と ROM PMF/vtable、0x391258 の登録を照合。PageSlider 再利用イベント +168=1/2 に対して内容を詰め直し、event0/1。選択を中央枠へ対応付け。+175 で Slide。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00798C50,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BA884 の実名 StateID と ROM PMF/vtable、0x391258 の登録を照合。中央枠の選択番号を対応付け、PageSlider +176 完了で Wait。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。

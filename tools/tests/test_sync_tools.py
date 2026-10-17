@@ -67,16 +67,16 @@ def test_compare_dirs(tmp_path):
     a, b = tmp_path / "a", tmp_path / "b"
     rows = [{"address": "0x00100000", "size": "4", "name": "F", "prototype": "", "confidence": "HIGH",
              "source": "x", "refs": "R", "clone_of": ""}]
-    sl.write_csv(a / "functions.csv", "functions", rows)
-    sl.write_csv(b / "functions.csv", "functions", [dict(rows[0], confidence="", source="y")])
+    sl.write_table(a, "functions", rows)
+    sl.write_table(b, "functions", [dict(rows[0], confidence="", source="y")])
     res, ok = restore_test.compare_dirs(a, b)
     assert ok  # confidence/source/refs は比べない
-    sl.write_csv(b / "functions.csv", "functions", [dict(rows[0], name="G")])
+    sl.write_table(b, "functions", [dict(rows[0], name="G")])
     res, ok = restore_test.compare_dirs(a, b)
     assert not ok and "name" in res["functions"]["changed"]
     (a / "types").mkdir()
     (a / "types" / "local_types.h").write_text("// type: A\nstruct A { int x; };\n", encoding="utf-8")
-    sl.write_csv(b / "functions.csv", "functions", rows)
+    sl.write_table(b, "functions", rows)
     res, ok = restore_test.compare_dirs(a, b)
     assert not ok and res["types"]["only_a"] == ["A"]
 

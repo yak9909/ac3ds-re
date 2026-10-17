@@ -1,0 +1,165 @@
+address,kind,text
+0x00814EA0,func,IDA-gpt-6-F001 MEDIUM observed cleanup: two linked lists at+0x128/+0x140 have per-record handle reset/release; three lists are unlinked; finally HeapAllocator_DestroyHeap(this). Caller uses temporary GrassBaldness resource loader. Actual class/RTTI not established; retain existing name.
+0x00815E8C,repeatable,"Vapecord plugin ADDRESSES: SUB_8176E4
+他地域: USA=008176E4  EUR=008166EC  KOR=00815A2C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x008163C0,line,"IDA-opus-5.5-F036: 状態の切替(obj, calc, 0)。obj+28/+32 の表 {名前,enter,0,calc,0} から探し obj+12/+16 に入れ enter をその場で呼ぶ"
+0x008163C0,repeatable,"IDA-opus-5.5-F036: 状態の切替(obj, calc, 0)。obj+28/+32 の表 {名前,enter,0,calc,0} から探し obj+12/+16 に入れ enter をその場で呼ぶ"
+0x00816A04,repeatable,"Vapecord plugin ADDRESSES: RESTOREBUTTON
+他地域: USA=0081825C  EUR=00817264  KOR=008165A4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0081A8AC,repeatable,"Vapecord plugin ADDRESSES: ACMESSAGEBOX_FUNC5
+他地域: USA=0081C104  EUR=0081B10C  KOR=0081A44C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0081B41C,func,"IDA-gpt-6-F007: native PMF transition used by tab state machine. T010 only enters chat-tabs-out calc6D6214 with this=tab+20 and adjustor0 after actual field idle; following native state issues menu5, no direct screen constructor shortcut."
+0x0081E150,repeatable,"Vapecord plugin ADDRESSES: SETUPSTACKDATA
+他地域: USA=0081F9D0  EUR=0081E9D8  KOR=0081DD10
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0081EE54,line,Virtual create phase 1 false -> generic create result 1 (failure); caller destroys the newly attached UiScreen.
+0x0081EE88,line,Sets create-complete bit 1 after virtual create phase 3. Fully created UiScreen condition is (object[19] & 3) == 3.
+0x0081F2B8,func,IDA-gpt-6.1-sol-F002: MEDIUM: AcFtr/NPC等の共通main-create。actor+102 bit0未設定ならvslot+120 Prepare、成功でbit0。+124 Loadが2なら+128 Finalize、成功でbit1。Load=3等は保留。0x51EF38が生成要求内に呼び、保留は0x51F618が再呼出し。家具記録aliveはこの完了bitの代用にならない。
+0x0081F354,func,IDA-gpt-6.1-sol-F002: MEDIUM: 共通destroy。+102 bit5を設定、bit2未設定なら+132 Begin、+136 Waitが3なら継続、最後+140 Finalize。家具0x570330/0x5702BC/0x56F448とvtableを照合。破棄要求時点と表/資源解放完了は別。
+0x00822B98,line,IDA-opus-5.5-F030: BankTable<PlayerHeadBank> vt[0]。枠の読み込み先 2 つを PlayerHeadBank_UnloadBuffer で下ろし、両方済むと真。BankTable_Release はこれが真のときだけ空きにする。
+0x00822B98,repeatable,IDA-opus-5.5-F030: BankTable<PlayerHeadBank> vt[0]。枠の読み込み先 2 つを PlayerHeadBank_UnloadBuffer で下ろし、両方済むと真。BankTable_Release はこれが真のときだけ空きにする。
+0x00838014,line,"★★★.text の終端。この直後 0x00838018 から **0xFE8 バイトのゼロ埋め**が続く。
+
+★F-161: **ここがコードケーブの置き場。**
+
+直後は .rodata。同じ頁の先頭に実コードがあるので **RX で実行可能**。
+
+検証済み:
+  - ARM の B/BL で 0x838018-0x839000 を指すもの **0 件**（イメージ全体を走査）
+  - 値としての出現は 0x0097803C と 0x00AF6B2C の 2 件のみ（.data 側）
+    → **それらを避けて 0x00838080 以降を使う**（992 ワードがゼロ）
+
+現在の割り当て（F-162 時点）:
+  0x00838080-0x00838137  死んだケーブ跡（SIGSEGV を起こした版。NOP 化済み・参照なし）
+  0x00838140-0x008381D7  描画発行ケーブ（cave_text_emit.py）
+  0x00838400-0x00838423  文字列差替ケーブ（cave_textbox.py）
+  0x00838500-           差替え文字列の実体
+
+★これまで使っていた 0x01E81000 の頁は **boot によって未マップ**だった。
+  こちらはコード像内な_"
+0x0083E200,line,offset vbase
+0x008435F4,line,"IDA-opus-5.5-F070: ゆうめいなキノコ(0x209D)の状態 0xD6 の拡大率 11 段 {1,1,1.08,1.35,1.8,1.8,1.8,1.35,1.08,1,1}。6 フレームごとに 1 段。各端末が自分の表で計算する(パケットに倍率は乗らない)"
+0x00843634,line,"IDA-opus-5.5-F070: プレイヤーの状態表 0xEB 項目 x 28B {始め pmf, 毎フレーム pmf, 終わり pmf, 受信した状態パケットを相手側で当てる関数(+0x18, 普通の関数ポインタ)}。Actor_SetState / PlayerState_ApplyRemotePacket が引く"
+0x0084886C,repeatable,"Vapecord plugin ADDRESSES: ARGDATA
+他地域: USA=008499E4  EUR=00848870  KOR=0084786C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00848BA0,repeatable,"Vapecord plugin ADDRESSES: WINDOW_OUT
+他地域: USA=00849D18  EUR=00848BA4  KOR=00847BA0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0084A3D4,repeatable,"Vapecord plugin ADDRESSES: SUB_84B550
+他地域: USA=0084B550  EUR=0084A3DC  KOR=008493D8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0085080C,line,IDA-gpt-6-F007: native tab-index to menu-request-ID byte table; index6 maps menu5. ChatTabsOut->WaitChatTabsEnter6D72C0 uses this table; runtime registry word table maps menu5 to screen0x23F initialized by787004 (normal BsMenuChat ctor193C90).
+0x008508FC,line,"IDA-gpt-6-F007: BsMenuTab 27x20 state records; normal chat index9 -> calc6D6214/enter6D6440, index10 ->6D70F8/6D72C0, index13 WaitChatEnd6D5510, return through6D5FB0 ->6D5AB8 ->map/tab restoration ->TabSelect6D474C. Active chat is not FieldIdle."
+0x00853938,repeatable,"Vapecord plugin ADDRESSES: ACMESSAGEBOX_3_POINT
+他地域: USA=008578A0  EUR=0085672C  KOR=00852904
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00854584,line,"IDA-gpt-6-F001 MEDIUM: 8x8 Morton-order byte offsets 0..63, u32 entries. Verified all256 bytes against code.bin and x/y bit interleaving; accessed by TiledByteGrid_GetWrappedCellOffset using row=y&7, col=x&7."
+0x00859104,line,"★g_DropOffsetTable — ドロップ候補マスの相対座標 (F-62)。
+signed char。**X が前半、Y が後半**で Y の基準は X+9
+（Drop_FindTargetTile 0x597A94 `ADD R11,R10,#9`、参照は LDRSB）。
+
+素の内容 = 3x3、中心が先頭:
+  X = 0, 0,-1, 1,-1, 1,-1, 1, 0
+  Y = 0,-1,-1,-1, 0, 0, 1, 1, 1
+  -> (0,0)(0,-1)(-1,-1)(1,-1)(-1,0)(1,0)(-1,1)(1,1)(0,1)
+
+Vapecord ラベルは DROPPATTERN。参照は Drop_FindTargetTile と sub_598EC4。"
+0x00859104,repeatable,"Vapecord plugin ADDRESSES: DROPPATTERN
+他地域: USA=0085FE58  EUR=0085ECE4  KOR=008580B4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00859238,line,"★g_FacingAngleTable — 8 方向の角度 u16 x 8 (F-62)。
+0x0000 0x2000 0x4000 0x6000 0x8000 0xA000 0xC000 0xE000 = 45 度刻み
+（0x10000 = 360 度）。Drop_FindTargetTile が |player角 − これ| < 4187 で向きを決める。
+★チート「ドロップ 15x15」はここを座標データで書き潰す。"
+0x00859248,line,"u16 x 6 = 0x20A1-0x20A6。FieldObj_ResolveAxeAction / FieldObj_ResolveDigAction が参照。
+★チート「ドロップ 15x15」のテーブル書き換え範囲に入っており、意図せず潰れる (F-62)。"
+0x00859254,line,"植物のエフェクトIDテーブル。u16 x 89 x 2。index = アイテムID - 159 (F-47)。
+前半89=踏んだが壊れない時、後半89=壊れた時。
+
+★値はパーティクルIDで、Particle_IDs.txt で全て ""Flowers"" に当たる (F-56)。
+★範囲 89 は ID 159-247 = 0x9F(red tulips) - 0xF7(Jacob's ladder wilted)で
+  花ブロック丸ごとと完全に一致する。"
+0x0085FFB0,line,"アニメーション名テーブルの真の先頭 (idx 0 は全ゼロ, idx1=scoop_wait1)。
+1エントリ16バイト: +0 未使用 / +4 本体名 / +8 _e1 / +12 _m1
+注意: 0x85FFC0 を先頭と誤認しやすい。実機検証で 0x85FFB0 と確定。
+スコップ帯: 71=swing1 72=swing_wait1 73=dig1 74=hane1 75=suka1
+            76=stump1 77=get1 78=putaway1 79=bury1
+
+★有志の Animation_IDs.txt はここと食い違う (F-56)。
+  向こう: 71=Player vanishes / 72=Close door / 73,74=Shovel use /
+          75=Shovel hits nothing / 78=Shovel swing / 79=Shovel dig
+  一致するのは 75 (= scoop_suka1 空振り) だけ。
+  ★このテーブルはゲーム自身の名前なのでこちらが正。"
+0x0086274C,repeatable,"Vapecord plugin ADDRESSES: INSECT_FUNCTION_TABLE
+他地域: USA=008694A0  EUR=0086832C  KOR=008616FC
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0086BD78,line,"IDA-opus-5.5-F101: item model name table, index = (id & 0x7FFF) - 0x2000 (vc_READSTACK 0x76855C, < 0x172B), read by ItemParam_GetModelName 0x535040 -> ItemModel_BuildPath 0x4E9320 'Item/Model/%s.bcres'. Same naming as HHD Item/Model/%s.bch, but item IDs differ from HHD (e.g. int_fru_apple ACNL 0x2018 / HHD 0x2012); floors are carpet_X / carpet_floor_X here vs floor_X in HHD. tools/hhd/match_items.py
+IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: const char* const[5931]。ItemParam_GetModelNameの4 B strideと元code表を照合。6/147、7/148、47/49の各同索引で全691対同一pointer/basename。"
+0x00871A24,line,"IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: ItemCategoryRangeEntry[155]。6:[0x2495,0x2682)→147:[0x34CE,0x36BB)、7:[0x2682,0x26ED)→148:[0x36BB,0x3726)、47:[0x212B,0x2186)→49:[0x2189,0x21E4)。カテゴリ50オルゴールは[0x21E4,0x223F)で今回の壁掛け対とは別。ROM表の全bytesと全691対照合PASS。"
+0x008753D8,line,IDA-gpt-6-sol-F002: lower 2-byte transfer handler table; [12] = 0x187030 (town chunk).
+0x00875B4C,line,IDA-gpt-6-sol-F001/F004: handler table for 6-byte Net packet type; [0x81] = 0x1844B4 (BBS post).
+0x0087A970,repeatable,"Vapecord plugin ADDRESSES: NPCCODES_DATA2
+他地域: USA=008816C4  EUR=00880550  KOR=00879920
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0087A9F8,line,"IDA-opus-5.5-F069 MEDIUM: NpcAction action table, 29 x 32 B {enter pmf, pmf, pmf, exit pmf}. Request wrappers: 0x6E8F48 act0, 0x6E8FA0 act1 (Vapecord stops NPC movement by hooking its BL 0x6E8FF4), 0x6E8964 act2, 0x6E8E98 act3, 0x6E8F04 act4, 0x6EAD20 act5, 0x6EA480 act6, 0x6ECD74 act8, 0x6ECCA4 act9, 0x6EC644 act11, 0x6EACAC act12 (emote), 0x6E9B50 act13 (anim), 0x6ECE58 act14, 0x6E9698 act16, 0x6E9AC8 act17, 0x6ECF44 act18 (item), 0x6ECFCC act19, 0x6EABB4 act21, 0x6EC6A4 act22, 0x6ECD10 act23, 0x6EC5E0 act24, 0x6EC398 act25, 0x6EAC2C act26."
+0x00880B50,repeatable,"Vapecord plugin ADDRESSES: SP8
+他地域: USA=008878A4  EUR=00886730  KOR=0087FB50
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00880C64,repeatable,"Vapecord plugin ADDRESSES: SP5
+他地域: USA=008879B8  EUR=00886844  KOR=0087FC64
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00880F14,repeatable,"Vapecord plugin ADDRESSES: SP6
+他地域: USA=00887C68  EUR=00886AF4  KOR=0087FF14
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00883328,line,"[ACNL-F0692] 165 room flags (IDs0..0xA4), 117 have mask0x8. The next table starts at0x8835BC; old array[166] included its first word.
+部屋フラグ表 u32 x 165 (ACNL-F0692)。ID 0..164、165は表外の番兵。
+
+★Room_IDS.txt の Outdoor/Indoor 分類と照合して得た bit の意味:
+  bit1 / bit2 = 屋外   (Outdoor 21/23、Indoor 0/94)
+  bit3        = 屋内   (Indoor 94/94、Outdoor 0)
+  bit5        = ★村(Town) のみ  — 該当は部屋 ID 0x00 ただ 1 つ
+
+使用例:
+  FieldObj_TrampleAt      Room_HasFlags(4, ...)  = 屋外か
+  FieldObj_ResolveAxeAction Room_HasFlags(32, ...) = 村か
+
+bit2 の無い Outdoor は Wii U 連携ミニゲーム 2 部屋のみ (flags=0x08000000)。
+IDA-gpt-6.1-sol-F014 MEDIUM (static + original ARM1176 partial execution). Evidence work/evidence/hhd_room_camera/, design docs/topics/hhd_room_camera_design.md. No hardware test. Port house gate is (flags&0x108)==0x108 and (flags&0xC0)!=0. Original table pairs player-house0x188, NPC-house0x148. Uses room "
+0x00889550,repeatable,"Vapecord plugin ADDRESSES: EMOTICONS
+他地域: USA=008902A4  EUR=0088F130  KOR=00888500
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00889578,line,V2-F013 MEDIUM: SvProc 種別表 11 件(添字=((flags&0x3C0)>>6)-1)。[4]=SvProcType4_Prepare(しずえ画面の準備中)。0x5CB9CC/0x5CBC4C/0x5CBDB0/0x5CC724 ほかが日替わりを呼ぶ
+0x0088BA80,line,"IDA-gpt-6-F010 / GPT-6: ItemSelectWindow row-sound IDs. Original data and independent MapEditor selector indexing: index8=0x01000393 erase, index9=0x01000395 copy, index1=0x01000392 cancel. Trash full-delete choice uses erase. Interior-slot comment88BAA0 is duplicated here because official XML exports item heads only."
+0x0089B680,line,"IDA-gpt-6.1-sol-F002: MEDIUM: u16角sin/cos補間表16B stride。各entry先頭sin,次cos。0x47D2C4/0x47D28Cの実装とcardinal原本floatで照合。
+IDA-gpt-6.1-sol-F015 MEDIUM: 256 records16B {sin,cos,sinDelta,cosDelta}; both original angle routines independently index high8 and interpolate low8. Raw native Eye supplies yaw basis in controls_prebuild.json."
+0x0089C858,line,offset vbase
+0x008E6124,line,offset vbase
+0x008E61F8,line,offset vbase
+0x008E9CE0,line,offset vbase
+0x008F1894,line,IDA-gpt-6.1-sol-F002: MEDIUM追補: main create+12=Actor_RunCreateStages、prepare/load/finalize=+120/+124/+128、state2=+144、matrix更新=+208。Chipのreadyとanchor位置を確認する契約。
+0x008F29BC,line,vtable for AcPlayer (RTTI 実測 F-43)
+0x008F4F4C,line,offset vbase
+0x008FBF04,line,"★vtable for nw::lyt::Drawer (F-98)。
+★RTTI 実測: si_class_type_info で**基底は nw::font::RectDrawer**。
+（vtable 番地が近いことからの推測だったが、RTTI で裏が取れた）
+つまり**2D レイアウト描画はフォントの矩形描画を土台にしている。**"
+0x008FC07C,line,"vtbl_nw_lyt_TextBox。実例を探すときはこの値を探せばよい (F-126)。
+実機での例: 住民名 0x32D20220 / アイテム名本文 0x32CFEC60 / 同影 0x32CFEAE0
+（いずれも起動ごとに変わる。PATCHES/cave_textbox.py の MODE=""trace"" で取り直す）。"
+0x008FC0E4,line,"F-143: nw_lyt_TextBox vtable slot +0x68 points to sub_73CF48, the wrapper that routes dirty TextBox strings through the batch writer path."
+0x008FCAAC,line,nw::font::ResFont vtable (F-129)。実機の限定走査で初期化済み CFNU を4個確認: normal 24px、ruby 7px、large 40px、counter 26px。TextBox+224 はこの vptr のオブジェクトを指す。
+0x008FEDF4,line,"★vtable for sead::PrimitiveDrawer (F-98 / F-100 で訂正)。RTTI 実測で継承なし。
+★**0x544E54 はデストラクタであって「実装位置」ではない** (F-100 で訂正)。
+vtable には dtor 対しか無く、描画メソッドは非仮想なので
+**別途 xref や呼び出し元から探す必要がある（未実施）。**"
+0x008FFC74,line,"★vtable for sead::UlcdDoubleCmdGameFrameworkCtrNw4c (F-98)。
+★**これがアプリのフレームワーク本体。毎フレームの入口はこの vtable の中。**
+継承 (RTTI 実測): DoubleCmdGameFrameworkCtrNw4c -> GameFrameworkCtrNw4c
+  -> GameFramework -> Framework
+名前の通り Ulcd（上下 LCD）と DoubleCmd（二重コマンドバッファ）。
+実装は 0x53F000-0x561000 と 0x74B000-0x750000 に散らばる。
+関連: sead::MethodTreeMgr / MethodTreeNode が毎フレームの呼び出し木。"

@@ -9,7 +9,8 @@ import io
 import re
 from pathlib import Path
 
-TOOL_VERSION = "1"
+TOOL_VERSION = "2"
+RANGE_SIZE = 0x100000
 
 COLUMNS = {
     "functions": ["address", "size", "name", "prototype", "confidence", "source", "refs", "clone_of"],
@@ -24,7 +25,7 @@ KEYS = {
     "globals": ["address"],
     "comments": ["address", "kind"],
     "vtables": ["address"],
-    "lvars": ["function", "location", "name"],
+    "lvars": ["function", "location"],
 }
 COMMENT_KINDS = ["func", "line", "repeatable"]
 # 引き継ぐ列（既存の行から）
@@ -157,10 +158,14 @@ def write_csv(path: Path, table: str, rows: list[dict]) -> None:
 
 def loads_csv(table: str, text: str) -> list[dict]:
     cols = COLUMNS[table]
-    r = csv.DictReader(io.StringIO(text, newline=""))
+    r = csv.DictReader(io.StringIO(text, newline=""), strict=True)
+    if r.fieldnames != cols:
+        raise ValueError("%s: CSV ヘッダーが違う: %r" % (table, r.fieldnames))
     rows = []
     for row in r:
-        rows.append({c: (row.get(c) or "") for c in cols})
+        if None in row or any(row[c] is None for c in cols):
+            raise ValueError("%s: CSV の列数が違う（行 %d）" % (table, r.line_num))
+        rows.append(row)
     return rows
 
 
@@ -171,8 +176,57 @@ def read_csv(path: Path, table: str) -> list[dict]:
         return loads_csv(table, f.read())
 
 
+def range_name(table: str, row: dict) -> str:
+    column = "function" if table == "lvars" else "address"
+    address = parse_addr(row[column])
+    if not 0 <= address <= 0xFFFFFFFF:
+        raise ValueError("32 bit の番地ではない: %r" % row[column])
+    return "%08X.csv" % (address // RANGE_SIZE * RANGE_SIZE)
+
+
+def read_table(d: Path, table: str) -> list[dict]:
+    """ビルドの下の表を全範囲から読み、番地順に結合する。"""
+    rows = []
+    seen = set()
+    for path in sorted((Path(d) / table).glob("*.csv")):
+        if not re.fullmatch(r"[0-9A-F]{8}\.csv", path.name) or int(path.stem, 16) % RANGE_SIZE:
+            raise ValueError("範囲ファイル名が違う: %s" % path)
+        for row in read_csv(path, table):
+            if range_name(table, row) != path.name:
+                raise ValueError("範囲外の行: %s: %r" % (path, _rkey(table, row)))
+            key = _rkey(table, row)
+            if key in seen:
+                raise ValueError("%s: キーの重複: %r" % (table, key))
+            seen.add(key)
+            rows.append(row)
+    if (Path(d) / (table + ".csv")).exists():
+        raise ValueError("旧形式の CSV を分割してください: %s" % (Path(d) / (table + ".csv")))
+    return sort_rows(table, rows)
+
+
+def write_table(d: Path, table: str, rows: list[dict]) -> None:
+    """1MB の番地範囲ごとに書く。空になった範囲もヘッダーを残す。"""
+    directory = Path(d) / table
+    groups: dict[str, list[dict]] = {}
+    seen = set()
+    for row in rows:
+        key = _rkey(table, row)
+        if key in seen:
+            raise ValueError("%s: キーの重複: %r" % (table, key))
+        seen.add(key)
+        groups.setdefault(range_name(table, row), []).append(row)
+    for path in directory.glob("*.csv"):
+        if not re.fullmatch(r"[0-9A-F]{8}\.csv", path.name) or int(path.stem, 16) % RANGE_SIZE:
+            raise ValueError("範囲ファイル名が違う: %s" % path)
+        groups.setdefault(path.name, [])
+    if not groups:
+        groups["00000000.csv"] = []
+    for name, group in sorted(groups.items()):
+        write_csv(directory / name, table, group)
+
+
 def read_all(d: Path) -> dict[str, list[dict]]:
-    return {t: read_csv(Path(d) / (t + ".csv"), t) for t in COLUMNS}
+    return {t: read_table(d, t) for t in COLUMNS}
 
 
 # ---- IDB の範囲 ----
