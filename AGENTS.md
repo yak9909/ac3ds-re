@@ -11,6 +11,7 @@
 - 既存の記録は書き換えない。訂正は新しい記録で行う（`supersedes:`）。
 - 記録は `python tools/kb.py new` で作る。書き方はスキル `record-finding`。
 - 名前と型は `docs/naming.md` に従う。
+- 関数は全関数の書き出し（`_local/builds/<ビルド>/export/`。索引は `index.txt`）で読む。IDB は名前・型を付けるときだけ開く。バイトは `python tools/codebytes.py` で読む。
 
 ## ワーカーとして呼ばれた場合（依頼文で「ワーカー」と言われたとき）
 
