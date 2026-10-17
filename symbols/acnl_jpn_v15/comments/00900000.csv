@@ -1,0 +1,277 @@
+address,kind,text
+0x00901EEC,line,"vtable for fgobj::ObjectSwing (RTTI 実測 F-43)
+継承: fgobj::ObjectExe -> fgobj::ObjectBase -> ssys::st::ListNodePriorityBase -> ssys::st::ListNode"
+0x00901F4C,line,vtable for fgobj::ObjectTimer (RTTI 実測 F-43)
+0x009020DC,line,"★F-358: vtbl_fgobj_Proc。TypeInfo 0x008CBD24 = N5fgobj4ProcE。
+スロット 3 = Setup（0x0059C974）。ScBoot / ScStage と同じ Base -> oml::framework::Process の並び"
+0x00903C6C,line,"vtable for script::TalkSeq (RTTI 実測 F-49)。継承: script::SeqEngine -> script::MsgEngine
++0x10 = TalkSeq_Update"
+0x00903DBC,repeatable,"Vapecord plugin ADDRESSES: ACMESSAGEBOX_1_POINT
+他地域: USA=0090AACC  EUR=0090994C  KOR=00902D28
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00904644,repeatable,"Vapecord plugin ADDRESSES: GAMEKEYBOARD_POINT
+他地域: USA=0090B38C  EUR=0090A20C  KOR=009035B0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0090491C,repeatable,"Vapecord plugin ADDRESSES: WORDPTR_VTABLE
+他地域: USA=0090B664  EUR=0090A4E4  KOR=00903888
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x009049B4,line,vtable for script::TalkRuby (RTTI 実測 F-49)。TalkSeq_Create が 2 つ作る。
+0x00947E0C,repeatable,"Vapecord plugin ADDRESSES: USER_WHO_WANTS_TO_LEAVE
+他地域: USA=0094EE0C  EUR=0094DE0C  KOR=00946E0C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00947EB8,line,IDA-gpt-6-sol-F005: static initialization guard for g_AcPlayerMovementProbeOffsets.
+0x00947F34,repeatable,"Vapecord plugin ADDRESSES: SP7
+他地域: USA=0094EF34  EUR=0094DF34  KOR=00946F34
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00948451,repeatable,"Vapecord plugin ADDRESSES: LOADCHECK
+他地域: USA=0094F451  EUR=0094E451  KOR=00947451
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00948D84,repeatable,"Vapecord plugin ADDRESSES: CHATPOINTER
+他地域: USA=0094FD84  EUR=0094ED84  KOR=00947D84
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00948DE8,repeatable,"Vapecord plugin ADDRESSES: POINT1
+他地域: USA=0094FDE8  EUR=0094EDE8  KOR=00947DE8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00948DEC,line,"IDA-gpt-6.1-sol-F013 / MEDIUM; evidence work/evidence/t022_room_capabilities. Live BsCharRoomViewMgr pointer; written by Activate 0x2C55B8 and cleared by Deactivate 0x2C6350. Partial verified surface layout: floor holder +0x3834, wall part array +0x3ADC, stride0x40, each holder +0xC."
+0x00949320,line,IDA-gpt-6.1-sol-F001 / MEDIUM: BsFtrMgr*。0x68FA90→Actor_SpawnByProfile parent。実行中の家の管理体を使い、CRO g_FtrMgr（ModuleFtr seg2+0x48）と取り違えない。
+0x00949534,repeatable,"Vapecord plugin ADDRESSES: INSECT_DATA_POINTER
+他地域: USA=00950534  EUR=0094F534  KOR=00948534
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x009499EC,line,"IDA-gpt-6-F013: Current BsMenuItem pointer, assigned by LoadStep and cleared by Dispose (original STR/callers). Lookup must not assume menu-list head. Former name dword_9499EC retained in evidence."
+0x009499FC,line,"IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: PMF表[0]は0x19AD30/this調整0。通常action0と壁掛けaction42（flag+0x1E9Cを1にしてaction0へ振替）が同じdecorate入口を呼ぶ。
+IDA-gpt-6-F013 / MEDIUM: Native BsMenuItem action PMF table base (legacy vc_POINTER_FUNC label). ARM dispatch index action*8, pair method/encodedThisAdjustment. Confirmed action0=Place,15=Release,16=Eat; ROM labels independently verified. Type describes first entry, not a guessed table bound. GohanPocketAction preserves confirmed cancel41 and wall42 remapping."
+0x009499FC,repeatable,"Vapecord plugin ADDRESSES: POINTER_FUNC
+他地域: USA=009509FC  EUR=0094F9FC  KOR=009489FC
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00949C30,repeatable,"Vapecord plugin ADDRESSES: MAPBOOL
+他地域: USA=00950C30  EUR=0094FC30  KOR=00948C30
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00949C4C,repeatable,"Vapecord plugin ADDRESSES: MAP_DATA
+他地域: USA=00950C4C  EUR=0094FC4C  KOR=00948C4C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00949D3B,line,"IDA-gpt-6-F007: keyboard completion handshake also consumed by BsMenuTab WaitChatEnd (6D5510). Normal chat cancellation writes0; publish(1,1) alone does not. Shared by other input screens; no chat-only global rename."
+0x00949D4C,line,"IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Menu-manager ordinary chat owner slot+0x1EC is independent of shared-input binding and live keyboard; chat/HHD handoff waits for its retirement.
+IDA-gpt-6-T008 (2026-10-12 user correction; gohan integration): CORRECTION to F005's HHD handoff requirement: native chat lifetime above remains valid, but does not require a separate command-side close/wait. HhdScreen::Show already owns field retirement and waiting. hair/style/eye/eyes now delegate directly while chat is bound; external CloseChat/parent-keyboard gate is retained only for the time-menu path. The prior CPU fixture showed the added gate, not that early HHD invocation was a defect. fix2 scroll was user hardware-confirmed; hair was still broken."
+0x00949D68,repeatable,"Vapecord plugin ADDRESSES: MENU_FLAGS
+他地域: USA=00950D68  EUR=0094FD68  KOR=00948D68
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0094A010,repeatable,"Vapecord plugin ADDRESSES: CURRENT_OPEN_TPC_MENU
+他地域: USA=00951014  EUR=00950010  KOR=00949010
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0094A02C,repeatable,"Vapecord plugin ADDRESSES: DATA
+他地域: USA=00951030  EUR=0095002C  KOR=0094902C
+（プラグイン作者のラベル。検証済みの識別ではない）
+IDA-gpt-6.1-sol-F004 / MEDIUM: 旧名vc_DATA（Vapecord由来）。BsMenuRoomLightSwitch_Setupがthisを登録しTeardownが0へ戻す。vtable=0x8EF3A8。"
+0x0094A3D0,line,"★F-358: 遷移の種別／要求。0xFFFF = 要求なし、通常の部屋変更は 1。
+Room_SetTransitionKind(0x00605F14) が書き、Room_PollTransitionRequest(0x00605FA4) が 0xFFFF へ戻す。実機確認済
+IDA-gpt-6-F001 (gpt-6): Two u16 fields, not one room ID: requested transition kind at +0 (0xFFFF=no pending request), current transition kind at +2. Room_SetTransitionKind stores request; Room_PollTransitionRequest copies current to +4, request to current, then clears request. AR word 0x00010001 sets both kinds=1."
+0x0094A458,line,"IDA-opus-5.5-F037: BsShadowMapMgr per-structure shadow table {cmd ptr, words} x mgr+100, index = StrcMgr list 0x67CC index."
+0x0094A654,line,"IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Live keyboard pointer. Ordinary-chat parent may still retire after this clears; style launch waits this pointer AND menu-manager ordinary chat slot+0x1EC to clear.
+IDA-gpt-6-T008 (2026-10-12 user correction; gohan integration): CORRECTION to F005's HHD handoff requirement: native chat lifetime above remains valid, but does not require a separate command-side close/wait. HhdScreen::Show already owns field retirement and waiting. hair/style/eye/eyes now delegate directly while chat is bound; external CloseChat/parent-keyboard gate is retained only for the time-menu path. The prior CPU fixture showed the added gate, not that early HHD invocation was a defect. fix2 scroll was user hardware-confirmed; hair was still broken."
+0x0094A6FE,repeatable,"Vapecord plugin ADDRESSES: ACMESSAGEBOX_2_POINT
+他地域: USA=00951702  EUR=009506FE  KOR=009496FE
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0094A82C,line,"IDA-gpt-6-F001 (gpt-6): Cached active particle count for BsWeatherPaper; updater stores it into actor+0x58AC, consumer loops that many slots. Initial/static vs reused cache branch kept distinct; event selector9 not identified."
+0x0094A850,line,"IDA-gpt-6-F001 (gpt-6): Cached active particle count for BsWeatherSakura; date/season updater selects0/60/120, consumer uses it as loop length, not a delay or frame count."
+0x0094A880,line,IDA-gpt-6.1-sol-F012 / MEDIUM。vc_CAMERA1の既存実名を維持。0x765620→0x1A1910がcurrent cameraの壁alphaを読む。rot0/1/2/3はobject+0x68/0x60/0x58/0x50、s16角度0/0x4000/0x8000/0xC000。呼出し側RoomWall更新0x529E84も壁角度をR2で渡してS0を使用。HHDはobject+0x5C起点、ACNLは+0x50起点で同じtail分岐。T022は関数呼出しせず欄を読む。
+0x0094A880,repeatable,"Vapecord plugin ADDRESSES: CAMERA1
+他地域: USA=00951884  EUR=00950880  KOR=00949880
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0094A8F0,line,"IDA-gpt-6.1-sol-F014 MEDIUM (static + original ARM1176 partial execution). Evidence work/evidence/hhd_room_camera/, design docs/topics/hhd_room_camera_design.md. No hardware test. 28 records, each16 bytes {enter PMF8, calc PMF8}. Mode0 normal path, mode25 fixed decorator camera; special-mode callbacks preserved."
+0x0094B698,repeatable,"Vapecord plugin ADDRESSES: CRODATA
+他地域: USA=0095269C  EUR=00951698  KOR=0094A698
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0094C704,line,IDA-gpt-6-F001: original Region JPN ISLPOINTER row and getter/constructor/accessors agree on IslandRuntimeData pointer. Heap absolute addresses in archived AR are not proven current pointer values.
+0x0094C704,repeatable,"Vapecord plugin ADDRESSES: ISLPOINTER
+他地域: USA=00953708  EUR=00952704  KOR=0094B704
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0094CA08,line,"IDA-gpt-6.1-sol-F001 / MEDIUM: 5個のFurnitureFootprint descriptorポインタ。descriptor+0..12=4方向セル列int32(dx,dz)*、+16=u8セル数。0x744BFC/0x744BDCの添字とcode.bin原本で独立照合。"
+0x0094CA30,line,"★★g_GfxAllocator — **ssys::ma::Allocator**（vtbl 0x9006A4）— F-164
+
+Render_InitGlobal(0x4E97CC) で構築される:
+```
+v5 = Heap_CreateNamed(235520, parent)   ; sead::ExpHeap を 0x39800 バイトで作る
+v7 = Heap_Alloc(8, v5)                  ; 8 バイト
+ g_GfxAllocator = ssys_ma_Allocator_Ctor(v7)
+ sub_12D3A4(g_GfxAllocator, v5)          ; +4 に heap を結び付ける
+```
+
+レイアウト:
+  +0x00  vtable = vtbl_ssys_ma_Allocator (0x9006A4)
+  +0x04  **sead::ExpHeap*** （vtbl_sead_ExpHeap = 0x8FFEF8）
+
+vtable（4 スロットのみ）:
+  +0x00 / +0x04  デストラクタ 2 種
+  **+0x08  Alloc(size, align)**  -> 0x569B54
+  **+0x0C  Free(ptr)**           -> 0x569B44
+
+取得は GfxAllocator_Get(0x4EF2D8)。
+
+★このアロケータが配るメモリは **linear（GPU 可視）である可能性が高い**。
+  根拠: Render_InitGlobal で g_DrawContext をこのアロケータから作っており、
+  実機でその drawctx は **0x32FF62EC**だった。
+  F-124 で 0x30000000+ の窓は"
+0x0094CA48,line,"g_DrawContext — 描画コンテキストらしきグローバル (F-107)。confidence MEDIUM。
+根拠: Scene_DrawLayers が
+  メッシュ提出   sub_48D26C(g_DrawContext, mesh, model)
+  コールバック   cb(g_DrawContext, userdata)
+の両方で第 1 引数に渡す。
+★FuncNode のコールバック内ではこれを使って描画できる。
+実例 sub_188340: ユーザーデータのキュー（+148 件数 / +156 配列）から
+  オブジェクトを取り出し、各々の vtable+8 を g_DrawContext で呼んでいる。"
+0x0094CA60,line,"★g_TypeNode_g3d_FuncNode — g3d::FuncNode の型ノード (F-107)。
+★**2 経路から確定した:**
+  Scene_DrawLayers(0x4EB840) がこれと一致するノードでコールバックを呼ぶ
+  g3d_FuncNode_SetCallbacks(0x4EFF58) がこれと一致を確かめてから書き込む
+型ノードは +0 が親へのポインタ。親は 0x96F0F0。
+※Itanium ABI の RTTI（ti_* / vtbl_*）とは別の、sead 風の簡易型情報。"
+0x0094CC9C,repeatable,"Vapecord plugin ADDRESSES: KEEPCONNECTION_POINT
+他地域: USA=00953CA0  EUR=00952C9C  KOR=0094BC9C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0094D238,repeatable,"Vapecord plugin ADDRESSES: ISLANDSHOPPOINTER
+他地域: USA=00954238  EUR=00953238  KOR=0094C238
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0094D644,line,"IDA-gpt-6-sol-F007: pointer to network game manager. Observed offsets from static code: +0x13268 own network slot, +0x1326C registered peer mask, +0x1329D game type/readiness state, +0x132AC/+0x132AE connection flags. Host/guest live values still to measure."
+0x0094D648,line,IDA-gpt-6.1-sol-F007 / MEDIUM訂正: この欄はNetGameMgrのSingletonDisposerポインタ。0x616D8Cがsub_133778の返値とdisposer vtable0x904FC4をここへ保存、管理本体は別欄0x94D644へ保存。0x61769C/0x6176ECはthisとこの欄を比較し、disposer解除後に本体を破棄する。旧Vapecordラベルと0x1326F読取りの過去解釈は来歴として残す。今回依頼外のHhdScreen等は未変更。
+0x0094D648,repeatable,"Vapecord plugin ADDRESSES: GAMEPOINTER
+他地域: USA=00954648  EUR=00953648  KOR=0094C648
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0094D64C,line,"IDA-gpt-6-sol-F002: town-transfer prefix length, initialized to 0x10EA by 0x79C194; bytes before TownBase data in stream."
+0x0094DF08,repeatable,"Vapecord plugin ADDRESSES: TPCPOINT
+他地域: USA=00954F10  EUR=00953F08  KOR=0094CF08
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0094FDBC,line,"★UI 画面のファクトリ表 (F-57)。{ctor, 0x523B24} の 8 バイト x 669 エントリ。
+UiScreen_RegisterFactoryTable (0x1D3A84) が
+  dword_96F2B0 = この表 / dword_96F2B4 = 669  として登録する。
+UiScreen_Create(screenId) が table[screenId].ctor() を呼ぶ。
+  [  0] BsRoot
+  [544] BsMenuItem   [546] BsMenuMyDesign   [557] BsMenuSetupTime"
+0x00950424,line,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: profile0xCDのctor/destructor 8 B entry。ctor=0x7EA690 AcFtrCloth_Factory、descriptor実名とfamily30を照合。
+0x009504CC,line,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: profile0xE2のctor/destructor 8 B entry。ctor=0x7EE558 AcFtrMusicJacket_Factory、descriptor実名とfamily74を照合。
+0x00951339,line,IDA-gpt-6-F001 (gpt-6): Previous room ID. Room_CommitNextId copies current (+0x2) here before committing next (+0x3). Independent old F358 hardware record agrees; current static proof in room_transition_static.json.
+0x0095133A,line,"★g_CurrentRoomId（1 バイト）。0x5E=Title / 0x63=PlayerSelect（しずえのスポットライト）/ 0x00=Village / 0xA5=なし
+直前の部屋は 0x00951339。F-55 / F-358
+IDA-gpt-6-F001 (gpt-6): Current room ID. Getter, commit, and vc_ROOMNAME default 0xA5 path agree. Original warp codes writing 32 bits at 0x951338 also replace this byte; direct warp is not only a next-room change."
+0x0095133B,line,"★F-358: 次の部屋（遷移要求中だけ入り、済むと 0xA5）。Vapecord の vc_GETNEXTROOM(0x005B3540) がここを読む。実機確認済
+IDA-gpt-6-F001 (gpt-6): Next room ID requested by Room_RequestChange, committed by Room_CommitNextId then reset to invalid 0xA5. Keep distinct from previous/current IDs; old F358 has independent hardware confirmation."
+0x009515F0,line,IDA-opus-5.5-F084: 部屋の内部名の表（部屋 ID の順、4 B 刻み）。0 Village / 1 Downtown / 2 Station … 0x47 CLUB444_Live / 0x48 BeautySalon / 0x49 Museum_Entrance。Vapecord の Room_IDS.txt（16 進）と一致。
+0x00955F8C,line,IDA-gpt-6-sol-F006: runtime pointer to garden save allocation. Save_GetTownBase returns this pointer plus 0x80. Receiver-side value must be measured before assessing out-of-town transfer offsets.
+0x009563EC,repeatable,"Vapecord plugin ADDRESSES: EXGAMEDATA
+他地域: USA=0095D3F4  EUR=0095C3EC  KOR=009553EC
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x009563F4,repeatable,"Vapecord plugin ADDRESSES: MAX
+他地域: USA=0095D3FC  EUR=0095C3F4  KOR=009553F4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x009564F0,line,"g_SystemTimeNs (s64) — 本体日付を ns に直したもの (F-60)。
+Time_SetFromDate が毎回 Time_GetSystemNs() の戻り値で上書きする。"
+0x009564F8,line,"★g_TimeOffsetNs (s64) — 本体時計とゲーム内時刻のずれ (F-60)。
+g_RealTimeNs = Time_GetSystemNs(本体日付) − g_TimeOffsetNs なので
+★ゲーム内時刻を進めたければこの値を減らす（向きに注意）。
+書き込みは Time_AnchorFromSave(0x56AB14) と sub_56BBE8 のみ。"
+0x00956500,line,"★g_RealTimeNs — ゲーム内時刻 (ns, s64)。**導出値であって権威ではない** (F-60)。
+  Time_SetFromDate: = Time_GetSystemNs(日付) − g_TimeOffsetNs
+  Time_StoreToSave: セーブ D_GARDEN+0x621A0 (ACNL_TownData::CurrentTime) へ複写
+  Time_LoadFromSave(0x56A970): 逆にセーブから読み戻す
+Vapecord Game::SetCurrentTime (USA 0x95D508) はここへ差分を加算する。
+即座に効くが、Time_SetFromDate が走ると上書きされる。だから同時に
+セーブ側 CurrentTime にも同じ差分を足して永続化している。"
+0x00956500,repeatable,"Vapecord plugin ADDRESSES: REALTIME
+他地域: USA=0095D508  EUR=0095C500  KOR=00955500
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00957B34,line,IDA-opus-5.5-F017: 属性コードの衝突分類表（255 B）。FieldAttr_CollisionClass 0x5CD3C0 が引く。
+0x00957ED4,repeatable,"Vapecord plugin ADDRESSES: DATAPOINTER
+他地域: USA=0095EEDC  EUR=0095DED4  KOR=00956ED4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00958114,repeatable,"Vapecord plugin ADDRESSES: CHATPOINT
+他地域: USA=0095F11C  EUR=0095E114  KOR=00957114
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0096EA94,line,"★★g_GpuCmdPtr — PICA200 コマンドバッファの書き込み位置。
+confidence **HIGH**（静的 + 実機観測。F-102）。
+
+★実機実測 (F-102):
+  1回目 0x323CE870   2回目 0x322B8D60
+  常に **mgr[1](基底) + mgr[3](オフセット)** と一致する
+  1 フレームで ≈ 0x1BC80 バイト（113,280）進む
+
+★**二重バッファ。フレームごとに g_GpuCmdListMgr と dword_AD9960 が入れ替わる。**
+  ★だから g_GpuCmdPtr / g_GpuCmdEnd は **毎回読み直すこと**。
+  キャッシュすると別バッファを壊す。
+
+ヘッダ: reg | (mask << 16) | (extra << 20) | (consec << 31)
+  mask は 0xF 固定でなく 1/2/4/5/8 も使う。extra は後続の追加ワード数。
+レジスタ名は REFERENCES/.../ctrulib/gpu/registers.h で引く（一次情報ではない）。"
+0x0096EA98,line,"★g_GpuCmdEnd — コマンドバッファの上限。confidence **HIGH**（F-102）。
+
+★**固定値ではない。バッファのスワップに追従して変わる。**
+  1回目 0x324B2130   2回目 0x3239D0C0
+  常に **mgr[1](基底) + mgr[2](サイズ 0x100000)** と一致
+
+描画コードは積む前に `g_GpuCmdPtr < g_GpuCmdEnd` を確かめる。
+★自前で足すときもこの上限を超えないこと。
+実測では 1MB 中 0x1BC80 程度しか使っておらず、空きは約 900KB。"
+0x0096EBC8,line,"[IDA-gpt-6-F001] 0xBB nullable country ISO string pointers, stride 4 from SystemConfig_GetCountryIsoCode index instruction. Full IDB table bytes match SHA-verified current code.bin. Evidence: work/evidence/cheat_semantics/country_codes.json."
+0x0096F0D4,line,"★g_TypeNode_nwgfx_Model — nw::gfx::Model の型ノード (F-108)。
+根拠: vtbl_nw_gfx_Model(0x8FBD00) の slot2 = nwgfx_Model_GetTypeNode(0x73AFCC) が
+  このアドレスを返す。
++0 = 親 = g_TypeNode_nwgfx_TransformNode (0x96F0F0)。"
+0x0096F0F0,line,"★g_TypeNode_nwgfx_TransformNode — nw::gfx::TransformNode の型ノード (F-108)。
+根拠: vtbl_nw_gfx_TransformNode(0x8FB87C) の slot2 =
+  nwgfx_TransformNode_GetTypeNode(0x737320) がこのアドレスを返す。
+★**nw::gfx::Model と g3d::FuncNode の両方がこれを親に持つ**。
+  nw4c のシーングラフ階層と一致する。
+ModelInstance_Create(0x4F048C) が参照する。"
+0x0096F150,line,IDA-gpt-6.1-sol-F011 / MEDIUM。nwlyt全体allocatorポインタ。Layout/AnimTransformの確保と解放が共有するため、holder変更だけでは移設されない。今回書換えない。
+0x0096F304,line,"IDA-gpt-6.1-sol-F011 / MEDIUM。graphic::MemoryMgrポインタ。初期a1[5]はFCRAM commandHeap、a1[6]/[7]はVRAM。icon98,304 Bの条件付き借用は割当時heapを保持して同じheapへ返す。固定boot番地0x3228A7C8を埋め込まない。"
+0x0096FC06,repeatable,"Vapecord plugin ADDRESSES: U0DATA
+他地域: USA=00976C0E  EUR=00975C06  KOR=0096EC06
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0096FC3C,line,IDA-gpt-6.1-sol-F011 / MEDIUM。nwlyt全体allocatorとUiAnim補助器へ渡るssys::ma::Allocator。+4の2D_UI_Heapは0x96FC40+4と同じ。
+0x0096FC40,line,IDA-gpt-6.1-sol-F011 / MEDIUM。arc読込のssys::ma::Allocator。+4の2D_UI_Heapは家具chipも使用。窓の余白は総/連続128 KiB、別ヒープiconなら負担をpayload約98 KiB削減（未実機）。
+0x00978624,line,"IDA-opus-5.5-F072: Window frame flip table, 6 entries x 10 B (flip 0..5). [0..7] = corner texcoords TLu TLv TRu TRv BLu BLv BRu BRv (0/1), [8] = component that follows the quad width, [9] = component that follows the quad height. Read by nwlyt_Window_CalcFrameTexCoordLT/RT/RB/LB."
+0x0097C030,repeatable,"Vapecord plugin ADDRESSES: D_FRIEND
+他地域: USA=00983038  EUR=00982030  KOR=0097B030
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0097C048,repeatable,"Vapecord plugin ADDRESSES: D_MAIL
+他地域: USA=00983050  EUR=00982048  KOR=0097B048
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0097C080,repeatable,"Vapecord plugin ADDRESSES: D_DESIGN
+他地域: USA=00983088  EUR=00982080  KOR=0097B080
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0097F660,line,IDA-gpt-6-sol-F005: five groups of three float offsets initialized in AcPlayer_UpdatePositionWithFieldChecks and used as movement probes.
+0x0097F6F4,repeatable,"Vapecord plugin ADDRESSES: CAMCOORD
+他地域: USA=009866F4  EUR=009856F4  KOR=0097E6F4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x009863E4,line,"★MenuID -> 画面ID の変換表 u16 x 140 (0x00-0x8B) (F-57)。
+  0x00 持ち物欄     -> 544  BsMenuItem
+  0x01 マイデザイン欄 -> 546  BsMenuMyDesign
+  0x02 図鑑         -> 545
+  0x2E 日付変更     -> 557  BsMenuSetupTime  ★
+  0x2F/0x30/0x31   -> 557  （同じ画面を用途違いで使う）
+  0x8B すぐ閉まる   -> 669  ★範囲外(0-668)なので factory が NULL
+一覧は REFERENCES/IDS/MenuID.txt。"
+0x009ADAA0,repeatable,"Vapecord plugin ADDRESSES: D_EXHIBITION
+他地域: USA=009B4AC0  EUR=009B3AC0  KOR=009ACAC0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x009AE15C,line,"ACNL_Item::s_DropDataTable  18バイト x 4スロット (F-44)
++0 ItemToReplace, +4 ItemToPlace, +8 ItemToShow, +12 wX, +13 wY,
++14 DropType, +15 State, +16 スロット番号, +17 Flags
+Flags: bit0 IsInside / bit1 PlayerSide / bit2-4 FruitTree / bit5 CrashTree / bit6-7 HitCount"
+0x009AE1A4,line,"★g_FieldActionActive — 進行中のフィールド動作 5B x 32 (F-61)。
+レイアウトは FieldAction_RegisterActive の STRB 列 (0x59FD5C-0x59FD68) で確認:
+  +0 wX  +1 wY  +2 playerNo  +3 flags(参加者ビット)  +4 actionID
+★空きの印は +2 playerNo == 165 (0xA5)。
+  登録: while (e[i].playerNo != 165) で探す、32 枚満杯なら -1
+  解放: FieldAction_ClearActive が e[2] = 0xA5 に戻す
+※ g_DropDataTable(0x9AE15C, 18B x 4) とは別のテーブル。混同しないこと。"
+0x009AE244,line,"g_DigRecordArray — 22B x 32 (F-39 / F-64)。
+  +0 item0  +4 item1  +8 item2  +12 flags  +13 playerIdx
+  +14 wX  +15 wY  +16 actionID  +17 state  +18..20 pad  +21 roomID
+★満杯時 FieldObj_ApplyDigRecord の探索ループが v12 = -1 を返し、
+  &g_DigRecordArray[-1] = 0x9AE22E へ書く（F-39 の SIGSEGV の正体）。"
+0x009AE504,line,木の打撃カウンタ 2bit/マス (F-42)。t = X + 80*Y - 0x510、word = [t>>4]、shift = (t&0xF)*2
+0x009C3098,line,"★g_SceneContexts[3] — nw::gfx::SceneContext × 3 (F-111)。
+Render_InitGlobal(0x4E97CC) が sub_48E384 で生成。
+[0]=0x9C3098 [1]=0x9C309C [2]=0x9C30A0(g_SceneContext_2)
+レイアウトは nwgfx_SceneContext_Finalize(0x48FD6C) のコメント参照。"
+0x009C30A4,line,"★g_SceneTraversers[3] — nw::gfx::SceneTraverser × 3 (F-111)。
++8 に対応する SceneContext を持つ。Scene_SubmitNode が Accept の引数に使う。"

@@ -1,0 +1,6 @@
+address,size,name,prototype,confidence,source,refs,clone_of
+0x00B19CEC,452,AcObjUnitCursor_Init,,MEDIUM,analysis,ACNL-F0692,
+0x00B19FFC,336,AcObjUnitCursor_AddCursor,,MEDIUM,analysis,ACNL-F0692,
+0x00B1A15C,388,AcObjUnitCursor_Update,,MEDIUM,analysis,ACNL-F0692,
+0x00B1A2F0,60,AcObjUnitCursor_RemoveCursor,,MEDIUM,analysis,ACNL-F0692,
+0x00B27C14,152,UnitCursor_SetScaleFromSize,,MEDIUM,analysis,ACNL-F0692,

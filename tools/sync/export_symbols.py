@@ -366,7 +366,7 @@ def export_all(build: str, outdir: Path, source: str = "analysis", console: bool
         tables[t], count = sl.retain_outside_segments(t, rows, old[t], segments)
         retained += count
     for t, rows in tables.items():
-        sl.write_csv(outdir / (t + ".csv"), t, rows)
+        sl.write_table(outdir, t, rows)
     tdir = outdir / "types"
     if types_text:
         tdir.mkdir(parents=True, exist_ok=True)

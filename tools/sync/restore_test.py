@@ -70,7 +70,7 @@ def run(build: str, symbols: Path, keep: bool = False, fresh: bool = False, repo
         # 通常の書き出しと同じく、IDB 外（未ロードの CRO 等）の行は保持する。
         # これらは import_report の skipped に計上され、復元済みとは扱わない。
         for table, rows in sl.read_all(symbols).items():
-            sl.write_csv(out / (table + ".csv"), table, rows)
+            sl.write_table(out, table, rows)
         with ic.OpenDb(work, save=False) as _:
             export_symbols.export_all(build, out, "restore-test")
         res, ok = compare_dirs(symbols, out)

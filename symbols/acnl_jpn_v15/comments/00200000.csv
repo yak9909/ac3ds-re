@@ -1,0 +1,676 @@
+address,kind,text
+0x00201208,line,"F-358: dFieldFactory::Create(heap, roomId)。部屋 ID で switch して
+匿名名前空間の Builder（BasicBuilder / VillagePrologueBuilder など 9 種）を選ぶ。
+dFieldFactory.cpp 由来。vtable は 0x008598BC・0x008598F0・0x00859924・0x00859958・0x0085998C・0x008599C0・0x008599F4・0x00859A28"
+0x00201208,repeatable,"F-358: dFieldFactory::Create(heap, roomId)。部屋 ID で switch して
+匿名名前空間の Builder（BasicBuilder / VillagePrologueBuilder など 9 種）を選ぶ。
+dFieldFactory.cpp 由来。vtable は 0x008598BC・0x008598F0・0x00859924・0x00859958・0x0085998C・0x008599C0・0x008599F4・0x00859A28"
+0x00203ABC,line,roomId
+0x00203AF0,line,roomId
+0x00203BC4,line,roomId
+0x00203BF4,line,roomId
+0x002041FC,repeatable,"Vapecord plugin ADDRESSES: NPC
+他地域: USA=002042BC  EUR=002042DC  KOR=002041C8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00207AD0,repeatable,"Vapecord plugin ADDRESSES: PARTICLECLASS
+他地域: USA=00207B90  EUR=00207BB0  KOR=00207A9C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0020C688,func,実機(2026-09-17、利用者): しずえスキップ(しずえ画面 case0 を飛ばす)で寝癖が付かない。準備中の日替わり経路でこの関数が走るという静的な読みと一致(V2-F013 HIGH)
+0x0020C688,line,V2-F013 MEDIUM: Player_OnDayChange から『選択中プレイヤー』だけ呼ばれる(a2=player+36660 の累積不在日数)。町フラグ [TownBase+401757] bit0 が 0 かつ 15 日以上なら髪型 player+4 を 16 か 33 にする(0x0020C6D8 の STRB)=寝癖。gohan『寝癖付かない』(Vapecord NeverBedHead)はこの STRB を NOP。a2==1 で連続ログイン系 player+22305 上位3bit を加算。準備中(しずえ画面 case 0)の SvProc 経路で到達: TalkSaveTask_Step→SvProc_StartThread→ProcThread_Run→SaveProcess_Execute→g_SvProcTypeTable[4] SvProcType4_Prepare→Save_RunDayChangeWithPlayers→Save_RunDayChange→Town_OnDayChange→Save_PlayersOnDayChange→Player_OnDayChange→ここ
+0x0020C688,repeatable,V2-F013 MEDIUM: Player_OnDayChange から『選択中プレイヤー』だけ呼ばれる(a2=player+36660 の累積不在日数)。町フラグ [TownBase+401757] bit0 が 0 かつ 15 日以上なら髪型 player+4 を 16 か 33 にする(0x0020C6D8 の STRB)=寝癖。gohan『寝癖付かない』(Vapecord NeverBedHead)はこの STRB を NOP。a2==1 で連続ログイン系 player+22305 上位3bit を加算。準備中(しずえ画面 case 0)の SvProc 経路で到達: TalkSaveTask_Step→SvProc_StartThread→ProcThread_Run→SaveProcess_Execute→g_SvProcTypeTable[4] SvProcType4_Prepare→Save_RunDayChangeWithPlayers→Save_RunDayChange→Town_OnDayChange→Save_PlayersOnDayChange→Player_OnDayChange→ここ
+0x0020C6D8,repeatable,"Vapecord plugin ADDRESSES: ANTIBEDHEAD
+他地域: USA=0020C798  EUR=0020C7B8  KOR=0020C6A4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002137CC,line,"IDA-opus-5.5-F028 HIGH(静的+実機BP): BankTable_Acquire(table, handle*)。handle が既にあれば 1。table+10 の次から vt[2]=使用中か で空きを探し、vt[3] で使用中にして +8 を増やし {table, 枠} を handle へ。実機: 家に入ったとき PlayerModel_Setup 0x1CF604 から頂のバンクで枠 1。"
+0x002137CC,repeatable,"IDA-opus-5.5-F028 HIGH(静的+実機BP): BankTable_Acquire(table, handle*)。handle が既にあれば 1。table+10 の次から vt[2]=使用中か で空きを探し、vt[3] で使用中にして +8 を増やし {table, 枠} を handle へ。実機: 家に入ったとき PlayerModel_Setup 0x1CF604 から頂のバンクで枠 1。"
+0x002138FC,line,"IDA-opus-5.5-F028: BankTable_Release(table, handle*)。無効な handle は 1。vt[0](枠) が真（片付け済み）なら vt[4] で空きにし handle={0,-1}、+8 を減らして 1。まだなら 0（呼び直す）。"
+0x002138FC,repeatable,"IDA-opus-5.5-F028: BankTable_Release(table, handle*)。無効な handle は 1。vt[0](枠) が真（片付け済み）なら vt[4] で空きにし handle={0,-1}、+8 を減らして 1。まだなら 0（呼び直す）。"
+0x00214538,repeatable,"Vapecord plugin ADDRESSES: BUBBLE
+他地域: USA=002145F8  EUR=00214618  KOR=00214504
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0021718C,repeatable,"Vapecord plugin ADDRESSES: GETMESSAGE
+他地域: USA=0021724C  EUR=0021726C  KOR=00217158
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00218044,repeatable,"Vapecord plugin ADDRESSES: SUBMIT_CHAT
+他地域: USA=00218104  EUR=00218124  KOR=00218010
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0021A9FC,func,3D preview spawn call is gated by catalog mode byte at object+15265 == 0 and valid selection. Nonzero modes skip sub_690E28 entirely.
+0x0021AAA0,repeatable,"Vapecord plugin ADDRESSES: ALL_ITEMS_HAVE_PRICES
+他地域: USA=0021AB60  EUR=0021AB80  KOR=0021AA6C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0021B2EC,repeatable,"Vapecord plugin ADDRESSES: ALL_ITEMS_BUYABLE
+他地域: USA=0021B3AC  EUR=0021B3CC  KOR=0021B2B8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0021B3F0,repeatable,"Vapecord plugin ADDRESSES: CHOOK
+他地域: USA=0021B4B0  EUR=0021B4D0  KOR=0021B3BC
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0021BFEC,repeatable,"Vapecord plugin ADDRESSES: CATALOGPOFFSET2
+他地域: USA=0021C0AC  EUR=0021C0CC  KOR=0021BFB8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0021C348,repeatable,"Vapecord plugin ADDRESSES: CATALOGPOFFSET1
+他地域: USA=0021C408  EUR=0021C428  KOR=0021C314
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0021C76C,func,"BsMenuCatalog init hides BsHandCursor (manager+500), not BsMenuTab (manager+480). It does not set MENU_FLAGS bits 0x08/0x10."
+0x0021CC10,func,BsMenuCatalog update treats MENU_FLAGS bit 0x20 as destroy/close request. This is its only MENU_FLAGS dependency.
+0x0021CF20,func,"Catalog teardown releases catalog resources and sets byte_949D23=1, but does not restore tabs/cursor/player state/field controller or clear lower-menu handshake bits."
+0x00221190,line,"IDA-opus-5.5-F005: MapBase_PlaceBuildingIcons(map, book, keep): per book slot (x>=16) alloc icon (MapBase_AllocBuildingIcon) and MapBase_PutIconAtTile; then PlacePlayerMark (book 0) and RebuildTouchList. Pools (MapIcon 788B): +0x4 x14 fixed (houses), +0x2B1C x10 count +0xB3B0, +0x49E4 x8 count +0xB3AC. Called once at BsMenuMapVillage create step 9 with (proc+0xA7C,0,1). gohan re-runs it after hiding pools and zeroing counts."
+0x00221190,repeatable,"IDA-opus-5.5-F005: MapBase_PlaceBuildingIcons(map, book, keep): per book slot (x>=16) alloc icon (MapBase_AllocBuildingIcon) and MapBase_PutIconAtTile; then PlacePlayerMark (book 0) and RebuildTouchList. Pools (MapIcon 788B): +0x4 x14 fixed (houses), +0x2B1C x10 count +0xB3B0, +0x49E4 x8 count +0xB3AC. Called once at BsMenuMapVillage create step 9 with (proc+0xA7C,0,1). gohan re-runs it after hiding pools and zeroing counts."
+0x002212B8,line,IDA-opus-5.5-F006: the ONLY call of MapBase_AllocBuildingIcon (no CRO import). The allocator has no bound check; overflow is the game's own behavior (star icon / rail fence vanishes). gohan briefly guarded this BL but removed it per user instruction (do not change game code or limits); gohan now only re-runs the step-9 function when pools fit.
+0x002214F0,repeatable,"Vapecord plugin ADDRESSES: WRITEPATCH
+他地域: USA=002215B0  EUR=002215D0  KOR=002214BC
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00222434,line,"IDA-opus-5.5-F006/F009: NO bound check. Pool A +0x2B1C x10 (count +0xB3B0), pool B +0x49E4 x8 (count +0xB3AC). A overflow writes into B (star icon / rail fence vanishes; game survives). A index 18 == B index 8 == +0x6284 = uninitialised icons -> icon init 0x4B4338 null deref (crash dump 1). Safe for the game only while A<=18 and B<=8 (pending public work uses one B slot). id->pool table: tools/strc/map_icon_pools.py."
+0x00222434,repeatable,"IDA-opus-5.5-F006/F009: NO bound check. Pool A +0x2B1C x10 (count +0xB3B0), pool B +0x49E4 x8 (count +0xB3AC). A overflow writes into B (star icon / rail fence vanishes; game survives). A index 18 == B index 8 == +0x6284 = uninitialised icons -> icon init 0x4B4338 null deref (crash dump 1). Safe for the game only while A<=18 and B<=8 (pending public work uses one B slot). id->pool table: tools/strc/map_icon_pools.py."
+0x0022392C,line,"IDA-opus-5.5-F062: (一覧, 種類, id) の項目の行を選ぶ（地図アイコンから）。同じなら 0。前の行 SetSelected(0)、ページ、ResetRowButtons、SetSelected(行,1)、ノード +215 = 1、vt+52 で touch_ok / select_ok を最後へ。s0 は自分のリテラルから。"
+0x0022392C,repeatable,"IDA-opus-5.5-F062: (一覧, 種類, id) の項目の行を選ぶ（地図アイコンから）。同じなら 0。前の行 SetSelected(0)、ページ、ResetRowButtons、SetSelected(行,1)、ノード +215 = 1、vt+52 で touch_ok / select_ok を最後へ。s0 は自分のリテラルから。"
+0x002241E8,line,"IDA-opus-5.5-F062: (一覧, 行, on): on = N_slct_00 を N_icon_行 へ・表示、P_base_00 α 255、+10552 = 行、アイコン選択アニメ。off = 隠す、α 0、+10552 = +10560 = -1。"
+0x002241E8,repeatable,"IDA-opus-5.5-F062: (一覧, 行, on): on = N_slct_00 を N_icon_行 へ・表示、P_base_00 α 255、+10552 = 行、アイコン選択アニメ。off = 隠す、α 0、+10552 = +10560 = -1。"
+0x00224B88,line,"IDA-opus-5.5-F062: (一覧, 行, 項目, 語, 表示): N_icon_行 の表示、T_msg に語（vt+12 文字列）、書体の大きさを保存値へ戻し sub_5E91F0（vt+12/vt+16）で測る、項目の id/種類を +6012/+6013、アイコン種。"
+0x00224B88,repeatable,"IDA-opus-5.5-F062: (一覧, 行, 項目, 語, 表示): N_icon_行 の表示、T_msg に語（vt+12 文字列）、書体の大きさを保存値へ戻し sub_5E91F0（vt+12/vt+16）で測る、項目の id/種類を +6012/+6013、アイコン種。"
+0x00224E4C,line,IDA-opus-5.5-F062: 部屋 164（Amiibo Camera）の常時オープン: in_list を最後のフレーム（frameSize − 1.0）で当て、P_list_arrow_00 を隠す。gohan のモード一覧が流用。
+0x00224E4C,repeatable,IDA-opus-5.5-F062: 部屋 164（Amiibo Camera）の常時オープン: in_list を最後のフレーム（frameSize − 1.0）で当て、P_list_arrow_00 を隠す。gohan のモード一覧が流用。
+0x00226D24,func,V2-F016 MEDIUM: 屋外の家の目印アイテム 0x7FF8〜0x7FFB を Field_DeleteItemAt。日替わりの sub_2260EC は条件付きの同種
+0x0022783C,line,IDA-opus-5.5-F003 MEDIUM: カタログ表示の毎フレーム。2 枠を交互に使い（表示中の枠と次を読む枠）、位置は ID ごとの表示変換 sub_5C96B4 + y に -7/-10。村に建つ実物の配置ではない。
+0x0022783C,repeatable,IDA-opus-5.5-F003 MEDIUM: カタログ表示の毎フレーム。2 枠を交互に使い（表示中の枠と次を読む枠）、位置は ID ごとの表示変換 sub_5C96B4 + y に -7/-10。村に建つ実物の配置ではない。
+0x00227BE4,line,"IDA-opus-5.5-F099 (MEDIUM static): after submitting the shown slot a1[564] this frame, the other slot (v8 = !(a1[564]&1)) is destroyed right here if it still has an instance (anims released, ModelInstance_Destroy x2, holders sub_2F7330 x3, sub_536008). The old model was last submitted in the previous frame, so the game frees a replaced preview one frame after its last submission (no multi-frame wait). Two slots alternate: the next model is loaded into the free slot while the current one is shown (PwpPreview_LoadSlot 0x227CFC)."
+0x00227CFC,line,"IDA-opus-5.5-F003 MEDIUM: 公共事業のカタログ表示（しずえのメニューと推定）の 1 スロット分の読み込み。Strc/fobj/<名>/<名>.bcres と **Strc/fobj/<名>/Textures/season00.bcres（テクスチャは別ファイル）** を読み、モデルの holder をテクスチャの holder と一緒に Setup、ModelInstance_Create(…,0,1,1)、アニメがあれば組む、描画レイヤ 2。位置は決めない。"
+0x00227CFC,repeatable,"IDA-opus-5.5-F003 MEDIUM: 公共事業のカタログ表示（しずえのメニューと推定）の 1 スロット分の読み込み。Strc/fobj/<名>/<名>.bcres と **Strc/fobj/<名>/Textures/season00.bcres（テクスチャは別ファイル）** を読み、モデルの holder をテクスチャの holder と一緒に Setup、ModelInstance_Create(…,0,1,1)、アニメがあれば組む、描画レイヤ 2。位置は決めない。"
+0x0022A14C,line,IDA-opus-5.5-F069 追記(MEDIUM): 天気 sub_62E60C が 3 なら 32、4 なら 128、ほか 0(特別な場面は off_94A844+0x4880)。>0 のとき住民は傘を持つ
+0x0022A14C,repeatable,IDA-opus-5.5-F069 追記(MEDIUM): 天気 sub_62E60C が 3 なら 32、4 なら 128、ほか 0(特別な場面は off_94A844+0x4880)。>0 のとき住民は傘を持つ
+0x0022C17C,line,"IDA-opus-5.5-F042 (class by adjacency to vtbl_ComButton1Lyt, MEDIUM): btn_pos.bclyt, one button on off_94B664[pos] = N_cmnbtn_pos_L/C/R."
+0x0022C17C,repeatable,"IDA-opus-5.5-F042 (class by adjacency to vtbl_ComButton1Lyt, MEDIUM): btn_pos.bclyt, one button on off_94B664[pos] = N_cmnbtn_pos_L/C/R."
+0x0022C39C,line,"IDA-opus-5.5-F042: btn_pos.bclyt, button 0 -> N_cmnbtn_pos_L, button 1 -> N_cmnbtn_pos_R."
+0x0022C39C,repeatable,"IDA-opus-5.5-F042: btn_pos.bclyt, button 0 -> N_cmnbtn_pos_L, button 1 -> N_cmnbtn_pos_R."
+0x0022C53C,line,"IDA-opus-5.5-F042: btn_pos.bclyt, buttons L, C, R."
+0x0022C53C,repeatable,"IDA-opus-5.5-F042: btn_pos.bclyt, buttons L, C, R."
+0x0022C7B8,func,"IDA-gpt-6-F010 / GPT-6, MEDIUM: group source pane+28 relocated to node vt+96 attachment pane; optional selection animation32 then layout290 dirty. Confirmed by original ARM and node virtual18/19 callers+RTTI. Private trash uses no group pane; renders its separate HHD layout."
+0x0022C88C,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). Group setup params assign layout fromparams[1], optional group pane fromparams[2] (hide initially), six animation resource names optional. Null resources safe; native BindAnim checks resource/layout before touching them. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls."
+0x0022C988,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). Clones five animation resources into node, assigns node+292 group, sets mode via vt+92 and enabled via vt+68, appends node. Owned trash uses its own group/node and native cleanup, leaving letters/items intact. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls."
+0x0022CA38,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). RTTI-vtable DragIconGroup; main list0/registry node12/layout24/pane28, select anim32 and six40B anims76..315, flags316..319. Total320B confirmed by caller allocation and constructor. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls."
+0x0023390C,repeatable,"Vapecord plugin ADDRESSES: INVALIDGIVEITEMADDRESS
+他地域: USA=002339CC  EUR=002339EC  KOR=002338D8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00237868,line,V2-F013 MEDIUM: talk driver の this+0x168 にある呼出しオブジェクト(vtbl 0x008F46D8、0x0023AFF8 で設定)の [0]。sub_236B40 case5 が毎フレーム呼ぶ。state0: desc+44==0 なら SvProc_StartThread(desc)、state1: desc+48 完了で 1 を返す(desc+44==2 ほか失敗時は SYS_Save のエラー表示)。desc は sub_2388BC が this+0x16C に入れた第4引数(しずえ画面では this+632)
+0x00237868,repeatable,V2-F013 MEDIUM: talk driver の this+0x168 にある呼出しオブジェクト(vtbl 0x008F46D8、0x0023AFF8 で設定)の [0]。sub_236B40 case5 が毎フレーム呼ぶ。state0: desc+44==0 なら SvProc_StartThread(desc)、state1: desc+48 完了で 1 を返す(desc+44==2 ほか失敗時は SYS_Save のエラー表示)。desc は sub_2388BC が this+0x16C に入れた第4引数(しずえ画面では this+632)
+0x0024220C,line,IDA-opus-5.5-F002 HIGH（静的）: 占有マップの作り直し。dword_AB1DE4[0..3] を消してから VillageBook / EventBook / AB1E00 の全建物を Building_WriteOccupancy で書き直し、AB1E28 の vtable+8 を呼ぶ。code.bin の 15 か所が呼ぶ常用処理。
+0x0024220C,repeatable,IDA-opus-5.5-F002 HIGH（静的）: 占有マップの作り直し。dword_AB1DE4[0..3] を消してから VillageBook / EventBook / AB1E00 の全建物を Building_WriteOccupancy で書き直し、AB1E28 の vtable+8 を呼ぶ。code.bin の 15 か所が呼ぶ常用処理。
+0x002424F4,line,"IDA-opus-5.5-F001 HIGH（Vapecord PLACEBUILDING）: 建物を置く (x, y, id)。①Structure_StampFootprint ②sub_5CCE4C(TownBase+0x4BE00=garden+0x4BE80, id, x, y) でセーブの建物表へ ③Building_WriteOccupancy。★見た目の実体は作らない（Vapecord はこのあと ReloadRoom）。"
+0x002424F4,repeatable,"Vapecord plugin ADDRESSES: PLACEBUILDING
+他地域: USA=002425D8  EUR=002425D4  KOR=002424C0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00242878,line,"IDA-opus-5.5-F002 HIGH（静的）: 当たり判定の作り直し。村（部屋データ1）の 6x7 区画それぞれへ区画本来の地形属性を 2560 B 複写して素に戻し、砂浜・川べりの値を補正、最後に Structure_StampAll(0,0) で現在の建物表から全部押し直す。code.bin からの呼び出しは 0 件だが ModuleIndoor.cro / ModulePrologue.cro がインポートして呼ぶ。建物を消す・動かすと属性が残るのをこれで直せる（gohan PublicWorks）。"
+0x00242878,repeatable,"IDA-opus-5.5-F002 HIGH（静的）: 当たり判定の作り直し。村（部屋データ1）の 6x7 区画それぞれへ区画本来の地形属性を 2560 B 複写して素に戻し、砂浜・川べりの値を補正、最後に Structure_StampAll(0,0) で現在の建物表から全部押し直す。code.bin からの呼び出しは 0 件だが ModuleIndoor.cro / ModulePrologue.cro がインポートして呼ぶ。建物を消す・動かすと属性が残るのをこれで直せる（gohan PublicWorks）。"
+0x00242944,func,"V2-F015 MEDIUM: 全建物に Structure_StampFootprint。第1引数=アイテム削除フラグ。削除ありで呼ぶのは Town_DayChangeGrassAndStructures(1,0)（日替わり）と sub_5C9C24(1,1)。vc_FIXFURNO は (0,0) で削除しない"
+0x002440A8,line,IDA-opus-5.5-F002: 起動時に建物系のマネージャを生成。dword_AB1DF4[0] = VillageBook、AB1DF8 = EventBook など。Book は vtable だけの窓で状態を持たず、毎回セーブの建物表を読む。
+0x002440A8,repeatable,IDA-opus-5.5-F002: 起動時に建物系のマネージャを生成。dword_AB1DF4[0] = VillageBook、AB1DF8 = EventBook など。Book は vtable だけの窓で状態を持たず、毎回セーブの建物表を読む。
+0x0024CED0,func,V2-F015 MEDIUM: Player_OnDayChange から。季節NPC（雪だるま・ジョニー・パンプキング・舞妓 等 Mail_SP_*）の手紙を Mail_Deliver で12か所
+0x0024F0A8,line,"★F-356: UlcdFramework（vtable 0x008E8B54 / TypeInfo 0x008C4E10）のスロット 31 上書き。
+Framework_WaitAndPresentFrame を呼んでから this+0x170 の後始末をする"
+0x0024F0A8,repeatable,"★F-356: UlcdFramework（vtable 0x008E8B54 / TypeInfo 0x008C4E10）のスロット 31 上書き。
+Framework_WaitAndPresentFrame を呼んでから this+0x170 の後始末をする"
+0x0025A790,line,"IDA-opus-5.5-F102: pocket menu state 'へやにかざる2' calc (state table 0x84EF44). After sub_259EC4(…,12,1) it calls the action from off_949F80 indexed by the chosen action (+168)."
+0x0025A790,repeatable,"IDA-opus-5.5-F102: pocket menu state 'へやにかざる2' calc (state table 0x84EF44). After sub_259EC4(…,12,1) it calls the action from off_949F80 indexed by the chosen action (+168)."
+0x00262698,line,"IDA-opus-5.5-F037 (HIGH): BsShadowMapMgr FuncNode draw. Loops i < mgr+100 over dword_94A458 {cmd,words} (8 B, same index as StrcMgr list 0x67CC) and calls sub_76EB48(StrcMgr,i). Table only built at scene create (sub_265544)."
+0x00262698,repeatable,"IDA-opus-5.5-F037 (HIGH): BsShadowMapMgr FuncNode draw. Loops i < mgr+100 over dword_94A458 {cmd,words} (8 B, same index as StrcMgr list 0x67CC) and calls sub_76EB48(StrcMgr,i). Table only built at scene create (sub_265544)."
+0x00265544,line,"IDA-opus-5.5-F037 (HIGH): builds per-structure shadow table dword_94A458: mgr+100 = *(StrcMgr+0x67CC); entry i from sub_6D9E58(StrcMgr,&model,i). Buffers from shadow heap (mgr+24); freed only with the heap in DestroyResources."
+0x00265544,repeatable,"IDA-opus-5.5-F037 (HIGH): builds per-structure shadow table dword_94A458: mgr+100 = *(StrcMgr+0x67CC); entry i from sub_6D9E58(StrcMgr,&model,i). Buffers from shadow heap (mgr+24); freed only with the heap in DestroyResources."
+0x00266BE4,func,"IDA-gpt-6-F001 (gpt-6): BsWeatherPaper vtable update. Selects active paper-particle count and calls the independent particle-loop consumer. shared prefix particles[400] at +0x12C, slot stride0x38, active_count+0x58AC, update_frame+0x58B0 are independently established by constructor and loop. Static MEDIUM; sub_2FDE7C(9) condition remains unnamed."
+0x0026715C,func,"IDA-gpt-6-F001 (gpt-6): Iterates active_count at +0x58AC over 0x38-byte particle slots beginning+0x12C, updates each and wraps coordinates in batches based on update_frame+0x58B0. Separate constructor initializes400 slots. Exact prototype/return representation remains unchanged pending ABI confirmation."
+0x00267660,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): Page counters+6040(current)/+5844(total) and adjacent-page labels on node words4808/5112. Values are page_by_tab[current_tab] (1-based) and page_count6256; pageCount is independent of default6."
+0x00267788,func,"IDA-gpt-6-F009 / GPT-6 (2026-10-12, MEDIUM; original ARM + RTTI/caller/source corroboration, new hardware behavior unverified): Page scroll state: anim3364 finished ->unbind slot_layout2672, clear chosen_control visual, transition idle267878. At frame0 invokes vt8 to refresh contents. GPU/FS timing hardware unverified. Evidence: docs/topics/closet_followup_design.md; work/evidence/gohan_closet_followup."
+0x00267824,func,"IDA-gpt-6-F009 / GPT-6 (2026-10-12, MEDIUM; original ARM + RTTI/caller/source corroboration, new hardware behavior unverified): Page scroll enter: slot root visible, bind active_scroll_anim, start virtual8 animation, update page counters. T012 owned immediate page path skips binding/state transition and refreshes10 items + counters synchronously. Evidence: docs/topics/closet_followup_design.md; work/evidence/gohan_closet_followup."
+0x00267878,func,"IDA-gpt-6-F009 / GPT-6 (2026-10-12, MEDIUM; original ARM + RTTI/caller/source corroboration, new hardware behavior unverified): ChangeListBase idle: button control1036 update and PMF dispatch. BsMenuChest wait page state1C38A0 checks Calc2636==267878 and adjust2640==0 before releasing parent's decided action. Evidence: docs/topics/closet_followup_design.md; work/evidence/gohan_closet_followup."
+0x00267A50,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): Only control-relative index4/5 -> decrement/increment current tab's 1-based page with wrap in [1,page_count]. Scroll anim pointers3284/3324 and state267788; not a hardcoded six-page limit.
+IDA-gpt-6-F009 / GPT-6 (2026-10-12, MEDIUM; original ARM + RTTI/caller/source corroboration, new hardware behavior unverified): T012 hooks at PUSH267A54, not first PC-relative LDR R2. Foreign forward includes original R2. Owned rel4/5 circulates1-based page, refreshes items297BA0/counters267660 without entering scroll267788. Only private search child. Evidence: docs/topics/closet_followup_design.md; work/evidence/gohan_closet_followup."
+0x00267B54,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): Only control-relative index0..3 selects tab and kind-change state; page_by_tab[4] preserves per-tab page. Null group entries are not bound by setup, and extra pane visibility must be controlled when showing a single tab."
+0x00267C30,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): Updates slot/base layout then registers base_layout624 on native LayoutMgr display1. No custom renderer or texture atlas is needed for the closet browser."
+0x00267CE0,func,"IDA-gpt-6-F008 / GPT-6 (2026-10-12, MEDIUM): Tab widgets bind B_btn_%02d hitbox only when corresponding group nonnull. CLYT cng_base N_btn_01/02 own hitboxes+P_B/P_C pictures; sibling P_btn_sh_01/02 are shadows. Hiding B_btn alone leaves pictures. Evidence change.arc original hierarchy + ARM widget binder. Evidence: docs/topics/closet_direct_design.md; work/evidence/gohan_closet_direct/{static,original_assembly,layout_input}.json. New behavior hardware-unverified."
+0x0026DB1C,func,"IDA-gpt-6-F008 / GPT-6 (2026-10-12, MEDIUM): Icon refresh reads Inventory_GetSlot and supplies real slot ItemID to ItemIconWidget_SetItem. Therefore scoped raw getter is also required to show low/non-pocket IDs after raw write; fallback icn_000 remains native. Evidence: docs/topics/closet_direct_design.md; work/evidence/gohan_closet_direct/{static,original_assembly,layout_input}.json. New behavior hardware-unverified."
+0x0026DB1C,line,"IDA-opus-5.5-F047: (BsMenuItem+7872 icon grid, slot) rebuilds the slot icon from the current player's pocket. Screen = *(*(0x986500)+0xC), menu id +0x24 (0 = pocket). Grid constructed in BsMenuItem_Ctor by sub_270110(this+7872)."
+0x0026DB1C,repeatable,"Vapecord plugin ADDRESSES: LOADICON
+他地域: USA=0026DC00  EUR=0026DBFC  KOR=0026DAE8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0026E79C,func,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: Room_HasFlags(8)とsub_30B7BCのゲート後、Item_HasWallHangVariant(item)を返す。ItemMenu_Buildが表示index22/action0とindex49/action42を生成する条件。sub_30B7BC自体の全意味は今回未確定。
+0x0026EC94,func,"IDA-gpt-6-F009 / GPT-6 additional timing/memory fix (2026-10-12, MEDIUM): ItemDragWindow_ExitUpdate. Original ARM + RTTI/caller/state-table corroboration. Native child outer exit uses996; pocket exit uses active animation pointer1988 and native unbind/idle. Parent leave waits both before Actor_RequestDestroy. DragControl finish retains selection in hand mode but clears decided and returns native wait. Hand/touch repeat uses counters216/threshold220 (11 then3). Owned search accelerates only exit/page animations and completes parent page wait same Calc. Source ERROR2/STAGE1 = 5MiB engine allocation failure; free search metadata/capacity before reopening. Evidence docs/topics/closet_followup_design.md and work/evidence/gohan_closet_followup/static_timing.json; new hardware behavior unverified."
+0x0026EF4C,func,"IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). Calculates background self+36, draws nodes via control+33520, submits background to lower-screen LayoutMgr. Draw order is priority ascending."
+0x0026F030,func,"IDA-gpt-6-F006 / GPT-6, MEDIUM (2026-10-12): ItemDragWindow_SetSlotDisabled. Native ARM independently checked against original code.bin; caller/RTTI/data accesses corroborate the contract. Selects pocket widget variant then calls ItemIconWidget_SetDisabled; not a save-item write. Hardware unverified; no LOW rename."
+0x0026F098,func,"IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). Builds item_scrn.bclyt at self+36; original ARM0x26F1E8/1EC stores priority0x83 at self+48. Standalone trash priority6 is behind this background; priority0x84 places it in front."
+0x0026FD6C,line,"★Item_CanPlant(a1, item) — Vapecord ラベル PLANT2 (F-63)。
+  Item_IsEmpty(item)      -> 0
+  !sub_5B3CD4()           -> 0
+  それ以外               -> sub_76BD4C(item) != 0
+★戻り値を作るときの残留フラグが重要 (0x19B8F0 のパッチを読むとき):
+  空アイテム経路だけ CMP R0,#0 が NZ を残す。他は Z が戻り値と一致する。"
+0x0026FD6C,repeatable,"★Item_CanPlant(a1, item) — Vapecord ラベル PLANT2 (F-63)。
+  Item_IsEmpty(item)      -> 0
+  !sub_5B3CD4()           -> 0
+  それ以外               -> sub_76BD4C(item) != 0
+★戻り値を作るときの残留フラグが重要 (0x19B8F0 のパッチを読むとき):
+  空アイテム経路だけ CMP R0,#0 が NZ を残す。他は Z が戻り値と一致する。"
+0x0026FDA8,line,"★Item_CanPlaceHere(a1, item, a3) — Vapecord ラベル DROP2 (F-63)。
+  Item_IsEmpty(item) または a3 != 0    -> 0
+  部屋フラグ 8 かつ !sub_5B3B44()    -> 0
+  部屋フラグ 4 かつ sub_313654(item) -> 0
+  それ以外                          -> sub_769FB4(item)"
+0x0026FDA8,repeatable,"★Item_CanPlaceHere(a1, item, a3) — Vapecord ラベル DROP2 (F-63)。
+  Item_IsEmpty(item) または a3 != 0    -> 0
+  部屋フラグ 8 かつ !sub_5B3B44()    -> 0
+  部屋フラグ 4 かつ sub_313654(item) -> 0
+  それ以外                          -> sub_769FB4(item)"
+0x0026FDE0,repeatable,"Vapecord plugin ADDRESSES: PLACING_FURNITURE2
+他地域: USA=0026FED8  EUR=0026FED4  KOR=0026FDAC
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0026FE34,func,"IDA-gpt-6-F009 / GPT-6 additional timing/memory fix (2026-10-12, MEDIUM): ItemDragWindow_BeginExit. Original ARM + RTTI/caller/state-table corroboration. Native child outer exit uses996; pocket exit uses active animation pointer1988 and native unbind/idle. Parent leave waits both before Actor_RequestDestroy. DragControl finish retains selection in hand mode but clears decided and returns native wait. Hand/touch repeat uses counters216/threshold220 (11 then3). Owned search accelerates only exit/page animations and completes parent page wait same Calc. Source ERROR2/STAGE1 = 5MiB engine allocation failure; free search metadata/capacity before reopening. Evidence docs/topics/closet_followup_design.md and work/evidence/gohan_closet_followup/static_timing.json; new hardware behavior unverified."
+0x0026FF50,func,"IDA-gpt-6-F006 / GPT-6 MEDIUM: UI pocket item write delegates directly to current player's real inventory+27600, preserving R1 slot/R2 item/R3 argument. Chest SetItemAtUiIndex uses this; close is not a deferred save commit. Original ARM + getter/transfer corroborate; keep legacy name until additional consumers are audited."
+0x002711A4,func,IDA-opus-5.5-F085: 顔の枠の資源を下ろす（sub_2F7330(枠+20)）。PlayerModel_DestroyStep が使う。
+0x002711AC,func,"IDA-opus-5.5-F085: 顔の枠（顔の倉庫 管理役+156、1 枠 284 B、+12 から）に Player/face_tex/{boy|girl}%02d{a|b}.bcres を読む。(枠, 見た目の記録, 男の子か, a/b)。既に読んであれば 1 を返すだけ（目の形を変えても読み直さない）。呼び元は PlayerModel_CreateStep だけ。顔の枠は PlayerModel_Setup の PlayerHeadBank_SetSources で頭に結ばれ、二重化されていない。"
+0x002718FC,line,"IDA-opus-5.5-F086 (MEDIUM, static): head load step. Binds the face holders from head data +668 (face a) / +672 (face b) via G3dResHolder_Setup at load time, so repointing those fields and forcing a head reload changes the face texture without recreating the player model."
+0x002718FC,repeatable,"IDA-opus-5.5-F086 (MEDIUM, static): head load step. Binds the face holders from head data +668 (face a) / +672 (face b) via G3dResHolder_Setup at load time, so repointing those fields and forcing a head reload changes the face texture without recreating the player model."
+0x00271DD0,line,IDA-opus-5.5-F029: 頭（髪）のファイル名 Player/head_mdl/{boy|girl}{髪型%17:02}{a|b}.bcres（髪型>=17 で girl）。帽子の種類で a/b・msd・bald を選ぶ。
+0x00271DD0,repeatable,IDA-opus-5.5-F029: 頭（髪）のファイル名 Player/head_mdl/{boy|girl}{髪型%17:02}{a|b}.bcres（髪型>=17 で girl）。帽子の種類で a/b・msd・bald を選ぶ。
+0x00272224,repeatable,"Vapecord plugin ADDRESSES: CONVERTDATA
+他地域: USA=0027231C  EUR=00272318  KOR=002721F0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0027AA1C,line,"IDA-gpt-6-sol-F006: completion-side processing loops four player-save records at townBase+0x20, stride 42112, calling sub_582154. Exact graphics/save side effect unresolved; no speculative rename."
+0x0027AA1C,repeatable,"IDA-gpt-6-sol-F006: completion-side processing loops four player-save records at townBase+0x20, stride 42112, calling sub_582154. Exact graphics/save side effect unresolved; no speculative rename."
+0x0027AAA0,line,"IDA-gpt-6-F001: map cached save ID 4..7 to cache slot 0..3, otherwise UINT_MAX. Caller checks slot then scales by 0xA480. ARM SUB/CMP/MOVCS/BX and original ACNL_Player sizeof agree."
+0x0027AAA0,repeatable,"IDA-gpt-6-F001: map cached save ID 4..7 to cache slot 0..3, otherwise UINT_MAX. Caller checks slot then scales by 0xA480. ARM SUB/CMP/MOVCS/BX and original ACNL_Player sizeof agree."
+0x0027AF84,line,V2-F013 MEDIUM: 4 人分(stride 42112=0xA480、存在判定 +21926)に Player_OnDayChange
+0x0027AF84,repeatable,V2-F013 MEDIUM: 4 人分(stride 42112=0xA480、存在判定 +21926)に Player_OnDayChange
+0x0027AFE8,line,IDA-gpt-6-F001: unsigned (ID-4) < 4 selects fixed save-cache IDs 4..7. Caller vc_PLAYER_1_PPOFFSET uses this before .bss slot calculation. MEDIUM; not online player index 0..3.
+0x0027AFE8,repeatable,IDA-gpt-6-F001: unsigned (ID-4) < 4 selects fixed save-cache IDs 4..7. Caller vc_PLAYER_1_PPOFFSET uses this before .bss slot calculation. MEDIUM; not online player index 0..3.
+0x0027B004,line,IDA-gpt-6-F001: unsigned ID < 4 selects resident save path in vc_PLAYER_1_PPOFFSET. Distinct from cache IDs 4..7. MEDIUM; full input/caller and original ARM save layout reconciled.
+0x0027B004,repeatable,IDA-gpt-6-F001: unsigned ID < 4 selects resident save path in vc_PLAYER_1_PPOFFSET. Distinct from cache IDs 4..7. MEDIUM; full input/caller and original ARM save layout reconciled.
+0x0027EB34,line,V2-F013 MEDIUM: しずえ画面 case 0 が this+632 に呼ぶ。SvProcDesc_Init 後 flags=0x24000942、+32 sub_5254C0(受信ボックス取り込み)、+36 sub_525454、+40 sub_525464
+0x0027EB34,repeatable,V2-F013 MEDIUM: しずえ画面 case 0 が this+632 に呼ぶ。SvProcDesc_Init 後 flags=0x24000942、+32 sub_5254C0(受信ボックス取り込み)、+36 sub_525454、+40 sub_525464
+0x0028501C,func,IDA-gpt-6.1-sol-F001 / MEDIUM: R0=minX世界float*、R1=minZ*、R2=endX*、R3=endZ*。現在のField属性を走査し、対象属性14/18/17/19/44/43/20/47/48/46/246/247/45の外接境界を作る。家の家具マスを16x16全体と取り違えない。0x2853A8とModuleIndoor 0xB06174の範囲検査で照合。
+0x002853A8,func,"IDA-gpt-6.1-sol-F001 / MEDIUM: R0=minX int*、R1=minZ*、R2=maxX inclusive*、R3=maxZ inclusive*。0x28501Cの世界境界→0x317090でマス化、上端を1減らす。利用側ではmax+1にして半開区間へ。Room_TryPutFurnitureAtとModuleIndoorの移動判定の独立使用を照合。
+IDA-gpt-6.1-sol-F005 / HIGH（引数対応は親実測と静的一致）: R0=minX*,R1=minZ*,R2=maxX*,R3=maxZ*。上端を1減らし両端含む範囲へ。2026-10-08実測はx[4,11],z[5,12]。入口起点(8,14)はHHD由来のクランプで探索前に(8,12)へ。占有位置の引数は別で実位置を維持。"
+0x0028C5C0,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Result46/47 termination paths call vc_UPDATE_MENU only. Restoring the field belongs to the native tab menu-out caller, not this clock window. Direct borrowed-screen caller must provide equivalent restoration."
+0x0028C5C0,line,"★BsMenuSetupTime_Update — ゲーム内「時計あわせ」ウィンドウの更新 (F-60)。
+根拠: BsMenuSetupTime_Ctor(0x28D254) と同一クラス領域、UiAnim ""G_inout_00"" を回し
+結果コード 46 で時刻を確定、47 で終了処理。
+  46 かつ byte_949D3B==1 → Time_SetFromDate(this+1564) → Time_StoreToSave()
+     部屋 99 のときは先に sub_150054、部屋 93 のときは後に sub_56C39C
+★this+1564 が入力された日付構造体。FOXXY はこのウィンドウを開かせて
+  ゲーム自身にこの経路を通させている (F-58)。"
+0x0028C5C0,repeatable,"★BsMenuSetupTime_Update — ゲーム内「時計あわせ」ウィンドウの更新 (F-60)。
+根拠: BsMenuSetupTime_Ctor(0x28D254) と同一クラス領域、UiAnim ""G_inout_00"" を回し
+結果コード 46 で時刻を確定、47 で終了処理。
+  46 かつ byte_949D3B==1 → Time_SetFromDate(this+1564) → Time_StoreToSave()
+     部屋 99 のときは先に sub_150054、部屋 93 のときは後に sub_56C39C
+★this+1564 が入力された日付構造体。FOXXY はこのウィンドウを開かせて
+  ゲーム自身にこの経路を通させている (F-58)。"
+0x0028D254,line,"BsMenuSetupTime のコンストラクタ (F-57)。
+内部で SetDateTimeBg も作る（vtbl_SetDateTimeBg を 0x28D450 で参照）。
+★これが「ゲーム内の日付/時刻設定ウィンドウ」の本体。
+開き方: Menu_Open(0x2E, 0)  もしくは UiScreen_Create(557)"
+0x0028D254,repeatable,"BsMenuSetupTime のコンストラクタ (F-57)。
+内部で SetDateTimeBg も作る（vtbl_SetDateTimeBg を 0x28D450 で参照）。
+★これが「ゲーム内の日付/時刻設定ウィンドウ」の本体。
+開き方: Menu_Open(0x2E, 0)  もしくは UiScreen_Create(557)"
+0x0028E89C,line,"★訂正 (F-115): ① の既製ブロック転送は
+**Mem_CopyBytes(0x12EC54)** であって Mem_Copy(0x2FBB8C) ではない。
+（Mem_Copy を使うのは BsShadowViewMgr_BuildShadowCmds の中のブロックコピー。）
+どちらも memcpy なので意味は変わらないが、関数は別。"
+0x0028E89C,repeatable,"★訂正 (F-115): ① の既製ブロック転送は
+**Mem_CopyBytes(0x12EC54)** であって Mem_Copy(0x2FBB8C) ではない。
+（Mem_Copy を使うのは BsShadowViewMgr_BuildShadowCmds の中のブロックコピー。）
+どちらも memcpy なので意味は変わらないが、関数は別。"
+0x0028E984,line,"★★BsShadowViewMgr_BuildShadowCmds(this, cursor) — 影の描画コマンドを組む (F-114)。
+戻り値 = 進んだ cursor。vc_POINT1 が 0 なら何もせず cursor をそのまま返す。
+
+27 カテゴリ（v10 = 0..26）を回す。カテゴリごとに:
+  Mem_Copy(cur, desc.pre,  4*desc.preCount)     ← 前置コマンドブロック
+  Mem_Copy(cur, catData, 80)                    ← カテゴリ固有データ 80 バイト
+  連結リスト dword_ABB854[v10]（next = *(e+136)）の各要素について:
+      ① アルファを決める
+         カテゴリ 0/2/3/4/26 で *(this+197)&1 のときは距離フェード:
+           d = sqrtf((px - e.x)^2 + (pz - e.z)^2)   ← px,pz は vc_POINT1 の位置
+           *(this+197)&2 が立っていなければ d *= 0.6
+           t = clamp((d - 100) * 1/150, 0, 1)
+           alpha = t * *(this+176) * e.alphaScale(*(e+124))
+         それ以外: alpha = *(this+176) * e.alphaScale
+      ② alpha != 0 なら:
+         (value, header) を 1 組書く"
+0x0028E984,repeatable,"★★BsShadowViewMgr_BuildShadowCmds(this, cursor) — 影の描画コマンドを組む (F-114)。
+戻り値 = 進んだ cursor。vc_POINT1 が 0 なら何もせず cursor をそのまま返す。
+
+27 カテゴリ（v10 = 0..26）を回す。カテゴリごとに:
+  Mem_Copy(cur, desc.pre,  4*desc.preCount)     ← 前置コマンドブロック
+  Mem_Copy(cur, catData, 80)                    ← カテゴリ固有データ 80 バイト
+  連結リスト dword_ABB854[v10]（next = *(e+136)）の各要素について:
+      ① アルファを決める
+         カテゴリ 0/2/3/4/26 で *(this+197)&1 のときは距離フェード:
+           d = sqrtf((px - e.x)^2 + (pz - e.z)^2)   ← px,pz は vc_POINT1 の位置
+           *(this+197)&2 が立っていなければ d *= 0.6
+           t = clamp((d - 100) * 1/150, 0, 1)
+           alpha = t * *(this+176) * e.alphaScale(*(e+124))
+         それ以外: alpha = *(this+176) * e.alphaScale
+      ② alpha != 0 なら:
+         (value, header) を 1 組書く:
+           value  = (*(u32*)(this+38) & 0xFFFFFF) | (alpha << 24)
+           header = (*(u16*)(this+42) + 3) | 0x000F0000
+         ★実機: *(u16*)(this+42) = 0x00C0 → reg 0x0C3 = **GPUREG_TEXENV0_COLOR**
+           （*(this+42) は TEXENV0_SOURCE の番号。+3 で COLOR）
+         行列を積む:
+           高速経路 *(e+132)&1 && !(*(e+132)&0x20):
+               e+60..e+120 の 16 dword をそのままコピー（事前計算済み）
+           低速経路: 行列を作って
+               value  = uniformIndex | 0x80000000   ← f32 モード
+               header = 0x000F02C0 = GPUREG_VSH_FLOATUNIFORM_CONFIG
+               続けて 0x00BF02C1 = GPUREG_VSH_FLOATUNIFORM_DATA extra 11
+                                    = 12 ワード = 3×4 行列
+         Mem_Copy(cur, desc.draw, 4*desc.drawCount)  ← 描画コマンド
+  Mem_Copy(cur, desc.post, 4*desc.postCount)    ← 後置コマンド
+
+★**役割分担が明瞭: 固定部分は全部事前に作って memcpy、
+フレームごとに変わるのは「色＋アルファ」と「行列」だけ。**"
+0x0028F2E4,repeatable,"Vapecord plugin ADDRESSES: SHADOW
+他地域: USA=0028F3A4  EUR=0028F3C4  KOR=0028F2B0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0028FE0C,line,"★★BsShadowViewMgr::vtable[12] — 自分の FuncNode をシーンへ登録 (F-113)。
+confidence HIGH（静的＋実機）。
+
+  Scene_SubmitNode(this + 168, *(this + 200));
+
+★**sceneIndex がオブジェクトのフィールドから来ているのが要点。**
+BsShadowViewMgr_Create が部屋カテゴリに応じて 0 か 2 を入れる。
+
+実機確認 (F-112 / F-113):
+  g_BsShadowViewMgr = 0x3309C334
+  *(this + 168 + 4) = 0x30896104  ＝ ctx[2] の配列 #0 にいた FuncNode
+  *(this + 197) = 3（部屋カテゴリ）  *(this + 200) = 2（sceneIndex）
+
+呼ばれ方: Frame_DrawPass1024 → BaseObj_RunDrawPhase →
+         BaseObj_InvokeDrawTriple → Obj_InvokePmfTriple → ここ（LR = 0x51FFE8）"
+0x0028FE0C,repeatable,"★★BsShadowViewMgr::vtable[12] — 自分の FuncNode をシーンへ登録 (F-113)。
+confidence HIGH（静的＋実機）。
+
+  Scene_SubmitNode(this + 168, *(this + 200));
+
+★**sceneIndex がオブジェクトのフィールドから来ているのが要点。**
+BsShadowViewMgr_Create が部屋カテゴリに応じて 0 か 2 を入れる。
+
+実機確認 (F-112 / F-113):
+  g_BsShadowViewMgr = 0x3309C334
+  *(this + 168 + 4) = 0x30896104  ＝ ctx[2] の配列 #0 にいた FuncNode
+  *(this + 197) = 3（部屋カテゴリ）  *(this + 200) = 2（sceneIndex）
+
+呼ばれ方: Frame_DrawPass1024 → BaseObj_RunDrawPhase →
+         BaseObj_InvokeDrawTriple → Obj_InvokePmfTriple → ここ（LR = 0x51FFE8）"
+0x0028FE24,line,"★BsShadowViewMgr::vtable[3]（生成フェーズの main）(F-113)。
+**自前描画を仕込むときの手本になる関数。**
+
+  sead ヒープ ""BsShadowViewMgr"" 102400 バイトを this+188 に作る
+  部屋の種類を見て *(this+197) を 0..4 に決める
+  g3d_FuncNode_Create(this + 168, this + 188)          ← holder, allocator
+  g3d_FuncNode_SetCallbacks(this + 168, 0, BsShadowViewMgr_DrawCallback, this)
+  *(this + 200) = (*(this+197) == 4) ? 0 : 2          ← ★sceneIndex
+
+★**cb0 = 0 / cb1 = 0x28E89C は実機観測と完全一致 (F-109 / F-112)。**
+部屋が Room_HasFlags(0x810) に当てはまると何も作らず return 1。"
+0x0028FE24,repeatable,"★BsShadowViewMgr::vtable[3]（生成フェーズの main）(F-113)。
+**自前描画を仕込むときの手本になる関数。**
+
+  sead ヒープ ""BsShadowViewMgr"" 102400 バイトを this+188 に作る
+  部屋の種類を見て *(this+197) を 0..4 に決める
+  g3d_FuncNode_Create(this + 168, this + 188)          ← holder, allocator
+  g3d_FuncNode_SetCallbacks(this + 168, 0, BsShadowViewMgr_DrawCallback, this)
+  *(this + 200) = (*(this+197) == 4) ? 0 : 2          ← ★sceneIndex
+
+★**cb0 = 0 / cb1 = 0x28E89C は実機観測と完全一致 (F-109 / F-112)。**
+部屋が Room_HasFlags(0x810) に当てはまると何も作らず return 1。"
+0x002911B4,repeatable,"Vapecord plugin ADDRESSES: DISP
+他地域: USA=002912B8  EUR=002912B4  KOR=0029118C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x00291D88,line,IDA-opus-5.5-F042: AM/PM = off_94A734[hour>=12] into T/S_time_ampm_00; hour via +1780 (Japan 0x2932B8: hour%12); minute 2 digits into T/S_minute_00.
+0x00291D88,repeatable,IDA-opus-5.5-F042: AM/PM = off_94A734[hour>=12] into T/S_time_ampm_00; hour via +1780 (Japan 0x2932B8: hour%12); minute 2 digits into T/S_minute_00.
+0x002939C8,line,"IDA-opus-5.5-F042: Japan (sub_5D3A28 == 0, sub_3013F4 == 0): left date slot T_month, right T_day; T_Ger_* hidden; T_slsh = SYS_2D_UI 227; N_time_set/N_ampm_set keep layout positions; N_time hidden until shown."
+0x002939C8,repeatable,"IDA-opus-5.5-F042: Japan (sub_5D3A28 == 0, sub_3013F4 == 0): left date slot T_month, right T_day; T_Ger_* hidden; T_slsh = SYS_2D_UI 227; N_time_set/N_ampm_set keep layout positions; N_time hidden until shown."
+0x00296944,func,"IDA-gpt-6-F001 (gpt-6): BsWeatherSakura vtable update. Selects sakura active-particle count under season/date conditions; April 7-9 path uses60, April10 uses120. Patch at 0x2969C8 only changes the April7-9 immediate unless the original condition is also changed. Shared400-slot prefix from separate ctor/loop; Static MEDIUM."
+0x00296AF4,func,IDA-gpt-6-F001 (gpt-6): Sakura particle-loop consumer uses same active_count/+0x12C/0x38 stride; per-slot member-function adjustment logic remains distinct from paper direct updater. Exact ABI beyond self is not inferred from decompiler's residual r1/r2 parameters.
+0x002978E8,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): Normal storage empty search only current tab/page via Save_GetCurrentPlayer; returns local empty index+UI base. Custom query provider must redirect this path too to avoid looking at real closet data."
+0x00297980,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): SetupSlots(uiBase,bindings): controls_index_base6260=uiBase, item_index_base15524=uiBase+6,10 widgets assigned consecutive indices. Setup invokes refresh-all and page counter update. Caller passes16 -> storage22."
+0x00297B28,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): Write through Save_GetCurrentPlayer+0x92F0 and ClosetItems_ReplaceAndCopyOld; same tab/page/slot formula as getter. R0 finally points at stack-local old-copy; original code.bin also contains NOP297B90. Return is unused by observed caller, do not treat as stable old-item pointer or infer a DB patch."
+0x00297B2C,line,slot
+0x00297BA0,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): Refresh ten storage indices item_index_base+i via virtual12; no fixed total-page traversal. Enables query buffer republish/extended page counts using provider replacement."
+0x00297BDC,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): RTTI ChangeStockItem derives Cabinet/ChangeListBase;15528B,10 ItemIconWidget objects876B at6280, cursor15040. cng_base/cng_itm/N_itm_pos_00; tab_groups0x94D3DC = A/B/C/null."
+0x00298018,line,IDA-opus-5.5-F041: scroll layout root pane (Layout+0x20) AppendChild to the given pane (InstSelect: ctlg_list N_scrl_pos_00) -> drawn with the frame layout.
+0x00298018,repeatable,IDA-opus-5.5-F041: scroll layout root pane (Layout+0x20) AppendChild to the given pane (InstSelect: ctlg_list N_scrl_pos_00) -> drawn with the frame layout.
+0x00298094,func,"IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): After knob translation, native update calls sub_2993E4 then offsets bound row panes by scroll+1828. Existing names of callback/row-binding primitives retained; full binding semantics not re-established here."
+0x002980F8,line,"IDA-opus-5.5-F041: (ng, node) acts only when node enabled == ng. ng=1: scrl_bar_ng frame 0 (grey) on G_triX, enabled=0. ng=0: frame 1, enabled=1."
+0x002980F8,repeatable,"IDA-opus-5.5-F041: (ng, node) acts only when node enabled == ng. ng=1: scrl_bar_ng frame 0 (grey) on G_triX, enabled=0. ng=0: frame 1, enabled=1."
+0x0029823C,func,"IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): Mode=2: GameInput_IsMaskPressed/Released(0x8000) read Controller+4/+8. Press transforms GetTouchPosition float pair and hit-tests knob or track; release ends drag. TouchState alone is insufficient.
+IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Press/track hit-test uses GameInput_GetTouchPixelPosition followed by Layout_TransformTouchPixelsToLocal; passing already-centered TouchState floats offsets the hit away from visible bar."
+0x00298664,func,"IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): Active drag in mode2 requires Touch_IsDragHoldReady then GameInput_GetTouchPosition; converts float pair through layout transform and invokes vt[4](scroll, point).
+IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Active drag uses the same pixel->layout transform as press; tests now run viewport rect, affine matrix inverse/transform and pane bounds rather than identity geometry.
+IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). F010 owned GameList drag transforms pointer from fresh touch start then halves displacement once per drag; press/track path29823C unchanged. User rejected continuous half-follow interpolation. Other native scrollbars/hand mode retain original. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls."
+0x002987A8,line,"IDA-opus-5.5-F041: pos clamp [0,R]; N_btn_00.y = base + (-pos*pitch)/scale; arrows: pos 0 -> ng(top) ok(bottom); pos R -> ok(top) ng(bottom); else ok both."
+0x002987A8,repeatable,"IDA-opus-5.5-F041: pos clamp [0,R]; N_btn_00.y = base + (-pos*pitch)/scale; arrows: pos 0 -> ng(top) ok(bottom); pos R -> ok(top) ng(bottom); else ok both."
+0x00298BA8,line,"IDA-opus-5.5-F041: L=top-bottom; knob = L/N*(V-1), 0 if <1.0; scale(+1804) = R*pitch/(L-knob); P_btnC(_sh)/B_btnC size h = knob; T parts y = C.y + knob/2, B parts y = C.y - knob/2."
+0x00298BA8,repeatable,"IDA-opus-5.5-F041: L=top-bottom; knob = L/N*(V-1), 0 if <1.0; scale(+1804) = R*pitch/(L-knob); P_btnC(_sh)/B_btnC size h = knob; T parts y = C.y + knob/2, B parts y = C.y - knob/2."
+0x00298D04,func,"IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): Native vt[5] accepts delta in s0 and limits knob translation between top/bottom pane boundaries, writing +1808. Existing Hex-Rays prototype omits float ABI; comment preserves known s0 contract."
+0x002990C8,func,"IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): Native track-click virtual path sets drag-active+1786, start pulse+1787 and initializes drag offset+1816. Position ABI/whole track paging requires original assembly; retain original name until fully typed."
+0x0029915C,func,"IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): Mode=2 when current Controller+272 touch mask 0x8000 or TouchState+26 previous-held. TouchState-only proxy misses first-touch mode entry. Other modes use menu CPad/hand cursor.
+IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): T005 controller mask entry routing retained; hold is Controller+272. Controller+0 is a vtable and must remain untouched."
+0x002993E4,func,"IDA-gpt-6-F004 (MEDIUM, ARM + F041/F054 layout evidence; 2026-10-12): Converts (base+1812 - knob.y)*ratio+1804 to top row+1820 and fractional row offset+1828 using stride+1864. Calls rows-refresh callback+1880 with context+1888 when top changed; native scroll update calls this after knob translation."
+0x002993E4,line,IDA-opus-5.5-F054: スクロールのつまみが 1 行動くたびに SE_SYS_SCROLL_BAR_DRAG 0x10003A6 を sub_5827D0 で鳴らす。
+0x002993E4,repeatable,IDA-opus-5.5-F054: スクロールのつまみが 1 行動くたびに SE_SYS_SCROLL_BAR_DRAG 0x10003A6 を sub_5827D0 で鳴らす。
+0x002997B0,func,"IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): Clears scroll+1786 active drag, rounds row offset if remainder/stride>0.5 and calls existing SetPos for clamping/visual update."
+0x00299910,line,"IDA-opus-5.5-F041: args {kind byte, pitch, V=rows-1, N=count, N, cb, cb}. kind anim at frame=kind on G_bar/G_triT/G_triB; R=max(0,N-V+1); top/bottom = N_barT_pos_00/N_barB_pos_00 y; N_All visible = N > V-1 (unsigned); base(+1812) = top - knobH*0.5 (FNMACS, S16=0.5)."
+0x00299910,repeatable,"IDA-opus-5.5-F041: args {kind byte, pitch, V=rows-1, N=count, N, cb, cb}. kind anim at frame=kind on G_bar/G_triT/G_triB; R=max(0,N-V+1); top/bottom = N_barT_pos_00/N_barB_pos_00 y; N_All visible = N > V-1 (unsigned); base(+1812) = top - knobH*0.5 (FNMACS, S16=0.5)."
+0x00299C34,func,"IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): CommonScrollBar update invokes mode selection, arrow BAC, touch start/end and drag update before layout translation.
+IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Chat scrollbar requires raw pixel controller pair because 74F3FC performs the viewport conversion. Six scoped input fields exclude the vtable; all original touch/controller bytes restored after vt[4]."
+0x00299E3C,func,"IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): Sets scroll+1784 disabled and arrow BAC+212 bit3 (scroll+1756) from the same flag.
+IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Input lock/animation still controls scrollbar and arrow BAC. Raw touch must remain suppressed during entry/exit and when plugin menu is visible."
+0x00299F7C,func,"IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): Native vt[4] takes scroll R0, point R1 (Hex-Rays previously omitted R1). Delta is point.y+scroll+1816 minus current knob.y; passes delta in VFP s0 to vt[5]."
+0x0029A22C,func,"IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). True DragIconControl vt+16 touch. Source group+317 gates hold/distance drag start; +318 gates click release; candidate group+319 gates drop targeting. Group+317=0 prevents private trash from starting a drag while retaining click/drop. Node+264, if nonzero, is an alternate hit Pane pointer for drops, not a numeric drag mode."
+0x0029B364,func,"IDA-gpt-6-F008: Native WaitInput calls after writing source/target, with control inR0/1 inR1/sound inR2. Refreshes source+180/target+260 nodes and moves control to next/cancel state. Detailed widget virtual/state semantics remain uncertain; retain legacy name until other callers/RTTI and PMF transitions are audited. T011 fixture marks GPU/animation completion as endpoint.
+IDA-gpt-6-F013: Sound is gated by enabled source OR target.group->canStartDrag. Erasing the source and refreshing its icon can disable it; private nondraggable trash then fails both gates. T016 emits deletion sound once explicitly, and passes sound=0 to this canonical cleanup. Canceled/foreign slots remain silent."
+0x0029BA5C,func,"IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). Calculates letter layout+600 then draws node list at control+8220; the root is attached to pocket layout and does not register a separate background."
+0x0029BA7C,func,"IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). Iterates control nodes intrusive head+4/next+8 and invokes node vt+88 draw; PartsDragIconNode draw is null, so private trash requires its own LayoutMgr submission."
+0x0029BAB4,func,"IDA-gpt-6-F009 / GPT-6 additional timing/memory fix (2026-10-12, MEDIUM): DragIconControl_FinishDecided. Original ARM + RTTI/caller/state-table corroboration. Native child outer exit uses996; pocket exit uses active animation pointer1988 and native unbind/idle. Parent leave waits both before Actor_RequestDestroy. DragControl finish retains selection in hand mode but clears decided and returns native wait. Hand/touch repeat uses counters216/threshold220 (11 then3). Owned search accelerates only exit/page animations and completes parent page wait same Calc. Source ERROR2/STAGE1 = 5MiB engine allocation failure; free search metadata/capacity before reopening. Evidence docs/topics/closet_followup_design.md and work/evidence/gohan_closet_followup/static_timing.json; new hardware behavior unverified.
+IDA-gpt-6-F012 / GPT-6 (MEDIUM original ARM + actual0x8EABB8 vtable/caller + CPU fixture). Native vt+12 finalizes decided click/drop: hand mode preserves valid focus and clears bit/state; touch mode enables source then native2F72C4 clears decision bits0..1/source and restores Wait. Old fixture endpoint at29BAB4 must not stand in for this release contract."
+0x0029BC24,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). Original ARM explicitly drains group main nodes into control list, then pushes group+12 into control+228 registry. The existing decompiler menu-screen node type obscured offsets; F010 substitutes generic group/control prefix types. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls.
+IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). Append drains nodes from group list into control list. Removing a private node from control leaves its group empty; reusing a built trash across a short exit/return must put node back before appending again."
+0x002A0E74,line,IDA-opus-5.5-F030 HIGH(静的+実機): BsPlayerMgr の全バンクを片付ける。各 BankTable の使用数 +8(u16) が 0 でなければその場で 0（呼び元 0x1C475C が 3=やり直し）。順は texanim 76448→76152→道具→帽子→アクセ→靴→脚→上→下→頭→顔→体。実機: 複製の枠が残ると無限ロード。使用数だけ消すと頭を下ろすとき（0x2A1D94→0x7C86D8→…→Allocator::Free(0)）で落ちる。
+0x002A0E74,repeatable,IDA-opus-5.5-F030 HIGH(静的+実機): BsPlayerMgr の全バンクを片付ける。各 BankTable の使用数 +8(u16) が 0 でなければその場で 0（呼び元 0x1C475C が 3=やり直し）。順は texanim 76448→76152→道具→帽子→アクセ→靴→脚→上→下→頭→顔→体。実機: 複製の枠が残ると無限ロード。使用数だけ消すと頭を下ろすとき（0x2A1D94→0x7C86D8→…→Allocator::Free(0)）で落ちる。
+0x002AC820,repeatable,"Vapecord plugin ADDRESSES: SPAWN_INSECT
+他地域: USA=002AC924  EUR=002AC920  KOR=002AC7F8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002ACAFC,repeatable,"Vapecord plugin ADDRESSES: SCARE_WHEN_RUNNING
+他地域: USA=002ACC00  EUR=002ACBFC  KOR=002ACAD4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002AE4C8,func,"SWKBD result adapter reference: ready [9580E1] gates [AD0278]. Code 2 uses text at this+40 / buffer this+44 then send/display; code 1 skips sends. Both invoke child [this+124] vtable+0x44 (BsSkb::sub_57B238), increment this+128. Next updates wait for [94A654]==0 before requesting parent deletion. Codes -2/-1/3 do not complete this caller. Original ARM PC test, external calls mocked."
+0x002AE960,repeatable,"Vapecord plugin ADDRESSES: DROP4
+他地域: USA=002AEA64  EUR=002AEA60  KOR=002AE938
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002AE9C0,repeatable,"Vapecord plugin ADDRESSES: PLANT3
+他地域: USA=002AEAC4  EUR=002AEAC0  KOR=002AE998
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002AFC20,repeatable,"Vapecord plugin ADDRESSES: PLANT4
+他地域: USA=002AFD24  EUR=002AFD20  KOR=002AFBF8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002B34DC,line,"IDA-opus-5.5-F062: 一覧の行を触って決めたとき（ListProc）: 決定 → アイコン強調 → 前の行 BsMenuMapList_SetSelected(0) → 行 BAC +212 &= ~8 → ClearDecided → SetSelected(行, 1) → 部屋≠164 なら +1411 = 1。決まっていないフレームは（部屋≠164 なら）ClearListSelection。選択は地図アイコン +608 が持つ。"
+0x002B37B8,line,"IDA-opus-5.5-F005: BsMenuMapVillage create steps at proc+0x578 (0 when done). Step 8 paints acre map panes, step 9 building icons. No global pointer to the instance; find it via BaseMgr [0x96F2A4] + 20*slot (slot<0x400) by vtable 0x8EBA24."
+0x002B37B8,repeatable,"IDA-opus-5.5-F005: BsMenuMapVillage create steps at proc+0x578 (0 when done). Step 8 paints acre map panes, step 9 building icons. No global pointer to the instance; find it via BaseMgr [0x96F2A4] + 20*slot (slot<0x400) by vtable 0x8EBA24."
+0x002B6EC0,func,"IDA-gpt-6-F011 (MEDIUM: original STM + independent ItemSelectWindow_SetupRows/LetterDragItemWindow_SetupOpenButton callers). setup[0]->node+12 hit Pane; setup[1]->node+16 nwlyt animation Group (NOT Layout); setup[4]->node+196 shortcut, [5]->node+200 index, [6]->node+192 flags. AddNode separately assigns node+28 Layout. T013 trash supplied wrong Group pointer; T014 leaves Group null as ordinary open-letters button. Unknown setup[2]/[3] remain unnamed."
+0x002B6F34,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Node decide starts touch_ok/select_ok animations then invokes vt+56 decision sound; custom A selection may use same node sound slot.
+IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). Owned row retap/A both reuse native touch_ok/select_ok binding and vt+56 decide sound; selected-row enable restoration permits retap to produce feedback. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls.
+IDA-gpt-6-F013: Only starts touch_ok/select_ok (+112/+152) and sound; does not install BAC StateDecideAnim. Calling only this method for keyboard A leaves selection blue restoration without a completion notification."
+0x002B70A0,line,"IDA-opus-5.5-F041: vt+52 play(node, anim, toEnd): bind anim to node group (+16) on layout (+28), frame 0, last frame if toEnd, layout vt+12 apply, unbind. Snaps, no tween."
+0x002B70A0,repeatable,"IDA-opus-5.5-F041: vt+52 play(node, anim, toEnd): bind anim to node group (+16) on layout (+28), frame 0, last frame if toEnd, layout vt+12 apply, unbind. Snaps, no tween."
+0x002B7244,func,"IDA-gpt-6-F011 (MEDIUM: original ARM + ButtonActionNode RTTI/vtable + SelectBase/drag cleanup callers). vt+28 SetTouch(node,on,sound): stores+215, snaps both anim32 touch and anim72 select to on/end or off/start. Use after native decision cleanup to retain owned list selected color; StartDecide feedback already ran before cleanup.
+IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). Correction to F011 color claim: SetTouch snaps touch/select (+32/+72), not the blue selected/decide endpoint used by InstSelect. Owned persistent selection must snap +112/+152 instead."
+0x002B7244,line,IDA-opus-5.5-F042: vt+28 touch(on): +215 = on; touch and select played at last frame (on) / frame 0 (off).
+0x002B7244,repeatable,IDA-opus-5.5-F042: vt+28 touch(on): +215 = on; touch and select played at last frame (on) / frame 0 (off).
+0x002B79C4,func,"IDA-gpt-6-F009 / GPT-6 additional timing/memory fix (2026-10-12, MEDIUM): ChangeRentalBase_ExitUpdate. Original ARM + RTTI/caller/state-table corroboration. Native child outer exit uses996; pocket exit uses active animation pointer1988 and native unbind/idle. Parent leave waits both before Actor_RequestDestroy. DragControl finish retains selection in hand mode but clears decided and returns native wait. Hand/touch repeat uses counters216/threshold220 (11 then3). Owned search accelerates only exit/page animations and completes parent page wait same Calc. Source ERROR2/STAGE1 = 5MiB engine allocation failure; free search metadata/capacity before reopening. Evidence docs/topics/closet_followup_design.md and work/evidence/gohan_closet_followup/static_timing.json; new hardware behavior unverified."
+0x002B7A14,func,"IDA-gpt-6-F009 / GPT-6 additional timing/memory fix (2026-10-12, MEDIUM): ChangeRentalBase_ExitEnter. Original ARM + RTTI/caller/state-table corroboration. Native child outer exit uses996; pocket exit uses active animation pointer1988 and native unbind/idle. Parent leave waits both before Actor_RequestDestroy. DragControl finish retains selection in hand mode but clears decided and returns native wait. Hand/touch repeat uses counters216/threshold220 (11 then3). Owned search accelerates only exit/page animations and completes parent page wait same Calc. Source ERROR2/STAGE1 = 5MiB engine allocation failure; free search metadata/capacity before reopening. Evidence docs/topics/closet_followup_design.md and work/evidence/gohan_closet_followup/static_timing.json; new hardware behavior unverified."
+0x002B7DD0,func,"IDA-gpt-6-F009 / GPT-6 additional timing/memory fix (2026-10-12, MEDIUM): ChangeRentalBase_BeginExit. Original ARM + RTTI/caller/state-table corroboration. Native child outer exit uses996; pocket exit uses active animation pointer1988 and native unbind/idle. Parent leave waits both before Actor_RequestDestroy. DragControl finish retains selection in hand mode but clears decided and returns native wait. Hand/touch repeat uses counters216/threshold220 (11 then3). Owned search accelerates only exit/page animations and completes parent page wait same Calc. Source ERROR2/STAGE1 = 5MiB engine allocation failure; free search metadata/capacity before reopening. Evidence docs/topics/closet_followup_design.md and work/evidence/gohan_closet_followup/static_timing.json; new hardware behavior unverified."
+0x002B8E4C,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): vt10 translates UI index to current-page slot, vt13 fetches ItemID, ItemIconWidget_SetItem loads icon for876B slot widget. Keep index/getter ABI, including R1."
+0x002B8EAC,func,"IDA-gpt-6-F009 / GPT-6 (2026-10-12, MEDIUM; original ARM + RTTI/caller/source corroboration, new hardware behavior unverified): T012 HiddenIcons32 slots pinned by live widget references. SetItem releases old reference; both ItemDragIconNode teardown bodies release pins. Capacity exhaustion uses native icon instead of overwriting referenced GPU PA. Old16slot LRU source + original material PA write reproduce user's page/pocket icon corruption. Evidence: docs/topics/closet_followup_design.md; work/evidence/gohan_closet_followup."
+0x002B8EAC,line,"IDA-opus-5.5-F049: icon = ItemParam_GetIconBaseName(item) + "".bclim"" from accessor (this+304)+12 into P_itemIcon material TexMap (+52), fallback icn_000.bclim. Hidden items have no ItemParam record -> icn_000."
+0x002B8EAC,repeatable,"IDA-opus-5.5-F049: icon = ItemParam_GetIconBaseName(item) + "".bclim"" from accessor (this+304)+12 into P_itemIcon material TexMap (+52), fallback icn_000.bclim. Hidden items have no ItemParam record -> icn_000."
+0x002B9004,repeatable,"Vapecord plugin ADDRESSES: SETITEMICON
+他地域: USA=002B9110  EUR=002B910C  KOR=002B8FE4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002B9470,func,"IDA-gpt-6-F006 / GPT-6, MEDIUM (2026-10-12): ItemIconWidget_SetDisabled. Native ARM independently checked against original code.bin; caller/RTTI/data accesses corroborate the contract. Disabling clears interaction bytes+217/+301 and applies disabled visual; caller LoadStep uses it to reject non-transferable pocket items. Hardware unverified; no LOW rename.
+IDA-gpt-6-F008 / GPT-6 (2026-10-12, MEDIUM): T011 owned pocket UI enables native interaction bytes217/301 after LoadStep's category rejection; previous occupied-pocket custom locks removed. Only when currently disabled to avoid repeating disabled visual animation each frame. Evidence: docs/topics/closet_direct_design.md; work/evidence/gohan_closet_direct/{static,original_assembly,layout_input}.json. New behavior hardware-unverified."
+0x002B9878,line,anim
+0x002B9900,func,"IDA-gpt-6-F009 / GPT-6 (2026-10-12, MEDIUM; original ARM + RTTI/caller/source corroboration, new hardware behavior unverified): RTTI ItemDragIconNode ctor;876B instances constructed by ChangeStockItem_Ctor array6280/count10 and native pocket widgets. Widget PA remains in material until SetItem or destruction; LRU reuse while another live widget still refers to slot corrupts icon appearance. Evidence: docs/topics/closet_followup_design.md; work/evidence/gohan_closet_followup."
+0x002B9974,func,"IDA-gpt-6-F009 / GPT-6 (2026-10-12, MEDIUM; original ARM + RTTI/caller/source corroboration, new hardware behavior unverified): RTTI ItemDragIconNode dtor1: same layout/base teardown, then heap free0x2FFA58; does not call complete destructor. T012 hooks PUSH0x2B9978 and forwards preceding LDR R1. Both teardown paths release GPU cache references. Evidence: docs/topics/closet_followup_design.md; work/evidence/gohan_closet_followup."
+0x002B99CC,func,"IDA-gpt-6-F009 / GPT-6 (2026-10-12, MEDIUM; original ARM + RTTI/caller/source corroboration, new hardware behavior unverified): RTTI ItemDragIconNode primary vtable0x8EBCD8 dtor0; original Layout_Dtor and base DragIconNode teardown. Distinct body from deleting destructor. T012 pin release hooks PUSH0x2B99D0 after native PC-relative LDR R1; forward R1, never relocate LDR through CTRPF MITM. Evidence: docs/topics/closet_followup_design.md; work/evidence/gohan_closet_followup."
+0x002B9C70,line,IDA-opus-5.5-F060: 取消の行（+1224）のノード +196 = 8（B）。ButtonActionControl_CheckShortcuts が照合 → B は「やめる」のショートカット
+0x002BA41C,line,IDA-opus-5.5-F054: +1251（+0x400+0xE3）= 閉じ終わりに手カーソルを戻すか。真かつ +1249（開く前の BsMenuMgr+64）==1 なら BsHandCursor_Show、偽なら Hide。ctor と閉じ終わりで 1。
+0x002BABAC,func,"IDA-gpt-6-F011: ItemSelectWindow update runs its state PMF, native BAC update at+1256, then Layout calc. A private modal window needs its own complete TouchState40 press/release while background is blocked. T014 InteriorChoice snapshots/restores global ACF6E0 around this call, holding the opening finger until release, while preserving game/global keyboard inputs."
+0x002BAF48,line,IDA-opus-5.5-F053: 待機(0x2B9F5C)のときだけ +1224 = 取消の行、ChangeState(Select In 0x2B9F9C)。前に行の文字と幅（ChoiceStandardItem_SetRows）、基準（持ち物欄 sub_23FB5C）を入れる。
+0x002BAF48,repeatable,IDA-opus-5.5-F053: 待機(0x2B9F5C)のときだけ +1224 = 取消の行、ChangeState(Select In 0x2B9F9C)。前に行の文字と幅（ChoiceStandardItem_SetRows）、基準（持ち物欄 sub_23FB5C）を入れる。
+0x002BAFC0,line,IDA-opus-5.5-F053: ItemSelectWindow（持ち物の選択窓）ctor。大きさ 2832 B（+1488 からボタン節 224x6）。+12/+16 状態 calc、+624 Layout、+956+12i 行（文字箱/下線/決定音）、+1204 基準ペイン、+1212 結果、+1228 外タッチ取消、+1236 基準位置。唯一の使い手は script::ChoiceStandardItem（+220）。
+0x002BAFC0,repeatable,IDA-opus-5.5-F053: ItemSelectWindow（持ち物の選択窓）ctor。大きさ 2832 B（+1488 からボタン節 224x6）。+12/+16 状態 calc、+624 Layout、+956+12i 行（文字箱/下線/決定音）、+1204 基準ペイン、+1212 結果、+1228 外タッチ取消、+1236 基準位置。唯一の使い手は script::ChoiceStandardItem（+220）。
+0x002BFCD4,line,"IDA-opus-5.5-F047 (MEDIUM static): (inv=player+27600, &item, lockByte, registerCatalog). Adds to the first free slot via Inventory_AddToFirstEmpty; 0 = full or not pocketable. Pick-up path: vc_WRITEITEM -> here with register=1. gohan PocketItem calls (inv,&item,0,0)."
+0x002BFCD4,repeatable,"IDA-opus-5.5-F047 (MEDIUM static): (inv=player+27600, &item, lockByte, registerCatalog). Adds to the first free slot via Inventory_AddToFirstEmpty; 0 = full or not pocketable. Pick-up path: vc_WRITEITEM -> here with register=1. gohan PocketItem calls (inv,&item,0,0)."
+0x002BFE8C,func,"IDA-gpt-6-F008: Confirms checked inventory writer32248C owns normalization before save slot write; subsequent statistic/update paths and fifth stack argument meaning are not fully audited. Retain name and existing type, next compare26FF50 tail-call/SP and other callers before full prototype/name. T011 owned raw writer intentionally avoids normalization, as PocketItem/F048."
+0x002C55B8,func,"IDA-gpt-6.1-sol-F013 / MEDIUM; evidence work/evidence/t022_room_capabilities. Activate publishes g_BsCharRoomViewMgr only after room setup; Deactivate 0x2C6350 clears it. Current manager has vtable 0x8EC71C. F013 functional background checks use this live object, not exterior kind."
+0x002C5E9C,func,IDA-gpt-6.1-sol-F001 / MEDIUM: R0=RoomView*、R1=minWorldX*、R2=minWorldZ*、R3=endWorldX*、入口SP+0x00=endWorldZ*。positionモデルのpos_wallN/E/W/Sの骨並進を0x4F077Cで読む。原本room_bounds.jsonと0x1A241Cのカメラ境界の別経路で照合。家サイズ・部屋方向で原点が変わる。
+0x002C5FA8,func,"IDA-gpt-6.1-sol-F005 / T022修正2追補: 親の実機BPでItem{0x2385,0},R1=1から入口許可0x5B39B4が偽で中止と確定。家+0x4=0は表示経路でテント外観。通常操作0x19C57Cも同じ許可を通るため、判定を根拠なく省略しない。模様替え前/中/後の同じ家記録の実測が次。
+IDA-gpt-6.1-sol-F007 / 2026-10-08利用者指定の例外: 外観をテントへ改造した家の内装張替えを希望。gohanの既定は通常判定を維持、明示設定ONかつ自分の家/外観0/通信相手なし時だけRoomData_SetWallpaperとvariant=0/通常音を使う。外観の記録やゲーム命令をpatchしない。元から通常テントでも例外は有効になる。改造の種類と画面反映は未実測。
+IDA-gpt-6.1-sol-F013 / MEDIUM; evidence work/evidence/t022_room_capabilities. F013 current catalog policy: functional wallpaper check requires owned save data and live room wall model with m_wall. Native setter tried first; refusal falls back to RoomData_SetWallpaper/variant0 under offline guards, irrespective of exterior. F007 explicit-setting/exterior0-only policy is historical."
+0x002C5FA8,line,"IDA-opus-5.5-F106: HouseRoom_SetWallpaper(item*, playSound). cat 3 check -> (online) Net_SendPacket 0x78 -> SE_ACT_WALLPAPER_CHANGE 0x100094E if playSound -> house room (flag 0x80): Room_GetSaveRoomData(cur)+754 = item, +32 = 0. Display follows by BsCharRoomViewMgr_Calc/ApplyAndSubmit every frame. MEDIUM (static)."
+0x002C5FA8,repeatable,"IDA-opus-5.5-F106: HouseRoom_SetWallpaper(item*, playSound). cat 3 check -> (online) Net_SendPacket 0x78 -> SE_ACT_WALLPAPER_CHANGE 0x100094E if playSound -> house room (flag 0x80): Room_GetSaveRoomData(cur)+754 = item, +32 = 0. Display follows by BsCharRoomViewMgr_Calc/ApplyAndSubmit every frame. MEDIUM (static).
+IDA-gpt-6.1-sol-F004 / T022追補: カタログの品決定はrelease時のHitTestを通らないとここへ届かない。CTRPFは最後の有効な接触座標を保持してTouchEndedを出す。F106の更新/読直し経路は再確認したが、今回の実機症状だけで呼出し済みとは結論できない。"
+0x002C6350,func,IDA-gpt-6.1-sol-F013 / MEDIUM; evidence work/evidence/t022_room_capabilities. Clears the live BsCharRoomViewMgr global. Pair with Activate 0x2C55B8; no residual object may be used after this phase.
+0x002C678C,func,"IDA-gpt-6.1-sol-F013 / MEDIUM; evidence work/evidence/t022_room_capabilities. F013 verified offsets from native ARM Apply/Submit: RoomFloor=this+0x35A0, floor model holder+0x294=>this+0x3834; RoomWall=this+0x3850, part base+0x28C=>this+0x3ADC, stride0x40, holder+0xC=>this+0x3AE8. Independently match RoomFloor_Init/RoomWallPart_Init."
+0x002C678C,line,"IDA-opus-5.5-F106: vtable slot 12. RoomFloor_ApplyItem(this+13728, this+40), RoomWall_ApplyItem(this+14416, this+34), sub_60CBB4(this+15336, this+34), then Scene_SubmitNode. Apply funcs diff against the loaded item and swap textures (double buffered) when changed."
+0x002C678C,repeatable,"IDA-opus-5.5-F106: vtable slot 12. RoomFloor_ApplyItem(this+13728, this+40), RoomWall_ApplyItem(this+14416, this+34), sub_60CBB4(this+15336, this+34), then Scene_SubmitNode. Apply funcs diff against the loaded item and swap textures (double buffered) when changed."
+0x002C6978,line,"IDA-opus-5.5-F106: vtable slot 9 (per-frame calc, counter +48 to 1800). Re-reads Room_GetCurrentWallpaper/Flooring into this+34 / this+40 every frame."
+0x002C6978,repeatable,"IDA-opus-5.5-F106: vtable slot 9 (per-frame calc, counter +48 to 1800). Re-reads Room_GetCurrentWallpaper/Flooring into this+34 / this+40 every frame."
+0x002C6CCC,func,"IDA-gpt-6.1-sol-F005 / T022修正2追補: 壁と共通の0x5B39B4を通る。家+0x4=0/8で拒否する本来条件を維持。実機で床setterへの到達/戻りと同部屋データ+0x2F6を測る必要がある。
+IDA-gpt-6.1-sol-F007 / テント例外は利用者指定、明示設定ONの自宅/外観0/通信相手なしだけ。下位RoomData_SetFlooring+variant0と通常音を使う（未実機）。通常setterとゲーム判定は変更しない。
+IDA-gpt-6.1-sol-F013 / MEDIUM; evidence work/evidence/t022_room_capabilities. F013 current catalog policy: functional flooring check requires owned save data and live floor model with m_carpet. Native setter tried first; refusal falls back to RoomData_SetFlooring/variant0 under offline guards, irrespective of exterior."
+0x002C6CCC,line,"IDA-opus-5.5-F106: HouseRoom_SetFlooring(item*, playSound). cat 4; packet 0x79; SE_ACT_CARPET_CHANGE 0x100094F; room+758 = item, +33 = 0. MEDIUM."
+0x002C6CCC,repeatable,"IDA-opus-5.5-F106: HouseRoom_SetFlooring(item*, playSound). cat 4; packet 0x79; SE_ACT_CARPET_CHANGE 0x100094F; room+758 = item, +33 = 0. MEDIUM.
+IDA-gpt-6.1-sol-F004 / T022追補: 壁と同じくカタログCell決定の共通release経路を確認する。更新関数/毎フレームの読直し経路自体は再確認。今回の実機到達/戻り/部屋データの実値は未測定。"
+0x002CD720,func,IDA-gpt-6.1-sol-F015 incidental check: state/callback group dispatch; not proven raw-X handler. Owner class unresolved; no speculative rename. Need constructor/vtable identity for semantic name.
+0x002D05BC,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). PartsDragIconNode returns hit pane atnode+12; ButtonActionNode_SetPanes writes same field. Trash hit geometry uses borrowed native engine with its own B_Base_00 pane. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls."
+0x002D05C4,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). Stores supplied node mode at+264; constructor/virtual setter mapping confirm field, interpretation of all mode values remains uncertain (no invented enum). Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls.
+IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). F012 refines F010 generic mode: value atnode+264 is an optional alternate drop-hit Pane pointer, read/dereferenced by DragIconControl_UpdateTouch; null uses virtual node touch-hit test. No numeric drag-mode enum."
+0x002D0660,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). RTTI-vtable PartsDragIconNode at0x8ECE1C. Base DragIconNode includes ButtonActionNode224B plus40B drag animation; mode264, group292, enabled301. Total304B from constructor/end and sibling-array allocation. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls."
+0x002D52D4,func,IDA-gpt-6.1-sol-F007 / MEDIUM: R0=保存部屋データ、R1=Item*。0x200+0xF2へItem_Copyする末尾分岐。HouseRoom setterの書き側とRoom_GetCurrentWallpaper0x52851Cの別読取りが一致。許可/音/Net送信/variant初期化はこの下位関数にはない。明示設定のテント例外では自宅/外観0/相手なしを確認して+0x20=0も書く（未実機）。
+0x002D5728,func,IDA-gpt-6.1-sol-F007 / MEDIUM: R0=保存部屋データ、R1=Item*。0x200+0xF6へItem_Copyする末尾分岐。HouseRoom setterとRoom_GetCurrentFlooring0x528314が同じ欄を使用。下位関数に許可/音/Net/variant処理なし。テント例外は明示設定で+0x21=0も書く（未実機）。
+0x002E08F8,line,IDA-opus-5.5-F042: button root (+600 = Layout+0x20) removed from its parent and AppendChild to the given pane; +1280 = pane.
+0x002E08F8,repeatable,IDA-opus-5.5-F042: button root (+600 = Layout+0x20) removed from its parent and AppendChild to the given pane; +1280 = pane.
+0x002E09A4,line,"IDA-opus-5.5-F042: (btn, ng) only when +1303 changes: cmn_btn_ng on the whole layout, frame 0 (grey) if ng else last frame; enabled(+217) = !ng."
+0x002E09A4,repeatable,"IDA-opus-5.5-F042: (btn, ng) only when +1303 changes: cmn_btn_ng on the whole layout, frame 0 (grey) if ng else last frame; enabled(+217) = !ng."
+0x002E0A14,line,"IDA-opus-5.5-F042: CommonButtonSingle (1304 B, ButtonActionNode). cmn_btn.bclyt (+1302 -> cmn_btn_back), pane B_btn_A, group G_btn, N_all translate 0; in frame 0 then out last frame (starts hidden). sub_5D3A28 == 0 (Japan): T_btn/S_btn, hide G_txt_01; else T_btn_W/S_btn_W, hide G_txt_00."
+0x002E0A14,repeatable,"IDA-opus-5.5-F042: CommonButtonSingle (1304 B, ButtonActionNode). cmn_btn.bclyt (+1302 -> cmn_btn_back), pane B_btn_A, group G_btn, N_all translate 0; in frame 0 then out last frame (starts hidden). sub_5D3A28 == 0 (Japan): T_btn/S_btn, hide G_txt_01; else T_btn_W/S_btn_W, hide G_txt_00."
+0x002E5EB8,line,"IDA-opus-5.5-F015 HIGH(静的): 占有レイヤ 112x96 バイトの (x,y) に値を書く。村の建物は層 1 = *(0xAB1DE8)、値はスロット番号。"
+0x002E5EB8,repeatable,"IDA-opus-5.5-F015 HIGH(静的): 占有レイヤ 112x96 バイトの (x,y) に値を書く。村の建物は層 1 = *(0xAB1DE8)、値はスロット番号。"
+0x002E5ED4,line,IDA-opus-5.5-F015 HIGH(静的): 占有レイヤ 112x96 を 0xFF（空き）で埋める。
+0x002E5ED4,repeatable,IDA-opus-5.5-F015 HIGH(静的): 占有レイヤ 112x96 を 0xFF（空き）で埋める。
+0x002EBE50,func,"IDA-gpt-6-F001: four 0x400-byte Item blocks at data+0x22. Signed x,z checks only upper bound <2; accepted offset is 0x400*x+0x800*z. Retain missing negative checks."
+0x002EBE68,func,"IDA-gpt-6-F001: two runtime buildings at data+0x1022, stride4; valid unsigned index<2 advances pointer, otherwise returns first. Original fullword write at heap+0x1024 spans first-building x/z and second-building ID, rather than one complete building."
+0x002EBFF0,func,IDA-gpt-6-F001: returns u16 acre cell at data+2+8*z+2*x for the accepted 4x4 coordinate range; rejected coordinates return first acre. Distinct from saved Town.IslandAcres. Absolute AR heap 0x301A9D10 identity remains LOW.
+0x002EC0D0,func,IDA-gpt-6-F001: Island runtime data constructor. Allocator caller reserves 0x102A. Unknown header bytes both 3; array-construction callbacks initialize 16 u16 acres at +2 and 4 Item blocks of 0x400 bytes at +0x22. Two 4-byte buildings at +0x1022 use no-op constructor 0x24EF0C. This is not a copy of static default acres. Paired index/accessor and original island editor agree on layout.
+0x002EC1BC,func,IDA-gpt-6.1-sol-F005 / MEDIUM: R0=4軒の家記録先頭、R1=日数。stride=4648（0x1228）で4回0x10A1A0を呼ぶ。0x118568はTownBase+383104を渡し、GardenBase+0x5D900と一致。
+0x002F5EF4,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Native hit-test/press/release path consumes TouchState0xACF6E0, including coordinates+10/+12 and previousHeld+26. Scoped raw-touch injection must restore the entire40B state before other native UI consumers.
+IDA-gpt-6-F009 / GPT-6 (MEDIUM): Touch repeat independently confirms control216 increments, threshold220 resets3 after11 initial; native repeat node221 gates held decisions when counter==0. Owned page arrows set counter=-1/threshold1 each Calc. Preserve drag item source/target and other screens. No animation interval after native decision completion."
+0x002F62C8,func,"IDA-gpt-6-F009 / GPT-6 additional timing/memory fix (2026-10-12, MEDIUM): ButtonActionControl_HandInput. Original ARM + RTTI/caller/state-table corroboration. Native child outer exit uses996; pocket exit uses active animation pointer1988 and native unbind/idle. Parent leave waits both before Actor_RequestDestroy. DragControl finish retains selection in hand mode but clears decided and returns native wait. Hand/touch repeat uses counters216/threshold220 (11 then3). Owned search accelerates only exit/page animations and completes parent page wait same Calc. Source ERROR2/STAGE1 = 5MiB engine allocation failure; free search metadata/capacity before reopening. Evidence docs/topics/closet_followup_design.md and work/evidence/gohan_closet_followup/static_timing.json; new hardware behavior unverified."
+0x002F6694,func,"IDA-gpt-6-F013: Deciding state advances source anim via vt+48 while vt+44 reports unfinished; on completion sets flag+212 bit1, dispatches control completion and node vt+40. Native list wait cleanup can then run and T016 restore the blue decide endpoints; prior artificial decided-bit fixture did not test A entry."
+0x002F6810,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Touch dispatch occurs when TouchState+0 OR previousHeld(+26) is set, so release is meaningful; copying only the current held flag loses the native release path."
+0x002F6AE4,func,"IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). Clears control source+180 via node vt+28 SetTouch(0), then pointer0. This resets touch/select, so restoring decide endpoints alone requires explicit previous-row cleanup on movement."
+0x002F6C28,func,"IDA-gpt-6-F013: Real A decision entry for BAC. Source at +180 must be selected node; calls node StartDecide, sets flags+212 bit2 and PMF+184 to StateDecideAnim 0x2F6694. Node StartDecide alone cannot publish completion. T016 queues acquisition immediately and suppresses its duplicate at animation completion."
+0x002F6E78,func,"IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original ARM + actual DragIconControl vtable/callers and CPU fixture). Clears active nodes' vt+28 touch state, then source+180=0; no state/decision-bit transition itself. Resource fixture must execute native29BAB4/2F72C4 to test click cleanup: prior closet timing fixture replaced29BAB4 and left native-looking flags stale."
+0x002F72C4,func,"IDA-gpt-6-F011 (MEDIUM: original ARM + control vtable/independent 1B0698 caller). On decided flags, invokes control vt+52 (clears source touch via node vt+28), clears source+180/flags212 bits0..1 and returns state Wait. Retapping native selected row therefore clears the row's selected-color animations unless owner restores them."
+0x002F75CC,line,"現在の部屋 ID を返す。実体は g_CurrentRoomId(0x95133A) を読むだけ (F-55)。
+165 = 部屋なし。Vapecord のラベル GETROOM と一致する。"
+0x002F75CC,repeatable,"Vapecord plugin ADDRESSES: GETROOM
+他地域: USA=002F7384  EUR=002F73AC  KOR=002F7488
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002F75E4,func,"[ACNL-F0692] Mask check on g_RoomFlagTable; roomId0xA5 is special and returns false. Valid room descriptor domain0..0xA4; 117 of165 flags have mask0x8. Old V2-F019 count200/118 was incorrect. 0x8 selects Indoor/Ftr in the explicit module branch, but extra module lists can also load them."
+0x002F75E4,line,"Room_HasFlags(mask, roomId) (F-55)
+  return roomId != 165 && (mask & ~g_RoomFlagTable[roomId]) == 0;
+部屋 ID を添字に g_RoomFlagTable(0x883328) を引き、mask のビットを全部持つか返す。
+165 (0xA5) は「部屋なし」の番兵。この値は他でも「無効」を表す
+（g_ActiveFieldActions の playerNo, Item_PlaceItem の -91）。
+使用例: FieldObj_TrampleAt 冒頭の Room_HasFlags(4, Room_GetCurrentId())
+      FieldObj_ResolveAxeAction の Room_HasFlags(32, ...)"
+0x002F75E4,repeatable,"Room_HasFlags(mask, roomId) (F-55)
+  return roomId != 165 && (mask & ~g_RoomFlagTable[roomId]) == 0;
+部屋 ID を添字に g_RoomFlagTable(0x883328) を引き、mask のビットを全部持つか返す。
+165 (0xA5) は「部屋なし」の番兵。この値は他でも「無効」を表す
+（g_ActiveFieldActions の playerNo, Item_PlaceItem の -91）。
+使用例: FieldObj_TrampleAt 冒頭の Room_HasFlags(4, Room_GetCurrentId())
+      FieldObj_ResolveAxeAction の Room_HasFlags(32, ...)"
+0x002F7744,func,"IDA-gpt-6.1-sol-F015 incidental check: dispatch PMF stored at object+184/+188. Owner/class/input purpose remains unresolved; not evidence of X gating. Preserve name; next verify RTTI/constructors before class rename.
+IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Confirmed dispatcher of ButtonActionControl state PMF at+184/+188; existing RTTI-based name retained."
+0x002F7B04,line,IDA-opus-5.5-F036: ButtonActionControl ctor。+212 bit0=決定済み(+180=決定した行ボタン、その+200=行番号) / bit3=入力処理を飛ばす。十字は BsMenuMgr(off_949D4C)+508 と手カーソル+500
+0x002F7B04,repeatable,IDA-opus-5.5-F036: ButtonActionControl ctor。+212 bit0=決定済み(+180=決定した行ボタン、その+200=行番号) / bit3=入力処理を飛ばす。十字は BsMenuMgr(off_949D4C)+508 と手カーソル+500
+0x002F836C,line,"Mem_ZeroFill(dst, bytes) = Mem_WordFill(dst, bytes, 0)。"
+0x002F836C,repeatable,"Mem_ZeroFill(dst, bytes) = Mem_WordFill(dst, bytes, 0)。"
+0x002F8370,line,"Mem_WordFill(dst, bytes, value) — ワード単位 memset。
+0x20 バイトずつ STM で埋め、残りを条件実行で処理する。"
+0x002F8370,repeatable,"Mem_WordFill(dst, bytes, value) — ワード単位 memset。
+0x20 バイトずつ STM で埋め、残りを条件実行で処理する。"
+0x002F858C,line,"★★F-274: **Mem_CopyBytes3(dst, src, size) — 3 引数のバイト粒度 memcpy**。
+R0 = dst / R1 = src / R2 = size。先頭で CMP R2,#3 / ANDS R12,R0,#3 と
+**サイズと宛先のアラインを見ている**ので、キャッシュ操作ではない。
+
+★★【重要】decompiler は呼び出し元で **R1 / R2 を落とす**。
+  `sub_2F858C(g_GpuCmdPtr)` のように 1 引数に見えるが実際は 3 引数。
+  ssys::ma::Allocator::Alloc / Free（F-164）や DrawCtx_FlushBatch（F-147）と同じ罠。
+  **assembly を見ること。**
+
+主な呼び出し:
+  ・GpuCmd_ReplayRecordedListRange 0x7B0E2C
+      Mem_CopyBytes3(g_GpuCmdPtr, srcMgr->base + off + copied, len - copied)
+      ★**記録したコマンド列を主リストへ実際にコピーするのはここ**。
+      「場所を予約するだけ」ではない。
+  ・同関数の GX キューループ内（エントリごとの範囲）
+  ・sub_4D5D1C（Drawer 既定列の構築）で 26x96 = 2496 バイトの表を
+    GPU 可__"
+0x002F858C,repeatable,"★★F-274: **Mem_CopyBytes3(dst, src, size) — 3 引数のバイト粒度 memcpy**。
+R0 = dst / R1 = src / R2 = size。先頭で CMP R2,#3 / ANDS R12,R0,#3 と
+**サイズと宛先のアラインを見ている**ので、キャッシュ操作ではない。
+
+★★【重要】decompiler は呼び出し元で **R1 / R2 を落とす**。
+  `sub_2F858C(g_GpuCmdPtr)` のように 1 引数に見えるが実際は 3 引数。
+  ssys::ma::Allocator::Alloc / Free（F-164）や DrawCtx_FlushBatch（F-147）と同じ罠。
+  **assembly を見ること。**
+
+主な呼び出し:
+  ・GpuCmd_ReplayRecordedListRange 0x7B0E2C
+      Mem_CopyBytes3(g_GpuCmdPtr, srcMgr->base + off + copied, len - copied)
+      ★**記録したコマンド列を主リストへ実際にコピーするのはここ**。
+      「場所を予約するだけ」ではない。
+  ・同関数の GX キューループ内（エントリごとの範囲）
+  ・sub_4D5D1C（Drawer 既定列の構築）で 26x96 = 2496 バイトの表を
+    GPU 可視バッファへ写し、直後に RangeCacheOp(_, 2496) する"
+0x002F8660,func,F-133 support: optimized unsigned division helper used by ResFont_GetGlyph to produce quotient in R0 and remainder in R1 for sheet/row/column indexing; intentionally left generic.
+0x002FAF48,func,"IDA-gpt-6-sol-F006: town base is g_GardenSaveBasePtr + 0x80; this is runtime-dependent, and IDB address 0x955F8C is the pointer storage, not the pointee."
+0x002FAF48,line,IDA-gpt-6-sol-F007: user measured [g_GardenSaveBasePtr]=0x31F49A00 on both NEW/OLD JPN+update 3DS during outdoor communication; this returns TownBase=0x31F49A80. Runtime observation is session-specific.
+0x002FAF48,repeatable,IDA-gpt-6-sol-F007: user measured [g_GardenSaveBasePtr]=0x31F49A00 on both NEW/OLD JPN+update 3DS during outdoor communication; this returns TownBase=0x31F49A80. Runtime observation is session-specific.
+0x002FB354,repeatable,"Vapecord plugin ADDRESSES: D_GARDEN
+他地域: USA=002FB344  EUR=002FB340  KOR=002FB360
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002FB3A4,func,"IDA-gpt-6-F002 MEDIUM: returns global12-byte GohanNativeDate at0xACF6B0. year s32+0, month/day/weekday/hour/minute/second bytes+4..9, millis u16+10; clock menu and Date_FromRaw consumers agree."
+0x002FB3A4,repeatable,"Vapecord plugin ADDRESSES: GETDATEDATA
+他地域: USA=002FB394  EUR=002FB41C  KOR=002FB3B0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002FB920,line,"Vapecord plugin ADDRESSES: PLAYER_1_PPOFFSET; legacy labels retained. IDA-gpt-6-F001: checked ARM branches map save IDs 0..3 through garden resident records, IDs 4..7 to g_PlayerSaveCacheById4To7[ID-4], stride 0xA480; save IO busy/invalid IDs return NULL. Original ARM ACNL_Player type independently matches stride. See work/evidence/cheat_semantics/player_save_banks_asm.json and save_layout.json."
+0x002FB920,repeatable,"Vapecord plugin ADDRESSES: PLAYER_1_PPOFFSET
+他地域: USA=002FBA60  EUR=002FBAE8  KOR=002FB8F8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002FBB8C,line,"Mem_Copy(dst, src, bytes) — ワード単位 memcpy。
+LDM/STM 0x20 バイト＋PLD の定石形。"
+0x002FBB8C,repeatable,"Mem_Copy(dst, src, bytes) — ワード単位 memcpy。
+LDM/STM 0x20 バイト＋PLD の定石形。"
+0x002FC878,line,"4バイト(u16x2)アイテムのコピー。dst=a1, src=a2"
+0x002FC878,repeatable,"Vapecord plugin ADDRESSES: COPYPASTEFUNC
+他地域: USA=002FC978  EUR=002FC8B8  KOR=002FC8E0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002FC8BC,line,"Net_IsMultiplayer() — 参加人数 > 1 か (F-61)。
+  return vc_GETPLAYER2(g_NetSession) > 1"
+0x002FC8BC,repeatable,"Net_IsMultiplayer() — 参加人数 > 1 か (F-61)。
+  return vc_GETPLAYER2(g_NetSession) > 1"
+0x002FC8F0,func,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: R0のItemID先へR1のid/flags半語をコピーしてR0を返す。0x2FC8F4/0x2FC8FCのSTRHと、配置/拾得callerの4 Bコピーを照合。カテゴリ変換なし。
+0x002FC950,func,"V2-F015 MEDIUM: 旧名 vc_NEVER_WILT_FUNC（Vapecordラベル）。ワールド座標(x,y)のマスへアイテムを書く汎用関数。成長処理の全コールバック・Field_DeleteItemAt等216か所から呼ばれる。Vapecord「アイテム消えない」はここをフックし、苗木が枯れる5か所の呼び出し（JPN戻り先 0x3159F2付近/0x315A7A/0x315B08/0x316392/0x316412、USA 0x3159FA/0x315A82/0x315B10/0x31607E/0x3160FE と対応、対応はLOW）のときだけ置くIDを「今のID+1」に差し替える＝枯れずに1段成長
+IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: 対品番追跡: Field_SetItemAtWorldXY→0x57B100→マップセルへのItem_Copy。6/7/47と147/148/49を変換しない。呼出し0x56DF28ではactor+0x5E4が入力。
+IDA-gpt-6-F002 MEDIUM: actual fifth argument is float bits at caller SP+0 (FLDS from stack); a hardfloat C++ callback must forward it as u32 stack bits. KeepItems intercepts only returns from Thumb BLX at3159F2/315A7A/315B08/316392/316412; local copy of current tile advances ID by1 preserving flags. All other callers/OFF use original five argument path."
+0x002FC950,repeatable,"Vapecord plugin ADDRESSES: NEVER_WILT_FUNC
+他地域: USA=002FCA24  EUR=002FC99C  KOR=002FC98C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002FCB24,line,空マス判定。ID 0x7FFE (32766)
+0x002FCB24,repeatable,空マス判定。ID 0x7FFE (32766)
+0x002FCB64,func,"IDA-gpt-6.1-sol-F016 MEDIUM: formerly plugin alias vc_GETCATEGORIE; raw ARM consumes const ItemID* R0, returns ItemParam.category(+0xA), not FieldObj category function 0x2FCCD4. HouseRoom wall/floor setters compare 3/4; keep existing Item_GetCategory name at 0x2FCCD4."
+0x002FCB64,repeatable,"Vapecord plugin ADDRESSES: GETCATEGORIE
+他地域: USA=002FCBC4  EUR=002FCC4C  KOR=002FCB4C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002FCB88,line,return (*(u16*)a1 & 0x7FFF) == a2;  bit15 はフラグなのでマスク
+0x002FCB88,repeatable,return (*(u16*)a1 & 0x7FFF) == a2;  bit15 はフラグなのでマスク
+0x002FCBA0,line,埋設フラグ取得。*(u16*)(item+2) の bit15
+0x002FCBA0,repeatable,埋設フラグ取得。*(u16*)(item+2) の bit15
+0x002FCBB4,line,型IDを指定してアイテム構築。*a1 = a2 & 0x7FFF 後、vtable 経由で初期化
+0x002FCBB4,repeatable,"Vapecord plugin ADDRESSES: SETSTACK
+他地域: USA=002FCC14  EUR=002FCC9C  KOR=002FCBC0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002FCCBC,line,IDA-opus-5.5-F050: fgobj の判定 = ID & 0x7FFF <= 0xFD（マップエディターの N チップ）
+0x002FCCBC,repeatable,IDA-opus-5.5-F050: fgobj の判定 = ID & 0x7FFF <= 0xFD（マップエディターの N チップ）
+0x002FCCD4,line,"アイテムのカテゴリ取得。ID>0xFD なら 29、それ以外は 定義テーブル[+0x0A]。0x1D以上は0に丸め。
+実測: ID38->4, ID43->8, ID139->23, ID153->10, ID158->0, ID201/204->21"
+0x002FCCD4,repeatable,"アイテムのカテゴリ取得。ID>0xFD なら 29、それ以外は 定義テーブル[+0x0A]。0x1D以上は0に丸め。
+実測: ID38->4, ID43->8, ID139->23, ID153->10, ID158->0, ID201/204->21"
+0x002FCE5C,line,"カテゴリが {11,12,13,14,15,16,17,20,27,28} か判定。19 は含まない。呼び出し元 9 箇所。
+
+★実名 (REFERENCES/IDS/ACNL_ID_Lists-master/All_ACNL_Items.txt で確認 F-56):
+  11 = チューリップ      0x9F-0xA5 (7)
+  12 = パンジー          0xA6-0xAB (6)
+  13 = コスモス          0xAC-0xB1 (6)
+  14 = バラ              0xB2-0xB9 (8)   ★ 0xB2 = red roses
+  15 = 金のバラ          0xBA      (1)
+  16 = カーネーション    0xBB-0xBD (3)
+  27 = ユリ              0xBE-0xC3 (6)
+  28 = スミレ            0xC4-0xC7 (4)
+  17 = ジェイコブスラダー 0xC8   (1)
+  20 = タンポポ          0xCA-0xCB (2)
+  19 = 枯れた花          0xCE-0xF7 (42)
+
+★対象外なのは 0xC9 四つ葉のクローバー / 0xCC 雑草 / 0xCD ラフレシア。
+  つまり「踏むと壊れるのは花だけ」で、雑草や四つ葉は壊れない。"
+0x002FCE5C,repeatable,"カテゴリが {11,12,13,14,15,16,17,20,27,28} か判定。19 は含まない。呼び出し元 9 箇所。
+
+★実名 (REFERENCES/IDS/ACNL_ID_Lists-master/All_ACNL_Items.txt で確認 F-56):
+  11 = チューリップ      0x9F-0xA5 (7)
+  12 = パンジー          0xA6-0xAB (6)
+  13 = コスモス          0xAC-0xB1 (6)
+  14 = バラ              0xB2-0xB9 (8)   ★ 0xB2 = red roses
+  15 = 金のバラ          0xBA      (1)
+  16 = カーネーション    0xBB-0xBD (3)
+  27 = ユリ              0xBE-0xC3 (6)
+  28 = スミレ            0xC4-0xC7 (4)
+  17 = ジェイコブスラダー 0xC8   (1)
+  20 = タンポポ          0xCA-0xCB (2)
+  19 = 枯れた花          0xCE-0xF7 (42)
+
+★対象外なのは 0xC9 四つ葉のクローバー / 0xCC 雑草 / 0xCD ラフレシア。
+  つまり「踏むと壊れるのは花だけ」で、雑草や四つ葉は壊れない。"
+0x002FD064,line,"地面オブジェクト定義テーブル引き。ID>=0xFE なら NULL。
+エントリ = 0x3306FA00 + 16*ID (16バイト x 254、リニアヒープ上)
++0Ah = カテゴリ、+0Dh = 成長段階数(signed, -1 は非成長)"
+0x002FD064,repeatable,"地面オブジェクト定義テーブル引き。ID>=0xFE なら NULL。
+エントリ = 0x3306FA00 + 16*ID (16バイト x 254、リニアヒープ上)
++0Ah = カテゴリ、+0Dh = 成長段階数(signed, -1 は非成長)"
+0x002FD778,func,V2-F015 MEDIUM: 苗木の成長。位置判定 Field_GrowUpCheckSaplingSpot（外周・草地以外・sub_300A84・周囲）と密集判定 sub_1159D4（木の塊12以上 LOW）で不可なら枯れ（木1/低木2/杉3/ヤシ4/竹の子5、FieldObjDef+4 と一致）、可なら Field_GrowUpAdvanceStage（+6 の次段階、経過日数最大4段）。竹 0x39 は Field_GrowUpBambooSpread、ID6 は町の果物の木へ(sub_115BAC)
+0x002FE5AC,repeatable,"Vapecord plugin ADDRESSES: FRUITMOD
+他地域: USA=002FE6A0  EUR=002FE5E8  KOR=002FE5D0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002FE9A8,line,"カテゴリが {4, 6, 8, 25} のいずれかを判定。成長/採取対象"
+0x002FE9A8,repeatable,"カテゴリが {4, 6, 8, 25} のいずれかを判定。成長/採取対象"
+0x002FE9D4,repeatable,"Vapecord plugin ADDRESSES: GET_ROOM_DATA
+他地域: USA=002FE95C  EUR=002FE9E4  KOR=002FE9BC
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002FE9E4,line,静的初期化ガード取得 (Thumbコード)。if(*g) return 0; *g = 1; return 1;
+0x002FE9E4,repeatable,静的初期化ガード取得 (Thumbコード)。if(*g) return 0; *g = 1; return 1;
+0x002FEAAC,repeatable,"Vapecord plugin ADDRESSES: GET_ITEM_NAME
+他地域: USA=002FEA78  EUR=002FEA0C  KOR=002FE9E4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002FEB60,repeatable,"Vapecord plugin ADDRESSES: PSOFFSET
+他地域: USA=002FEB2C  EUR=002FEBB4  KOR=002FEA98
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002FEB98,repeatable,"Vapecord plugin ADDRESSES: PLAYERDATACONDITION
+他地域: USA=002FEB64  EUR=002FEBEC  KOR=002FEAD0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002FEE38,line,"Field_GetItemAtXY(mapmgr, x, y, 0) -> そのマスのアイテム(4バイト)へのポインタ。
+mapmgr は Field_GetMapManager() で取得する"
+0x002FEE38,repeatable,"Vapecord plugin ADDRESSES: WORLDITEMCOORDS
+他地域: USA=002FEF9C  EUR=002FEF0C  KOR=002FECF0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002FEFA4,line,"IDA-opus-5.5-F019: マス (x,y) に花を植えられるか。上 2 マスの属性 3 を先に見てから FieldAttr_CanPlantFlower。"
+0x002FEFA4,repeatable,"IDA-opus-5.5-F019: マス (x,y) に花を植えられるか。上 2 マスの属性 3 を先に見てから FieldAttr_CanPlantFlower。"
+0x002FF184,func,V2-F015 MEDIUM: 手紙を届ける。第2引数でルート（sub_1BB1F8 / sub_1BB484 / プレイヤーの保存箱 等、詳細LOW）。呼び出し元42
+0x002FF92C,repeatable,"Vapecord plugin ADDRESSES: PLAYER_2_PPOFFSET
+他地域: USA=002FF6CC  EUR=002FF754  KOR=002FF978
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x002FF9CC,repeatable,"Vapecord plugin ADDRESSES: CALCBITFIELD
+他地域: USA=002FF76C  EUR=002FF7F4  KOR=002FFA18
+（プラグイン作者のラベル。検証済みの識別ではない）"
