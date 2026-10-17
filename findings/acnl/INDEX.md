@@ -708,3 +708,7 @@
 | ACNL-F0702 | Fade とロード画像の登録順・状態別の描画元（再解析） | MEDIUM | A | active |  |  |
 | ACNL-F0703 | loader ID の十進10と0x10は異なり、旧bucket照合は0x0Aを指す（再解析） | MEDIUM | A | active |  |  |
 | ACNL-F0704 | Fade の記録保持とゼロ長Layoutから画像源を判定する限界（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0705 | Picture・Material の別確保と可変長ブロックの実配置（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0706 | TexMap のレジスタ派生値と Picture の UV キャッシュ（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0707 | Pane 木の可視走査と Layout 記録・Picture 描画（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0708 | Picture の材質共有は無効化・所有と資源寿命の条件を持つ（再解析） | MEDIUM | A | active |  |  |

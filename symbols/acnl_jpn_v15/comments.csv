@@ -430,6 +430,7 @@ IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catal
 0x0013B9A8,func,"IDA-gpt-6.1-sol-F009 / T022 fix6 / MEDIUM: R0=TextBox, R1=N, R2=flags。通常flags bit0x8=0では文字器2*(N+1) Bと0x4D5480(N) Bの描画器を0x4B8CF0(size,align=4)から別々に確保。Ctor→InitFieldsのflags=0枝が対象。N127合計45744 B、N129合計46468 B、N15合計5632 B（管理領域を除外）。使わない文字ペイン8個を除去し残る名前器を縮小すると、家具窓の文字器413868→5632 B。原本ARM1176純整数計算2048ケース一致は実機Heap/GPUの成功を保証しない。"
 0x0013B9A8,line,"IDA-opus-5.5-F036: TextBox vt[28]。(箱, 文字数, 旗) で文字の器 (文字数+1)*2 と描画用の器(+260)をレイアウトのアロケータから確保。+212=器 / +248=器のバイト数。旗 = +260 の +9。旧い器は vt[29] で返す"
 0x0013B9A8,repeatable,"IDA-opus-5.5-F036: TextBox vt[28]。(箱, 文字数, 旗) で文字の器 (文字数+1)*2 と描画用の器(+260)をレイアウトのアロケータから確保。+212=器 / +248=器のバイト数。旗 = +260 の +9。旧い器は vt[29] で返す"
+0x0013BB08,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Free wrapper: R0=ptr -> R1=ptr, R0=current off_96F150, tailcall allocator vslot+0x0C. Used by Picture/Material/coordinate array destruction."
 0x0013C518,func,F-133 static: replaces ResFont+0x0C glyph-sheet descriptor table; frees old table and initializes new descriptors when non-null.
 0x0013C548,line,F-133: non-null table is passed to nwfont_ResFont_InitGlyphSheetDescriptors.
 0x0013F718,func,"IDA-gpt-6-F006 / GPT-6, MEDIUM (2026-10-12): SeadList_Remove. Native ARM independently checked against original code.bin; caller/RTTI/data accesses corroborate the contract.  Hardware unverified; no LOW rename."
@@ -2169,6 +2170,8 @@ MEDIUM。Pane vslot+0x34。自身vslot+0x38の評価後、flagsと可視bitに�
 IDA-gpt-6-F014: Always evaluates own pane via virtual+56; argument flag bit0 inhibits descending into invisible panes. T017 uses flags&~1 for hidden letter pose evaluation, preserving actual hidden drawing state and stored layout flags."
 0x004B6B58,line,"★nw::lyt::Pane ctor — F-291（Picture←Pane←internal::PaneBase）。+40 translate / +52 rotate / +64 scale / ★+72,+76 = size(幅,高さ)=0x48/0x4C / +180,181 alpha / +182 flags(下位ニブル=基準点) / +184.. 名前。"
 0x004B6B58,repeatable,"★nw::lyt::Pane ctor — F-291（Picture←Pane←internal::PaneBase）。+40 translate / +52 rotate / +64 scale / ★+72,+76 = size(幅,高さ)=0x48/0x4C / +180,181 alpha / +182 flags(下位ニブル=基準点) / +184.. 名前。"
+0x004B6CA4,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Unlinks children; child+0xB7 bit3==0 -> virtual in-place destroy then nw_lyt_FreeMemory. bit3==1 skips child destruction/free. Distinct from LayoutMgr unlink-all."
+0x004B7864,func,"[ACNL-F0707] MEDIUM. Material+0x4D bit1 skips this state emitter only; Picture continues. Explicit TEV vs default template controls color. Default texMap-count0 emits mat+0x14 to reg0x0FB (0x4B7B38), not 0x0DB; count1 emits mat+0x10/+0x14 to reg0x0DB/0x0F3."
 0x004B7864,line,"★sub_4B7864(drawctx, cursor, material, a4) — マテリアルの状態を GPU コマンドへ出す — F-185
 
 ★Picture / TextBox 共通の「マテリアル発行」本体。
@@ -2176,11 +2179,11 @@ IDA-gpt-6-F014: Always evaluates own pane via virtual+56; argument flag bit0 inh
 
 ★色は TexEnv の定数色で決まる。テキストの色を自由に変えられたのはこれ（F-157）。
     v20 = *(material + 48) & 3;
-    v20 == 0:  reg 0x0DB = *(material + 20)
+    v20 == 0:  reg 0x0FB = *(material + 20)
     v20 == 1:  reg 0x0DB = *(material + 16);  reg 0x0F3 = *(material + 20)
     v20 == 2:  sub_4B84C0(...)   別形式
     v20 == 3:  sub_4B85D8(...)   別形式
-  ヘッダの即値: 983291 = 0x000F00DB / 983283 = 0x000F00F3
+  ヘッダの即値: 983291 = 0x000F00FB / 983283 = 0x000F00F3
 
 ★状態キャッシュ（同じ値なら再発行しない）
     0x97B6FC  モード0 の 0x0DB
@@ -2404,16 +2407,10 @@ colors = 4 隅の色（u32 x 4。メモリ上のバイト順は R,G,B,A）
   if ((a3 & 1) == 0) nwlyt_Drawer_EmitProjectionUniform(drawer, cursor, DrawInfo+4)
   -> 0x4D71C4 へ JUMPOUT（g_GpuCmdPtr へ書き戻す）
 呼び出しは sub_4B8C34(drawer, Layout+0x30, 0)。a3=0 なので投影は必ず出る。"
-0x004B8CF0,line,"★nw::lyt AllocMemory(size, align) — off_96F150 のアロケータ vtable+0x08 を尾呼び。
-★対になる FreeMemory ラッパは存在しない（0x4B8D14 はもうペイン工場）。
-  返すときは ssys::ma::Allocator::Free (0x00569B44) を直接呼ぶ: R0 = *(0x0096F150), R1 = 返す番地。
-  Alloc/Free は対称でヘッダを付けないので、Alloc の戻り値をそのまま渡してよい（F-296、実機で確保→解放→再確保の往復を確認）。"
-0x004B8CF0,repeatable,"★nw::lyt AllocMemory(size, align) — off_96F150 のアロケータ vtable+0x08 を尾呼び。
-★対になる FreeMemory ラッパは存在しない（0x4B8D14 はもうペイン工場）。
-  返すときは ssys::ma::Allocator::Free (0x00569B44) を直接呼ぶ: R0 = *(0x0096F150), R1 = 返す番地。
-  Alloc/Free は対称でヘッダを付けないので、Alloc の戻り値をそのまま渡してよい（F-296、実機で確保→解放→再確保の往復を確認）。"
+0x004B8CF0,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Allocator wrapper (size,align): current off_96F150 vslot+8. Matching free wrapper is 0x13BB08. No fixed-size bound here."
+0x004B8CF0,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x004B8D14,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Resource factory: Picture allocation 0x158 (0x4B8DAC), Pane allocation 0xD4 (0x4B8D80). Align 4; then derived ctor."
 0x004B8D14,line,"★nw::lyt ペイン工場（種別 FourCC で分岐して確保＋構築）— F-291 / Picture=344B, TextBox=264B, 他 364/212B。★Picture の実体は 344 バイト(0x158)。以前の「約 0x320」は誤り。"
-0x004B8D14,repeatable,"★nw::lyt ペイン工場（種別 FourCC で分岐して確保＋構築）— F-291 / Picture=344B, TextBox=264B, 他 364/212B。★Picture の実体は 344 バイト(0x158)。以前の「約 0x320」は誤り。"
 0x004B8EA0,func,"IDA-gpt-6.1-sol-F015 MEDIUM: inner nw::lyt::Layout rootPane+16; dispatch root virtual CalculateMtx at vtable+92, forwarding drawInfo. Original caller vc_ACSYSTEM_DATA2 and Pane_CalculateMtx assembly independently agree.
 IDA-gpt-6-F014: DrawInfo is passed unchanged to root virtual+92 CalculateMtx. Native background includes attached letter root, so its force-hidden calculation bit2 updates descendants without making the letter drawable."
 0x004B8F04,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
@@ -2428,12 +2425,11 @@ MEDIUM。R0=LayoutImpl、R1=flags。root（impl+0x10）のvslot+0x34にtail呼�
 IDA-gpt-6-F014: Evaluation-only entry forwards flags to Pane virtual+52; T017 clears argument bit0 (visible-only) while evaluating the hidden letter subtree. This does not alter stored flags or animation time. It precedes forced parent-tree CalculateMtx."
 0x004B9748,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
 MEDIUM。Layout実装の破棄。group/root pane/AnimTransformのdtorと対応freeを行う。Unbind 0x4B8F04とは別。"
-0x004B9830,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
-TexMapの幾何/format由来のキャッシュ値更新。新しいheap確保は無い。SetTexture反復時のheap増加とは区別する。"
-0x004B9830,line,"★nw::lyt TexMap の GPU レジスタ値を作り直す — F-291。TexMap は 32B。一次は +0x00/+0x04/+0x08/+0x0C/+0x10 だけで、+0x14/+0x18/+0x1C は派生キャッシュ。+0x18 = ROR32(+0x0C,16) = reg0x082。+0x1C = 書式表(0->7 1->8 2->9 3->5 4->6 5->3 6->1 7->2 8->4 9->0 A->12 B->13 C->10 D->11) = reg0x08E。LA4(PICA 9) は nw::lyt 書式 2。+0x14 = ラップ/フィルタ = reg0x083。直接書いてもこの関数が呼ばれると上書きされる。"
-0x004B9830,repeatable,"★nw::lyt TexMap の GPU レジスタ値を作り直す — F-291。TexMap は 32B。一次は +0x00/+0x04/+0x08/+0x0C/+0x10 だけで、+0x14/+0x18/+0x1C は派生キャッシュ。+0x18 = ROR32(+0x0C,16) = reg0x082。+0x1C = 書式表(0->7 1->8 2->9 3->5 4->6 5->3 6->1 7->2 8->4 9->0 A->12 B->13 C->10 D->11) = reg0x08E。LA4(PICA 9) は nw::lyt 書式 2。+0x14 = ラップ/フィルタ = reg0x083。直接書いてもこの関数が呼ばれると上書きされる。"
-0x004BAA68,line,★nw::lyt::Picture ctor — F-291（RTTI N2nw3lyt7PictureE / vtable 0x8FBFFC）。+212(0xD4)=0 UV計算済フラグ / +316(0x13C)=Material* ★80バイトを別途確保（埋め込みではない）/ +320(0x140)=頂点カラー4個 / +336(0x150)=テクスチャ座標配列。実機で pic+0x13C==pic+0x1A0 に見えたのは確保が隣接しただけ。
-0x004BAA68,repeatable,★nw::lyt::Picture ctor — F-291（RTTI N2nw3lyt7PictureE / vtable 0x8FBFFC）。+212(0xD4)=0 UV計算済フラグ / +316(0x13C)=Material* ★80バイトを別途確保（埋め込みではない）/ +320(0x140)=頂点カラー4個 / +336(0x150)=テクスチャ座標配列。実機で pic+0x13C==pic+0x1A0 に見えたのは確保が隣接しただけ。
+0x004B9830,func,"[ACNL-F0706] MEDIUM, static reanalysis, no hardware. TexMap CPU-derived values: +0x18=ROR32(+0x0C,16), width high16 / height low16. +0x1C=format mapping (+0x10 bits8..11), 0xE/F preserve previous field. +0x14 from sampler bits. Does not allocate or emit GPU commands. TextBox_UpdateDrawState compares address and params, not every derived field."
+0x004B9830,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x004BAA68,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Pane-derived Picture, size 0x158. Allocates texcoord array via +0x150 header, ptr +0x154; allocates Material 0x50 separately at 0x4BAB78. +0x13C Material pointer, +0x140 four RGBA colors. No fixed adjacency distance."
+0x004BAA68,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x004BAC18,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Material+0x4D bit0==0: invoke Material vslot0 then free Material. bit0==1: skip both. Always destroys own texcoord array +0x150, then Pane. Sharing draw pointers does not confer independent ownership."
 0x004BAC78,line,"nw::lyt::TextBox の vtable[4] — 文字色の設定 (F-127)。
   *(this + 4*(idx>>1) + 216) = *color
 引数 idx の >>1 は Itanium ABI のメンバ関数ポインタ形式
@@ -2509,8 +2505,11 @@ IDA-gpt-6.1-sol-F004 / MEDIUM追補: TextBox+0xFCは位置寄せ（mod3=水平�
 0x004BCC7C,repeatable,"IDA-opus-5.5-F086: nw::lyt::Material SetColorElement(idx<0x1C, v): byte [mat+0x10+idx] (0..3 black RGBA, 4..7 white RGBA, then TEV constant colours). Called by AnimateMaterial for CLMC. Does not clear the resend flag +0x4D bit2 itself."
 0x004BCCBC,func,"IDA-gpt-6.1-sol-F008 / 2026-10-08 / T022 fix5。根拠 ida_evidence.json・ida_extra.json。実機未検証。
 MEDIUM。Material vtable 0x8FC18Cの+0x0C（0x8FC198）がこの入口。材質+0x04のAnimLink解除0x4BDCB4への転送のみ。CLTS等の評価済み値を戻す処理はない。"
-0x004BCEA8,line,★nw::lyt::Material ctor — F-291（RTTI N2nw3lyt8MaterialE / vtable 0x8FC18C / 80 バイト）。+16..43 色7個(u32)。Material_EmitState の +16/+20 はこの配列の[0]/[1]。+44 容量・+48 現在数の詰め合わせ(bits0-1 texMap数 / 2-3 texSRT数 / 4-5 texCoordGen数)。+52 可変長ブロック: texMap[]32B → texSRT[]20B → texCoordGen[]4B → tevStage[]12B → alphaCompare8B → blendMode4B。+77 bit2 = GPU キャッシュ有効。
-0x004BCEA8,repeatable,★nw::lyt::Material ctor — F-291（RTTI N2nw3lyt8MaterialE / vtable 0x8FC18C / 80 バイト）。+16..43 色7個(u32)。Material_EmitState の +16/+20 はこの配列の[0]/[1]。+44 容量・+48 現在数の詰め合わせ(bits0-1 texMap数 / 2-3 texSRT数 / 4-5 texCoordGen数)。+52 可変長ブロック: texMap[]32B → texSRT[]20B → texCoordGen[]4B → tevStage[]12B → alphaCompare8B → blendMode4B。+77 bit2 = GPU キャッシュ有効。
+0x004BCEA8,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Material size 0x50; seven colors +0x10. +0x2C capacities, +0x30 active counts. Runtime block +0x34: TexMap, TexSRT, TexCoordGen, AlphaCompare, BlendMode, TEV (capacity offsets, not active-count offsets). Flags +0x4D initialized 0. Static only."
+0x004BCEA8,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x004BD588,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Unbind animation, then free nonnull block +0x34 and zero pointer. No shared-reference count in this destruction path."
+0x004BD668,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Free nonnull ptr +4; clear pointer/capacity/used bytes. Material ownership bit does not suppress this separate Picture array destruction."
+0x004BD694,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Header capacity byte +0, used byte +1, ptr +4. If capacity insufficient, frees old ptr and allocates 32*requested bytes. Static only."
 0x004BDC44,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
 MEDIUM。Pane自身の各材質vslot+0x0CとPane+0x1Cのアニメリンクを解除する。SRT/色の最後の評価値を戻す処理ではない。"
 0x004BDCB4,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
@@ -5280,13 +5279,8 @@ IDA-gpt-6-F008 / GPT-6 (2026-10-12, MEDIUM): T010 actual user hardware showed ch
 IDA-gpt-6-F010 / GPT-6, MEDIUM: private HHD trash B_Base_00 is left-anchored; align rectangle center, not raw pane translation, to native letter B_btn center. Uses existing native local rect + source affine matrix; keeps root N_Pos_00 outside animation group. Original ARM and DARC JSON corroborate anchor distinction."
 0x0073B508,line,"IDA-opus-5.5-F086: nw::lyt::Pane vt+0x14 GetColorElement(idx): 16 = pane alpha (+0xB4), else vt+0x1C GetVtxColorElement. Same slot in Picture/TextBox vtables (0x8FC010 / 0x8FC090). Pair of nwlyt_Pane_SetColorElement (vt+0x18). gohan HhdScreen ReadColor uses it."
 0x0073B508,repeatable,"IDA-opus-5.5-F086: nw::lyt::Pane vt+0x14 GetColorElement(idx): 16 = pane alpha (+0xB4), else vt+0x1C GetVtxColorElement. Same slot in Picture/TextBox vtables (0x8FC010 / 0x8FC090). Pair of nwlyt_Pane_SetColorElement (vt+0x18). gohan HhdScreen ReadColor uses it."
-0x0073B524,func,"IDA-gpt-6.1-sol-F015 MEDIUM: visible bit0 at flags+183; DrawSelf virtual+104 receives pane/globalAlpha+181; recursive child list sentinel pane+20, child next link at child+4. Original traversal + linked tree fixture independently verify all panes and byte restoration (including depth/capacity fallback)."
+0x0073B524,func,"[ACNL-F0707] MEDIUM, static reanalysis, no hardware. DrawSelf vslot+0x68 threads R1 cursor; R2 DrawInfo, R3 draw context. Children sentinel pane+0x14, link child+4, child visibility +0xB7 bit0. Alpha0 with basePosition bit4 skips self, still traverses children."
 0x0073B524,line,"★nwlyt_Pane_DrawRecursive(pane, cursor, ...) — UI の Pane 走査本体 — F-147 / F-177
-
-★★**常時描ける相乗り点。** 60 秒の実測で**ゼロフレームは 0.00%**（Pane 161251 回 / Picture 65315 回）。
-  Picture 層は 1.1% のゼロフレームがあるので、
-  「いついかなる時も描画する」要件にはこちらを使う（F-177）。"
-0x0073B524,repeatable,"★nwlyt_Pane_DrawRecursive(pane, cursor, ...) — UI の Pane 走査本体 — F-147 / F-177
 
 ★★**常時描ける相乗り点。** 60 秒の実測で**ゼロフレームは 0.00%**（Pane 161251 回 / Picture 65315 回）。
   Picture 層は 1.1% のゼロフレームがあるので、
@@ -5294,7 +5288,9 @@ IDA-gpt-6-F010 / GPT-6, MEDIUM: private HHD trash B_Base_00 is left-anchored; al
 0x0073B550,line,F-145: virtual Pane draw slot +0x68; returned command pointer becomes input for each visible child recursively.
 0x0073B5C4,line,"★nwlyt_Pane_GetAnchorOffset — F-291 で逆アセンブルから確定。code = pane[0xB6] & 0xF。横 = code%3: 0->S0=0 / 1->S0=-幅/2 / 2->S0=-幅。縦 = code/3: 0->S1=0 / 1->★S1=+高さ/2 / 2->S1=+高さ。★旧コメントは「1 -> 高さ*0.5」の分岐を書き落としていた（0x73B630 に実在）。中央揃え(code=4)なら (-幅/2,+高さ/2) で、行列の平行移動が矩形の中心になる。"
 0x0073B5C4,repeatable,"★nwlyt_Pane_GetAnchorOffset — F-291 で逆アセンブルから確定。code = pane[0xB6] & 0xF。横 = code%3: 0->S0=0 / 1->S0=-幅/2 / 2->S0=-幅。縦 = code/3: 0->S1=0 / 1->★S1=+高さ/2 / 2->S1=+高さ。★旧コメントは「1 -> 高さ*0.5」の分岐を書き落としていた（0x73B630 に実在）。中央揃え(code=4)なら (-幅/2,+高さ/2) で、行列の平行移動が矩形の中心になる。"
-0x0073B650,func,"IDA-opus-5.5-F075: 第3引数 = UV の組の配列（32 B/組）。材質にテクスチャ（座標生成）があるのに配列が 0 だと 0x73B8B4 で落ちる（実機 SIGSEGV、R10=0）。ウィンドウの中身は *(win+348) を渡すので、bclyt の wnd1 の中身に UV の組が要る。
+0x0073B650,func,"[ACNL-F0706] [ACNL-F0707] UV result is per Picture; uses active Gen count +0x30, but array offsets use capacities +0x2C.
+Earlier observations (not hardware-retested in issue28):
+IDA-opus-5.5-F075: 第3引数 = UV の組の配列（32 B/組）。材質にテクスチャ（座標生成）があるのに配列が 0 だと 0x73B8B4 で落ちる（実機 SIGSEGV、R10=0）。ウィンドウの中身は *(win+348) を渡すので、bclyt の wnd1 の中身に UV の組が要る。
 IDA-opus-5.5-F082: 座標生成（bclyt mat1 の 4 B、Clypo は float で持つ）は +1 バイト目 = 使う UV の組の番号だけ。投影は無い。SRT: t = R(θ)diag(sx,sy)(uv-0.5) + 0.5 + T（θ = 0 かつ拡大 1 なら省略の経路）。"
 0x0073B650,line,"IDA-opus-5.5-F040: texcoord for GPU: u=(u+tx)*ratio, t=1-(v+ty)*ratio; rotate/scale about (0.5,0.5); layout v=0 is image top; translate in v-down space."
 0x0073B650,repeatable,"IDA-opus-5.5-F040: texcoord for GPU: u=(u+tx)*ratio, t=1-(v+ty)*ratio; rotate/scale about (0.5,0.5); layout v=0 is image top; translate in v-down space."
@@ -5307,8 +5303,10 @@ IDA-opus-5.5-F082: 座標生成（bclyt mat1 の 4 B、Clypo は float で持つ
 0x0073BCBC,line,"IDA-opus-5.5-F040: Window slot26 draw. 4 frames: LT (left,top) size (w-r,t); RT (left+w-r,top) (r,h-b); RB (left+l,top-h+b) (w-l,b); LB (left,top-t) (l,h-t). l/r/t/b from nwlyt_Window_GetFrameSize. Content = inside frames + inflation."
 0x0073BCBC,repeatable,"IDA-opus-5.5-F040: Window slot26 draw. 4 frames: LT (left,top) size (w-r,t); RT (left+w-r,top) (r,h-b); RB (left+l,top-h+b) (w-l,b); LB (left,top-t) (l,h-t). l/r/t/b from nwlyt_Window_GetFrameSize. Content = inside frames + inflation."
 0x0073BE6C,line,"IDA-opus-5.5-F072: frame count 1: frame 0 material drawn 4 times, LT flip 0 / RT flip 1 / RB flip 4 / LB flip 2, same quads as 4 frames. Content is always drawn (no NW4F 'do not draw content' flag)."
+0x0073CB04,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Return Picture+0x13C; indexed argument ignored. Independent confirmation of separately allocated Material pointer."
 0x0073CB40,line,"IDA-opus-5.5-F086: Picture vt+0x1C GetVtxColorElement(idx) = byte [this+0x140+idx] (idx 0..15 = LT,RT,LB,RB x RGBA). Pair of nwlyt_Picture_SetVtxColorElement."
 0x0073CB40,repeatable,"IDA-opus-5.5-F086: Picture vt+0x1C GetVtxColorElement(idx) = byte [this+0x140+idx] (idx 0..15 = LT,RT,LB,RB x RGBA). Pair of nwlyt_Picture_SetVtxColorElement."
+0x0073CB58,func,"[ACNL-F0707] MEDIUM, static reanalysis, no hardware. [ACNL-F0706] [ACNL-F0708] R0 Picture, R1 cursor, R2 DrawInfo (directly unused here), R3 draw context. Material +0x13C; matrix +0x80, geometry +0x48, colors +0x140. Recalculates UV if Picture+0xD4==0 OR Material+0x4D bit2==0, then SETS Material bit2. Shared Material is not read-only; separate ownership/lifetime conditions apply. Batch thresholds do not check command-buffer capacity."
 0x0073CB58,line,"★nwlyt_Picture_DrawToCommandList(picture, ?, ?, drawctx) — F-176 / F-185 / F-190
 
 冒頭で Material_EmitState(drawctx, cursor, *(picture + 316)) を呼ぶ。
@@ -5330,31 +5328,6 @@ DrawCtx_FlushBatch が一括で流す。
 
 ★幾何エントリ = (幅, 高さ, アンカーX, アンカーY)。
   0x73CCE0 の VSTM "
-0x0073CB58,repeatable,"★nwlyt_Picture_DrawToCommandList(picture, ?, ?, drawctx) — F-176 / F-185 / F-190
-
-冒頭で Material_EmitState(drawctx, cursor, *(picture + 316)) を呼ぶ。
-**picture + 316 がマテリアル**（色とテクスチャの出所）。
-
-Picture は GPU コマンドを直接吐かない。drawctx の 3 配列にエントリを溜め、
-DrawCtx_FlushBatch が一括で流す。
-
-★★末尾の索引エントリ組み立て（0x73CD1C の STM）がすべてを決める:
-
-  v22 = *(drawctx+1640) + 16 * (drawctx+36);
-  v22[0] = *(drawctx+1624);   // 行列の索引        -> 位置
-  v22[1] = *(drawctx+1628);   // 自分の幾何の索引  -> 大きさ・アンカー
-  v22[2] = *(drawctx+1632);   // 追加幾何の索引    -> UV
-  v22[3] = *(drawctx+1636);   // 色の索引（sub_4B8090 が作る）
-
-★F-180 の「w1 = 幾何+1、w2 = 幾何」は誤り。
-  正しくは **w1 = 自分の幾何、w2 = 追加幾何**。
-
-★幾何エントリ = (幅, 高さ, アンカーX, アンカーY)。
-  0x73CCE0 の VSTM R2,{S0-S1} が後ろ 2 ワードを書くが、
-  直前の BL sub_73B5C4 が S0 を上書きするので
-  **入るのは行列索引ではなくアンカーのオフセット**（F-188）。
-
-★自前の UI 画像を 1 枚足す実装は PATCHES/cave_add_sprite2.py。"
 0x0073CD94,line,"IDA-opus-5.5-F040: text origin = pane top-left + (0|w/2|w, -(0|h/2|h)) by basePosition; textPosition at +0xFC."
 0x0073CD94,repeatable,"IDA-opus-5.5-F040: text origin = pane top-left + (0|w/2|w, -(0|h/2|h)) by basePosition; textPosition at +0xFC."
 0x0073CE64,line,"★TextBox の描画行列を組む — sub_73CE64(textbox, float* mtx) — F-158 / F-160
@@ -5407,10 +5380,13 @@ sub_135C28(mtx, textbox+128) で pane の行列を展開したあと:
   マテリアル +16 / +20 が submit descriptor の +0x00 / +0x04 になる。
   +20 が本体色（影 pane は黒、本文 pane は白）— F-128 / F-157。"
 0x0073CF54,line,"F-144 live clock capture: TextBox R0=0x32D07674, string ptr=0x32D07790 containing UTF-16 '00', font=0x3302ABE0, material=0x32D07BA0, length=2; proves the sampled non-conversation hit was the clock."
-0x0073D000,line,nwlyt_Material_GetTexSRTs — *(mat+52) + 32*(texMap 数)。texSRT は 1 個 20 バイト（平行移動2/回転1/拡大2）。F-291
-0x0073D000,repeatable,nwlyt_Material_GetTexSRTs — *(mat+52) + 32*(texMap 数)。texSRT は 1 個 20 バイト（平行移動2/回転1/拡大2）。F-291
-0x0073D0A0,line,nwlyt_Material_GetTexCoordGens — texSRT の直後。1 個 4 バイト。sub_73B650 は [4*i+1] を座標セットの索引に使う。F-291
-0x0073D0A0,repeatable,nwlyt_Material_GetTexCoordGens — texSRT の直後。1 個 4 バイト。sub_73B650 は [4*i+1] を座標セットの索引に使う。F-291
+0x0073D000,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Return block + 32*TexMap CAPACITY (+0x2C). Each SRT 20 bytes."
+0x0073D000,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x0073D014,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. TEV follows AlphaCompare and BlendMode. Return block +32*T+20*S+4*G+8*A+4*L; all offsets from +0x2C capacities/flags."
+0x0073D060,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Return block + 32*T + 20*S + 4*G + 8*A, capacities/flags from +0x2C; optional 4-byte blend mode precedes TEV."
+0x0073D0A0,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Return block + 32*T + 20*S, capacities from +0x2C; each gen 4 bytes."
+0x0073D0A0,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x0073D0C8,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Return block + 32*T + 20*S + 4*G, capacities from +0x2C. Optional 8-byte AlphaCompare precedes BlendMode and TEV."
 0x00743694,line,ResFont vtable slot: return FINF[20] - FINF[22]. F-129。
 0x00743694,repeatable,ResFont vtable slot: return FINF[20] - FINF[22]. F-129。
 0x007436A8,line,ResFont vtable slot: return signed FINF[1] (line feed field in live CFNU). F-129。
