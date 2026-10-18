@@ -327,6 +327,8 @@ MEDIUM。Pane vslot+0x34。自身vslot+0x38の評価後、flagsと可視bitに�
 IDA-gpt-6-F014: Always evaluates own pane via virtual+56; argument flag bit0 inhibits descending into invisible panes. T017 uses flags&~1 for hidden letter pose evaluation, preserving actual hidden drawing state and stored layout flags."
 0x004B6B58,line,"★nw::lyt::Pane ctor — F-291（Picture←Pane←internal::PaneBase）。+40 translate / +52 rotate / +64 scale / ★+72,+76 = size(幅,高さ)=0x48/0x4C / +180,181 alpha / +182 flags(下位ニブル=基準点) / +184.. 名前。"
 0x004B6B58,repeatable,"★nw::lyt::Pane ctor — F-291（Picture←Pane←internal::PaneBase）。+40 translate / +52 rotate / +64 scale / ★+72,+76 = size(幅,高さ)=0x48/0x4C / +180,181 alpha / +182 flags(下位ニブル=基準点) / +184.. 名前。"
+0x004B6CA4,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Unlinks children; child+0xB7 bit3==0 -> virtual in-place destroy then nw_lyt_FreeMemory. bit3==1 skips child destruction/free. Distinct from LayoutMgr unlink-all."
+0x004B7864,func,"[ACNL-F0707] MEDIUM. Material+0x4D bit1 skips this state emitter only; Picture continues. Explicit TEV vs default template controls color. Default texMap-count0 emits mat+0x14 to reg0x0FB (0x4B7B38), not 0x0DB; count1 emits mat+0x10/+0x14 to reg0x0DB/0x0F3."
 0x004B7864,line,"★sub_4B7864(drawctx, cursor, material, a4) — マテリアルの状態を GPU コマンドへ出す — F-185
 
 ★Picture / TextBox 共通の「マテリアル発行」本体。
@@ -334,11 +336,11 @@ IDA-gpt-6-F014: Always evaluates own pane via virtual+56; argument flag bit0 inh
 
 ★色は TexEnv の定数色で決まる。テキストの色を自由に変えられたのはこれ（F-157）。
     v20 = *(material + 48) & 3;
-    v20 == 0:  reg 0x0DB = *(material + 20)
+    v20 == 0:  reg 0x0FB = *(material + 20)
     v20 == 1:  reg 0x0DB = *(material + 16);  reg 0x0F3 = *(material + 20)
     v20 == 2:  sub_4B84C0(...)   別形式
     v20 == 3:  sub_4B85D8(...)   別形式
-  ヘッダの即値: 983291 = 0x000F00DB / 983283 = 0x000F00F3
+  ヘッダの即値: 983291 = 0x000F00FB / 983283 = 0x000F00F3
 
 ★状態キャッシュ（同じ値なら再発行しない）
     0x97B6FC  モード0 の 0x0DB
@@ -562,16 +564,10 @@ colors = 4 隅の色（u32 x 4。メモリ上のバイト順は R,G,B,A）
   if ((a3 & 1) == 0) nwlyt_Drawer_EmitProjectionUniform(drawer, cursor, DrawInfo+4)
   -> 0x4D71C4 へ JUMPOUT（g_GpuCmdPtr へ書き戻す）
 呼び出しは sub_4B8C34(drawer, Layout+0x30, 0)。a3=0 なので投影は必ず出る。"
-0x004B8CF0,line,"★nw::lyt AllocMemory(size, align) — off_96F150 のアロケータ vtable+0x08 を尾呼び。
-★対になる FreeMemory ラッパは存在しない（0x4B8D14 はもうペイン工場）。
-  返すときは ssys::ma::Allocator::Free (0x00569B44) を直接呼ぶ: R0 = *(0x0096F150), R1 = 返す番地。
-  Alloc/Free は対称でヘッダを付けないので、Alloc の戻り値をそのまま渡してよい（F-296、実機で確保→解放→再確保の往復を確認）。"
-0x004B8CF0,repeatable,"★nw::lyt AllocMemory(size, align) — off_96F150 のアロケータ vtable+0x08 を尾呼び。
-★対になる FreeMemory ラッパは存在しない（0x4B8D14 はもうペイン工場）。
-  返すときは ssys::ma::Allocator::Free (0x00569B44) を直接呼ぶ: R0 = *(0x0096F150), R1 = 返す番地。
-  Alloc/Free は対称でヘッダを付けないので、Alloc の戻り値をそのまま渡してよい（F-296、実機で確保→解放→再確保の往復を確認）。"
+0x004B8CF0,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Allocator wrapper (size,align): current off_96F150 vslot+8. Matching free wrapper is 0x13BB08. No fixed-size bound here."
+0x004B8CF0,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x004B8D14,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Resource factory: Picture allocation 0x158 (0x4B8DAC), Pane allocation 0xD4 (0x4B8D80). Align 4; then derived ctor."
 0x004B8D14,line,"★nw::lyt ペイン工場（種別 FourCC で分岐して確保＋構築）— F-291 / Picture=344B, TextBox=264B, 他 364/212B。★Picture の実体は 344 バイト(0x158)。以前の「約 0x320」は誤り。"
-0x004B8D14,repeatable,"★nw::lyt ペイン工場（種別 FourCC で分岐して確保＋構築）— F-291 / Picture=344B, TextBox=264B, 他 364/212B。★Picture の実体は 344 バイト(0x158)。以前の「約 0x320」は誤り。"
 0x004B8EA0,func,"IDA-gpt-6.1-sol-F015 MEDIUM: inner nw::lyt::Layout rootPane+16; dispatch root virtual CalculateMtx at vtable+92, forwarding drawInfo. Original caller vc_ACSYSTEM_DATA2 and Pane_CalculateMtx assembly independently agree.
 IDA-gpt-6-F014: DrawInfo is passed unchanged to root virtual+92 CalculateMtx. Native background includes attached letter root, so its force-hidden calculation bit2 updates descendants without making the letter drawable."
 0x004B8F04,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
@@ -586,12 +582,11 @@ MEDIUM。R0=LayoutImpl、R1=flags。root（impl+0x10）のvslot+0x34にtail呼�
 IDA-gpt-6-F014: Evaluation-only entry forwards flags to Pane virtual+52; T017 clears argument bit0 (visible-only) while evaluating the hidden letter subtree. This does not alter stored flags or animation time. It precedes forced parent-tree CalculateMtx."
 0x004B9748,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
 MEDIUM。Layout実装の破棄。group/root pane/AnimTransformのdtorと対応freeを行う。Unbind 0x4B8F04とは別。"
-0x004B9830,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
-TexMapの幾何/format由来のキャッシュ値更新。新しいheap確保は無い。SetTexture反復時のheap増加とは区別する。"
-0x004B9830,line,"★nw::lyt TexMap の GPU レジスタ値を作り直す — F-291。TexMap は 32B。一次は +0x00/+0x04/+0x08/+0x0C/+0x10 だけで、+0x14/+0x18/+0x1C は派生キャッシュ。+0x18 = ROR32(+0x0C,16) = reg0x082。+0x1C = 書式表(0->7 1->8 2->9 3->5 4->6 5->3 6->1 7->2 8->4 9->0 A->12 B->13 C->10 D->11) = reg0x08E。LA4(PICA 9) は nw::lyt 書式 2。+0x14 = ラップ/フィルタ = reg0x083。直接書いてもこの関数が呼ばれると上書きされる。"
-0x004B9830,repeatable,"★nw::lyt TexMap の GPU レジスタ値を作り直す — F-291。TexMap は 32B。一次は +0x00/+0x04/+0x08/+0x0C/+0x10 だけで、+0x14/+0x18/+0x1C は派生キャッシュ。+0x18 = ROR32(+0x0C,16) = reg0x082。+0x1C = 書式表(0->7 1->8 2->9 3->5 4->6 5->3 6->1 7->2 8->4 9->0 A->12 B->13 C->10 D->11) = reg0x08E。LA4(PICA 9) は nw::lyt 書式 2。+0x14 = ラップ/フィルタ = reg0x083。直接書いてもこの関数が呼ばれると上書きされる。"
-0x004BAA68,line,★nw::lyt::Picture ctor — F-291（RTTI N2nw3lyt7PictureE / vtable 0x8FBFFC）。+212(0xD4)=0 UV計算済フラグ / +316(0x13C)=Material* ★80バイトを別途確保（埋め込みではない）/ +320(0x140)=頂点カラー4個 / +336(0x150)=テクスチャ座標配列。実機で pic+0x13C==pic+0x1A0 に見えたのは確保が隣接しただけ。
-0x004BAA68,repeatable,★nw::lyt::Picture ctor — F-291（RTTI N2nw3lyt7PictureE / vtable 0x8FBFFC）。+212(0xD4)=0 UV計算済フラグ / +316(0x13C)=Material* ★80バイトを別途確保（埋め込みではない）/ +320(0x140)=頂点カラー4個 / +336(0x150)=テクスチャ座標配列。実機で pic+0x13C==pic+0x1A0 に見えたのは確保が隣接しただけ。
+0x004B9830,func,"[ACNL-F0706] MEDIUM, static reanalysis, no hardware. TexMap CPU-derived values: +0x18=ROR32(+0x0C,16), width high16 / height low16. +0x1C=format mapping (+0x10 bits8..11), 0xE/F preserve previous field. +0x14 from sampler bits. Does not allocate or emit GPU commands. TextBox_UpdateDrawState compares address and params, not every derived field."
+0x004B9830,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x004BAA68,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Pane-derived Picture, size 0x158. Allocates texcoord array via +0x150 header, ptr +0x154; allocates Material 0x50 separately at 0x4BAB78. +0x13C Material pointer, +0x140 four RGBA colors. No fixed adjacency distance."
+0x004BAA68,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x004BAC18,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Material+0x4D bit0==0: invoke Material vslot0 then free Material. bit0==1: skip both. Always destroys own texcoord array +0x150, then Pane. Sharing draw pointers does not confer independent ownership."
 0x004BAC78,line,"nw::lyt::TextBox の vtable[4] — 文字色の設定 (F-127)。
   *(this + 4*(idx>>1) + 216) = *color
 引数 idx の >>1 は Itanium ABI のメンバ関数ポインタ形式
@@ -667,8 +662,11 @@ IDA-gpt-6.1-sol-F004 / MEDIUM追補: TextBox+0xFCは位置寄せ（mod3=水平�
 0x004BCC7C,repeatable,"IDA-opus-5.5-F086: nw::lyt::Material SetColorElement(idx<0x1C, v): byte [mat+0x10+idx] (0..3 black RGBA, 4..7 white RGBA, then TEV constant colours). Called by AnimateMaterial for CLMC. Does not clear the resend flag +0x4D bit2 itself."
 0x004BCCBC,func,"IDA-gpt-6.1-sol-F008 / 2026-10-08 / T022 fix5。根拠 ida_evidence.json・ida_extra.json。実機未検証。
 MEDIUM。Material vtable 0x8FC18Cの+0x0C（0x8FC198）がこの入口。材質+0x04のAnimLink解除0x4BDCB4への転送のみ。CLTS等の評価済み値を戻す処理はない。"
-0x004BCEA8,line,★nw::lyt::Material ctor — F-291（RTTI N2nw3lyt8MaterialE / vtable 0x8FC18C / 80 バイト）。+16..43 色7個(u32)。Material_EmitState の +16/+20 はこの配列の[0]/[1]。+44 容量・+48 現在数の詰め合わせ(bits0-1 texMap数 / 2-3 texSRT数 / 4-5 texCoordGen数)。+52 可変長ブロック: texMap[]32B → texSRT[]20B → texCoordGen[]4B → tevStage[]12B → alphaCompare8B → blendMode4B。+77 bit2 = GPU キャッシュ有効。
-0x004BCEA8,repeatable,★nw::lyt::Material ctor — F-291（RTTI N2nw3lyt8MaterialE / vtable 0x8FC18C / 80 バイト）。+16..43 色7個(u32)。Material_EmitState の +16/+20 はこの配列の[0]/[1]。+44 容量・+48 現在数の詰め合わせ(bits0-1 texMap数 / 2-3 texSRT数 / 4-5 texCoordGen数)。+52 可変長ブロック: texMap[]32B → texSRT[]20B → texCoordGen[]4B → tevStage[]12B → alphaCompare8B → blendMode4B。+77 bit2 = GPU キャッシュ有効。
+0x004BCEA8,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Material size 0x50; seven colors +0x10. +0x2C capacities, +0x30 active counts. Runtime block +0x34: TexMap, TexSRT, TexCoordGen, AlphaCompare, BlendMode, TEV (capacity offsets, not active-count offsets). Flags +0x4D initialized 0. Static only."
+0x004BCEA8,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x004BD588,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Unbind animation, then free nonnull block +0x34 and zero pointer. No shared-reference count in this destruction path."
+0x004BD668,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Free nonnull ptr +4; clear pointer/capacity/used bytes. Material ownership bit does not suppress this separate Picture array destruction."
+0x004BD694,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Header capacity byte +0, used byte +1, ptr +4. If capacity insufficient, frees old ptr and allocates 32*requested bytes. Static only."
 0x004BDC44,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
 MEDIUM。Pane自身の各材質vslot+0x0CとPane+0x1Cのアニメリンクを解除する。SRT/色の最後の評価値を戻す処理ではない。"
 0x004BDCB4,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。

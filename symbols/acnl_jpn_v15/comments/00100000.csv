@@ -430,6 +430,7 @@ IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catal
 0x0013B9A8,func,"IDA-gpt-6.1-sol-F009 / T022 fix6 / MEDIUM: R0=TextBox, R1=N, R2=flags。通常flags bit0x8=0では文字器2*(N+1) Bと0x4D5480(N) Bの描画器を0x4B8CF0(size,align=4)から別々に確保。Ctor→InitFieldsのflags=0枝が対象。N127合計45744 B、N129合計46468 B、N15合計5632 B（管理領域を除外）。使わない文字ペイン8個を除去し残る名前器を縮小すると、家具窓の文字器413868→5632 B。原本ARM1176純整数計算2048ケース一致は実機Heap/GPUの成功を保証しない。"
 0x0013B9A8,line,"IDA-opus-5.5-F036: TextBox vt[28]。(箱, 文字数, 旗) で文字の器 (文字数+1)*2 と描画用の器(+260)をレイアウトのアロケータから確保。+212=器 / +248=器のバイト数。旗 = +260 の +9。旧い器は vt[29] で返す"
 0x0013B9A8,repeatable,"IDA-opus-5.5-F036: TextBox vt[28]。(箱, 文字数, 旗) で文字の器 (文字数+1)*2 と描画用の器(+260)をレイアウトのアロケータから確保。+212=器 / +248=器のバイト数。旗 = +260 の +9。旧い器は vt[29] で返す"
+0x0013BB08,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Free wrapper: R0=ptr -> R1=ptr, R0=current off_96F150, tailcall allocator vslot+0x0C. Used by Picture/Material/coordinate array destruction."
 0x0013C518,func,F-133 static: replaces ResFont+0x0C glyph-sheet descriptor table; frees old table and initializes new descriptors when non-null.
 0x0013C548,line,F-133: non-null table is passed to nwfont_ResFont_InitGlyphSheetDescriptors.
 0x0013F718,func,"IDA-gpt-6-F006 / GPT-6, MEDIUM (2026-10-12): SeadList_Remove. Native ARM independently checked against original code.bin; caller/RTTI/data accesses corroborate the contract.  Hardware unverified; no LOW rename."

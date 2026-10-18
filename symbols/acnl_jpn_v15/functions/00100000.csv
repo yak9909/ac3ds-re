@@ -111,6 +111,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x0013B6A4,56,GSPGPU_FlushDataCache,,,legacy-idb,,
 0x0013B7EC,288,gfx_ResMaterial_Cleanup,,,legacy-idb,,
 0x0013B9A8,352,nwlyt_TextBox_AllocStringBuffer_0,,,legacy-idb,,
+0x0013BB08,24,nw_lyt_FreeMemory,,,analysis,ACNL-F0708,
 0x0013C518,60,nwfont_ResFont_SetGlyphSheetTable,,,legacy-idb,,
 0x0013F0F4,48,gfx_LutReference_Cleanup,,,legacy-idb,,
 0x0013F128,48,gfx_TextureMapper_Cleanup,,,legacy-idb,,
