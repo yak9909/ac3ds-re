@@ -303,9 +303,9 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x005CD3C0,20,FieldAttr_CollisionClass,,,legacy-idb,,
 0x005CD3F0,280,FieldAttr_SplitParts,,,legacy-idb,,
 0x005CD50C,16,Field_GetWallPlacementSideAtCell,,,legacy-idb,,
-0x005CD51C,20,FieldAttr_GetWallPlacementSide,unsigned int __fastcall(unsigned int attribute),,legacy-idb,,
-0x005CD544,20,FieldAttr_WaterKind,,,legacy-idb,,
-0x005CD55C,20,FieldAttr_CanPlantFlower,,,legacy-idb,,
+0x005CD51C,20,FieldAttr_GetWallPlacementSide,unsigned int __fastcall(unsigned int attribute),,legacy-idb,,0x005CD3C0
+0x005CD544,20,FieldAttr_WaterKind,,,legacy-idb,,0x005CD3C0
+0x005CD55C,20,FieldAttr_CanPlantFlower,,,legacy-idb,,0x005CD3C0
 0x005CD574,312,Field_CanLayDesignAt,,,legacy-idb,,
 0x005CD970,76,,,,legacy-idb,,
 0x005CD9C0,116,,,,legacy-idb,,

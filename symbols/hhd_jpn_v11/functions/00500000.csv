@@ -35,7 +35,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x005695B4,48,Input_IsTouchingInside,,,legacy-idb,,
 0x005695F8,20,Input_TestPadField40,,,legacy-idb,,
 0x005698E8,64,DropTarget_IsSelected,,,legacy-idb,,
-0x0056B158,64,DragArea_IsDragging,,,legacy-idb,,
+0x0056B158,64,DragArea_IsDragging,,,legacy-idb,,0x005698E8
 0x00575158,44,StateMachine_GetCurrentState,,,legacy-idb,,
 0x0057992C,20,FurnitureActor_IsState2,,,legacy-idb,,
 0x0057A080,96,FurnitureActor_GetPushPullFacingQuadrant,,,legacy-idb,,
@@ -50,6 +50,6 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x005B9240,268,StaticInit_ButtonAnimNames,,,legacy-idb,,
 0x005BC318,1572,StaticInit_ButtonBaseActorStates,,,legacy-idb,,
 0x005C2BF8,44,StaticInit_EyeButtonColorAnimNames,,,legacy-idb,,
-0x005C4B08,44,StaticInit_HairButtonColorAnimNames,,,legacy-idb,,
+0x005C4B08,44,StaticInit_HairButtonColorAnimNames,,,legacy-idb,,0x005C2BF8
 0x005C806C,64,StaticInit_ColorButtonAnimNames,,,legacy-idb,,
 0x005F942C,1948,HhdCameraSpline_BuildNaturalCubic,"void __fastcall(HhdRoomCameraSpline *spline, void *allocator)",,legacy-idb,,

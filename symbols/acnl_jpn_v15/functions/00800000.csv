@@ -3,7 +3,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x00815E8C,268,vc_SUB_8176E4,,,legacy-idb,,
 0x008163C0,264,StateMachine_ChangeTo,,,legacy-idb,,
 0x00816A04,268,vc_RESTOREBUTTON,,,legacy-idb,,
-0x008197F8,264,StateMachine_ChangeState,,,legacy-idb,,
+0x008197F8,264,StateMachine_ChangeState,,,legacy-idb,,0x008163C0
 0x0081A8AC,268,vc_ACMESSAGEBOX_FUNC5,,,legacy-idb,,
 0x0081B41C,268,,,,legacy-idb,,
 0x0081E150,96,vc_SETUPSTACKDATA,,,legacy-idb,,

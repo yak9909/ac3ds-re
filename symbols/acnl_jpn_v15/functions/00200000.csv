@@ -173,7 +173,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x002B72A0,156,ButtonActionNode_Ctor,,,legacy-idb,,
 0x002B79C4,76,ChangeRentalBase_ExitUpdate,,,legacy-idb,,
 0x002B7A14,56,ChangeRentalBase_ExitEnter,,,legacy-idb,,
-0x002B7DD0,20,ChangeRentalBase_BeginExit,,,legacy-idb,,
+0x002B7DD0,20,ChangeRentalBase_BeginExit,,,legacy-idb,,0x001C58F4
 0x002B8E4C,96,Cabinet_RefreshItem,"int __fastcall(AcnlChangeStockItemPrefixF006 *self, unsigned int ui_index)",,legacy-idb,,
 0x002B8EAC,1112,ItemIconWidget_SetItem,,,legacy-idb,,
 0x002B9470,112,ItemIconWidget_SetDisabled,,,legacy-idb,,
@@ -204,7 +204,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x002C5E9C,236,RoomView_GetWallLocatorWorldBounds,,,legacy-idb,,
 0x002C5FA8,456,HouseRoom_SetWallpaper,,,legacy-idb,,
 0x002C617C,468,BsCharRoomViewMgr_Destroy,,,legacy-idb,,
-0x002C6350,20,BsCharRoomViewMgr_Deactivate,int(),,legacy-idb,,
+0x002C6350,20,BsCharRoomViewMgr_Deactivate,int(),,legacy-idb,,0x001C4778
 0x002C678C,484,BsCharRoomViewMgr_ApplyAndSubmit,,,legacy-idb,,
 0x002C6978,808,BsCharRoomViewMgr_Calc,,,legacy-idb,,
 0x002C6CCC,456,HouseRoom_SetFlooring,,,legacy-idb,,
@@ -213,7 +213,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x002CD720,200,,,,legacy-idb,,
 0x002D05BC,8,PartsDragIconNode_GetHitPane,,,legacy-idb,,
 0x002D05C4,8,DragIconNode_SetDropHitPane,"AcnlPartsDragNodeF012 *__fastcall(AcnlPartsDragNodeF012 *self, void *pane)",,legacy-idb,,
-0x002D0660,20,PartsDragIconNode_Ctor,AcnlPartsDragNodeF010 *__fastcall(AcnlPartsDragNodeF010 *self),,legacy-idb,,
+0x002D0660,20,PartsDragIconNode_Ctor,AcnlPartsDragNodeF010 *__fastcall(AcnlPartsDragNodeF010 *self),,legacy-idb,,0x0012653C
 0x002D52D4,12,RoomData_SetWallpaper,,,legacy-idb,,
 0x002D5728,12,RoomData_SetFlooring,,,legacy-idb,,
 0x002E087C,8,ComButtonCtrl_SetMessage,,,legacy-idb,,
@@ -259,7 +259,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x002FBC01,62,TileBitmap_ForRandomUntilEmpty,,,legacy-idb,,
 0x002FC878,20,Item_Copy,,,legacy-idb,,
 0x002FC8BC,36,Net_IsMultiplayer,,,legacy-idb,,
-0x002FC8F0,20,Item_CopyAndReturn,"ItemID *__fastcall(ItemID *destination, const ItemID *source)",,legacy-idb,,
+0x002FC8F0,20,Item_CopyAndReturn,"ItemID *__fastcall(ItemID *destination, const ItemID *source)",,legacy-idb,,0x002FC878
 0x002FC950,216,Field_SetItemAtWorldXY,,,legacy-idb,,
 0x002FCB24,28,Item_IsEmpty,,,legacy-idb,,
 0x002FCB64,36,Item_GetParamCategory,unsigned int __fastcall(const ItemID *item),,legacy-idb,,

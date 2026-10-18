@@ -172,7 +172,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x006A5F94,328,Field_WorldToAcreTile,,,legacy-idb,,
 0x006A6364,84,Field_TileToWorld,,,legacy-idb,,
 0x006A6458,12,IslandRuntime_GetData,struct IslandRuntimeData *__fastcall(),,legacy-idb,,
-0x006A68E4,84,Field_XYToWorld,,,legacy-idb,,
+0x006A68E4,84,Field_XYToWorld,,,legacy-idb,,0x006A6364
 0x006A81C4,32,LytPaneHolder_SetVisible,,,legacy-idb,,
 0x006A9114,340,LoadingUi_BuildLayout,,,analysis,ACNL-F0702,
 0x006A9E70,36,,,,legacy-idb,,
@@ -192,7 +192,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x006C54AC,136,Field_GetGroundHeight,,,legacy-idb,,
 0x006C5960,176,Field_TileHasWaterAt,,,legacy-idb,,
 0x006C63D4,144,Field_CanPlaceClass5WallFurnitureAtCell,"int __fastcall(int x, int z, int layer)",,legacy-idb,,
-0x006C69C0,80,Field_GetGroundHeightAtWorld,,,legacy-idb,,
+0x006C69C0,80,Field_GetGroundHeightAtWorld,,,legacy-idb,,0x006C4F08
 0x006C7C2C,288,vc_GSTATE,,,legacy-idb,,
 0x006C9E60,572,Building_GetFootprintByCategory,,,legacy-idb,,
 0x006CA0AC,64,Building_IsNpcHouse,,,legacy-idb,,
@@ -244,7 +244,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x006D6388,180,BsMenuTab_AllTopTabsInEnter,,,legacy-idb,,
 0x006D6440,216,BsMenuTab_ChatTabsOutEnter,,,legacy-idb,,
 0x006D6528,320,BsMenuTab_UpdateExit,,,legacy-idb,,
-0x006D6A98,40,BsMenuTab_AllTabsOutUpdate,,,legacy-idb,,
+0x006D6A98,40,BsMenuTab_AllTabsOutUpdate,,,legacy-idb,,0x006D61E8
 0x006D6B88,76,BsMenuTab_AllTabsOutEnter,,,legacy-idb,,
 0x006D6F60,40,BsMenuTab_MapSyncTabsInUpdate,,,legacy-idb,,
 0x006D701C,148,BsMenuTab_MapSyncTabsInEnter,,,legacy-idb,,
@@ -266,8 +266,8 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x006E2850,184,DreamNet_BeginDownloadTown,,,legacy-idb,,
 0x006E2D04,376,DreamNet_StepDownloadTown,,,legacy-idb,,
 0x006E3A98,36,,,,legacy-idb,,
-0x006E3B58,256,FaderWipe_Update,,,legacy-idb,,
-0x006E3D64,20,FaderWipe_Ctor,,,legacy-idb,,
+0x006E3B58,256,FaderWipe_Update,,,legacy-idb,,0x001AA690
+0x006E3D64,20,FaderWipe_Ctor,,,legacy-idb,,0x0012653C
 0x006E60E0,872,NpcAction_ConsumeRequest,,,legacy-idb,,
 0x006E6454,200,NpcAction_ChangeAction,,,legacy-idb,,
 0x006E6520,208,vc_NPCCODES_FUNC1,,,legacy-idb,,
