@@ -32,6 +32,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0326"]
 ---
 ## F-299 (HIGH・静的＋実機の実データ照合) — ★F-298 の検証と**訂正 2 件**。バッチの確保元を特定（残件 1）
 

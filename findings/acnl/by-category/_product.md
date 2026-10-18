@@ -51,7 +51,7 @@
 | ACNL-F0126 | F-88: phase 1公開中にstock previewへ戻るとtype `0xBC`を早期生成してSIGSEGVになる | confidence: **HIGH**（例外PC・全register・stack・actor/manager memoryと静的呼出し経路を照合） | HIGH | ? |  |  |
 | ACNL-F0129 | F-91: `1UPキノコ` はfamily 3/type `0xBD`でも同じvptr+8 crash。preview特殊type全域を基底化 | confidence: **HIGH**（例外register/stack、ItemParam record、family table、復旧create、実機patch読戻しを照合） | HIGH | ? |  |  |
 | ACNL-F0139 | F-101: CLAUDE.md 準拠での再精査 — confidence の系統的誤り | confidence: **MEDIUM**（本項自体も静的解析のみ） | MEDIUM | ? |  |  |
-| ACNL-F0143 | F-105: ★MCP 側から Suspend できる（CLAUDE.md の記述を訂正） | confidence: **HIGH**（実機で制御実験） | HIGH | ? |  |  |
+| ACNL-F0143 | F-105: ★MCP 側から Suspend できる（CLAUDE.md の記述を訂正） | confidence: **HIGH**（実機で制御実験） | HIGH | ? |  | 訂正あり |
 | ACNL-F0148 | F-110: ★`Use stepping support` を OFF にしても、ヒットした bp の削除は必要（TODO-54 完了） | confidence: **HIGH**（実機で対照実験。ユーザーの目視確認つき） | HIGH | ? |  | 訂正あり |
 | ACNL-F0154 | F-116: ★★TODO-75 第1段達成 — シーンへノードを追加できた。あわせて Suspend の条件を確定 | confidence: **HIGH**（実機。対照実験つき） | HIGH | ? |  | 訂正あり |
 | ACNL-F0155 | F-117: ★TODO-79 完了 — `DUP=True` はハングしなかった。F-116 の「ハングの疑い」は誤り | confidence: **HIGH**（実機。ベースラインとの対照実験） | HIGH | ? |  |  |
@@ -90,7 +90,7 @@
 | ACNL-F0283 | F-260: F-259 の設計を実装し、IDA の逆アセンブルで検証した（実機未適用） — `HIGH`（静的のみ） | `PATCHES/cave_node_record.py`。`cave_node_draw.py` を複製し、F-259 の設計を載せた。 | HIGH | ? |  |  |
 | ACNL-F0285 | F-262: 再生の複製経路を逆アセンブルで裏取りし、実装の誤り 2 件を追加で直した — `HIGH`（静的のみ） | `GpuCmd_ReplayRecordedListRange` の `if (a7)` 側（`0x7B0E08`〜）を逆アセンブルした。 | HIGH | ? |  |  |
 | ACNL-F0290 | F-267: 雛形の複製を廃止した。写し元依存が実装から消えた — `HIGH`（静的のみ） | F-259 の実装は、本物の Layout から `+0x28` の 20 語（`0x50` バイト）を写して雛形にしていた。 | HIGH | ? |  |  |
-| ACNL-F0292 | F-269: TEV を自前で組んだ。**設計から借り物が消えた** — `HIGH`（静的のみ） | F-268 でマテリアルのテンプレートの符号化が全部割れたので、 | HIGH | ? |  |  |
+| ACNL-F0292 | F-269: TEV を自前で組んだ。**設計から借り物が消えた** — `HIGH`（静的のみ） | F-268 でマテリアルのテンプレートの符号化が全部割れたので、 | HIGH | ? |  | 訂正あり |
 | ACNL-F0295 | F-272: F-264〜F-271 の整合監査。独立な結果と突き合わせて 1 件の誤りを訂正し、`SET_PROJECTION` を廃止した — `HIGH` | 新しい結論が既存の独立した結果と矛盾しないかを、6 点について確かめた。 | HIGH | ? |  | 訂正あり |
 | ACNL-F0296 | `SET_PROJECTION` を廃止した | 上の 3 番で、**ビューポートは各パスが `RecordChildren` の後・`SetDisplay`（replay）の前に |  | ? |  |  |
 | ACNL-F0297 | F-273: ★★★★★致命的なバグ。記録スロットのエピローグが `R4` = drawctx のまま `Commit` していた — `HIGH`（静的のみ・未適用） | F-267 の教訓「生成器を変えたらケーブ 1 本を丸ごと IDA に通す」に従って | HIGH | ? |  |  |

@@ -23,6 +23,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0293"]
 ---
 ## F-269: TEV を自前で組んだ。**設計から借り物が消えた** — `HIGH`（静的のみ）
 
