@@ -512,6 +512,9 @@ def to_int(s):
 
 
 def cmd_addr(a) -> int:
+    if a.ref_limit < 0:
+        print("エラー: --ref-limit は0以上にする", file=sys.stderr)
+        return 2
     addr = int(a.addr, 0)
     builds = load_toml("builds.toml").get("builds", {})
     build = a.build or next((n for n, b in builds.items() if "保管だけ" not in b.get("note", "")), "")
@@ -543,6 +546,17 @@ def cmd_addr(a) -> int:
             n += 1
     if not n:
         print("  なし")
+    import refindex
+
+    references = list(refindex.lookup(refindex.index_dir(root()), addr, build))
+    if references:
+        print("参考資料（LOW、一次証拠ではない）:")
+        for row in references[:a.ref_limit]:
+            print("  %s %s:%s（build=%s）" % (
+                row["key"], row["file"], row["line"],
+                "不明" if row["build"] == refindex.UNKNOWN else row["build"]))
+        if len(references) > a.ref_limit:
+            print("  ほか %d 件" % (len(references) - a.ref_limit))
     ip = state_dir() / "issues.json"
     if ip.exists():
         try:
@@ -779,6 +793,7 @@ def main(argv=None) -> int:
     s = sub.add_parser("addr")
     s.add_argument("addr")
     s.add_argument("--build")
+    s.add_argument("--ref-limit", type=int, default=20, help="参考資料の最大表示件数（既定20）")
     s.set_defaults(f=cmd_addr)
     s = sub.add_parser("lint")
     s.add_argument("--quiet", action="store_true")
