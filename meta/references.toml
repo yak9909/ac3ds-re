@@ -1,10 +1,55 @@
-# 参考資料（REFERENCES）の台帳。本体は _local/refs/<名前>/ に置き、ここには出所と照合値だけを書く。
-# 取り込みは段階1b。使い方はスキル use-references。
+# 参考資料（REFERENCES）の台帳。本体は _local/refs/ に置き、資料の本文はここに入れない。
 # 書式:
 # [refs.<名前>]
-# description = "内容"
-# source = "入手元（URL など）"
-# license = "ライセンス（不明なら unknown）"
-# path = "_local/refs/<名前>/ からの相対パス"
-# sha256 = "原本の SHA256"
-# encoding = "utf-8 / shift_jis"
+# description = "資料の内容"
+# source = "資料内で確認できる入手元。不明なら unknown"
+# license = "資料内で確認できるライセンス。不明なら unknown"
+# path = "_local/refs/ からの相対パス"
+# sha256 = "対応する MANIFEST-v1-REFERENCES-<名前>.sha256 ファイル自体の SHA256"
+# encoding = "主な文字コード。混在する場合はその旨を書く"
+# files = まとまりに含まれるファイル数（マニフェストの行数）
+
+[refs.CHEATS]
+description = "Gateway 形式のチートを機能別に収めたテキスト、アドレス順の索引、ドロップ処理の C++ メモ。"
+source = "unknown"
+license = "unknown"
+path = "v1-REFERENCES/CHEATS/"
+sha256 = "223a6c81afd5c75dcdabab99bd7cf43e5a0c65b09826c823b681cfc45d7267a0"
+encoding = "UTF-8"
+files = 12
+
+[refs.CTRPF_PROJECTS]
+description = "Adios、AnimalBytes、FOXXY、JOKER、ROTATION、Vapecord の CTRPF プラグイン関連ファイル。チート実装、ヘッダ、依存ライブラリ、ビルド生成物を含む。"
+source = "一部は AnimalBytes README 記載の https://github.com/yak9909/AnimalBytes 。その他の収集元は unknown"
+license = "混在。AnimalBytes は MIT、Vapecord は PolyForm Noncommercial 1.0.0。その他と同梱物は unknown"
+path = "v1-REFERENCES/CTRPF PROJECTS/"
+sha256 = "389c4a4a1c1628cfe6b4d0a19f8d2057b922971767de823775875cd0974a6c33"
+encoding = "主に UTF-8（一部 BOM）。バイナリ混在"
+files = 1897
+
+[refs.IDS]
+description = "動作、部屋、アイテム、建物、外見などの ID 一覧と画像。手動観察メモと ACNL_ID_Lists の資料を含む。"
+source = "一部は ACNL_ID_Lists の index.md が参照する https://github.com/RedShyGuy/ACNL_ID_Lists 。その他は unknown"
+license = "unknown"
+path = "v1-REFERENCES/IDS/"
+sha256 = "0b71c65bd28a32b94a5905ea6b14a3dde8e95ea9d35286ca92298d598e367eba"
+encoding = "主に UTF-8（一部 BOM）、Shift_JIS（CP932）混在。画像も含む"
+files = 29
+
+[refs.TEXTS]
+description = "RTTI、クラス構造、シンボル表、関数の逆コンパイル、描画解析のメモと構造図。"
+source = "unknown"
+license = "unknown"
+path = "v1-REFERENCES/TEXTS/"
+sha256 = "5cf91bf00c82692cfc90fca7ee33e016688a4760d3c71aa5a3b67fe5d33b7393"
+encoding = "UTF-8。画像も含む"
+files = 6
+
+[refs."README.md"]
+description = "REFERENCES 全体の読み方、Gateway コードと ID 一覧の扱い、先行資料の限界を説明する文書。"
+source = "unknown"
+license = "unknown"
+path = "v1-REFERENCES/README.md"
+sha256 = "bb3cc7d143fcc56646ee1393eca1062ac186a215ed289e7cbd6800d9c2deaa47"
+encoding = "UTF-8"
+files = 1

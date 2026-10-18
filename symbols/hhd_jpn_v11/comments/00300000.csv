@@ -1,0 +1,239 @@
+address,kind,text
+0x0033D2B8,func,"IDA-opus-5.5-HHD-F010: ドラッグの記録。+36 = 位置(画素)の前回からの差、+24 = 正規化座標の |dx| の累計、+108 = 速さ = 前*s1 + s0*|画素の差| を [0,120]、+112 = 同じく正規化で [0,0.5]、+96 = 移動方向（|差|>1 のときだけ更新）。ドラッグ中は s0=2.0 s1=0.5（DragArea +432/+436）。"
+0x0033D2B8,repeatable,"IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 速さ=0.5*前の速さ+2*二次元移動距離、[0,120]。向きの更新は移動>1pixel。PageSliderのフリックはこの値を使う。根拠 work/codex/out/t022_tum15/report.md / tum15.json。"
+0x00346138,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 非wrapで範囲外の論理ページに対応した枠を非表示にする。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00346228,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: Waitかつ入力許可でのみ1ページ送り。direction1は前ページでtable第2要素changePage_R、direction0は次ページで第1要素changePage_L。端では拒否、速さ25。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00346460,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 位置を変えて全体の先頭/末尾でclamp。3枠を±3幅で再利用。論理ページ±3で内容補充。Tum15幅288は資源ペイン差で取得。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0034699C,func,"IDA-opus-5.5-HHD-F010: 離したとき。v = min(速さ[tracker+108], 25)。v >= 8 なら弾き量 = v / 0.05。目標 = round((+128 + 向き*弾き量) / 幅) を -1..1 に丸め × 幅。回り込みなしなら全体の範囲 [-(幅*(n-1)), 0] に収める。滑る速さ +80 = clamp(v, 10, 25)。向き = tracker+96（最後の移動方向の x）の符号。"
+0x0034699C,repeatable,"IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: v=min(速さ,25)、v>=8なら投影v/0.05。丸めて相対[-1,1]ページへsnap。非wrap全体範囲にclamp、maxStep=clamp(v,10,25)。根拠 work/codex/out/t022_tum15/report.md / tum15.json。"
+0x00346D4C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: VFP引数とMath_ApproachDampedを照合。残差*0.2、最小0.5/最大+80、行き過ぎ防止。S0の戻りは残差。完了epsilon±FLT_EPSILON、中央absX<0.1。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003470A4,func,IDA-opus-5.5-HHD-F010: ページ送りの部品（実名不明。状態 Wait/Drag/Slide = g_PageSlider_StateID_*）。+76 0.2（寄せる割合）/+80 滑る速さ/+84 0.5（最小の一歩）/+88 25（速さの上限）/+92 10（速さの下限）/+96 25（L/R の速さ）/+100 8（弾きのしきい値）。+116 = ドラッグの当たり（DragArea）、+124 = ページ幅（枠 2 と枠 1 の x の差）、+128 = 今回の移動量、+132 = 位置、+140 = 目標、+148 = ページ数、+152 = 今のページ、+172 = 回り込み（髪の一覧は 0）。
+0x003470A4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 312B。gain0.2、初期最大刻み25、最小刻み0.5、release上限25/下限10、LR最大刻み25、flick閾値8。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0034BD38,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 上段L_BtnTopグループ決定→+1076、小分類L_Kind決定→+1077。完了+271と状態CatalogSelectを追跡。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0034CCC4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 分母a2→+1056 T_Page_00、分子a3→+1064 T_Page_01。十進・幅指定2。binding0x34CE08とCatalog資源を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003534C4,line,"IDA-opus-5.5-HHD-F001: (layout, 枠, s0=フレーム) 枠があれば vtbl+84 で対象を取り LayoutAnimCtrl_SetSlotFrame(+32) → 0x437A48 で反映。色の番号をそのままフレームにする"
+0x003534C4,repeatable,"IDA-opus-5.5-HHD-F001: (layout, 枠, s0=フレーム) 枠があれば vtbl+84 で対象を取り LayoutAnimCtrl_SetSlotFrame(+32) → 0x437A48 で反映。色の番号をそのままフレームにする"
+0x003535A4,line,"IDA-opus-5.5-HHD-F001: (layout, 枠, 名前) 資源(+24)にそのアニメがあれば 0x436C60(+32 のアニメ制御)へ結ぶ。ボタンの基本は枠 10 = empty、色は 11〜13"
+0x003535A4,repeatable,"IDA-opus-5.5-HHD-F001: (layout, 枠, 名前) 資源(+24)にそのアニメがあれば 0x436C60(+32 のアニメ制御)へ結ぶ。ボタンの基本は枠 10 = empty、色は 11〜13"
+0x00354170,func,IDA-opus-5.5-HHD-F009: レイアウトに G_Loop グループと loop アニメがあれば結んで再生する（+600/+604 に引数）。組み立ての汎用の経路 sub_3542F8 / sub_354450（呼び元 10 以上）から呼ばれる → fce_BG_00 / fce_Top_00 の水玉・吹き出し、色見本・目・髪の枚の縞は常に動く。
+0x0035D954,line,IDA-opus-5.5-HHD-F005: 髪の一覧。髪 32 個(B 0-15 / G 16-31)、1 ページ 8 個(ページ部品 +244)。+304 なら性別の 16 個だけ(+288=1 で女の子 → −/+16)。+280 = 3 枚のページ枠を回す部品(sub_567988 = 枠のページ番号)、+284 = 今の髪、+292 = 髪の色、+296 = 肌の色、+256 = 選択グループ（番号 = 枚内 + 枠 x 8）
+0x0035D954,repeatable,IDA-opus-5.5-HHD-F005: 髪の一覧。髪 32 個(B 0-15 / G 16-31)、1 ページ 8 個(ページ部品 +244)。+304 なら性別の 16 個だけ(+288=1 で女の子 → −/+16)。+280 = 3 枚のページ枠を回す部品(sub_567988 = 枠のページ番号)、+284 = 今の髪、+292 = 髪の色、+296 = 肌の色、+256 = 選択グループ（番号 = 枚内 + 枠 x 8）
+0x00362D7C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 In の exec を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00362E70,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 Out の exec を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00362EF8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 In の exit を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00362EFC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 Idle の exec を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00362F08,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 Wait の exec を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00362FDC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 Out の exit を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00362FE0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 OkOut の exec を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0036306C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 Idle の exit を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00363070,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 Wait の exit を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00363074,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 In の enter を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003630BC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 OkOut の exit を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003630C0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 Out の enter を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003630E0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 Idle の enter を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003630E4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 Wait の enter を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00363120,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 In の predicate を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00363128,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 OkOut の enter を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00363134,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 Out の predicate を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0036313C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 Idle の predicate を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00363144,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 Wait の predicate を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0036314C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5b1d38 と vtable 0x6e5264 から MainTop 状態 OkOut の predicate を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00367864,line,"IDA-opus-5.5-HHD-F019 (HIGH static + ROM data): (main, tab, kind) -> kind param from the tab table 0x67B464 (57 x 12 B {key main/tab/kind/0 with 0xFF = header, icon char*, param s32}; exterior mode 0x67B710, 51). tools/hhd/catalog_kinds.py"
+0x00367864,repeatable,"IDA-opus-5.5-HHD-F019 (HIGH static + ROM data): (main, tab, kind) -> kind param from the tab table 0x67B464 (57 x 12 B {key main/tab/kind/0 with 0xFF = header, icon char*, param s32}; exterior mode 0x67B710, 51). tools/hhd/catalog_kinds.py"
+0x003680C4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: ロード済有効セルかつWindow+36884==0かつ(unsigned)(品番-0x2000)<0x5FFE。集合B優先でAmiibo絵、集合AでNew絵、他はP_New_00を隠す。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00368A40,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 小分類ページ数を順に減算し、境界に応じて選択表示/論理ページ+1を更新。境界変更はnextCategory音イベント。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0036B0B4,func,IDA-gpt-6.1-sol-F005 / T022修正2追補 / MEDIUM: tab26→0x20AA70、tab29→0x20AEAC。品種switch3→0x20AA70、4→0x20AEAC。家具はdefaultで0x4D00A0。命令列と下位予約/Item書込み経路の独立照合。
+0x0036B0B4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 決定セル+270→有効/ロード検査→品番表→Itemを+36520に構築→0x4D00A0。wit_Slctの選択/名前/アンカー設定。上段切替と小分類resetの枝を区別。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0036C550,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: wit_SlctへOut指示、表示フラグ/前のセル番号を消す。WindowWaitの無効/未選択/切替から呼ぶ。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0036CC68,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: Tum15 Idleを待ってkind/表示を更新し0x36EA9C→In。Waitを待って入力復帰。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0036DAE8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 通常カタログ内部の上段タブ切替は0x392F64→Tum15 Out。FastOut/Swapではない。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0036E75C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 中央/前/次の物理3枠を論理ページ/小分類に対応させて0x3680C4を呼ぶ。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0036EA9C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 小分類の総ページ数を集計して最小1にし、3枠を詰め直す。末尾0x392E30でTum15 In。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00376C20,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: SYS_2D_UIはメッセージグループ。0x3548A8経由で文字箱へ設定する。音イベントとして扱わない。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0037ED04,func,"IDA-opus-5.5-HHD-F010: タッチの更新。+4 = (x-160, 120-y)（画素、中心原点・上向き）、+20 = (x-160)*0.00625, (120-y)*0.0083333（-1..1）、+36 押した / +37 押している / +38 離した / +129 有効。離したフレームは位置を前回の値のまま。"
+0x00390BCC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 3枠を PageSlider へ登録。浮動アイコン+272/+276が両nullなら+321=0、+280管理を作らない。標準ctl_Tum15_00の直下partsはL_Pageのみ。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00390E48,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 直下 L_Page_%02d はページactor、直下 L_Tum_%02d は浮動アイコンactor。ページ内L_Tumはページactor側で処理。資源に直下浮動アイコンはない。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00391258,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 登録はIdle/In/Wait/Out/FastIn/FastOut/Drag/Slide/Swap。InRev等4状態は初期化されるがこの登録にはない。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003913E4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 物理ページactorのマス位置を0x34A318から取得。0x36B0B4のwit_Slctアンカーへ渡す。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0039147C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 表示枠/ページ状態を初期化。小分類変更・入替準備の経路0x36B0B4/0x36EA9C。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00391550,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663374 / vtable 0x6E8750 から In の exec と確定。enter で +68=0、入力を無効。exec 初回は表示して slot0=in を開始、+316=1.0。完了で Wait。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003915D0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 物理ページとマス→button+408のレイアウト+608、B_Btn_00のペイン。吹き出しの大きさ取得元。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003917E0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6633f4 / vtable 0x6E8750 から Out の exec と確定。enter で +68=0、入力無効、+348=0。slot2=out を再生、完了で隠し +348=1、次回 Idle。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0039187C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663374 / vtable 0x6E8750 から In の exit と確定。enter で +68=0、入力を無効。exec 初回は表示して slot0=in を開始、+316=1.0。完了で Wait。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00391A48,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663494 / vtable 0x6E8750 から Drag の exec と確定。PageSlider 再利用イベント +168=1/2 に対して内容を詰め直し、event0/1。選択を中央枠へ対応付け。+175 で Slide。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00391AD8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663354 / vtable 0x6E8750 から Idle の exec と確定。待機。enter/exec/exit は実質空。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00391ADC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6634d4 / vtable 0x6E8750 から Swap の exec と確定。横スクロールとは別の品ドラッグ管理。enter は Page_00 を無効にし元ページを保存。exec は管理+53/+55/+56、端部ページ送り、event8/9/10。exit は入力と管理を復元。標準資源では必要な浮動アイコンが作られない。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00391ECC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6633d4 / vtable 0x6E8750 から Wait の exec と確定。enter で入力を有効。A/B は event2/3。L/R・端部入力は event4/5 と Slide。PageSlider +174 で Drag。Swap は +321 と +280 と管理+54を要求。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0039216C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6633f4 / vtable 0x6E8750 から Out の exit と確定。enter で +68=0、入力無効、+348=0。slot2=out を再生、完了で隠し +348=1、次回 Idle。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0039225C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663394 / vtable 0x6E8750 から InRev の exec と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003922FC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6634b4 / vtable 0x6E8750 から Slide の exec と確定。中央枠の選択番号を対応付け、PageSlider +176 完了で Wait。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392344,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663494 / vtable 0x6E8750 から Drag の exit と確定。PageSlider 再利用イベント +168=1/2 に対して内容を詰め直し、event0/1。選択を中央枠へ対応付け。+175 で Slide。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392348,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663354 / vtable 0x6E8750 から Idle の exit と確定。待機。enter/exec/exit は実質空。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0039234C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6634d4 / vtable 0x6E8750 から Swap の exit と確定。横スクロールとは別の品ドラッグ管理。enter は Page_00 を無効にし元ページを保存。exec は管理+53/+55/+56、端部ページ送り、event8/9/10。exit は入力と管理を復元。標準資源では必要な浮動アイコンが作られない。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392398,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6633d4 / vtable 0x6E8750 から Wait の exit と確定。enter で入力を有効。A/B は event2/3。L/R・端部入力は event4/5 と Slide。PageSlider +174 で Drag。Swap は +321 と +280 と管理+54を要求。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0039239C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663374 / vtable 0x6E8750 から In の enter と確定。enter で +68=0、入力を無効。exec 初回は表示して slot0=in を開始、+316=1.0。完了で Wait。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0039254C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663454 / vtable 0x6E8750 から FastIn の exec と確定。in の最終コマを適用し表示して Idle。通常タブ切替の入口ではない。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003925A0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663414 / vtable 0x6E8750 から OutRev の exec と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392624,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663394 / vtable 0x6E8750 から InRev の exit と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392628,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6634b4 / vtable 0x6E8750 から Slide の exit と確定。中央枠の選択番号を対応付け、PageSlider +176 完了で Wait。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0039262C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6633f4 / vtable 0x6E8750 から Out の enter と確定。enter で +68=0、入力無効、+348=0。slot2=out を再生、完了で隠し +348=1、次回 Idle。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003926A8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663474 / vtable 0x6E8750 から FastOut の exec と確定。out の最終コマを適用して隠し、次回 Idle。通常タブ切替の入口ではない。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392700,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663434 / vtable 0x6E8750 から OutKeep の exec と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0039276C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663454 / vtable 0x6E8750 から FastIn の exit と確定。in の最終コマを適用し表示して Idle。通常タブ切替の入口ではない。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392770,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663414 / vtable 0x6E8750 から OutRev の exit と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392774,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 現在中央の物理ページからbutton+271の完了フラグを探す。+270と区別。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392830,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x569AA0はSelect0x790520またはTouchSelect0x790550判定。中央ページの該当マスを返す。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003928EC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663494 / vtable 0x6E8750 から Drag の enter と確定。PageSlider 再利用イベント +168=1/2 に対して内容を詰め直し、event0/1。選択を中央枠へ対応付け。+175 で Slide。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003928F0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663354 / vtable 0x6E8750 から Idle の enter と確定。待機。enter/exec/exit は実質空。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003928F4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6634d4 / vtable 0x6E8750 から Swap の enter と確定。横スクロールとは別の品ドラッグ管理。enter は Page_00 を無効にし元ページを保存。exec は管理+53/+55/+56、端部ページ送り、event8/9/10。exit は入力と管理を復元。標準資源では必要な浮動アイコンが作られない。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392938,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6633d4 / vtable 0x6E8750 から Wait の enter と確定。enter で入力を有効。A/B は event2/3。L/R・端部入力は event4/5 と Slide。PageSlider +174 で Drag。Swap は +321 と +280 と管理+54を要求。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392944,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663374 / vtable 0x6E8750 から In の predicate と確定。enter で +68=0、入力を無効。exec 初回は表示して slot0=in を開始、+316=1.0。完了で Wait。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003929E8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663474 / vtable 0x6E8750 から FastOut の exit と確定。out の最終コマを適用して隠し、次回 Idle。通常タブ切替の入口ではない。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003929EC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663434 / vtable 0x6E8750 から OutKeep の exit と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392A4C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663394 / vtable 0x6E8750 から InRev の enter と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392A60,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6634b4 / vtable 0x6E8750 から Slide の enter と確定。中央枠の選択番号を対応付け、PageSlider +176 完了で Wait。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392A64,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6633f4 / vtable 0x6E8750 から Out の predicate と確定。enter で +68=0、入力無効、+348=0。slot2=out を再生、完了で隠し +348=1、次回 Idle。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392B3C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6633b4 / vtable 0x6E8750 から InRevKeep の exec と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392BC4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663454 / vtable 0x6E8750 から FastIn の enter と確定。in の最終コマを適用し表示して Idle。通常タブ切替の入口ではない。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392BD4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663414 / vtable 0x6E8750 から OutRev の enter と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392BE4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663494 / vtable 0x6E8750 から Drag の predicate と確定。PageSlider 再利用イベント +168=1/2 に対して内容を詰め直し、event0/1。選択を中央枠へ対応付け。+175 で Slide。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392BEC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663354 / vtable 0x6E8750 から Idle の predicate と確定。待機。enter/exec/exit は実質空。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392BF4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6634d4 / vtable 0x6E8750 から Swap の predicate と確定。横スクロールとは別の品ドラッグ管理。enter は Page_00 を無効にし元ページを保存。exec は管理+53/+55/+56、端部ページ送り、event8/9/10。exit は入力と管理を復元。標準資源では必要な浮動アイコンが作られない。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392BFC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6633d4 / vtable 0x6E8750 から Wait の predicate と確定。enter で入力を有効。A/B は event2/3。L/R・端部入力は event4/5 と Slide。PageSlider +174 で Drag。Swap は +321 と +280 と管理+54を要求。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392CC4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6633b4 / vtable 0x6E8750 から InRevKeep の exit と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392CC8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663474 / vtable 0x6E8750 から FastOut の enter と確定。out の最終コマを適用して隠し、次回 Idle。通常タブ切替の入口ではない。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392CD8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663434 / vtable 0x6E8750 から OutKeep の enter と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392CE8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663394 / vtable 0x6E8750 から InRev の predicate と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392CF0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6634b4 / vtable 0x6E8750 から Slide の predicate と確定。中央枠の選択番号を対応付け、PageSlider +176 完了で Wait。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392CF8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 現在中央の物理ページから button+270 の決定pulseを探してセル番号を返す。0x569BA0は+270読取り。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392DB4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663454 / vtable 0x6E8750 から FastIn の predicate と確定。in の最終コマを適用し表示して Idle。通常タブ切替の入口ではない。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392DBC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663414 / vtable 0x6E8750 から OutRev の predicate と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392DC4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6633b4 / vtable 0x6E8750 から InRevKeep の enter と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392DD8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663474 / vtable 0x6E8750 から FastOut の predicate と確定。out の最終コマを適用して隠し、次回 Idle。通常タブ切替の入口ではない。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392DE0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x663434 / vtable 0x6E8750 から OutKeep の predicate と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392DE8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: PMF 0x6633b4 / vtable 0x6E8750 から InRevKeep の predicate と確定。初期化のみ確認。Tum15 の通常登録対象外。。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392E30,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: kind指定をレイアウトに適用し、状態0x798A70=Inへ。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392E5C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 保存論理ページ+336が現在論理ページに一致する場合に保存マス+340を返す。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00392F64,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 状態0x798B30=Outへ。通常CatalogWindowタブ切替の呼出元0x36DAE8。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00393050,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: FastIn。callerは別CatalogListの0x3D7C14、通常の内部タブ切替ではない。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003931D4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: FastOut。callerは別CatalogListの0x3D8BBC。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003931E4,line,IDA-opus-5.5-HHD-F007: ページ送りの部品。ページ全体の当たり Page_00（ドラッグで Float）、キーだけのボタン 4 つ（キー 0 A / 1 B / 4 L / 5 R。L/R は +416=1）、当たり B_L_00 / B_R_00 があれば左右ボタン L_00 / R_00
+0x003931E4,repeatable,IDA-opus-5.5-HHD-F007: ページ送りの部品。ページ全体の当たり Page_00（ドラッグで Float）、キーだけのボタン 4 つ（キー 0 A / 1 B / 4 L / 5 R。L/R は +416=1）、当たり B_L_00 / B_R_00 があれば左右ボタン L_00 / R_00
+0x003936F0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: Slider前処理→event268=11→任意の品drag管理→選択グループ→状態機械→レイアウト更新。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003937B8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 496B。状態機械+476、枠+252、Slider+244。ctorでdrag許可1だがBuildで部品の有無により0へ変わる。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00393C00,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: slot0=in / slot1=kind / slot2=out。名前付きbindingとCatalog資源を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00393CD8,line,"IDA-opus-5.5-HHD-F017 (MEDIUM static): drop-target component (state machine at +388, states Wait/Select/UnSelect 0x7994C0/F0/520). Wait/UnSelect -> Select when DropTarget_IsPointInside(+44, input, hit area +240) or touch-trigger inside; Select -> UnSelect when the point leaves. TrashPart_Wait_Exec reads it via DropTarget_IsSelected(+244). The trash part's hit pane is B_Base_00 (x origin left)."
+0x00393CD8,repeatable,"IDA-opus-5.5-HHD-F017 (MEDIUM static): drop-target component (state machine at +388, states Wait/Select/UnSelect 0x7994C0/F0/520). Wait/UnSelect -> Select when DropTarget_IsPointInside(+44, input, hit area +240) or touch-trigger inside; Select -> UnSelect when the point leaves. TrashPart_Wait_Exec reads it via DropTarget_IsSelected(+244). The trash part's hit pane is B_Base_00 (x origin left)."
+0x003983BC,line,"IDA-opus-5.5-HHD-F004: 入力から次の状態を +272 へ（戻り = 優先度）。Wait/OffTarget/UnSelect/TouchUnSelect: 枠内でタッチ開始→TouchSelect、カーソルが自分(+44 vtbl, 0x3E7368)→Select、登録キー(+252 配列,20=無し)→Decide(+432)。TouchSelect: 枠内で離す→TouchDecide、枠外→TouchUnSelect、ドラッグ(+426,+416)→Float。Select: A(bit0)→Decide、カーソルが外れる→UnSelect"
+0x003983BC,repeatable,"IDA-opus-5.5-HHD-F004: 入力から次の状態を +272 へ（戻り = 優先度）。Wait/OffTarget/UnSelect/TouchUnSelect: 枠内でタッチ開始→TouchSelect、カーソルが自分(+44 vtbl, 0x3E7368)→Select、登録キー(+252 配列,20=無し)→Decide(+432)。TouchSelect: 枠内で離す→TouchDecide、枠外→TouchUnSelect、ドラッグ(+426,+416)→Float。Select: A(bit0)→Decide、カーソルが外れる→UnSelect"
+0x003993A8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 In の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399500,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Out の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399584,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 In の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399590,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Init の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399594,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Wait の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399598,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Out の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0039959C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Float の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003995B8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Init の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003995BC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Wait の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003995C0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 In の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003995DC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Cancel の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399690,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Decide の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003997DC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Select の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399820,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Float の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0039982C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Out の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399838,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Cancel の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0039983C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Decide の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399840,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Select の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399844,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Init の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399848,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Wait の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399854,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 In の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x0039985C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 OnTarget の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003998E0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 UnSelect の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399950,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Validate の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003999A0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Float の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399A00,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Out の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399A08,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 DecideEnd の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399A28,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 OffTarget の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399AD0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 OnTarget の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399AF4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 UnSelect の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399AF8,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Validate の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399AFC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Cancel の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399B08,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Decide の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399B18,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Select の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399B24,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Init の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399B2C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Wait の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399B34,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Invalidate の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399B90,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 DecideEnd の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399B94,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 OffTarget の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399B98,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Float の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399BA0,line,IDA-opus-5.5-HHD-F004: TouchDecide の毎フレーム。最初に touch_ok(2)+select_ok(4) を流し +270=1（選択グループが見る「決定した」印）、touch_ok が終わったら +271=1 で DecideEnd へ。+68 = 状態に入ってからのフレーム数
+0x00399BA0,repeatable,"IDA-opus-5.5-HHD-F004: TouchDecide の毎フレーム。最初に touch_ok(2)+select_ok(4) を流し +270=1（選択グループが見る「決定した」印）、touch_ok が終わったら +271=1 で DecideEnd へ。+68 = 状態に入ってからのフレーム数
+IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 TouchDecide の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。"
+0x00399C5C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 TouchSelect の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399CDC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Invalidate の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399CE0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 OnTarget の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399D04,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 UnSelect の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399D10,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Validate の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399D1C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Cancel の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399D24,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Decide の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399D2C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Select の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399D34,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 TouchDecide の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399D38,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 TouchSelect の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399D50,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 DecideEnd の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399D5C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 OffTarget の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399D68,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 TouchUnSelect の exec。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399E24,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Invalidate の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399E30,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 OnTarget の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399E38,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 UnSelect の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399E40,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Validate の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399E48,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 TouchUnSelect の exit。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399E4C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 TouchDecide の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399E58,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 TouchSelect の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399E78,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 DecideEnd の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399E80,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 OffTarget の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399E88,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 Invalidate の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399E90,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 TouchUnSelect の enter。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399E9C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 TouchDecide の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399EA4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 TouchSelect の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00399EAC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BC318 の実名と ROM vtable 0x6E8EF0 の PMF による状態 TouchUnSelect の predicate。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003B8920,line,IDA-opus-5.5-HHD-F001: 全ボタンを sub_398D20 で戻し、番号のボタンに vtbl+108 → sub_3E8C00(4)/(2) と状態機械へ 0x790640、+20 = 番号
+0x003B8920,repeatable,IDA-opus-5.5-HHD-F001: 全ボタンを sub_398D20 で戻し、番号のボタンに vtbl+108 → sub_3E8C00(4)/(2) と状態機械へ 0x790640、+20 = 番号
+0x003B8A38,line,"IDA-opus-5.5-HHD-F001: 選択グループ {+4 数, +8 容量, +12 配列, +16 入力?, +20 選択中(-1), +24 巡回数, +28 変化}。ボタン+270(押された)を見て選択中を 1 つに切替、前は sub_398D20。押されなければ +16 vtbl+164 で次の有効ボタン(+236)へ巡回し状態機械(+388)へ 0x790610"
+0x003B8A38,repeatable,"IDA-opus-5.5-HHD-F001: 選択グループ {+4 数, +8 容量, +12 配列, +16 入力?, +20 選択中(-1), +24 巡回数, +28 変化}。ボタン+270(押された)を見て選択中を 1 つに切替、前は sub_398D20。押されなければ +16 vtbl+164 で次の有効ボタン(+236)へ巡回し状態機械(+388)へ 0x790610"
+0x003BB410,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: T_Name_00の幅を計測しW_Name_00とW_NameSh_00を文字幅+32にする。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB514,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: N_Allを選択マスX/Y/Zへ。Yはマス高/2+窓高/2-2を加算。N_Name_00のローカルXを(窓幅+5)/2の左右±160制約で補正。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB72C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 In の exec を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB7A4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 Out の exec を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB830,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 In の exit を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB83C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 Idle の exec を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB840,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 Wait の exec を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB844,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 Out の exit を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB848,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 Idle の exit を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB84C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 Wait の exit を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB850,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 In の enter を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB870,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 FastIn の exec を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB8C4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 Out の enter を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB8D0,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 FastOut の exec を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB914,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 FastIn の exit を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB918,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 Idle の enter を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB91C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 Wait の enter を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB920,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 In の predicate を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB928,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 FastOut の exit を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB92C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 Out の predicate を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB934,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 FastIn の enter を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB954,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 Idle の predicate を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB95C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 Wait の predicate を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB964,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 FastOut の enter を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB984,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 FastIn の predicate を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB98C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5c2ce0 と vtable 0x6ebe60 から WinItem 状態 FastOut の predicate を確認。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB994,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: Inへ。name-onlyではslot0=in_name。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB9A4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: Outへ。name-onlyではslot2=out_name。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BB9B4,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: FastInへ。表示中のマス変更で呼び、in_name最終コマを適用。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003BBD98,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 480B。layout+296、テキスト+300、N_All+304、マス寸法+312/+316、アンカー+320/+324/+328、状態機械+460。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003DC2EC,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: slot0=in_name、1=in_slct、2=out_name、3=out_slct。資源名を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003E7B20,func,IDA-opus-5.5-HHD-F010: 選択中（触れている）から、正規化座標の横移動の累計 >= +452（0.05 = 8 画素）でドラッグへ。
+0x003E7B20,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: DragAreaの+452=0.05と正規化X移動の累計を比較。X正規化0.00625なので8pixel。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003E86AC,func,IDA-opus-5.5-HHD-F011: DragArea の Slide（慣性）。毎フレーム 移動量(+36) = 向き(+96) x 速さ(+108)、速さ +108 / +112 を s0 倍（DragArea +440 = 0.95）。触れたらやめる。始まり = 離したとき +112 > +444(0.08)、終わり = +112 < +448(0.01)（DragArea_IsFlickRelease / DragArea_IsSlideStopped）。
+0x003EE72C,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x4D56AC呼出しは既存家具のコピー分岐。CatalogWindow新規品の0x4D00A0と区別。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x003FBD8C,func,IDA-gpt-6.1-sol-F002: MEDIUM訂正: 旧名Camera_GetFacingQuadrantはHHD-F016由来の解析名。カメラは読まず、家具表66枠を走査し、状態5/6の移動actorについて移動先−現位置の四分円を返す。対象なしなら4。0x4CEB2Cは4を2に置換。0x45AD78/0x45ACB8が移動先と状態を生産する。
+0x003FD38C,func,IDA-gpt-6.1-sol-F002: MEDIUM: world XYZ→16単位cell変換0x50A640、索引0x56CE44でグリッド0x77E22Cを読む。indexが0..65なら家具actor表0x77E124[index]を返す。0x45D9CC/0x3FD110の配置書込が同じ索引を生産する。

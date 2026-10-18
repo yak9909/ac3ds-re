@@ -1,0 +1,13 @@
+address,kind,text
+0x0061AC1C,func,"IDA-gpt-6.1-sol-F014 MEDIUM (static + original ARM1176 partial execution). Evidence work/evidence/hhd_room_camera/, design docs/topics/hhd_room_camera_design.md. No hardware test. R0 float*, S0 target, S1 maximum step, R0 bool arrival. Approaches from either side, clamps to target. Used by normal and photo camera input; not an exponential interpolation."
+0x00646949,line,"IDA-gpt-6.1-sol-F014 MEDIUM (static + original ARM1176 partial execution). Evidence work/evidence/hhd_room_camera/, design docs/topics/hhd_room_camera_design.md. No hardware test. Four native room spline control-point IDs [3,4,5,37], confirmed indexed copy in0x153218 and original RomFS records."
+0x00646980,line,"IDA-gpt-6.1-sol-F014 MEDIUM (static + original ARM1176 partial execution). Evidence work/evidence/hhd_room_camera/, design docs/topics/hhd_room_camera_design.md. No hardware test. Three native zoom increment factors, exact f32 words0x3D8F5C29/0x3D75C28F/0x3DA3D70A. Indexed by pre-update zoom segment, capped2."
+0x0065EDFC,line,"IDA-opus-5.5-HHD-F001: 色の選択グループ 3 個の容量 {6 目の色, 16 髪の色, 8 肌の色}"
+0x00663354,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x5BA884が0x61354Cへ渡す4組×8B PMF、各状態32Bの表。A32デコードとIDA引数を照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x00675BD4,line,"IDA-gpt-6.1-sol-F012 / MEDIUM。壁探索0x4D23E4で8byteをLDRDして候補添字iのbyteで読む家具向き表: {3,3,1,1,0,0,2,2}。壁右/左/奥/手前の各2候補。原本＋逆アセンブル＋合成ARM全候補照合、work/codex/out/t022_wall_catalog/wall_arm_checks.json。"
+0x00675BF4,line,"IDA-gpt-6.1-sol-F012 / MEDIUM。壁探索の同じ8候補のs16角度表（stride2）: {0xC000,0xC000,0x4000,0x4000,0,0,0x8000,0x8000}。0x4F3850のS0壁alphaを優先判定へ。0x675BD4のrotと角度>>14が一致。"
+0x00697BC8,line,"IDA-gpt-6.1-sol-F014 MEDIUM (static + original ARM1176 partial execution). Evidence work/evidence/hhd_room_camera/, design docs/topics/hhd_room_camera_design.md. No hardware test. Raw f32 angle units per degree0x43360B61 (read native bytes to verify); rendered pseudocode182.04 is rounded, not the exact constant."
+0x006D9D04,line,IDA-gpt-6.1-sol-F002: MEDIUM: 家具共通ctor0x45E540が一次vptrへ代入。+140=状態2判定0x57992C。RTTI実名のリンクは未確定。
+0x006E5264,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x3639CC ctor設定。0x5B1D38の状態PMFと照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x006E8750,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x3937B8が設定するvtable。state PMF仮想offsetは0x5BA884/ROM表0x663354。根拠 work/codex/out/t022_tum15/report.md / tum15.json。
+0x006EBE60,repeatable,IDA-gpt-6.1-sol-HHD-F001 / MEDIUM（静的照合）: 0x3BBD98 ctor設定。0x5C2CE0の状態PMFと照合。根拠 work/codex/out/t022_tum15/report.md / tum15.json。

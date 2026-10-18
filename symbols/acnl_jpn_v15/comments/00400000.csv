@@ -1,0 +1,1104 @@
+address,kind,text
+0x0040A038,repeatable,"Vapecord plugin ADDRESSES: SET_MAX_PARTICIPANTS
+他地域: USA=0040B358  EUR=0040A3A0  KOR=00409EF8
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0040A8F0,repeatable,"Vapecord plugin ADDRESSES: NEX_SESSION_SEARCH_CRITERIA_CONSTRUCTOR
+他地域: USA=0040BC10  EUR=0040AC58  KOR=0040A7B0
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0047D0D0,repeatable,"Vapecord plugin ADDRESSES: CORRUPT
+他地域: USA=0047E3F0  EUR=0047D438  KOR=0047CF90
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0047D16C,repeatable,"Vapecord plugin ADDRESSES: FOV
+他地域: USA=0047E48C  EUR=0047D4D4  KOR=0047D02C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x0047D28C,func,"IDA-gpt-6.1-sol-F002: MEDIUM: R0=u16角、S0へcos。表0x89B680の+4を読む。原本cardinalで0→1,0x4000→0,0x8000→-1。0x1A15B0のeye算出と照合。現HexRaysの整数/ポインタ返型はVFP返値を表現していないので使用しない。
+IDA-gpt-6.1-sol-F015: R0 angle / S0 float. Original VFP + CameraGame_UpdateEye + ARM1176 execution; records16B cosine+4 / cosineDelta+12, low8 interpolation. Explicit float type fixes misleading integer HexRays return."
+0x0047D2C4,func,"IDA-gpt-6.1-sol-F002: MEDIUM: R0=u16角、S0へsin。表0x89B680の+0を読む。原本cardinalで0→0,0x4000→1,0xC000→-1。0x1A15B0と照合。VFP ABIをCの整数返値と混同しない。
+IDA-gpt-6.1-sol-F015: corrected explicit R0 angle / S0 float ABI from original VFP instructions, caller CameraGame_UpdateEye and ARM1176 execution. Table records16B indexed angle>>8; interpolate sine+0 with sineDelta+8*(angle&0xFF)/256. Preserves prior F002 provenance; no integer pointer return."
+0x0047F3F0,func,"F-364 MEDIUM: candidate SWKBD backend using game APT/GSP lifecycle. 4-word ABI verified from ARM; appId is not hardcoded here. Saves VRAM (0x47E490), transfers capture (0x47EB80), releases GSP right (0x12B010(0)), then Start IPC. Failure -> 0x129E70 -> err:f; not a harmless Result-only API. No live SWKBD launch performed. See DOCS/system_keyboard_launch.md.
+F-372: no caller-side Result branch after SaveVram 47E490 or capture-transfer 47EB80; offline injected negative returns still reach Start IPC. Callees may handle errors internally. Final negative Start IPC enters 129E70 (err:f); emulator stops there, does not assume fatal routine returns. No hardware launch tested."
+0x0047FBE0,func,"F-372: transition byte [0x96EAFA] set to 4 BEFORE IPC. This function does not roll it back on final error. Three specific results retry with 10ms sleep, no retry count bound. Static assembly + original ARM offline tests; do not treat failed Prepare as side-effect-free."
+0x0047FF68,line,"F-359 (MEDIUM, static): APT IPC header 0x001E0084. Entry R0=appId, R1=parameter buffer, R2=parameter size, R3=shared handle. TLS words: [1]=appId,[2]=size,[3]=0,[4]=handle,[5]=(size<<14)|2,[6]=buffer. Matches libctru APT_StartLibraryApplet. Decompiler's __int64 argument is misleading; use ARM ABI. Called by sub_47F3F0."
+0x0047FF68,repeatable,"F-359 (MEDIUM, static): APT IPC header 0x001E0084. Entry R0=appId, R1=parameter buffer, R2=parameter size, R3=shared handle. TLS words: [1]=appId,[2]=size,[3]=0,[4]=handle,[5]=(size<<14)|2,[6]=buffer. Matches libctru APT_StartLibraryApplet. Decompiler's __int64 argument is misleading; use ARM ABI. Called by sub_47F3F0."
+0x0047FFB0,line,"F-359: IPC command header 0x001E0084, not pointer to sub_1E0084. Load at 0x0047FF70."
+0x0048012C,line,"F-359 (MEDIUM, static): APT IPC header 0x00180040, appId=R0 -> TLS[0x84], session [0x00977810], SVC 0x32. Matches libctru APT_PrepareToStartLibraryApplet. Called by sub_47FBE0. No dynamic SWKBD launch verified."
+0x0048012C,repeatable,"F-359 (MEDIUM, static): APT IPC header 0x00180040, appId=R0 -> TLS[0x84], session [0x00977810], SVC 0x32. Matches libctru APT_PrepareToStartLibraryApplet. Called by sub_47FBE0. No dynamic SWKBD launch verified."
+0x0048015C,line,"F-359: IPC command header 0x00180040, not pointer to sub_180040. Load at 0x00480134."
+0x00489554,line,"F-359: existing game library-applet path: Prepare via sub_47FBE0, Start via sub_47F3F0, receive/wait via sub_12B110. Hard-coded appId 0x406 (error applet), parameter size 0xF80, handle [0x0096EAD4]. NOT a SWKBD entry; replacing ID alone is not valid. Candidate reference for independent SWKBD (0x401) launch study."
+0x00489554,repeatable,"F-359: existing game library-applet path: Prepare via sub_47FBE0, Start via sub_47F3F0, receive/wait via sub_12B110. Hard-coded appId 0x406 (error applet), parameter size 0xF80, handle [0x0096EAD4]. NOT a SWKBD entry; replacing ID alone is not valid. Candidate reference for independent SWKBD (0x401) launch study."
+0x00489570,line,timeoutNs
+0x0048D26C,func,"V2-F024 MEDIUM: メッシュ 1 つ分の GPU コマンドを積む。末尾の `Mem_CopyBytes(g_GpuCmdPtr, mesh+0x68, mesh+0x6C)` が要点で、**深度・ブレンド・アルファテストなどの描画状態はコード側には無く、bcres の MTOB に焼かれた PICA コマンド列をそのまま転送している**。よって描画状態は romfs 側を読めば静的に確定できる（tools/models3d/dump_material_state.py）。UnitCursor の m_UnitCursor は 0x0100 blend_mode=1 / **0x0101=0x01160000＝RGB は src*SRC_ALPHA + dst*ONE の加算合成** / 0x0104 アルファテスト無効 / 0x0105・0x0106 ステンシル無効 / **0x0107=0x41＝深度テスト有効・LESS**（byte mask=1 なので深度書き込みビットは書き換えず直前の状態を引き継ぐ）
+IDA-opus-5.5-F084: gohan PlayerClone はフェードの間だけこれを写した関数で描き、行列（sub_4957C4）と形（gfx_DrawShapePrimitives）の間に フレームバッファの読み書き（0x111/0x110/0x112..0x115、色の読み = 15）と定数アルファの合成（0x100..0x103）を積む。"
+0x0048D598,line,IDA-opus-5.5-F059: ctx[2]+28 (最後に行列を送った体) が同じなら SendModelMatrices を省く。同じ体を行列を変えて何度も描くには毎回 0 にする（gohan InstancedDraw）
+0x0048FD6C,line,"nw::gfx::SceneContext のデストラクタ本体 (F-111 / F-112)。
+15 本の配列を後ろから順に解放する。ここからレイアウトが読める
+（Scene_ResetAllContexts(0x4EA414) からも独立に同じ形が読める）:
+
+  +0x00 vtable   ← 実機確認 0x008FB700
+  +0x04 ?
+  +0x08 + 0x10*n : 配列 n = { allocator, begin, end, capacity }  (n = 0..14)
+
+  配列 #0  begin=+0x0C end=+0x10  ★描画対象ノード。cap=1024（実機確認）
+  配列 #4  begin=+0x4C end=+0x50  カメラ（VisitCamera 0x498860 が push）
+  配列 #5  begin=+0x5C end=+0x60  不明。Render_DrawSceneIndexed が sub_4A41EC で回す
+  配列 #7  begin=+0x7C end=+0x80
+  配列 #9  begin=+0x9C end=+0xA0
+  配列 #10 begin=+0xAC end=+0xB0
+  配列 #14 begin=+0xEC end=+0xF0  カメラのうち node+40 が非 0 のもの
+
+★訂正 (F-112): 旧コメントで #5 を「カメラ系」としたのは誤り。カメラは #4。"
+0x0048FD6C,repeatable,"nw::gfx::SceneContext のデストラクタ本体 (F-111 / F-112)。
+15 本の配列を後ろから順に解放する。ここからレイアウトが読める
+（Scene_ResetAllContexts(0x4EA414) からも独立に同じ形が読める）:
+
+  +0x00 vtable   ← 実機確認 0x008FB700
+  +0x04 ?
+  +0x08 + 0x10*n : 配列 n = { allocator, begin, end, capacity }  (n = 0..14)
+
+  配列 #0  begin=+0x0C end=+0x10  ★描画対象ノード。cap=1024（実機確認）
+  配列 #4  begin=+0x4C end=+0x50  カメラ（VisitCamera 0x498860 が push）
+  配列 #5  begin=+0x5C end=+0x60  不明。Render_DrawSceneIndexed が sub_4A41EC で回す
+  配列 #7  begin=+0x7C end=+0x80
+  配列 #9  begin=+0x9C end=+0xA0
+  配列 #10 begin=+0xAC end=+0xB0
+  配列 #14 begin=+0xEC end=+0xF0  カメラのうち node+40 が非 0 のもの
+
+★訂正 (F-112): 旧コメントで #5 を「カメラ系」としたのは誤り。カメラは #4。"
+0x00494B4C,line,"IDA-opus-5.5-F011: binds a material; when ctx+32 (material) != ctx+36 (last) and (ctx+20&1)==0 it calls *(material+28 = Model)+0x1EC (MaterialActivator) vtable slot 3 (0x494C14). Buildings: generic 0x49C08C (fobj) or SimpleMaterialActivator 0x4A17B8 (player house parts, Tent, Post) which only replays precomputed commands; swapping that activator's vtable slot 3 to 0x49C08C makes TEV edits take effect (hardware 2026-09-23)."
+0x00494B4C,repeatable,"IDA-opus-5.5-F011: binds a material; when ctx+32 (material) != ctx+36 (last) and (ctx+20&1)==0 it calls *(material+28 = Model)+0x1EC (MaterialActivator) vtable slot 3 (0x494C14). Buildings: generic 0x49C08C (fobj) or SimpleMaterialActivator 0x4A17B8 (player house parts, Tent, Post) which only replays precomputed commands; swapping that activator's vtable slot 3 to 0x49C08C makes TEV edits take effect (hardware 2026-09-23)."
+0x00494E20,line,"IDA-opus-5.5-F033 (MEDIUM): sends fragment light n. res=*(light+8), kind res+184 (0 = directional: sends -(V*dir), dir = light+380, V = view +328 of the camera at ctx+164, i.e. the game camera, not the one bound by CameraBind)."
+0x00494E20,repeatable,"IDA-opus-5.5-F033 (MEDIUM): sends fragment light n. res=*(light+8), kind res+184 (0 = directional: sends -(V*dir), dir = light+380, V = view +328 of the camera at ctx+164, i.e. the game camera, not the one bound by CameraBind)."
+0x00495538,line,"IDA-opus-5.5-F033: c0-c2 = identity, c3-c5 = node+444 (model-view with the game camera); ctx+28 = node."
+0x00495538,repeatable,"IDA-opus-5.5-F033: c0-c2 = identity, c3-c5 = node+444 (model-view with the game camera); ctx+28 = node."
+0x00495624,line,"IDA-opus-5.5-F033 (MEDIUM): hemisphere light ctx+68 -> vertex uniforms c22 ground (res+184 float4), c23 sky (res+200), c24 direction (res+216, rotated by the ctx+164 camera view) w = res+228."
+0x00495624,repeatable,"IDA-opus-5.5-F033 (MEDIUM): hemisphere light ctx+68 -> vertex uniforms c22 ground (res+184 float4), c23 sky (res+200), c24 direction (res+216, rotated by the ctx+164 camera view) w = res+228."
+0x004957C4,func,"V2-F025 HIGH: **メッシュの GPU コマンド列は 2 本ある**。ここが 1 本目を流す：`Mem_CopyBytes(g_GpuCmdPtr, *(mesh+96), *(mesh+100))` で**頂点属性・バッファ束縛のコマンド列**を、続けて `mesh+48` から 48 バイトの埋め込みブロックを流す。その後 `mesh+44` のビット 0/1 で ctx の +20 の 0x80 / 0x100 を上げ下げする。2 本目（`mesh+0x68` / `+0x6C`）は sub_48D26C の末尾が流す描画コマンド。**`mesh+0x6C` だけ見て「ジオメトリは渡っている」と判断してはいけない**。なお UnitCursor.bcres には 0x0200〜0x0230 の属性バッファ系レジスタのコマンドが 1 つも無いので、**この 1 本目は実行時に組み立てられる**"
+0x00495A10,line,"IDA-opus-5.5-F033 (HIGH: static + hardware command capture): per draw (when ctx+28 != node) sends VSH c0-c2 = node+140 world (or identity) and c3-c5 = node+444 model-view (computed by the scene update with the game camera); then ctx+28 = node. Character shaders rotate normals with c3-c5, so a model drawn with another camera must replace node+444."
+0x00495A10,repeatable,"IDA-opus-5.5-F033 (HIGH: static + hardware command capture): per draw (when ctx+28 != node) sends VSH c0-c2 = node+140 world (or identity) and c3-c5 = node+444 model-view (computed by the scene update with the game camera); then ctx+28 = node. Character shaders rotate normals with c3-c5, so a model drawn with another camera must replace node+444."
+0x0049693C,line,"IDA-opus-5-F034 HIGH（実機クラッシュダンプ）: **確保の失敗を検査しない。**
+アロケータ（a4 の vtable+8）が 0 を返すと、その null をそのまま組み立て先のオブジェクトとして使い続ける。
+0x00496E6C の `ldr r0,[r5]` で r5=0 となり data abort。
+つまり ModelInstance_Create 0x004F048C の戻り値や node+0x1EC を見ても**遅い**。
+★呼ぶ側が事前に instance ヒープの残りを確かめること（sead::ExpHeap::getFreeSize 0x0074D744）。
+実測では 1 体 5,090 B（IDA-opus-5-F023）。証拠: work/evidence/gridcursor/crash_dump_00000013.dmp"
+0x0049693C,repeatable,"IDA-opus-5-F034 HIGH（実機クラッシュダンプ）: **確保の失敗を検査しない。**
+アロケータ（a4 の vtable+8）が 0 を返すと、その null をそのまま組み立て先のオブジェクトとして使い続ける。
+0x00496E6C の `ldr r0,[r5]` で r5=0 となり data abort。
+つまり ModelInstance_Create 0x004F048C の戻り値や node+0x1EC を見ても**遅い**。
+★呼ぶ側が事前に instance ヒープの残りを確かめること（sead::ExpHeap::getFreeSize 0x0074D744）。
+実測では 1 体 5,090 B（IDA-opus-5-F023）。証拠: work/evidence/gridcursor/crash_dump_00000013.dmp"
+0x00496E6C,line,ここで落ちる（IDA-opus-5-F034）。r5 = 確保に失敗したオブジェクト = 0
+0x00497D28,line,"nw::gfx::SceneNode::Accept(this, visitor) — ビジタパターン (F-111 / F-112)。
+**SceneNode と g3d::FuncNode の** vtable[4]（オフセット 16）に入る。
+
+  visitor->vtbl[4](visitor, this)          ← Visit(this) = 0x499080
+  for (child in [this+0x18, this+0x1C))    ← ★子ノード配列
+      child->vtbl[4](child, visitor)       ← 再帰
+
+★**Accept はクラスごとに違う visitor スロットを呼ぶ** (F-112):
+  SceneNode / g3d::FuncNode → visitor vtbl[4] (+16)  = 0x499080
+  nw::gfx::Camera (0x4ACE24) → visitor vtbl[8] (+32)  = 0x498860
+SceneTraverser の vtbl[4..9] に Visit が 6 本ある。
+どのクラスも配列 #0 には入るので、Scene_DrawLayers がそこで型を見ている。
+
+★**実機確認 (F-112): FuncNode インスタンスの vt[4] = 0x00497D28。
+そのノードの子は 0 件だった（木に繋いでいない）。**"
+0x00497D28,repeatable,"nw::gfx::SceneNode::Accept(this, visitor) — ビジタパターン (F-111 / F-112)。
+**SceneNode と g3d::FuncNode の** vtable[4]（オフセット 16）に入る。
+
+  visitor->vtbl[4](visitor, this)          ← Visit(this) = 0x499080
+  for (child in [this+0x18, this+0x1C))    ← ★子ノード配列
+      child->vtbl[4](child, visitor)       ← 再帰
+
+★**Accept はクラスごとに違う visitor スロットを呼ぶ** (F-112):
+  SceneNode / g3d::FuncNode → visitor vtbl[4] (+16)  = 0x499080
+  nw::gfx::Camera (0x4ACE24) → visitor vtbl[8] (+32)  = 0x498860
+SceneTraverser の vtbl[4..9] に Visit が 6 本ある。
+どのクラスも配列 #0 には入るので、Scene_DrawLayers がそこで型を見ている。
+
+★**実機確認 (F-112): FuncNode インスタンスの vt[4] = 0x00497D28。
+そのノードの子は 0 件だった（木に繋いでいない）。**"
+0x00497F6C,line,IDA-opus-5.5-F056: SceneNode +0 vtable / +4 allocator / +8 ResModel（ctor の第 3 引数）。
+0x00498800,line,"nw::gfx::SceneTraverser の Visit（visitor vtbl[6]）(F-115)。
+  nwut_Array_PushBack(ctx + 8, &node)   ← 配列 #0
+  sub_7E4A18(ctx + 40, &node)           ← 配列 #2
+  if (*(node + 40)) nwut_Array_PushBack(ctx + 232, &node)  ← 配列 #14"
+0x00498800,repeatable,"nw::gfx::SceneTraverser の Visit（visitor vtbl[6]）(F-115)。
+  nwut_Array_PushBack(ctx + 8, &node)   ← 配列 #0
+  sub_7E4A18(ctx + 40, &node)           ← 配列 #2
+  if (*(node + 40)) nwut_Array_PushBack(ctx + 232, &node)  ← 配列 #14"
+0x00498860,line,"★nw::gfx::SceneTraverser の **VisitCamera** — visitor vtbl[8] (F-112)。
+nw::gfx::Camera::Accept(0x4ACE24) から呼ばれる。
+
+  nwut_Array_PushBack(ctx + 8,  &node)   ← 配列 #0（描画対象）
+  ctx + 72..84 へ手書き push        ← ★配列 #4（カメラ）
+  if (*(node + 40))
+      nwut_Array_PushBack(ctx + 232, &node)   ← 配列 #14
+
+★**カメラが入るのは #4。F-111 で #5 と書いたのは誤り。**"
+0x00498860,repeatable,"★nw::gfx::SceneTraverser の **VisitCamera** — visitor vtbl[8] (F-112)。
+nw::gfx::Camera::Accept(0x4ACE24) から呼ばれる。
+
+  nwut_Array_PushBack(ctx + 8,  &node)   ← 配列 #0（描画対象）
+  ctx + 72..84 へ手書き push        ← ★配列 #4（カメラ）
+  if (*(node + 40))
+      nwut_Array_PushBack(ctx + 232, &node)   ← 配列 #14
+
+★**カメラが入るのは #4。F-111 で #5 と書いたのは誤り。**"
+0x00498F20,line,"nw::gfx::SceneTraverser の Visit（visitor vtbl[7]）(F-115)。
+  nwut_Array_PushBack(ctx + 8, &node)   ← 配列 #0
+  sub_7E4A18(ctx + 40, &node)           ← 配列 #2
+  ctx + 56..68 へ手書き push       ← 配列 #3
+  if (*(node + 40)) nwut_Array_PushBack(ctx + 232, &node)  ← 配列 #14"
+0x00498F20,repeatable,"nw::gfx::SceneTraverser の Visit（visitor vtbl[7]）(F-115)。
+  nwut_Array_PushBack(ctx + 8, &node)   ← 配列 #0
+  sub_7E4A18(ctx + 40, &node)           ← 配列 #2
+  ctx + 56..68 へ手書き push       ← 配列 #3
+  if (*(node + 40)) nwut_Array_PushBack(ctx + 232, &node)  ← 配列 #14"
+0x00499080,line,"nw::gfx::SceneTraverser::Visit(this, node) — vtable[4] (F-111)。
+
+  ctx = *(this + 8)                 ← BindContext で設定された SceneContext
+  nwut_Array_PushBack(ctx + 8, &node)
+
+★**ctx+8 は配列 #0（alloc@+8 / begin@+0x0C / end@+0x10）。
+Scene_DrawLayers(0x4EB840) が回すのはまさにこの配列。**"
+0x00499080,repeatable,"nw::gfx::SceneTraverser::Visit(this, node) — vtable[4] (F-111)。
+
+  ctx = *(this + 8)                 ← BindContext で設定された SceneContext
+  nwut_Array_PushBack(ctx + 8, &node)
+
+★**ctx+8 は配列 #0（alloc@+8 / begin@+0x0C / end@+0x10）。
+Scene_DrawLayers(0x4EB840) が回すのはまさにこの配列。**"
+0x0049909C,line,"nw::gfx::SceneTraverser の Visit（visitor vtbl[5]）(F-115)。
+  nwut_Array_PushBack(ctx + 8, &node)   ← 配列 #0
+  ctx + 24..36 へ手書き push       ← 配列 #1"
+0x0049909C,repeatable,"nw::gfx::SceneTraverser の Visit（visitor vtbl[5]）(F-115)。
+  nwut_Array_PushBack(ctx + 8, &node)   ← 配列 #0
+  ctx + 24..36 へ手書き push       ← 配列 #1"
+0x00499458,line,"nw::gfx::SceneTraverser::BindContext(traverser, ctx) (F-111)。
+*(traverser+8) = ctx としたうえで ctx の 15 本の配列を全て空にする（end = begin）。"
+0x00499458,repeatable,"nw::gfx::SceneTraverser::BindContext(traverser, ctx) (F-111)。
+*(traverser+8) = ctx としたうえで ctx の 15 本の配列を全て空にする（end = begin）。"
+0x00499518,line,"nw::gfx::SceneTraverser の Visit（visitor vtbl[9]）(F-115)。
+  nwut_Array_PushBack(ctx + 8,   &node)   ← 配列 #0
+  ctx + 88..100 へ手書き push        ← ★配列 #5
+  if (*(node + 40)) nwut_Array_PushBack(ctx + 232, &node)  ← 配列 #14
+
+★**配列 #5 の埋め手はこれ。**
+Render_DrawSceneIndexed が #5 を sub_4A41EC で回す。"
+0x00499518,repeatable,"nw::gfx::SceneTraverser の Visit（visitor vtbl[9]）(F-115)。
+  nwut_Array_PushBack(ctx + 8,   &node)   ← 配列 #0
+  ctx + 88..100 へ手書き push        ← ★配列 #5
+  if (*(node + 40)) nwut_Array_PushBack(ctx + 232, &node)  ← 配列 #14
+
+★**配列 #5 の埋め手はこれ。**
+Render_DrawSceneIndexed が #5 を sub_4A41EC で回す。"
+0x0049AD20,line,"IDA-opus-5.5-F033 (MEDIUM): LightState_BindSet(state=ctx+64, setIndex=ResMaterial+664). sets[] at state+144 (4 LightSet*, filled by Render_DrawSceneIndexed from dword_98529C when BsLightMgr exists). Copies set+12 ambient, +16 hemi, +68..+72 fragment lights (res+180 enabled) unless index == state+156."
+0x0049AD20,repeatable,"IDA-opus-5.5-F033 (MEDIUM): LightState_BindSet(state=ctx+64, setIndex=ResMaterial+664). sets[] at state+144 (4 LightSet*, filled by Render_DrawSceneIndexed from dword_98529C when BsLightMgr exists). Copies set+12 ambient, +16 hemi, +68..+72 fragment lights (res+180 enabled) unless index == state+156."
+0x0049AE18,line,"IDA-opus-5.5-F033 (HIGH: static + hardware crash): render context light state (ctx+64) reset: cached set index +156 = -1, ambient +0 / hemi +4 = 0 with changed flags +169/+171, fragment list +36 cleared, count +164 = 0. ALSO clobbers ctx+160 (fog) = 0, ctx+164 (active camera used by light directions) = 0, ctx+184 = -1, ctx+236 = 1. sub_4EFA00 re-sets the camera right after; calling this alone and then binding a lit material faults (SIGSEGV 0x495998, view read from 0x148)."
+0x0049AE18,repeatable,"IDA-opus-5.5-F033 (HIGH: static + hardware crash): render context light state (ctx+64) reset: cached set index +156 = -1, ambient +0 / hemi +4 = 0 with changed flags +169/+171, fragment list +36 cleared, count +164 = 0. ALSO clobbers ctx+160 (fog) = 0, ctx+164 (active camera used by light directions) = 0, ctx+184 = -1, ctx+236 = 1. sub_4EFA00 re-sets the camera right after; calling this alone and then binding a lit material faults (SIGSEGV 0x495998, view read from 0x148)."
+0x0049C08C,line,"IDA-opus-5.5-F010: generic nw::gfx::MaterialActivator slot 3 (buildings use it; vtable 0x8FBA18). Material M: ResMaterial part pointers M+40..M+80 (a3[10..20]); per-part cache keys at Res+672..+720 (0 = always emit). Colors: a3[12]+36 u32 table, [44..48] lighting colors, [49..54] Constant0..5. TEV: a3[18] -> Res+648 relptr -> fragment shader block (244 B): +220 24B buffer cfg, then 6 stages x 28B = [selector, src, hdr 0x804F00Cx, operand, combine, constColor, scale]; selector 1..5 -> Constant1..5, 6..10 -> [44..48], else Constant0, written into constColor before copying 24 B. Frag op: a3[20]+280."
+0x0049C08C,repeatable,"IDA-opus-5.5-F010: generic nw::gfx::MaterialActivator slot 3 (buildings use it; vtable 0x8FBA18). Material M: ResMaterial part pointers M+40..M+80 (a3[10..20]); per-part cache keys at Res+672..+720 (0 = always emit). Colors: a3[12]+36 u32 table, [44..48] lighting colors, [49..54] Constant0..5. TEV: a3[18] -> Res+648 relptr -> fragment shader block (244 B): +220 24B buffer cfg, then 6 stages x 28B = [selector, src, hdr 0x804F00Cx, operand, combine, constColor, scale]; selector 1..5 -> Constant1..5, 6..10 -> [44..48], else Constant0, written into constColor before copying 24 B. Frag op: a3[20]+280."
+0x0049CA94,line,IDA-opus-5.5-F061: 深度書き込み = フラグメント部分（M+0x50）+280 bit1。0x107 の上位バイト（ヘッダ 0x20107）= 色マスク<<8 | 深度書き込み<<12。鍵 +720 が前回と違うときだけ
+0x004A17B8,line,"★nw::gfx::SimpleMaterialActivator::Activate 相当 (vtable 0x8FBB58 slot 3) (F-95 / F-99 で訂正)。
+マテリアルの差分を見ながら g_GpuCmdPtr へ PICA コマンドを積む。
+★**GPU コマンド生成の実例として最も読みやすい関数。**
+
+★積むヘッダ（registers.h で検証済み、F-99）:
+  65679  = 0x0001008F  reg 0x08F GPUREG_LIGHTING_ENABLE0
+  65990  = 0x000101C6  reg 0x1C6 GPUREG_LIGHTING_ENABLE1
+  65760  = 0x000100E0  reg 0x0E0 GPUREG_TEXENV_UPDATE_BUFFER
+  65865  = 0x00010149  reg 0x149 GPUREG_LIGHT0_CONFIG（+16*i でライト別）
+  983491 = 0x000F01C3  reg 0x1C3 GPUREG_LIGHTING_CONFIG0
+  262596 = 0x000401C4  reg 0x1C4 GPUREG_LIGHTING_CONFIG1
+  131333 = 0x00020105  reg 0x105 GPUREG_STENCIL_TEST
+  131335 = 0x00020107  reg 0x107 GPUREG_DEPTH_COLOR_MASK
+  65645  = 0x0001006D  reg 0x06D GPUREG_DEPTHMAP_ENABLE
+  327808 = 0x00050080  reg 0x080 GPUREG_TEXUNIT_CONFIG
+
+★**主体はフラグメントライティングの設定**。
+  当初「テクスチャユニッ__"
+0x004A17B8,repeatable,"★nw::gfx::SimpleMaterialActivator::Activate 相当 (vtable 0x8FBB58 slot 3) (F-95 / F-99 で訂正)。
+マテリアルの差分を見ながら g_GpuCmdPtr へ PICA コマンドを積む。
+★**GPU コマンド生成の実例として最も読みやすい関数。**
+
+★積むヘッダ（registers.h で検証済み、F-99）:
+  65679  = 0x0001008F  reg 0x08F GPUREG_LIGHTING_ENABLE0
+  65990  = 0x000101C6  reg 0x1C6 GPUREG_LIGHTING_ENABLE1
+  65760  = 0x000100E0  reg 0x0E0 GPUREG_TEXENV_UPDATE_BUFFER
+  65865  = 0x00010149  reg 0x149 GPUREG_LIGHT0_CONFIG（+16*i でライト別）
+  983491 = 0x000F01C3  reg 0x1C3 GPUREG_LIGHTING_CONFIG0
+  262596 = 0x000401C4  reg 0x1C4 GPUREG_LIGHTING_CONFIG1
+  131333 = 0x00020105  reg 0x105 GPUREG_STENCIL_TEST
+  131335 = 0x00020107  reg 0x107 GPUREG_DEPTH_COLOR_MASK
+  65645  = 0x0001006D  reg 0x06D GPUREG_DEPTHMAP_ENABLE
+  327808 = 0x00050080  reg 0x080 GPUREG_TEXUNIT_CONFIG
+
+★**主体はフラグメントライティングの設定**。
+  当初「テクスチャユニット」と書いたのは桁の払い間違いによる誤り (F-99)。
+
+差分管理: a2+256..a2+296 に前回の各状態 ID を保存し、
+変わっていなければコマンドを積まない。"
+0x004A20A8,repeatable,"Vapecord plugin ADDRESSES: ADDRESS
+他地域: USA=004A33C8  EUR=004A2410  KOR=004A1F68
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x004A530C,line,IDA-opus-5.5-F057 HIGH: ResMaterial Setup。旗 +24: 0x100 テクスチャ / 0x80 シェーダ +644 / 0x200 TEV(+648)→+40 の参照表を結んだ / 0x40 済み。季節資源の材質は実機で 0x3D5
+0x004A530C,repeatable,IDA-opus-5.5-F057 HIGH: ResMaterial Setup。旗 +24: 0x100 テクスチャ / 0x80 シェーダ +644 / 0x200 TEV(+648)→+40 の参照表を結んだ / 0x40 済み。季節資源の材質は実機で 0x3D5
+0x004A583C,line,IDA-opus-5.5-F056: 参照を解く。*ref == 0x80000000 → ref そのもの、== 0x40000000 → ref+12 の相対の先（0 なら NULL）、ほかは NULL。呼び元は NULL を検査せず +8 を読む。
+0x004A583C,repeatable,IDA-opus-5.5-F056: 参照を解く。*ref == 0x80000000 → ref そのもの、== 0x40000000 → ref+12 の相対の先（0 なら NULL）、ほかは NULL。呼び元は NULL を検査せず +8 を読む。
+0x004A5F20,func,"V2-F021: 引数は（&holder[2] のような資源ポインタのアドレス, 名前, 名前の長さ/hash, 作業用）。*a1+32 の相対辞書を引く。AcObjUnitCursor の初期化はこれを展開した形で [res+32] をたどる"
+0x004A693C,func,V2-F026 HIGH: G3dResHolder_Setup → sub_4A5A74 が各 CMDL に対して呼ぶが、分岐先の **off_96F0F4 = 0x004A6934 と off_96F0F8 = 0x004A7254 はどちらも `return 0` のスタブ**（.data の初期値で確定。書き換えるコードは無い）。つまり **資源側のモデル setup はこのビルドでは実質何もしない**。メッシュのコマンド列はインスタンス生成側（sub_4A8B44）で作られる
+0x004A6DFC,line,IDA-opus-5.5-F057 HIGH: LUT 参照を名前（ref+4 ファイル / ref+8 LUT 名）で資源の LUT 辞書から引き、ref+12 に相対を書く（結ぶ）。見つからなければ書かない
+0x004A6DFC,repeatable,IDA-opus-5.5-F057 HIGH: LUT 参照を名前（ref+4 ファイル / ref+8 LUT 名）で資源の LUT 辞書から引き、ref+12 に相対を書く（結ぶ）。見つからなければ書かない
+0x004A7420,line,IDA-opus-5.5-F057 HIGH: LUT 参照（型 0x40000000）を外す = ref+12 = 0。gfx_LutReference_Cleanup が off_96F100 経由で呼ぶ。写しの材質の +648 に繋いだ TEV の表が借りた資源の表だと、体を壊したときに元の資源の参照が外れる（gohan MapEditor3D 7d3dff3 までのクラッシュの原因）
+0x004A7420,repeatable,IDA-opus-5.5-F057 HIGH: LUT 参照（型 0x40000000）を外す = ref+12 = 0。gfx_LutReference_Cleanup が off_96F100 経由で呼ぶ。写しの材質の +648 に繋いだ TEV の表が借りた資源の表だと、体を壊したときに元の資源の参照が外れる（gohan MapEditor3D 7d3dff3 までのクラッシュの原因）
+0x004A8B44,func,"V2-F026 HIGH: **メッシュの GPU コマンド列 2 本を作るのはここ**。`v28 = sub_4B14CC(mesh, desc)`（頂点属性列の大きさ）と `v56 = sub_4B1540(...)`（描画列の大きさ）を求め、**a3 のアロケータから 1 回だけ `v28+v56` を確保**して、sub_7E5710 で前半（属性）、sub_4B12C0 で後半（描画）を埋める。その後 **mesh+96=先頭 / mesh+100=v28 / mesh+104=先頭+v28 / mesh+108=v56 / mesh+128=アロケータ** をまとめて書く。つまり **mesh+0x68 が有効なら mesh+0x60 も必ず有効**（同じ確保の前半）。★**この関数は常に 0 を返す**ので失敗を上へ報告できず、確保の null 検査も無い"
+0x004A90FC,func,"IDA-gpt-6.1-sol-F013 / MEDIUM; evidence work/evidence/t022_room_capabilities. Read-only material dictionary lookup. R0=pointer to ResModel address, R1=material name. R2/R3 unused (PUSH R3 is scratch local). Resolves ResModel+0xC0 relative material dictionary, name length and dictionary search; returns material or0. Floor Init/Apply uses m_carpet, WallParts Init/Apply uses m_wall."
+0x004A9A04,line,"IDA-opus-5.5-F013: picks the material activator stored at model+0x1EC: if *(model+0x218)+16 (material copy mask = ModelInstance_Create arg5) is 0 or 0x1000 -> SimpleMaterialActivator (precomputed commands), else generic MaterialActivator (0x49C08C). gohan ModelViewer passes 0x834 -> generic; trees pass 0 -> simple."
+0x004A9A04,repeatable,"IDA-opus-5.5-F013: picks the material activator stored at model+0x1EC: if *(model+0x218)+16 (material copy mask = ModelInstance_Create arg5) is 0 or 0x1000 -> SimpleMaterialActivator (precomputed commands), else generic MaterialActivator (0x49C08C). gohan ModelViewer passes 0x834 -> generic; trees pass 0 -> simple."
+0x004AB2BC,line,"V2-F011 (MEDIUM, ARM/callers): allocation failure sets R8=0 and branches to 0x4AB4A0, which dereferences R8's vtable. An outer null check after ModelInstance_Create is not an OOM safety mechanism. Reserve/validate the actual allocator budget before calling; size query excludes allocator overhead."
+0x004AB4A0,line,V2-F011: virtual Setup is called even after the allocation-failure path supplies R8=0. Its returned status is also ignored by this creation path. A nonnull holder and success return do not prove all setup succeeded.
+0x004ACE24,line,"nw::gfx::Camera::Accept(this, visitor) — Camera の vtable[4] (F-112)。
+SceneNode 版（0x497D28）と違い、**visitor->vtbl[8]（+32）** を呼ぶ。
+子ノードへの再帰は同じ。
+実機で Scene_SubmitNode に引っ掛かったノードがこれだった
+（vptr = 0x008FBD34 = vtbl_nw_gfx_Camera）。"
+0x004ACE24,repeatable,"nw::gfx::Camera::Accept(this, visitor) — Camera の vtable[4] (F-112)。
+SceneNode 版（0x497D28）と違い、**visitor->vtbl[8]（+32）** を呼ぶ。
+子ノードへの再帰は同じ。
+実機で Scene_SubmitNode に引っ掛かったノードがこれだった
+（vptr = 0x008FBD34 = vtbl_nw_gfx_Camera）。"
+0x004ADD44,line,"IDA-opus-5.5-F010: copy ResMaterial (728 B body always, cache keys +672..+720 zeroed). mask: 0x1 texture mapper table, 0x20 +157..159, 0x40 +160, 0x780 any -> +162 fragment shader (TEV) 244 B, 0x100 also its lookup tables. IDA-gpt-6-astra-F002 used 0x800 (body only) for alpha."
+0x004ADD44,repeatable,"IDA-opus-5.5-F010: copy ResMaterial (728 B body always, cache keys +672..+720 zeroed). mask: 0x1 texture mapper table, 0x20 +157..159, 0x40 +160, 0x780 any -> +162 fragment shader (TEV) 244 B, 0x100 also its lookup tables. IDA-gpt-6-astra-F002 used 0x800 (body only) for alpha."
+0x004ADEEC,line,IDA-opus-5.5-F057: 写しの +648（TEV）を 0 にする。mask & 0x780 のときだけ後で自前の TEV 写しを入れる → 0x834 の写しでは +648 = 0
+0x004AE2A4,line,"IDA-opus-5.5-F057 HIGH: 材質の写しを捨てる。gfx_ResMaterial_Cleanup(写し) → 写し+648 の TEV → +40 の表 → 各参照を外す、続けて gfx_FragmentShaderCopy_Free(alloc, TEV) が参照・項目・表・TEV を alloc vtable+12 で解放。呼び元 nwgfx_Material_Dtor 0x4AF288"
+0x004AE2A4,repeatable,"IDA-opus-5.5-F057 HIGH: 材質の写しを捨てる。gfx_ResMaterial_Cleanup(写し) → 写し+648 の TEV → +40 の表 → 各参照を外す、続けて gfx_FragmentShaderCopy_Free(alloc, TEV) が参照・項目・表・TEV を alloc vtable+12 で解放。呼び元 nwgfx_Material_Dtor 0x4AF288"
+0x004AF288,line,IDA-opus-5.5-F057 HIGH: nw::gfx::Material の dtor。写しの配列 (+16..+20) を全部 gfx_ResMaterial_DestroyCopy へ。ModelInstance_Destroy 0x4F053C の後片付けで走る
+0x004AF288,repeatable,IDA-opus-5.5-F057 HIGH: nw::gfx::Material の dtor。写しの配列 (+16..+20) を全部 gfx_ResMaterial_DestroyCopy へ。ModelInstance_Destroy 0x4F053C の後片付けで走る
+0x004AFA0C,line,"IDA-opus-5.5-F033 (MEDIUM): per-material light colours: global ambient 0x1C0 = emission + ambientLight res+200 * mat ambient; per fragment light 0x140+16n = res+0xFC.. (ambient, diffuse, spec0, spec1; 0xAABBGGRR) * material colours."
+0x004AFA0C,repeatable,"IDA-opus-5.5-F033 (MEDIUM): per-material light colours: global ambient 0x1C0 = emission + ambientLight res+200 * mat ambient; per fragment light 0x140+16n = res+0xFC.. (ambient, diffuse, spec0, spec1; 0xAABBGGRR) * material colours."
+0x004AFD84,repeatable,"Vapecord plugin ADDRESSES: DAY1
+他地域: USA=004B10A4  EUR=004B00EC  KOR=004AFC44
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x004AFD8C,repeatable,"Vapecord plugin ADDRESSES: DAY3
+他地域: USA=004B10AC  EUR=004B00F4  KOR=004AFC4C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x004AFDA8,repeatable,"Vapecord plugin ADDRESSES: DAY4
+他地域: USA=004B10C8  EUR=004B0110  KOR=004AFC68
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x004B09F4,line,"IDA-opus-5.5-F033: uploads the material's fragment-lighting LUTs (D0/D1/RR/RG/RB/FR via sub_498584, cache dword_ADDF50[24] cleared by RenderContext_ResetState) and 0x1D0-0x1D2 from the accumulators dword_96F098/9C/A0 (not reset; unused LUT fields keep the last world material's values)."
+0x004B09F4,repeatable,"IDA-opus-5.5-F033: uploads the material's fragment-lighting LUTs (D0/D1/RR/RG/RB/FR via sub_498584, cache dword_ADDF50[24] cleared by RenderContext_ResetState) and 0x1D0-0x1D2 from the accumulators dword_96F098/9C/A0 (not reset; unused LUT fields keep the last world material's values)."
+0x004B0C54,line,IDA-opus-5.5-F056: 実機のクラッシュ地点（2026-09-28）。sub_4A583C が NULL（参照が 0x40000000 型で +12 = 0）。赤いハイライトが実体の材質 M+48/M+72 を写しへ向けていたとき、SimpleMaterialActivator 0x4A1F30 から。
+0x004B14CC,func,V2-F026 HIGH: 頂点属性コマンド列（mesh+0x60）の**大きさ**を求める。v2 は 12 から始まり、mesh+56 個の属性ストリームごとに +6（ビット 0 あり）または +4、desc+16 が非負ならさらに +4して `4*v2` を返す。**最小でも 48 バイトで 0 にはならない**ので、「ジオメトリのコマンド列が空」という状態は起きない
+0x004B4328,func,"IDA-gpt-6-F008 LOW full ABI: Widget builder passes group name inR1 and search flag inR2, but inherited decompiler prototype shows onlyR0. Group list wrapper+36/sub4B4330 relationship observed. Retain name/prototype until original ARM consumers and comparison4BDB00 arguments establish all registers/lookup semantics."
+0x004B4330,func,IDA-gpt-6-F008 LOW full ABI: Traverses intrusive group lookup list via+4/+next and comparison4BDB00; inherited type hides R1/R2. No class or exact match/recursive semantics named. Next audit original caller registers + comparer and group ctor; do not derive signature by decompile paraphrase.
+0x004B4D5C,func,"IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。AnimTransform資源+12へpai1を保存。texture参照数*20 B、contentCount*16 Bをnwlyt全体allocatorから確保。TextureInfoを有効な代替値へ変えてもchip合成5,404 B/212 B差は変わらなかった。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。"
+0x004B5140,line,IDA-opus-5.5-F040: pane anim apply. CLVI step curve; CLVC value+0.5 clamp 0..255 trunc.
+0x004B5140,repeatable,IDA-opus-5.5-F040: pane anim apply. CLVI step curve; CLVC value+0.5 clamp 0..255 trunc.
+0x004B541C,line,IDA-opus-5.5-F040: material anim apply. CLMC value+0.5 clamp 0..255 trunc; CLTP step curve.
+0x004B541C,repeatable,IDA-opus-5.5-F040: material anim apply. CLMC value+0.5 clamp 0..255 trunc; CLTP step curve.
+0x004B5844,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。texture cache hitとmiss→vtable+20 load/cacheを区別。今回のchip合成は実texture accessor/GPU/実機の競合を代替しているため実測との差212 Bは未解決。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
+0x004B5844,line,"IDA-opus-5.5-F045 (MEDIUM static): ArcResourceAccessor vtable +0x10 GetTexture(out TextureInfo[20], this, name). Cached list at this+48 (sub_4B4C10); miss -> vtable +0x14 load (VRAM class: ssys_ArcResourceAccessorVRAM_LoadTexture) and cache (sub_4B4B68). TextureInfo: +0 ?, +4 address (goes to TexMap+0x04), +8 used size (w | h<<16), +12 pow2 size, +16 format byte."
+0x004B5844,repeatable,"IDA-opus-5.5-F045 (MEDIUM static): ArcResourceAccessor vtable +0x10 GetTexture(out TextureInfo[20], this, name). Cached list at this+48 (sub_4B4C10); miss -> vtable +0x14 load (VRAM class: ssys_ArcResourceAccessorVRAM_LoadTexture) and cache (sub_4B4B68). TextureInfo: +0 ?, +4 address (goes to TexMap+0x04), +8 used size (w | h<<16), +12 pow2 size, +16 format byte."
+0x004B5900,func,"IDA-opus-5.5-F073: 実機で確認（2026-10-05）。ゲームのヒープ（[[0x96FC40]+4] = sead::ExpHeap、vt+24 確保 / +28 解放、アライン [0x96FC2C]=0x80）に写した自前 DARC を holder+0x158/+8 に入れて Attach(holder+0xC, arc, ""."") → sub_568CFC（テクスチャ登録）→ Layout_Build で、下画面に HHD の地が描けた。
+IDA-gpt-6.1-sol-F009 / T022 fix6 / MEDIUM: Attach(this,DARC,prefix)は+0x4のArcLinkと+0x20の資源baseを更新する単一DARC契約。複数arcを同一accessorへ重ねて常駐させる案は採らず、家具/壁床それぞれのarcに必要な共通格子/名前資源を同梱する。IDA逆アセンブルと日本語更新原本64bytes一致。"
+0x004B5900,line,"IDA-opus-5.5-D005: nw::lyt::ArcResourceAccessor::Attach(アクセサ, アーカイブ先頭, ルート名)。sub_4B3EAC で DARC を解き(+4)、+32 = アーカイブ、+60 = ルート名(UTF-16, 63 字まで)。ArcResAccReader_LoadArcStep が読み込み後に呼ぶ。メモリ上の自前 DARC を直接渡せる見込み（未実機）"
+0x004B5900,repeatable,"IDA-opus-5.5-D005: nw::lyt::ArcResourceAccessor::Attach(アクセサ, アーカイブ先頭, ルート名)。sub_4B3EAC で DARC を解き(+4)、+32 = アーカイブ、+60 = ルート名(UTF-16, 63 字まで)。ArcResAccReader_LoadArcStep が読み込み後に呼ぶ。メモリ上の自前 DARC を直接渡せる見込み（未実機）"
+0x004B5EA0,line,IDA-opus-5.5-F040: hermite: count1/f<=first -> first; last<=f -> last; bsearch (f<=key[mid].f -> hi=mid); |f-key[hi].f|<0.001 -> key[hi] (or key[hi+1] if same frame); else hermite with slope*d.
+0x004B5EA0,repeatable,IDA-opus-5.5-F040: hermite: count1/f<=first -> first; last<=f -> last; bsearch (f<=key[mid].f -> hi=mid); |f-key[hi].f|<0.001 -> key[hi] (or key[hi+1] if same frame); else hermite with slope*d.
+0x004B60DC,line,IDA-opus-5.5-F041: insert child before the sentinel pane+0x14 = AppendChild.
+0x004B60DC,repeatable,IDA-opus-5.5-F041: insert child before the sentinel pane+0x14 = AppendChild.
+0x004B6100,line,"IDA-opus-5.5-F062: nw::lyt Pane::InsertChild(parent, next, child): sub_13EEE8 で child を next の直前へ（描く順も直前）。"
+0x004B6100,repeatable,"IDA-opus-5.5-F062: nw::lyt Pane::InsertChild(parent, next, child): sub_13EEE8 で child を next の直前へ（描く順も直前）。"
+0x004B6154,func,"IDA-gpt-6.1-sol-F015 MEDIUM: original assembly producer: localAlpha+180 => globalAlpha+181; parent+12, child circular list sentinel+20, child link+4; flags+183 bit1 governs influence. Root alpha alone cannot hide un-influenced children. Confirmed independent consumer nwlyt_Pane_DrawRecursive/virtual draw. Preserve real nwlyt name.
+IDA-gpt-6-F014 / MEDIUM: Entry returns before matrix/child traversal if Pane visible bit0 is clear and DrawInfo+136 bit2 is clear. CPU original-ARM tree probe reproduces offscreen center[-560,-80,0] surviving parent entrance, then force-hidden flag4 updates center[150,-80,0] while Pane visibility stays0. T017 scopes this flag to background Calc, restores the original byte before drawing. Hardware-specific coordinates remain unobserved."
+0x004B6154,line,IDA-opus-5.5-F040: global alpha +0xB5 = (u8)(alpha*factor). Child factor = alpha*factor*(1/255) only if influenced (+0xB7 bit1) and alpha!=255; else passes unchanged.
+0x004B6154,repeatable,IDA-opus-5.5-F040: global alpha +0xB5 = (u8)(alpha*factor). Child factor = alpha*factor*(1/255) only if influenced (+0xB7 bit1) and alpha!=255; else passes unchanged.
+0x004B6508,line,"IDA-opus-5.5-F041: insert child before list head *(pane+0x14) = PrependChild (children are walked from that head, 0x4B6154)."
+0x004B6508,repeatable,"IDA-opus-5.5-F041: insert child before list head *(pane+0x14) = PrependChild (children are walked from that head, 0x4B6154)."
+0x004B65E4,line,"IDA-opus-5.5-F042: CLVC target 16 = pane alpha (+180), others -> vt+32 SetVtxColorElement."
+0x004B65E4,repeatable,"IDA-opus-5.5-F042: CLVC target 16 = pane alpha (+180), others -> vt+32 SetVtxColorElement."
+0x004B6600,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
+MEDIUM。Pane vtable 0x8FBE7Cの+0x40。自身のvslot+0x48でリンク解除後、recursiveなら子Paneにも同じ解除を行う。freeを呼ばない。"
+0x004B6958,line,"★nw::lyt::Pane 行列初期化 — F-291。+80(0x50) と +128(0x80) の両方を単位行列(3行4列=48B)にする。よって +0x80 は計算された世界行列であって一次データではない。平行移動は各行の第4列: +0x8C=X, +0x9C=Y, +0xAC=Z。"
+0x004B6958,repeatable,"★nw::lyt::Pane 行列初期化 — F-291。+80(0x50) と +128(0x80) の両方を単位行列(3行4列=48B)にする。よって +0x80 は計算された世界行列であって一次データではない。平行移動は各行の第4列: +0x8C=X, +0x9C=Y, +0xAC=Z。"
+0x004B6A64,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
+MEDIUM。Pane vslot+0x34。自身vslot+0x38の評価後、flagsと可視bitに従って子Paneを再帰評価する。R1=flagsを子に継承する。
+IDA-gpt-6-F014: Always evaluates own pane via virtual+56; argument flag bit0 inhibits descending into invisible panes. T017 uses flags&~1 for hidden letter pose evaluation, preserving actual hidden drawing state and stored layout flags."
+0x004B6B58,line,"★nw::lyt::Pane ctor — F-291（Picture←Pane←internal::PaneBase）。+40 translate / +52 rotate / +64 scale / ★+72,+76 = size(幅,高さ)=0x48/0x4C / +180,181 alpha / +182 flags(下位ニブル=基準点) / +184.. 名前。"
+0x004B6B58,repeatable,"★nw::lyt::Pane ctor — F-291（Picture←Pane←internal::PaneBase）。+40 translate / +52 rotate / +64 scale / ★+72,+76 = size(幅,高さ)=0x48/0x4C / +180,181 alpha / +182 flags(下位ニブル=基準点) / +184.. 名前。"
+0x004B6CA4,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Unlinks children; child+0xB7 bit3==0 -> virtual in-place destroy then nw_lyt_FreeMemory. bit3==1 skips child destruction/free. Distinct from LayoutMgr unlink-all."
+0x004B7864,func,"[ACNL-F0707] MEDIUM. Material+0x4D bit1 skips this state emitter only; Picture continues. Explicit TEV vs default template controls color. Default texMap-count0 emits mat+0x14 to reg0x0FB (0x4B7B38), not 0x0DB; count1 emits mat+0x10/+0x14 to reg0x0DB/0x0F3."
+0x004B7864,line,"★sub_4B7864(drawctx, cursor, material, a4) — マテリアルの状態を GPU コマンドへ出す — F-185
+
+★Picture / TextBox 共通の「マテリアル発行」本体。
+  Picture のマテリアルは *(picture + 316)（sub_73CB58 の冒頭で渡される）。
+
+★色は TexEnv の定数色で決まる。テキストの色を自由に変えられたのはこれ（F-157）。
+    v20 = *(material + 48) & 3;
+    v20 == 0:  reg 0x0FB = *(material + 20)
+    v20 == 1:  reg 0x0DB = *(material + 16);  reg 0x0F3 = *(material + 20)
+    v20 == 2:  sub_4B84C0(...)   別形式
+    v20 == 3:  sub_4B85D8(...)   別形式
+  ヘッダの即値: 983291 = 0x000F00FB / 983283 = 0x000F00F3
+
+★状態キャッシュ（同じ値なら再発行しない）
+    0x97B6FC  モード0 の 0x0DB
+    0x97B714  モード1 の 0x0DB
+    0x97B72C  モード1 の 0x0F3
+  自前の色を出したあとは、ここを潰さないと後続がその色を引き継ぐ。
+
+★★【重要】マテリアルが変わるたび sub_4B8360"
+0x004B7864,repeatable,"★sub_4B7864(drawctx, cursor, material, a4) — マテリアルの状態を GPU コマンドへ出す — F-185
+
+★Picture / TextBox 共通の「マテリアル発行」本体。
+  Picture のマテリアルは *(picture + 316)（sub_73CB58 の冒頭で渡される）。
+
+★色は TexEnv の定数色で決まる。テキストの色を自由に変えられたのはこれ（F-157）。
+    v20 = *(material + 48) & 3;
+    v20 == 0:  reg 0x0DB = *(material + 20)
+    v20 == 1:  reg 0x0DB = *(material + 16);  reg 0x0F3 = *(material + 20)
+    v20 == 2:  sub_4B84C0(...)   別形式
+    v20 == 3:  sub_4B85D8(...)   別形式
+  ヘッダの即値: 983291 = 0x000F00DB / 983283 = 0x000F00F3
+
+★状態キャッシュ（同じ値なら再発行しない）
+    0x97B6FC  モード0 の 0x0DB
+    0x97B714  モード1 の 0x0DB
+    0x97B72C  モード1 の 0x0F3
+  自前の色を出したあとは、ここを潰さないと後続がその色を引き継ぐ。
+
+★★【重要】マテリアルが変わるたび sub_4B8360 を呼んでバッチを流す。
+  これが「1 バッチ = 1 マテリアル / 1 テクスチャ」の正体（F-183）。
+
+★TexEnv 定数色が効かない素材がある。
+  地図の影は 8x8 の LA4（輝度＋アルファ＝色を持たない）テクスチャで、
+  6 段すべての定数色に色を出しても見た目が変わらなかった（F-185 実測）。
+  その場合は reg 0x082/0x085/0x08E でテクスチャごと差し替える。"
+0x004B7CE0,func,F-144 static: active TextBox wrapper calls this after batch glyph emission. Checks batch +0x1C and builds render descriptor; then sub_4D520C copies batch descriptor/instances to the current GPU command stream.
+0x004B7CE0,line,"★★TextBox_EmitBatchToGpuCommands(drawctx, cursor, textbox, material, a5) (F-144 / F-156 / F-157)
+
+呼び出し元 sub_73CF48 (0x73CF48) が渡す引数:
+  TextBox_EmitBatchToGpuCommands(drawctx, cursor, textbox, *(textbox+256), a5)
+
+★【訂正 F-157】第4引数は **マテリアル = *(textbox + 256)**。
+  以前このコメントは「a4 = textbox + 0x100」と書いていたが、
+  それは加算ではなく **デリファレンス** の読み違いだった。
+  live で textbox+272 は自己参照ポインタ (tb+0x170) で色ではない。
+
+★submit descriptor をここで組み立てている。全フィールドの出所:
+
+  desc = *(a5 + 128) + 248        ← a5 が持つ常設スクラッチ（毎 box 使い回し）
+  desc+0x44 = *(textbox + 260)    batch
+  desc+0x18 = *(textbox + 216)    文字色 上
+  desc+0x1C = *(textbox + 220)    文字色 下
+  desc+0x20 = (上下が違えば 2, 同じなら 0)
+  desc+0x00 = *(material + 16)    色（live では常に A=0）
+  desc+0x04 = *(materi"
+0x004B7CE0,repeatable,"★★TextBox_EmitBatchToGpuCommands(drawctx, cursor, textbox, material, a5) (F-144 / F-156 / F-157)
+
+呼び出し元 sub_73CF48 (0x73CF48) が渡す引数:
+  TextBox_EmitBatchToGpuCommands(drawctx, cursor, textbox, *(textbox+256), a5)
+
+★【訂正 F-157】第4引数は **マテリアル = *(textbox + 256)**。
+  以前このコメントは「a4 = textbox + 0x100」と書いていたが、
+  それは加算ではなく **デリファレンス** の読み違いだった。
+  live で textbox+272 は自己参照ポインタ (tb+0x170) で色ではない。
+
+★submit descriptor をここで組み立てている。全フィールドの出所:
+
+  desc = *(a5 + 128) + 248        ← a5 が持つ常設スクラッチ（毎 box 使い回し）
+  desc+0x44 = *(textbox + 260)    batch
+  desc+0x18 = *(textbox + 216)    文字色 上
+  desc+0x1C = *(textbox + 220)    文字色 下
+  desc+0x20 = (上下が違えば 2, 同じなら 0)
+  desc+0x00 = *(material + 16)    色（live では常に A=0）
+  desc+0x04 = *(material + 20)    ★本体の色 RGBA
+  desc+0x49 = *(textbox + 181)    alpha 倍率
+  TextSubmitDesc_ExpandCornerColors(desc) を 2 回呼ぶ
+  （1 回目は +0x18/+0x1C を入れる前なので無意味。2 回目が本番）
+  TextBatch_CopyToCommandBuffer(desc, cursor_after_prefix, drawctx)
+  最後に desc+0x44 = 0 で batch を外す
+
+★色は u32 で 0xAABBGGRR（メモリ上 R,G,B,A の順）— F-157 で実測。
+
+★F-154 の SIGSEGV はこの関数を直呼びして drawctx を渡したため。
+  自前実装ではこれを呼ばず TextBatch_CopyToCommandBuffer を a3=0 で直接叩く。"
+0x004B7DCC,line,"★★★F-157 / F-158 / F-162 の自前テキスト描画フック地点。
+
+TextBatch_CopyToCommandBuffer から戻った直後で、必要なものが全部生きている:
+  R0 = 進んだ cursor      R4 = **完成済み submit descriptor**
+  R5 = drawctx            R6 = textbox
+  R9 = **プリフィックス直後の cursor**（0x4B7D44 で設定、以後不変）
+
+desc+0x44 のクリアは 0x4B7DDC まで起きない。
+→ **自前で 0x4A バイトの descriptor を組む必要がない**（F-156 の計画は不要だった）。
+
+R1/R2/R3/R7/R8/R12 はここ以降どこからも読まれないので自由に使える
+（R7/R8 は関数末尾の POP {R4-R9,PC} が呼び出し元の値を復元する）。
+
+【1 枚描く手順】
+  1. [R9-64, R9) の 16 ワードを cursor へ複製
+  2. 複製の matrix[3] (= cursor-40) に X、matrix[7] (= cursor-24) に Y
+     ★「ずらす」のではなく**絶対位置を設定**する。+X 右 / +Y 上、単位はレイアウト px
+  3. desc+0x04 に色。u32"
+0x004B7DEC,line,"★TextBox_UpdateDrawState(drawctx, cursor, a3, a4) — F-170
+
+テクスチャ状態の差分を積んで、**進んだ cursor を返す**。
+
+★【重要】**cursor をグローバルに書き戻していない。**
+  cursor は戻り値で受け渡されており、
+  **任意の地点でグローバルから読むことはできない**。
+  これが TODO-115（TextBox に依らない発行点）が未解決である理由。
+
+  unk_97B74C はテクスチャ状態のキャッシュ（32 バイト x N）。
+  前回と差があるときだけコマンドを積む。"
+0x004B7DEC,repeatable,"★TextBox_UpdateDrawState(drawctx, cursor, a3, a4) — F-170
+
+テクスチャ状態の差分を積んで、**進んだ cursor を返す**。
+
+★【重要】**cursor をグローバルに書き戻していない。**
+  cursor は戻り値で受け渡されており、
+  **任意の地点でグローバルから読むことはできない**。
+  これが TODO-115（TextBox に依らない発行点）が未解決である理由。
+
+  unk_97B74C はテクスチャ状態のキャッシュ（32 バイト x N）。
+  前回と差があるときだけコマンドを積む。"
+0x004B8090,line,"★sub_4B8090(drawctx, colors, alpha) — 頂点カラーを作る — F-183 / F-186 / F-189
+
+呼び出し: sub_73CB58 内で sub_4B8090(drawctx, picture+320, *(picture+181))
+colors = 4 隅の色（u32 x 4。メモリ上のバイト順は R,G,B,A）
+
+2 つの経路がある:
+  4 隅がすべて 0xFFFFFFFF（既定の白）
+    -> *(float*)(drawctx+1636) = alpha/255   【索引ではなくアルファ値】
+  それ以外
+    -> *(float*)(drawctx+1636) = (float)(drawctx+37)   【索引】
+       16 float を *(drawctx+1644) + 16*(drawctx+37) へ積む
+       drawctx+37 += 4
+
+★この値が索引エントリの w3 になる（sub_73CB58 末尾）。
+  **同じフィールドに「アルファ」と「索引」という別の意味が入る。**
+
+★色ブロックは 4 エントリ連続で、並びは **左上 → 右上 → 左下 → 右下**。
+  各エントリが (R, G, B, A)。実機で直接可視化して確定（F-189）。
+
+★色はテクスチャへの**掛け算**。真っ赤にしても模様が"
+0x004B8090,repeatable,"★sub_4B8090(drawctx, colors, alpha) — 頂点カラーを作る — F-183 / F-186 / F-189
+
+呼び出し: sub_73CB58 内で sub_4B8090(drawctx, picture+320, *(picture+181))
+colors = 4 隅の色（u32 x 4。メモリ上のバイト順は R,G,B,A）
+
+2 つの経路がある:
+  4 隅がすべて 0xFFFFFFFF（既定の白）
+    -> *(float*)(drawctx+1636) = alpha/255   【索引ではなくアルファ値】
+  それ以外
+    -> *(float*)(drawctx+1636) = (float)(drawctx+37)   【索引】
+       16 float を *(drawctx+1644) + 16*(drawctx+37) へ積む
+       drawctx+37 += 4
+
+★この値が索引エントリの w3 になる（sub_73CB58 末尾）。
+  **同じフィールドに「アルファ」と「索引」という別の意味が入る。**
+
+★色ブロックは 4 エントリ連続で、並びは **左上 → 右上 → 左下 → 右下**。
+  各エントリが (R, G, B, A)。実機で直接可視化して確定（F-189）。
+
+★色はテクスチャへの**掛け算**。真っ赤にしても模様が残る。
+
+★**バッチは drawctx+37 で見分けられる。**
+  +37 = 3 -> 行列 3 エントリだけ = 色を持たない（w3 はアルファ）
+  +37 = 7 -> 行列 0..2 ＋ 色 3..6（w3 が色の索引）
+  自前の色を使いたければ +37 = 7 のバッチに乗ること（F-190）。"
+0x004B8360,line,"★sub_4B8360(drawctx, cursor) — DrawContext の遅延状態をコマンドへ吐き出す — F-147 / F-170 / F-185
+
+★★【最重要】**引数は 2 つ。R1 = コマンドカーソル。decompiler は呼び出し元で R1 を落とす。**
+  MOV R4,R0 (drawctx) / MOV R6,R1 (cursor) が入口にある。
+  ssys::ma::Allocator::Alloc / Free と同じ罠（F-164）。assembly を見ること。
+
+★★ここをフックすると、バッチが流れる直前に**任意の GPU コマンドを発行できる**（F-185）。
+  ケーブ冒頭が PUSH {R0-R3,R12,LR} なら [SP,#4] が元の R1。
+      LDR R2,[SP,#4] / STR param,[R2],#4 / STR header,[R2],#4 / STR R2,[SP,#4]
+  進めたカーソルを書き戻せば POP で反映される。実機のコマンド列で確認済み。
+
+★これは cursor を作り出す関数ではない。渡された cursor を消費して進めたものを返すだけ。
+
+やっていること:
+  drawctx+136 のステージングを 16*(drawctx+36)+16 バイト流す
+  drawc"
+0x004B8360,repeatable,"★sub_4B8360(drawctx, cursor) — DrawContext の遅延状態をコマンドへ吐き出す — F-147 / F-170 / F-185
+
+★★【最重要】**引数は 2 つ。R1 = コマンドカーソル。decompiler は呼び出し元で R1 を落とす。**
+  MOV R4,R0 (drawctx) / MOV R6,R1 (cursor) が入口にある。
+  ssys::ma::Allocator::Alloc / Free と同じ罠（F-164）。assembly を見ること。
+
+★★ここをフックすると、バッチが流れる直前に**任意の GPU コマンドを発行できる**（F-185）。
+  ケーブ冒頭が PUSH {R0-R3,R12,LR} なら [SP,#4] が元の R1。
+      LDR R2,[SP,#4] / STR param,[R2],#4 / STR header,[R2],#4 / STR R2,[SP,#4]
+  進めたカーソルを書き戻せば POP で反映される。実機のコマンド列で確認済み。
+
+★これは cursor を作り出す関数ではない。渡された cursor を消費して進めたものを返すだけ。
+
+やっていること:
+  drawctx+136 のステージングを 16*(drawctx+36)+16 バイト流す
+  drawctx+37 が立っていれば TextDraw_EmitStatePrefix を呼ぶ
+  drawctx+38 が立っていれば drawctx+1096 の分も流す
+  最後に index buffer / NUMVERTICES / DRAWELEMENTS 相当を積む
+
+★流される中身は頂点シェーダの float uniform 転送:
+  80000006 / 000F02C0 (index=6, float32)  →  007F02C1 で連続バースト
+  つまり配列に積んだ「行列」「色」「幾何」は全部シェーダの uniform になる。
+
+★UI 画像を 1 枚足すには、ここで drawctx の 3 配列に
+  エントリをコピーしてカウンタ +36/+37/+38 を増やすだけでよい（F-180 / F-181）。
+  GPU コマンドは 1 バイトも書かなくてよい。実装は PATCHES/cave_add_sprite.py。"
+0x004B8790,func,"IDA-opus-5.5-F082: 材質の TEV の段（bclyt mat1 の 12 B = rgb 語 / α 語 / 定数色の番号）を PICA のコマンドへ。語のニブル: [3:0][7:4][11:8] = 入力 0..2（0 tex0 / 1 tex1 / 2 tex2 / 3 tex3 / 4 定数 / 5 頂点色 / 6 前の段 / 7 前のバッファ。表 {3,4,5,6,14,0,15,13}）、[15:12][19:16][23:20] = 入力の成分（rgb: 0 色 / 1 1-色 / 2 α / 3 1-α / 4.. r g b、α: 0 α / 1 1-α / 2.. r g b）、[27:24] = 合成（0 置換 / 1 乗算 / 2 加算 / 3 符号付き加算 / 4 補間 s0*s2+s1*(1-s2) / 5 減算 / 6 AddMult / 7 MultAdd）、[29:28] = 倍率 1/2/4、bit30 = バッファへ書く。第 3 語: [3:0] rgb / [7:4] α の定数色の番号（材質 +16 + 4n = 色 n）。最後にバッファの初期色 reg 0xFD = 色 0（黒色）。段は 6 段の後ろに詰める。"
+0x004B8C34,line,"★F-265: Layout_ReplayRecordedList が replay 直前に呼ぶ。
+  cursor = GpuCmd_GetCurrentWritePtr()
+  cursor = (*(drawer_vtable+0x10))(drawer, cursor, a3)
+  if ((a3 & 1) == 0) nwlyt_Drawer_EmitProjectionUniform(drawer, cursor, DrawInfo+4)
+  -> 0x4D71C4 へ JUMPOUT（g_GpuCmdPtr へ書き戻す）
+呼び出しは sub_4B8C34(drawer, Layout+0x30, 0)。a3=0 なので投影は必ず出る。"
+0x004B8C34,repeatable,"★F-265: Layout_ReplayRecordedList が replay 直前に呼ぶ。
+  cursor = GpuCmd_GetCurrentWritePtr()
+  cursor = (*(drawer_vtable+0x10))(drawer, cursor, a3)
+  if ((a3 & 1) == 0) nwlyt_Drawer_EmitProjectionUniform(drawer, cursor, DrawInfo+4)
+  -> 0x4D71C4 へ JUMPOUT（g_GpuCmdPtr へ書き戻す）
+呼び出しは sub_4B8C34(drawer, Layout+0x30, 0)。a3=0 なので投影は必ず出る。"
+0x004B8CF0,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Allocator wrapper (size,align): current off_96F150 vslot+8. Matching free wrapper is 0x13BB08. No fixed-size bound here."
+0x004B8CF0,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x004B8D14,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Resource factory: Picture allocation 0x158 (0x4B8DAC), Pane allocation 0xD4 (0x4B8D80). Align 4; then derived ctor."
+0x004B8D14,line,"★nw::lyt ペイン工場（種別 FourCC で分岐して確保＋構築）— F-291 / Picture=344B, TextBox=264B, 他 364/212B。★Picture の実体は 344 バイト(0x158)。以前の「約 0x320」は誤り。"
+0x004B8EA0,func,"IDA-gpt-6.1-sol-F015 MEDIUM: inner nw::lyt::Layout rootPane+16; dispatch root virtual CalculateMtx at vtable+92, forwarding drawInfo. Original caller vc_ACSYSTEM_DATA2 and Pane_CalculateMtx assembly independently agree.
+IDA-gpt-6-F014: DrawInfo is passed unchanged to root virtual+92 CalculateMtx. Native background includes attached letter root, so its force-hidden calculation bit2 updates descendants without making the letter drawable."
+0x004B8F04,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
+MEDIUM。DummyLayout vtable 0x900578の+0x20（0x900598）から到達。root+0x10へPane vslot+0x40(anim, recursive=1)を渡す。資源破棄ではない。"
+0x004B930C,func,"IDA-gpt-6.1-sol-F008 / 2026-10-08 / T022 fix5。根拠 ida_evidence.json・ida_extra.json。実機未検証。
+MEDIUM。DummyLayout vtable0x900578の+0x14（0x90058C）。resource本体なしなら0、vslot+0x0CのfactoryがNULLなら0。非NULLの場合だけtransform vslot+0x10で資源を組む。UiAnim_Loadの0戻り経路ではanim+0x18/+0x20がctor初期値0のままなので、今回疑った『0戻り再試行ごとに既存UiAnim資源が漏れる』根拠は得られない。"
+0x004B9358,func,IDA-gpt-6.1-sol-F010 / MEDIUM: DummyLayout vtable 0x900578 の +0xC がこの関数。UiAnim_Load→0x4B92D0→vslot+0x14 (0x4B930C)→vslot+0xCで呼ばれる。0x4B9364 R1=0x20 / R2=4 を nwlyt allocator +8へ渡し、0x4B57A0 ctor後にlayoutのリストへ連結するAnimTransform器（32 B）。原本6地点照合済み環境、caller/vtableとcallee確保/ctorの複数静的証拠。RTTI正式名は未照合のためここでは推測クラス型を適用しない。
+0x004B9474,line,"IDA-opus-5.5-F065: nw::lyt::Layout::Build (this = Layout+16). Section 'lyt1' (829716844): *(u64*)(this+24) = *(u64*)(sec+12) = bclyt width/height -> Layout+0x28/+0x2C, the ortho projection size (sub_73BAC0). time_bel_win.bclyt = 400x240 (top screen); bottom-screen bclyts are 320x240."
+0x004B9474,repeatable,"IDA-opus-5.5-F065: nw::lyt::Layout::Build (this = Layout+16). Section 'lyt1' (829716844): *(u64*)(this+24) = *(u64*)(sec+12) = bclyt width/height -> Layout+0x28/+0x2C, the ortho projection size (sub_73BAC0). time_bel_win.bclyt = 400x240 (top screen); bottom-screen bclyts are 320x240."
+0x004B9718,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
+MEDIUM。R0=LayoutImpl、R1=flags。root（impl+0x10）のvslot+0x34にtail呼出ししR1を保持。0x568030のLayoutCalc先頭のアニメ評価。時刻更新、Draw/AddLayout、行列Calcはこの入口にはない。
+IDA-gpt-6-F014: Evaluation-only entry forwards flags to Pane virtual+52; T017 clears argument bit0 (visible-only) while evaluating the hidden letter subtree. This does not alter stored flags or animation time. It precedes forced parent-tree CalculateMtx."
+0x004B9748,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
+MEDIUM。Layout実装の破棄。group/root pane/AnimTransformのdtorと対応freeを行う。Unbind 0x4B8F04とは別。"
+0x004B9830,func,"[ACNL-F0706] MEDIUM, static reanalysis, no hardware. TexMap CPU-derived values: +0x18=ROR32(+0x0C,16), width high16 / height low16. +0x1C=format mapping (+0x10 bits8..11), 0xE/F preserve previous field. +0x14 from sampler bits. Does not allocate or emit GPU commands. TextBox_UpdateDrawState compares address and params, not every derived field."
+0x004B9830,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x004BAA68,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Pane-derived Picture, size 0x158. Allocates texcoord array via +0x150 header, ptr +0x154; allocates Material 0x50 separately at 0x4BAB78. +0x13C Material pointer, +0x140 four RGBA colors. No fixed adjacency distance."
+0x004BAA68,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x004BAC18,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Material+0x4D bit0==0: invoke Material vslot0 then free Material. bit0==1: skip both. Always destroys own texcoord array +0x150, then Pane. Sharing draw pointers does not confer independent ownership."
+0x004BAC78,line,"nw::lyt::TextBox の vtable[4] — 文字色の設定 (F-127)。
+  *(this + 4*(idx>>1) + 216) = *color
+引数 idx の >>1 は Itanium ABI のメンバ関数ポインタ形式
+（Obj_InvokePmfTriple と同じ規約）。
+**これにより +216 / +220 が文字色であることが確定した。**"
+0x004BAC78,repeatable,"nw::lyt::TextBox の vtable[4] — 文字色の設定 (F-127)。
+  *(this + 4*(idx>>1) + 216) = *color
+引数 idx の >>1 は Itanium ABI のメンバ関数ポインタ形式
+（Obj_InvokePmfTriple と同じ規約）。
+**これにより +216 / +220 が文字色であることが確定した。**"
+0x004BACBC,line,"★nwlyt_TextBox_SetString(this, wchar_t* str, dstIdx, len) — F-126 / F-162
+
+先頭 1 ワードをケーブへ差し替えて、特定の TextBox のときだけ
+R1（文字列）と R3（長さ）を自前のものに差し替える。
+PATCHES/cave_textbox.py。
+
+バッファに直接書いても、ゲームが毎フレーム SetString で書き戻すので消える。
+だからここをフックする必要がある。
+
+★【F-162】**フックを入れても即座には変化しない。**
+  名前 pane の SetString は会話の区切りでしか呼ばれない。
+  実測では **会話の最後のメッセージに達した瞬間**に発火した
+  （別の boot では「話しかけ直したとき」）。
+  **変わらないことを「フックが効いていない」と即断しないこと。"
+0x004BACBC,repeatable,"★nwlyt_TextBox_SetString(this, wchar_t* str, dstIdx, len) — F-126 / F-162
+
+先頭 1 ワードをケーブへ差し替えて、特定の TextBox のときだけ
+R1（文字列）と R3（長さ）を自前のものに差し替える。
+PATCHES/cave_textbox.py。
+
+バッファに直接書いても、ゲームが毎フレーム SetString で書き戻すので消える。
+だからここをフックする必要がある。
+
+★【F-162】**フックを入れても即座には変化しない。**
+  名前 pane の SetString は会話の区切りでしか呼ばれない。
+  実測では **会話の最後のメッセージに達した瞬間**に発火した
+  （別の boot では「話しかけ直したとき」）。
+  **変わらないことを「フックが効いていない」と即断しないこと。"
+0x004BAD78,func,F-133: TextBox alignment bytes are read from textbox+0xFC/+0xFD. Low 2-bit selector maps horizontal flags (0x10/0x20); selector/3 maps vertical flags (0x100/0x200). Exact UI enum names remain to be dynamically validated.
+0x004BAD78,line,"F-131 HIGH: copies nw::lyt::TextBox state into a 0x64-byte nw::font::TextWriter. TextBox+0xE0 font, +0xE4/+0xE8 requested font size, +0xEC char spacing, +0xF0 line spacing, +0x48 pane width."
+0x004BAD78,repeatable,"F-131 HIGH: copies nw::lyt::TextBox state into a 0x64-byte nw::font::TextWriter. TextBox+0xE0 font, +0xE4/+0xE8 requested font size, +0xEC char spacing, +0xF0 line spacing, +0x48 pane width.
+IDA-gpt-6.1-sol-F004 / MEDIUM追補: TextBox+0xFCは位置寄せ（mod3=水平、div3=垂直）、+0xFD=行寄せ。資源+0x54/+0x55をCtor0x4BB36C/0x4BB374がそのまま写す。中央位置=4、中央行=2。TextBox+0x48をTextWriter+0x4Cへ写して折返し幅とする。名前の窓だけ拡幅しても文字の折返しは変わらない。"
+0x004BADBC,line,F-131 HIGH: TextBox pane width (+0x48) -> TextWriter wrap limit (+0x4C). Pane height is not copied into the writer.
+0x004BAFB0,func,"F-143 static: initializes local TextWriter, stores TextBox+0x104 into writer+0x44 (batch buffer), configures font/size/spacing, resets batch via sub_4D5194, then calls sub_7E7F48. writer+0x40 remains zero on this path; no immediate texture setup."
+0x004BAFFC,line,"F-144 live: conversation TextBox sub_4BAFB0 -> sub_7E7F48 at this call. R4=TextBox 0x32D20220, R1 UTF-16 ""あんこ"" (len 3), writer SP=0x0FFFFCC0, writer+0x40=0, writer+0x44=batch 0x32D22FD8. Do not force immediate path; null context."
+0x004BB06C,line,"IDA-opus-5.5-F042: TextBox SetVtxColorElement(idx, v): +216 + 4*(idx>>3) + (idx&3) -> 0..7 top colour, 8..15 bottom colour."
+0x004BB06C,repeatable,"IDA-opus-5.5-F042: TextBox SetVtxColorElement(idx, v): +216 + 4*(idx>>3) + (idx&3) -> 0..7 top colour, 8..15 bottom colour."
+0x004BB084,line,IDA-opus-5.5-F036: 旧名 nwlyt_TextBox_AllocStringBuffer は誤り。欄を 0 に戻す初期化（+212/+224 書体/+252 配置 など）して vt+112 を呼ぶ
+0x004BB084,repeatable,IDA-opus-5.5-F036: 旧名 nwlyt_TextBox_AllocStringBuffer は誤り。欄を 0 に戻す初期化（+212/+224 書体/+252 配置 など）して vt+112 を呼ぶ
+0x004BB1E8,line,"F-131 HIGH: TextBox draw path. Validates text/font/material, configures TextWriter, applies pane matrix via vtable+0x6C, then draws the UTF-16 string."
+0x004BB1E8,repeatable,"F-131 HIGH: TextBox draw path. Validates text/font/material, configures TextWriter, applies pane matrix via vtable+0x6C, then draws the UTF-16 string."
+0x004BB278,line,F-140 static: TextBox_DrawText calls sub_4D5858 with R0=SP (0x64-byte TextWriter) after ConfigureTextWriter; sub_4D5858 prepares GPU/text state before sub_7E7F48 emits UTF-16 glyphs.
+0x004BB288,line,"F-140 static: sub_7E7F48(TextWriter@SP, TextBox+0xD4 UTF-16 pointer, TextBox+0xFA length) is the actual string emission wrapper; sub_4D7730 immediately resets GPU channels."
+0x004BB2A4,func,IDA-gpt-6.1-sol-F009 / T022 fix6 / MEDIUM: BCLYT txt1+0x4C のbufferBytesをLSR 1し、非0ならN=bufferBytes/2-1として0x4BB084→vt+0x70を呼ぶ。additionalChars=128は空文字ペインにもN=127の器を確保する。IDA命令と日本語更新原本6地点64bytes一致、独立DARC/BCLYT読取りで照合。T022資源では非表示枝を除去し、名前容量N=15（原本名最大12 UTF16単位）へ縮小。実機の修正後使用量は未測定。
+0x004BB2A4,line,"nw::lyt::TextBox のコンストラクタ (F-126)。
+リソースから各フィールドを埋める:
+  リソース+92..99  -> +216 / +220（文字色 2 つ）
+  リソース+100      -> +228 / +232（フォントサイズ）
+  リソース+108/112  -> +240 / +236
+  フォント            -> +224
+最後に nwlyt_TextBox_SetString でリソース文字列を入れる。
+**この対応からフィールドの意味を読んだ（実機で裏付け済み）。**"
+0x004BB2A4,repeatable,"nw::lyt::TextBox のコンストラクタ (F-126)。
+リソースから各フィールドを埋める:
+  リソース+92..99  -> +216 / +220（文字色 2 つ）
+  リソース+100      -> +228 / +232（フォントサイズ）
+  リソース+108/112  -> +240 / +236
+  フォント            -> +224
+最後に nwlyt_TextBox_SetString でリソース文字列を入れる。
+**この対応からフィールドの意味を読んだ（実機で裏付け済み）。**"
+0x004BB3B0,line,TODO-98/F-129: resource TextBox+82 の font index から名前を引き、ResourceAccessor の virtual +12 で nw::font::Font* を取得して TextBox+224 に保存する。静的 Ctor と実機 ResFont vptr で確認。
+0x004BCC7C,line,"IDA-opus-5.5-F086: nw::lyt::Material SetColorElement(idx<0x1C, v): byte [mat+0x10+idx] (0..3 black RGBA, 4..7 white RGBA, then TEV constant colours). Called by AnimateMaterial for CLMC. Does not clear the resend flag +0x4D bit2 itself."
+0x004BCC7C,repeatable,"IDA-opus-5.5-F086: nw::lyt::Material SetColorElement(idx<0x1C, v): byte [mat+0x10+idx] (0..3 black RGBA, 4..7 white RGBA, then TEV constant colours). Called by AnimateMaterial for CLMC. Does not clear the resend flag +0x4D bit2 itself."
+0x004BCCBC,func,"IDA-gpt-6.1-sol-F008 / 2026-10-08 / T022 fix5。根拠 ida_evidence.json・ida_extra.json。実機未検証。
+MEDIUM。Material vtable 0x8FC18Cの+0x0C（0x8FC198）がこの入口。材質+0x04のAnimLink解除0x4BDCB4への転送のみ。CLTS等の評価済み値を戻す処理はない。"
+0x004BCEA8,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Material size 0x50; seven colors +0x10. +0x2C capacities, +0x30 active counts. Runtime block +0x34: TexMap, TexSRT, TexCoordGen, AlphaCompare, BlendMode, TEV (capacity offsets, not active-count offsets). Flags +0x4D initialized 0. Static only."
+0x004BCEA8,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x004BD588,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Unbind animation, then free nonnull block +0x34 and zero pointer. No shared-reference count in this destruction path."
+0x004BD668,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Free nonnull ptr +4; clear pointer/capacity/used bytes. Material ownership bit does not suppress this separate Picture array destruction."
+0x004BD694,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Header capacity byte +0, used byte +1, ptr +4. If capacity insufficient, frees old ptr and allocates 32*requested bytes. Static only."
+0x004BDC44,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
+MEDIUM。Pane自身の各材質vslot+0x0CとPane+0x1Cのアニメリンクを解除する。SRT/色の最後の評価値を戻す処理ではない。"
+0x004BDCB4,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
+MEDIUM。指定AnimTransform（NULLなら全部）のintrusiveリンクをunlinkし、link+0x0E、+0x08、+0x0Cを0にする。資源freeではない。"
+0x004BE2A4,func,IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Layout-space point -> inverse pane global matrix at+128 -> local point; compares all four bounds from pane origin nibble+182 and size+72/+76. Full ARM compares include upper X/Y bounds missing in terse decompile.
+0x004D4EAC,func,"F-135: code_runtime.elf.i64とのraw bytes照合で0x2E4 bytes差分0。descriptor/batch分岐のライブ値は未検証。
+F-139 live: writer R0=0x0000FC70, glyph record R1=SP=0x0FFFFB10; descriptor=0x319BEB70, writer+0x44=0x32D3A6F0 != 0, so batch branch selected. Texture setup 0x4D5118 not reached on this path.
+F-142 live: BP hit even with conversation closed. R0=0x0FFFFC58 (TextWriter), R1=0x0FFFFAF8 (glyph record), LR-4=0x4D5834. writer+0x40=context=0, writer+0x44=batch=0x32D0721C, font=0x3302ABE0, raw sheet=0x3187CA80, descriptor=0x319BE954, scale=1.0. This confirms EmitGlyphQuad is shared by non-conversation UI and this sample selects batch, not immediate."
+0x004D4EAC,line,F-131 HIGH: emits one glyph quad. Glyph byte+5 (CWDH glyphWidth) controls both quad width and right U coordinate; byte+7 is cell height. TextBox string-buffer capacity and pane dimensions are not consulted here.
+0x004D4EAC,repeatable,F-131 HIGH: emits one glyph quad. Glyph byte+5 (CWDH glyphWidth) controls both quad width and right U coordinate; byte+7 is cell height. TextBox string-buffer capacity and pane dimensions are not consulted here.
+0x004D4ED0,line,"F-131 HIGH: load CWDH glyphWidth (glyph record +5). For 7px fallback glyph 0 this is 6, while advance is 7 and TGLP cell width is 7."
+0x004D4F24,line,F-131 HIGH: right U = (cellX + glyphWidth) / sheetWidth; left U = cellX / sheetWidth.
+0x004D4F40,line,"F-142 live context: sampled non-conversation glyph had writer+0x44=0x32D0721C, so the BEQ immediate branch was not taken; writer+0x40 was zero and was not dereferenced on this path."
+0x004D4F88,line,"F-134 static: batch CharWriter path writes a 0x2C-byte glyph instance (position, colors, UVs, descriptor pointer) and returns before immediate texture binding/draw."
+0x004D4FC8,line,F-139 live batch return: count incremented and 44-byte instance 0x32D3A770 ended with descriptor 0x319BEB70.
+0x004D4FEC,line,"F-131 HIGH: right quad X = current X + glyphWidth*horizontalScale. With glyphWidth=6 and requested width 18 over a 7px font, visible quad width is 6*(18/7)=15.43 px."
+0x004D507C,line,"F-134 static: glyph descriptor pointer exists. Its first dword is the lazily-created texture handle; zero enters the allocation path, nonzero binds the existing handle."
+0x004D50D0,line,"F-134 static: when glyph descriptor pointer is null, writer texture context (+0x40) supplies a shared handle at +4; raw-sheet pointer is cached at context+0xE4 and only changed raw data triggers parameter refresh."
+0x004D5118,line,"F-137: call to 0x4D8484 uses R0=glyph+0x08 sheet width, R1=glyph+0x0A sheet height, R2=glyph+0x10 texture format, R3=glyph+0x00 raw sheet address."
+0x004D5148,line,"F-133: after optional transform update, glyph path calls generic GPU draw/state routine with (6,0,4); this is the native text draw bridge."
+0x004D5154,line,"F-134 static: immediate glyph path requests one texture ID from generic allocator nwgfx texture-ID routine (sub_7A8B08(1,&local_handle))."
+0x004D5160,line,"F-134 static: newly allocated handle is stored back to descriptor+0, then target 3553 is bound through sub_7A6558."
+0x004D51B0,func,F-133 static: recomputes CharWriter horizontal/vertical scales from requested dimensions divided by ResFont native metrics (vtable offsets +8/+12); stores scales at writer+0x24/+0x28.
+0x004D520C,func,"F-144 static: if descriptor+0x44 batch count (+0x1C) is nonzero, builds PICA state commands and copies batch data from descriptor+0x68 buffer (+0x10/+0x18 depending flags) into the supplied command stream. This is the batch-to-command-buffer bridge."
+0x004D520C,line,"★★★TextBatch_CopyToCommandBuffer(desc, cursor, drawctx) — F-145 / F-156 / F-157
+
+返り値 = 進んだ cursor。出力サイズ = 0x60 バイトのヘッダ + (batch+0x1C)*4。
+
+ヘッダ 24 ワードの内訳（cursor を a2 として）:
+  a2[0]      = 0x80000023
+  a2[1]      = 0x000F0200
+  a2[2]      = 四隅色 payload[0]
+  a2[3]      = 0x00FF02C1
+  a2[4..19]  = 四隅色 payload[1..15] + 0   （TextDraw_BuildFourCornerColors 産)
+  a2[20]     = (desc+0x04 & 0xFFFFFF) | (A*desc[0x49]/255 << 24)
+  a2[21]     = 0x000F00DB
+  a2[22]     = (desc+0x00 & 0xFFFFFF) | (A*desc[0x49]/255 << 24)
+  a2[23]     = 0x000F00F3
+  a2[24..]   = batch 本体
+
+★色は u32 で 0xAABBGGRR（メモリ R,G,B,A 順）— F-157 実測。
+
+★a3(drawctx) は batch+9 の bit1 が立つ indexed 経路でしか触られない。
+  会話 TextBox は 3 つとも batch+9 == 0x00 の直接コピー経路なので
+  **a3 = 0 で安全**（F-154 の drawctx[417..419] 二重更新 SIGSEGV を回避）。
+  直接コピー経路は Me"
+0x004D520C,repeatable,"★★★TextBatch_CopyToCommandBuffer(desc, cursor, drawctx) — F-145 / F-156 / F-157
+
+返り値 = 進んだ cursor。出力サイズ = 0x60 バイトのヘッダ + (batch+0x1C)*4。
+
+ヘッダ 24 ワードの内訳（cursor を a2 として）:
+  a2[0]      = 0x80000023
+  a2[1]      = 0x000F0200
+  a2[2]      = 四隅色 payload[0]
+  a2[3]      = 0x00FF02C1
+  a2[4..19]  = 四隅色 payload[1..15] + 0   （TextDraw_BuildFourCornerColors 産)
+  a2[20]     = (desc+0x04 & 0xFFFFFF) | (A*desc[0x49]/255 << 24)
+  a2[21]     = 0x000F00DB
+  a2[22]     = (desc+0x00 & 0xFFFFFF) | (A*desc[0x49]/255 << 24)
+  a2[23]     = 0x000F00F3
+  a2[24..]   = batch 本体
+
+★色は u32 で 0xAABBGGRR（メモリ R,G,B,A 順）— F-157 実測。
+
+★a3(drawctx) は batch+9 の bit1 が立つ indexed 経路でしか触られない。
+  会話 TextBox は 3 つとも batch+9 == 0x00 の直接コピー経路なので
+  **a3 = 0 で安全**（F-154 の drawctx[417..419] 二重更新 SIGSEGV を回避）。
+  直接コピー経路は Mem_Copy(dst, *(batch+16), 4*(batch+0x1C)) のみ。"
+0x004D5240,line,F-146: builds the 64-byte four-corner color payload used inside TextBatch_CopyToCommandBuffer's 0x60-byte per-submit header.
+0x004D53E0,line,"F-145: batch control byte+9 bit1 clear path. Mem_Copy source=batch+0x10, bytes=(batch+0x1C)*4, destination is R1 after 0x60-byte TextBatch header. Live T_nam_00: src 0x32D23190 == dst 0x327DEAB8+0x60 for 632 bytes."
+0x004D5400,line,F-145: returns end pointer = batch-entry R1 + 0x60-byte header + command_dwords*4 on direct-copy path.
+0x004D5418,line,"TextSubmitDesc_ExpandCornerColors(desc) (F-156)。
++0x20 のフラグでグラデーション方向を選び、
++0x18/+0x1C の 2 色を +0x08/+0x0C/+0x10/+0x14 の 4 隅へ配る。
+
+  v1 = *(u8*)(desc+0x20)
+  desc+0x0C = desc+0x18
+  desc+0x08 = *(desc + 0x18 + 4*(v1==1))
+  desc+0x10 = *(desc + 0x18 + 4*(v1==2))
+  desc+0x14 = *(desc + 0x18 + 4*(v1!=0))
+
+※ TextBatch_CopyToCommandBuffer 自体は +0x18/+0x20 を見て
+TextDraw_BuildFourCornerColors で再展開するので、
++0x08..+0x14 はこの経路では使われていない可能性がある（MEDIUM）。"
+0x004D5418,repeatable,"TextSubmitDesc_ExpandCornerColors(desc) (F-156)。
++0x20 のフラグでグラデーション方向を選び、
++0x18/+0x1C の 2 色を +0x08/+0x0C/+0x10/+0x14 の 4 隅へ配る。
+
+  v1 = *(u8*)(desc+0x20)
+  desc+0x0C = desc+0x18
+  desc+0x08 = *(desc + 0x18 + 4*(v1==1))
+  desc+0x10 = *(desc + 0x18 + 4*(v1==2))
+  desc+0x14 = *(desc + 0x18 + 4*(v1!=0))
+
+※ TextBatch_CopyToCommandBuffer 自体は +0x18/+0x20 を見て
+TextDraw_BuildFourCornerColors で再展開するので、
++0x08..+0x14 はこの経路では使われていない可能性がある（MEDIUM）。"
+0x004D5480,func,"IDA-gpt-6.1-sol-F009 / T022 fix6 / MEDIUM: 描画器bytes(N)=((((((N+7)>>3)+3)&~0x3)+44*N+55)&~0xF)+4*((78*N+57)&~0x3)。caller 0x13BA0C→0x13BA94/0x13BA98が通常nw::lyt allocatorのsizeへ渡す。日本語更新原本命令とIDA全bytes、ARM1176 N[0,1024)の整数計算/SPを独立照合。正式SDK名は未同定で、名称は根拠ある解析名。"
+0x004D5788,line,"F-131 HIGH: resolves one UTF-16 code unit to a glyph through Font vtable+0x40, emits its quad, then advances cursor X by CWDH advance*horizontalScale (or fixed width)."
+0x004D5788,repeatable,"F-131 HIGH: resolves one UTF-16 code unit to a glyph through Font vtable+0x40, emits its quad, then advances cursor X by CWDH advance*horizontalScale (or fixed width)."
+0x004D581C,line,F-131 HIGH: normal cursor advance = signed glyph CWDH advance byte (+6) * writer horizontal scale (+0x24).
+0x004D5858,func,"F-140 static: R0=TextWriter; writer+0x40 is the persistent font/GPU context. The routine clears context+0xE4, configures texture/shader/attribute state, calls sub_4D54B4, then prepares immediate/batch text drawing. Live call-site capture is pending."
+0x004D5C9C,func,"[ACNL-F0698] MEDIUM/static reanalysis: existing GetDrawCtxForList name is misleading. R0=Drawer; writes S0,S1,S2,0 to +0x74..+0x80 and returns that address. Sole direct caller 0x5683A8 passes stereo offset, LayoutMgr+0x350,0. This updates c4 before projection-uniform emission; initialization zeros do not persist necessarily. Shader effect/hardware values unverified."
+0x004D5C9C,line,"[ACNL-F0698] MEDIUM/static reanalysis: existing GetDrawCtxForList name is misleading. R0=Drawer; writes S0,S1,S2,0 to +0x74..+0x80 and returns that address. Sole direct caller 0x5683A8 passes stereo offset, LayoutMgr+0x350,0. This updates c4 before projection-uniform emission; initialization zeros do not persist necessarily. Shader effect/hardware values unverified."
+0x004D5C9C,repeatable,"[ACNL-F0698] MEDIUM/static reanalysis: existing GetDrawCtxForList name is misleading. R0=Drawer; writes S0,S1,S2,0 to +0x74..+0x80 and returns that address. Sole direct caller 0x5683A8 passes stereo offset, LayoutMgr+0x350,0. This updates c4 before projection-uniform emission; initialization zeros do not persist necessarily. Shader effect/hardware values unverified."
+0x004D5CB0,line,"★TextDraw_EmitStatePrefix(drawctx, cursor) — 行列＋色のステージングを流す — F-158 / F-160 / F-192
+
+drawctx+568 から 16*(drawctx+37)+16 バイトを Mem_Copy するだけ。
+最後に drawctx+37 = 0 にする。
+
+★★【重要】**ヘッダシャッフルで配列[0].w0 を破壊する**（F-192）
+
+    v6    = v5[3];      // 配列[0].w0 = 実データ
+    v5[3] = ヘッダ;      // ★ここが潰れる
+    v5[2] = v6;         // 元の値は「配列ポインタ − 4」へ退避
+
+  PICA のバーストが [param0][header][params...] なので、
+  **配列の実体はポインタの 12 バイト手前から始まり、
+  [0].w0 はヘッダ用スロットを兼ねる。**
+
+  *(drawctx+1644) = drawctx+580、実体は drawctx+568、退避先は drawctx+576。
+
+★同じ配列を 1 フレームに 2 回流すなら、2 回目の前に復元すること:
+    LDR R2,[R0,#1644] / LDR R1,[R2,#-4] / STR R1,[R2]
+  復元しないと行列の先頭ワードがヘッダのまま流れ、
+  変"
+0x004D5CB0,repeatable,"★TextDraw_EmitStatePrefix(drawctx, cursor) — 行列＋色のステージングを流す — F-158 / F-160 / F-192
+
+drawctx+568 から 16*(drawctx+37)+16 バイトを Mem_Copy するだけ。
+最後に drawctx+37 = 0 にする。
+
+★★【重要】**ヘッダシャッフルで配列[0].w0 を破壊する**（F-192）
+
+    v6    = v5[3];      // 配列[0].w0 = 実データ
+    v5[3] = ヘッダ;      // ★ここが潰れる
+    v5[2] = v6;         // 元の値は「配列ポインタ − 4」へ退避
+
+  PICA のバーストが [param0][header][params...] なので、
+  **配列の実体はポインタの 12 バイト手前から始まり、
+  [0].w0 はヘッダ用スロットを兼ねる。**
+
+  *(drawctx+1644) = drawctx+580、実体は drawctx+568、退避先は drawctx+576。
+
+★同じ配列を 1 フレームに 2 回流すなら、2 回目の前に復元すること:
+    LDR R2,[R0,#1644] / LDR R1,[R2,#-4] / STR R1,[R2]
+  復元しないと行列の先頭ワードがヘッダのまま流れ、
+  変換が壊れてスプライトが描画されない（実機で確認）。
+
+★**フラッシュ後に配列を読んでも「書いた値」ではない。検証は書いた直後に。**
+
+流される 16 ワードの形:
+  [ 0] 0x8000000n  param0（uniform の開始 index）
+  [ 1] 0x000F02C0  header reg 0x2C0
+  [ 2] matrix[0] param0
+  [ 3] 0x00BF02C1  header reg 0x2C1 + 連続
+  [4..] matrix[1..]"
+0x004D6570,line,"F-146: TextBox_RebuildBatchWriter's context R0 + stack TextWriter R1 builds reusable batch command stream at [TextWriter+0x44]. Batch+0x10 is command source; +0x1C is dword count. Static body seeds first 0x60 bytes from 0x8ADA30, appends grouped glyph/state blocks, and RangeCacheOp's final range when control byte+9 bit1 is set."
+0x004D6570,repeatable,"F-146: TextBox_RebuildBatchWriter's context R0 + stack TextWriter R1 builds reusable batch command stream at [TextWriter+0x44]. Batch+0x10 is command source; +0x1C is dword count. Static body seeds first 0x60 bytes from 0x8ADA30, appends grouped glyph/state blocks, and RangeCacheOp's final range when control byte+9 bit1 is set."
+0x004D65D8,line,F-146: copies fixed 0x60-byte PICA command template 0x8ADA30 to batch+0x10 and initializes command count to 24 dwords. Live T_nam_00 batch source began with the exact same 0x60 bytes.
+0x004D6C90,func,"[ACNL-F0696][ACNL-F0698] MEDIUM/static reanalysis: copy Layout matrix16 to Drawer+0x34..+0x70; move m0 to +0x30; replace +0x34 with header 0x013F02C1. Payload m1..m15 at +0x38..+0x70; c4 at +0x74..+0x80, NOT +0x78..+0x84. +0x84 is padding. c4 is set before replay by 0x4D5C9C, NOT permanently zero."
+0x004D6C90,line,"[ACNL-F0696][ACNL-F0698] MEDIUM/static reanalysis: copy Layout matrix16 to Drawer+0x34..+0x70; move m0 to +0x30; replace +0x34 with header 0x013F02C1. Payload m1..m15 at +0x38..+0x70; c4 at +0x74..+0x80, NOT +0x78..+0x84. +0x84 is padding. c4 is set before replay by 0x4D5C9C, NOT permanently zero."
+0x004D6C90,repeatable,"[ACNL-F0696][ACNL-F0698] MEDIUM/static reanalysis: copy Layout matrix16 to Drawer+0x34..+0x70; move m0 to +0x30; replace +0x34 with header 0x013F02C1. Payload m1..m15 at +0x38..+0x70; c4 at +0x74..+0x80, NOT +0x78..+0x84. +0x84 is padding. c4 is set before replay by 0x4D5C9C, NOT permanently zero."
+0x004D6CA4,line,F-234: sub_148D30 は Layout+0x34 から Drawer+0x34 へ16 word/0x40-byte copy。後続で先頭 word を Drawer+0x30 へ移し、Drawer+0x34 は PICA header に上書きされる。
+0x004D6CB4,line,F-234: コピー元先頭 word（旧 Drawer+0x34）を Drawer+0x30 へ移す。従って照合条件は Drawer+0x30==Layout+0x34 と Drawer+0x38..+0x70==Layout+0x38..+0x70。
+0x004D6CBC,line,F-234: Drawer+0x34 を 0x013F02C1（PICA command header）で上書きする。raw 0x40-byte equality では Layout を検索できない。
+0x004D6CCC,line,"[ACNL-F0698] R4 has advanced to original Drawer+0x34 by writeback STRs; STR [R4,#0x50] zeros original +0x84 padding, NOT a c4 component."
+0x004D6CE0,line,"F-146: internal TextBatch builder flush. Copies accumulated context-owned GPU-state blocks into batch+0x10 at current batch+0x1C dword offset, resets pending counters; called when glyph grouping/state capacity requires it and once at end."
+0x004D6CE0,repeatable,"F-146: internal TextBatch builder flush. Copies accumulated context-owned GPU-state blocks into batch+0x10 at current batch+0x1C dword offset, resets pending counters; called when glyph grouping/state capacity requires it and once at end."
+0x004D6FE8,line,"F-146: appends final per-flush command words and a fixed 0x40-byte block from 0x8ADBC8, then advances batch+0x1C. Exact PICA register semantics are not yet decoded."
+0x004D7174,func,"IDA-gpt-6.1-sol-F015 MEDIUM: R0 DrawInfo, R1 inner nw::lyt::Layout, R2 native arg retained. Inner rootPane+16 dispatches recursive draw; GetCurrentWritePtr and result cursor committed to current list. CatalogBackdrop entry MITM forwards all3 args/result; scopes outer=inner-16 to editor+664, chip+1176+i*1120+36 (i<112), range+128200+36, own top. Temporarily scales every pane globalAlpha+181 and restores before return; private4096 entries (32768B), depth64. Existing GuiRenderer tail hook retained. New changes untested on hardware."
+0x004D7174,line,"★nwlyt_DrawPaneTreeToCurrentList(dst, layout, arg) — F-200
+
+    v8 = GpuCmd_GetCurrentWritePtr();       // ★g_GpuCmdPtr から読む
+    v8 = nwlyt_Pane_DrawRecursive(pane, v8, ...);
+    g_GpuCmdPtr = v8;                       // ★書き戻す
+
+★★**レイアウトの境目では cursor はグローバル g_GpuCmdPtr で受け渡される。**
+  TextBox_UpdateDrawState のコメント「cursor をグローバルに書き戻していない」は
+  **内側の関数の話**であって、この層では成立しない。
+
+呼び出し元は ssys_ma_lyt_Layout_RecordPaneTree の 1 件のみ。"
+0x004D7174,repeatable,"★nwlyt_DrawPaneTreeToCurrentList(dst, layout, arg) — F-200
+
+    v8 = GpuCmd_GetCurrentWritePtr();       // ★g_GpuCmdPtr から読む
+    v8 = nwlyt_Pane_DrawRecursive(pane, v8, ...);
+    g_GpuCmdPtr = v8;                       // ★書き戻す
+
+★★**レイアウトの境目では cursor はグローバル g_GpuCmdPtr で受け渡される。**
+  TextBox_UpdateDrawState のコメント「cursor をグローバルに書き戻していない」は
+  **内側の関数の話**であって、この層では成立しない。
+
+呼び出し元は ssys_ma_lyt_Layout_RecordPaneTree の 1 件のみ。"
+0x004D71B8,line,"F-148 HIGH: after Pane tree returns final R1 command cursor and before stock g_GpuCmdPtr commit. Live patch cloned P_nam_00, changed its Pane transform, called nwlyt_Picture_DrawToCommandList here only for list 32, and visibly rendered the moved background panel without modifying the source Pane.
+F-149 HIGH: F-148のlist 32限定hookで、会話本文のP_bg_L_00/P_bg_R_00/P_soft_L/R/T/BとT_msg_00を非所有cloneしてnative drawへ連結。全Paneへ同一絶対translationを上書きすると縁が中心で重畳した。background基準のdeltaを各固有translationへ加える版は、実機で本文フレームと文字の整列を確認。話者名Pane/TextBoxは対象外。"
+0x004D71C8,line,F-145: pane-tree drawing threads a local command pointer through vtable slot+0x68 and commits the final returned pointer to g_GpuCmdPtr only after the recursive tree completes.
+0x004D7474,line,"F-130 HIGH: ResFont::SetLinearFilter(atSmall, atLarge). Stores (atSmall<<2)|(atLarge<<1) at this+0x10, discards/rebuilds glyph-sheet textures, then sends the raw atlas range through nwgfx_GspGpu_RangeCacheOp_1F. Dynamic visual test: both OFF made the enlarged 7px glyph crisp/pixelated; restoring both ON restored stock filtering."
+0x004D7474,repeatable,"F-130 HIGH: ResFont::SetLinearFilter(atSmall, atLarge). Stores (atSmall<<2)|(atLarge<<1) at this+0x10, discards/rebuilds glyph-sheet textures, then sends the raw atlas range through nwgfx_GspGpu_RangeCacheOp_1F. Dynamic visual test: both OFF made the enlarged 7px glyph crisp/pixelated; restoring both ON restored stock filtering."
+0x004D76A8,func,IDA-gpt-6.1-sol-F009 / T022 fix6 / MEDIUM: 戻り値=(78*N+57)&~0x3。0x4D5480と0x13BA2CのcallerはLSL 2して4B単位の補助領域bytesへ変換する。補助領域の内部の用途/正式SDK名は未同定。IDA命令・原本全bytes・ARM1176整数2048ケースの照合根拠はwork/codex/out/t022_catalog_fix6/font_formula_checks.json。
+0x004D7730,func,F-141 static: post-text reset loops channel indices 0..3 through sub_7A7F74; it clears per-channel dirty byte (+0x46D) and sets global command-state bit 0x40.
+0x004D7EF0,line,F-146: converts two RGBA8 inputs to normalized float RGBA and expands them into four corner colors. selector=0 -> all first color; selector=1 -> alternating second color in corners 1/3; selector=2 -> corners 2/3. Used by TextBatch build/copy paths.
+0x004D7EF0,repeatable,F-146: converts two RGBA8 inputs to normalized float RGBA and expands them into four corner colors. selector=0 -> all first color; selector=1 -> alternating second color in corners 1/3; selector=2 -> corners 2/3. Used by TextBatch build/copy paths.
+0x004D8048,func,"F-133 static: parses NW4C font resources. Accepts normalized CFNU (0x554E4643) or validates CFNT (0x544E4643), walks FINF/CMAP/CWDH/TGLP/GLGR chunks, rebases embedded offsets by resource base, then stores resource and FINF through nwfont_ResFont_SetResourceInfo.
+F-135: code_runtime.elf.i64とのraw bytes照合で0x1B8 bytes差分0。runtime IDBはライブ実機ではなく、同じVAでのビルド/関数境界確認。"
+0x004D81E4,line,F-133: final parser step attaches resource pointer at ResFont+4 and FINF payload pointer at ResFont+8.
+0x004D8220,func,"F-133 static: returns glyph-sheet descriptor table byte count = 20 * LE16(TGLP+8). Callers allocate this table before nwfont_ResFont_SetGlyphSheetTable.
+F-135: code_runtime.elf.i64とのraw bytes照合で0x194 bytes差分0。sheet-table size経路のloader xrefも一致。"
+0x004D8284,line,F-133: TGLP+8 is the sheet count; descriptor size is 0x14 (20) bytes per sheet.
+0x004D8484,func,"F-133 static: sets glyph texture parameters; binds texture target 3553 and configures wrap/filter values from two font filter flags. Only caller is nwfont_CharWriter_EmitGlyphQuad.
+F-135: code_runtime.elf.i64とのraw bytes照合で0x90 bytes差分0。texture stateのライブ発火は未確認。"
+0x004D8484,line,F-137: assembly uses R2 as texture-format switch selector and R3 as raw sheet data; width/height/format/raw are packed for 0x7ABDBC. Decompiler may omit packed call args; not filter-only. Backend GPU side effect and format enum remain dynamically unconfirmed.
+0x004D8484,repeatable,F-137: assembly uses R2 as texture-format switch selector and R3 as raw sheet data; width/height/format/raw are packed for 0x7ABDBC. Decompiler may omit packed call args; not filter-only. Backend GPU side effect and format enum remain dynamically unconfirmed.
+0x004DD030,func,"IDA-gpt-6-F008 (MEDIUM, 2026-10-12): Merges native quantity-encoded stacks. Lower ID group uses base8363/cap10, upper group base8372/cap99; writes destination sum/cap and source remainder or ItemToPlace. Native WaitInput calls after4DD4A4 then writes both local copies to endpoints. Original ARM static and T011 original routine execution corroborate; quantity unit/item-category names not inferred. Owned immutable search retains source; pocket-to-pocket keeps this merge."
+0x004DD4A4,func,"IDA-gpt-6-F008 (MEDIUM, 2026-10-12): Both Item_GetParamCategory==2 and compatible lower/upper ID groups permit4DD030 quantity merge. Original predicate/caller and ARM1176 transfer/stack fixture independently corroborate. Does not imply same raw ID or name; group meanings not renamed from constants."
+0x004DE7F4,line,"★頂点シェーダの float ユニフォーム転送 (F-97 / F-99 で確定)。
+  GpuCmd_GetProperty(520, &ptr)  → ptr に直接書く → GpuCmd_Advance
+  *ptr   = byte_94B4D9 | 0x80000000;
+  ptr[1] = 983744 = 0x000F02C0  reg 0x2C0 GPUREG_VSH_FLOATUNIFORM_CONFIG
+  sub_148E94(ptr+2, &unk_ADF818, 12518081 = 0x00BF02C1)
+         → reg 0x2C1 GPUREG_VSH_FLOATUNIFORM_DATA、extra=0xB (11 ワード追加)
+★**つまり sub_148E94 は「ヘッダ + 連続データ」を積むヘルパ。**
+値の bit31 は連続書き込みモードの印。
+※ sub_13406C / sub_1340E4 は RAII 対。"
+0x004DE7F4,repeatable,"★頂点シェーダの float ユニフォーム転送 (F-97 / F-99 で確定)。
+  GpuCmd_GetProperty(520, &ptr)  → ptr に直接書く → GpuCmd_Advance
+  *ptr   = byte_94B4D9 | 0x80000000;
+  ptr[1] = 983744 = 0x000F02C0  reg 0x2C0 GPUREG_VSH_FLOATUNIFORM_CONFIG
+  sub_148E94(ptr+2, &unk_ADF818, 12518081 = 0x00BF02C1)
+         → reg 0x2C1 GPUREG_VSH_FLOATUNIFORM_DATA、extra=0xB (11 ワード追加)
+★**つまり sub_148E94 は「ヘッダ + 連続データ」を積むヘルパ。**
+値の bit31 は連続書き込みモードの印。
+※ sub_13406C / sub_1340E4 は RAII 対。"
+0x004E0364,repeatable,"Vapecord plugin ADDRESSES: MOVING_FURNITURE
+他地域: USA=004E1720  EUR=004E0768  KOR=004DFB3C
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x004E3998,line,roomId
+0x004E4FD0,line,"IDA-opus-5.5-F104 (MEDIUM static): game's own room-furniture removal (category 72 items matching a2): current room -> sub_57398C + (vtable+144 ? AcFtr_ChangeState(ftr,6) : flag +1892|=0x800); other rooms -> write ItemToPlace."
+0x004E4FD0,repeatable,"IDA-opus-5.5-F104 (MEDIUM static): game's own room-furniture removal (category 72 items matching a2): current room -> sub_57398C + (vtable+144 ? AcFtr_ChangeState(ftr,6) : flag +1892|=0x800); other rooms -> write ItemToPlace."
+0x004E6240,line,"IDA-opus-5.5-F104 (MEDIUM static): writes ItemToPlace (empty) over every footprint cell of the item (size table off_94CA08) in room a1 at (x,z,layer); a7 also clears layer 1 (items on top). Sends packet 0x50 when online (vc_GAMEKEYBOARD_FUNC5)."
+0x004E6240,repeatable,"IDA-opus-5.5-F104 (MEDIUM static): writes ItemToPlace (empty) over every footprint cell of the item (size table off_94CA08) in room a1 at (x,z,layer); a7 also clears layer 1 (items on top). Sends packet 0x50 when online (vc_GAMEKEYBOARD_FUNC5)."
+0x004E64EC,repeatable,"Vapecord plugin ADDRESSES: PLACING_FURNITURE3
+他地域: USA=004E78A8  EUR=004E68F0  KOR=004E5CC4
+（プラグイン作者のラベル。検証済みの識別ではない）"
+0x004E863C,func,"IDA-gpt-6.1-sol-F002: MEDIUM: R0=参照欄,R1=actor。actor+772の家具表indexを書き、null actorなら-1。ModuleFtr0xB1CF44がrec+4へ使い、Prepare0x56E0A8の登録indexが生産元。"
+0x004E8650,func,IDA-gpt-6.1-sol-F002: MEDIUM: 家具表参照を解決し、範囲外/非null無しなら参照欄を-1にする。0x74499Cの通常Getと参照への書込の有無を区別。
+0x004E8730,func,IDA-gpt-6.1-sol-F001 / MEDIUM: R0=AcFtr*表、R1=Actor*。既存索引があれば返し、なければ現在室容量内の最初の0枠へ登録。失敗0xFFFFFFFF。0x56E0AC→actor+772と0x7449D4空きカウントで照合。
+0x004E87E8,func,"IDA-gpt-6.1-sol-F002: MEDIUM: R0=家具表,R1=actor。現在室capacity分でactorと一致するslotを0にする。DestroyFinalize0x56F448が呼ぶ。destroy要求だけではslot解放完了を保証しない。"
+0x004E8880,func,"IDA-gpt-6.1-sol-F001 / MEDIUM: R0=Footprint 2B*、R1=Item*、R2=向き。byte0=大きさ種類、byte1=向き。R2>=4ならItem flagsから抽出。Room_TryPutFurnitureAtの4指定と0x744BFCの添字で照合。
+IDA-gpt-6.1-sol-F016 MEDIUM: two-byte footprint (kind,rotation); class descriptors verified both original ARM count/offset and independent raw table traversal in prebuild.json (20 shapes). Unicorn is not hardware validation."
+0x004E8CF4,line,"IDA-opus-5.5-F104 (MEDIUM static): (grid=g_RoomFtrCellGrid, x, z, layer) -> furniture object g_RoomFtrObjects[sub_744C40(...)] or 0. Grid = 64x80 B (layer 0) + 16x16 B at +5120 (layer 1), 0xFF = none (sub_4E04D0 clears)."
+0x004E8CF4,repeatable,"IDA-opus-5.5-F104 (MEDIUM static): (grid=g_RoomFtrCellGrid, x, z, layer) -> furniture object g_RoomFtrObjects[sub_744C40(...)] or 0. Grid = 64x80 B (layer 0) + 16x16 B at +5120 (layer 1), 0xFF = none (sub_4E04D0 clears)."
+0x004E9314,func,IDA-gpt-6.1-sol-F001 / MEDIUM: 現在のAcFtr*表0x9C19F4を返す。0x68FAD8の空き検査と0x56E09Cの登録が共用。
+0x004E976C,func,"V2-F008 MEDIUM: corrects legacy 'unconditional/free scene 2'. Actual draw is gated by off_94A44C (BsShadowMapMgr); setup 0x264C08 is vtbl_BsShadowMapMgr+0xC. 0x264B70 switches target/state, Scene_DrawLayers uses g_SceneContext_2, 0x264B40 restores. This is a shadow-map path, not a generic screen-fixed model preview slot."
+0x004E9BB8,line,Global renderer initialization creates three parallel render-layer objects. Catalog furniture uses layer index 2; the pass itself is not indoor-only.
+0x004EA01C,func,"V2-F022 MEDIUM: byte_94CA2C==1 かつ sub_5CD770()==0 のときだけ Render_DrawSceneIndexed(target, 1)。通常描画（index 0）と排他"
+0x004EA414,line,"Scene_ResetAllContexts() (F-111)。
+3 つの SceneContext について BindContext（＝配列クリア）を行い、
+さらに SortMeshGroup 2 個をリセットする。Render_FrameEnd から毎フレーム呼ばれる。
+
+★**これがあるため Scene_SubmitNode は毎フレーム呼ぶ必要がある。**"
+0x004EA414,repeatable,"Scene_ResetAllContexts() (F-111)。
+3 つの SceneContext について BindContext（＝配列クリア）を行い、
+さらに SortMeshGroup 2 個をリセットする。Render_FrameEnd から毎フレーム呼ばれる。
+
+★**これがあるため Scene_SubmitNode は毎フレーム呼ぶ必要がある。**"
+0x004EB840,func,V2-F024 MEDIUM: **描画順は静的に読める**。外側ループ i=0..3 がレイヤーで、Model ノードはメッシュごとに material→(+8 の ResMaterial)+32 の下位バイトが i と一致するときだけ sub_48D26C で GPU コマンドを積む。FuncNode は i==0 で node[82]、i==1 で node[83] のコールバック。**同じレイヤー内は配列 #0 の並び順＝Scene_SubmitNode で積んだ順**（並べ替えなし）。romfs の ResMaterial+32 を 200 ファイル分数えると 0 が 191、1 が 31 で、Ftr/Chip/UnitCursor.bcres の m_UnitCursor は **1**（不透明の 0 より後に描かれる）
+0x004EB840,line,IDA-opus-5.5-F023: gohan は半透明にした材質の Material+8 → ResMaterial+32 を 1 にして不透明の後に描かせる（共有資源のときは同じ種類全部が層 1 になるが不透明のまま）。
+0x004EB840,repeatable,IDA-opus-5.5-F023: gohan は半透明にした材質の Material+8 → ResMaterial+32 を 1 にして不透明の後に描かせる（共有資源のときは同じ種類全部が層 1 になるが不透明のまま）。
+0x004EBA5C,line,"IDA-opus-5.5-F059: FuncNode の層 0 コールバック +0x148 / 層 1 は +0x14C、引数 (g_DrawContext, +0x150)"
+0x004EBC14,func,"V2-F024 MEDIUM: アニメを資源に結び付けて作る。`(anim, a2→anim+24, ResAnim(CANM), allocatorHolder, flag→anim+28)`。中で vtable+64 に大きさを問い合わせ、Heap_CreateNamed_0 で **名前 ""MaterialAnim::build""** のヒープを作り、vtable slot24 で資源を結び付けて sub_4EDC24 → sub_566700（ヒープを実使用量へ縮める）→ slot28。失敗時は slot20 で後始末し 0 を返す。呼出し元は 12 件以上で汎用（文字列はヒープ名なので rename はしない）。**典型的な使用順は 0x4EBC14 → 0x4F0300 → 0x4EDC74 → 0x4EDC98**（sub_227020 0x2272B4/0x2272C4/0x2272DC/0x2272D0 などで連続して呼ばれる）"
+0x004ECFEC,line,"V2-F010: holder+4 -> 0x4EF69C updates world transform, then 0x4EF624 conditional skeleton update. Stock field pose caller 0x590034 sets Matrix3x4 first. Parent/global transform context must be valid; arbitrary-thread calling is not verified."
+0x004ECFEC,repeatable,"V2-F010: holder+4 -> 0x4EF69C updates world transform, then 0x4EF624 conditional skeleton update. Stock field pose caller 0x590034 sets Matrix3x4 first. Parent/global transform context must be valid; arbitrary-thread calling is not verified."
+0x004ED57C,func,"V2-F007 MEDIUM: R0 holder, R1 float[3] translation. node=*(holder+4), writes node+0x58/+0x68/+0x78 and sets node+0x88 bit 0x800. Verified by IDA + independent ARM decode/input-byte comparison. Requires valid independently owned node; not an actor/map position API."
+0x004ED630,func,"V2-F022 MEDIUM: シーン番号の意味。**0 = 通常の描画**（Render_DrawScene0 0x4F2334 が byte_94CA2C==0 のとき Render_DrawSceneIndexed(target,0)）、1 = byte_94CA2C==1 のときだけ描く別モード（Render_DrawScene1 0x4EA01C。byte_94CA2C の getter 0x4ED7F0 の呼び出し元に BsMenuCatalog_End があり、カタログ等のプレビューモードと推定、LOW）、2 = 影マップ（Render_DrawScene2 0x4E976C、V2-F008）。上画面パス Frame_DrawPass1024 と 1040 の両方が 0→1 の順で同じ SceneContext を使うので、**番号は画面ではなく描画パスの種類**。屋外で普通に出すなら **0**（旧 F-111/F-112 の実機実例も 0）"
+0x004ED630,line,"★★Scene_SubmitNode(pHolder, sceneIndex) — 描画対象をそのフレームのシーンへ登録 (F-111 / F-112)。
+confidence **HIGH**（静的＋実機。呼び出し元 40+ 件の汎用 API）。
+
+node = *(pHolder + 4)   ← g3d_FuncNode_Create が書き込む位置と同じ
+node->vtbl[4](node, g_SceneTraversers[sceneIndex])   ← SceneNode::Accept(visitor)
+
+★**TODO-60 の答え。シーングラフに繋ぐのではなく、毎フレームこれを呼ぶ。**
+Render_FrameEnd(0x4F1CE4) がフレーム末に全配列を空にする。
+
+★実機確認 (F-112): R0 = 0x3309BE28, R1 = 0, *(R0+4) = 0x329D7B0C。
+呼び出し前 n = 0 → 復帰時（LR = 0x68EA88）n = 1、要素は 0x329D7B0C。
+**push を直接確認した。**
+
+自前描画の手順:
+  1. g3d_FuncNode_Create(&holder, allocator)      holder[1] にノード
+  2. g3d_FuncNode_SetCallbacks(&holder, cb0, cb1, userdata)
+  3. 毎フレーム Scene_SubmitNode(&holder, sceneIndex)
+  4. Scene_DrawLayers が配列 #0 を回してコールバッ"
+0x004ED630,repeatable,"★★Scene_SubmitNode(pHolder, sceneIndex) — 描画対象をそのフレームのシーンへ登録 (F-111 / F-112)。
+confidence **HIGH**（静的＋実機。呼び出し元 40+ 件の汎用 API）。
+
+node = *(pHolder + 4)   ← g3d_FuncNode_Create が書き込む位置と同じ
+node->vtbl[4](node, g_SceneTraversers[sceneIndex])   ← SceneNode::Accept(visitor)
+
+★**TODO-60 の答え。シーングラフに繋ぐのではなく、毎フレームこれを呼ぶ。**
+Render_FrameEnd(0x4F1CE4) がフレーム末に全配列を空にする。
+
+★実機確認 (F-112): R0 = 0x3309BE28, R1 = 0, *(R0+4) = 0x329D7B0C。
+呼び出し前 n = 0 → 復帰時（LR = 0x68EA88）n = 1、要素は 0x329D7B0C。
+**push を直接確認した。**
+
+自前描画の手順:
+  1. g3d_FuncNode_Create(&holder, allocator)      holder[1] にノード
+  2. g3d_FuncNode_SetCallbacks(&holder, cb0, cb1, userdata)
+  3. 毎フレーム Scene_SubmitNode(&holder, sceneIndex)
+  4. Scene_DrawLayers が配列 #0 を回してコールバックを呼ぶ
+
+最小の実例: sub_1F9A6C（生成）+ sub_1F9BC4（登録, sceneIndex=0）"
+0x004ED668,func,"V2-F007 MEDIUM: if holder+4 nonnull, runs node vtable[0], frees through node's allocator vtable+0xC, clears holder+4. Not safe until queued render/GPU references are finished. Do not destroy another actor's borrowed holder."
+0x004ED6B4,func,"V2-F007 MEDIUM: holder + float[3] scale. node=*(holder+4), scale at node+0x7C/+0x80/+0x84, dirty at +0x88 bit 0x800. Near-zero components are clamped by the stock function; direct field writes are not equivalent."
+0x004ED794,func,"V2-F007 MEDIUM: holder + pointer to 12 floats (3x4 matrix). Copies 0x30 bytes to node+0x4C via 0x135C28 (VLDM/VSTM), then sets node+0x88 bit 0x800. Frame timing, parent/world matrix update, VFP ABI, and culling still require caller/runtime checks."
+0x004ED7F0,func,V2-F022 MEDIUM: byte_94CA2C の getter。呼び出し元 12 件に BsMenuCatalog_End などメニュー系があり、プレビュー描画への切替えと推定（LOW）
+0x004ED860,func,V2-F023 MEDIUM: G3D 資源ホルダ（g3d::ResourceLoader＋ResourceSet）の初期化。ScStage の ctor 0x7F195C は ScStage+0x418 へ HeapAllocator_Ctor、+0x420 へこれを呼ぶ。**ホルダは 264 B（0x420〜0x528）**で、+232 が FileRes の状態。破棄は G3dResHolder_Dtor 0x317CFC
+0x004EDBD0,func,"V2-F024 MEDIUM: アニメの**評価モード選択**。`(anim, mode)`。mode==0 なら オブジェクト[19]＝sub_4D3EFC、mode==1 なら sub_4D3E70 を毎フレームの評価関数として入れ、**どちらの場合も anim+4 に mode を保存**する（mode>=2 は保存だけで関数を変えない）"
+0x004EDC74,func,"V2-F024 MEDIUM: アニメの float を 1 つ設定する。`(anim, value)` で value は **VFP s0** 渡し（R1 ではない）。vtable+8 で内部オブジェクトを引き、その **+64** へ書く。+64 は 0x4EDC98 が触る +56/+60/+68 とは別の欄"
+0x004EDC98,func,V2-F024 MEDIUM: アニメの**フレーム確定（毎フレームの進める側）**。vtable+8 で内部オブジェクト v を引き、`v+76` の関数を `v+80` を引数に呼んだあと、`v+60 = v+56`（前回値の退避）、`v+56 = v+68`（次の値を現在値へ）、`v+88 = 1`（更新済み印）。常に 1 を返すので戻り値は判定に使えない
+0x004EEDD8,func,V2-F008 correction: legacy comment calling Render_DrawScene2 unconditional is too broad. Its body requires BsShadowMapMgr at off_94A44C and wraps target/state changes. Distinguish sceneIndex from resource render-layer and display ID. See 0x4E976C and docs/topics/models3d.md.
+0x004EEDD8,line,"★Render_DrawSceneIndexed(a1, sceneIndex) (F-104 / F-111)。
+**a2 は g_SceneContexts のインデックス**（旧コメントの「a1==1024 が…」は a1 側の話）。
+
+  v4 = g_SceneContexts[sceneIndex]
+  ...
+  if (a1 == 1024) { リスト退避 → 切替 → Scene_DrawLayers(v4, …) → SplitAndSubmit → 復帰 }
+
+呼び出し元:
+  Render_DrawScene0(0x4F2334)  → sceneIndex 0（byte_94CA2C == 0 のとき）
+  Render_DrawScene1(0x4EA01C)  → sceneIndex 1（byte_94CA2C == 1 のとき）
+さらに Render_DrawScene2(0x4E976C) が g_SceneContexts[2] を**無条件で**描く。"
+0x004EEDD8,repeatable,"★Render_DrawSceneIndexed(a1, sceneIndex) (F-104 / F-111)。
+**a2 は g_SceneContexts のインデックス**（旧コメントの「a1==1024 が…」は a1 側の話）。
+
+  v4 = g_SceneContexts[sceneIndex]
+  ...
+  if (a1 == 1024) { リスト退避 → 切替 → Scene_DrawLayers(v4, …) → SplitAndSubmit → 復帰 }
+
+呼び出し元:
+  Render_DrawScene0(0x4F2334)  → sceneIndex 0（byte_94CA2C == 0 のとき）
+  Render_DrawScene1(0x4EA01C)  → sceneIndex 1（byte_94CA2C == 1 のとき）
+さらに Render_DrawScene2(0x4E976C) が g_SceneContexts[2] を**無条件で**描く。"
+0x004EF69C,func,V2-F026 HIGH: ワールド行列の計算。**局所行列は node+76(0x4C)、結果のワールド行列は node+188(0xBC)**。**node+12 が親**で、null なら sub_49F648 の単位元を使うので、**親を持たない自前ノードでも正当に計算される**。拡大縮小は node+236/240/244 へ、標識は node+248
+0x004EFF58,line,"★★g3d_FuncNode_SetCallbacks(pNode, cb0, cb1, userdata) (F-107)。
+confidence MEDIUM（静的。ただし型ノードの一致で裏付け済み）。
+
+  型 = vtable[2](pNode[1]);  while (型 != &g_TypeNode_g3d_FuncNode) 型 = *型;
+  v8 = node + 82;
+  *v8   = cb0;       ← +0x148  レイヤー 0 で呼ばれる
+  v8[1] = cb1;       ← +0x14C  レイヤー 1 で呼ばれる
+  v8[2] = userdata;  ← +0x150
+
+★**Scene_DrawLayers(0x4EB840) がコールバック経路の判定に使う型ノードと
+  こちらが参照する型ノードが同一。両方から裏が取れている。**
+
+使い方の定型（sub_1F9A6C が最小例）:
+  g3d_FuncNode_Create(&out, allocator);
+  g3d_FuncNode_SetCallbacks(&out, cb0, cb1, userdata);
+呼ばれ方: cb(g_DrawContext, userdata)"
+0x004EFF58,repeatable,"★★g3d_FuncNode_SetCallbacks(pNode, cb0, cb1, userdata) (F-107)。
+confidence MEDIUM（静的。ただし型ノードの一致で裏付け済み）。
+
+  型 = vtable[2](pNode[1]);  while (型 != &g_TypeNode_g3d_FuncNode) 型 = *型;
+  v8 = node + 82;
+  *v8   = cb0;       ← +0x148  レイヤー 0 で呼ばれる
+  v8[1] = cb1;       ← +0x14C  レイヤー 1 で呼ばれる
+  v8[2] = userdata;  ← +0x150
+
+★**Scene_DrawLayers(0x4EB840) がコールバック経路の判定に使う型ノードと
+  こちらが参照する型ノードが同一。両方から裏が取れている。**
+
+使い方の定型（sub_1F9A6C が最小例）:
+  g3d_FuncNode_Create(&out, allocator);
+  g3d_FuncNode_SetCallbacks(&out, cb0, cb1, userdata);
+呼ばれ方: cb(g_DrawContext, userdata)"
+0x004EFFB4,line,"★★g3d_FuncNode_Create(pHolder, allocator) — 自前描画の入口 (F-119)。
+アロケータは g_GfxAllocator(0x94CA30) を使う。
+pHolder[1] にノードが入る。続けて g3d_FuncNode_SetCallbacks、
+以後毎フレーム Scene_SubmitNode。実装は PATCHES/cave_own_funcnode.py。"
+0x004EFFB4,repeatable,"★★g3d_FuncNode_Create(pHolder, allocator) — 自前描画の入口 (F-119)。
+アロケータは g_GfxAllocator(0x94CA30) を使う。
+pHolder[1] にノードが入る。続けて g3d_FuncNode_SetCallbacks、
+以後毎フレーム Scene_SubmitNode。実装は PATCHES/cave_own_funcnode.py。"
+0x004EFFF0,line,IDA-opus-5.5-F059: 340 B を確保し null を確かめない。呼ぶ前にヒープの残りを見ること
+0x004F0184,line,"V2-F010: collect absolute mesh pointers, sort ascending, write relative-pointer array before Model destructor frees mesh block via first entry. Local pointer workspace is 65 entries; selected fg_treeA_4 has one mesh. No GPU fence here; do not generalize bound/safe retirement to arbitrary models."
+0x004F0184,repeatable,"V2-F010: collect absolute mesh pointers, sort ascending, write relative-pointer array before Model destructor frees mesh block via first entry. Local pointer workspace is 65 entries; selected fg_treeA_4 has one mesh. No GPU fence here; do not generalize bound/safe retirement to arbitrary models."
+0x004F0300,func,"V2-F024 MEDIUM: 作ったアニメをモデルインスタンスのアニメ枠へ割り当てる。`(instance, anim, slot)`。`node=*(instance+4)` の node[82] が非 0（枠あり）のときだけ動き、`table=node[10]`、行番号 `node[83]`、行の長さ `table[10]` を使って `table[7] + 4*(slot + 行*行の長さ)` へ `*(anim+8)` を書く。範囲外の slot / 行番号は**黙って無視**されるので、書けたかどうかは戻り値で判別できない"
+0x004F03D0,line,"ModelInstance_BindAnimSlot 0x004F0300 の逆。同じ表の同じ枠へ 0 を書くだけ。
+★注意: 枠を空にしても、そのアニメが最後に書いたマテリアルの値は戻らない（IDA-opus-5-F034）。
+既定値へ戻したければ instance を作り直すか、欄を直接書く必要がある。"
+0x004F03D0,repeatable,"ModelInstance_BindAnimSlot 0x004F0300 の逆。同じ表の同じ枠へ 0 を書くだけ。
+★注意: 枠を空にしても、そのアニメが最後に書いたマテリアルの値は戻らない（IDA-opus-5-F034）。
+既定値へ戻したければ instance を作り直すか、欄を直接書く必要がある。"
+0x004F048C,func,"V2-F007 MEDIUM: shared resource->instance entry, reached by furniture and field models. Returns 1 even if the created object's TypeNode walk fails and holder+4 becomes null. Validate return AND holder+4. Inferred C prototypes/call-site pseudocode omit or mistype arguments; verify R0-R3, stack and VFP before injection. No new hardware test.
+V2-F019: 模様替えの範囲表示 AcObjUnitCursor（ModuleIndoor.cro 0x…19CEC）もこの関数で UnitCursor.bcres からモデルを作る（枠 64 個、各 1 モデル＋アニメ 3 本）。屋外で同じ表示を出す足場は docs/topics/models3d.md と work/evidence/unit_cursor/README.md
+V2-F023 MEDIUM: 引数の行き先（sub_48E350→sub_736158→nwgfx_Model_Create を追った）: a5=マテリアルのコピーマスク→desc+0x10→model+0x188、a6=フラグ(byte)→desc+0x24、a7→desc+0x1C→SceneNode+72/+324 と holder+8。AcObjUnitCursor は (0x834, 1, 3)、木は (0, 0, 1)。屋外で UnitCursor を出すならゲームと同じ (0x834, 1, 3) を使うのが安全
+V2-F025 HIGH（実機）: **成功判定は「戻り値 1 かつ holder+4 非 0」では足りない。** ヒープが足りないと sub_4A9A04 の内部ビルダが負を返して打ち切られ、**MaterialActivator を作るブロックに到達せず model+0x1EC が 0 のまま**になるが、この関数はそれでも 1 を返し holder+4 も埋まる。そのインスタンスを描画すると 0x494C18 `LDR R2,[R0]` で NULL 参照する。実例: 20480 B のヒープに 16256 B の bcres を読んだ残りで作ろうとして発生。**資源用とインスタンス用のヒープは分け、生成後に model+0x1EC を必ず確かめること**"
+0x004F04BC,line,"V2-F010 (MEDIUM): stock field caller 0x58EEF8 passes arg5=0 material copy mask -> desc+0x10 -> model+0x188; arg6 low byte=0 -> desc+0x24; arg7=1 -> desc+0x1C and holder+8. R2/R3 are valid allocator objects (same field object+0x20 here), not arbitrary zero or raw heaps. Decompiler float transport in lower wrapper is not a C ABI signature."
+0x004F053C,func,"V2-F007 MEDIUM: performs 0x4F0184 if holder owns a node, then SceneNodeHolder_Destroy. AcFtr_DestroyFinalize calls this before resource/bank cleanup. 0x4F0184 and GPU-safe lifetime still need confirmation for a new standalone model owner."
+0x004F05F4,func,"IDA-gpt-6.1-sol-F013 / MEDIUM; evidence work/evidence/t022_room_capabilities. Read-only Model accessor. R0=TransformNodeHolder*, reads holder+4, walks virtual type-chain against actual nw::gfx::Model type node 0x96F0D4, returns node or0. Caller RoomFloor/RoomWallPart uses returned node+8 as ResModel. R4-R6/LR saved; no float argument."
+0x004F077C,func,IDA-gpt-6.1-sol-F001 / MEDIUM: R0=XYZ出力*、R1=ResModel*、R2=bone索引。CMDL+0xE0→SKEL+0x1C→DICT[索引]からbone+0x38..0x40の3floatを読む。0x2C5F1Cとroom_bounds.pyの独立パースが一致。
+0x004F07DC,func,IDA-gpt-6.1-sol-F001 / MEDIUM: R0=ResModel*、R1=骨名文字列。モデル骨DICTを名前ハッシュで探索し索引を返す、見つからなければ-1。0x2C5F0Cの壁locator検索と原本DICTで照合。Hex-RaysのR2/R3推定は不要引数。
+0x004F1CE4,line,"Render_FrameEnd() (F-111)。
+3 つのトラバーサを sub_49944C でリセット → Scene_ResetAllContexts()
+→ sub_49489C / sub_7B08D8 → dword_94CA54 を 0/1 でトグル（ダブルバッファ）。
+
+★**ここで全 SceneContext の配列が空になるので、
+Scene_SubmitNode は毎フレーム呼び直す必要がある。**"
+0x004F1CE4,repeatable,"Render_FrameEnd() (F-111)。
+3 つのトラバーサを sub_49944C でリセット → Scene_ResetAllContexts()
+→ sub_49489C / sub_7B08D8 → dword_94CA54 を 0/1 でトグル（ダブルバッファ）。
+
+★**ここで全 SceneContext の配列が空になるので、
+Scene_SubmitNode は毎フレーム呼び直す必要がある。**"
+0x004F2334,func,"V2-F022 MEDIUM: 通常描画。byte_94CA2C==0 のときだけ Render_DrawSceneIndexed(target, 0)。引数 target は 1024（Frame_DrawPass1024）/ 1040（Frame_DrawPass1040）"
+0x004F556C,line,"IDA-opus-5.5-F044 (MEDIUM static): gui::KanaKeySet vtable+0x10 (0x8FD020). Key types from dword_8905C4: 0/1/2 char -> TextManager_InputChar(tm, ch, 0, 0) (0x4F5654 / 0x4F56A4; romajiMode always 0, so kana has no pending), 3 backspace (0x4F56E0), 4 mode, 5 dakuten keys 1/2/3 (0x4F57A4)."
+0x004F556C,repeatable,"IDA-opus-5.5-F044 (MEDIUM static): gui::KanaKeySet vtable+0x10 (0x8FD020). Key types from dword_8905C4: 0/1/2 char -> TextManager_InputChar(tm, ch, 0, 0) (0x4F5654 / 0x4F56A4; romajiMode always 0, so kana has no pending), 3 backspace (0x4F56E0), 4 mode, 5 dakuten keys 1/2/3 (0x4F57A4)."
+0x004F6264,line,"IDA-opus-5.5-F046: InputButton state 0. Clears +12; on touch-down inside: press anim, +12=1, busy=1, state 1, event 1 (= char input)."
+0x004F6264,repeatable,"IDA-opus-5.5-F046: InputButton state 0. Clears +12; on touch-down inside: press anim, +12=1, busy=1, state 1, event 1 (= char input)."
+0x004F62F0,line,"IDA-opus-5.5-F046: InputButton state 1. On release/leave: sound +88, release anim (phase 2 falls back to phase-0 anims reversed), state 2."
+0x004F62F0,repeatable,"IDA-opus-5.5-F046: InputButton state 1. On release/leave: sound +88, release anim (phase 2 falls back to phase-0 anims reversed), state 2."
+0x004F6A8C,line,"IDA-opus-5.5-F046: state 2. If +281==0, back to state 0 when gui_Button_AnimsDone(b,2). InputButton has no phase-2 anims -> 1 frame. With +12 cleared only in state 0 next frame, other keys are blocked for 2 frames after release."
+0x004F6A8C,repeatable,"IDA-opus-5.5-F046: state 2. If +281==0, back to state 0 when gui_Button_AnimsDone(b,2). InputButton has no phase-2 anims -> 1 frame. With +12 cleared only in state 0 next frame, other keys are blocked for 2 frames after release."
+0x004F6C14,line,IDA-opus-5.5-F044 (MEDIUM static): sets dword_AD0548 (romaji mode). Switching to 0 commits pending.
+0x004F6C14,repeatable,IDA-opus-5.5-F044 (MEDIUM static): sets dword_AD0548 (romaji mode). Switching to 0 commits pending.
+0x004F816C,line,"IDA-opus-5.5-F044 (MEDIUM static): gui::QwertyKeySet vtable+0x10 (0x8FD100). InputChar(tm, ch, dword_AD0548, combine): dword_AD0548 0=alphabet 1=hiragana romaji 2=katakana romaji."
+0x004F816C,repeatable,"IDA-opus-5.5-F044 (MEDIUM static): gui::QwertyKeySet vtable+0x10 (0x8FD100). InputChar(tm, ch, dword_AD0548, combine): dword_AD0548 0=alphabet 1=hiragana romaji 2=katakana romaji."
+0x004F9A6C,line,"IDA-opus-5.5-F043 (MEDIUM static): touch on the text area: finish pending input, hit-test (vt+20) -> TextManager_SetCursor(tm, pos, 1)."
+0x004F9A6C,repeatable,"IDA-opus-5.5-F043 (MEDIUM static): touch on the text area: finish pending input, hit-test (vt+20) -> TextManager_SetCursor(tm, pos, 1)."
+0x004FCBEC,line,IDA-opus-5.5-F046: RepeatInputButton state 1. Release -> state 0 directly (+12 cleared next frame by 0x4FCB50 -> 1 blocked frame).
+0x004FCBEC,repeatable,IDA-opus-5.5-F046: RepeatInputButton state 1. Release -> state 0 directly (+12 cleared next frame by 0x4FCB50 -> 1 blocked frame).
+0x004FD7B0,line,IDA-opus-5.5-F046 (MEDIUM static): per-frame gui button update (caller BsSkb calc 0x57F744). busy=1 if any button in list 0xAD0630 has +12 (held); buttons update only if +12 or !busy. gohan hooks this to skip the 2-frame post-release wait.
+0x004FD7B0,repeatable,IDA-opus-5.5-F046 (MEDIUM static): per-frame gui button update (caller BsSkb calc 0x57F744). busy=1 if any button in list 0xAD0630 has +12 (held); buttons update only if +12 or !busy. gohan hooks this to skip the 2-frame post-release wait.
+0x004FD9C8,line,IDA-opus-5.5-F046: true when phase anim (+64 for phase 2) and 5-anim group (+144 for phase 2) are not playing (+0x14 != 1).
+0x004FD9C8,repeatable,IDA-opus-5.5-F046: true when phase anim (+64 for phase 2) and 5-anim group (+144 for phase 2) are not playing (+0x14 != 1).

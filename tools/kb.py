@@ -518,13 +518,15 @@ def cmd_addr(a) -> int:
     sym = root() / "symbols" / build
     rng = (addr, addr + 1)
     found = False
-    for row in read_csv(sym / "functions.csv"):
+    from sync import symlib
+
+    for row in symlib.read_table(sym, "functions"):
         fa, sz = to_int(row.get("address")), to_int(row.get("size")) or 0
         if fa is not None and fa <= addr < fa + max(sz, 1):
             print("関数: %s %s size=0x%X %s" % (hexa(fa), row.get("name"), sz, row.get("prototype", "")))
             rng = (fa, fa + max(sz, 1))
             found = True
-    for row in read_csv(sym / "globals.csv"):
+    for row in symlib.read_table(sym, "globals"):
         ga, sz = to_int(row.get("address")), to_int(row.get("size")) or 0
         if ga is not None and ga <= addr < ga + max(sz, 1):
             print("グローバル: %s %s size=0x%X %s" % (hexa(ga), row.get("name"), sz, row.get("type", "")))

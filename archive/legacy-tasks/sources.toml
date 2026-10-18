@@ -1,0 +1,26 @@
+[[sources]]
+path = "A:\\Disassemble\\ac3ds-workspace\\_local\\legacy-src\\v1\\RE_TODO.md"
+sha256 = "366a5d41dd71dc3a63b296ef5b35a02b62348df60dd9d1e455cee140de8d7517"
+archive = "v1_RE_TODO_done.md"
+full_archive = "v1_RE_TODO_full.md"
+full_sha256 = "2005b6b3db92be4352f06e0215fc20d9d3722603430b61bd7f684e91f7ed9b39"
+full_normalization = "CRLF -> LF"
+redactions = []
+
+[[sources]]
+path = "A:\\Disassemble\\ac3ds-workspace\\_local\\legacy-src\\v2-IDA\\work_TODO.md"
+sha256 = "35c94ff59a698ed101bd6a893929bd2b03082471f469a19d98778be5ab3e10f9"
+archive = "v2_work_TODO_done.md"
+full_archive = "v2_work_TODO_full.md"
+full_sha256 = "2ba6546b2105b86b591700da7d02de4eda05a0f07786bbd6fb851ef8c390aa84"
+full_normalization = "CRLF -> LF"
+redactions = []
+
+[[sources]]
+path = "A:\\Disassemble\\ac3ds-workspace\\_local\\legacy-src\\v2-IDA\\work_hhd_TODO.md"
+sha256 = "cb2c7f8fa260bf6b63cb883019fa66b091ecff9eb50a1d1ea76afa0722211bc4"
+archive = "v2_work_hhd_TODO_done.md"
+full_archive = "v2_work_hhd_TODO_full.md"
+full_sha256 = "edfd9f5b048f141a41210fb36c0531cdf1c0481ccbe651269adf9bb04b6317e3"
+full_normalization = "CRLF -> LF"
+redactions = []

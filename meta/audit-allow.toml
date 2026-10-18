@@ -14,7 +14,7 @@ pattern = "^疑似C:03505a8b70341072e62a0b8ec63b662b1f31ab8bfc0585762bc11b154610
 reason = "既存記録の疑似C引用（4行）"
 
 [[allow]]
-path = "symbols/acnl_jpn_v15/comments.csv"
+path = "symbols/acnl_jpn_v15/comments/00100000.csv"
 pattern = "^疑似C:411ecf6c26e5af5cf34148cb1059f1b1e28ae36223dbaa4bf03f245db8450683$"
 reason = "既存の symbols コメント内の疑似C引用（12行）"
 

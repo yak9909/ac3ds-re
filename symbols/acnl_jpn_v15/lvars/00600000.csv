@@ -1,0 +1,9 @@
+function,name,type,location
+0x00677E44,sound_id,,reg:40@0x00677E75
+0x00677E44,exit_state,,reg:44@0x00677E59
+0x00677E44,duration_frames,,reg:48@0x00677E6D
+0x006878E8,repeatCounter,,reg:28@0x00687A1D
+0x006878E8,repeatMotionId,,reg:32@0x0068791D
+0x006878E8,repeatLimit,,reg:36@0x00687925
+0x006878E8,initialMotionId,,reg:48@0x00687911
+0x006878E8,motionParameters,struct PlayerC5ArgumentBlock *,reg:8@0x006878F5
