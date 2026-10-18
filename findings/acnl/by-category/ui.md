@@ -63,18 +63,18 @@
 | ACNL-F0594 | HHD の「ペインに投影」の座標生成を ACNL の UV で再現する規則（HHD-T006 の水玉の謎の答え）（2026-10-05、MEDIUM: レイアウトのデータ 2 種と HHD のスクショの照合。HHD のコードは未読） | 解析ソフト: なし（3DSkit の BFLYT の読み + acnl-ui-designer の描画）。解析モデル opus-5.5。段階 2（上画面）の変換で判明。 | MEDIUM | S | topics/acnl/ui.md |  |
 | ACNL-F0611 | Layout ノード 1 つにつき 1 枚のシザー（自前の候補欄の切り抜きに使う）（2026-10-06、HIGH: 静的 + 実機。縦の向きは実機で訂正） | 解析ソフト: IDA / 解析モデル: opus-5.5。 | HIGH | S | topics/acnl/ui.md |  |
 | ACNL-F0628 | HHD と ACNL でアニメのコマ数の数え方が 1 つ違う（2026-10-07、HIGH: 静的＋実機の症状） | ACNL の UiAnim_Step 0x568964: +0x14 bit0（ループしない）なら frame は frameSize(+4) − 1 で頭打ち、bit0 が無ければ frameSize で巻き戻す。UiAnim_IsFinished 0x74F58C も frame >= frameSize − 1。ACNL の BCLAN（ループしない）は最後のキーが frameSize − 1 に 527 件（frameSize ちょうどは 7 件）。 | HIGH | S | topics/acnl/ui.md |  |
-| ACNL-F0693 | Layout 描画は上左右目と下の三パスで、上下の二リストを使う（再解析） | LayoutMgr は上の左右目に同じリスト、下に別リストを用いる。上左は記録巡回と再生、上右は再生後に上リスト解除、下は記録巡回と再生後に下リスト解除を行う。 | MEDIUM | A |  |  |
-| ACNL-F0694 | Layout の優先度は安定な昇順挿入であり、末尾は登録時点に依存する（再解析） | LayoutMgr_AddLayout は Layout+0x0C の符号なしバイトで安定な昇順挿入を行う。最大優先度も後続の同値登録に先行するため、最後の再生や最前面の画素を無条件には保証しない。 | MEDIUM | A |  |  |
-| ACNL-F0696 | Layout の正射影とペインから画素への換算は Layout 寸法と viewport の比で決まる（再解析） | 基底 Layout の正射影は自身の幅・高さから作る。無追加変換時の画素倍率は viewport 幅/Layout 幅、viewport 高/Layout 高であり、1 単位＝1 画素は寸法一致時の条件付きの結論である。 | MEDIUM | A |  |  |
-| ACNL-F0697 | Layout 再生の通常シザーは mode 0 であり寸法不一致だけでは切り抜きを有効にしない（再解析） | Layout 再生は自身の寸法からシザー語を組むが、+0x138 が1でない通常分岐はmode 0を送る。寸法不一致だけを理由に切り抜きが有効になるとは言えない。 | MEDIUM | A |  |  |
-| ACNL-F0698 | Layout 投影 uniform の c4 は毎再生前に設定され初期化後のゼロ固定ではない（再解析） | 投影uniformのc4はDrawer+0x74..+0x80。再生直前のsetterが立体視変位・LayoutMgrの値・0・0を書き、初期化以降ずっとゼロという説は成立しない。 | MEDIUM | A |  |  |
-| ACNL-F0699 | Layout の記録要求と保存範囲の再利用（再解析） | 記録要求があるときだけ専用リストを消去して再記録する。再生は要求フラグと独立し、保存範囲を利用する。 | MEDIUM | A |  |  |
-| ACNL-F0700 | Layout と記録 ID の生成・解放・再利用および ID 0（再解析） | Layout の ID は構築前に0で、Build時に生成し破棄時に非ゼロIDを解放する。解放IDは再利用でき、IDだけでは寿命を特定できない。 | MEDIUM | A |  |  |
-| ACNL-F0701 | 記録 manager の容量・保存 offset と live cursor は異なる（再解析） | manager のbase・容量・保存offsetとglobal cursorは別である。記録/主リストに有限の領域があるが、旧クラッシュ原因と安全量は未確定。 | MEDIUM | A |  |  |
-| ACNL-F0702 | Fade とロード画像の登録順・状態別の描画元（再解析） | Fade と BlackWait の loader は優先度0xFFを共有し、確認した更新経路ではFadeが先に登録される。loaderの登録有無は状態、画像資源は種類欄で変わる。 | MEDIUM | A |  |  |
-| ACNL-F0703 | loader ID の十進10と0x10は異なり、旧bucket照合は0x0Aを指す（再解析） | 0xAD9904はID 10（0x0A）のbucketであり、ID 0x10は0xAD991Cを使う。F0261の同ID・同managerという照合は成立しない。 | MEDIUM | A |  |  |
-| ACNL-F0704 | Fade の記録保持とゼロ長Layoutから画像源を判定する限界（再解析） | 保存長は記録要求やFade状態とは独立するが、Fade終了処理も再計算を要求する。ゼロ長guardが止めるのは記録範囲の再生であり、過去に表示された画像の出どころまでは決めない。 | MEDIUM | A |  |  |
-| ACNL-F0705 | Picture・Material の別確保と可変長ブロックの実配置（再解析） | Picture は 0x158 バイトで、Material 0x50 バイトと座標配列を別に確保する。Material の可変長領域は容量欄で区切られ、TEV は AlphaCompare・BlendMode より後ろにある。 | MEDIUM | A |  |  |
-| ACNL-F0706 | TexMap のレジスタ派生値と Picture の UV キャッシュ（再解析） | TexMap の +0x14/+0x18/+0x1C は再生成される値で、Picture の UV 結果は別の二つの有効フラグにより再計算する。CPU キャッシュ更新と GPU 状態送出は別処理である。 | MEDIUM | A |  |  |
-| ACNL-F0707 | Pane 木の可視走査と Layout 記録・Picture 描画（再解析） | 基底 Layout は可視 root の Pane 木を子リンク順に記録し、Picture は材質状態と幾何・色・UVをバッチへ追加する。頂点色の入力と TEV 構成、バッチ残量の検査とコマンド領域容量は別である。 | MEDIUM | A |  |  |
-| ACNL-F0708 | Picture の材質共有は無効化・所有と資源寿命の条件を持つ（再解析） | Picture は共有 Material を直接読む一方、UV 有効フラグを書き換える。標準破棄はフラグ次第で Material と別配列を解放するため、共有描画から安全な寿命や再確保は保証できない。 | MEDIUM | A |  |  |
+| ACNL-F0693 | Layout 描画は上左右目と下の三パスで、上下の二リストを使う（再解析） | LayoutMgr は上の左右目に同じリスト、下に別リストを用いる。上左は記録巡回と再生、上右は再生後に上リスト解除、下は記録巡回と再生後に下リスト解除を行う。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0694 | Layout の優先度は安定な昇順挿入であり、末尾は登録時点に依存する（再解析） | LayoutMgr_AddLayout は Layout+0x0C の符号なしバイトで安定な昇順挿入を行う。最大優先度も後続の同値登録に先行するため、最後の再生や最前面の画素を無条件には保証しない。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0696 | Layout の正射影とペインから画素への換算は Layout 寸法と viewport の比で決まる（再解析） | 基底 Layout の正射影は自身の幅・高さから作る。無追加変換時の画素倍率は viewport 幅/Layout 幅、viewport 高/Layout 高であり、1 単位＝1 画素は寸法一致時の条件付きの結論である。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0697 | Layout 再生の通常シザーは mode 0 であり寸法不一致だけでは切り抜きを有効にしない（再解析） | Layout 再生は自身の寸法からシザー語を組むが、+0x138 が1でない通常分岐はmode 0を送る。寸法不一致だけを理由に切り抜きが有効になるとは言えない。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0698 | Layout 投影 uniform の c4 は毎再生前に設定され初期化後のゼロ固定ではない（再解析） | 投影uniformのc4はDrawer+0x74..+0x80。再生直前のsetterが立体視変位・LayoutMgrの値・0・0を書き、初期化以降ずっとゼロという説は成立しない。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0699 | Layout の記録要求と保存範囲の再利用（再解析） | 記録要求があるときだけ専用リストを消去して再記録する。再生は要求フラグと独立し、保存範囲を利用する。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0700 | Layout と記録 ID の生成・解放・再利用および ID 0（再解析） | Layout の ID は構築前に0で、Build時に生成し破棄時に非ゼロIDを解放する。解放IDは再利用でき、IDだけでは寿命を特定できない。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0701 | 記録 manager の容量・保存 offset と live cursor は異なる（再解析） | manager のbase・容量・保存offsetとglobal cursorは別である。記録/主リストに有限の領域があるが、旧クラッシュ原因と安全量は未確定。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0702 | Fade とロード画像の登録順・状態別の描画元（再解析） | Fade と BlackWait の loader は優先度0xFFを共有し、確認した更新経路ではFadeが先に登録される。loaderの登録有無は状態、画像資源は種類欄で変わる。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0703 | loader ID の十進10と0x10は異なり、旧bucket照合は0x0Aを指す（再解析） | 0xAD9904はID 10（0x0A）のbucketであり、ID 0x10は0xAD991Cを使う。F0261の同ID・同managerという照合は成立しない。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0704 | Fade の記録保持とゼロ長Layoutから画像源を判定する限界（再解析） | 保存長は記録要求やFade状態とは独立するが、Fade終了処理も再計算を要求する。ゼロ長guardが止めるのは記録範囲の再生であり、過去に表示された画像の出どころまでは決めない。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0705 | Picture・Material の別確保と可変長ブロックの実配置（再解析） | Picture は 0x158 バイトで、Material 0x50 バイトと座標配列を別に確保する。Material の可変長領域は容量欄で区切られ、TEV は AlphaCompare・BlendMode より後ろにある。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0706 | TexMap のレジスタ派生値と Picture の UV キャッシュ（再解析） | TexMap の +0x14/+0x18/+0x1C は再生成される値で、Picture の UV 結果は別の二つの有効フラグにより再計算する。CPU キャッシュ更新と GPU 状態送出は別処理である。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0707 | Pane 木の可視走査と Layout 記録・Picture 描画（再解析） | 基底 Layout は可視 root の Pane 木を子リンク順に記録し、Picture は材質状態と幾何・色・UVをバッチへ追加する。頂点色の入力と TEV 構成、バッチ残量の検査とコマンド領域容量は別である。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0708 | Picture の材質共有は無効化・所有と資源寿命の条件を持つ（再解析） | Picture は共有 Material を直接読む一方、UV 有効フラグを書き換える。標準破棄はフラグ次第で Material と別配列を解放するため、共有描画から安全な寿命や再確保は保証できない。 | MEDIUM | A | topics/acnl/ui.md |  |
