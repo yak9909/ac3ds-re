@@ -146,7 +146,7 @@
 | ACNL-F0140 | F-102: ★実機観測でコマンドバッファ構造を確定（初の HIGH） | HIGH | ? | active |  |  |
 | ACNL-F0141 | F-103: ★GX キューを実機で直接読み、1 フレームの構成を観測 | HIGH | ? | active |  |  |
 | ACNL-F0142 | F-104: ★single-step 無効なら breakpoint が使える。`GpuCmd_SplitAndSubmit` の呼び出し元を捕捉 | HIGH | ? | active |  |  |
-| ACNL-F0143 | F-105: ★MCP 側から Suspend できる（CLAUDE.md の記述を訂正） | HIGH | ? | active |  |  |
+| ACNL-F0143 | F-105: ★MCP 側から Suspend できる（CLAUDE.md の記述を訂正） | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0144 | F-106: ★`g3d::FuncNode` — 描画中に任意の関数を呼べるシーンノード | MEDIUM | ? | active |  | 訂正あり |
 | ACNL-F0145 | F-107: ★`g3d::FuncNode` の実在を確認。コールバック登録 API まで判明 | MEDIUM | ? | active |  | 訂正あり |
 | ACNL-F0146 | F-108: FuncNode 解析の精査 — 前提の再検証と 1 件の見落とし | MEDIUM | ? | active |  |  |
@@ -170,7 +170,7 @@
 | ACNL-F0164 | F-126: ★★★TODO-94 達成 — UI 層（`nw::lyt::TextBox`）に自前の 2D テキストを出した | HIGH | ? | active |  |  |
 | ACNL-F0165 | F-127: ★★`nw::lyt::TextBox` の構造を実機で確定 — 位置・色・サイズを自由に変えられる | HIGH | ? | active |  |  |
 | ACNL-F0166 | F-128: ★★★ドロップシャドウの正体 — フォントではなく「もう 1 枚のペインを 1 ドットずらして描く」 | HIGH | ? | active |  |  |
-| ACNL-F0167 | F-129: `TextBox+224` は `nw::font::ResFont*`。実機には少なくとも4種の初期化済みCFNUがある | HIGH | ? | active |  |  |
+| ACNL-F0167 | F-129: `TextBox+224` は `nw::font::ResFont*`。実機には少なくとも4種の初期化済みCFNUがある | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0168 | F-130: ResFontのCMAP代替処理を確定。全liveフォントは2種の線形フィルタflagがON | HIGH | ? | active |  |  |
 | ACNL-F0169 | F-131: TextBoxの折り返しはpane幅、縦方向は非clip。右端欠けの境界はCWDH glyphWidth | HIGH | ? | active |  |  |
 | ACNL-F0170 | F-132: 非整数倍率が右端の不均一さを生む — `HIGH` | HIGH | ? | active |  |  |
@@ -295,7 +295,7 @@
 | ACNL-F0289 | F-266: ★★★★★`SetupProjectionMatrix` は **`+0x28` / `+0x2C` しか読まない**。だから自前ノードでもそのまま呼べる — `HIGH`（静的のみ） | HIGH | ? | active |  |  |
 | ACNL-F0290 | F-267: 雛形の複製を廃止した。写し元依存が実装から消えた — `HIGH`（静的のみ） | HIGH | ? | active |  |  |
 | ACNL-F0291 | F-268: ★★★★★Drawer の既定コマンド列には **TEV 段が 1 つも無い**。色は必ずマテリアル由来 — `HIGH`（静的のみ） | HIGH | ? | active |  | 訂正あり |
-| ACNL-F0292 | F-269: TEV を自前で組んだ。**設計から借り物が消えた** — `HIGH`（静的のみ） | HIGH | ? | active |  |  |
+| ACNL-F0292 | F-269: TEV を自前で組んだ。**設計から借り物が消えた** — `HIGH`（静的のみ） | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0293 | F-270: ★★★★DrawBegin1 は **テクスチャユニットを全部無効にする**。自前記録では立て直さないとテクスチャが読まれない — `HIGH`（静的 + 過去の実測列） | HIGH | ? | active |  |  |
 | ACNL-F0294 | F-271: ★★★★★`TextBox_UpdateDrawState`(`0x4B7DEC`) が「テクスチャ付き描画へ切り替える」全手順。実測列の全項目がこれで説明できた — `HIGH`（静的 + F-124 の実測列） | HIGH | ? | active |  |  |
 | ACNL-F0295 | F-272: F-264〜F-271 の整合監査。独立な結果と突き合わせて 1 件の誤りを訂正し、`SET_PROJECTION` を廃止した — `HIGH` | HIGH | ? | active |  | 訂正あり |
@@ -326,7 +326,7 @@
 | ACNL-F0320 | F-296 (HIGH・実機) — ★借りた領域を返せる。**確保 → 解放 → 再確保の往復を実機で成立** | HIGH | ? | active |  |  |
 | ACNL-F0321 | F-297 (HIGH・実機) — ★下画面のペインツリーを組んだ。**上下 2 画面が独立した輪で同時に描かれる** | HIGH | ? | consolidated | topics/acnl/ui.md | 訂正あり |
 | ACNL-F0322 | F-298 (HIGH・静的のみ) — ★TextBox 方式は実装可能。**自前フォントの「コード」はほぼ要らない** | HIGH | ? | active |  | 訂正あり |
-| ACNL-F0323 | F-299 (HIGH・静的＋実機の実データ照合) — ★F-298 の検証と**訂正 2 件**。バッチの確保元を特定（残件 1） | HIGH | ? | active |  |  |
+| ACNL-F0323 | F-299 (HIGH・静的＋実機の実データ照合) — ★F-298 の検証と**訂正 2 件**。バッチの確保元を特定（残件 1） | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0324 | F-300 (HIGH・静的＋実機) — ゲーム内フォントを流用しても **TextBox は自前で要る**。ただしフォント側の合成は丸ごと不要になる | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0325 | F-301 (HIGH・静的のみ) — ★F-300 の訂正。**TextBox は必須ではない。**文字描画の本体は `TextWriter` | HIGH | ? | active |  |  |
 | ACNL-F0326 | F-302 (HIGH・実機) — ★★TextBox が実機で描けた。**作業オブジェクト = `LayoutMgr + 0x1C`**。コードケーブ 0 語 | HIGH | ? | consolidated | topics/acnl/ui.md |  |

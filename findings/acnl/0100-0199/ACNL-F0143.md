@@ -21,6 +21,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0154"]
 ---
 ## F-105: ★MCP 側から Suspend できる（CLAUDE.md の記述を訂正）
 
