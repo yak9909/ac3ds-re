@@ -1,5 +1,5 @@
 address,size,name,prototype,confidence,source,refs,clone_of
-0x0030010C,88,Field_CanDropItemAt,,,legacy-idb,,
+0x0030010C,88,Field_CanDropItemAt,,,legacy-idb,,0x002FEFA4
 0x00300914,12,vc_GAMEKEYBOARD_FUNC5,,,legacy-idb,,
 0x00300E05,138,Mail_SendNintendoPresent,,,legacy-idb,,
 0x00301331,62,BbsPost_Init,ACNL_BbsPost *__fastcall(ACNL_BbsPost *post),,legacy-idb,,
@@ -50,7 +50,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x0030F5F4,28,Date_FromRaw,,,legacy-idb,,
 0x0030F88C,24,vc_GET_HOUSE_SAVE_FROM_PLAYER_OFFSET,,,legacy-idb,,
 0x00311958,116,FurnitureItem_CopySetRotation,,,legacy-idb,,
-0x003126F8,104,vc_NPC_1_SETUP,,,legacy-idb,,
+0x003126F8,104,vc_NPC_1_SETUP,,,legacy-idb,,0x0030822C
 0x00315688,80,Field_GetAttrAtCellXZ,"unsigned int __fastcall(int x, int z, int layer)",,legacy-idb,,
 0x003159A5,84,Field_GrowUpWiltBushSapling,,,legacy-idb,,
 0x00315A11,272,Field_GrowUpWiltSapling,,,legacy-idb,,
@@ -62,7 +62,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x00317BD0,140,ResModel_SetRenderLayer,,,legacy-idb,,
 0x00317CBC,56,HeapAllocator_Dtor,,,legacy-idb,,
 0x00317CFC,116,G3dResHolder_Dtor,,,legacy-idb,,
-0x0031C128,136,ChangeStockWarehouse_Ctor,AcnlChangeStockItemPrefixF006 *__fastcall(AcnlChangeStockItemPrefixF006 *self),,legacy-idb,,
+0x0031C128,136,ChangeStockWarehouse_Ctor,AcnlChangeStockItemPrefixF006 *__fastcall(AcnlChangeStockItemPrefixF006 *self),,legacy-idb,,0x00297BDC
 0x0031D81C,200,ItemSelectNameWindow_FitWidth,,,legacy-idb,,
 0x0031D908,228,ItemSelectNameWindow_UpdatePosition,,,legacy-idb,,
 0x0031DB64,32,ItemSelectNameWindow_Hide,,,legacy-idb,,
@@ -91,7 +91,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x003298E8,40,PlayerAppearance_Set,,,legacy-idb,,
 0x00329994,168,PlayerHeadKey_Build,,,legacy-idb,,
 0x0032C1EC,72,HouseSave_InitTentExterior_32C1EC,,,legacy-idb,,
-0x0032C234,72,HouseSave_InitTentExterior_32C234,,,legacy-idb,,
+0x0032C234,72,HouseSave_InitTentExterior_32C234,,,legacy-idb,,0x0032C1EC
 0x0033DEE0,672,ItemSelectWindowControl_KeyMode,,,legacy-idb,,
 0x0034A178,324,TevStage_Init,,,legacy-idb,,
 0x0034F8C8,56,SystemConfig_ReadCountryId,unsigned int __fastcall(),,legacy-idb,,

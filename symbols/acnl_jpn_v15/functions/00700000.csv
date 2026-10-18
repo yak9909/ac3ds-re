@@ -1,6 +1,6 @@
 address,size,name,prototype,confidence,source,refs,clone_of
 0x00709E40,32,AnimSlot_IsFinished,,,legacy-idb,,
-0x00709FEC,32,AnimSlot_CrossedMarker,,,legacy-idb,,
+0x00709FEC,32,AnimSlot_CrossedMarker,,,legacy-idb,,0x00709E40
 0x0070CBB0,108,BsMenuChest_GetItemAtUiIndex,"ItemID *__fastcall(AcnlBsMenuChestPrefixF006 *self, unsigned int ui_index)",,legacy-idb,,
 0x0070FF64,172,ShopHours_Kicks_IsOpen,,,legacy-idb,,
 0x00710054,636,ShopHours_Nookling_IsOpenByStage,,,legacy-idb,,
@@ -119,7 +119,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x007592D4,12,ItemSelectSystem_ClearSelection,int __fastcall(AcnlItemSelectSystemPrefixF010 *self),,legacy-idb,,
 0x007592E0,12,ItemSelectSystem_GetSelectedRow,AcnlItemSelectRowF010 *__fastcall(AcnlItemSelectSystemPrefixF010 *self),,legacy-idb,,
 0x0075A54C,60,vc_ACMESSAGEBOX_FUNC4,,,legacy-idb,,
-0x0075B8A8,104,vc_NPC_2_SETUP,,,legacy-idb,,
+0x0075B8A8,104,vc_NPC_2_SETUP,,,legacy-idb,,0x0030822C
 0x0075CAB4,124,CurvedWorld_TransformPosition,,,legacy-idb,,
 0x0075CDC4,40,FieldTile_GetAttr,,,legacy-idb,,
 0x0075D770,36,Net_PeerMaskContainsAt0x1326E,,,legacy-idb,,

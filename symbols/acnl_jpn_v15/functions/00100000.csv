@@ -96,7 +96,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x0013594C,20,GX_RequestDma,,,legacy-idb,,
 0x00135960,32,GX_SetDisplayTransfer,,,legacy-idb,,
 0x00135980,32,GX_SetMemoryFill,,,legacy-idb,,
-0x001359A0,32,GX_SetTextureCopy,,,legacy-idb,,
+0x001359A0,32,GX_SetTextureCopy,,,legacy-idb,,0x00135980
 0x001363A0,160,nnfs_MountBaseRomfs,,,legacy-idb,,
 0x00136D88,124,GX_RequestDmaImpl,,,legacy-idb,,
 0x00136E68,108,GX_SetMemoryFillImpl,,,legacy-idb,,
@@ -143,9 +143,9 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x001844B4,168,NetPkt81_BbsAddPost,"void __fastcall(unsigned int sourcePlayerIndex, const void *payload, unsigned int payloadSize)",,legacy-idb,,
 0x00184938,132,NetPkt82_BbsDeletePost,"int __fastcall(unsigned int sourcePlayerIndex, const unsigned int *postIndex, unsigned int payloadSize)",,legacy-idb,,
 0x00185E68,44,vc_ANTI_ANIM_1,,,legacy-idb,,
-0x00185E98,44,vc_ANTI_ANIM_2,,,legacy-idb,,
-0x00185EC8,44,vc_ANTI_ANIM_3,,,legacy-idb,,
-0x00185EF8,44,vc_ANTI_ANIM_4,,,legacy-idb,,
+0x00185E98,44,vc_ANTI_ANIM_2,,,legacy-idb,,0x00185E68
+0x00185EC8,44,vc_ANTI_ANIM_3,,,legacy-idb,,0x00185E68
+0x00185EF8,44,vc_ANTI_ANIM_4,,,legacy-idb,,0x00185E68
 0x00186D24,160,NetTransfer11_ReceivePlayerProfile,,,legacy-idb,,
 0x00186E18,424,NetTransfer06_ReceivePlayerJoinData,,,legacy-idb,,
 0x00187030,528,NetTransfer12_ReceiveTownChunk,"unsigned int __fastcall(unsigned int sourcePlayerIndex, const ACNL_TownTransferFragmentHeader *chunk, unsigned int chunkSize)",,legacy-idb,,
@@ -236,7 +236,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x001BB930,1968,PostOffice_PostPocketLetters,,,legacy-idb,,
 0x001BC148,444,Mail_DeliverFromPool,,,legacy-idb,,
 0x001BCF74,344,StructureData_FindTentObjectData,,,legacy-idb,,
-0x001BD43C,344,StructureData_FindStandardHouseObjectData,,,legacy-idb,,
+0x001BD43C,344,StructureData_FindStandardHouseObjectData,,,legacy-idb,,0x001BCF74
 0x001BD87C,832,,,,legacy-idb,,
 0x001C2F48,80,BsMenuChest_WaitEnter,int __fastcall(AcnlBsMenuChestPrefixF006 *self),,legacy-idb,,
 0x001C2FA0,76,BsMenuChest_Enter,void __fastcall(AcnlBsMenuChestPrefixF006 *self),,legacy-idb,,
@@ -266,11 +266,11 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x001C58D0,36,SelectBase_Draw,,,legacy-idb,,
 0x001C58F4,20,SelectBase_StartEnter,,,legacy-idb,,
 0x001C59C8,100,SelectBase_EnterCalc,,,legacy-idb,,
-0x001C5A34,20,SelectBase_StartLeave,,,legacy-idb,,
+0x001C5A34,20,SelectBase_StartLeave,,,legacy-idb,,0x001C58F4
 0x001C5A58,96,SelectBase_LeaveCalc,,,legacy-idb,,
 0x001C5AC8,216,CatalogBase_Ctor,,,legacy-idb,,
 0x001C86E8,172,FaderMoment_Update,,,legacy-idb,,
-0x001C87A8,20,FaderMoment_Ctor,,,legacy-idb,,
+0x001C87A8,20,FaderMoment_Ctor,,,legacy-idb,,0x0012653C
 0x001CBBA8,64,,,,legacy-idb,,
 0x001CE8D8,268,PlayerModel_CalcAnim,,,legacy-idb,,
 0x001CEC10,564,PlayerModel_SetMatrix,,,legacy-idb,,

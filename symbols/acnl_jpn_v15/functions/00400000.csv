@@ -43,7 +43,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x0049AE18,112,LightState_Reset,,,legacy-idb,,
 0x0049C054,52,gfx_MaterialActivator_Create,,,legacy-idb,,
 0x0049C08C,3352,gfx_MaterialActivator_Activate,,,legacy-idb,,
-0x004A1780,52,gfx_SimpleMaterialActivator_Create,,,legacy-idb,,
+0x004A1780,52,gfx_SimpleMaterialActivator_Create,,,legacy-idb,,0x0049C054
 0x004A17B8,3372,nwgfx_SimpleMaterialActivator_Activate,,,legacy-idb,,
 0x004A530C,444,gfx_ResMaterial_Setup,,,legacy-idb,,
 0x004A583C,60,,,,legacy-idb,,
@@ -164,7 +164,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x004D800C,36,nwfont_Font_Init,,,legacy-idb,,
 0x004D8048,440,nwfont_ResFont_ParseAndAttachResource,,,legacy-idb,,
 0x004D8220,144,nwfont_ResFont_GetGlyphSheetTableBytes,,,legacy-idb,,
-0x004D82B8,20,nwfont_ResFont_Create,,,legacy-idb,,
+0x004D82B8,20,nwfont_ResFont_Create,,,legacy-idb,,0x0012653C
 0x004D82D0,44,nwfont_ResFont_Destruct,,,legacy-idb,,
 0x004D8484,328,nwfont_CharWriter_SetGlyphTextureParams,,,legacy-idb,,
 0x004DD030,260,Item_MergeQuantityStacks,,,legacy-idb,,
