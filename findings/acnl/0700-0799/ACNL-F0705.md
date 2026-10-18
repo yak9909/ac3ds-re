@@ -15,8 +15,8 @@ supersedes: ["ACNL-F0315"]
 by: gpt-6.1-sol
 original_by: ""
 reviewed_by: []
-state: active            # active / consolidated / superseded / duplicate
-consolidated_into: ""
+state: consolidated
+consolidated_into: topics/acnl/ui.md
 duplicate_of: ""
 superseded_by: ""
 corrected_by: []

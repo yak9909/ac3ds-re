@@ -696,19 +696,19 @@
 | ACNL-F0690 | item name/icon resource pipeline |  | B | active |  |  |
 | ACNL-F0691 | low field-object display fallback |  | B | active |  |  |
 | ACNL-F0692 | AcObjUnitCursor の尺度は家具サイズ、Rotate アニメは UV 回転で決まる（F0563 再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0693 | Layout 描画は上左右目と下の三パスで、上下の二リストを使う（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0694 | Layout の優先度は安定な昇順挿入であり、末尾は登録時点に依存する（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0693 | Layout 描画は上左右目と下の三パスで、上下の二リストを使う（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0694 | Layout の優先度は安定な昇順挿入であり、末尾は登録時点に依存する（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0695 | Layout 再生時の主リスト記帳は条件付きで未提出範囲を取り込む（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0696 | Layout の正射影とペインから画素への換算は Layout 寸法と viewport の比で決まる（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0697 | Layout 再生の通常シザーは mode 0 であり寸法不一致だけでは切り抜きを有効にしない（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0698 | Layout 投影 uniform の c4 は毎再生前に設定され初期化後のゼロ固定ではない（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0699 | Layout の記録要求と保存範囲の再利用（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0700 | Layout と記録 ID の生成・解放・再利用および ID 0（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0701 | 記録 manager の容量・保存 offset と live cursor は異なる（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0702 | Fade とロード画像の登録順・状態別の描画元（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0703 | loader ID の十進10と0x10は異なり、旧bucket照合は0x0Aを指す（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0704 | Fade の記録保持とゼロ長Layoutから画像源を判定する限界（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0705 | Picture・Material の別確保と可変長ブロックの実配置（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0706 | TexMap のレジスタ派生値と Picture の UV キャッシュ（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0707 | Pane 木の可視走査と Layout 記録・Picture 描画（再解析） | MEDIUM | A | active |  |  |
-| ACNL-F0708 | Picture の材質共有は無効化・所有と資源寿命の条件を持つ（再解析） | MEDIUM | A | active |  |  |
+| ACNL-F0696 | Layout の正射影とペインから画素への換算は Layout 寸法と viewport の比で決まる（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0697 | Layout 再生の通常シザーは mode 0 であり寸法不一致だけでは切り抜きを有効にしない（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0698 | Layout 投影 uniform の c4 は毎再生前に設定され初期化後のゼロ固定ではない（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0699 | Layout の記録要求と保存範囲の再利用（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0700 | Layout と記録 ID の生成・解放・再利用および ID 0（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0701 | 記録 manager の容量・保存 offset と live cursor は異なる（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0702 | Fade とロード画像の登録順・状態別の描画元（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0703 | loader ID の十進10と0x10は異なり、旧bucket照合は0x0Aを指す（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0704 | Fade の記録保持とゼロ長Layoutから画像源を判定する限界（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0705 | Picture・Material の別確保と可変長ブロックの実配置（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0706 | TexMap のレジスタ派生値と Picture の UV キャッシュ（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0707 | Pane 木の可視走査と Layout 記録・Picture 描画（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0708 | Picture の材質共有は無効化・所有と資源寿命の条件を持つ（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
