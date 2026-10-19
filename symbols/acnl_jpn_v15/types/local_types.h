@@ -8,7 +8,10 @@ struct ACNL_TownTransferState;
 struct AcnlBsMenuChestPrefixF006;
 struct AcnlButtonNodeSetupF011;
 struct AcnlChangeStockItemPrefixF006;
+struct AcnlControllerOffsetListF103;
 struct AcnlControllerPrefixF005;
+struct AcnlControllerPrefixF103;
+struct AcnlControllerWrapperPrefixF103;
 struct AcnlDragControlPrefixF010;
 struct AcnlDragEndpointsF008;
 struct AcnlDragIconGroupF010;
@@ -26,6 +29,8 @@ struct AcnlItemSelectSystemPrefixF010;
 struct AcnlLayoutRecordPrefix_F016;
 struct AcnlMenuScreenListF006;
 struct AcnlMenuScreenNodeF006;
+struct AcnlPadReaderPrefixF103;
+struct AcnlPadStateF103;
 struct AcnlPartsDragNodeF010;
 struct AcnlPartsDragNodeF012;
 struct AcnlPlayerInventoryFinanceF010;
@@ -391,6 +396,17 @@ enum AcnlClosetMenuIdF006
   AcnlClosetMenu_Warehouse_F006 = 0x89,
 };
 
+// type: AcnlControllerOffsetListF103
+#pragma pack(push, 2)
+struct AcnlControllerOffsetListF103
+{
+  void *prev;
+  void *next;
+  unsigned int count;
+  unsigned int node_offset;
+};
+#pragma pack(pop)
+
 // type: AcnlPointerFlagsF005
 enum __bitmask AcnlPointerFlagsF005
 {
@@ -430,14 +446,49 @@ struct AcnlControllerPrefixF005
   AcnlUiPoint2IF005 pixel_int;
   AcnlUiPoint2F005 pointer_min;
   AcnlUiPoint2F005 pointer_max;
-  unsigned __int8 unknown_to_button_count[208];
+  unsigned int held_frames[32];
+  unsigned __int8 repeat_delay[32];
+  unsigned __int8 repeat_interval[32];
+  float axis0_press_threshold;
+  float axis1_press_threshold;
+  float axis0_release_threshold;
+  float axis1_release_threshold;
   int button_count;
   int axis0_bit;
   int axis1_bit;
   int pointer_bit;
-  unsigned int unknown_268;
+  unsigned int idle_frames;
   unsigned int held;
   AcnlUiPoint2F005 pixel_float;
+  AcnlUiPoint2F005 axis0;
+  AcnlUiPoint2F005 axis1;
+  AcnlUiPoint2F005 unk_12C;
+};
+#pragma pack(pop)
+
+// type: AcnlControllerPrefixF103
+#pragma pack(push, 2)
+struct AcnlControllerPrefixF103
+{
+  AcnlControllerPrefixF005 base;
+  unsigned __int8 unk_134;
+  unsigned __int8 unk_135[3];
+  void *manager;
+  AcnlControllerOffsetListF103 addons;
+  AcnlControllerOffsetListF103 wrappers;
+};
+#pragma pack(pop)
+
+// type: AcnlControllerWrapperPrefixF103
+#pragma pack(push, 2)
+struct AcnlControllerWrapperPrefixF103
+{
+  AcnlControllerPrefixF005 base;
+  unsigned __int8 unk_134[16];
+  AcnlControllerPrefixF103 *source;
+  unsigned __int8 enabled;
+  unsigned __int8 unk_149[43];
+  unsigned __int8 source_bit_index[32];
 };
 #pragma pack(pop)
 
@@ -773,6 +824,30 @@ struct AcnlLayoutRecordPrefix_F016
   unsigned __int8 innerLayout[269];
   unsigned __int8 recordDirty;
   unsigned __int8 unknown11E[2];
+};
+#pragma pack(pop)
+
+// type: AcnlPadReaderPrefixF103
+#pragma pack(push, 2)
+struct AcnlPadReaderPrefixF103
+{
+  void *handle;
+  unsigned int unk_4;
+  unsigned int previous_held;
+  unsigned __int8 unk_C[36];
+  unsigned __int8 seed_previous_held;
+};
+#pragma pack(pop)
+
+// type: AcnlPadStateF103
+#pragma pack(push, 2)
+struct AcnlPadStateF103
+{
+  unsigned int held;
+  unsigned int pressed;
+  unsigned int released;
+  __int16 circle_x;
+  __int16 circle_y;
 };
 #pragma pack(pop)
 

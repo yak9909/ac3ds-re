@@ -96,6 +96,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x0034A178,324,TevStage_Init,,,legacy-idb,,
 0x0034F8C8,56,SystemConfig_ReadCountryId,unsigned int __fastcall(),,legacy-idb,,
 0x0034FA24,20,SystemConfig_GetCountryIsoCode,const char *__fastcall(unsigned int countryId),,legacy-idb,,
+0x003533D0,300,GameInput_ReadPadState,"int __fastcall(AcnlPadReaderPrefixF103 *reader, AcnlPadStateF103 *out)",,analysis,ACNL-F0723,
 0x003DEBD8,256,Utf16_CountNumericCharacters,int __fastcall(const unsigned __int16 *text),,legacy-idb,,
 0x003FE5B8,4,j_Inventory_GetSlot,,,legacy-idb,,
 0x003FE5C0,4,j_ClosetItems_GetAddress,,,legacy-idb,,
