@@ -143,6 +143,15 @@ def test_generated_note():
     assert any("生成物" in r for r in file_reasons("findings/acnl/by-category/item.md", b"# x\n"))
 
 
+def test_vtable_function_pointer_members_are_type_data():
+    members = '\n'.join(f'  void (__fastcall *method_{i})(Pane *pane);' for i in range(3))
+    assert not audit.scan_text('symbols/acnl_jpn_v15/types/local_types.h', members, [])
+    # 宣言の置き場を変える、または本体を含める場合は引き続き検出する。
+    assert audit.scan_text('docs/example.md', members, [])
+    bodies = '\n'.join('int __fastcall method(void) { return 1; }' for _ in range(3))
+    assert audit.scan_text('symbols/acnl_jpn_v15/types/local_types.h', bodies, [])
+
+
 def test_modes(repo, monkeypatch, capsys):
     g = os.environ.get("AC3DS_GIT") or "git"
     monkeypatch.delenv("GITHUB_REF", raising=False)

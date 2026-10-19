@@ -79,6 +79,8 @@ address,kind,text
 0x0011D184,line,"IDA-opus-5.5-F022 MEDIUM(静的): ファイルパス {5,0,0} = 更新データの RomFS を開いてマウント。gohan RomfsIndex もこの開き方にした（fobj_barricade_L/R など更新にしか無い資源）。"
 0x0011D184,repeatable,"IDA-opus-5.5-F022 MEDIUM(静的): ファイルパス {5,0,0} = 更新データの RomFS を開いてマウント。gohan RomfsIndex もこの開き方にした（fobj_barricade_L/R など更新にしか無い資源）。"
 0x0011DA78,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。graphicHeap0x6AF000 Bをa1[2]へ、a1[5]=a1[2]。a1[3]/[4]はrootVramA/B、a1[6]/[7]がそれぞれを使う。FCRAM命令器とVRAMを混同しない。RTTI/vtable0x904FA4と初期化・0x616620経路を照合。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
+0x001216BC,func,"[ACNL-F0709] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+"
 0x001216BC,line,"F-259: マネージャ構造の確定。+0x00 id / +0x04 base / +0x08 size / +0x0C offset /
   +0x14 提出済み offset / +0x18 GX キュー配列(28B/件) / +0x20 件数 / +0x40 次
 バケットは dword_AD98C0[id & 0x1F] の +7 語目が鎖の先頭。
@@ -95,7 +97,8 @@ address,kind,text
 F-234: list manager bucket = 0x00AD98C0 + ((id & 0x1F)<<2) + 0x1C、同 bucket は manager+0x40 を exact id まで辿る。ロード画像 id10 は実機 manager=0x327AE21C, size=0x1000, offset=0x2C0, remaining=0xD40。"
 0x001217C0,line,"F-239 static: on a list switch, save prior g_GpuCmdPtr - prior manager->base into prior manager+0x0C. This manager state is independent of any current Layout object with the same list id."
 0x001217E8,line,"F-239 static: select R4 manager; g_GpuCmdPtr = manager->base + manager->offset (+0x4/+0xC). Do not identify a rendered Layout from Layout+0x100 id alone; correlate Layout pointer, manager base/offset, and replay."
-0x00121988,func,"IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。command本体size+28*qCountをcallback(memoryType0x10000)から確保。a1[5]側の消費で2D_UI_Heap側へ加算しない。GenCmdlists0x121B34は別にmanager68 Bを同じcallback(type0x10000,kind0x100)から確保する。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。"
+0x00121988,func,"[ACNL-F0709] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。command本体size+28*qCountをcallback(memoryType0x10000)から確保。a1[5]側の消費で2D_UI_Heap側へ加算しない。GenCmdlists0x121B34は別にmanager68 Bを同じcallback(type0x10000,kind0x100)から確保する。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。"
 0x00121988,line,"F-261: = nngxCmdlistStorage。現在選択中のマネージャに対して
   1 回の確保（size + 28*qCount）でバッファと GX キューをまかなう。
   mgr[1]=base / mgr[2]=size / ★mgr[6]=キュー配列(base+size) / mgr[7]=件数。
@@ -106,7 +109,8 @@ F-234: list manager bucket = 0x00AD98C0 + ((id & 0x1F)<<2) + 0x1C、同 bucket �
   mgr[1]=base / mgr[2]=size / ★mgr[6]=キュー配列(base+size) / mgr[7]=件数。
   ★base/size だけを手で書くと mgr[6]=0 のままになり、
   GpuCmd_SplitAndSubmit が mgr[6]+28*mgr[8] ≡ 0 付近へ書いて落ちる。"
-0x00121B34,func,"IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。R0=件数/R1=id出力配列。各manager要求68 B、callback off_96EAA4(0x10000,0x100,0,68)。命令器の管理構造もa1[5]側。省略していたこの要求を読み込みheapの212 B差へ入れてはいけない。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。"
+0x00121B34,func,"[ACNL-F0709] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。R0=件数/R1=id出力配列。各manager要求68 B、callback off_96EAA4(0x10000,0x100,0,68)。命令器の管理構造もa1[5]側。省略していたこの要求を読み込みheapの212 B差へ入れてはいけない。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。"
 0x00121B34,line,"F-261: = nngxGenCmdlists。dword_96EAAC を進めながら
   未使用の list id を n 個作り、a2 の配列へ書く。
   id を自分で決め打ちする必要は無い（衝突するので危険）。"
@@ -121,6 +125,10 @@ F-234: list manager bucket = 0x00AD98C0 + ((id & 0x1F)<<2) + 0x1C、同 bucket �
 他地域: USA=00126568  EUR=0012658C
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x00126BF0,func,"IDA-gpt-6-F002 (MEDIUM, 2026-10-11): converts signed milliseconds since 2000-01-01 to the native 12-byte date. Assembly/caller Time_DateFromSystemNs and execution of original input code at 2000-01-01, 2012-01-01, 2026-10-11, 2048-02-29 independently agree; weekday is Sunday=0. PC fixture is not hardware confirmation. Returns the computed year in R0."
+0x00127D98,func,"[ACNL-F0709] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+"
+0x00127EDC,func,"[ACNL-F0709] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+"
 0x00127EDC,line,"★★GpuCmd_GetProperty(id, &out) — コマンドバッファの各種値を取得
 (F-97 / F-101 で訂正)。confidence MEDIUM（静的解析のみ）。
 ★**予約関数ではない。単なる getter。** switch の case = id - 512 (0x200)。
@@ -306,10 +314,14 @@ GPU の排他権取得。呼び出し元 sub_12A9C8 / sub_12AB10。"
 マスク付きの GPU レジスタ書き込み。呼び出し元 sub_12ABF4。"
 0x001315B0,repeatable,"★GSPGPU_WriteHWRegsWithMask(...) — IPC ヘッダ 0x00020084 (F-94)。
 マスク付きの GPU レジスタ書き込み。呼び出し元 sub_12ABF4。"
+0x001322F0,func,"[ACNL-F0712] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+"
 0x001333C4,line,IDA-gpt-6.1-sol-F010 / MEDIUM: heap+0x50 はsigned確保方向（1/-1）。TryAlloc 0x55D8E8がLDRSBしalignmentへ乗算。反転heapで負alignment固定は先頭になるため、末尾選択はdirectionに合わせた符号が必要。
 0x00133A5C,func,"IDA-gpt-6.1-sol-F002: MEDIUM追補: Layout+16実装へ0x137B04→vslot+32(実装,0)を呼ぶ。Chip Out/Releaseはこれを呼ぶが、LayoutMgr intrusive nodeをUnlinkAllする関数ではない。
 IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
 旧記録F002の「Layout資源解放」は訂正。0x137B04→実装vslot+0x20→0x4B8F04→Pane再帰Unbindであり、Layout/UiAnimをfreeしない。資源破棄は0x5BEB4C→0x5688A0→0x4B9748など。"
+0x00133A64,func,"[ACNL-F0712] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+"
 0x00133B20,func,IDA-gpt-6.1-sol-F002: MEDIUM追補: list+4先頭をnode+8で巡り、各node+4/+8を0にしlistのhead/tailも0へ。LayoutMgr_RenderBottomの通常終了経路で適用。
 0x0013594C,line,"GX_RequestDma(dst, src, size, flag) (F-96)。GxQueue_Dispatch の case 0。
 confidence MEDIUM-HIGH。"
@@ -847,7 +859,8 @@ IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent calle
 0x001B7090,func,V2-F024: 下画面パスは **Render_DrawScene0/1 を呼ばない**（2D レイアウトだけ）。よって Scene_SubmitNode で積んだ 3D ノードは上画面（左目 1024・右目 1040）にだけ出る
 0x001B7090,line,F-253 HIGH: ★下画面の描画パス。display=0x401、投影 320x240、レイアウトリストは mgr+0x10。関数テーブル 0x8E5854 に登録され、0x8E5858=Frame_DrawPass1024 / 0x8E585C=Frame_DrawPass1040 と並ぶ。実測の実行順は 0x400 → 0x410 → 0x401。
 0x001B7090,repeatable,F-253 HIGH: ★下画面の描画パス。display=0x401、投影 320x240、レイアウトリストは mgr+0x10。関数テーブル 0x8E5854 に登録され、0x8E5858=Frame_DrawPass1024 / 0x8E585C=Frame_DrawPass1040 と並ぶ。実測の実行順は 0x400 → 0x410 → 0x401。
-0x001B71C4,func,IDA-gpt-6.1-sol-F002: MEDIUM追補: 0x1B7218でBaseObj_RunDrawPhase、0x1B721Cは返った直後。新Chipの自動Layout登録は次回draw巡回。Editor_SubmitLayouts全体/既存親の再submitは同フレームintrusive list二重登録の危険。
+0x001B71C4,func,"[ACNL-F0712] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+IDA-gpt-6.1-sol-F002: MEDIUM追補: 0x1B7218でBaseObj_RunDrawPhase、0x1B721Cは返った直後。新Chipの自動Layout登録は次回draw巡回。Editor_SubmitLayouts全体/既存親の再submitは同フレームintrusive list二重登録の危険。"
 0x001B71C4,line,F-233 dynamic: pass 1024（上画面）の次に pass 1040、さらに次フレームの 1024。thread 219 / caller LR=0x543C6C。
 0x001B71C4,repeatable,F-233 dynamic: pass 1024（上画面）の次に pass 1040、さらに次フレームの 1024。thread 219 / caller LR=0x543C6C。
 0x001B72B8,line,F-233: Frame_EndDrawPass1024 呼出し。全 scene/layout 処理後の位置だが、callee は通常早期 return。上画面末尾注入の候補。stock の SplitAndSubmit を前提にしない。

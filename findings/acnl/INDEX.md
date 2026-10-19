@@ -712,3 +712,8 @@
 | ACNL-F0706 | TexMap のレジスタ派生値と Picture の UV キャッシュ（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0707 | Pane 木の可視走査と Layout 記録・Picture 描画（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
 | ACNL-F0708 | Picture の材質共有は無効化・所有と資源寿命の条件を持つ（再解析） | MEDIUM | A | consolidated | topics/acnl/ui.md |  |
+| ACNL-F0709 | GPU コマンドリストの生成・領域確保・削除と引数型 | MEDIUM | A | active |  |  |
+| ACNL-F0710 | Pane・Picture・Material の描画用構造と vtable 型 | MEDIUM | A | active |  |  |
+| ACNL-F0711 | TextBox と ResFont の文字描画用構造および既定 TagProcessor | MEDIUM | A | active |  |  |
+| ACNL-F0712 | DrawInfo・Layout ノード・LayoutMgr の描画用構造 | MEDIUM | A | active |  |  |
+| ACNL-F0713 | Layout アロケータと ExpHeap の空きリスト構造 | MEDIUM | A | active |  |  |

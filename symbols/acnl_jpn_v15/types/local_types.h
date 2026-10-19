@@ -75,6 +75,31 @@ struct LightEvent;
 struct LightSemaphore;
 struct MapEvent;
 struct MemInfo;
+struct NwFontCharWidths;
+struct NwFontCmap;
+struct NwFontCwdh;
+struct NwFontFinf;
+struct NwFontGlyph;
+struct NwFontResFont;
+struct NwFontResFontVtable;
+struct NwFontTagProcessor;
+struct NwFontTagProcessorVtable;
+struct NwFontTextBatchPrefix;
+struct NwFontTglp;
+struct NwLytDrawInfo;
+struct NwLytDrawInfoVtable;
+struct NwLytDrawer;
+struct NwLytMaterial;
+struct NwLytMaterialVtable;
+struct NwLytPane;
+struct NwLytPaneLink;
+struct NwLytPaneVtable;
+struct NwLytPicture;
+struct NwLytPictureVtable;
+struct NwLytTexCoordQuad;
+struct NwLytTextBox;
+struct NwLytTextBoxVtable;
+struct NwLytTextWork;
 struct NwlytLayoutDrawPrefix_F015;
 struct NwlytPaneDrawPrefix_F015;
 struct NwlytTrigRecord_F015;
@@ -90,6 +115,15 @@ struct RoomCameraPmf8;
 struct RoomCameraProfile20;
 struct RoomTransitionKindPair;
 struct ScheduleInOutEvent;
+struct SeadExpHeapBlock;
+struct SeadExpHeapList;
+struct SeadExpHeapPrefix;
+struct SeadExpHeapVtable;
+struct SsysMaAllocator;
+struct SsysMaAllocatorVtable;
+struct SsysMaLayoutList;
+struct SsysMaLayoutMgr;
+struct SsysMaLayoutNode;
 struct StopPointExceptionEvent;
 struct SvcResult32;
 struct SvcResult64;
@@ -1595,6 +1629,429 @@ enum MsgStreamCode
   MSGCODE_Type15 = 0xF,
 };
 
+// type: NwFontCharWidths
+#pragma pack(push, 1)
+/// [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+struct NwFontCharWidths
+{
+  signed __int8 left;                   ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+  unsigned __int8 glyph_width;
+  signed __int8 char_width;
+};
+#pragma pack(pop)
+
+// type: NwFontCmap
+#pragma pack(push, 1)
+/// [ACNL-F0711] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size. Normalized resource body AFTER the 8-byte chunk header; pointers are rebased.
+struct NwFontCmap
+{
+  unsigned __int16 first_character;     ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size. Normalized resource body AFTER the 8-byte chunk header; pointers are rebased.
+  unsigned __int16 last_character;
+  unsigned __int16 method;
+  unsigned __int8 unk_6[2];
+  NwFontCmap *next;
+};
+#pragma pack(pop)
+
+// type: NwFontCwdh
+#pragma pack(push, 1)
+/// [ACNL-F0711] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size. Normalized resource body AFTER the 8-byte chunk header; pointers are rebased.
+struct NwFontCwdh
+{
+  unsigned __int16 first_glyph;         ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size. Normalized resource body AFTER the 8-byte chunk header; pointers are rebased.
+  unsigned __int16 last_glyph;
+  NwFontCwdh *next;
+};
+#pragma pack(pop)
+
+// type: NwFontTglp
+#pragma pack(push, 1)
+/// [ACNL-F0711] MEDIUM, static producer/consumer evidence. Normalized resource body AFTER the 8-byte chunk header; pointers are rebased.
+struct NwFontTglp
+{
+  unsigned __int8 cell_width;           ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence. Normalized resource body AFTER the 8-byte chunk header; pointers are rebased.
+  unsigned __int8 cell_height;
+  signed __int8 baseline;
+  unsigned __int8 max_char_width;
+  unsigned int sheet_bytes;
+  unsigned __int16 sheet_count;
+  unsigned __int16 sheet_format;
+  unsigned __int16 sheet_columns;
+  unsigned __int16 sheet_rows;
+  unsigned __int16 sheet_width;
+  unsigned __int16 sheet_height;
+  void *sheet_data;
+};
+#pragma pack(pop)
+
+// type: NwFontFinf
+#pragma pack(push, 1)
+/// [ACNL-F0711] MEDIUM, static producer/consumer evidence. Normalized resource body AFTER the 8-byte chunk header; pointers are rebased.
+struct NwFontFinf
+{
+  unsigned __int8 unk_0[1];             ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence. Normalized resource body AFTER the 8-byte chunk header; pointers are rebased.
+  signed __int8 line_feed;
+  unsigned __int16 alternate_glyph;
+  NwFontCharWidths default_widths;
+  unsigned __int8 encoding;
+  NwFontTglp *tglp;
+  NwFontCwdh *cwdh;
+  NwFontCmap *cmap;
+  unsigned __int8 height;
+  unsigned __int8 width;
+  unsigned __int8 ascent;
+  unsigned __int8 unk_17[1];
+};
+#pragma pack(pop)
+
+// type: NwFontGlyph
+#pragma pack(push, 1)
+/// [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+struct NwFontGlyph
+{
+  void *sheet_data;                     ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+  NwFontCharWidths widths;
+  unsigned __int8 height;
+  unsigned __int16 sheet_width;
+  unsigned __int16 sheet_height;
+  unsigned __int16 cell_x;
+  unsigned __int16 cell_y;
+  unsigned __int16 sheet_format;
+  unsigned __int8 unk_12[2];
+  void *texture_descriptor;
+};
+#pragma pack(pop)
+
+// type: NwFontResFontVtable
+#pragma pack(push, 1)
+/// [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+struct NwFontResFontVtable
+{
+  void *unk_0;                          ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+  void *unk_4;
+  int (__fastcall *get_width)(NwFontResFont *font);
+  int (__fastcall *get_height)(NwFontResFont *font);
+  void *unk_10;
+  void *unk_14;
+  void *unk_18;
+  void *unk_1C;
+  void *unk_20;
+  int (__fastcall *get_line_feed)(NwFontResFont *font);
+  void *unk_28;
+  void *unk_2C;
+  void *unk_30;
+  void *unk_34;
+  void *unk_38;
+  void *unk_3C;
+  void (__fastcall *get_glyph)(NwFontResFont *font, NwFontGlyph *glyph, unsigned __int16 character);
+  bool (__fastcall *has_glyph)(NwFontResFont *font, unsigned __int16 character);
+  int (__fastcall *get_encoding)(NwFontResFont *font);
+  void *unk_4C;
+  void *unk_50;
+  void *unk_54;
+  void (__fastcall *set_linear_filter)(NwFontResFont *font, bool at_small, bool at_large);
+  void *unk_5C;
+  void *unk_60;
+  void *unk_64;
+  int (__fastcall *get_glyph_sheet_count)(NwFontResFont *font);
+};
+#pragma pack(pop)
+
+// type: NwFontResFont
+#pragma pack(push, 1)
+/// [ACNL-F0711] MEDIUM, static producer/consumer evidence. Actual size 0x18, confirmed by allocation and independent embedded-object boundary; not 0x20.
+struct NwFontResFont
+{
+  NwFontResFontVtable *vptr;            ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence. Actual size 0x18, confirmed by allocation and independent embedded-object boundary; not 0x20.
+  void *resource;
+  NwFontFinf *font_info;
+  void *glyph_texture_descriptors;
+  unsigned int filter_flags;
+  unsigned __int16 cached_character;
+  unsigned __int16 cached_glyph;
+};
+#pragma pack(pop)
+
+// type: NwFontTagProcessorVtable
+#pragma pack(push, 1)
+/// [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+struct NwFontTagProcessorVtable
+{
+  void *unk_0;                          ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+  void *unk_4;
+  int (__fastcall *process)(NwFontTagProcessor *processor, unsigned __int16 character, void *context);
+  int (__fastcall *calc_rect)(NwFontTagProcessor *processor, float *rectangle, unsigned __int16 character, void *context);
+};
+#pragma pack(pop)
+
+// type: NwFontTagProcessor
+#pragma pack(push, 1)
+/// [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+struct NwFontTagProcessor
+{
+  NwFontTagProcessorVtable *vptr;       ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+};
+#pragma pack(pop)
+
+// type: NwFontTextBatchPrefix
+#pragma pack(push, 1)
+/// [ACNL-F0711] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size.
+struct NwFontTextBatchPrefix
+{
+  unsigned int max_chars;               ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size.
+  unsigned __int8 unk_4[4];
+  unsigned __int8 built;
+  unsigned __int8 flags;
+  unsigned __int8 unk_A[2];
+  unsigned __int8 *glyph_bits;
+  unsigned int *commands;
+  unsigned int *command_buffer;
+  unsigned int *aux_buffer;
+  unsigned int command_words;
+  unsigned int command_word_capacity;
+  unsigned __int8 unk_24[4];
+};
+#pragma pack(pop)
+
+// type: NwLytDrawContext
+struct NwLytDrawContext;
+
+// type: NwLytDrawInfoVtable
+#pragma pack(push, 1)
+/// [ACNL-F0712] MEDIUM, static producer/consumer evidence.
+struct NwLytDrawInfoVtable
+{
+  void *unk_0;                          ///< [ACNL-F0712] MEDIUM, static producer/consumer evidence.
+  void *unk_4;
+};
+#pragma pack(pop)
+
+// type: NwLytTextWork
+#pragma pack(push, 1)
+/// [ACNL-F0712] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size.
+struct NwLytTextWork
+{
+  unsigned __int8 unk_0[316];           ///< [ACNL-F0712] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size.
+  NwFontTextBatchPrefix *batch;
+  unsigned __int8 unk_140[36];
+  float pane_mtx[3][4];
+  unsigned __int8 unk_194[336];
+};
+#pragma pack(pop)
+
+// type: NwLytDrawInfo
+#pragma pack(push, 1)
+/// [ACNL-F0712] MEDIUM, static producer/consumer evidence.
+struct NwLytDrawInfo
+{
+  NwLytDrawInfoVtable *vptr;            ///< [ACNL-F0712] MEDIUM, static producer/consumer evidence.
+  float projection_mtx[4][4];
+  float view_mtx[3][4];
+  float location_adjust_scale[2];
+  float global_alpha;
+  NwLytTextWork *text_work;
+  unsigned __int8 unk_84[4];
+  unsigned __int8 flags;
+  unsigned __int8 unk_89[3];
+};
+#pragma pack(pop)
+
+// type: NwLytDrawer
+#pragma pack(push, 1)
+/// [ACNL-F0712] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size.
+struct NwLytDrawer
+{
+  unsigned __int8 unk_0[4];             ///< [ACNL-F0712] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size.
+};
+#pragma pack(pop)
+
+// type: NwLytMaterialVtable
+#pragma pack(push, 1)
+/// [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+struct NwLytMaterialVtable
+{
+  void *unk_0;                          ///< [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+  void *unk_4;
+  void *unk_8;
+  void *unk_C;
+  void *unk_10;
+  void *unk_14;
+  void *unk_18;
+  void *unk_1C;
+  void *unk_20;
+  void *unk_24;
+  void *unk_28;
+};
+#pragma pack(pop)
+
+// type: NwLytMaterial
+#pragma pack(push, 1)
+/// [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+struct NwLytMaterial
+{
+  NwLytMaterialVtable *vptr;            ///< [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+  unsigned __int8 unk_4[12];
+  unsigned int colors[7];
+  unsigned int capacity_bits;
+  unsigned int count_bits;
+  void *variable_data;
+  unsigned __int8 unk_38[21];
+  unsigned __int8 flags;
+  unsigned __int8 unk_4E[2];
+};
+#pragma pack(pop)
+
+// type: NwLytPaneLink
+#pragma pack(push, 1)
+/// [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+struct NwLytPaneLink
+{
+  NwLytPaneLink *next;                  ///< [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+  NwLytPaneLink *prev;
+};
+#pragma pack(pop)
+
+// type: NwLytPaneVtable
+#pragma pack(push, 1)
+/// [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+struct NwLytPaneVtable
+{
+  void *unk_0;                          ///< [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+  void *unk_4;
+  void *unk_8;
+  void *unk_C;
+  void *unk_10;
+  void *unk_14;
+  void *unk_18;
+  void *unk_1C;
+  void *unk_20;
+  void *unk_24;
+  void *unk_28;
+  void *unk_2C;
+  void *unk_30;
+  void *unk_34;
+  void *unk_38;
+  void *unk_3C;
+  void *unk_40;
+  void *unk_44;
+  void *unk_48;
+  void *unk_4C;
+  void *unk_50;
+  void *unk_54;
+  void *unk_58;
+  void (__fastcall *calculate_mtx)(NwLytPane *pane, NwLytDrawInfo *draw_info);
+  void *unk_60;
+  void *unk_64;
+  unsigned int *(__fastcall *draw_self)(NwLytPane *pane, unsigned int *cursor, NwLytDrawInfo *draw_info, NwLytDrawContext *draw_context);
+  void *unk_6C;
+};
+#pragma pack(pop)
+
+// type: NwLytPane
+#pragma pack(push, 1)
+/// [ACNL-F0710] MEDIUM, static producer/consumer evidence. children is a sentinel; links point to child+4. flags bit0=visible.
+struct NwLytPane
+{
+  NwLytPaneVtable *vptr;                ///< [ACNL-F0710] MEDIUM, static producer/consumer evidence. children is a sentinel; links point to child+4. flags bit0=visible.
+  NwLytPaneLink sibling_link;
+  NwLytPane *parent;
+  unsigned __int8 unk_10[4];
+  NwLytPaneLink children;
+  unsigned __int8 unk_1C[12];
+  float translate[3];
+  float rotate[3];
+  float scale[2];
+  float width;
+  float height;
+  float local_mtx[3][4];
+  float global_mtx[3][4];
+  unsigned __int8 unk_B0[4];
+  unsigned __int8 alpha;
+  unsigned __int8 global_alpha;
+  unsigned __int8 base_position;
+  unsigned __int8 flags;
+  unsigned __int8 unk_B8[28];
+};
+#pragma pack(pop)
+
+// type: NwLytTexCoordQuad
+#pragma pack(push, 1)
+/// [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+struct NwLytTexCoordQuad
+{
+  float coordinates[4][2];              ///< [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+};
+#pragma pack(pop)
+
+// type: NwLytPicture
+#pragma pack(push, 1)
+/// [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+struct NwLytPicture
+{
+  NwLytPane pane;                       ///< [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+  unsigned __int8 uv_calculated;
+  unsigned __int8 unk_D5[3];
+  unsigned int uv_output_count;
+  float uv_output[6][4];
+  NwLytMaterial *material;
+  unsigned int vertex_colors[4];
+  unsigned __int8 tex_coord_capacity;
+  unsigned __int8 tex_coord_count;
+  unsigned __int8 unk_152[2];
+  NwLytTexCoordQuad *tex_coords;
+};
+#pragma pack(pop)
+
+// type: NwLytPictureVtable
+#pragma pack(push, 1)
+/// [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+struct NwLytPictureVtable
+{
+  NwLytPaneVtable pane;                 ///< [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+  void *unk_70;
+  void *unk_74;
+};
+#pragma pack(pop)
+
+// type: NwLytTextBox
+#pragma pack(push, 1)
+/// [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+struct NwLytTextBox
+{
+  NwLytPane pane;                       ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+  unsigned __int16 *string;
+  unsigned int top_color;
+  unsigned int bottom_color;
+  NwFontResFont *font;
+  float font_width;
+  float font_height;
+  float line_space;
+  float char_space;
+  NwFontTagProcessor *tag_processor;
+  unsigned __int16 string_buffer_bytes;
+  unsigned __int16 string_length;
+  unsigned __int8 text_position;
+  unsigned __int8 text_alignment;
+  unsigned __int8 dirty;
+  unsigned __int8 unk_FF[1];
+  NwLytMaterial *material;
+  NwFontTextBatchPrefix *batch;
+};
+#pragma pack(pop)
+
+// type: NwLytTextBoxVtable
+#pragma pack(push, 1)
+/// [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+struct NwLytTextBoxVtable
+{
+  NwLytPaneVtable pane;                 ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+  void (__fastcall *alloc_string_buffer)(NwLytTextBox *textbox, unsigned int max_chars, unsigned int flags);
+  void (__fastcall *free_string_buffer)(NwLytTextBox *textbox);
+  void *unk_78;
+  void *unk_7C;
+};
+#pragma pack(pop)
+
 // type: NwlytDrawInfoCalcFlags_F014
 enum NwlytDrawInfoCalcFlags_F014
 {
@@ -1856,12 +2313,166 @@ struct RoomTransitionKindPair
 };
 #pragma pack(pop)
 
+// type: SeadExpHeapBlock
+#pragma pack(push, 1)
+/// [ACNL-F0713] MEDIUM, static producer/consumer evidence.
+struct SeadExpHeapBlock
+{
+  SeadExpHeapBlock *prev;               ///< [ACNL-F0713] MEDIUM, static producer/consumer evidence.
+  SeadExpHeapBlock *next;
+  unsigned __int8 unk_8[2];
+  unsigned __int16 alignment_offset;
+  unsigned int payload_bytes;
+};
+#pragma pack(pop)
+
+// type: SeadExpHeapList
+#pragma pack(push, 1)
+/// [ACNL-F0713] MEDIUM, static producer/consumer evidence.
+struct SeadExpHeapList
+{
+  SeadExpHeapBlock *tail_link;          ///< [ACNL-F0713] MEDIUM, static producer/consumer evidence.
+  SeadExpHeapBlock *head_link;
+  unsigned int count;
+  int link_offset;
+};
+#pragma pack(pop)
+
+// type: SeadExpHeapVtable
+#pragma pack(push, 1)
+/// [ACNL-F0713] MEDIUM, static producer/consumer evidence.
+struct SeadExpHeapVtable
+{
+  void *unk_0;                          ///< [ACNL-F0713] MEDIUM, static producer/consumer evidence.
+  void *unk_4;
+  void *unk_8;
+  void *unk_C;
+  void *unk_10;
+  void *unk_14;
+  void *(__fastcall *try_alloc)(SeadExpHeapPrefix *heap, unsigned int bytes, int alignment);
+  void (__fastcall *free)(SeadExpHeapPrefix *heap, void *pointer);
+  void *unk_20;
+  void *unk_24;
+  void *unk_28;
+  void *unk_2C;
+  void *unk_30;
+  void *unk_34;
+  void *unk_38;
+  unsigned int (__fastcall *get_free_size)(SeadExpHeapPrefix *heap);
+  unsigned int (__fastcall *get_max_allocatable_size)(SeadExpHeapPrefix *heap, int alignment);
+  void *unk_44;
+  void *unk_48;
+  void *unk_4C;
+  void *unk_50;
+  void *unk_54;
+  void *unk_58;
+  void *unk_5C;
+  void *unk_60;
+  void *unk_64;
+  void *unk_68;
+};
+#pragma pack(pop)
+
+// type: SeadExpHeapPrefix
+#pragma pack(push, 1)
+/// [ACNL-F0713] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size.
+struct SeadExpHeapPrefix
+{
+  SeadExpHeapVtable *vptr;              ///< [ACNL-F0713] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size.
+  unsigned __int8 unk_4[116];
+  SeadExpHeapList free_blocks;
+  SeadExpHeapList used_blocks;
+};
+#pragma pack(pop)
+
 // type: ServiceOp
 enum ServiceOp
 {
   SERVICEOP_STEAL_CLIENT_SESSION = 0x0,
   SERVICEOP_GET_NAME = 0x1,
 };
+
+// type: SsysMaAllocatorVtable
+#pragma pack(push, 1)
+/// [ACNL-F0713] MEDIUM, static producer/consumer evidence.
+struct SsysMaAllocatorVtable
+{
+  void *unk_0;                          ///< [ACNL-F0713] MEDIUM, static producer/consumer evidence.
+  void *unk_4;
+  void *(__fastcall *alloc)(SsysMaAllocator *allocator, unsigned int bytes, int alignment);
+  void (__fastcall *free)(SsysMaAllocator *allocator, void *pointer);
+};
+#pragma pack(pop)
+
+// type: SsysMaAllocator
+#pragma pack(push, 1)
+/// [ACNL-F0713] MEDIUM, static producer/consumer evidence.
+struct SsysMaAllocator
+{
+  SsysMaAllocatorVtable *vptr;          ///< [ACNL-F0713] MEDIUM, static producer/consumer evidence.
+  SeadExpHeapPrefix *heap;
+};
+#pragma pack(pop)
+
+// type: SsysMaLayoutNode
+#pragma pack(push, 1)
+/// [ACNL-F0712] MEDIUM, static producer/consumer evidence.
+struct SsysMaLayoutNode
+{
+  unsigned __int8 unk_0[4];             ///< [ACNL-F0712] MEDIUM, static producer/consumer evidence.
+  SsysMaLayoutNode *prev;
+  SsysMaLayoutNode *next;
+  unsigned __int8 priority;
+  unsigned __int8 unk_D[19];
+  NwLytPane *root;
+  unsigned __int8 unk_24[4];
+  float width;
+  float height;
+  NwLytDrawInfo draw_info;
+  unsigned __int8 unk_BC[68];
+  unsigned int command_list_id;
+  unsigned int record_offset;
+  unsigned int record_bytes;
+  unsigned int record_gx_offset;
+  unsigned int record_gx_count;
+  unsigned __int8 unk_114[4];
+  unsigned int command_capacity_bytes;
+  unsigned __int8 replay_option;
+  unsigned __int8 record_dirty;
+  unsigned __int8 unk_11E[1];
+  unsigned __int8 projection_ready;
+  unsigned __int8 stereo_enabled;
+  unsigned __int8 projection_mode;
+  unsigned __int8 unk_122[18];
+  unsigned int display;
+  unsigned __int8 unk_138[20];
+};
+#pragma pack(pop)
+
+// type: SsysMaLayoutList
+#pragma pack(push, 1)
+/// [ACNL-F0712] MEDIUM, static producer/consumer evidence.
+struct SsysMaLayoutList
+{
+  unsigned __int8 unk_0[4];             ///< [ACNL-F0712] MEDIUM, static producer/consumer evidence.
+  SsysMaLayoutNode *head;
+  SsysMaLayoutNode *tail;
+};
+#pragma pack(pop)
+
+// type: SsysMaLayoutMgr
+#pragma pack(push, 1)
+/// [ACNL-F0712] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size.
+struct SsysMaLayoutMgr
+{
+  unsigned __int8 unk_0[4];             ///< [ACNL-F0712] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size.
+  SsysMaLayoutList top;
+  SsysMaLayoutList bottom;
+  NwLytTextWork text_work;
+  unsigned __int8 unk_300[100];
+  NwLytDrawer drawer;
+};
+#pragma pack(pop)
 
 // type: SvcResult32
 struct SvcResult32

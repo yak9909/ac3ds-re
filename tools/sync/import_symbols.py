@@ -286,6 +286,7 @@ def import_vtables(rows: list[dict], rep: Report):
     import ida_nalt
     import ida_offset
     import ida_segment
+    import ida_typeinf
 
     for r in rows:
         ea = sl.parse_addr(r["address"])
@@ -295,6 +296,14 @@ def import_vtables(rows: list[dict], rep: Report):
             rep.fail("vtables", r["address"] + " " + name, err)
             continue
         n = int(r["count"] or 0)
+        # globals から復元した vtable 構造体を dword に分解しない。
+        tif = ida_typeinf.tinfo_t()
+        if ida_nalt.is_userti(ea) and ida_nalt.get_tinfo(tif, ea) and tif.is_struct():
+            if n and tif.get_size() != n * 4:
+                rep.fail("vtables", r["address"], "構造体型のサイズが slot 数と一致しない")
+            else:
+                rep.ok("vtables")
+            continue
         bad = None
         for i in range(n):
             a = ea + 4 * i

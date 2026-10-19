@@ -3,6 +3,7 @@
 
 対象: 関数の名前・プロトタイプ（利用者が設定した物だけ）・大きさ、大域の名前と型、vtable（`vtbl_` で始まる名前）、
 関数・行・繰り返しのコメント、利用者が変えたローカル変数、ローカルの型。
+構造体型を付けた vtable は、class/count を vtables に、適用する型を globals に残す。
 IDA の自動の名前（sub_・loc_・unk_・dword_ ...）とローダーが付けた名前（start）は書かない。
 
 Thumb の関数は、アドレスの最下位ビットを 1 にして書く（ARM の慣習: 0x00123457）。
@@ -110,11 +111,15 @@ def export_globals(vtbl_addrs: set[int], comment_refs: dict[int, list[str]]) -> 
         if ea not in names and ida_nalt.is_userti(ea) and not ida_bytes.is_code(ida_bytes.get_flags(ea)):
             names[ea] = ida_name.get_name(ea)
     for ea, name in sorted(names.items()):
-        if ea in vtbl_addrs or _func_start(ea):
+        if _func_start(ea):
+            continue
+        tif = user_tinfo(ea)
+        # vtables 表は class/count だけ。利用者が付けた構造体型は globals にも残す。
+        # 従来の自動の関数ポインタ配列は重複して書き出さない。
+        if ea in vtbl_addrs and not (tif is not None and tif.is_struct()):
             continue
         fl = ida_bytes.get_flags(ea)
         uname = name if (ida_bytes.has_user_name(fl) and sl.is_user_name(name)) else ""
-        tif = user_tinfo(ea)
         typ = tinfo_text(tif)
         if not uname and not typ:
             continue
