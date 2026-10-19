@@ -12,7 +12,7 @@ addresses: [0x0053CDC4, 0x00542D78, 0x005475D4, 0x00304A44, 0x001B7874, 0x001B7A
 tags: [touch, button, sead]
 supersedes: [ACNL-F0377]
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
-by: gpt-6
+by: gpt-6.1-sol
 original_by: ""
 reviewed_by: []
 state: active            # active / consolidated / superseded / duplicate

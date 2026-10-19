@@ -12,7 +12,7 @@ addresses: [0x003533D0, 0x00483020, 0x0053F550, 0x00540870, 0x009778D8]
 tags: [button, sead]
 supersedes: [ACNL-F0381]
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
-by: gpt-6
+by: gpt-6.1-sol
 original_by: ""
 reviewed_by: []
 state: active            # active / consolidated / superseded / duplicate
