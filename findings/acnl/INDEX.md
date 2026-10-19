@@ -717,3 +717,10 @@
 | ACNL-F0711 | TextBox と ResFont の文字描画用構造および既定 TagProcessor | MEDIUM | A | active |  |  |
 | ACNL-F0712 | DrawInfo・Layout ノード・LayoutMgr の描画用構造 | MEDIUM | A | active |  |  |
 | ACNL-F0713 | Layout アロケータと ExpHeap の空きリスト構造 | MEDIUM | A | active |  |  |
+| ACNL-F0714 | Layoutの仮想関数型と視点・アニメーション・再生状態欄 | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0715 | Material可変領域の要素型と容量・件数の区別 | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0716 | PaneとMaterialのアニメーションリンク番兵 | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0717 | ResFontシート記述子とCWDH・CMAP可変長要素 | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0718 | 文字バッチのヘッダー・字形レコードと必要量 | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0719 | 既定TagProcessorは起動時の相対初期化表から構築される | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0720 | GPUリスト領域確保は失敗を戻り値で通知しない | MEDIUM | 未記入 | active |  |  |

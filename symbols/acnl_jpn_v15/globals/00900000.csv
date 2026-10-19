@@ -47,6 +47,7 @@ address,size,name,type,confidence,source,refs
 0x009005CC,4,_ZTVN4ssys2ma3lyt15ArcResAccReaderE,,,legacy-idb,
 0x009005DC,4,_ZTVN4ssys2ma3lyt23ArcResourceAccessorVRAME,,,legacy-idb,
 0x00900600,4,_ZTVN4ssys2ma3lyt6LayoutE,,,legacy-idb,
+0x00900608,28,vtbl_ssys_ma_lyt_Layout,SsysMaLayoutNodeVtable,MEDIUM,analysis,ACNL-F0714
 0x00900624,4,_ZTVN4ssys2ma3lyt9AnimationE,,,legacy-idb,
 0x00900638,4,_ZTVN4ssys2ma3lyt9ArcResAccE,,,legacy-idb,
 0x00900648,4,_ZTVN4ssys2ma3lyt9LayoutMgrE,,,legacy-idb,
@@ -431,6 +432,7 @@ address,size,name,type,confidence,source,refs
 0x009059E4,4,_ZTVSt5ctypeIcE,,,legacy-idb,
 0x00905A38,4,_ZTVSt8messagesIcE,,,legacy-idb,
 0x00905A80,4,_ZTVSt9exception,,,legacy-idb,
+0x0093ECC8,4,kDefaultTagProcessorsInitializerOffset,const int,MEDIUM,analysis,ACNL-F0719
 0x00947E0C,1,vc_USER_WHO_WANTS_TO_LEAVE,,,legacy-idb,
 0x00947EB8,4,g_AcPlayerMovementProbeOffsetsInitGuard,unsigned __int32,,legacy-idb,
 0x00947F34,2,vc_SP7,,,legacy-idb,

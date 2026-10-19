@@ -458,6 +458,7 @@ IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent calle
 0x002D0660,func,"IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). RTTI-vtable PartsDragIconNode at0x8ECE1C. Base DragIconNode includes ButtonActionNode224B plus40B drag animation; mode264, group292, enabled301. Total304B from constructor/end and sibling-array allocation. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls."
 0x002D52D4,func,IDA-gpt-6.1-sol-F007 / MEDIUM: R0=保存部屋データ、R1=Item*。0x200+0xF2へItem_Copyする末尾分岐。HouseRoom setterの書き側とRoom_GetCurrentWallpaper0x52851Cの別読取りが一致。許可/音/Net送信/variant初期化はこの下位関数にはない。明示設定のテント例外では自宅/外観0/相手なしを確認して+0x20=0も書く（未実機）。
 0x002D5728,func,IDA-gpt-6.1-sol-F007 / MEDIUM: R0=保存部屋データ、R1=Item*。0x200+0xF6へItem_Copyする末尾分岐。HouseRoom setterとRoom_GetCurrentFlooring0x528314が同じ欄を使用。下位関数に許可/音/Net/variant処理なし。テント例外は明示設定で+0x21=0も書く（未実機）。
+0x002D69EC,line,tex_map
 0x002E08F8,line,IDA-opus-5.5-F042: button root (+600 = Layout+0x20) removed from its parent and AppendChild to the given pane; +1280 = pane.
 0x002E08F8,repeatable,IDA-opus-5.5-F042: button root (+600 = Layout+0x20) removed from its parent and AppendChild to the given pane; +1280 = pane.
 0x002E09A4,line,"IDA-opus-5.5-F042: (btn, ng) only when +1303 changes: cmn_btn_ng on the whole layout, frame 0 (grey) if ng else last frame; enabled(+217) = !ng."

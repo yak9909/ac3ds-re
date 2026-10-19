@@ -63,6 +63,7 @@ struct FpuRegisters;
 struct FurnitureFootprintDescriptorPrefix_F016;
 struct GohanItemActionPmf8;
 struct GohanNativeDate;
+struct GpuCmdListStoragePrefix;
 struct IPCStaticBuffer;
 struct IslandRuntimeBuilding;
 struct IslandRuntimeData;
@@ -77,15 +78,23 @@ struct MapEvent;
 struct MemInfo;
 struct NwFontCharWidths;
 struct NwFontCmap;
+struct NwFontCmapScanPair;
+struct NwFontCmapScanPrefix;
 struct NwFontCwdh;
 struct NwFontFinf;
 struct NwFontGlyph;
+struct NwFontGlyphTextureDescriptor;
 struct NwFontResFont;
 struct NwFontResFontVtable;
 struct NwFontTagProcessor;
 struct NwFontTagProcessorVtable;
+struct NwFontTextBatchGlyph;
 struct NwFontTextBatchPrefix;
 struct NwFontTglp;
+struct NwLytAlphaCompare;
+struct NwLytAnimationLink;
+struct NwLytAnimationLinkList;
+struct NwLytBlendMode;
 struct NwLytDrawInfo;
 struct NwLytDrawInfoVtable;
 struct NwLytDrawer;
@@ -96,7 +105,11 @@ struct NwLytPaneLink;
 struct NwLytPaneVtable;
 struct NwLytPicture;
 struct NwLytPictureVtable;
+struct NwLytTevStage;
+struct NwLytTexCoordGen;
 struct NwLytTexCoordQuad;
+struct NwLytTexMap;
+struct NwLytTexSrt;
 struct NwLytTextBox;
 struct NwLytTextBoxVtable;
 struct NwLytTextWork;
@@ -124,6 +137,7 @@ struct SsysMaAllocatorVtable;
 struct SsysMaLayoutList;
 struct SsysMaLayoutMgr;
 struct SsysMaLayoutNode;
+struct SsysMaLayoutNodeVtable;
 struct StopPointExceptionEvent;
 struct SvcResult32;
 struct SvcResult64;
@@ -1497,6 +1511,23 @@ enum GohanPocketAction
   GohanPocketAction_Wall = 0x2A,
 };
 
+// type: GpuCmdListStoragePrefix
+#pragma pack(push, 1)
+/// [ACNL-F0720] MEDIUM: partial 0x24-byte prefix only, NOT the complete 0x44-byte manager. Allocation result is stored in command_buffer without a null check.
+struct GpuCmdListStoragePrefix
+{
+  unsigned int id;
+  unsigned __int8 *command_buffer;
+  unsigned int command_capacity_bytes;
+  unsigned int current_offset_bytes;
+  unsigned __int8 unk_10[4];
+  unsigned int submitted_offset_bytes;
+  unsigned __int8 *gx_entries;
+  int gx_capacity;
+  int gx_count;
+};
+#pragma pack(pop)
+
 // type: Handle
 typedef u32 Handle;
 
@@ -1653,14 +1684,37 @@ struct NwFontCmap
 };
 #pragma pack(pop)
 
+// type: NwFontCmapScanPair
+#pragma pack(push, 1)
+/// [ACNL-F0717] MEDIUM: static producer/consumer evidence. Pairs are sorted by character for binary search.
+struct NwFontCmapScanPair
+{
+  unsigned __int16 character;
+  unsigned __int16 glyph;
+};
+#pragma pack(pop)
+
+// type: NwFontCmapScanPrefix
+#pragma pack(push, 1)
+/// [ACNL-F0717] MEDIUM: static producer/consumer evidence. Method 2 only. pair_count at +0x0C, NwFontCmapScanPair[pair_count] at +0x0E, no alignment padding. Prefix size is not complete resource size.
+struct NwFontCmapScanPrefix
+{
+  NwFontCmap cmap;
+  unsigned __int16 pair_count;
+  NwFontCmapScanPair pairs[];
+};
+#pragma pack(pop)
+
 // type: NwFontCwdh
 #pragma pack(push, 1)
+/// [ACNL-F0717] NwFontCharWidths[last_glyph-first_glyph+1] immediately follows at +8, with stride 3.
 /// [ACNL-F0711] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size. Normalized resource body AFTER the 8-byte chunk header; pointers are rebased.
 struct NwFontCwdh
 {
   unsigned __int16 first_glyph;         ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size. Normalized resource body AFTER the 8-byte chunk header; pointers are rebased.
   unsigned __int16 last_glyph;
   NwFontCwdh *next;
+  NwFontCharWidths widths[];
 };
 #pragma pack(pop)
 
@@ -1701,24 +1755,6 @@ struct NwFontFinf
   unsigned __int8 width;
   unsigned __int8 ascent;
   unsigned __int8 unk_17[1];
-};
-#pragma pack(pop)
-
-// type: NwFontGlyph
-#pragma pack(push, 1)
-/// [ACNL-F0711] MEDIUM, static producer/consumer evidence.
-struct NwFontGlyph
-{
-  void *sheet_data;                     ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence.
-  NwFontCharWidths widths;
-  unsigned __int8 height;
-  unsigned __int16 sheet_width;
-  unsigned __int16 sheet_height;
-  unsigned __int16 cell_x;
-  unsigned __int16 cell_y;
-  unsigned __int16 sheet_format;
-  unsigned __int8 unk_12[2];
-  void *texture_descriptor;
 };
 #pragma pack(pop)
 
@@ -1765,10 +1801,43 @@ struct NwFontResFont
   NwFontResFontVtable *vptr;            ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence. Actual size 0x18, confirmed by allocation and independent embedded-object boundary; not 0x20.
   void *resource;
   NwFontFinf *font_info;
-  void *glyph_texture_descriptors;
+  NwFontGlyphTextureDescriptor *glyph_texture_descriptors;
   unsigned int filter_flags;
   unsigned __int16 cached_character;
   unsigned __int16 cached_glyph;
+};
+#pragma pack(pop)
+
+// type: NwFontGlyphTextureDescriptor
+#pragma pack(push, 1)
+/// [ACNL-F0717] MEDIUM: static producer/consumer evidence. 0x14 stride. Address conversion precedes >>3. +0x11..0x13 are not initialized by Init.
+struct NwFontGlyphTextureDescriptor
+{
+  unsigned int texture_handle;
+  NwFontResFont *font;
+  unsigned int physical_address_div8;
+  unsigned __int16 height;
+  unsigned __int16 width;
+  unsigned __int8 gpu_format;
+  unsigned __int8 unk_11[3];
+};
+#pragma pack(pop)
+
+// type: NwFontGlyph
+#pragma pack(push, 1)
+/// [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+struct NwFontGlyph
+{
+  void *sheet_data;                     ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence.
+  NwFontCharWidths widths;
+  unsigned __int8 height;
+  unsigned __int16 sheet_width;
+  unsigned __int16 sheet_height;
+  unsigned __int16 cell_x;
+  unsigned __int16 cell_y;
+  unsigned __int16 sheet_format;
+  unsigned __int8 unk_12[2];
+  NwFontGlyphTextureDescriptor *texture_descriptor;
 };
 #pragma pack(pop)
 
@@ -1793,13 +1862,34 @@ struct NwFontTagProcessor
 };
 #pragma pack(pop)
 
+// type: NwFontTextBatchGlyph
+#pragma pack(push, 1)
+/// [ACNL-F0718] MEDIUM: static producer/consumer evidence. 0x2C bytes. height_delta = -glyph_height * scale_y; positional x/y and UV endpoints are shader input data.
+struct NwFontTextBatchGlyph
+{
+  float width;
+  float height_delta;
+  float x;
+  float y;
+  unsigned int top_color;
+  unsigned int bottom_color;
+  float u0;
+  float v0;
+  float u1;
+  float v1;
+  NwFontGlyphTextureDescriptor *texture_descriptor;
+};
+#pragma pack(pop)
+
 // type: NwFontTextBatchPrefix
 #pragma pack(push, 1)
+/// [ACNL-F0718] Complete fixed header, size 0x28; unknown bytes +A remain unassigned. NwFontTextBatchGlyph[max_chars] follows. glyph_bits is a visited bitmap, NOT font pixels. draw_glyph_limit defaults to 0xFFFF and is separate from allocated capacity.
 /// [ACNL-F0711] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size.
 struct NwFontTextBatchPrefix
 {
   unsigned int max_chars;               ///< [ACNL-F0711] MEDIUM, static producer/consumer evidence. Partial prefix only; size is NOT the complete object/allocation size.
-  unsigned __int8 unk_4[4];
+  unsigned __int16 glyph_count;
+  unsigned __int16 draw_glyph_limit;
   unsigned __int8 built;
   unsigned __int8 flags;
   unsigned __int8 unk_A[2];
@@ -1809,7 +1899,67 @@ struct NwFontTextBatchPrefix
   unsigned int *aux_buffer;
   unsigned int command_words;
   unsigned int command_word_capacity;
-  unsigned __int8 unk_24[4];
+  unsigned int first_color_command_word;
+  NwFontTextBatchGlyph glyphs[];
+};
+#pragma pack(pop)
+
+// type: NwLytAlphaCompare
+#pragma pack(push, 1)
+/// [ACNL-F0715] MEDIUM: static producer/consumer evidence.
+struct NwLytAlphaCompare
+{
+  unsigned __int8 compare_function;
+  unsigned __int8 unk_1[3];
+  float reference;
+};
+#pragma pack(pop)
+
+// type: NwLytAnimTransform
+struct NwLytAnimTransform;
+
+// type: NwLytPaneLink
+#pragma pack(push, 1)
+/// [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+struct NwLytPaneLink
+{
+  NwLytPaneLink *next;                  ///< [ACNL-F0710] MEDIUM, static producer/consumer evidence.
+  NwLytPaneLink *prev;
+};
+#pragma pack(pop)
+
+// type: NwLytAnimationLink
+#pragma pack(push, 1)
+/// [ACNL-F0716] MEDIUM: static producer/consumer evidence. Sentinel stores only the first 8 bytes; real links are 0x10 bytes.
+struct NwLytAnimationLink
+{
+  NwLytPaneLink link;
+  NwLytAnimTransform *transform;
+  unsigned __int16 target_index;
+  unsigned __int8 disabled;
+  unsigned __int8 unk_F;
+};
+#pragma pack(pop)
+
+// type: NwLytAnimationLinkList
+#pragma pack(push, 1)
+/// [ACNL-F0716] MEDIUM: static producer/consumer evidence. Empty sentinel points to its own address, not the count word.
+struct NwLytAnimationLinkList
+{
+  unsigned int count;
+  NwLytPaneLink sentinel;
+};
+#pragma pack(pop)
+
+// type: NwLytBlendMode
+#pragma pack(push, 1)
+/// [ACNL-F0715] MEDIUM: static producer/consumer evidence.
+struct NwLytBlendMode
+{
+  unsigned __int8 operation;
+  unsigned __int8 source_factor;
+  unsigned __int8 destination_factor;
+  unsigned __int8 logical_operation;
 };
 #pragma pack(pop)
 
@@ -1873,9 +2023,9 @@ struct NwLytMaterialVtable
   void *unk_0;                          ///< [ACNL-F0710] MEDIUM, static producer/consumer evidence.
   void *unk_4;
   void *unk_8;
-  void *unk_C;
+  void (__fastcall *unbind_animation)(NwLytMaterial *material, NwLytAnimTransform *transform);
   void *unk_10;
-  void *unk_14;
+  void (__fastcall *animate)(NwLytMaterial *material);
   void *unk_18;
   void *unk_1C;
   void *unk_20;
@@ -1884,32 +2034,52 @@ struct NwLytMaterialVtable
 };
 #pragma pack(pop)
 
+// type: NwLytTexMap
+#pragma pack(push, 1)
+/// [ACNL-F0715] MEDIUM: static producer/consumer evidence. 0x20 bytes. texture_address is unshifted GPU address input; sampler format uses nw::lyt numbering, not GPU numbering.
+struct NwLytTexMap
+{
+  unsigned __int8 unk_0[4];
+  unsigned int texture_address;
+  unsigned __int16 image_width;
+  unsigned __int16 image_height;
+  unsigned __int16 texture_width;
+  unsigned __int16 texture_height;
+  unsigned int sampler_bits;
+  unsigned int gpu_sampler_bits;
+  unsigned int gpu_dimensions;
+  unsigned int gpu_format;
+};
+#pragma pack(pop)
+
 // type: NwLytMaterial
 #pragma pack(push, 1)
+/// [ACNL-F0715][ACNL-F0716] variable_data begins with capacity-sized TexMap array (possibly zero entries), followed by TexSrt/TexCoordGen/AlphaCompare/BlendMode/TevStage. Offsets use capacity_bits.
 /// [ACNL-F0710] MEDIUM, static producer/consumer evidence.
 struct NwLytMaterial
 {
   NwLytMaterialVtable *vptr;            ///< [ACNL-F0710] MEDIUM, static producer/consumer evidence.
-  unsigned __int8 unk_4[12];
+  NwLytAnimationLinkList animation_links;
   unsigned int colors[7];
   unsigned int capacity_bits;
   unsigned int count_bits;
-  void *variable_data;
+  NwLytTexMap *variable_data;
   unsigned __int8 unk_38[21];
   unsigned __int8 flags;
   unsigned __int8 unk_4E[2];
 };
 #pragma pack(pop)
 
-// type: NwLytPaneLink
-#pragma pack(push, 1)
-/// [ACNL-F0710] MEDIUM, static producer/consumer evidence.
-struct NwLytPaneLink
+// type: NwLytMaterialCountMask
+enum NwLytMaterialCountMask
 {
-  NwLytPaneLink *next;                  ///< [ACNL-F0710] MEDIUM, static producer/consumer evidence.
-  NwLytPaneLink *prev;
+  NwLytMaterialCountMask_TexMaps = 0x3,
+  NwLytMaterialCountMask_TexSrts = 0xC,
+  NwLytMaterialCountMask_TexCoordGens = 0x30,
+  NwLytMaterialCountMask_TevStages = 0x1C0,
+  NwLytMaterialCountMask_AlphaCompare = 0x200,
+  NwLytMaterialCountMask_BlendMode = 0x400,
 };
-#pragma pack(pop)
 
 // type: NwLytPaneVtable
 #pragma pack(push, 1)
@@ -1929,13 +2099,13 @@ struct NwLytPaneVtable
   void *unk_28;
   void *unk_2C;
   void *unk_30;
-  void *unk_34;
-  void *unk_38;
+  void (__fastcall *animate_recursive)(NwLytPane *pane, unsigned int flags);
+  void (__fastcall *animate_self)(NwLytPane *pane, unsigned int flags);
   void *unk_3C;
   void *unk_40;
   void *unk_44;
-  void *unk_48;
-  void *unk_4C;
+  void (__fastcall *unbind_own_animations)(NwLytPane *pane, NwLytAnimTransform *transform);
+  NwLytAnimationLink *(__fastcall *find_animation_link)(NwLytPane *pane, NwLytAnimTransform *transform);
   void *unk_50;
   void *unk_54;
   void *unk_58;
@@ -1957,7 +2127,7 @@ struct NwLytPane
   NwLytPane *parent;
   unsigned __int8 unk_10[4];
   NwLytPaneLink children;
-  unsigned __int8 unk_1C[12];
+  NwLytAnimationLinkList animation_links;
   float translate[3];
   float rotate[3];
   float scale[2];
@@ -2010,6 +2180,39 @@ struct NwLytPictureVtable
   NwLytPaneVtable pane;                 ///< [ACNL-F0710] MEDIUM, static producer/consumer evidence.
   void *unk_70;
   void *unk_74;
+};
+#pragma pack(pop)
+
+// type: NwLytTevStage
+#pragma pack(push, 1)
+/// [ACNL-F0715] MEDIUM: static producer/consumer evidence. Stride and placement proven; packed subfields remain unknown.
+struct NwLytTevStage
+{
+  unsigned int unk_0;
+  unsigned int unk_4;
+  unsigned int unk_8;
+};
+#pragma pack(pop)
+
+// type: NwLytTexCoordGen
+#pragma pack(push, 1)
+/// [ACNL-F0715] MEDIUM: static producer/consumer evidence. Only byte +1 has a proven role.
+struct NwLytTexCoordGen
+{
+  unsigned __int8 unk_0;
+  unsigned __int8 coordinate_set;
+  unsigned __int8 unk_2[2];
+};
+#pragma pack(pop)
+
+// type: NwLytTexSrt
+#pragma pack(push, 1)
+/// [ACNL-F0715] MEDIUM: static producer/consumer evidence.
+struct NwLytTexSrt
+{
+  float translate[2];
+  float rotate;
+  float scale[2];
 };
 #pragma pack(pop)
 
@@ -2414,12 +2617,28 @@ struct SsysMaAllocator
 };
 #pragma pack(pop)
 
+// type: SsysMaLayoutNodeVtable
+#pragma pack(push, 1)
+/// [ACNL-F0714] MEDIUM: static producer/consumer evidence. Seven slots at 0x900608; Build slot is NOT a one-argument callback.
+struct SsysMaLayoutNodeVtable
+{
+  void *unk_0;
+  void *unk_4;
+  void (__fastcall *replay_recorded_list)(SsysMaLayoutNode *layout);
+  void (__fastcall *calculate)(SsysMaLayoutNode *layout);
+  bool (__fastcall *build)(SsysMaLayoutNode *layout, const char *name, void *resource_holder, unsigned int command_bytes);
+  void (__fastcall *record_pane_tree)(SsysMaLayoutNode *layout);
+  void (__fastcall *setup_projection_matrix)(SsysMaLayoutNode *layout);
+};
+#pragma pack(pop)
+
 // type: SsysMaLayoutNode
 #pragma pack(push, 1)
+/// [ACNL-F0714] view_eye.z is +0xF8; animation_flags is +0xFC, neither is enable/screen.
 /// [ACNL-F0712] MEDIUM, static producer/consumer evidence.
 struct SsysMaLayoutNode
 {
-  unsigned __int8 unk_0[4];             ///< [ACNL-F0712] MEDIUM, static producer/consumer evidence.
+  SsysMaLayoutNodeVtable *vptr;         ///< [ACNL-F0712] MEDIUM, static producer/consumer evidence.
   SsysMaLayoutNode *prev;
   SsysMaLayoutNode *next;
   unsigned __int8 priority;
@@ -2429,13 +2648,16 @@ struct SsysMaLayoutNode
   float width;
   float height;
   NwLytDrawInfo draw_info;
-  unsigned __int8 unk_BC[68];
+  float inverse_view_mtx[3][4];
+  unsigned __int8 unk_EC[4];
+  float view_eye[3];
+  unsigned int animation_flags;
   unsigned int command_list_id;
   unsigned int record_offset;
   unsigned int record_bytes;
   unsigned int record_gx_offset;
   unsigned int record_gx_count;
-  unsigned __int8 unk_114[4];
+  unsigned int replay_state_mask;
   unsigned int command_capacity_bytes;
   unsigned __int8 replay_option;
   unsigned __int8 record_dirty;
