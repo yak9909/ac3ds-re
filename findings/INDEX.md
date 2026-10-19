@@ -548,11 +548,6 @@
 - ACNL-F0586 下位 `0x0C` でgohanの壁抜けを相手へ強制できるか（2026-10-04、MEDIUM）
 - ACNL-F0587 屋外XYZを下位 `0x0C` で書くための条件と副作用（2026-10-04、静的MEDIUM／実用性LOW）
 - ACNL-F0626 T022 カタログの生成器（Codex 依頼 t022_catalog_arc、gpt-6.1-sol xhigh、2026-10-07。打ち切り。記録 ID なし = 道具と生成物）
-- ACNL-F0709 GPU コマンドリストの生成・領域確保・削除と引数型
-- ACNL-F0710 Pane・Picture・Material の描画用構造と vtable 型
-- ACNL-F0711 TextBox と ResFont の文字描画用構造および既定 TagProcessor
-- ACNL-F0712 DrawInfo・Layout ノード・LayoutMgr の描画用構造
-- ACNL-F0713 Layout アロケータと ExpHeap の空きリスト構造
 
 ## 未レビュー（reviewed_by が空）
 

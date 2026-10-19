@@ -52,4 +52,4 @@
 | ACNL-F0613 | 建物プレビューのファイル読み込みは既にゲームの読み込み係のスレッドで非同期（2026-10-06、MEDIUM: 静的） | 解析ソフト: IDA / 解析モデル: opus-5.5。 | MEDIUM | S |  |  |
 | ACNL-F0629 | T022 の窓が開かないのは読み込みのヒープ不足（2026-10-08、HIGH: 実機の値＋静的） | decor_catalog2 の実機（ida-pro-mcp、停止中に s_win_state ← Loading を書いて観測）: 窓の arc は読めている（s_catFile あり、517,032 B）。OpenWindow のレイアウト 3 つ・アニメ 9 つ・格子のペイン 45 は全部できていて、 | HIGH | S |  |  |
 | ACNL-F0644 | crash_dump_00000006 の直接fault | **確度: HIGH（dump＋本体命令列）。timing raceという旧帰属は撤回。** | HIGH | B |  |  |
-| ACNL-F0713 | Layout アロケータと ExpHeap の空きリスト構造 | Layoutアロケータはvptrとheapポインタを持ち、Alloc/Freeはheapの仮想関数へ引数を引き継ぐ。ExpHeapのfree/usedリストとブロックのリンク・payload長の既知部分へ型を付けた。 | MEDIUM | ? |  |  |
+| ACNL-F0713 | Layout アロケータと ExpHeap の空きリスト構造 | Layoutアロケータはvptrとheapポインタを持ち、Alloc/Freeはheapの仮想関数へ引数を引き継ぐ。ExpHeapのfree/usedリストとブロックのリンク・payload長の既知部分へ型を付けた。 | MEDIUM | A |  |  |
