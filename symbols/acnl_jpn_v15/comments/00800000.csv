@@ -143,15 +143,26 @@ IDA-gpt-6.1-sol-F015 MEDIUM: 256 records16B {sin,cos,sinDelta,cosDelta}; both or
 0x008F1894,line,IDA-gpt-6.1-sol-F002: MEDIUM追補: main create+12=Actor_RunCreateStages、prepare/load/finalize=+120/+124/+128、state2=+144、matrix更新=+208。Chipのreadyとanchor位置を確認する契約。
 0x008F29BC,line,vtable for AcPlayer (RTTI 実測 F-43)
 0x008F4F4C,line,offset vbase
+0x008FBE7C,line,"[ACNL-F0710] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Vtable slots; unknown slots retained without inferred prototypes.
+"
 0x008FBF04,line,"★vtable for nw::lyt::Drawer (F-98)。
 ★RTTI 実測: si_class_type_info で**基底は nw::font::RectDrawer**。
 （vtable 番地が近いことからの推測だったが、RTTI で裏が取れた）
 つまり**2D レイアウト描画はフォントの矩形描画を土台にしている。**"
-0x008FC07C,line,"vtbl_nw_lyt_TextBox。実例を探すときはこの値を探せばよい (F-126)。
+0x008FBFFC,line,"[ACNL-F0710] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Vtable slots; unknown slots retained without inferred prototypes.
+"
+0x008FC07C,line,"[ACNL-F0711] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Vtable slots; unknown slots retained without inferred prototypes.
+vtbl_nw_lyt_TextBox。実例を探すときはこの値を探せばよい (F-126)。
 実機での例: 住民名 0x32D20220 / アイテム名本文 0x32CFEC60 / 同影 0x32CFEAE0
 （いずれも起動ごとに変わる。PATCHES/cave_textbox.py の MODE=""trace"" で取り直す）。"
-0x008FC0E4,line,"F-143: nw_lyt_TextBox vtable slot +0x68 points to sub_73CF48, the wrapper that routes dirty TextBox strings through the batch writer path."
-0x008FCAAC,line,nw::font::ResFont vtable (F-129)。実機の限定走査で初期化済み CFNU を4個確認: normal 24px、ruby 7px、large 40px、counter 26px。TextBox+224 はこの vptr のオブジェクトを指す。
+0x008FC17C,line,"[ACNL-F0712] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Vtable slots; unknown slots retained without inferred prototypes.
+"
+0x008FC18C,line,"[ACNL-F0710] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Vtable slots; unknown slots retained without inferred prototypes.
+"
+0x008FCA24,line,"[ACNL-F0711] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Vtable slots; unknown slots retained without inferred prototypes.
+"
+0x008FCAAC,line,"[ACNL-F0711] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Vtable slots; unknown slots retained without inferred prototypes.
+nw::font::ResFont vtable (F-129)。実機の限定走査で初期化済み CFNU を4個確認: normal 24px、ruby 7px、large 40px、counter 26px。TextBox+224 はこの vptr のオブジェクトを指す。"
 0x008FEDF4,line,"★vtable for sead::PrimitiveDrawer (F-98 / F-100 で訂正)。RTTI 実測で継承なし。
 ★**0x544E54 はデストラクタであって「実装位置」ではない** (F-100 で訂正)。
 vtable には dtor 対しか無く、描画メソッドは非仮想なので
@@ -163,3 +174,5 @@ vtable には dtor 対しか無く、描画メソッドは非仮想なので
 名前の通り Ulcd（上下 LCD）と DoubleCmd（二重コマンドバッファ）。
 実装は 0x53F000-0x561000 と 0x74B000-0x750000 に散らばる。
 関連: sead::MethodTreeMgr / MethodTreeNode が毎フレームの呼び出し木。"
+0x008FFEF8,line,"[ACNL-F0713] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Vtable slots; unknown slots retained without inferred prototypes.
+"

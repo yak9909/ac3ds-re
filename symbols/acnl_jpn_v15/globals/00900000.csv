@@ -489,10 +489,14 @@ address,size,name,type,confidence,source,refs
 0x0096EBC8,748,g_SystemConfigCountryIsoCodes,const char *[187],,legacy-idb,
 0x0096F0D4,4,g_TypeNode_nwgfx_Model,,,legacy-idb,
 0x0096F0F0,4,g_TypeNode_nwgfx_TransformNode,,,legacy-idb,
+0x0096F150,4,g_LayoutAllocator,SsysMaAllocator *,MEDIUM,analysis,ACNL-F0713
 0x0096FC06,4,vc_U0DATA,,,legacy-idb,
+0x0096FC38,4,g_LayoutMgr,SsysMaLayoutMgr *,MEDIUM,analysis,ACNL-F0712
 0x0097C030,4,vc_D_FRIEND,,,legacy-idb,
 0x0097C048,4,vc_D_MAIL,,,legacy-idb,
 0x0097C080,4,vc_D_DESIGN,,,legacy-idb,
+0x0097C0B0,4,g_DefaultWideTagProcessorGuard,unsigned int,MEDIUM,analysis,ACNL-F0711
+0x0097C0B4,4,g_DefaultWideTagProcessor,NwFontTagProcessor,MEDIUM,analysis,ACNL-F0711
 0x0097F660,60,g_AcPlayerMovementProbeOffsets,float[15],,legacy-idb,
 0x0097F6F4,4,vc_CAMCOORD,,,legacy-idb,
 0x009ADAA0,4,vc_D_EXHIBITION,,,legacy-idb,

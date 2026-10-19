@@ -412,7 +412,8 @@ IDA-gpt-6-F014: T017 calls native LayoutCalc for the current pocket background w
 0x00568030,repeatable,"Vapecord plugin ADDRESSES: ACSYSTEM_DATA2
 他地域: USA=005696F8  EUR=00568740  KOR=00567D50
 （プラグイン作者のラベル。検証済みの識別ではない）"
-0x005682DC,func,"[ACNL-F0693][ACNL-F0695] MEDIUM: scissor precedes recorded-length gate. Stereo condition is Layout+0x120 (R5=Layout+0x100, LDRB [R5,#0x20]), NOT +0x320. +0x124 sign differs for 0x400/0x410; recorded replay arguments exclude display."
+0x005682DC,func,"[ACNL-F0712] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+[ACNL-F0693][ACNL-F0695] MEDIUM: scissor precedes recorded-length gate. Stereo condition is Layout+0x120 (R5=Layout+0x100, LDRB [R5,#0x20]), NOT +0x320. +0x124 sign differs for 0x400/0x410; recorded replay arguments exclude display."
 0x005682DC,line,"★F-265 追記: +0x108 > 0 のとき sub_4B8C34(drawer, this+0x30, 0) を呼ぶ。
 これが **this+0x34 の 16 語を VSH float uniform（投影行列）として吐く**。
 従って自前ノードがこの関数を再生スロットに使う場合、投影は自前ノード +0x34 で決まる。"
@@ -431,7 +432,8 @@ F-240 static: Layout+0x108 <= 0 returns before Drawer setup or GpuCmd_ReplayReco
 0x005685A4,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。Layout_Buildはcommandを0x121988経由のa1[5]へ、nwlyt資源実体を全体allocator0x96F150へ分ける。holderを変えても後者の割当先は変わらない。ゲーム全体allocatorを一時差替える移設案は採用しない。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
 0x005685A4,line,"IDA-opus-5.5-F039: accessor(holder+4)->vt[2]('blyt' 0x626C7974, name, 0) -> data; Layout+276=0, +284=1, GetProperty(519), GenCmdlists(1, L+256), SelectList, L+280=size, CmdlistStorage(size,1), SelectList(back), nw::lyt::Layout::Build sub_4B9474(L+16, data, accessor), vt+12(L). Returns 1 at once if L+32 != 0 (already built)."
 0x005685A4,repeatable,"IDA-opus-5.5-F039: accessor(holder+4)->vt[2]('blyt' 0x626C7974, name, 0) -> data; Layout+276=0, +284=1, GetProperty(519), GenCmdlists(1, L+256), SelectList, L+280=size, CmdlistStorage(size,1), SelectList(back), nw::lyt::Layout::Build sub_4B9474(L+16, data, accessor), vt+12(L). Returns 1 at once if L+32 != 0 (already built)."
-0x005686D4,func,"IDA-gpt-6.1-sol-F016 MEDIUM (raw ARM cache gate + F015 user hardware counterexample). F015 draw-time alpha alone cannot hide a static editor main layout: +0x11D=0 skips DrawPaneTree and replays prior commands. Invalidate dirty on each opacity/owner change, including opaque Reset. Evidence work/evidence/interior_presets; device dirty byte not directly observed."
+0x005686D4,func,"[ACNL-F0712] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+IDA-gpt-6.1-sol-F016 MEDIUM (raw ARM cache gate + F015 user hardware counterexample). F015 draw-time alpha alone cannot hide a static editor main layout: +0x11D=0 skips DrawPaneTree and replays prior commands. Invalidate dirty on each opacity/owner change, including opaque Reset. Evidence work/evidence/interior_presets; device dirty byte not directly observed."
 0x005686D4,line,"F-259: render.txt の ssys::ma::lyt::Layout::RenderFrame と 1:1 で一致する。
   +0x11F = m_ProjectionDirty（0 なら vtable+0x18 = SetupProjectionMatrix を呼んで 1 にする）
   +0x11D = m_CmdBufferDirty（立っているときだけ記録する）
@@ -479,7 +481,8 @@ IDA-gpt-6.1-sol-F002: MEDIUM追補: 下画面リストmgr+16の記録/replay後0
 0x00569180,line,[ACNL-F0693] constructor writes LayoutList vtable at mgr+4 and mgr+0x10. TexBufList destructor is unrelated.
 0x00569180,repeatable,F-252: LayoutMgr の生成。mgr+0x00=vtbl_LayoutMgr / mgr+0x04=LayoutList（12バイト: vtable/head/tail）/ mgr+0x10 は同じく LayoutList の vtable で初期化されるが sub_566F44 が vtbl_ssys_ma_lyt_TexBufList へ差し替える派生である。したがって ACNL JPN の LayoutMgr が持つ Layout 用のリストは mgr+4 の 1 本だけ。render.txt の m_LayoutListTop / m_LayoutListBottom という 2 本構成とは異なる。
 0x005691F4,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。HIGH（親の両allocator heap実値一致と静的）。2D_UI_Heapを一度生成し、0x96FC3Cと0x96FC40のssys::ma::Allocator+4へ同じheapを設定。前者のnwlyt/UiAnimと後者のarc写しはheapを共有する。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
-0x0056928C,func,"[ACNL-F0694] MEDIUM: screen 0 -> mgr+4, 1 -> mgr+0x10; unsigned byte priority at node+0x0C, stable ascending insertion. 0xFF is tail AT INSERTION; later equal-priority registration can follow. Membership validation is incomplete.
+0x0056928C,func,"[ACNL-F0712] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+[ACNL-F0694] MEDIUM: screen 0 -> mgr+4, 1 -> mgr+0x10; unsigned byte priority at node+0x0C, stable ascending insertion. 0xFF is tail AT INSERTION; later equal-priority registration can follow. Membership validation is incomplete.
 IDA-gpt-6.1-sol-F002: MEDIUM追補: Layout+12の優先度でintrusive listへ挿入し次node+8を使う。同フレーム同じLayoutをEditor全体/親経由で重複追加しない。新品Chipは次回Editor_SubmitLayoutsへ任せる。
 IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). F012 confirms ascending priority by original sort branch and ItemDragWindow priority0x83 caller. Private trash0x84 is in front of pocket background, below native option window; hardware ordering pending."
 0x0056928C,line,"[ACNL-F0694] stable ascending unsigned byte priority; 0xFF tail only at insertion, later equal values follow."
@@ -503,6 +506,8 @@ IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent calle
   ビューポートはそのパスの全 replay に先行して主リストへ入る。
   3 パスの値: RenderTop 400x240 / RenderTopRightEye 400x240 / RenderBottom 320x240。
   従って自前ノードが記録の中でこれを呼ぶ必要は無い（F-272 で SET_PROJECTION を廃止）。"
+0x00569B44,func,"[ACNL-F0713] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+"
 0x00569B44,line,"★ssys::ma::Allocator::Free(this, ptr) — F-164
 
 g_GfxAllocator の **vtable スロット 3（+0xC）**。
@@ -531,6 +536,8 @@ BX  R2               ; テール呼び出し
 ★**`BX R2` のテール呼び出しなので R1（ptr）が素通しされる。**
   decompiler は `sub(int a1)` と 1 引数に見せるが、実態は Free(ptr)。
   assembly を見ないと取り違える例。"
+0x00569B54,func,"[ACNL-F0713] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+"
 0x00569B54,line,"★★★ssys::ma::Allocator::Alloc(this, size, align) — F-164
 
 g_GfxAllocator(0x94CA30) の **vtable スロット 2（+8）**。

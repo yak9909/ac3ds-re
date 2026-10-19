@@ -220,11 +220,14 @@ confidence **HIGH**（静的 + 実機観測。F-102）。
 ★**nw::gfx::Model と g3d::FuncNode の両方がこれを親に持つ**。
   nw4c のシーングラフ階層と一致する。
 ModelInstance_Create(0x4F048C) が参照する。"
-0x0096F150,line,IDA-gpt-6.1-sol-F011 / MEDIUM。nwlyt全体allocatorポインタ。Layout/AnimTransformの確保と解放が共有するため、holder変更だけでは移設されない。今回書換えない。
+0x0096F150,line,"[ACNL-F0713] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Typed object/holder; see record.
+IDA-gpt-6.1-sol-F011 / MEDIUM。nwlyt全体allocatorポインタ。Layout/AnimTransformの確保と解放が共有するため、holder変更だけでは移設されない。今回書換えない。"
 0x0096F304,line,"IDA-gpt-6.1-sol-F011 / MEDIUM。graphic::MemoryMgrポインタ。初期a1[5]はFCRAM commandHeap、a1[6]/[7]はVRAM。icon98,304 Bの条件付き借用は割当時heapを保持して同じheapへ返す。固定boot番地0x3228A7C8を埋め込まない。"
 0x0096FC06,repeatable,"Vapecord plugin ADDRESSES: U0DATA
 他地域: USA=00976C0E  EUR=00975C06  KOR=0096EC06
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x0096FC38,line,"[ACNL-F0712] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Typed object/holder; see record.
+"
 0x0096FC3C,line,IDA-gpt-6.1-sol-F011 / MEDIUM。nwlyt全体allocatorとUiAnim補助器へ渡るssys::ma::Allocator。+4の2D_UI_Heapは0x96FC40+4と同じ。
 0x0096FC40,line,IDA-gpt-6.1-sol-F011 / MEDIUM。arc読込のssys::ma::Allocator。+4の2D_UI_Heapは家具chipも使用。窓の余白は総/連続128 KiB、別ヒープiconなら負担をpayload約98 KiB削減（未実機）。
 0x00978624,line,"IDA-opus-5.5-F072: Window frame flip table, 6 entries x 10 B (flip 0..5). [0..7] = corner texcoords TLu TLv TRu TRv BLu BLv BRu BRv (0/1), [8] = component that follows the quad width, [9] = component that follows the quad height. Read by nwlyt_Window_CalcFrameTexCoordLT/RT/RB/LB."
@@ -237,6 +240,10 @@ ModelInstance_Create(0x4F048C) が参照する。"
 0x0097C080,repeatable,"Vapecord plugin ADDRESSES: D_DESIGN
 他地域: USA=00983088  EUR=00982080  KOR=0097B080
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x0097C0B0,line,"[ACNL-F0711] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Typed object/holder; see record.
+"
+0x0097C0B4,line,"[ACNL-F0711] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Typed object/holder; see record.
+"
 0x0097F660,line,IDA-gpt-6-sol-F005: five groups of three float offsets initialized in AcPlayer_UpdatePositionWithFieldChecks and used as movement probes.
 0x0097F6F4,repeatable,"Vapecord plugin ADDRESSES: CAMCOORD
 他地域: USA=009866F4  EUR=009856F4  KOR=0097E6F4

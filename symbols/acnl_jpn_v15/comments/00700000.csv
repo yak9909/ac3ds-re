@@ -111,8 +111,14 @@ address,kind,text
 IDA-gpt-6-F010 / GPT-6, MEDIUM: private HHD trash B_Base_00 is left-anchored; align rectangle center, not raw pane translation, to native letter B_btn center. Uses existing native local rect + source affine matrix; keeps root N_Pos_00 outside animation group. Original ARM and DARC JSON corroborate anchor distinction."
 0x0073B508,line,"IDA-opus-5.5-F086: nw::lyt::Pane vt+0x14 GetColorElement(idx): 16 = pane alpha (+0xB4), else vt+0x1C GetVtxColorElement. Same slot in Picture/TextBox vtables (0x8FC010 / 0x8FC090). Pair of nwlyt_Pane_SetColorElement (vt+0x18). gohan HhdScreen ReadColor uses it."
 0x0073B508,repeatable,"IDA-opus-5.5-F086: nw::lyt::Pane vt+0x14 GetColorElement(idx): 16 = pane alpha (+0xB4), else vt+0x1C GetVtxColorElement. Same slot in Picture/TextBox vtables (0x8FC010 / 0x8FC090). Pair of nwlyt_Pane_SetColorElement (vt+0x18). gohan HhdScreen ReadColor uses it."
-0x0073B524,func,"[ACNL-F0707] MEDIUM, static reanalysis, no hardware. DrawSelf vslot+0x68 threads R1 cursor; R2 DrawInfo, R3 draw context. Children sentinel pane+0x14, link child+4, child visibility +0xB7 bit0. Alpha0 with basePosition bit4 skips self, still traverses children."
+0x0073B524,func,"[ACNL-F0710] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+[ACNL-F0707] MEDIUM, static reanalysis, no hardware. DrawSelf vslot+0x68 threads R1 cursor; R2 DrawInfo, R3 draw context. Children sentinel pane+0x14, link child+4, child visibility +0xB7 bit0. Alpha0 with basePosition bit4 skips self, still traverses children."
 0x0073B524,line,"★nwlyt_Pane_DrawRecursive(pane, cursor, ...) — UI の Pane 走査本体 — F-147 / F-177
+
+★★**常時描ける相乗り点。** 60 秒の実測で**ゼロフレームは 0.00%**（Pane 161251 回 / Picture 65315 回）。
+  Picture 層は 1.1% のゼロフレームがあるので、
+  「いついかなる時も描画する」要件にはこちらを使う（F-177）。"
+0x0073B524,repeatable,"★nwlyt_Pane_DrawRecursive(pane, cursor, ...) — UI の Pane 走査本体 — F-147 / F-177
 
 ★★**常時描ける相乗り点。** 60 秒の実測で**ゼロフレームは 0.00%**（Pane 161251 回 / Picture 65315 回）。
   Picture 層は 1.1% のゼロフレームがあるので、
@@ -138,7 +144,8 @@ IDA-opus-5.5-F082: 座標生成（bclyt mat1 の 4 B、Clypo は float で持つ
 0x0073CB04,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Return Picture+0x13C; indexed argument ignored. Independent confirmation of separately allocated Material pointer."
 0x0073CB40,line,"IDA-opus-5.5-F086: Picture vt+0x1C GetVtxColorElement(idx) = byte [this+0x140+idx] (idx 0..15 = LT,RT,LB,RB x RGBA). Pair of nwlyt_Picture_SetVtxColorElement."
 0x0073CB40,repeatable,"IDA-opus-5.5-F086: Picture vt+0x1C GetVtxColorElement(idx) = byte [this+0x140+idx] (idx 0..15 = LT,RT,LB,RB x RGBA). Pair of nwlyt_Picture_SetVtxColorElement."
-0x0073CB58,func,"[ACNL-F0707] MEDIUM, static reanalysis, no hardware. [ACNL-F0706] [ACNL-F0708] R0 Picture, R1 cursor, R2 DrawInfo (directly unused here), R3 draw context. Material +0x13C; matrix +0x80, geometry +0x48, colors +0x140. Recalculates UV if Picture+0xD4==0 OR Material+0x4D bit2==0, then SETS Material bit2. Shared Material is not read-only; separate ownership/lifetime conditions apply. Batch thresholds do not check command-buffer capacity."
+0x0073CB58,func,"[ACNL-F0710] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+[ACNL-F0707] MEDIUM, static reanalysis, no hardware. [ACNL-F0706] [ACNL-F0708] R0 Picture, R1 cursor, R2 DrawInfo (directly unused here), R3 draw context. Material +0x13C; matrix +0x80, geometry +0x48, colors +0x140. Recalculates UV if Picture+0xD4==0 OR Material+0x4D bit2==0, then SETS Material bit2. Shared Material is not read-only; separate ownership/lifetime conditions apply. Batch thresholds do not check command-buffer capacity."
 0x0073CB58,line,"★nwlyt_Picture_DrawToCommandList(picture, ?, ?, drawctx) — F-176 / F-185 / F-190
 
 冒頭で Material_EmitState(drawctx, cursor, *(picture + 316)) を呼ぶ。
@@ -160,6 +167,31 @@ DrawCtx_FlushBatch が一括で流す。
 
 ★幾何エントリ = (幅, 高さ, アンカーX, アンカーY)。
   0x73CCE0 の VSTM "
+0x0073CB58,repeatable,"★nwlyt_Picture_DrawToCommandList(picture, ?, ?, drawctx) — F-176 / F-185 / F-190
+
+冒頭で Material_EmitState(drawctx, cursor, *(picture + 316)) を呼ぶ。
+**picture + 316 がマテリアル**（色とテクスチャの出所）。
+
+Picture は GPU コマンドを直接吐かない。drawctx の 3 配列にエントリを溜め、
+DrawCtx_FlushBatch が一括で流す。
+
+★★末尾の索引エントリ組み立て（0x73CD1C の STM）がすべてを決める:
+
+  v22 = *(drawctx+1640) + 16 * (drawctx+36);
+  v22[0] = *(drawctx+1624);   // 行列の索引        -> 位置
+  v22[1] = *(drawctx+1628);   // 自分の幾何の索引  -> 大きさ・アンカー
+  v22[2] = *(drawctx+1632);   // 追加幾何の索引    -> UV
+  v22[3] = *(drawctx+1636);   // 色の索引（sub_4B8090 が作る）
+
+★F-180 の「w1 = 幾何+1、w2 = 幾何」は誤り。
+  正しくは **w1 = 自分の幾何、w2 = 追加幾何**。
+
+★幾何エントリ = (幅, 高さ, アンカーX, アンカーY)。
+  0x73CCE0 の VSTM R2,{S0-S1} が後ろ 2 ワードを書くが、
+  直前の BL sub_73B5C4 が S0 を上書きするので
+  **入るのは行列索引ではなくアンカーのオフセット**（F-188）。
+
+★自前の UI 画像を 1 枚足す実装は PATCHES/cave_add_sprite2.py。"
 0x0073CD94,line,"IDA-opus-5.5-F040: text origin = pane top-left + (0|w/2|w, -(0|h/2|h)) by basePosition; textPosition at +0xFC."
 0x0073CD94,repeatable,"IDA-opus-5.5-F040: text origin = pane top-left + (0|w/2|w, -(0|h/2|h)) by basePosition; textPosition at +0xFC."
 0x0073CE64,line,"★TextBox の描画行列を組む — sub_73CE64(textbox, float* mtx) — F-158 / F-160
@@ -190,7 +222,8 @@ sub_135C28(mtx, textbox+128) で pane の行列を展開したあと:
   mtx[3], mtx[7], mtx[11]   にオフセットを加算 = **平行移動**
 
 この 2 つの位置から、行内の並びが (x, y, z, w) であることが確定できる。"
-0x0073CF48,func,"F-143/F-144: vtable TextBox rendering wrapper. Checks length/font/material and dirty/processor flags, then calls sub_4BAFB0(a1,R3) to rebuild the batch writer; this is the active path for clock/conversation-style UI, not sub_4D5858."
+0x0073CF48,func,"[ACNL-F0711] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+F-143/F-144: vtable TextBox rendering wrapper. Checks length/font/material and dirty/processor flags, then calls sub_4BAFB0(a1,R3) to rebuild the batch writer; this is the active path for clock/conversation-style UI, not sub_4D5858."
 0x0073CF48,line,"★TextBox 描画ラッパ（vtable 経由）。F-143 / F-144 / F-157
 
 末尾で:
@@ -214,20 +247,25 @@ sub_135C28(mtx, textbox+128) で pane の行列を展開したあと:
 0x0073CF54,line,"F-144 live clock capture: TextBox R0=0x32D07674, string ptr=0x32D07790 containing UTF-16 '00', font=0x3302ABE0, material=0x32D07BA0, length=2; proves the sampled non-conversation hit was the clock."
 0x0073D000,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Return block + 32*TexMap CAPACITY (+0x2C). Each SRT 20 bytes."
 0x0073D000,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x0073D000,repeatable,nwlyt_Material_GetTexSRTs — *(mat+52) + 32*(texMap 数)。texSRT は 1 個 20 バイト（平行移動2/回転1/拡大2）。F-291
 0x0073D014,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. TEV follows AlphaCompare and BlendMode. Return block +32*T+20*S+4*G+8*A+4*L; all offsets from +0x2C capacities/flags."
 0x0073D060,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Return block + 32*T + 20*S + 4*G + 8*A, capacities/flags from +0x2C; optional 4-byte blend mode precedes TEV."
 0x0073D0A0,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Return block + 32*T + 20*S, capacities from +0x2C; each gen 4 bytes."
 0x0073D0A0,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
+0x0073D0A0,repeatable,nwlyt_Material_GetTexCoordGens — texSRT の直後。1 個 4 バイト。sub_73B650 は [4*i+1] を座標セットの索引に使う。F-291
 0x0073D0C8,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Return block + 32*T + 20*S + 4*G, capacities from +0x2C. Optional 8-byte AlphaCompare precedes BlendMode and TEV."
 0x00743694,line,ResFont vtable slot: return FINF[20] - FINF[22]. F-129。
 0x00743694,repeatable,ResFont vtable slot: return FINF[20] - FINF[22]. F-129。
 0x007436A8,line,ResFont vtable slot: return signed FINF[1] (line feed field in live CFNU). F-129。
 0x007436A8,repeatable,ResFont vtable slot: return signed FINF[1] (line feed field in live CFNU). F-129。
-0x00743768,func,"F-139 live: tid=219, R0=0x3302ABE0 (ResFont 17x24), R1=0x904A (U+904A). 0x74385C returns glyph index 0x0A01; ResFont cache +0x14/+0x16 becomes 0x904A/0x0A01."
+0x00743768,func,"[ACNL-F0711] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+F-139 live: tid=219, R0=0x3302ABE0 (ResFont 17x24), R1=0x904A (U+904A). 0x74385C returns glyph index 0x0A01; ResFont cache +0x14/+0x16 becomes 0x904A/0x0A01."
 0x00743768,line,"F-130 HIGH: ResFont CMAP lookup. input UTF-16 code; walks chained CMAP nodes, supports method 0 direct / 1 table / 2 scan, returns glyph index or 0xFFFF. Runtime: 7px font lacks U+0030/U+0036/U+0037; fallback glyph 0 reverse-maps to U+3041."
 0x00743768,repeatable,"F-130 HIGH: ResFont CMAP lookup. input UTF-16 code; walks chained CMAP nodes, supports method 0 direct / 1 table / 2 scan, returns glyph index or 0xFFFF. Runtime: 7px font lacks U+0030/U+0036/U+0037; fallback glyph 0 reverse-maps to U+3041."
 0x0074385C,line,F-139 live return: R0=0x0A01 for input U+904A; confirms CMAP result and cache update.
 0x007438A4,func,"F-133 static: ResFont vtable slot 26 getter; returns LE16(TGLP+8), the glyph-sheet count."
+0x007438B4,func,"[ACNL-F0711] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+"
 0x007438B4,line,"F-130 HIGH: builds glyph data after CMAP lookup; if lookup returns 0xFFFF, substitutes FINF alternate glyph index at info+2, then resolves CWDH and TGLP sheet coordinates."
 0x007438B4,repeatable,"F-130 HIGH: builds glyph data after CMAP lookup; if lookup returns 0xFFFF, substitutes FINF alternate glyph index at info+2, then resolves CWDH and TGLP sheet coordinates."
 0x0074397C,line,F-131 HIGH: copy CWDH left bearing and glyphWidth to glyph record +4/+5.

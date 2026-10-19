@@ -78,3 +78,7 @@
 | ACNL-F0706 | TexMap のレジスタ派生値と Picture の UV キャッシュ（再解析） | TexMap の +0x14/+0x18/+0x1C は再生成される値で、Picture の UV 結果は別の二つの有効フラグにより再計算する。CPU キャッシュ更新と GPU 状態送出は別処理である。 | MEDIUM | A | topics/acnl/ui.md |  |
 | ACNL-F0707 | Pane 木の可視走査と Layout 記録・Picture 描画（再解析） | 基底 Layout は可視 root の Pane 木を子リンク順に記録し、Picture は材質状態と幾何・色・UVをバッチへ追加する。頂点色の入力と TEV 構成、バッチ残量の検査とコマンド領域容量は別である。 | MEDIUM | A | topics/acnl/ui.md |  |
 | ACNL-F0708 | Picture の材質共有は無効化・所有と資源寿命の条件を持つ（再解析） | Picture は共有 Material を直接読む一方、UV 有効フラグを書き換える。標準破棄はフラグ次第で Material と別配列を解放するため、共有描画から安全な寿命や再確保は保証できない。 | MEDIUM | A | topics/acnl/ui.md |  |
+| ACNL-F0709 | GPU コマンドリストの生成・領域確保・削除と引数型 | GPU コマンドリストの生成は件数と出力ID配列、領域確保は選択中リストのコマンドバイト数とGX容量、削除は件数とID配列を受け取る。SelectList の入力はID一つで、Propertyの結果は出力配列に書かれる。 | MEDIUM | ? |  |  |
+| ACNL-F0710 | Pane・Picture・Material の描画用構造と vtable 型 | Pane 0xD4、Picture 0x158、Material 0x50 の既知メンバーとvtableを型にした。描画はcursor・DrawInfo・描画contextを4引数で受け渡し、Pictureの座標セットは別確保である。 | MEDIUM | ? |  |  |
+| ACNL-F0711 | TextBox と ResFont の文字描画用構造および既定 TagProcessor | TextBoxと文字バッチ、ResFontと正規化されたFINF/TGLP/CWDH/CMAP、既定wide TagProcessorを型にした。ResFontは通常確保0x18と独立した埋込み境界が整合し、0x20にはしない。 | MEDIUM | ? |  |  |
+| ACNL-F0712 | DrawInfo・Layout ノード・LayoutMgr の描画用構造 | DrawInfoはLayout+0x30に内包され、+0x80はLayoutMgr+0x1Cの文字作業体を指す。Layoutノードのroot・記録範囲・画面と上下リスト、管理者holderへ型を付けた。 | MEDIUM | ? |  |  |

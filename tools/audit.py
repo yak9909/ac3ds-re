@@ -128,7 +128,12 @@ def scan_text(path: str, text: str, allow: list[dict] | None = None) -> list[Pro
         type_hit = (DECOMP_TYPE.search(line) and ";" in line
                     and not fnmatch.fnmatchcase(path, "symbols/*/types/*.h") and not csv_row)
         macro_hit = DECOMP_MACRO.search(line)
-        call_hit = DECOMP_CALL.search(line) and not csv_row
+        # 型ヘッダの関数ポインタメンバーにはABI指定が必要。宣言だけを除外し、関数本体は検査する。
+        pointer_member = (fnmatch.fnmatchcase(path, "symbols/*/types/*.h")
+                          and re.search(r"\(\s*__(?:fastcall|cdecl|stdcall|thiscall|usercall)\s+\*\s*[A-Za-z_]\w*"
+                                        r"\s*\)\s*\([^{};]*\)\s*;\s*(?://.*)?$", line)
+                          and not re.search(r"[{}=]", line.split("//", 1)[0]))
+        call_hit = DECOMP_CALL.search(line) and not csv_row and not pointer_member
         if call_hit or macro_hit or DECOMP_LOCAL.search(line) or type_hit:
             decomp_lines.append((ln, line.strip()))
         for rx, label in ((WIN_USER, "Windows のユーザーのパス"), (HOME_USER, "/home のユーザーのパス"),

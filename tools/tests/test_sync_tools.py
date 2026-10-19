@@ -135,6 +135,42 @@ def test_export_unnamed_typed_global(monkeypatch):
     assert (rows[0]['address'], rows[0]['name'], rows[0]['type']) == ('0x00955FF4', '', 'struct ItemID')
 
 
+@pytest.mark.parametrize('structured,expected', [(True, 1), (False, 0)])
+def test_export_vtable_preserves_only_user_struct_type(monkeypatch, structured, expected):
+    from types import SimpleNamespace as NS
+    import export_symbols as ex
+    ea = 0x8FC17C
+    monkeypatch.setitem(sys.modules, 'ida_name', NS(get_name=lambda addr: 'vtbl_DrawInfo'))
+    monkeypatch.setitem(sys.modules, 'ida_nalt', NS(is_userti=lambda addr: True))
+    monkeypatch.setitem(sys.modules, 'ida_bytes', NS(
+        get_flags=lambda addr: 0, is_code=lambda flags: False, has_user_name=lambda flags: True))
+    monkeypatch.setitem(sys.modules, 'idautils', NS(Names=lambda: [(ea, 'vtbl_DrawInfo')], Heads=lambda: [ea]))
+    monkeypatch.setattr(ex, '_func_start', lambda addr: False)
+    monkeypatch.setattr(ex, 'user_tinfo', lambda addr: NS(is_struct=lambda: structured, get_size=lambda: 8))
+    monkeypatch.setattr(ex, 'tinfo_text', lambda tif: 'DrawInfoVtable')
+    rows = ex.export_globals({ea}, {ea: ['ACNL-F0712']})
+    assert len(rows) == expected
+    if expected:
+        assert (rows[0]['type'], rows[0]['size'], rows[0]['refs']) == ('DrawInfoVtable', '8', 'ACNL-F0712')
+
+
+@pytest.mark.parametrize('size,failed', [(8, False), (4, True)])
+def test_import_vtable_keeps_struct_and_rejects_size_mismatch(monkeypatch, size, failed):
+    from types import SimpleNamespace as NS
+    monkeypatch.setattr(import_symbols, '_set_name', lambda *args: None)
+    monkeypatch.setitem(sys.modules, 'ida_bytes', NS())  # 構造体をdwordへ作り直す呼出しがあれば失敗する
+    monkeypatch.setitem(sys.modules, 'ida_offset', NS())
+    monkeypatch.setitem(sys.modules, 'ida_segment', NS())
+    monkeypatch.setitem(sys.modules, 'ida_nalt', NS(is_userti=lambda ea: True, get_tinfo=lambda tif, ea: True))
+    monkeypatch.setitem(sys.modules, 'ida_typeinf', NS(
+        tinfo_t=lambda: NS(is_struct=lambda: True, get_size=lambda: size)))
+    rep = import_symbols.Report()
+    import_symbols.import_vtables([{'address': '0x008FC17C', 'class': 'DrawInfo', 'count': '2'}], rep)
+    result = rep.sections['vtables']
+    assert bool(result['failed']) == failed
+    assert result['ok'] == (0 if failed else 1)
+
+
 @pytest.mark.parametrize('case,thumb', [('extend', False), ('shrink', False), ('tail', False),
                                        ('middle', False), ('new', True), ('wrong_mode', True)])
 def test_function_boundaries(monkeypatch, case, thumb):
