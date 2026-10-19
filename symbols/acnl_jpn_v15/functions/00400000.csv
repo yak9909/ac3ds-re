@@ -10,6 +10,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x0047FBE0,216,GameAPT_PrepareLibraryApplet,int __fastcall(unsigned int appId),,legacy-idb,,
 0x0047FF68,72,APT_StartLibraryApplet_Ipc,"int __fastcall(unsigned int appId, const void *param, unsigned int size, unsigned int sharedHandle)",,legacy-idb,,
 0x0048012C,48,APT_PrepareToStartLibraryApplet_Ipc,,,legacy-idb,,
+0x00483020,212,GameInput_MergeSelectIntoStart,unsigned int __fastcall(AcnlPadStateF103 *pad),,analysis,ACNL-F0723,
 0x00489554,128,,,,legacy-idb,,
 0x0048A844,2120,AnimBinding_EvaluateAndApply,,,legacy-idb,,
 0x0048D26C,168,gfx_DrawMesh,,,legacy-idb,,

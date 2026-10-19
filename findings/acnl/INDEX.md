@@ -724,3 +724,6 @@
 | ACNL-F0718 | 文字バッチのヘッダー・字形レコードと必要量 | MEDIUM | A | active |  |  |
 | ACNL-F0719 | 既定TagProcessorは起動時の相対初期化表から構築される | MEDIUM | A | active |  |  |
 | ACNL-F0720 | GPUリスト領域確保は失敗を戻り値で通知しない | MEDIUM | A | active |  |  |
+| ACNL-F0721 | 入力遮断点と旧状態の扱いを再解析：holdだけではreleaseが残る | MEDIUM | ? | active |  |  |
+| ACNL-F0722 | タッチ遮断は画面ロックではなく共有入力の変更である | MEDIUM | ? | active |  |  |
+| ACNL-F0723 | SELECTとSTARTの条件付き統合と読み替え前のSELECT除去 | MEDIUM | ? | active |  |  |

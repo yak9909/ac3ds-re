@@ -880,7 +880,9 @@ V2-F024: F-253（実測 HIGH）のとおり display=0x410 は**上画面の右�
 0x001B72E4,line,[ACNL-F0693] top-right pass (0x410). Old bottom-screen annotation rejected; frame-wide runtime order not remeasured.
 0x001B72E4,repeatable,F-233 dynamic: pass 1040（下画面）は pass 1024 の後、Render_FrameEnd の前。次は pass 1024。thread 219 / caller LR=0x543C6C。
 0x001B739C,line,F-233: Frame_EndDrawPass1040 呼出し。callee は通常早期 return。直後の Render_FrameEnd も scene/context reset であり、この2関数を通常 submit と誤認しない。
-0x001B7874,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Full40B native touch recurrence independently rechecked for chat overlay routing; inherited MapModeList TouchNext reproduces this recurrence for raw CTRPF input. No GPU/hardware claim.
+0x001B7874,func,"[ACNL-F0722] MEDIUM; native static evidence + CPU replay, no hardware. Shared TouchState consumes current controller held bit0x8000 and separate pressed/released/position getters. Flags-only suppression is insufficient. Historical state/changed and drag ownership are not cancelled automatically just by clearing current controller.
+
+IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Full40B native touch recurrence independently rechecked for chat overlay routing; inherited MapModeList TouchNext reproduces this recurrence for raw CTRPF input. No GPU/hardware claim.
 IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): TouchState int +10/+12 remain pixel positions, while +32/+36 are (x-160,120-y). These two coordinate spaces must not be copied interchangeably into Controller float pixels."
 0x001B7874,line,"IDA-opus-5.5-F062: タッチの構造体 0xACF6E0 を毎フレーム作る（0x1B6B84 から）。+0 押している / +1 変化 / +2,+4 生 / +6,+8 押し始め / +10,+12 位置 / +14 押しているフレーム / +15 離している / +16..+29 前の写し（+26 = 前の +0）/ +32,+36 レイアウト座標。"
 0x001B7874,repeatable,"IDA-opus-5.5-F062: タッチの構造体 0xACF6E0 を毎フレーム作る（0x1B6B84 から）。+0 押している / +1 変化 / +2,+4 生 / +6,+8 押し始め / +10,+12 位置 / +14 押しているフレーム / +15 離している / +16..+29 前の写し（+26 = 前の +0）/ +32,+36 レイアウト座標。"

@@ -227,15 +227,29 @@ world +X = 画面の下 / world -Z = 画面の右。（十字キーで +X 方向
 0x0053A980,repeatable,"Vapecord plugin ADDRESSES: KEEPCONNECTION_1_ORIGFUNC
 他地域: USA=0053C04C  EUR=0053B094  KOR=0053A6A4
 （プラグイン作者のラベル。検証済みの識別ではない）"
-0x0053CDC4,func,"IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Controller+0 is the vtable (LDR [self], virtual slot+24), not held bits. Uses +272 hold and +16 pointer-valid bit before UpdateEdges. Chat overlay must never OR touch mask into the vtable."
-0x00540870,func,IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): HID touch uint16 pixel x/y become float and pass via R3 vector to SetPointerState; no centering or Y reversal. Rechecked inherited F350 input path; old attribution retained.
+0x0053CDC4,func,"[ACNL-F0721] MEDIUM; native static evidence + CPU replay, no hardware. R4=self; +0x24/0x0053CDE8 is post-device/pre-edge, before MOV R2,R9. R8/R9 are saved old held/valid, reused for wrappers after first UpdateEdges. Current held/valid AND both snapshots must be sanitized together to avoid release in self/wrappers. +0x30/0x0053CDF4 remains the legacy BL site. PrefixF103 covers lists through0x15B; actual subclass may extend beyond.
+
+IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Controller+0 is the vtable (LDR [self], virtual slot+24), not held bits. Uses +272 hold and +16 pointer-valid bit before UpdateEdges. Chat overlay must never OR touch mask into the vtable."
+0x0053CDE8,line,"[ACNL-F0721] sead_Controller_Calc+0x24: post-device/pre-edge boundary. R4=self, R8=old held, R9=old valid. Current state and BOTH snapshots must agree for self and wrappers; original MOV R2,R9 must still execute."
+0x0053CDF4,line,"[ACNL-F0721] sead_Controller_Calc+0x30: original BL sead_Controller_UpdateEdges, word0xEB001823. R0=self/R1=old held/R2=old valid. Sanitizing only R1/R2 does not affect later wrapper args from R8/R9."
+0x0053CE90,line,[ACNL-F0721] Registered wrapper calc receives saved source R8/R9 again. These are not read back from source edge output.
+0x0053F550,func,"[ACNL-F0723] MEDIUM; native static evidence + CPU replay, no hardware. Reads pad to device+0x15C0 through GameInput_ReadPadState, then touch to device+0x15D4; success bits at +0x1634. Controller update reads these cached values afterward. This cached producer precedes Controller-level suppression."
+0x005404AC,func,"[ACNL-F0721] MEDIUM; native static evidence + CPU replay, no hardware. Updates registered devices via vtable+0x10 first (0x005404CC), then controller pointer array manager+0xD8/count+0xD0 via vtable+0x10 (0x00540504). CtrHidDevice and CtrController vtables identify the input order."
+0x00540870,func,"[ACNL-F0721] MEDIUM; native static evidence + CPU replay, no hardware. Device pad cache +0x15C0 is mapped to held+0x110; START bit3 ->0x800, SELECT bit2 ->0x1000. Upstream conditional merge may already turn SELECT into START. Touch sets both pointer representations; analog axis0 remains independent from direction bits.
+
+IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): HID touch uint16 pixel x/y become float and pass via R3 vector to SetPointerState; no centering or Y reversal. Rechecked inherited F350 input path; old attribution retained."
 0x0054092C,repeatable,"Vapecord plugin ADDRESSES: Block
 他地域: USA=00541FF8  EUR=00541040  KOR=00540650
 （プラグイン作者のラベル。検証済みの識別ではない）"
-0x00542D78,func,"IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Stores pixel float pair at +276/+280, sets pointer flag bit0 and hold at bit index+264. Optional bounds subtract pointer_min; no layout-center transformation."
-0x00542E88,func,IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Confirmed existing name/older F004 contract. +20/+24 int pixel pair is truncation of +276/+280 float pair; edges derive from old held and old pointer-valid. Prefix type is partial and intentionally omits subclass tail.
+0x00542D78,func,"[ACNL-F0722] MEDIUM; native static evidence + CPU replay, no hardware. Writes BOTH pointer flags bit0 (+0x10) and held pointer bit selected by +0x108. Clearing valid alone leaves held readers active. Coordinate values are separate and may remain stale. Affects shared input, not a particular display.
+
+IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Stores pixel float pair at +276/+280, sets pointer flag bit0 and hold at bit index+264. Optional bounds subtract pointer_min; no layout-center transformation."
+0x00542E88,func,"[ACNL-F0721] MEDIUM; native static evidence + CPU replay, no hardware. new held & ~old held => pressed; old held & ~new held => released. Pointer edges similarly use old valid. Zero current only causes a release on transition. Released/pressed/repeat are recalculated here; hold counters +0x2C[32] reset for bits no longer held. Partial prefix now includes axis fields through +0x133.
+
+IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Confirmed existing name/older F004 contract. +20/+24 int pixel pair is truncation of +276/+280 float pair; edges derive from old held and old pointer-valid. Prefix type is partial and intentionally omits subclass tail."
 0x00542E88,repeatable,"
 IDA-gpt-6.1-sol-F004 / T022静的追補: +0x04=newHold & ~oldHold（押す）、+0x08=oldHold & ~newHold（離す）。途中のタッチholdを遮断すれば離すedgeが1回発生するため、範囲選択の開始点を残したままではそのedgeで確定する。初回捕捉の4float取消と組で使う。"
+0x00543050,func,"[ACNL-F0721] MEDIUM; native static evidence + CPU replay, no hardware. Initializes the 0x134-byte ControllerBase prefix: capped button_count, axis start bits and pointer bit, held/repeat arrays and pointer/axes. PrefixF005 ends at0x134; subclass state is not included."
 0x00543C48,line,"★MethodTree_WalkAndInvoke(node) — ツリーを再帰して各ノードのデリゲートを呼ぶ (F-115)。
 sead::MethodTree 相当と見られるがクラス名は未確定。
 
@@ -270,6 +284,7 @@ sead::MethodTree 相当と見られるがクラス名は未確定。
   ここが「SystemTask のスロット 25/26」なのか
   「デリゲートの vptr が指す先」なのかは**静的には決着しない**
   （thunk の tail-jump なら LR は変わらないため）。断定しないこと。"
+0x005475D4,func,"[ACNL-F0721] MEDIUM; native static evidence + CPU replay, no hardware. source+0x144; enabled+0x148. Remaps CURRENT source held AND source_old_held via source_bit_index+0x174; copies axes/pointer, then computes its OWN edges/repeat. Does not copy source pressed/released/repeat. Suppression must sanitize old snapshots supplied by Controller_Calc as well."
 0x005497D4,line,"★F-357: getFPS()。(float)qword_96F3F0（tick 周波数 268,111,856Hz）/ (float)this+0xA8 を FDIVS。
 ★this+0xA8 を読むのはここだけ。表示用であってゲーム論理には効かない。"
 0x005497D4,repeatable,"★F-357: getFPS()。(float)qword_96F3F0（tick 周波数 268,111,856Hz）/ (float)this+0xA8 を FDIVS。
@@ -278,6 +293,7 @@ sead::MethodTree 相当と見られるがクラス名は未確定。
 0x005498B4,repeatable,F-357: Calc パス（sead::MethodTreeMgr）。★dt は渡さない — sub_54B79C -> sub_543BD0 -> MethodTree_WalkAndInvoke(node)
 0x00549944,line,F-357: Draw パス（sead::MethodTreeMgr）。コマンドリストを切替えて描画を走らせる
 0x00549944,repeatable,F-357: Draw パス（sead::MethodTreeMgr）。コマンドリストを切替えて描画を走らせる
+0x00549AB0,func,"[ACNL-F0721] MEDIUM; native static evidence + CPU replay, no hardware. Unlinks previous source, registers wrapper using source->wrappers.node_offset in source+0x14C intrusive list, sets wrapper+0x144 source; optionally copies repeat delay/interval[32]. BsMenuMgr_Init binds to the manager first controller here."
 0x0054C424,line,"★F-357: 1 フレーム分。
 Calc(スロット 27 0x5498B4) -> Draw(スロット 26 0x549944) -> リスト入替(スロット 30 0x54C5D8)
 -> 0x54C494 で +0xA8 = now - +0xB0（フレーム周期）、+0xB0 = now

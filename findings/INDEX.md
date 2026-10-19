@@ -6,7 +6,7 @@
 
 | scope | 件数 | active |
 |---|---|---|
-| acnl | 720 | 633 |
+| acnl | 723 | 636 |
 | hhd | 20 | 9 |
 | 3ds | 0 | 0 |
 
@@ -17,7 +17,7 @@
 | acnl | _product | 214 |
 | acnl | actor | 24 |
 | acnl | field | 56 |
-| acnl | input | 6 |
+| acnl | input | 9 |
 | acnl | item | 43 |
 | acnl | misc | 2 |
 | acnl | network | 14 |
@@ -548,6 +548,9 @@
 - ACNL-F0586 下位 `0x0C` でgohanの壁抜けを相手へ強制できるか（2026-10-04、MEDIUM）
 - ACNL-F0587 屋外XYZを下位 `0x0C` で書くための条件と副作用（2026-10-04、静的MEDIUM／実用性LOW）
 - ACNL-F0626 T022 カタログの生成器（Codex 依頼 t022_catalog_arc、gpt-6.1-sol xhigh、2026-10-07。打ち切り。記録 ID なし = 道具と生成物）
+- ACNL-F0721 入力遮断点と旧状態の扱いを再解析：holdだけではreleaseが残る
+- ACNL-F0722 タッチ遮断は画面ロックではなく共有入力の変更である
+- ACNL-F0723 SELECTとSTARTの条件付き統合と読み替え前のSELECT除去
 
 ## 未レビュー（reviewed_by が空）
 
@@ -1271,6 +1274,9 @@
 - ACNL-F0718 文字バッチのヘッダー・字形レコードと必要量
 - ACNL-F0719 既定TagProcessorは起動時の相対初期化表から構築される
 - ACNL-F0720 GPUリスト領域確保は失敗を戻り値で通知しない
+- ACNL-F0721 入力遮断点と旧状態の扱いを再解析：holdだけではreleaseが残る
+- ACNL-F0722 タッチ遮断は画面ロックではなく共有入力の変更である
+- ACNL-F0723 SELECTとSTARTの条件付き統合と読み替え前のSELECT除去
 - HHD-F0001 慣性と、選択枠・ボタンの縞の合成（2026-10-05、MEDIUM〜HIGH: 静的 + HHD のスクショ 2 枚で合成の意味を照合）
 - HHD-F0002 髪のページ送り — ドラッグ・弾き・滑りの規則（2026-10-05、MEDIUM: 静的のみ。定数はすべて逆アセンブルの即値・リテラル）
 - HHD-F0003 髪・目の形の番号 → モデルのファイル（2026-10-05、MEDIUM: 静的のみ。ACNL のファイル名と照合）
@@ -1350,6 +1356,7 @@
 - acnl_jpn_v15 0x001B7294: ACNL-F0263, ACNL-F0309
 - acnl_jpn_v15 0x001B72E4: ACNL-F0151, ACNL-F0153, ACNL-F0154, ACNL-F0155, ACNL-F0258, ACNL-F0560
 - acnl_jpn_v15 0x001B7780: ACNL-F0412, ACNL-F0414
+- acnl_jpn_v15 0x001B7A18: ACNL-F0427, ACNL-F0722
 - acnl_jpn_v15 0x001C4A9C: ACNL-F0500, ACNL-F0599
 - acnl_jpn_v15 0x001D0AEC: ACNL-F0502, ACNL-F0599
 - acnl_jpn_v15 0x001F0082: ACNL-F0171, ACNL-F0174
@@ -1510,10 +1517,14 @@
 - acnl_jpn_v15 0x0052CDD8: ACNL-F0541, ACNL-F0546, ACNL-F0548, ACNL-F0552
 - acnl_jpn_v15 0x00535110: ACNL-F0484, ACNL-F0690
 - acnl_jpn_v15 0x00535188: ACNL-F0122, ACNL-F0624
+- acnl_jpn_v15 0x0053CDC4: ACNL-F0376, ACNL-F0721, ACNL-F0722
 - acnl_jpn_v15 0x0053CDF4: ACNL-F0376, ACNL-F0377, ACNL-F0381, ACNL-F0629
+- acnl_jpn_v15 0x00540870: ACNL-F0721, ACNL-F0723
+- acnl_jpn_v15 0x00542D78: ACNL-F0721, ACNL-F0722
 - acnl_jpn_v15 0x00543C48: ACNL-F0151, ACNL-F0153
 - acnl_jpn_v15 0x00543C6C: ACNL-F0153, ACNL-F0154, ACNL-F0258
 - acnl_jpn_v15 0x00544E54: ACNL-F0136, ACNL-F0138
+- acnl_jpn_v15 0x005475D4: ACNL-F0376, ACNL-F0721, ACNL-F0722
 - acnl_jpn_v15 0x0054C420: ACNL-F0395, ACNL-F0396
 - acnl_jpn_v15 0x0054C424: ACNL-F0022, ACNL-F0023, ACNL-F0388, ACNL-F0393, ACNL-F0394, ACNL-F0395, ACNL-F0398
 - acnl_jpn_v15 0x0054C438: ACNL-F0021, ACNL-F0395, ACNL-F0397, ACNL-F0398, ACNL-F0400, ACNL-F0404
