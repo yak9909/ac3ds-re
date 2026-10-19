@@ -401,7 +401,8 @@ while(1) { vtbl[0x64](this); }  = Framework_ProcOneFrame を回すだけ。
 0x00567BAC,func,"IDA-gpt-6-F008: Layout wrapper+32 object's virtual+44 receives name inR1 and recursive flag1; callers use it for named CLYT panes. Original callsites + ChangeStockItem layout tree confirm pane resolution. Wrapper RTTI/class identity not confirmed, so retain sub-name; next trace ctor/vtable+44 before class-qualified rename."
 0x00567BC0,func,"[ACNL-F0696] MEDIUM/static reanalysis: base Layout reads its own +0x28/+0x2C through (Layout+0x10)+0x18/+0x1C; NOT root-Pane/tree bounds. +0x121==1 selects perspective. Ortho then rotation(1) produces m1=2/H,m4=-2/W,m10=.001,m11=-.5,m15=1, stored at +0x34. Cache gate +0x11F is in RecordPaneTree. Pixel scale Vw/W,Vh/H is conditional on no extra transforms/offsets; hardware untested."
 0x00567BC0,line,"[ACNL-F0696] MEDIUM/static reanalysis: base Layout reads its own +0x28/+0x2C through (Layout+0x10)+0x18/+0x1C; NOT root-Pane/tree bounds. +0x121==1 selects perspective. Ortho then rotation(1) produces m1=2/H,m4=-2/W,m10=.001,m11=-.5,m15=1, stored at +0x34. Cache gate +0x11F is in RecordPaneTree. Pixel scale Vw/W,Vh/H is conditional on no extra transforms/offsets; hardware untested."
-0x00567BC0,repeatable,"[ACNL-F0696] MEDIUM/static reanalysis: base Layout reads its own +0x28/+0x2C through (Layout+0x10)+0x18/+0x1C; NOT root-Pane/tree bounds. +0x121==1 selects perspective. Ortho then rotation(1) produces m1=2/H,m4=-2/W,m10=.001,m11=-.5,m15=1, stored at +0x34. Cache gate +0x11F is in RecordPaneTree. Pixel scale Vw/W,Vh/H is conditional on no extra transforms/offsets; hardware untested."
+0x00567BC0,repeatable,"[ACNL-F0714] MEDIUM/static: R0 is Layout this; reads width/height +28/+2C and projection_mode +121, writes embedded DrawInfo projection +34. RecordPaneTree owns cache flag +11F.
+[ACNL-F0696] MEDIUM/static reanalysis: base Layout reads its own +0x28/+0x2C through (Layout+0x10)+0x18/+0x1C; NOT root-Pane/tree bounds. +0x121==1 selects perspective. Ortho then rotation(1) produces m1=2/H,m4=-2/W,m10=.001,m11=-.5,m15=1, stored at +0x34. Cache gate +0x11F is in RecordPaneTree. Pixel scale Vw/W,Vh/H is conditional on no extra transforms/offsets; hardware untested."
 0x00567BD8,line,[ACNL-F0696] Argument R1=Layout+0x10; callee reads +0x18/+0x1C => Layout width/height +0x28/+0x2C. No root Pane dereference.
 0x00567DA4,repeatable,"Vapecord plugin ADDRESSES: DATA3
 他地域: USA=0056946C  EUR=005684B4  KOR=00567AC4
@@ -409,7 +410,8 @@ while(1) { vtbl[0x64](this); }  = Framework_ProcOneFrame を回すだけ。
 0x00568030,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / MEDIUM。冒頭0x568048でR1=Layout+0xFC(flags)、R0=Layout+0x10を0x4B9718へ渡す。Paneの評価を終えてから行列/描画コマンド計算する。固定SPはPUSH16+VPUSH16+SUB0x128=328B（Python計算）。追加したApplyFrameはこの評価だけを呼び、時刻更新/AddLayout/二重Submitを足さない。根拠 ida_extra.json・linked_disasm.txt。実機未検証。
 IDA-gpt-6.1-sol-F015: actual symbol vc_ACSYSTEM_DATA2 retained. AnimatePanes then root CalculateMtx updates globalAlpha before deferred draw; no duplicate Submit for backdrop fade.
 IDA-gpt-6-F014: T017 calls native LayoutCalc for the current pocket background with a scoped DrawInfo+136 flag4, then restores the full original flag byte. No second AddLayout or animation clock step; letter animations are evaluated separately before the parent tree matrices. Original AnimatePanes and CalculateRootMtx callers verify offsets/ABI."
-0x00568030,repeatable,"Vapecord plugin ADDRESSES: ACSYSTEM_DATA2
+0x00568030,repeatable,"[ACNL-F0714] MEDIUM/static: Verified producer/consumer ABI; see finding for offsets and remaining unknowns.
+Vapecord plugin ADDRESSES: ACSYSTEM_DATA2
 他地域: USA=005696F8  EUR=00568740  KOR=00567D50
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x005682DC,func,"[ACNL-F0712] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
@@ -417,9 +419,11 @@ IDA-gpt-6-F014: T017 calls native LayoutCalc for the current pocket background w
 0x005682DC,line,"★F-265 追記: +0x108 > 0 のとき sub_4B8C34(drawer, this+0x30, 0) を呼ぶ。
 これが **this+0x34 の 16 語を VSH float uniform（投影行列）として吐く**。
 従って自前ノードがこの関数を再生スロットに使う場合、投影は自前ノード +0x34 で決まる。"
-0x005682DC,repeatable,"★F-265 追記: +0x108 > 0 のとき sub_4B8C34(drawer, this+0x30, 0) を呼ぶ。
+0x005682DC,repeatable,"[ACNL-F0714] MEDIUM/static: Verified producer/consumer ABI; see finding for offsets and remaining unknowns.
+★F-265 追記: +0x108 > 0 のとき sub_4B8C34(drawer, this+0x30, 0) を呼ぶ。
 これが **this+0x34 の 16 語を VSH float uniform（投影行列）として吐く**。
 従って自前ノードがこの関数を再生スロットに使う場合、投影は自前ノード +0x34 で決まる。"
+0x005682F4,line,gx_count
 0x0056832C,line,"IDA-opus-5.5-F095 (HIGH: static + hardware 2026-10-06): Layout+0x138 (u8) == 1 -> PICA scissor mode 3 (reg 0x65) from floats +0x13C/+0x140/+0x144/+0x148, in framebuffer orientation (both axes reversed). low16 = +0x140 .. +0x140+(+0x148)-1 (clamped by +0x2C), high16 = +0x13C .. +0x13C+(+0x144)-1 (clamped by +0x28). Bottom-screen pixel rect [x0,x1)x[y0,y1): +0x13C = 320-x1, +0x140 = 240-y1, +0x144 = x1-x0, +0x148 = y1-y0 (hardware: +0x140 = y0 cut everything; 240-y1 clipped exactly at the rect). Emitted every replay even when +0x108==0. Else: mode 0 full screen."
 0x00568330,line,"[ACNL-F0697] Normal scissor branch: data at 0x8A8550 is mode=0, header=0x802F0065, pos=0. Dimension endpoint is built from Layout W,H but mode 0 disables scissor; width mismatch alone does not enable clipping."
 0x0056835C,line,"[ACNL-F0704] MEDIUM/static correction: signed length<=0 skips recorded range replay for THIS invocation. Scissor commands already emitted at 0x568358. Current zero length does not exclude past replay or prove source of displayed framebuffer. F0261 old current node actual ID unverified; see F0703.
@@ -431,7 +435,8 @@ F-240 static: Layout+0x108 <= 0 returns before Drawer setup or GpuCmd_ReplayReco
 0x005683E4,line,"F-233/F-234 訂正: 引数は Layout+0x100=id, +0x104=start, +0x108=length, +0x10C=aux。通常場面の一標本は id30。ロード画像表示中の上 pass は低レベル trace で id8 len0x180 → id10 len0x2C0。id10 は save_wait/load リソースを直接保持する現在のロード画像 Layout。旧「ロード中 id30」は誤り。"
 0x005685A4,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。Layout_Buildはcommandを0x121988経由のa1[5]へ、nwlyt資源実体を全体allocator0x96F150へ分ける。holderを変えても後者の割当先は変わらない。ゲーム全体allocatorを一時差替える移設案は採用しない。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
 0x005685A4,line,"IDA-opus-5.5-F039: accessor(holder+4)->vt[2]('blyt' 0x626C7974, name, 0) -> data; Layout+276=0, +284=1, GetProperty(519), GenCmdlists(1, L+256), SelectList, L+280=size, CmdlistStorage(size,1), SelectList(back), nw::lyt::Layout::Build sub_4B9474(L+16, data, accessor), vt+12(L). Returns 1 at once if L+32 != 0 (already built)."
-0x005685A4,repeatable,"IDA-opus-5.5-F039: accessor(holder+4)->vt[2]('blyt' 0x626C7974, name, 0) -> data; Layout+276=0, +284=1, GetProperty(519), GenCmdlists(1, L+256), SelectList, L+280=size, CmdlistStorage(size,1), SelectList(back), nw::lyt::Layout::Build sub_4B9474(L+16, data, accessor), vt+12(L). Returns 1 at once if L+32 != 0 (already built)."
+0x005685A4,repeatable,"[ACNL-F0714] MEDIUM/static: Verified producer/consumer ABI; see finding for offsets and remaining unknowns.
+IDA-opus-5.5-F039: accessor(holder+4)->vt[2]('blyt' 0x626C7974, name, 0) -> data; Layout+276=0, +284=1, GetProperty(519), GenCmdlists(1, L+256), SelectList, L+280=size, CmdlistStorage(size,1), SelectList(back), nw::lyt::Layout::Build sub_4B9474(L+16, data, accessor), vt+12(L). Returns 1 at once if L+32 != 0 (already built)."
 0x005686D4,func,"[ACNL-F0712] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
 IDA-gpt-6.1-sol-F016 MEDIUM (raw ARM cache gate + F015 user hardware counterexample). F015 draw-time alpha alone cannot hide a static editor main layout: +0x11D=0 skips DrawPaneTree and replays prior commands. Invalidate dirty on each opacity/owner change, including opaque Reset. Evidence work/evidence/interior_presets; device dirty byte not directly observed."
 0x005686D4,line,"F-259: render.txt の ssys::ma::lyt::Layout::RenderFrame と 1:1 で一致する。
@@ -443,7 +448,8 @@ IDA-gpt-6.1-sol-F016 MEDIUM (raw ARM cache gate + F015 user hardware counterexam
   CommitListAndCaptureDelta=nngxStopCmdlistSave（+0x104 start, +0x108 len, +0x10C qStart, +0x110 qCount）
 ★GPU 状態（テクスチャ結び付き・頂点属性・TEV・投影）は DrawBegin1 が確立する。
   replay の列に後から積む方式では状態が確立されないので GPU が止まる（F-256〜F-258）。"
-0x005686D4,repeatable,"F-259: render.txt の ssys::ma::lyt::Layout::RenderFrame と 1:1 で一致する。
+0x005686D4,repeatable,"[ACNL-F0714] MEDIUM/static: Verified producer/consumer ABI; see finding for offsets and remaining unknowns.
+F-259: render.txt の ssys::ma::lyt::Layout::RenderFrame と 1:1 で一致する。
   +0x11F = m_ProjectionDirty（0 なら vtable+0x18 = SetupProjectionMatrix を呼んで 1 にする）
   +0x11D = m_CmdBufferDirty（立っているときだけ記録する）
   GetProperty(519)=nngxGetCmdlistParameteri / SelectList=nngxBindCmdlist /
@@ -486,7 +492,8 @@ IDA-gpt-6.1-sol-F002: MEDIUM追補: 下画面リストmgr+16の記録/replay後0
 IDA-gpt-6.1-sol-F002: MEDIUM追補: Layout+12の優先度でintrusive listへ挿入し次node+8を使う。同フレーム同じLayoutをEditor全体/親経由で重複追加しない。新品Chipは次回Editor_SubmitLayoutsへ任せる。
 IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). F012 confirms ascending priority by original sort branch and ItemDragWindow priority0x83 caller. Private trash0x84 is in front of pocket background, below native option window; hardware ordering pending."
 0x0056928C,line,"[ACNL-F0694] stable ascending unsigned byte priority; 0xFF tail only at insertion, later equal values follow."
-0x0056928C,repeatable,"F-253 HIGH: ★LayoutMgr::AddLayout(mgr, layout, screen)。screen=0 → mgr+4（上画面）、screen=1 → mgr+0x10（下画面）、それ以外は何もしない。挿入は loc_566E68 の昇順ソートで、キーは【Layout+0x0C のバイト】。node[+0x0C] <= 新規[+0x0C] の間だけ進むので、0xFF を入れれば必ず末尾＝最前面になる。リストは毎フレーム UnlinkAll されるため、毎フレーム登録し直す設計になっている。"
+0x0056928C,repeatable,"[ACNL-F0714] MEDIUM/static: Verified producer/consumer ABI; see finding for offsets and remaining unknowns.
+F-253 HIGH: ★LayoutMgr::AddLayout(mgr, layout, screen)。screen=0 → mgr+4（上画面）、screen=1 → mgr+0x10（下画面）、それ以外は何もしない。挿入は loc_566E68 の昇順ソートで、キーは【Layout+0x0C のバイト】。node[+0x0C] <= 新規[+0x0C] の間だけ進むので、0xFF を入れれば必ず末尾＝最前面になる。リストは毎フレーム UnlinkAll されるため、毎フレーム登録し直す設計になっている。"
 0x0056929C,line,list
 0x005692B0,func,"[ACNL-F0693] MEDIUM: top-right Layout phase: viewport 400x240, replay mgr+4 with 0x410, then UnlinkAll(mgr+4). No record walk. Table placement alone does not prove runtime frame order."
 0x005692B0,line,"[ACNL-F0693] top-right: viewport 400x240, replay shared top list, then unlink; no record walk."

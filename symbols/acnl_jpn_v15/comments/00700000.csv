@@ -247,13 +247,21 @@ F-143/F-144: vtable TextBox rendering wrapper. Checks length/font/material and d
 0x0073CF54,line,"F-144 live clock capture: TextBox R0=0x32D07674, string ptr=0x32D07790 containing UTF-16 '00', font=0x3302ABE0, material=0x32D07BA0, length=2; proves the sampled non-conversation hit was the clock."
 0x0073D000,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Return block + 32*TexMap CAPACITY (+0x2C). Each SRT 20 bytes."
 0x0073D000,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
-0x0073D000,repeatable,nwlyt_Material_GetTexSRTs — *(mat+52) + 32*(texMap 数)。texSRT は 1 個 20 バイト（平行移動2/回転1/拡大2）。F-291
+0x0073D000,repeatable,"[ACNL-F0715] MEDIUM/static: Verified producer/consumer ABI; see finding for offsets and remaining unknowns.
+nwlyt_Material_GetTexSRTs — *(mat+52) + 32*(texMap 数)。texSRT は 1 個 20 バイト（平行移動2/回転1/拡大2）。F-291"
 0x0073D014,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. TEV follows AlphaCompare and BlendMode. Return block +32*T+20*S+4*G+8*A+4*L; all offsets from +0x2C capacities/flags."
+0x0073D014,repeatable,"[ACNL-F0715] MEDIUM/static: Verified producer/consumer ABI; see finding for offsets and remaining unknowns.
+"
 0x0073D060,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Return block + 32*T + 20*S + 4*G + 8*A, capacities/flags from +0x2C; optional 4-byte blend mode precedes TEV."
+0x0073D060,repeatable,"[ACNL-F0715] MEDIUM/static: Verified producer/consumer ABI; see finding for offsets and remaining unknowns.
+"
 0x0073D0A0,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Return block + 32*T + 20*S, capacities from +0x2C; each gen 4 bytes."
 0x0073D0A0,line,See function comment: reanalysis ACNL-F0705/F0706/F0708; prior layout/ownership assumptions corrected.
-0x0073D0A0,repeatable,nwlyt_Material_GetTexCoordGens — texSRT の直後。1 個 4 バイト。sub_73B650 は [4*i+1] を座標セットの索引に使う。F-291
+0x0073D0A0,repeatable,"[ACNL-F0715] MEDIUM/static: Verified producer/consumer ABI; see finding for offsets and remaining unknowns.
+nwlyt_Material_GetTexCoordGens — texSRT の直後。1 個 4 バイト。sub_73B650 は [4*i+1] を座標セットの索引に使う。F-291"
 0x0073D0C8,func,"[ACNL-F0705] MEDIUM, static reanalysis, no hardware. Return block + 32*T + 20*S + 4*G, capacities from +0x2C. Optional 8-byte AlphaCompare precedes BlendMode and TEV."
+0x0073D0C8,repeatable,"[ACNL-F0715] MEDIUM/static: Verified producer/consumer ABI; see finding for offsets and remaining unknowns.
+"
 0x00743694,line,ResFont vtable slot: return FINF[20] - FINF[22]. F-129。
 0x00743694,repeatable,ResFont vtable slot: return FINF[20] - FINF[22]. F-129。
 0x007436A8,line,ResFont vtable slot: return signed FINF[1] (line feed field in live CFNU). F-129。
@@ -407,6 +415,8 @@ IDA-gpt-6.1-sol-F012 / MEDIUM追補。壁も層0/親なし・Finalize bit1後な
 0x007799D0,line,IDA-opus-5.5-F040: ceilf; used by ApplyAlignment 0x7E782C (centre: x -= ceil(W/2)).
 0x007799D0,repeatable,IDA-opus-5.5-F040: ceilf; used by ApplyAlignment 0x7E782C (centre: x -= ceil(W/2)).
 0x00795F38,func,IDA-opus-5.5-F080: 見た目の色の表を即値で書く初期化（MOV / STRB / ADD だけ。tools/acnl_look/decode_look_colors.py が復元）。目の色 6×RGB 0xACF5D8、肌（日焼け 8 段階）6 0xACF5EA、髪の色 16×RGB 0xACF602。HHD の色見本と同じ番号順（肌 2 だけ B が 0x85 / HHD 0x8D）。
+0x0079B70C,repeatable,"[ACNL-F0719] MEDIUM/static: Startup initializer called via relative table slot 0x93ECC8. GuardAcquire sets guard BEFORE vptr store. TextWriter ctor only references default object.
+"
 0x0079ED34,func,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: 家具族→actor profileの静的初期化。family30の0xA12500へ0xCD（0x79EEB4）、family74の0xA12558へ0xE2（0x79F064）。Item.bin全対の+0x11、family getterのu16 stride、profile実名/constructor表を照合。
 0x007A6558,func,F-134 caller-specific note: glyph path uses this generic GPU state dispatcher with target 3553 and the descriptor/shared texture handle; function has many non-font callers and remains generically named.
 0x007A7FAC,func,"F-134 caller-specific note: native glyph tail call uses arguments (6,0,4); function is a generic GPU draw/state dispatcher with only one known font caller."
@@ -446,7 +456,8 @@ g_GpuCmdPtr を記録長ぶん進める（＝場所を予約する）。
   **その前に v14 = g_GpuCmdPtr / v15 = g_GpuCmdPtr - mgr[1] をキャッシュしている**。
   戻ったあと `*v14 = 0; g_GpuCmdPtr = v14 + 2;` で古い値を使うので、
   SplitAndSubmit をフックしてカーソルを動かすと**巻き戻されて壊れる**（F-201）。"
-0x007B0A28,repeatable,"★★GpuCmd_ReplayRecordedListRange(listId, off, len, qStart, qCount, flags, allowNoSplit)
+0x007B0A28,repeatable,"[ACNL-F0714] MEDIUM/static: Seven independent 32-bit arguments; state_mask (argument 6, Layout+114) updates cached state dirty masks, NOT GX queue capacity.
+★★GpuCmd_ReplayRecordedListRange(listId, off, len, qStart, qCount, flags, allowNoSplit)
   — 記録済みリストを現在のリストへ**再生**する — F-145 / F-200 / F-201
 
 GX キューのエントリ（28 バイト）をメインリストに積み、

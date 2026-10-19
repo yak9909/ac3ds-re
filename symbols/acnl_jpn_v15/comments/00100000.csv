@@ -1,4 +1,6 @@
 address,kind,text
+0x001019D8,repeatable,"[ACNL-F0719] MEDIUM/static: start+0x10 calls this before application setup. For each signed relative word [0x93E7CC,0x93EF94), call slot+word. Includes 0x79B70C.
+"
 0x00103A18,line,V2-F014 MEDIUM: Save_RunDayChange の後段。Villager_OnDayChangeLate(→Villager_DailyUpdateOnce)、Bbs_OnDayChangeEvents(BBS_Event の掲示)、各種日次処理
 0x00103A18,repeatable,V2-F014 MEDIUM: Save_RunDayChange の後段。Villager_OnDayChangeLate(→Villager_DailyUpdateOnce)、Bbs_OnDayChangeEvents(BBS_Event の掲示)、各種日次処理
 0x00103E34,line,V2-F013 MEDIUM: 村の日替わり。a2>0 で町の日次フラグ 85 項目([TownBase+401743]〜)を初期化、Save_PlayersOnDayChange、sub_10F0AC 等
@@ -104,7 +106,8 @@ IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。command本体size+28*qC
   mgr[1]=base / mgr[2]=size / ★mgr[6]=キュー配列(base+size) / mgr[7]=件数。
   ★base/size だけを手で書くと mgr[6]=0 のままになり、
   GpuCmd_SplitAndSubmit が mgr[6]+28*mgr[8] ≡ 0 付近へ書いて落ちる。"
-0x00121988,repeatable,"F-261: = nngxCmdlistStorage。現在選択中のマネージャに対して
+0x00121988,repeatable,"[ACNL-F0720] MEDIUM/static: No boolean/status return. Current-manager-null returns without allocating. Allocation null is stored at mgr+4, then ZeroFill(base+command_bytes,28*gx_capacity) runs unchecked; failure can fault before return. R0 on normal exit is end address, not success status.
+F-261: = nngxCmdlistStorage。現在選択中のマネージャに対して
   1 回の確保（size + 28*qCount）でバッファと GX キューをまかなう。
   mgr[1]=base / mgr[2]=size / ★mgr[6]=キュー配列(base+size) / mgr[7]=件数。
   ★base/size だけを手で書くと mgr[6]=0 のままになり、
@@ -125,6 +128,7 @@ IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。R0=件数/R1=id出力�
 他地域: USA=00126568  EUR=0012658C
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x00126BF0,func,"IDA-gpt-6-F002 (MEDIUM, 2026-10-11): converts signed milliseconds since 2000-01-01 to the native 12-byte date. Assembly/caller Time_DateFromSystemNs and execution of original input code at 2000-01-01, 2012-01-01, 2026-10-11, 2048-02-29 independently agree; weekday is Sunday=0. PC fixture is not hardware confirmation. Returns the computed year in R0."
+0x00127D34,line,gx_count
 0x00127D98,func,"[ACNL-F0709] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
 "
 0x00127EDC,func,"[ACNL-F0709] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
@@ -444,6 +448,8 @@ IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catal
 0x0013B9A8,repeatable,"IDA-opus-5.5-F036: TextBox vt[28]。(箱, 文字数, 旗) で文字の器 (文字数+1)*2 と描画用の器(+260)をレイアウトのアロケータから確保。+212=器 / +248=器のバイト数。旗 = +260 の +9。旧い器は vt[29] で返す"
 0x0013BB08,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Free wrapper: R0=ptr -> R1=ptr, R0=current off_96F150, tailcall allocator vslot+0x0C. Used by Picture/Material/coordinate array destruction."
 0x0013C518,func,F-133 static: replaces ResFont+0x0C glyph-sheet descriptor table; frees old table and initializes new descriptors when non-null.
+0x0013C518,repeatable,"[ACNL-F0717] MEDIUM/static: Verified producer/consumer ABI; see finding for offsets and remaining unknowns.
+"
 0x0013C548,line,F-133: non-null table is passed to nwfont_ResFont_InitGlyphSheetDescriptors.
 0x0013F718,func,"IDA-gpt-6-F006 / GPT-6, MEDIUM (2026-10-12): SeadList_Remove. Native ARM independently checked against original code.bin; caller/RTTI/data accesses corroborate the contract.  Hardware unverified; no LOW rename."
 0x0013F84C,line,"IDA-opus-5.5-F095: sead list push_back(list, node): list+4 head / list+8 tail, node+4 prev / node+8 next; does nothing if node prev|next != 0. LayoutMgr_AddLayout lists: top = mgr+4, bottom = mgr+0x10."
@@ -455,11 +461,14 @@ V2-F027 HIGH: **VA → GPU（物理）番地の変換。対応外の領域は例
 F-135: code_runtime.elf.i64とのraw bytes照合で0x40 bytes差分0。descriptor field解釈の実機値は未採取。
 補足監査: +0x08はraw sheet pointerそのものの>>3ではなく、sub_143B54(=0x140C40のアドレス変換)後の値を>>3したGPU表現。"
 0x00141B48,line,"F-136 correction: descriptor +0x08 stores sub_143B54(raw_sheet)>>3, where 0x143B54 thunks to 0x140C40 address conversion. It is not a simple raw virtual pointer >>3."
-0x00141B48,repeatable,"F-136 correction: descriptor +0x08 stores sub_143B54(raw_sheet)>>3, where 0x143B54 thunks to 0x140C40 address conversion. It is not a simple raw virtual pointer >>3."
+0x00141B48,repeatable,"[ACNL-F0717] MEDIUM/static: Verified producer/consumer ABI; see finding for offsets and remaining unknowns.
+F-136 correction: descriptor +0x08 stores sub_143B54(raw_sheet)>>3, where 0x143B54 thunks to 0x140C40 address conversion. It is not a simple raw virtual pointer >>3."
 0x001426C8,func,"F-133 static: initializes one 0x14-byte descriptor per TGLP sheet, then flushes raw atlas data through nwgfx_GspGpu_FlushDataCache.
 F-135: code_runtime.elf.i64とのraw bytes照合で0x90 bytes差分0。静的descriptor loopのビルド対応を確認。"
 0x001426C8,line,"F-133/F-136 static: initializes one 0x14-byte descriptor per TGLP sheet, then sends the contiguous raw atlas range to nwgfx_GspGpu_RangeCacheOp_1F (IPC header 0x001F0082). Exact command-0x1F cache semantics are not identified."
-0x001426C8,repeatable,"F-133/F-136 static: initializes one 0x14-byte descriptor per TGLP sheet, then sends the contiguous raw atlas range to nwgfx_GspGpu_RangeCacheOp_1F (IPC header 0x001F0082). Exact command-0x1F cache semantics are not identified."
+0x001426C8,repeatable,"[ACNL-F0717] MEDIUM/static: Verified producer/consumer ABI; see finding for offsets and remaining unknowns.
+F-133/F-136 static: initializes one 0x14-byte descriptor per TGLP sheet, then sends the contiguous raw atlas range to nwgfx_GspGpu_RangeCacheOp_1F (IPC header 0x001F0082). Exact command-0x1F cache semantics are not identified."
+0x001426CC,line,gpu_format
 0x001426DC,line,"F-133: sheet count comes from ResFont vtable slot 26 (nwfont_ResFont_GetGlyphSheetCount), equivalent to LE16(TGLP+8)."
 0x00142704,line,F-133: raw sheet address = TGLP+0x14 (TGLP+20) + sheet_index * LE32(TGLP+4) stride.
 0x0014271C,line,"F-133: descriptor init receives format=LE16(TGLP+0x0A), width=LE16(TGLP+0x10), height=LE16(TGLP+0x12)."
@@ -495,6 +504,8 @@ QADD16 / USAT16 の SIMD、係数 11277 / 29033 = YCbCr。
 0x0015041C,repeatable,"IDA-opus-5.5-F023 LOW: BsStrcMgr_SpawnStructures が役場のとき、この戻り値（float[3] へのポインタ、[0]=x/[2]=z）を役場の位置に足して AcHomeTicketMachine（profile 0x9E）を作る。実機のずれ (-76, +52)。"
 0x00150C8C,line,IDA-opus-5.5-F050: CRO への中継。行き先 ModuleIndoor seg0 0xB3E0F8 = BsMenuInteriorEditor の ctor（村では ModuleIndoor が無い）
 0x00150C8C,repeatable,IDA-opus-5.5-F050: CRO への中継。行き先 ModuleIndoor seg0 0xB3E0F8 = BsMenuInteriorEditor の ctor（村では ModuleIndoor が無い）
+0x00152F64,line,gx_count
+0x001539F0,line,gx_count
 0x0015504C,line,"※未確定 (F-97)。GPU コマンドを使うが、描画ループとは限らない。
 19 スロットをビットマスクで選び、sub_22BD1C(p, n, n, 1,0,0, 10, 0, 0x10000, 0)
 （正方形テクスチャ生成？）を呼ぶ。n は 64/128/256/512/1024 に丸められる。

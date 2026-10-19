@@ -45,6 +45,8 @@ confidence **HIGH**（静的 + 実機観測。F-102）。
 ★**dword_AD9960 とはフレームごとに入れ替わる（実機で直接観測）。**
   1回目: こちら=0x323B20D0(id2) / AD9960=0x3229D06C(id1)
   2回目: こちら=0x3229D06C(id1) / AD99"
+0x00AD995C,repeatable,"[ACNL-F0720] MEDIUM/static: Current selected list manager; +4 is the raw allocation result; prefix type excludes later fields.
+"
 0x00ADF864,repeatable,"Vapecord plugin ADDRESSES: NPCCODES_DATA1
 他地域: USA=00AE6864  EUR=00AE5864  KOR=00ADE864
 （プラグイン作者のラベル。検証済みの識別ではない）"

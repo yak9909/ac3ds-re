@@ -82,3 +82,10 @@
 | ACNL-F0710 | Pane・Picture・Material の描画用構造と vtable 型 | Pane 0xD4、Picture 0x158、Material 0x50 の既知メンバーとvtableを型にした。描画はcursor・DrawInfo・描画contextを4引数で受け渡し、Pictureの座標セットは別確保である。 | MEDIUM | A |  |  |
 | ACNL-F0711 | TextBox と ResFont の文字描画用構造および既定 TagProcessor | TextBoxと文字バッチ、ResFontと正規化されたFINF/TGLP/CWDH/CMAP、既定wide TagProcessorを型にした。ResFontは通常確保0x18と独立した埋込み境界が整合し、0x20にはしない。 | MEDIUM | A |  |  |
 | ACNL-F0712 | DrawInfo・Layout ノード・LayoutMgr の描画用構造 | DrawInfoはLayout+0x30に内包され、+0x80はLayoutMgr+0x1Cの文字作業体を指す。Layoutノードのroot・記録範囲・画面と上下リスト、管理者holderへ型を付けた。 | MEDIUM | A |  |  |
+| ACNL-F0714 | Layoutの仮想関数型と視点・アニメーション・再生状態欄 | Layoutのvptrと7slotの仮想表型を付けた。+0xF8は視点Z、+0xFCはアニメーションflags、+0x114は再生状態マスク、+0x118はコマンドのバイト容量である。 | MEDIUM | A |  |  |
+| ACNL-F0715 | Material可変領域の要素型と容量・件数の区別 | Materialの可変領域先頭をTexMap*、各後続部分を要素型とgetterで表した。容量bitsによる配置と件数bitsによる巡回を区別する。 | MEDIUM | A |  |  |
+| ACNL-F0716 | PaneとMaterialのアニメーションリンク番兵 | Pane+0x20/+0x24とMaterial+0x08/+0x0Cはアニメーションリンクリストの循環番兵であり、その直前のwordは件数である。 | MEDIUM | A |  |  |
+| ACNL-F0717 | ResFontシート記述子とCWDH・CMAP可変長要素 | ResFontのシート記述子は0x14バイトで、変換後GPUアドレス>>3と高さ/幅を持つ。CWDH幅列は+8から3バイト刻み、CMAP方式2は+0xCのu16件数に続き+0xEから4バイトの文字/glyph対を置く。 | MEDIUM | A |  |  |
+| ACNL-F0718 | 文字バッチのヘッダー・字形レコードと必要量 | 文字バッチは0x28バイトの固定ヘッダー、44バイトの字形列、処理済みビット列、16バイト境界のコマンド列を持つ。+4の件数と+6の描画制限は、+0の確保上限とは別である。 | MEDIUM | A |  |  |
+| ACNL-F0719 | 既定TagProcessorは起動時の相対初期化表から構築される | 既定のchar/wide TagProcessorはstartから起動時の相対オフセット表を巡回して初期化される。TextWriterのコンストラクタはwide既定オブジェクトを参照するだけである。 | MEDIUM | A |  |  |
+| ACNL-F0720 | GPUリスト領域確保は失敗を戻り値で通知しない | GpuCmd_AllocateListStorageは成功/失敗を返すAPIではなく、確保結果nullも検査せずGX領域を初期化する。void型を維持し、選択中managerの既知先頭へ型を付けた。 | MEDIUM | A |  |  |

@@ -1,4 +1,6 @@
 address,kind,text
+0x00900608,repeatable,"[ACNL-F0714] MEDIUM/static: Seven-slot Layout table; +8 replay, +14 record, +18 projection; +10 Build has four arguments.
+"
 0x00901EEC,line,"vtable for fgobj::ObjectSwing (RTTI 実測 F-43)
 継承: fgobj::ObjectExe -> fgobj::ObjectBase -> ssys::st::ListNodePriorityBase -> ssys::st::ListNode"
 0x00901F4C,line,vtable for fgobj::ObjectTimer (RTTI 実測 F-43)
@@ -16,6 +18,8 @@ address,kind,text
 他地域: USA=0090B664  EUR=0090A4E4  KOR=00903888
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x009049B4,line,vtable for script::TalkRuby (RTTI 実測 F-49)。TalkSeq_Create が 2 つ作る。
+0x0093ECC8,repeatable,"[ACNL-F0719] MEDIUM/static: Relative offset 0xFFE5CA44; slot+signed offset=0x79B70C. Runtime_RunStaticInitializers visits this slot.
+"
 0x00947E0C,repeatable,"Vapecord plugin ADDRESSES: USER_WHO_WANTS_TO_LEAVE
 他地域: USA=0094EE0C  EUR=0094DE0C  KOR=00946E0C
 （プラグイン作者のラベル。検証済みの識別ではない）"
@@ -242,7 +246,11 @@ IDA-gpt-6.1-sol-F011 / MEDIUM。nwlyt全体allocatorポインタ。Layout/AnimTr
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x0097C0B0,line,"[ACNL-F0711] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Typed object/holder; see record.
 "
+0x0097C0B0,repeatable,"[ACNL-F0719] MEDIUM/static: Initialized during runtime static initializer traversal, prior to normal TextBox draw. GuardAcquire sets bit0 before vptr assignment.
+"
 0x0097C0B4,line,"[ACNL-F0711] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Typed object/holder; see record.
+"
+0x0097C0B4,repeatable,"[ACNL-F0719] MEDIUM/static: Initialized during runtime static initializer traversal, prior to normal TextBox draw. GuardAcquire sets bit0 before vptr assignment.
 "
 0x0097F660,line,IDA-gpt-6-sol-F005: five groups of three float offsets initialized in AcPlayer_UpdatePositionWithFieldChecks and used as movement probes.
 0x0097F6F4,repeatable,"Vapecord plugin ADDRESSES: CAMCOORD

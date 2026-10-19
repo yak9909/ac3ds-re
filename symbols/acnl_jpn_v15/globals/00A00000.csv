@@ -11,6 +11,6 @@ address,size,name,type,confidence,source,refs
 0x00AD0253,1,vc_KEYENTER,,,legacy-idb,
 0x00AD05C0,64,vc_KEYAT,,,legacy-idb,
 0x00AD0630,4,vc_CUSTOMKEY,,,legacy-idb,
-0x00AD995C,4,g_GpuCmdListMgr,,,legacy-idb,
+0x00AD995C,4,g_GpuCmdListMgr,GpuCmdListStoragePrefix *,MEDIUM,analysis,
 0x00ADF864,4,vc_NPCCODES_DATA1,,,legacy-idb,
 0x00ADF870,1,vc_U1,,,legacy-idb,
