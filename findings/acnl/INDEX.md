@@ -727,3 +727,5 @@
 | ACNL-F0721 | 入力遮断点と旧状態の扱いを再解析：holdだけではreleaseが残る | MEDIUM | A | active |  |  |
 | ACNL-F0722 | タッチ遮断は画面ロックではなく共有入力の変更である | MEDIUM | A | active |  |  |
 | ACNL-F0723 | SELECTとSTARTの条件付き統合と読み替え前のSELECT除去 | MEDIUM | A | active |  |  |
+| ACNL-F0724 | 更新 RomFS は ARCHIVE_ROMFS とファイルパス {5,0,0} で実機から開け、背景の画像 2 枚を読めた（2026-10-20、HIGH（実機の表示＋呼び出しの静的な確認）） | HIGH | C | active |  |  |
+| ACNL-F0725 | 実機で描画の資源のヒープの空きは、背景の確保の前に合計 3,196,648 バイト・最大の塊 3,196,535 バイトだった（2026-10-20、HIGH（実機の表示）） | HIGH | C | active |  |  |
