@@ -53,3 +53,5 @@
 | ACNL-F0629 | T022 の窓が開かないのは読み込みのヒープ不足（2026-10-08、HIGH: 実機の値＋静的） | decor_catalog2 の実機（ida-pro-mcp、停止中に s_win_state ← Loading を書いて観測）: 窓の arc は読めている（s_catFile あり、517,032 B）。OpenWindow のレイアウト 3 つ・アニメ 9 つ・格子のペイン 45 は全部できていて、 | HIGH | S |  |  |
 | ACNL-F0644 | crash_dump_00000006 の直接fault | **確度: HIGH（dump＋本体命令列）。timing raceという旧帰属は撤回。** | HIGH | B |  |  |
 | ACNL-F0713 | Layout アロケータと ExpHeap の空きリスト構造 | Layoutアロケータはvptrとheapポインタを持ち、Alloc/Freeはheapの仮想関数へ引数を引き継ぐ。ExpHeapのfree/usedリストとブロックのリンク・payload長の既知部分へ型を付けた。 | MEDIUM | A |  |  |
+| ACNL-F0724 | 更新 RomFS は ARCHIVE_ROMFS とファイルパス {5,0,0} で実機から開け、背景の画像 2 枚を読めた（2026-10-20、HIGH（実機の表示＋呼び出しの静的な確認）） | 2026-10-20 の実機で、プラグインから ARCHIVE_ROMFS・ファイルパス {5,0,0} により更新データの RomFS を開き、Layout/Title/opng_titl.arc の背景 2 枚（BCLIM 各 168 バイト）を読めた。ARCHIVE_SAVEDATA_AND_CONTENT は使っていない。 | HIGH | C |  |  |
+| ACNL-F0725 | 実機で描画の資源のヒープの空きは、背景の確保の前に合計 3,196,648 バイト・最大の塊 3,196,535 バイトだった（2026-10-20、HIGH（実機の表示）） | 2026-10-20 の実機で、描画の資源（字形・自作 UI）の確保の後、背景の確保の前にゲームのヒープを gohan が測った空きは、合計 3,196,648 バイト・最大の塊 3,196,535 バイト（整列 128）。 | HIGH | C |  |  |
