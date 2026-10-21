@@ -729,13 +729,13 @@
 | ACNL-F0723 | SELECTとSTARTの条件付き統合と読み替え前のSELECT除去 | MEDIUM | A | active |  |  |
 | ACNL-F0724 | 更新 RomFS は ARCHIVE_ROMFS とファイルパス {5,0,0} で実機から開け、背景の画像 2 枚を読めた（2026-10-20、HIGH（実機の表示＋呼び出しの静的な確認）） | HIGH | C | active |  |  |
 | ACNL-F0725 | 実機で描画の資源のヒープの空きは、背景の確保の前に合計 3,196,648 バイト・最大の塊 3,196,535 バイトだった（2026-10-20、HIGH（実機の表示）） | HIGH | C | active |  |  |
-| ACNL-F0726 | 描画の確保先は 2D UI・graphic FCRAM・VRAM A/B に分かれる | MEDIUM | ? | active |  |  |
-| ACNL-F0727 | 手紙の画像生成は UI ヒープから別画像を確保し、結果を検査せず複製する | MEDIUM | ? | active |  |  |
-| ACNL-F0728 | 画像キャッシュは ArcResourceAccessor 単位で、破棄時に参照が無効になる | MEDIUM | ? | active |  |  |
-| ACNL-F0729 | 通常の字形シートは専用 FontHeap にあり、CMAP と状態を通して参照できる | MEDIUM | ? | active |  |  |
-| ACNL-F0730 | nw::lyt は最大6段のTEVと3組の通常テクスチャ・UVを記録へ送る | MEDIUM | ? | active |  |  |
-| ACNL-F0731 | タイトルの地は16角の2画像を6枚のPictureで重ね、150フレームで動かす | MEDIUM | ? | active |  |  |
-| ACNL-F0732 | VRAM ExpHeap の空き・使用中リストと整列後の最大枠 | MEDIUM | ? | active |  |  |
-| ACNL-F0733 | 通常フォントの未収録文字と追加 JIS 書体の補完範囲 | MEDIUM | ? | active |  |  |
-| ACNL-F0734 | GX 完了カウンタと Framework の前回リスト待ち | MEDIUM | ? | active |  |  |
-| ACNL-F0736 | 手紙停止標本の空きと使用中合計、所有量の逆算条件 | MEDIUM | ? | active |  |  |
+| ACNL-F0726 | 描画の確保先は 2D UI・graphic FCRAM・VRAM A/B に分かれる | MEDIUM | A | active |  |  |
+| ACNL-F0727 | 手紙の画像生成は UI ヒープから別画像を確保し、結果を検査せず複製する | MEDIUM | A | active |  |  |
+| ACNL-F0728 | 画像キャッシュは ArcResourceAccessor 単位で、破棄時に参照が無効になる | MEDIUM | A | active |  |  |
+| ACNL-F0729 | 通常の字形シートは専用 FontHeap にあり、CMAP と状態を通して参照できる | MEDIUM | A | active |  |  |
+| ACNL-F0730 | nw::lyt は最大6段のTEVと3組の通常テクスチャ・UVを記録へ送る | MEDIUM | A | active |  |  |
+| ACNL-F0731 | タイトルの地は16角の2画像を6枚のPictureで重ね、150フレームで動かす | MEDIUM | A | active |  |  |
+| ACNL-F0732 | VRAM ExpHeap の空き・使用中リストと整列後の最大枠 | MEDIUM | A | active |  |  |
+| ACNL-F0733 | 通常フォントの未収録文字と追加 JIS 書体の補完範囲 | MEDIUM | A | active |  |  |
+| ACNL-F0734 | GX 完了カウンタと Framework の前回リスト待ち | MEDIUM | A | active |  |  |
+| ACNL-F0736 | 手紙停止標本の空きと使用中合計、所有量の逆算条件 | MEDIUM | A | active |  |  |

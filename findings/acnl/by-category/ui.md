@@ -89,6 +89,6 @@
 | ACNL-F0718 | 文字バッチのヘッダー・字形レコードと必要量 | 文字バッチは0x28バイトの固定ヘッダー、44バイトの字形列、処理済みビット列、16バイト境界のコマンド列を持つ。+4の件数と+6の描画制限は、+0の確保上限とは別である。 | MEDIUM | A |  |  |
 | ACNL-F0719 | 既定TagProcessorは起動時の相対初期化表から構築される | 既定のchar/wide TagProcessorはstartから起動時の相対オフセット表を巡回して初期化される。TextWriterのコンストラクタはwide既定オブジェクトを参照するだけである。 | MEDIUM | A |  |  |
 | ACNL-F0720 | GPUリスト領域確保は失敗を戻り値で通知しない | GpuCmd_AllocateListStorageは成功/失敗を返すAPIではなく、確保結果nullも検査せずGX領域を初期化する。void型を維持し、選択中managerの既知先頭へ型を付けた。 | MEDIUM | A |  |  |
-| ACNL-F0728 | 画像キャッシュは ArcResourceAccessor 単位で、破棄時に参照が無効になる | ArcResourceAccessor は名前でTextureInfoをキャッシュし、hitなら画素もentryも追加確保しない。missはロードと156 B entry確保を伴い、accessor/arc破棄に伴って借用画像の参照が失効する。 | MEDIUM | ? |  |  |
-| ACNL-F0731 | タイトルの地は16角の2画像を6枚のPictureで重ね、150フレームで動かす | opng_titl_bgの実資源はA4/L4の16×16各128 Bを6枚のPictureで共有する。明示TEV段は0、各材質の画像は1枚、4層のUVと親の位置を150フレームで動かす。 | MEDIUM | ? |  |  |
-| ACNL-F0733 | 通常フォントの未収録文字と追加 JIS 書体の補完範囲 | 更新側の通常フォントCMAPには汎・符・濁など18漢字とU+301Cが無く、18漢字は追加GardenPlus_JisLevel1にはある。通常フォントだけで任意の日本語UI文字が揃うとはいえない。 | MEDIUM | ? |  |  |
+| ACNL-F0728 | 画像キャッシュは ArcResourceAccessor 単位で、破棄時に参照が無効になる | ArcResourceAccessor は名前でTextureInfoをキャッシュし、hitなら画素もentryも追加確保しない。missはロードと156 B entry確保を伴い、accessor/arc破棄に伴って借用画像の参照が失効する。 | MEDIUM | A |  |  |
+| ACNL-F0731 | タイトルの地は16角の2画像を6枚のPictureで重ね、150フレームで動かす | opng_titl_bgの実資源はA4/L4の16×16各128 Bを6枚のPictureで共有する。明示TEV段は0、各材質の画像は1枚、4層のUVと親の位置を150フレームで動かす。 | MEDIUM | A |  |  |
+| ACNL-F0733 | 通常フォントの未収録文字と追加 JIS 書体の補完範囲 | 更新側の通常フォントCMAPには汎・符・濁など18漢字とU+301Cが無く、18漢字は追加GardenPlus_JisLevel1にはある。通常フォントだけで任意の日本語UI文字が揃うとはいえない。 | MEDIUM | A |  |  |

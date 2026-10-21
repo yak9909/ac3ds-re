@@ -12,7 +12,7 @@ addresses: [0x00743768, 0x007438B4, 0x0052D6A8, 0x0052D418]
 tags: ["font"]
 supersedes: []
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
-by: gpt-6
+by: gpt-6.1-sol
 original_by: ""
 reviewed_by: []
 state: active            # active / consolidated / superseded / duplicate

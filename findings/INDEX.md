@@ -548,16 +548,6 @@
 - ACNL-F0586 下位 `0x0C` でgohanの壁抜けを相手へ強制できるか（2026-10-04、MEDIUM）
 - ACNL-F0587 屋外XYZを下位 `0x0C` で書くための条件と副作用（2026-10-04、静的MEDIUM／実用性LOW）
 - ACNL-F0626 T022 カタログの生成器（Codex 依頼 t022_catalog_arc、gpt-6.1-sol xhigh、2026-10-07。打ち切り。記録 ID なし = 道具と生成物）
-- ACNL-F0726 描画の確保先は 2D UI・graphic FCRAM・VRAM A/B に分かれる
-- ACNL-F0727 手紙の画像生成は UI ヒープから別画像を確保し、結果を検査せず複製する
-- ACNL-F0728 画像キャッシュは ArcResourceAccessor 単位で、破棄時に参照が無効になる
-- ACNL-F0729 通常の字形シートは専用 FontHeap にあり、CMAP と状態を通して参照できる
-- ACNL-F0730 nw::lyt は最大6段のTEVと3組の通常テクスチャ・UVを記録へ送る
-- ACNL-F0731 タイトルの地は16角の2画像を6枚のPictureで重ね、150フレームで動かす
-- ACNL-F0732 VRAM ExpHeap の空き・使用中リストと整列後の最大枠
-- ACNL-F0733 通常フォントの未収録文字と追加 JIS 書体の補完範囲
-- ACNL-F0734 GX 完了カウンタと Framework の前回リスト待ち
-- ACNL-F0736 手紙停止標本の空きと使用中合計、所有量の逆算条件
 
 ## 未レビュー（reviewed_by が空）
 
