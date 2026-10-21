@@ -310,6 +310,7 @@ Calc(スロット 27 0x5498B4) -> Draw(スロット 26 0x549944) -> リスト入
 0x0054C51C,repeatable,"Vapecord plugin ADDRESSES: FREEZE
 他地域: USA=0054DBE8  EUR=0054CC30  KOR=0054C240
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x0054C5D8,func,[ACNL-F0734] MEDIUM。framework+0x148が現在index。反対側のlistを選び、property513→条件付き0x7B1138待ち→0x7B063C→clear。0x54C618は待ちの直後。現在フレームのDrawの後・新規submitの前。timeout/途中停止を除外し、保存済み列からの将来の再参照を別に排除する。
 0x0054C684,line,"★F-356: フレームペーシング（フレーム待ち + 両画面の提示）。
 sead::GameFrameworkCtrNw4c 系 vtable スロット 31。
 本作の派生は UlcdFramework（vtable 0x008E8B54）で 0x0024F0A8 が上書きしている。

@@ -89,6 +89,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x00549944,228,Framework_ProcDraw,,,legacy-idb,,
 0x00549AB0,144,sead_ControllerWrapper_BindSource,"void __fastcall(AcnlControllerWrapperPrefixF103 *wrapper, AcnlControllerPrefixF103 *source, int copy_repeat_settings)",,analysis,ACNL-F0721,
 0x0054C424,316,Framework_ProcOneFrame,,,legacy-idb,,
+0x0054C5D8,160,Framework_WaitPreviousListAndClear,,MEDIUM,analysis,ACNL-F0734,
 0x0054C684,364,Framework_WaitAndPresentFrame,,,legacy-idb,,
 0x0054C818,52,Framework_MainLoop,,,legacy-idb,,
 0x0055C060,88,vc_KEEPCONNECTION_2_ORIGFUNC,,,legacy-idb,,

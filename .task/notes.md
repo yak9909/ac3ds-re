@@ -1,3 +1,13 @@
+## 追加資料による再開（2026-10-21）
+
+- precheckを再適用。日本語「同期/完了」、英語GPU/frame/nngx、コードVramHeap/Cmdlist/getFreeSizeと0x12E7D8/0x120C58/0x74F2A8/0x54C5D8を照会。既存GPUカウンタは役割未確定の古い記録が中心。新たに完了側とframework待ちを一次命令で追う。
+- 実機は操作しない。追加停止ログは観測値の転記で全メモリダンプではない。297,728 Bの所有は推定。gohanソースは読むだけ。
+- #29のパスは再開途中に消失し、main文書に#29の内容がある。停止版1a09557と現mainを同一視しない。読めた現mainと停止ログをevidence/107へハッシュ付き保存した。パス/取り込み状況を非同期で確認中。
+- 前報告の「CPU更新2面を第一候補」は撤回。DrainFrames=8が2面の再利用を止める。実際の1面は256×16 L4=2,048 B。フェンスまたは8回の非参照を保つ多面化を検討する。
+- glyph集合は主674字/数値28字。通常fontに主19字欠ける。18漢字は追加JIS書体に存在、U+301Cは両方に無い。欠字一覧はgohan-font-coverage.json。
+- 新静的根拠: VRAM free先頭heap+0x4C/used+0x40、24B nodeの+0xC量/+0x10padding/+0x14開始。0x74F2A8/0x74F2ECの走査で独立確認。
+- 0x12E6B4はGX完了でrunningMgr+0x28を加算。P3D callback0x128264がここへ入り、framework0x54C5D8は反対側listを0x7B1138で待つ。待ち関数はtimeoutでも帰るため正常returnだけで完了とはしない。
+
 ## 事前確認
 
 - Issue 107。ワーカー。git/gh 禁止、実機操作の依頼なし。全関数 export を一次証拠として読む。IDB は未使用。

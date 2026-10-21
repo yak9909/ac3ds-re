@@ -309,6 +309,8 @@ IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: ItemParamRecord+0x19の上位4
 0x0074D8B0,func,"IDA-gpt-6.1-sol-F006（親 opus-5.5 照合）: (heap, align) → 整列込みの最大連続確保可能量。sead::ExpHeap vtable 0x8FFEF8 の +64（+60 = getFreeSize 0x74D744 の次）。T022 の窓はアイコン枠 184,320 B を合計空きでなくこの値で判定し、最初に確保する（家具の生成後の断片化対策）。
 IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。R0=ExpHeap/R1=signed alignment→最大連続量。符号はheap+0x50 directionと掛ける。iconは絶対末尾確保の前後、構築後に余白検査。原本ExpHeap+リンク済み新APIで正/反方向・fragment・返却を照合。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。"
 0x0074DC18,func,IDA-gpt-6.1-sol-F010 / MEDIUM: R0=ExpHeap、R1=size、R2=正alignment、R3=heap+0x74 の探索mode。free list末尾 heap+0x78 からprevへ探索。0x74DC60以降でend-sizeの整列切下げとpadding込みfitを判定。原本ARM1176の末尾alloc 12例と返却を照合。PUSH/POP R4-R7、BX LR。
+0x0074F2A8,func,[ACNL-F0732] MEDIUM。VramExpHeap vslot+0x14。CPU側free list head heap+0x4Cからnode+8でたどりnode+0xCを合算。ExpHeapのfree/used offsetとは異なる。ロック取得/解除があるため読み取りだけの測定では呼び出さず同じ走査をPCで行う。
+0x0074F2EC,func,[ACNL-F0732] MEDIUM。VramExpHeap vslot+0x18。alignment最小4・非2冪なら4。free head+0x4C、node+0x14開始を整列、node+0xC量からpaddingを引いた最大。画像が置けても分割用CPUノード確保が失敗し得る。
 0x0074F3FC,func,"IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): R0 layout, R1 pixel point, R2 output local point. Computes centered ortho bounds from layout+16, shifts pixel X by -width/2 and flips Y about height/2, then applies inverse layout matrix at+116. Identity-transform test endpoints hide incorrect pixel/centered routing."
 0x0074F58C,line,IDA-opus-5.5-F108: 順再生(+0x14==1)は frame(+8) >= frameSize(+4) − 1 で終わり、逆再生(==3)は frame <= 0。ループは終わらない
 0x0074F58C,repeatable,IDA-opus-5.5-F108: 順再生(+0x14==1)は frame(+8) >= frameSize(+4) − 1 で終わり、逆再生(==3)は frame <= 0。ループは終わらない
@@ -480,6 +482,7 @@ g_GpuCmdPtr を記録長ぶん進める（＝場所を予約する）。
   R0 = g_GpuCmdPtr / R1 = [R7,#4] + (off + copied) / R2 = len - copied
 **記録したバイト列はここで物理的に主リストへコピーされる。**
 直後の ADD g_GpuCmdPtr, (len - copied) & ~3 はカーソルを進めるだけ。"
+0x007B1138,func,[ACNL-F0734] MEDIUM。byte_AD98D1が0になるまでyield。ただしqword_AD9A38 timeoutでもcallback/returnするため、戻っただけで全完了とはしない。Framework 0x54C5D8が前回listをclearする前に使用。
 0x007C6EB0,line,IDA-opus-5.5-F036 MEDIUM: InstSelect<8> ctor (4812 B). ゲーム共通の 8 行リスト。純粋仮想 vt[13]=一覧を作る(件数+2500) / vt[25]=i 行目の語(vt[3] が UTF-16)。docs/topics/game_list.md
 0x007C6EB0,repeatable,IDA-opus-5.5-F036 MEDIUM: InstSelect<8> ctor (4812 B). ゲーム共通の 8 行リスト。純粋仮想 vt[13]=一覧を作る(件数+2500) / vt[25]=i 行目の語(vt[3] が UTF-16)。docs/topics/game_list.md
 0x007C847C,line,"IDA-opus-5.5-F086 (MEDIUM, static): head slot double buffer step. cur = [data+36]&1, loaded keys data+64+20*cur, pending key +40, loading flags +60/+61/+62. Key mismatch -> load into the other buffer (PlayerHeadSlot_LoadStep) then ++[data+36]. gohan PlayerClone::ReloadRealFace breaks byte 0 of the current key (0xFE) to force a reload with new face slots."

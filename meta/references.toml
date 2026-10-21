@@ -61,4 +61,4 @@ source = "devkitPro/libctru, devkitPro/citro3d, ObsidianX/3dstools, pleonex/Clyp
 license = "各公開ソースのライセンスに従う。libctru/citro3dは各ヘッダ、ClypoはMIT。他は同梱本文と上流を参照"
 path = "study107/"
 encoding = "UTF-8"
-files = 11
+files = 13
