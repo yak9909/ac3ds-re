@@ -53,3 +53,12 @@ path = "v1-REFERENCES/README.md"
 sha256 = "bb3cc7d143fcc56646ee1393eca1062ac186a215ed289e7cbd6800d9c2deaa47"
 encoding = "UTF-8"
 files = 1
+
+
+[refs.STUDY107_PUBLICS]
+description = "Issue 107: GPU・メモリ・NintendoWare形式の公開資料。manifest.jsonに各URL・取得日・SHA256。3dbrewは記録中のURLと検索結果を参照"
+source = "devkitPro/libctru, devkitPro/citro3d, ObsidianX/3dstools, pleonex/Clypo, dnasdw/bclimtool, dnasdw/3dsfont, doldecomp/ogws。各原URLはmanifest.json"
+license = "各公開ソースのライセンスに従う。libctru/citro3dは各ヘッダ、ClypoはMIT。他は同梱本文と上流を参照"
+path = "study107/"
+encoding = "UTF-8"
+files = 13

@@ -106,7 +106,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x004B7DEC,384,TextBox_UpdateDrawState,,,legacy-idb,,
 0x004B8090,712,DrawCtx_PushVertexColors,,,legacy-idb,,
 0x004B8360,340,DrawCtx_FlushBatch,,,legacy-idb,,
-0x004B8790,948,nwlyt_Material_EmitTevStages,,,legacy-idb,,
+0x004B8790,948,nwlyt_Material_EmitTevStages,,MEDIUM,analysis,ACNL-F0730,
 0x004B8C34,84,nwlyt_Drawer_BeginLayoutReplayState,,,legacy-idb,,
 0x004B8CF0,32,nw_lyt_AllocMemory,"void *__fastcall(unsigned int bytes, int alignment)",MEDIUM,analysis,ACNL-F0708;ACNL-F0713,
 0x004B8D14,376,nw_lyt_Layout_BuildPaneByKind,,,analysis,ACNL-F0705,

@@ -13,7 +13,9 @@ address,kind,text
 0x0060BA04,line,anim
 0x00611618,func,V2-F019 MEDIUM: 部屋フラグ 8 のとき UnitCursor の資源（ScStage+0x420）と専用ヒープ（+0x418）を解放
 0x00611928,func,"[ACNL-F0692] UnitCursor load is conditional on Room_HasFlags(0x8,current). Heap allocator this+0x418 (heap pointer+0x41C), size0x5000, name UnitCursorRes; resource holder this+0x420 for Ftr/Chip/UnitCursor.bcres. ItemIndoor.bin has a different condition (0x8 OR 0x10000000 at 0x610A94); flag0x20000000 is used later for camping car info."
-0x006165A8,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。memoryType0x10000はa1[5] ExpHeap vtable+0x18へR0=heap/R1=stack上a5のsize/R2=整列でtail call。0x20000/0x30000はa1[6]/[7]のVRAM。0x105整列種別は16 Bに変換。command/icon移設先の根拠。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
+0x00616510,func,[ACNL-F0726] MEDIUM。MemoryMgr vslot+0xC。第5引数pointerをR1へ移し、種別0x10000は+0x14のExpHeap vslot+0x1C、0x20000/0x30000は+0x18/+0x1CのVRAM heap vslot+0xCへ尾呼出し。alloc 0x6165A8・原本vtable 0x904FA4と照合。実機残量は未測定。
+0x006165A8,func,"[ACNL-F0726] MEDIUM。kind→alignmentは0x100:4、0x103:64、0x102/104/105:16、0x101および範囲外:128。疑似Cのdefaultでkindが残る形は誤り。SPからsizeを読む5引数。対のfreeは0x616510。正規VRAM確保経路の存在と手紙中の空きは別。
+IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。memoryType0x10000はa1[5] ExpHeap vtable+0x18へR0=heap/R1=stack上a5のsize/R2=整列でtail call。0x20000/0x30000はa1[6]/[7]のVRAM。0x105整列種別は16 Bに変換。command/icon移設先の根拠。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。"
 0x00616818,repeatable,"Vapecord plugin ADDRESSES: SENDDATA1
 他地域: USA=00617D20  EUR=00616D58  KOR=006163C0
 （プラグイン作者のラベル。検証済みの識別ではない）"

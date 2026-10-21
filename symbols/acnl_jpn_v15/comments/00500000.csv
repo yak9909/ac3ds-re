@@ -216,6 +216,7 @@ world +X = 画面の下 / world -Z = 画面の右。（十字キーで +X 方向
 0x0052D304,repeatable,"Vapecord plugin ADDRESSES: TOWN
 他地域: USA=0052E9D0  EUR=0052DA18  KOR=0052D028
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x0052D6A8,func,[ACNL-F0729] MEDIUM。font Mgrのslot状態3のときだけ埋込みResFontを返し、未完了なら0。slot0通常/1ルビ/2数字/3小数字/4追加slot。通常はmanager+0x188。確保を呼ばない。Mgr/FontHeap破棄を越える寿命保証はない。初期化0x52D418・読込0x52D74CとRomFSのCMAP/TGLPを独立照合。
 0x005349DC,func,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: カテゴリ表base0x871A24、12 B/件、155件。+0 firstId/+2 lastIdInclusive/+4 count/+8 name。呼出側のindex式と原本codeの全表bytes/Item.bin全対を独立照合。Vapecord由来名は来歴を保つ。
 0x005349DC,repeatable,"Vapecord plugin ADDRESSES: SETUP1
 他地域: USA=005360A8  EUR=005350F0  KOR=00534700
@@ -309,6 +310,7 @@ Calc(スロット 27 0x5498B4) -> Draw(スロット 26 0x549944) -> リスト入
 0x0054C51C,repeatable,"Vapecord plugin ADDRESSES: FREEZE
 他地域: USA=0054DBE8  EUR=0054CC30  KOR=0054C240
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x0054C5D8,func,[ACNL-F0734] MEDIUM。framework+0x148が現在index。反対側のlistを選び、property513→条件付き0x7B1138待ち→0x7B063C→clear。0x54C618は待ちの直後。現在フレームのDrawの後・新規submitの前。timeout/途中停止を除外し、保存済み列からの将来の再参照を別に排除する。
 0x0054C684,line,"★F-356: フレームペーシング（フレーム待ち + 両画面の提示）。
 sead::GameFrameworkCtrNw4c 系 vtable スロット 31。
 本作の派生は UlcdFramework（vtable 0x008E8B54）で 0x0024F0A8 が上書きしている。
@@ -411,6 +413,7 @@ while(1) { vtbl[0x64](this); }  = Framework_ProcOneFrame を回すだけ。
 0x00567244,repeatable,"IDA-opus-5.5-F036: arc 読み込み(holder, path)。終わるまで 0 を返すので毎フレーム呼ぶ。テクスチャは VRAM"
 0x005676C8,line,"IDA-opus-5.5-F045 (MEDIUM static): BCLIM (CLIM footer) -> VRAM, fills TextureInfo {0, addr, w|h<<16, pow2w|pow2h<<16, format}."
 0x005676C8,repeatable,"IDA-opus-5.5-F045 (MEDIUM static): BCLIM (CLIM footer) -> VRAM, fills TextureInfo {0, addr, w|h<<16, pow2w|pow2h<<16, format}."
+0x0056795C,func,[ACNL-F0728] MEDIUM。ArcResourceAccessorVRAM破棄。FCRAM以外ではTexBufListの各画素を同じmemoryTypeのfree callbackで返し、cache entryとaccessorを破棄。浅いTextureInfoのコピーに所有やpinは付かない。
 0x00567A50,repeatable,"Vapecord plugin ADDRESSES: ACSYSTEM_DATA1
 他地域: USA=00569118  EUR=00568160  KOR=00567770
 （プラグイン作者のラベル。検証済みの識別ではない）"

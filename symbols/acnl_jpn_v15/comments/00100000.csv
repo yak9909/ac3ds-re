@@ -131,7 +131,8 @@ IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。R0=件数/R1=id出力�
 0x00127D34,line,gx_count
 0x00127D98,func,"[ACNL-F0709] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
 "
-0x00127EDC,func,"[ACNL-F0709] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
+0x00127EDC,func,"[ACNL-F0734] MEDIUM追補。property522が読むmgr+0x28は要求完了カーソル。0x12E6B4がGSP要求完了時に加算し、0x12E7D8のmgr+0x24提出数とは別。旧コメントの役割未確定を更新。getterの種類によってはcursor同期の書込みがある。
+[ACNL-F0709] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
 "
 0x00127EDC,line,"★★GpuCmd_GetProperty(id, &out) — コマンドバッファの各種値を取得
 (F-97 / F-101 で訂正)。confidence MEDIUM（静的解析のみ）。
@@ -238,6 +239,7 @@ IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。R0=件数/R1=id出力�
 0x0012B110,func,"F-364: AAPCS six-argument signature; fifth argument receivedHandle at entry SP+0, signed 64-bit timeout at SP+8/+12, SP+4 is alignment gap. Existing caller 0x489554 ABI verified via original ARM with external calls mocked. Raw wakeup commands 0xA/0xB/0xC -> return 2/3/4. Handles NotifyToWait, receive, GSP reacquire/VRAM restore and other wakeups. Do not mix return enum with raw APT command or SwkbdResult."
 0x0012B6E8,func,"F-364: closes current APT service session, zeros [0x977810], releases mutex [0x97780C]. The low-level IPC functions cannot simply use an assumed permanently open handle."
 0x0012D2BC,func,IDA-gpt-6.1-sol-F002: MEDIUM: Layout vptrを設定しintrusive node/実装/優先度0x80など初期化。wrapper0x12653CとChip_Ctorの呼出しで照合。Out後Setupだけではこのnode/全member初期化は起きない。
+0x0012E6B4,func,[ACNL-F0734] MEDIUM。GSP要求完了経路。running mgr [0xAD9960]+0x28を1加算、+0x24は提出側。末尾または途中停止で実行中flag0xAD98D1を0。最終callbackはmgr+0x38。P3D/PPF等の登録0x121E2Cと提出0x12E7D8で独立照合。
 0x0012E7D8,line,"★★GxQueue_Dispatch() — 28 (0x1C) バイト単位の GX キューを型で振り分ける
 (F-96 / F-100 / F-103)。entry = mgr[6] + 28 * index、entry[0] が型。
 
