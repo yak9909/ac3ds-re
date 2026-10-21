@@ -55,3 +55,5 @@
 | ACNL-F0713 | Layout アロケータと ExpHeap の空きリスト構造 | Layoutアロケータはvptrとheapポインタを持ち、Alloc/Freeはheapの仮想関数へ引数を引き継ぐ。ExpHeapのfree/usedリストとブロックのリンク・payload長の既知部分へ型を付けた。 | MEDIUM | A |  |  |
 | ACNL-F0724 | 更新 RomFS は ARCHIVE_ROMFS とファイルパス {5,0,0} で実機から開け、背景の画像 2 枚を読めた（2026-10-20、HIGH（実機の表示＋呼び出しの静的な確認）） | 2026-10-20 の実機で、プラグインから ARCHIVE_ROMFS・ファイルパス {5,0,0} により更新データの RomFS を開き、Layout/Title/opng_titl.arc の背景 2 枚（BCLIM 各 168 バイト）を読めた。ARCHIVE_SAVEDATA_AND_CONTENT は使っていない。 | HIGH | C |  |  |
 | ACNL-F0725 | 実機で描画の資源のヒープの空きは、背景の確保の前に合計 3,196,648 バイト・最大の塊 3,196,535 バイトだった（2026-10-20、HIGH（実機の表示）） | 2026-10-20 の実機で、描画の資源（字形・自作 UI）の確保の後、背景の確保の前にゲームのヒープを gohan が測った空きは、合計 3,196,648 バイト・最大の塊 3,196,535 バイト（整列 128）。 | HIGH | C |  |  |
+| ACNL-F0726 | 描画の確保先は 2D UI・graphic FCRAM・VRAM A/B に分かれる | 2D_UI_Heap は 3,866,624 B、graphicHeap は別の 7,008,256 B。MemoryMgr は種別 0x10000/0x20000/0x30000 を FCRAM/VRAM A/VRAM B へ振り分け、対応する解放関数も持つ。 | MEDIUM | ? |  |  |
+| ACNL-F0727 | 手紙の画像生成は UI ヒープから別画像を確保し、結果を検査せず複製する | 手紙はモデル資源を読み、別に256×256の画像をUI用Allocatorから作って0x20000 Bを複製する。主リストや通常フォントは別ヒープであり、過去の3.37 MBを全て画像とみなせない。 | MEDIUM | ? |  |  |
