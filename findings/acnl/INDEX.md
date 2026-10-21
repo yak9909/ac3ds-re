@@ -735,3 +735,7 @@
 | ACNL-F0729 | 通常の字形シートは専用 FontHeap にあり、CMAP と状態を通して参照できる | MEDIUM | ? | active |  |  |
 | ACNL-F0730 | nw::lyt は最大6段のTEVと3組の通常テクスチャ・UVを記録へ送る | MEDIUM | ? | active |  |  |
 | ACNL-F0731 | タイトルの地は16角の2画像を6枚のPictureで重ね、150フレームで動かす | MEDIUM | ? | active |  |  |
+| ACNL-F0732 | VRAM ExpHeap の空き・使用中リストと整列後の最大枠 | MEDIUM | ? | active |  |  |
+| ACNL-F0733 | 通常フォントの未収録文字と追加 JIS 書体の補完範囲 | MEDIUM | ? | active |  |  |
+| ACNL-F0734 | GX 完了カウンタと Framework の前回リスト待ち | MEDIUM | ? | active |  |  |
+| ACNL-F0736 | 手紙停止標本の空きと使用中合計、所有量の逆算条件 | MEDIUM | ? | active |  |  |

@@ -12,7 +12,7 @@ addresses: [0x00120C58, 0x00120BE0, 0x00565DAC, 0x00565D20, 0x0074F2A8, 0x0074F2
 tags: ["heap"]
 supersedes: []
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
-by: auto
+by: gpt-6
 original_by: ""
 reviewed_by: []
 state: active            # active / consolidated / superseded / duplicate

@@ -8,11 +8,11 @@ category: ui
 build: acnl_jpn_v15
 confidence: MEDIUM
 tool: "全関数export・実RomFS・提供停止ログ・公開ソース"
-addresses: [0x00743768, 0x007438B4, 0x0052D6A8, 0x0052D9F8]
+addresses: [0x00743768, 0x007438B4, 0x0052D6A8, 0x0052D418]
 tags: ["font"]
 supersedes: []
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
-by: auto
+by: gpt-6
 original_by: ""
 reviewed_by: []
 state: active            # active / consolidated / superseded / duplicate
@@ -28,7 +28,7 @@ corrected_by: []
 
 ## 根拠
 
-一次証拠 `_local/evidence/107/fonts.json` のmapping（入力ファイルのpath/SHA256付き）、同所 `assets.py` のCMAP parser。全関数exportは `0x00743768.txt`、`0x007438b4.txt`、`0x0052d6a8.txt`、`0x0052d9f8.txt`。
+一次証拠 `_local/evidence/107/fonts.json` のmapping（入力ファイルのpath/SHA256付き）、同所 `assets.py` のCMAP parser。全関数exportは `0x00743768.txt`、`0x007438b4.txt`、`0x0052d6a8.txt`、`0x0052d418.txt`。
 
 通常書体に無く、追加JIS書体に存在することを全CMAPで確認した文字:
 

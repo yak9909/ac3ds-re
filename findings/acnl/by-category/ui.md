@@ -91,3 +91,4 @@
 | ACNL-F0720 | GPUリスト領域確保は失敗を戻り値で通知しない | GpuCmd_AllocateListStorageは成功/失敗を返すAPIではなく、確保結果nullも検査せずGX領域を初期化する。void型を維持し、選択中managerの既知先頭へ型を付けた。 | MEDIUM | A |  |  |
 | ACNL-F0728 | 画像キャッシュは ArcResourceAccessor 単位で、破棄時に参照が無効になる | ArcResourceAccessor は名前でTextureInfoをキャッシュし、hitなら画素もentryも追加確保しない。missはロードと156 B entry確保を伴い、accessor/arc破棄に伴って借用画像の参照が失効する。 | MEDIUM | ? |  |  |
 | ACNL-F0731 | タイトルの地は16角の2画像を6枚のPictureで重ね、150フレームで動かす | opng_titl_bgの実資源はA4/L4の16×16各128 Bを6枚のPictureで共有する。明示TEV段は0、各材質の画像は1枚、4層のUVと親の位置を150フレームで動かす。 | MEDIUM | ? |  |  |
+| ACNL-F0733 | 通常フォントの未収録文字と追加 JIS 書体の補完範囲 | 更新側の通常フォントCMAPには汎・符・濁など18漢字とU+301Cが無く、18漢字は追加GardenPlus_JisLevel1にはある。通常フォントだけで任意の日本語UI文字が揃うとはいえない。 | MEDIUM | ? |  |  |
