@@ -308,7 +308,7 @@ sead::MethodTree 相当と見られるがクラス名は未確定。
 0x00549944,line,F-357: Draw パス（sead::MethodTreeMgr）。コマンドリストを切替えて描画を走らせる
 0x00549944,repeatable,F-357: Draw パス（sead::MethodTreeMgr）。コマンドリストを切替えて描画を走らせる
 0x00549AB0,func,"[ACNL-F0737] MEDIUM; Number-free input type names; see type comments for prefix extent.
-[ACNL-F0721] MEDIUM; native static evidence + CPU replay, no hardware. Unlinks previous source, registers wrapper using source->wrappers.node_offset in source+0x14C intrusive list, sets wrapper+0x144 source; optionally copies repeat delay/interval[32]. BsMenuMgr_Init binds to the manager first controller here."
+[ACNL-F0721] MEDIUM; native static evidence + CPU replay, no hardware. Unlinks previous source, registers wrapper using source->wrappers.offset in source+0x14C intrusive list, sets wrapper+0x144 source; optionally copies repeat delay/interval[32]. BsMenuMgr_Init binds to the manager first controller here."
 0x0054C424,line,"★F-357: 1 フレーム分。
 Calc(スロット 27 0x5498B4) -> Draw(スロット 26 0x549944) -> リスト入替(スロット 30 0x54C5D8)
 -> 0x54C494 で +0xA8 = now - +0xB0（フレーム周期）、+0xB0 = now

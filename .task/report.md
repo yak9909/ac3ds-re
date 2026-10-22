@@ -33,8 +33,20 @@ Controller/Wrapperの共通欄は `base.held`（先頭から+0x110）、`base.po
 
 ## 訂正の提案
 
-- ACNL-F0379のSELECT=0x800、START=0x1000推定、および「生HIDの並びが逆」をACNL-F0742で訂正する。転写命令と上流の条件付き統合が独立に一致し、装置+0x15C0は既に読み替え後になり得る。旧実測の数値自体は否定せず、測定時の状態再現は未実施。
-- ACNL-F0721/ACNL-F0723/ACNL-F0426はACNL-F0737のsupersedesに指定した。訂正範囲は旧型名・部分型の範囲表記のみで、各記録の他の結論を取り消す提案ではない。
+ACNL-F0737とACNL-F0742のsupersedesは空にした。以下はいずれも一部の訂正（kind=partial）として提案する。旧記録をstate: supersededにする関係ではない。
+
+`kb.py relate --file` に渡せるTSVの行:
+
+```tsv
+before	after	kind
+ACNL-F0721	ACNL-F0737	partial
+ACNL-F0723	ACNL-F0737	partial
+ACNL-F0426	ACNL-F0737	partial
+ACNL-F0379	ACNL-F0742	partial
+```
+
+- ACNL-F0721・F0723・F0426 → ACNL-F0737: 型名と部分型である旨の更新だけ。F0721の離し・旧状態R8/R9の扱いなど、各記録の結論は有効。
+- ACNL-F0379 → ACNL-F0742: 訂正する範囲は0x800をSELECTのbitと呼んだ名前づけ。読み替えが働く時にSELECT単独で0x800が立つ実測とは整合し、その実測を取り消さない。転写命令と上流の条件付き統合から区別できるが、旧測定時の状態再現は未実施。
 - 事前確認の1は「SELECT読み替えの2経路の合流後」ではなく、全体ゼロ化の分岐の合流後。4は「held全体が更新されない」ではなく「ボタン/軸更新を飛ばす」。タッチ更新によるheldのpointer bit変更は起こり得る。
 
 ## 統合・重複の提案
@@ -51,4 +63,4 @@ CTRPF標準Hookの移設・呼出し規約・実機動作、読取り失敗の�
 
 ## 次の1手
 
-オーケストラが記録のbyを実行モデル情報からstampし、訂正範囲を確認して取り込む（現在の新規記録はkb.py new既定のby:auto）。gohanは上記型名で生成し直す。実機を許可した別作業でSELECT/STARTと読取り失敗時・タッチの組合せを同時観測する。
+オーケストラが上記TSVのkind=partialの関係をkb.py relateで適用し、取り込む。gohanは上記型名で生成し直す。実機を許可した別作業でSELECT/STARTと読取り失敗時・タッチの組合せを同時観測する。

@@ -8,7 +8,6 @@ struct ACNL_TownTransferState;
 struct AcnlBsMenuChestPrefixF006;
 struct AcnlButtonNodeSetupF011;
 struct AcnlChangeStockItemPrefixF006;
-struct AcnlControllerOffsetList;
 struct AcnlDragControlPrefixF010;
 struct AcnlDragEndpointsF008;
 struct AcnlDragIconGroupF010;
@@ -137,6 +136,7 @@ struct SeadExpHeapBlock;
 struct SeadExpHeapList;
 struct SeadExpHeapPrefix;
 struct SeadExpHeapVtable;
+struct SeadOffsetList;
 struct SsysMaAllocator;
 struct SsysMaAllocatorVtable;
 struct SsysMaLayoutList;
@@ -395,18 +395,6 @@ enum AcnlClosetMenuIdF006
   AcnlClosetMenu_Normal_F006 = 0x3D,
   AcnlClosetMenu_Warehouse_F006 = 0x89,
 };
-
-// type: AcnlControllerOffsetList
-#pragma pack(push, 2)
-/// [ACNL-F0737] MEDIUM; 0x10-byte list header used for controller addons/wrappers. node_offset converts an intrusive node address back to its containing object; exact library type identity is unconfirmed.
-struct AcnlControllerOffsetList
-{
-  void *prev;
-  void *next;
-  unsigned int count;
-  unsigned int node_offset;
-};
-#pragma pack(pop)
 
 // type: AcnlMenuScreenNodeF006
 #pragma pack(push, 2)
@@ -745,14 +733,14 @@ struct AcnlLayoutRecordPrefix_F016
 
 // type: AcnlPadReaderPrefix
 #pragma pack(push, 2)
-/// [ACNL-F0737] MEDIUM; Known prefix through seed_previous_held at +0x30; full reader size is unknown. previous_held at +8 is saved before conditional SELECT merge.
+/// [ACNL-F0737] MEDIUM; Known prefix through resync_previous_held_pending at +0x30; full reader size is unknown. previous_held at +8 is saved before conditional SELECT merge.
 struct AcnlPadReaderPrefix
 {
   void *handle;
   unsigned int unk_4;
   unsigned int previous_held;
   unsigned __int8 unk_C[36];
-  unsigned __int8 seed_previous_held;
+  bool resync_previous_held_pending;    ///< set: next read copies the current held into previous_held (no edges), then clears this byte (0x00353450..0x0035346C)
 };
 #pragma pack(pop)
 
@@ -804,8 +792,61 @@ struct AcnlPlayerInventoryFinanceF010
 };
 #pragma pack(pop)
 
+// type: AcnlUiPoint2
+#pragma pack(push, 2)
+/// [ACNL-F0737] MEDIUM; Two float components, x/y. Used for pixel coordinates and axes; the type alone does not imply a coordinate origin.
+struct AcnlUiPoint2
+{
+  float x;
+  float y;
+};
+#pragma pack(pop)
+
+// type: AcnlUiPoint2I
+#pragma pack(push, 2)
+/// [ACNL-F0737] MEDIUM; Two signed 32-bit components, x/y; controller pixel_int is at +0x14.
+struct AcnlUiPoint2I
+{
+  int x;
+  int y;
+};
+#pragma pack(pop)
+
+// type: SeadControllerBasePrefix
+#pragma pack(push, 2)
+/// [ACNL-F0737] MEDIUM; Known base layout only, 0x134 bytes; derived objects extend beyond this type. sead::ControllerBase vtable and independent Init/UpdateEdges/SetPointerState accesses agree.
+struct SeadControllerBasePrefix
+{
+  void *vtable;
+  unsigned int pressed;
+  unsigned int released;
+  unsigned int repeat;
+  unsigned int pointer_flags;           ///< bit flags AcnlPointerFlags_*; declared as unsigned int so the 4-byte size does not depend on the compiler enum size
+  AcnlUiPoint2I pixel_int;
+  AcnlUiPoint2 pointer_min;
+  AcnlUiPoint2 pointer_max;
+  unsigned int held_frames[32];
+  unsigned __int8 repeat_delay[32];
+  unsigned __int8 repeat_interval[32];
+  float axis0_press_threshold;
+  float axis1_press_threshold;
+  float axis0_release_threshold;
+  float axis1_release_threshold;
+  int button_count;
+  int axis0_bit;
+  int axis1_bit;
+  int pointer_bit;
+  unsigned int idle_frames;
+  unsigned int held;
+  AcnlUiPoint2 pixel_float;
+  AcnlUiPoint2 axis0;
+  AcnlUiPoint2 axis1;
+  float unk_12C[2];
+};
+#pragma pack(pop)
+
 // type: AcnlPointerFlags
-/// [ACNL-F0737] MEDIUM; Controller pointer flags: bit0 current valid; bit1 appeared; bit2 disappeared; bit3 requests position reset.
+/// [ACNL-F0737] MEDIUM; Controller pointer flag bits for SeadControllerBasePrefix.pointer_flags (stored as unsigned int): bit0 current valid; bit1 appeared; bit2 disappeared; bit3 requests position reset. Not used as a field type because an enum without a fixed size is 1 byte under the derived compiler.
 enum __bitmask AcnlPointerFlags
 {
   AcnlPointerFlags_Valid = 0x1,
@@ -865,26 +906,6 @@ struct AcnlRoomCameraPrefix
 struct AcnlUiMtx34F005
 {
   float m[3][4];
-};
-#pragma pack(pop)
-
-// type: AcnlUiPoint2
-#pragma pack(push, 2)
-/// [ACNL-F0737] MEDIUM; Two float components, x/y. Used for pixel coordinates and axes; the type alone does not imply a coordinate origin.
-struct AcnlUiPoint2
-{
-  float x;
-  float y;
-};
-#pragma pack(pop)
-
-// type: AcnlUiPoint2I
-#pragma pack(push, 2)
-/// [ACNL-F0737] MEDIUM; Two signed 32-bit components, x/y; controller pixel_int is at +0x14.
-struct AcnlUiPoint2I
-{
-  int x;
-  int y;
 };
 #pragma pack(pop)
 
@@ -2539,36 +2560,15 @@ struct RoomTransitionKindPair
 };
 #pragma pack(pop)
 
-// type: SeadControllerBasePrefix
+// type: SeadOffsetList
 #pragma pack(push, 2)
-/// [ACNL-F0737] MEDIUM; Known base layout only, 0x134 bytes; derived objects extend beyond this type. sead::ControllerBase vtable and independent Init/UpdateEdges/SetPointerState accesses agree.
-struct SeadControllerBasePrefix
+/// [ACNL-F0737] MEDIUM; Same shape as sead::OffsetList: prev/next list node, element count, byte offset from an element address to its list node. Used at controller +0x13C (addons, offset 4) and +0x14C (wrappers, offset 0x14C); initial values at 0x0053CF3C..0x0053CF64 (empty list points to itself).
+struct SeadOffsetList
 {
-  void *vtable;
-  unsigned int pressed;
-  unsigned int released;
-  unsigned int repeat;
-  AcnlPointerFlags pointer_flags;
-  AcnlUiPoint2I pixel_int;
-  AcnlUiPoint2 pointer_min;
-  AcnlUiPoint2 pointer_max;
-  unsigned int held_frames[32];
-  unsigned __int8 repeat_delay[32];
-  unsigned __int8 repeat_interval[32];
-  float axis0_press_threshold;
-  float axis1_press_threshold;
-  float axis0_release_threshold;
-  float axis1_release_threshold;
-  int button_count;
-  int axis0_bit;
-  int axis1_bit;
-  int pointer_bit;
-  unsigned int idle_frames;
-  unsigned int held;
-  AcnlUiPoint2 pixel_float;
-  AcnlUiPoint2 axis0;
-  AcnlUiPoint2 axis1;
-  AcnlUiPoint2 unk_12C;
+  void *prev;
+  void *next;
+  unsigned int count;
+  unsigned int offset;
 };
 #pragma pack(pop)
 
@@ -2581,8 +2581,8 @@ struct SeadControllerPrefix
   unsigned __int8 unk_134;
   unsigned __int8 unk_135[3];
   void *manager;
-  AcnlControllerOffsetList addons;
-  AcnlControllerOffsetList wrappers;
+  SeadOffsetList addons;
+  SeadOffsetList wrappers;
 };
 #pragma pack(pop)
 

@@ -10,7 +10,7 @@ confidence: "MEDIUM"
 tool: 全関数書き出し / codebytes / IDA型位置検査
 addresses: [0x003533D0, 0x0053CDC4, 0x00540870, 0x00542D78, 0x00542E88, 0x00543050, 0x005475D4, 0x00549AB0]
 tags: ["button", "touch", "sead"]
-supersedes: ["ACNL-F0721", "ACNL-F0723", "ACNL-F0426"]
+supersedes: []
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
 by: gpt-6.1-sol
 original_by: ""
@@ -24,6 +24,7 @@ corrected_by: []
 ## 結論
 
 入力の型を次の番号の無い名前に統一する。既存記録の訂正範囲は**型名と部分型である旨の明記だけ**で、各記録の他の結論を取り消さない。
+型名の更新の対象: F0721・F0723・F0426（結論は有効）。
 確度 MEDIUM。初期化・入力の書き手・edge生成・Wrapper読取りの独立した静的根拠を照合し、IDAで改名前後の大きさと全対象欄の位置を検査した。実機照合ではない。
 
 ## 根拠

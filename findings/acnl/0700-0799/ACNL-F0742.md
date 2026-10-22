@@ -10,7 +10,7 @@ confidence: "MEDIUM"
 tool: 全関数書き出し / codebytes / IDA型位置検査
 addresses: [0x003533D0, 0x00483020, 0x00540870, 0x0053F550]
 tags: ["button", "sead"]
-supersedes: ["ACNL-F0379"]
+supersedes: []
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
 by: gpt-6.1-sol
 original_by: ""
@@ -23,7 +23,7 @@ corrected_by: []
 ---
 ## 結論
 
-ACNL-F0379の「SELECTは保持0x800、0x1000はSTARTと推定」という**ボタンの同定を訂正する**。転写自体はpad0x8→held0x800、pad0x4→held0x1000であり、既存ACNL-F0721/0723と一致する。入力上のSTART/SELECT対応ではSTART=0x800、読み替え前のSELECT=0x1000となる。
+ACNL-F0379について訂正する範囲は、**0x800をSELECTのbitと呼んだ名前づけ**である。読み替えが働く時にSELECT単独で0x800が立つ観測とは整合し、その実測を取り消さない。転写自体はpad0x8→held0x800、pad0x4→held0x1000であり、既存ACNL-F0721/0723と一致する。入力上のSTART/SELECT対応ではSTART=0x800、読み替え前のSELECT=0x1000となる。旧記録の0x1000をSTARTとする推定も、この名前づけの区別に従って読み直す。
 確度 MEDIUM。上流の条件付きSELECT統合と下流の独立したbit転写を照合。今回の実機測定は無く、旧実測の条件は再現していない。
 
 ## 根拠
