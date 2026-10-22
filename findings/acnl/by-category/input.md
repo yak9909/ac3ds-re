@@ -13,9 +13,9 @@
 | ACNL-F0721 | 入力遮断点と旧状態の扱いを再解析：holdだけではreleaseが残る | sead_Controller_Calc+0x30 は生入力更新後・edge計算前だが、current holdだけを消すとreleaseが残る。旧状態R8/R9は本体とWrapperの両方へ渡されるため、遮断対象は両方の旧状態でも除去する。 | MEDIUM | A |  |  |
 | ACNL-F0722 | タッチ遮断は画面ロックではなく共有入力の変更である | タッチはpointer validとheld内pointer bitの二系統で読まれる。sead入力での除去は共有TouchState・スクロール・全登録Wrapperと入力idle判定に及び、下画面UIだけを選択するロックではない。 | MEDIUM | A |  |  |
 | ACNL-F0723 | SELECTとSTARTの条件付き統合と読み替え前のSELECT除去 | 0x003533D0は0x009778D8が0のときだけ0x00483020を呼び、SELECTをSTARTへ統合する。読み替え前のpad held/pressed/releasedのbit2を除去すれば、STARTと通常の読み替え呼出しを保持してSELECTだけをゲームへ渡さずに済む。 | MEDIUM | A |  |  |
-| ACNL-F0737 | 入力の部分型を解析番号の無い名前に統一しメンバー位置を照合 | 入力の基底・Controller・Wrapper・パッド・座標・旗を番号の無い型名に改名した。ゲーム側の独立した書込み・読取りとIDAのメンバー位置を照合し、既知の部分型の範囲とレイアウトを保った。 | MEDIUM | 未記入 |  |  |
-| ACNL-F0738 | パッド履歴保存前の共通境界は全体ゼロ化の合流後にある | 0x003534C8は成功経路の全体ゼロ化分岐が合流した後、読み替え前heldの履歴保存と条件付きSELECT統合の前にある。LDR R0,[R4]自体は無条件・非PC相対だが、既にゼロ化された値を読む場合がある。 | MEDIUM | 未記入 |  |  |
-| ACNL-F0739 | 装置パッドの読取りは成功旗に従いボタンとタッチを別々に更新する | 装置入力はpad成功bit0が真の時だけpadのheldとcircle_x/yを読み、padのedge語は読まない。touch成功bit1は独立であり、bit0が偽でもSetPointerStateが保持内pointer bitを変更し得る。 | MEDIUM | 未記入 |  |  |
-| ACNL-F0740 | パッドbit13は正常読取りで除去されコントローラー保持に転写されない | 正常なReadPadState経路はheld bit13を常に除去し、装置入力の保持転写にもbit13の対応はない。bit12は保持0x80へ転写されるが、物理ZLの実機同定は未確認である。 | MEDIUM | 未記入 |  |  |
-| ACNL-F0741 | Controller計算の装置更新直後に必要な値はR4と旧状態R8/R9である | 0x0053CDE8ではR4=selfとR8/R9の旧保持・旧有効旗が後続で使われる。R0〜R3/R12や呼出し側保存VFPに残る装置更新の値は、その後のedge計算を越えて利用されない。 | MEDIUM | 未記入 |  |  |
-| ACNL-F0742 | 保持0x800はSTARTでありSELECTは読み替え前なら0x1000へ転写される | 装置入力はpad START bit3を保持0x800、SELECT bit2を保持0x1000へ別々に転写する。SELECT統合後の装置キャッシュはSTART bit3になり、旧記録のSELECT=0x800という観測を説明できる。 | MEDIUM | 未記入 |  |  |
+| ACNL-F0737 | 入力の部分型を解析番号の無い名前に統一しメンバー位置を照合 | 入力の基底・Controller・Wrapper・パッド・座標・旗を番号の無い型名に改名した。ゲーム側の独立した書込み・読取りとIDAのメンバー位置を照合し、既知の部分型の範囲とレイアウトを保った。 | MEDIUM | A |  |  |
+| ACNL-F0738 | パッド履歴保存前の共通境界は全体ゼロ化の合流後にある | 0x003534C8は成功経路の全体ゼロ化分岐が合流した後、読み替え前heldの履歴保存と条件付きSELECT統合の前にある。LDR R0,[R4]自体は無条件・非PC相対だが、既にゼロ化された値を読む場合がある。 | MEDIUM | A |  |  |
+| ACNL-F0739 | 装置パッドの読取りは成功旗に従いボタンとタッチを別々に更新する | 装置入力はpad成功bit0が真の時だけpadのheldとcircle_x/yを読み、padのedge語は読まない。touch成功bit1は独立であり、bit0が偽でもSetPointerStateが保持内pointer bitを変更し得る。 | MEDIUM | A |  |  |
+| ACNL-F0740 | パッドbit13は正常読取りで除去されコントローラー保持に転写されない | 正常なReadPadState経路はheld bit13を常に除去し、装置入力の保持転写にもbit13の対応はない。bit12は保持0x80へ転写されるが、物理ZLの実機同定は未確認である。 | MEDIUM | A |  |  |
+| ACNL-F0741 | Controller計算の装置更新直後に必要な値はR4と旧状態R8/R9である | 0x0053CDE8ではR4=selfとR8/R9の旧保持・旧有効旗が後続で使われる。R0〜R3/R12や呼出し側保存VFPに残る装置更新の値は、その後のedge計算を越えて利用されない。 | MEDIUM | A |  |  |
+| ACNL-F0742 | 保持0x800はSTARTでありSELECTは読み替え前なら0x1000へ転写される | 装置入力はpad START bit3を保持0x800、SELECT bit2を保持0x1000へ別々に転写する。SELECT統合後の装置キャッシュはSTART bit3になり、旧記録のSELECT=0x800という観測を説明できる。 | MEDIUM | A |  |  |
