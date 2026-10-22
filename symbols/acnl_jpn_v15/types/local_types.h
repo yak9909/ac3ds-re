@@ -8,10 +8,7 @@ struct ACNL_TownTransferState;
 struct AcnlBsMenuChestPrefixF006;
 struct AcnlButtonNodeSetupF011;
 struct AcnlChangeStockItemPrefixF006;
-struct AcnlControllerOffsetListF103;
-struct AcnlControllerPrefixF005;
-struct AcnlControllerPrefixF103;
-struct AcnlControllerWrapperPrefixF103;
+struct AcnlControllerOffsetList;
 struct AcnlDragControlPrefixF010;
 struct AcnlDragEndpointsF008;
 struct AcnlDragIconGroupF010;
@@ -29,16 +26,16 @@ struct AcnlItemSelectSystemPrefixF010;
 struct AcnlLayoutRecordPrefix_F016;
 struct AcnlMenuScreenListF006;
 struct AcnlMenuScreenNodeF006;
-struct AcnlPadReaderPrefixF103;
-struct AcnlPadStateF103;
+struct AcnlPadReaderPrefix;
+struct AcnlPadState;
 struct AcnlPartsDragNodeF010;
 struct AcnlPartsDragNodeF012;
 struct AcnlPlayerInventoryFinanceF010;
 struct AcnlRoomCameraPrefix;
 struct AcnlUiAnimStorageF010;
 struct AcnlUiMtx34F005;
-struct AcnlUiPoint2F005;
-struct AcnlUiPoint2IF005;
+struct AcnlUiPoint2;
+struct AcnlUiPoint2I;
 struct AcnlUiPoint3F005;
 struct AcnlUiRectF005;
 struct AcnlWordFix65F011;
@@ -133,6 +130,9 @@ struct RoomCameraPmf8;
 struct RoomCameraProfile20;
 struct RoomTransitionKindPair;
 struct ScheduleInOutEvent;
+struct SeadControllerBasePrefix;
+struct SeadControllerPrefix;
+struct SeadControllerWrapperPrefix;
 struct SeadExpHeapBlock;
 struct SeadExpHeapList;
 struct SeadExpHeapPrefix;
@@ -167,11 +167,23 @@ struct UiAnim;
 struct UserBreakExceptionEvent;
 struct WeatherParticleGroupPrefix;
 struct WeatherParticleSlot;
-union __n128;
-union __n64;
 struct cxxabi_class_type_info;
 struct cxxabi_si_class_type_info;
 struct cxxabi_vmi_class_type_info;
+struct svbool_t;
+struct svfloat16_t;
+struct svfloat32_t;
+struct svfloat64_t;
+struct svint16_t;
+struct svint32_t;
+struct svint64_t;
+struct svint8_t;
+struct svuint16_t;
+struct svuint32_t;
+struct svuint64_t;
+struct svuint8_t;
+union __n128;
+union __n64;
 union float16x2_t;
 union float16x4_t;
 union float16x8_t;
@@ -191,18 +203,6 @@ union poly16x4_t;
 union poly16x8_t;
 union poly8x16_t;
 union poly8x8_t;
-struct svbool_t;
-struct svfloat16_t;
-struct svfloat32_t;
-struct svfloat64_t;
-struct svint16_t;
-struct svint32_t;
-struct svint64_t;
-struct svint8_t;
-struct svuint16_t;
-struct svuint32_t;
-struct svuint64_t;
-struct svuint8_t;
 union uint16x2_t;
 union uint16x4_t;
 union uint16x8_t;
@@ -396,99 +396,15 @@ enum AcnlClosetMenuIdF006
   AcnlClosetMenu_Warehouse_F006 = 0x89,
 };
 
-// type: AcnlControllerOffsetListF103
+// type: AcnlControllerOffsetList
 #pragma pack(push, 2)
-struct AcnlControllerOffsetListF103
+/// [ACNL-F0737] MEDIUM; 0x10-byte list header used for controller addons/wrappers. node_offset converts an intrusive node address back to its containing object; exact library type identity is unconfirmed.
+struct AcnlControllerOffsetList
 {
   void *prev;
   void *next;
   unsigned int count;
   unsigned int node_offset;
-};
-#pragma pack(pop)
-
-// type: AcnlPointerFlagsF005
-enum __bitmask AcnlPointerFlagsF005
-{
-  AcnlPointerValid_F005 = 0x1,
-  AcnlPointerPressed_F005 = 0x2,
-  AcnlPointerReleased_F005 = 0x4,
-  AcnlPointerClearPosition_F005 = 0x8,
-};
-
-// type: AcnlUiPoint2F005
-#pragma pack(push, 2)
-struct AcnlUiPoint2F005
-{
-  float x;
-  float y;
-};
-#pragma pack(pop)
-
-// type: AcnlUiPoint2IF005
-#pragma pack(push, 2)
-struct AcnlUiPoint2IF005
-{
-  int x;
-  int y;
-};
-#pragma pack(pop)
-
-// type: AcnlControllerPrefixF005
-#pragma pack(push, 2)
-struct AcnlControllerPrefixF005
-{
-  void *vtable;
-  unsigned int pressed;
-  unsigned int released;
-  unsigned int repeat;
-  AcnlPointerFlagsF005 pointer_flags;
-  AcnlUiPoint2IF005 pixel_int;
-  AcnlUiPoint2F005 pointer_min;
-  AcnlUiPoint2F005 pointer_max;
-  unsigned int held_frames[32];
-  unsigned __int8 repeat_delay[32];
-  unsigned __int8 repeat_interval[32];
-  float axis0_press_threshold;
-  float axis1_press_threshold;
-  float axis0_release_threshold;
-  float axis1_release_threshold;
-  int button_count;
-  int axis0_bit;
-  int axis1_bit;
-  int pointer_bit;
-  unsigned int idle_frames;
-  unsigned int held;
-  AcnlUiPoint2F005 pixel_float;
-  AcnlUiPoint2F005 axis0;
-  AcnlUiPoint2F005 axis1;
-  AcnlUiPoint2F005 unk_12C;
-};
-#pragma pack(pop)
-
-// type: AcnlControllerPrefixF103
-#pragma pack(push, 2)
-struct AcnlControllerPrefixF103
-{
-  AcnlControllerPrefixF005 base;
-  unsigned __int8 unk_134;
-  unsigned __int8 unk_135[3];
-  void *manager;
-  AcnlControllerOffsetListF103 addons;
-  AcnlControllerOffsetListF103 wrappers;
-};
-#pragma pack(pop)
-
-// type: AcnlControllerWrapperPrefixF103
-#pragma pack(push, 2)
-struct AcnlControllerWrapperPrefixF103
-{
-  AcnlControllerPrefixF005 base;
-  unsigned __int8 unk_134[16];
-  AcnlControllerPrefixF103 *source;
-  unsigned __int8 enabled;
-  unsigned __int8 unk_149[43];
-  unsigned __int8 source_bit_index[32];
 };
 #pragma pack(pop)
 
@@ -827,9 +743,10 @@ struct AcnlLayoutRecordPrefix_F016
 };
 #pragma pack(pop)
 
-// type: AcnlPadReaderPrefixF103
+// type: AcnlPadReaderPrefix
 #pragma pack(push, 2)
-struct AcnlPadReaderPrefixF103
+/// [ACNL-F0737] MEDIUM; Known prefix through seed_previous_held at +0x30; full reader size is unknown. previous_held at +8 is saved before conditional SELECT merge.
+struct AcnlPadReaderPrefix
 {
   void *handle;
   unsigned int unk_4;
@@ -839,9 +756,10 @@ struct AcnlPadReaderPrefixF103
 };
 #pragma pack(pop)
 
-// type: AcnlPadStateF103
+// type: AcnlPadState
 #pragma pack(push, 2)
-struct AcnlPadStateF103
+/// [ACNL-F0737] MEDIUM; 0x10-byte pad output: held/pressed/released at +0/+4/+8 and signed circle x/y at +0xC/+0xE. This is the device cache after ReadPadState, not necessarily raw HID.
+struct AcnlPadState
 {
   unsigned int held;
   unsigned int pressed;
@@ -885,6 +803,16 @@ struct AcnlPlayerInventoryFinanceF010
   ItemID storage[180];
 };
 #pragma pack(pop)
+
+// type: AcnlPointerFlags
+/// [ACNL-F0737] MEDIUM; Controller pointer flags: bit0 current valid; bit1 appeared; bit2 disappeared; bit3 requests position reset.
+enum __bitmask AcnlPointerFlags
+{
+  AcnlPointerFlags_Valid = 0x1,
+  AcnlPointerFlags_Pressed = 0x2,
+  AcnlPointerFlags_Released = 0x4,
+  AcnlPointerFlags_ClearPosition = 0x8,
+};
 
 // type: RoomCameraPmf8
 #pragma pack(push, 2)
@@ -937,6 +865,26 @@ struct AcnlRoomCameraPrefix
 struct AcnlUiMtx34F005
 {
   float m[3][4];
+};
+#pragma pack(pop)
+
+// type: AcnlUiPoint2
+#pragma pack(push, 2)
+/// [ACNL-F0737] MEDIUM; Two float components, x/y. Used for pixel coordinates and axes; the type alone does not imply a coordinate origin.
+struct AcnlUiPoint2
+{
+  float x;
+  float y;
+};
+#pragma pack(pop)
+
+// type: AcnlUiPoint2I
+#pragma pack(push, 2)
+/// [ACNL-F0737] MEDIUM; Two signed 32-bit components, x/y; controller pixel_int is at +0x14.
+struct AcnlUiPoint2I
+{
+  int x;
+  int y;
 };
 #pragma pack(pop)
 
@@ -2588,6 +2536,67 @@ struct RoomTransitionKindPair
 {
   unsigned __int16 requested_kind;
   unsigned __int16 current_kind;
+};
+#pragma pack(pop)
+
+// type: SeadControllerBasePrefix
+#pragma pack(push, 2)
+/// [ACNL-F0737] MEDIUM; Known base layout only, 0x134 bytes; derived objects extend beyond this type. sead::ControllerBase vtable and independent Init/UpdateEdges/SetPointerState accesses agree.
+struct SeadControllerBasePrefix
+{
+  void *vtable;
+  unsigned int pressed;
+  unsigned int released;
+  unsigned int repeat;
+  AcnlPointerFlags pointer_flags;
+  AcnlUiPoint2I pixel_int;
+  AcnlUiPoint2 pointer_min;
+  AcnlUiPoint2 pointer_max;
+  unsigned int held_frames[32];
+  unsigned __int8 repeat_delay[32];
+  unsigned __int8 repeat_interval[32];
+  float axis0_press_threshold;
+  float axis1_press_threshold;
+  float axis0_release_threshold;
+  float axis1_release_threshold;
+  int button_count;
+  int axis0_bit;
+  int axis1_bit;
+  int pointer_bit;
+  unsigned int idle_frames;
+  unsigned int held;
+  AcnlUiPoint2 pixel_float;
+  AcnlUiPoint2 axis0;
+  AcnlUiPoint2 axis1;
+  AcnlUiPoint2 unk_12C;
+};
+#pragma pack(pop)
+
+// type: SeadControllerPrefix
+#pragma pack(push, 2)
+/// [ACNL-F0737] MEDIUM; Known prefix through addon/wrapper lists, 0x15C bytes; not the full size of sead::CtrController or any derived object. base is at offset zero.
+struct SeadControllerPrefix
+{
+  SeadControllerBasePrefix base;
+  unsigned __int8 unk_134;
+  unsigned __int8 unk_135[3];
+  void *manager;
+  AcnlControllerOffsetList addons;
+  AcnlControllerOffsetList wrappers;
+};
+#pragma pack(pop)
+
+// type: SeadControllerWrapperPrefix
+#pragma pack(push, 2)
+/// [ACNL-F0737] MEDIUM; Known prefix through source-bit mapping, 0x194 bytes; not a complete allocation size. source is at +0x144 and source_bit_index at +0x174.
+struct SeadControllerWrapperPrefix
+{
+  SeadControllerBasePrefix base;
+  unsigned __int8 unk_134[16];
+  SeadControllerPrefix *source;
+  unsigned __int8 enabled;
+  unsigned __int8 unk_149[43];
+  unsigned __int8 source_bit_index[32];
 };
 #pragma pack(pop)
 

@@ -311,7 +311,8 @@ IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。R0=ExpHeap/R1=signed al
 0x0074DC18,func,IDA-gpt-6.1-sol-F010 / MEDIUM: R0=ExpHeap、R1=size、R2=正alignment、R3=heap+0x74 の探索mode。free list末尾 heap+0x78 からprevへ探索。0x74DC60以降でend-sizeの整列切下げとpadding込みfitを判定。原本ARM1176の末尾alloc 12例と返却を照合。PUSH/POP R4-R7、BX LR。
 0x0074F2A8,func,[ACNL-F0732] MEDIUM。VramExpHeap vslot+0x14。CPU側free list head heap+0x4Cからnode+8でたどりnode+0xCを合算。ExpHeapのfree/used offsetとは異なる。ロック取得/解除があるため読み取りだけの測定では呼び出さず同じ走査をPCで行う。
 0x0074F2EC,func,[ACNL-F0732] MEDIUM。VramExpHeap vslot+0x18。alignment最小4・非2冪なら4。free head+0x4C、node+0x14開始を整列、node+0xC量からpaddingを引いた最大。画像が置けても分割用CPUノード確保が失敗し得る。
-0x0074F3FC,func,"IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): R0 layout, R1 pixel point, R2 output local point. Computes centered ortho bounds from layout+16, shifts pixel X by -width/2 and flips Y about height/2, then applies inverse layout matrix at+116. Identity-transform test endpoints hide incorrect pixel/centered routing."
+0x0074F3FC,func,"[ACNL-F0737] MEDIUM; Number-free input type names; see type comments for prefix extent.
+IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): R0 layout, R1 pixel point, R2 output local point. Computes centered ortho bounds from layout+16, shifts pixel X by -width/2 and flips Y about height/2, then applies inverse layout matrix at+116. Identity-transform test endpoints hide incorrect pixel/centered routing."
 0x0074F58C,line,IDA-opus-5.5-F108: 順再生(+0x14==1)は frame(+8) >= frameSize(+4) − 1 で終わり、逆再生(==3)は frame <= 0。ループは終わらない
 0x0074F58C,repeatable,IDA-opus-5.5-F108: 順再生(+0x14==1)は frame(+8) >= frameSize(+4) − 1 で終わり、逆再生(==3)は frame <= 0。ループは終わらない
 0x00750814,func,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: AcFtr+0x5E4の配置ItemIDへのポインタを返す。CreatePrepareの記録コピー先、Room検索の生品番コピー、AcFtr_CopyItemForPocketのコピー元と一致。
