@@ -20,6 +20,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0742"]
 ---
 ## F-353（2026-09-07）: ★SELECT のビットは `0x800` — libctru の並びと違った（実測で確定）
 
