@@ -6,7 +6,7 @@
 
 | scope | 件数 | active |
 |---|---|---|
-| acnl | 741 | 654 |
+| acnl | 742 | 655 |
 | hhd | 20 | 9 |
 | 3ds | 0 | 0 |
 
@@ -17,7 +17,7 @@
 | acnl | _product | 214 |
 | acnl | actor | 24 |
 | acnl | field | 56 |
-| acnl | input | 15 |
+| acnl | input | 16 |
 | acnl | item | 43 |
 | acnl | misc | 2 |
 | acnl | network | 14 |
@@ -548,6 +548,7 @@
 - ACNL-F0586 下位 `0x0C` でgohanの壁抜けを相手へ強制できるか（2026-10-04、MEDIUM）
 - ACNL-F0587 屋外XYZを下位 `0x0C` で書くための条件と副作用（2026-10-04、静的MEDIUM／実用性LOW）
 - ACNL-F0626 T022 カタログの生成器（Codex 依頼 t022_catalog_arc、gpt-6.1-sol xhigh、2026-10-07。打ち切り。記録 ID なし = 道具と生成物）
+- ACNL-F0743 CtrControllerのオブジェクト先頭仮想表を大域変数と型で登録
 
 ## 未レビュー（reviewed_by が空）
 
@@ -1292,6 +1293,7 @@
 - ACNL-F0740 パッドbit13は正常読取りで除去されコントローラー保持に転写されない
 - ACNL-F0741 Controller計算の装置更新直後に必要な値はR4と旧状態R8/R9である
 - ACNL-F0742 保持0x800はSTARTでありSELECTは読み替え前なら0x1000へ転写される
+- ACNL-F0743 CtrControllerのオブジェクト先頭仮想表を大域変数と型で登録
 - HHD-F0001 慣性と、選択枠・ボタンの縞の合成（2026-10-05、MEDIUM〜HIGH: 静的 + HHD のスクショ 2 枚で合成の意味を照合）
 - HHD-F0002 髪のページ送り — ドラッグ・弾き・滑りの規則（2026-10-05、MEDIUM: 静的のみ。定数はすべて逆アセンブルの即値・リテラル）
 - HHD-F0003 髪・目の形の番号 → モデルのファイル（2026-10-05、MEDIUM: 静的のみ。ACNL のファイル名と照合）
@@ -1545,10 +1547,11 @@
 - acnl_jpn_v15 0x0052D838: ACNL-F0689, ACNL-F0729
 - acnl_jpn_v15 0x00535110: ACNL-F0484, ACNL-F0690
 - acnl_jpn_v15 0x00535188: ACNL-F0122, ACNL-F0624
-- acnl_jpn_v15 0x0053CDC4: ACNL-F0376, ACNL-F0721, ACNL-F0722, ACNL-F0737, ACNL-F0741
+- acnl_jpn_v15 0x0053CDC4: ACNL-F0376, ACNL-F0721, ACNL-F0722, ACNL-F0737, ACNL-F0741, ACNL-F0743
 - acnl_jpn_v15 0x0053CDF4: ACNL-F0376, ACNL-F0377, ACNL-F0381, ACNL-F0629
 - acnl_jpn_v15 0x0053F550: ACNL-F0723, ACNL-F0739, ACNL-F0742
-- acnl_jpn_v15 0x00540870: ACNL-F0721, ACNL-F0723, ACNL-F0737, ACNL-F0739, ACNL-F0740, ACNL-F0742
+- acnl_jpn_v15 0x005404AC: ACNL-F0721, ACNL-F0743
+- acnl_jpn_v15 0x00540870: ACNL-F0721, ACNL-F0723, ACNL-F0737, ACNL-F0739, ACNL-F0740, ACNL-F0742, ACNL-F0743
 - acnl_jpn_v15 0x00542D78: ACNL-F0721, ACNL-F0722, ACNL-F0737, ACNL-F0739
 - acnl_jpn_v15 0x00542E88: ACNL-F0721, ACNL-F0737, ACNL-F0741
 - acnl_jpn_v15 0x00543050: ACNL-F0721, ACNL-F0737
@@ -1823,6 +1826,7 @@
 - acnl_jpn_v15 0x008FCCE8: ACNL-F0453, ACNL-F0541, ACNL-F0542
 - acnl_jpn_v15 0x008FCDC8: ACNL-F0442, ACNL-F0443
 - acnl_jpn_v15 0x008FCF10: ACNL-F0146, ACNL-F0147, ACNL-F0150, ACNL-F0157, ACNL-F0472
+- acnl_jpn_v15 0x008FE6F8: ACNL-F0376, ACNL-F0743
 - acnl_jpn_v15 0x008FFC74: ACNL-F0136, ACNL-F0382
 - acnl_jpn_v15 0x008FFEF8: ACNL-F0190, ACNL-F0191, ACNL-F0333, ACNL-F0444, ACNL-F0454, ACNL-F0475, ACNL-F0544, ACNL-F0632, ACNL-F0637, ACNL-F0713, ACNL-F0725
 - acnl_jpn_v15 0x00900000: ACNL-F0081, ACNL-F0324
@@ -1925,7 +1929,7 @@
 - acnl/_product: 214件
 - acnl/actor: 24件
 - acnl/field: 56件
-- acnl/input: 15件
+- acnl/input: 16件
 - acnl/item: 43件
 - acnl/network: 14件
 - acnl/render: 140件
