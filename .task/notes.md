@@ -30,3 +30,16 @@
 1. arm-none-eabi-g++（C:\devkitPro\devkitARM\bin）で、local_types.h の該当ブロックから作ったテストを -fno-short-enums 無し・有りの両方で通し、layout_after.json の全メンバーの offsetof・sizeof が一致する事を evidence/109 に残す（evidence/109-review/layout_test.cpp と同じ方法）。
 2. ACNL-F0737 本文に、上の直しと派生コンパイラでの確認を書き足す（根拠表の AcnlControllerOffsetListF103 -> SeadOffsetList、メンバー名の更新含む）。F0737 と報告の AcnlControllerOffsetList・seed_previous_held・node_offset の表記も直す。
 3. python tools/kb.py lint と python tools/audit.py（_local/venv/tools/Scripts/python.exe を使う）、.task/report.md の更新。
+
+
+# 続き（2026-10-23）
+- 資料は作業場側の _local/evidence/109/ にある。作業ツリー内の _local は作らない。
+- verify_arm_layout.py が現在のlocal_types.hの対象ブロックから試験を生成。devkitARM release 61 / g++ 13.1.0で -fno-short-enums 無し・有りの両方が成功。8構造体、55メンバー、各設定110メンバーassertに加えsizeof/alignofを照合し、オブジェクト定数も読み戻した。
+- enum単体は既定1、有り4。IDAのenumは4だが格納欄ではない。pointer_flags欄をunsigned intにした修正により、構造体は両設定で全位置・大きさが一致する。
+- F0737をSeadOffsetList / offset / bool resync_previous_held_pending / float unk_12C[2] / unsigned int pointer_flagsへ更新。supersedesは空。report.mdは現在の型名と大きさ、partialのTSV行を保持して更新した。
+- 残り: tools用venvでkb.py lintとtools/audit.pyを完了し、結果をreport.mdへ追記する。
+
+# 最終状態（2026-10-23）
+- 完了: ARMコンパイラの両設定で全構造体・全メンバーを照合し、F0737とreport.mdを最新化。
+- lint: 761 件の記録、エラーなし。audit: 1024 ファイル、問題 0 件。ログは作業場 _local/evidence/109/final_*.log と final_checks.json。
+- 次の1手: オーケストラがreport.mdのbefore/after/kind=partialの4行を適用して取り込む。既存記録の結論・実測は有効で、F0737/F0742のsupersedesは空。

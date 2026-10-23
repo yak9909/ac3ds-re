@@ -1,30 +1,32 @@
 ## 結果
 
-完了。9型を番号の無い名前へ改名し、symbolsの関数型・依存型・コメント参照を統一した。全対象欄の位置と型サイズを作業用IDBで検査し、書出し後も対象9型・依存型の宣言に名前とコメント以外の変更が無いこと、旧型名の残存が0件であることを確認した。新規6記録は静的根拠に合わせMEDIUMとした（物理ZL/ZRの同定は未確認）。
+完了。現在のsymbolsからARM向け試験を生成し、-fno-short-enums無し・有りの両方で8構造体・55メンバー全てのoffsetofとsizeofがlayout_after.jsonに一致した。各構造体のsizeof・alignofも一致。F0737を最新の型名・メンバー・検証結果に更新した。新規記録の確度はMEDIUMのままで、実機操作はしていない。
 
-gohanが使える型名とIDA上の大きさは次の通り。Prefixは部分型であり、sizeofを派生オブジェクトの確保サイズとして使わない。
+gohanが使える現在の型名と大きさは次の通り。Prefixは既知の部分であり、sizeofは派生オブジェクトの確保サイズを表さない。
 
-| 型名 | IDA型サイズ | 用途 |
-|---|---|---|
-| SeadControllerBasePrefix | 0x134 | 共通欄。held、pointer_flags、axis0、edge、保持フレーム数、画素座標。 |
-| SeadControllerPrefix | 0x15c | Controllerの既知prefix。先頭base、manager、addons、wrappers。 |
-| SeadControllerWrapperPrefix | 0x194 | Wrapperの既知prefix。先頭base、source、enabled、source_bit_index。 |
-| AcnlControllerOffsetList | 0x10 | addons / wrappers のリストヘッダー。 |
-| AcnlPadReaderPrefix | 0x32 | previous_held と seed_previous_held を含むreaderの部分型。 |
-| AcnlPadState | 0x10 | held / pressed / released と符号付き16-bit circle_x/y。 |
-| AcnlUiPoint2 | 0x8 | float x/y。画素と軸で共用。 |
-| AcnlUiPoint2I | 0x8 | int32 x/y。 |
-| AcnlPointerFlags | 0x4 | Valid / Pressed / Released / ClearPosition。列挙子の接頭辞は AcnlPointerFlags_。 |
+| 型名 | IDAの大きさ | ARMコンパイラの大きさ | 用途 |
+|---|---|---|---|
+| SeadControllerBasePrefix | 0x134 | 同じ | 共通欄。pointer_flagsはunsigned int、unk_12Cはfloat[2]。 |
+| SeadControllerPrefix | 0x15C | 同じ | 先頭base、manager、SeadOffsetList型のaddons / wrappers。 |
+| SeadControllerWrapperPrefix | 0x194 | 同じ | 先頭base、source、enabled、source_bit_index。 |
+| SeadOffsetList | 0x10 | 同じ | prev / next / count / offset。offsetは要素からリストノードまでのバイト位置。 |
+| AcnlPadReaderPrefix | 0x32 | 同じ | previous_held、bool resync_previous_held_pendingを含む部分型。 |
+| AcnlPadState | 0x10 | 同じ | held / pressed / released、符号付き16-bit circle_x/y。 |
+| AcnlUiPoint2 | 0x8 | 同じ | float x/y。 |
+| AcnlUiPoint2I | 0x8 | 同じ | int x/y。 |
+| AcnlPointerFlags | 4 | 既定1 / -fno-short-enums有り4 | 旗の列挙のみ。構造体の欄の型には使わない。 |
 
-Controller/Wrapperの共通欄は `base.held`（先頭から+0x110）、`base.pointer_flags`（+0x10）、`base.axis0.x/y`（+0x11C/+0x120）。画素座標は `base.pixel_int.x/y`（+0x14/+0x18）、`base.pixel_float.x/y`（+0x114/+0x118）。`base` は先頭で、edgeは+4/+8/+0xC、保持フレーム数配列は+0x2C、button_countは+0xFC、axis0_bit/axis1_bitは+0x100/+0x104、pointer_bitは+0x108、idle_framesは+0x10C。パッドはheld/pressed/releasedが+0/+4/+8、circle_x/yが+0xC/+0xE。reader.previous_heldは+8、seed_previous_heldは+0x30。依頼の欄は全て一致した。
+Controller / Wrapperは先頭のbaseを介して共通欄を使う。base.pointer_flagsは+0x10、4バイトのunsigned int。base.heldは+0x110、base.axis0.x/yは+0x11C/+0x120、base.unk_12Cは+0x12Cのfloat[2]。SeadOffsetList.offsetは+0xC。reader.previous_heldは+8、bool resync_previous_held_pendingは+0x30で、真なら次の読取りで履歴を同期してから消える。全対象欄の位置・大きさはIDAとコンパイラの両設定で一致した。
 
-検査の詳細は `_local/evidence/109/layout.json`、`verification.json`、`symbol_delta.json`。作業用IDBの変更を `tools/sync/export_symbols.py` で書き出し、元からIDBとsymbolsで食い違っていた対象外の型宣言や自動関数追加は採用していない。Git/ghの直接実行、正本IDB、実機操作は行っていない。
+試験にはlocal_types.hから抽出した宣言を使い、IDA固有の整数型の綴りと__bitmask注記だけを適応した。コンパイラはdevkitARM release 61 / arm-none-eabi-g++ 13.1.0、ARMv6K。列挙単体の大きさは設定で変わるが、格納欄をunsigned intにしたため後続位置に影響しない。SeadOffsetList、offset、float配列、boolの変更は既に別ワーカーがIDBとsymbolsへ反映した状態を検証した。今回IDBは開いていない。
 
-検査: `python tools/audit.py` は 開始時の1023ファイルでは旧notes.mdのCRLFを1件検出。LF修正後、同じscan_fileで現在の全1024ファイルを再監査し問題0件。`python tools/kb.py lint` は761件・エラーなし。変更ファイル実内容の同じ監査器による追加検査も問題0件。
+証拠は作業場基準の `_local/evidence/109/`。layout_after.jsonが修正後のIDA値、layout_test_after.cppが生成試験、layout_test_after.logがコンパイルログ、layout_test_after_results.jsonが両設定の全測定値と入力SHA-256、verify_arm_layout.pyが再現手順。作業ツリー内に_localは作らない。
+
+検査: lint: 761 件の記録、エラーなし。audit: 1024 ファイル、問題 0 件。いずれもtools用venvのPythonで成功。今回変更したファイルの実内容も同じ監査器で問題0件。
 
 ## 結論と根拠の要約
 
-- ACNL-F0737: 番号無しの9型と対象欄を確定。Init、入力producer、edge計算、Wrapperの独立した静的参照を照合し、IDBと宣言差分でレイアウトを確認。
+- ACNL-F0737: 現在の型名・欄の型に更新。pointer_flagsはunsigned int、リストはSeadOffsetList.offset、unk_12Cはfloat[2]、readerの同期旗はbool resync_previous_held_pending。ARMコンパイラの両設定で8構造体・55メンバーの位置と大きさがIDAに一致。
 - ACNL-F0738: 0x003534C8は成功経路の全体ゼロ化分岐の合流後、履歴保存・条件付きSELECT統合の前。無条件かつ非PC相対のLDRだが、全体ゼロ化後の値を読む場合があり、失敗経路では通らない。
 - ACNL-F0739: 装置padから読むのはheldとcircle_x/yで、padのedge語は読まない。装置+0x1634 bit0がボタン/軸、bit1がタッチを独立に制御。読み手の単一性は直書きオフセットと分割加算の検索範囲に限定。
 - ACNL-F0740: 正常読取りでpad held bit13は除去され、下流転写にも受け皿は無い。bit12→held0x80は静的確認、物理ZLの同定とZRの全経路での非到達は実機未確認。
@@ -45,7 +47,7 @@ ACNL-F0426	ACNL-F0737	partial
 ACNL-F0379	ACNL-F0742	partial
 ```
 
-- ACNL-F0721・F0723・F0426 → ACNL-F0737: 型名と部分型である旨の更新だけ。F0721の離し・旧状態R8/R9の扱いなど、各記録の結論は有効。
+- ACNL-F0721・F0723・F0426 → ACNL-F0737: 型名・欄の型と部分型である旨の更新。F0721の離し・旧状態R8/R9の扱いなど、各記録の結論は有効。
 - ACNL-F0379 → ACNL-F0742: 訂正する範囲は0x800をSELECTのbitと呼んだ名前づけ。読み替えが働く時にSELECT単独で0x800が立つ実測とは整合し、その実測を取り消さない。転写命令と上流の条件付き統合から区別できるが、旧測定時の状態再現は未実施。
 - 事前確認の1は「SELECT読み替えの2経路の合流後」ではなく、全体ゼロ化の分岐の合流後。4は「held全体が更新されない」ではなく「ボタン/軸更新を飛ばす」。タッチ更新によるheldのpointer bit変更は起こり得る。
 
@@ -63,4 +65,4 @@ CTRPF標準Hookの移設・呼出し規約・実機動作、読取り失敗の�
 
 ## 次の1手
 
-オーケストラが上記TSVのkind=partialの関係をkb.py relateで適用し、取り込む。gohanは上記型名で生成し直す。実機を許可した別作業でSELECT/STARTと読取り失敗時・タッチの組合せを同時観測する。
+オーケストラが上記TSVのkind=partialの関係をkb.py relateで適用し、取り込む。supersedesはF0737/F0742とも空のまま。gohanは上記型名で生成し直す。実機を許可した別作業でSELECT/STARTと読取り失敗時・タッチの組合せを同時観測する。
