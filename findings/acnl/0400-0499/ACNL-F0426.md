@@ -22,6 +22,7 @@ state: active
 consolidated_into: ''
 duplicate_of: ''
 superseded_by: ''
+corrected_by: ["ACNL-F0737"]
 ---
 ## IDA-gpt-6-F005: Controller画素座標/vtableとchat画面引継ぎ（2026-10-12）
 

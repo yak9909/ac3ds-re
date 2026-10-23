@@ -19,7 +19,7 @@ state: active            # active / consolidated / superseded / duplicate
 consolidated_into: ""
 duplicate_of: ""
 superseded_by: ""
-corrected_by: []
+corrected_by: ["ACNL-F0737"]
 ---
 ## 結論
 

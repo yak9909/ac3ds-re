@@ -382,7 +382,7 @@
 | ACNL-F0376 | F-350（2026-09-07）: ★入力の無効化 — `0x32C85A2D` の正体と、全ボタン／タッチを塞ぐ場所 | HIGH | ? | active |  |  |
 | ACNL-F0377 | F-351（2026-09-07）: 入力遮断をプラグインへ実装し、下画面ロックへ一本化した | HIGH | ? | active |  |  |
 | ACNL-F0378 | F-352（2026-09-07）: ★実機報告 2 件 — タッチのビットを消していた（修正）／ SELECT は未解決 |  | ? | active |  |  |
-| ACNL-F0379 | F-353（2026-09-07）: ★SELECT のビットは `0x800` — libctru の並びと違った（実測で確定） | HIGH | ? | active |  |  |
+| ACNL-F0379 | F-353（2026-09-07）: ★SELECT のビットは `0x800` — libctru の並びと違った（実測で確定） | HIGH | ? | active |  | 訂正あり |
 | ACNL-F0380 | F-354（2026-09-07）: ★タッチは 2 か所にある — hold の中のビットも消す（実機確認済み） | HIGH | ? | active |  |  |
 | ACNL-F0381 | F-355（2026-09-07）: ★★ゲームは SELECT を START に読み替えている — 真因と正しい直し方 | HIGH | ? | active |  |  |
 | ACNL-F0382 | F-356（2026-09-07）: ★「ゲームスピード変更」チート `0054C6E8` の正体 — フレームペーシングの無効化 | HIGH | ? | active |  |  |
@@ -429,7 +429,7 @@
 | ACNL-F0423 | 普通チャットのキャンセル・実退場とタブ復帰（2026-10-12） | MEDIUM | ? | active |  |  |
 | ACNL-F0424 | nativeクローゼットとmenu intrusive node（2026-10-12） | MEDIUM | ? | active |  |  |
 | ACNL-F0425 | F005のHHD引継ぎ要件を訂正（2026-10-12） |  | ? | active |  |  |
-| ACNL-F0426 | Controller画素座標/vtableとchat画面引継ぎ（2026-10-12） | MEDIUM | ? | active |  |  |
+| ACNL-F0426 | Controller画素座標/vtableとchat画面引継ぎ（2026-10-12） | MEDIUM | ? | active |  | 訂正あり |
 | ACNL-F0427 | native scrollの別入力経路とstyle arc一時pool（2026-10-12） | MEDIUM | ? | active |  |  |
 | ACNL-F0428 | chat listの決定と時刻窓からのfield復帰（2026-10-12） |  | ? | active |  |  |
 | ACNL-F0429 | gohanへのidle/気絶/消失抑制・チャット移植（2026-10-11） |  | ? | active |  |  |
@@ -724,9 +724,9 @@
 | ACNL-F0718 | 文字バッチのヘッダー・字形レコードと必要量 | MEDIUM | A | active |  |  |
 | ACNL-F0719 | 既定TagProcessorは起動時の相対初期化表から構築される | MEDIUM | A | active |  |  |
 | ACNL-F0720 | GPUリスト領域確保は失敗を戻り値で通知しない | MEDIUM | A | active |  |  |
-| ACNL-F0721 | 入力遮断点と旧状態の扱いを再解析：holdだけではreleaseが残る | MEDIUM | A | active |  |  |
+| ACNL-F0721 | 入力遮断点と旧状態の扱いを再解析：holdだけではreleaseが残る | MEDIUM | A | active |  | 訂正あり |
 | ACNL-F0722 | タッチ遮断は画面ロックではなく共有入力の変更である | MEDIUM | A | active |  |  |
-| ACNL-F0723 | SELECTとSTARTの条件付き統合と読み替え前のSELECT除去 | MEDIUM | A | active |  |  |
+| ACNL-F0723 | SELECTとSTARTの条件付き統合と読み替え前のSELECT除去 | MEDIUM | A | active |  | 訂正あり |
 | ACNL-F0724 | 更新 RomFS は ARCHIVE_ROMFS とファイルパス {5,0,0} で実機から開け、背景の画像 2 枚を読めた（2026-10-20、HIGH（実機の表示＋呼び出しの静的な確認）） | HIGH | C | active |  |  |
 | ACNL-F0725 | 実機で描画の資源のヒープの空きは、背景の確保の前に合計 3,196,648 バイト・最大の塊 3,196,535 バイトだった（2026-10-20、HIGH（実機の表示）） | HIGH | C | active |  |  |
 | ACNL-F0726 | 描画の確保先は 2D UI・graphic FCRAM・VRAM A/B に分かれる | MEDIUM | A | active |  |  |
