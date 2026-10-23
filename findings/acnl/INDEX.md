@@ -739,3 +739,9 @@
 | ACNL-F0733 | 通常フォントの未収録文字と追加 JIS 書体の補完範囲 | MEDIUM | A | active |  |  |
 | ACNL-F0734 | GX 完了カウンタと Framework の前回リスト待ち | MEDIUM | A | active |  |  |
 | ACNL-F0736 | 手紙停止標本の空きと使用中合計、所有量の逆算条件 | MEDIUM | A | active |  |  |
+| ACNL-F0737 | 入力の部分型を解析番号の無い名前に統一しメンバー位置を照合 | MEDIUM | A | active |  |  |
+| ACNL-F0738 | パッド履歴保存前の共通境界は全体ゼロ化の合流後にある | MEDIUM | A | active |  |  |
+| ACNL-F0739 | 装置パッドの読取りは成功旗に従いボタンとタッチを別々に更新する | MEDIUM | A | active |  |  |
+| ACNL-F0740 | パッドbit13は正常読取りで除去されコントローラー保持に転写されない | MEDIUM | A | active |  |  |
+| ACNL-F0741 | Controller計算の装置更新直後に必要な値はR4と旧状態R8/R9である | MEDIUM | A | active |  |  |
+| ACNL-F0742 | 保持0x800はSTARTでありSELECTは読み替え前なら0x1000へ転写される | MEDIUM | A | active |  |  |

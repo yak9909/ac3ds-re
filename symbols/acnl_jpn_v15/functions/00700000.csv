@@ -100,7 +100,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x0074DC18,224,sead_ExpHeap_FindFreeBlockTailAligned,"void *__fastcall(void *heap, unsigned int size, unsigned int alignment, unsigned int searchMode)",,legacy-idb,,
 0x0074F2A8,68,ssys_ma_VramExpHeap_GetFreeSize,unsigned int __fastcall(void *heap),MEDIUM,analysis,ACNL-F0732,
 0x0074F2EC,140,ssys_ma_VramExpHeap_GetMaxAllocatableSize,"unsigned int __fastcall(void *heap, int alignment)",MEDIUM,analysis,ACNL-F0732,
-0x0074F3FC,144,Layout_TransformTouchPixelsToLocal,"void __fastcall(void *layout, const AcnlUiPoint2F005 *pixels, AcnlUiPoint2F005 *local)",,legacy-idb,,
+0x0074F3FC,144,Layout_TransformTouchPixelsToLocal,"void __fastcall(void *layout, const AcnlUiPoint2 *pixels, AcnlUiPoint2 *local)",,legacy-idb,ACNL-F0737,
 0x0074F58C,92,UiAnim_IsFinished,,,legacy-idb,,
 0x00750814,12,AcFtr_GetPlacedItem,ItemID *__fastcall(void *furnitureActor),,legacy-idb,,
 0x00750A38,360,AcFtr_FindCurrentAnchor,"int __fastcall(const AcnlFurnitureLifecyclePrefix_F016 *actor, int *x, int *z, const float *positionOverride, const unsigned __int16 *rotation)",,legacy-idb,,
