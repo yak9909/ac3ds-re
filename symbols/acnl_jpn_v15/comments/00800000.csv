@@ -163,6 +163,7 @@ vtbl_nw_lyt_TextBox。実例を探すときはこの値を探せばよい (F-126
 "
 0x008FCAAC,line,"[ACNL-F0711] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Vtable slots; unknown slots retained without inferred prototypes.
 nw::font::ResFont vtable (F-129)。実機の限定走査で初期化済み CFNU を4個確認: normal 24px、ruby 7px、large 40px、counter 26px。TextBox+224 はこの vptr のオブジェクトを指す。"
+0x008FE6F8,line,[ACNL-F0743] MEDIUM; ctor 0x00540B44/0x00540B50 stores this address at object+0. 9 slots / 0x24 bytes; +0x10 Calc=0x0053CDC4; +0x18 UpdateFromDevice=0x00540870. Excludes preceding ABI metadata; static only.
 0x008FEDF4,line,"★vtable for sead::PrimitiveDrawer (F-98 / F-100 で訂正)。RTTI 実測で継承なし。
 ★**0x544E54 はデストラクタであって「実装位置」ではない** (F-100 で訂正)。
 vtable には dtor 対しか無く、描画メソッドは非仮想なので

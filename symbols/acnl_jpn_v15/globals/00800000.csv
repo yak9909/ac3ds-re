@@ -7679,6 +7679,7 @@ address,size,name,type,confidence,source,refs
 0x008FE628,4,_ZTVN4sead13CalculateTaskE,,,legacy-idb,
 0x008FE68C,4,_ZTVN4sead13ControllerMgrE,,,legacy-idb,
 0x008FE6F0,4,_ZTVN4sead13CtrControllerE,,,legacy-idb,
+0x008FE6F8,36,vtbl_sead_CtrController,SeadCtrControllerVtable,MEDIUM,analysis,ACNL-F0743
 0x008FE71C,4,_ZTVN4sead13CtrFileDeviceE,,,legacy-idb,
 0x008FE79C,4,_ZTVN4sead13DelegateEventIPKcEE,,,legacy-idb,
 0x008FE7AC,4,_ZTVN4sead13DelegateEventIPNS_8TaskBaseEE4SlotE,,,legacy-idb,

@@ -5,12 +5,12 @@ code_sha256 = "c635af8f08937b66f123b91b02391a68c034393320cdb94d603b9291383faabb"
 idb_input_is_code_bin = true
 ida_version = "9.3"
 tool_version = "2"
-exported_at = "2026-10-22T00:29:14Z"
+exported_at = "2026-10-23T05:54:42Z"
 
 [counts]
 functions = 1790
-globals = 8660
-comments = 2696
+globals = 8661
+comments = 2697
 vtables = 2586
 lvars = 9
-types = 282
+types = 283

@@ -132,6 +132,7 @@ struct ScheduleInOutEvent;
 struct SeadControllerBasePrefix;
 struct SeadControllerPrefix;
 struct SeadControllerWrapperPrefix;
+struct SeadCtrControllerVtable;
 struct SeadExpHeapBlock;
 struct SeadExpHeapList;
 struct SeadExpHeapPrefix;
@@ -2624,6 +2625,20 @@ struct SeadExpHeapList
   int link_offset;
 };
 #pragma pack(pop)
+
+// type: SeadCtrControllerVtable
+struct SeadCtrControllerVtable
+{
+  void *unk_0;                          ///< [ACNL-F0743] MEDIUM; object vptr address point, 9 slots / 0x24 bytes. Unknown slots retain void *; no ABI inferred.
+  void *unk_4;
+  void *unk_8;
+  void *unk_C;
+  int (__fastcall *calc)(SeadControllerPrefix *controller);
+  void *unk_14;
+  void *(__fastcall *update_from_device)(SeadControllerPrefix *controller);
+  void *unk_1C;
+  void *unk_20;
+};
 
 // type: SeadExpHeapVtable
 #pragma pack(push, 1)
