@@ -12,7 +12,7 @@ addresses: [0x008FE6F8, 0x00540B3C, 0x005404AC, 0x0053CDC4, 0x00540870]
 tags: [button, touch, sead]
 supersedes: []
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
-by: gpt-6
+by: gpt-6.1-sol
 original_by: ""
 reviewed_by: []
 state: active            # active / consolidated / superseded / duplicate

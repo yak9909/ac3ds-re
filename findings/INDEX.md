@@ -548,7 +548,6 @@
 - ACNL-F0586 下位 `0x0C` でgohanの壁抜けを相手へ強制できるか（2026-10-04、MEDIUM）
 - ACNL-F0587 屋外XYZを下位 `0x0C` で書くための条件と副作用（2026-10-04、静的MEDIUM／実用性LOW）
 - ACNL-F0626 T022 カタログの生成器（Codex 依頼 t022_catalog_arc、gpt-6.1-sol xhigh、2026-10-07。打ち切り。記録 ID なし = 道具と生成物）
-- ACNL-F0743 CtrControllerのオブジェクト先頭仮想表を大域変数と型で登録
 
 ## 未レビュー（reviewed_by が空）
 
