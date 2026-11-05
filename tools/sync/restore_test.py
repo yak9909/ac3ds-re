@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import shutil
 import sys
 import tempfile
@@ -23,6 +24,19 @@ import symlib as sl  # noqa: E402
 TABLES = ("functions", "globals", "comments", "vtables", "lvars")
 
 
+def is_auto_thunk(row: dict, original_names: set[str]) -> bool:
+    """復元時に IDA が付けた中継名だけを参考扱いにする。"""
+    name = row.get("name", "")
+    if not name.startswith("j_") or row.get("prototype") or row.get("source") != "restore-test":
+        return False
+    target = name[2:]
+    if target in original_names:
+        return True
+    # IDA が同名の中継に付ける連番だけを外して、元の関数名と照合する。
+    match = re.fullmatch(r"(.+)_\d+", target)
+    return bool(match and match.group(1) in original_names)
+
+
 def compare_dirs(a: Path, b: Path) -> tuple[dict, bool]:
     ta, tb = sl.read_all(a), sl.read_all(b)
     result = {}
@@ -31,6 +45,13 @@ def compare_dirs(a: Path, b: Path) -> tuple[dict, bool]:
         # confidence/source/refs/clone_of は IDB の外の情報なので比べない
         ign = ("confidence", "source", "refs", "clone_of")
         res = sl.compare_tables(t, ta[t], tb[t], ignore=ign)
+        if t == "functions":
+            original_names = {row["name"] for row in ta[t]}
+            reference, unmatched = [], []
+            for row in res["only_b"]:
+                (reference if is_auto_thunk(row, original_names) else unmatched).append(row)
+            res["only_b"] = unmatched
+            res["reference_thunks"] = {"count": len(reference), "rows": reference}
         result[t] = res
         ok &= sl.tables_equal(res)
     def type_blocks(root):
@@ -86,6 +107,11 @@ def run(build: str, symbols: Path, keep: bool = False, fresh: bool = False, repo
                 print("%-10s %s" % (t, sl.summarize_compare(r)[0]))
                 for line in sl.summarize_compare(r)[1:]:
                     print("    " + line)
+                if t == "functions":
+                    reference = r["reference_thunks"]
+                    print("    参考: IDA 自動中継 %d 件" % reference["count"])
+                    for row in reference["rows"]:
+                        print("      %s %s" % (row["address"], row["name"]))
         if report:
             def conv(r):
                 if "changed" in r and isinstance(r["changed"], dict):
