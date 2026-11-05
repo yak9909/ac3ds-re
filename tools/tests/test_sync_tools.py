@@ -81,6 +81,54 @@ def test_compare_dirs(tmp_path):
     assert not ok and res["types"]["only_a"] == ["A"]
 
 
+def test_compare_dirs_auto_thunks_are_reference_only(tmp_path):
+    a, b = tmp_path / "a", tmp_path / "b"
+    original = {"address": "0x00100000", "size": "4", "name": "Target", "prototype": "void Target(void)",
+                "source": "analysis"}
+    thunks = [dict(original, address="0x00100004", name="j_Target", prototype="", source="restore-test"),
+              dict(original, address="0x00100008", name="j_Target_0", prototype="", source="restore-test")]
+    sl.write_table(a, "functions", [original])
+    sl.write_table(b, "functions", [original, *thunks])
+    res, ok = restore_test.compare_dirs(a, b)
+    assert ok
+    assert res["functions"]["only_b"] == []
+    reference = res["functions"]["reference_thunks"]
+    assert reference["count"] == 2
+    assert [(row["address"], row["name"]) for row in reference["rows"]] == [
+        (row["address"], row["name"]) for row in thunks]
+
+
+def test_compare_dirs_auto_thunk_does_not_hide_other_difference(tmp_path):
+    a, b = tmp_path / "a", tmp_path / "b"
+    original = {"address": "0x00100000", "size": "4", "name": "Target", "prototype": ""}
+    sl.write_table(a, "functions", [original])
+    sl.write_table(b, "functions", [original,
+                                     dict(original, address="0x00100004", name="j_Target", source="restore-test"),
+                                     dict(original, address="0x00100008", name="Other", source="restore-test")])
+    res, ok = restore_test.compare_dirs(a, b)
+    assert not ok
+    assert [row["name"] for row in res["functions"]["only_b"]] == ["Other"]
+    assert [row["name"] for row in res["functions"]["reference_thunks"]["rows"]] == ["j_Target"]
+
+
+@pytest.mark.parametrize("changes", [
+    {"name": "j_Missing"}, {"name": "j_Target_extra"}, {"prototype": "void j_Target(void)"},
+    {"source": "analysis"}, {"name": "Target_extra"},
+])
+def test_compare_dirs_other_extra_functions_still_differ(tmp_path, changes):
+    a, b = tmp_path / "a", tmp_path / "b"
+    original = {"address": "0x00100000", "size": "4", "name": "Target", "prototype": "", "source": "analysis"}
+    extra = dict(original, address="0x00100004", name="j_Target", source="restore-test")
+    extra.update(changes)
+    sl.write_table(a, "functions", [original])
+    sl.write_table(b, "functions", [original, extra])
+    res, ok = restore_test.compare_dirs(a, b)
+    assert not ok
+    assert [(row["address"], row["name"]) for row in res["functions"]["only_b"]] == [
+        (extra["address"], extra["name"])]
+    assert res["functions"]["reference_thunks"] == {"count": 0, "rows": []}
+
+
 def test_import_report_skipped(capsys):
     rep = import_symbols.Report()
     rep.skip("functions", 2)
