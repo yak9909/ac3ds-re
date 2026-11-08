@@ -22,4 +22,6 @@ def repo(tmp_path, monkeypatch):
     shutil.copytree(REPO / "meta", r / "meta")
     monkeypatch.setenv("AC3DS_REPO", str(r))
     monkeypatch.setenv("AC3DS_STATE", str(tmp_path / "state"))
+    # _local 配下で試験しても、実作業場の参考資料索引を参照・更新しない。
+    monkeypatch.setenv("AC3DS_WORKSPACE", str(r))
     return r
