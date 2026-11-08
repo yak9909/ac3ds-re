@@ -502,6 +502,8 @@ address,size,name,type,confidence,source,refs
 0x0097F660,60,g_AcPlayerMovementProbeOffsets,float[15],,legacy-idb,
 0x0097F6F4,4,vc_CAMCOORD,,,legacy-idb,
 0x009ADAA0,4,vc_D_EXHIBITION,,,legacy-idb,
+0x009AE15C,72,g_DropDataTable,DropData[4],,analysis,ACNL-F0744
+0x009AE504,1280,g_TreeHitCounts,u32[320],,analysis,ACNL-F0744
 0x009C3098,8,g_SceneContexts,,,legacy-idb,
 0x009C30A0,4,g_SceneContext_2,,,legacy-idb,
 0x009C30A4,12,g_SceneTraversers,,,legacy-idb,
