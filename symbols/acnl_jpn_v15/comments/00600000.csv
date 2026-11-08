@@ -99,6 +99,7 @@ REFERENCES/TEXTS/drop_method.txt の
 0x0062A0B4,line,IDA-gpt-6-sol-F009: incoming lower-transfer header bits[1:0] decrement outstanding-frame count for source peer via NetTransfer_AdjustPeerUnackedFrameCount.
 0x0062A1A8,line,IDA-gpt-6-sol-F007: commit a composed frame through sub_626310 to the peer queue under the manager+78464 lock. Queue operations are not entirely protected by this function because scratch reset and frame composition occur before it.
 0x0062A1A8,repeatable,IDA-gpt-6-sol-F007: commit a composed frame through sub_626310 to the peer queue under the manager+78464 lock. Queue operations are not entirely protected by this function because scratch reset and frame composition occur before it.
+0x0062E60C,func,"[ACNL-F0744] MEDIUM static: Current room/date weather selector. Rain consumer 0x22A14C distinguishes 3/4. Range [0x62E60C,0x62E730); vc_WEATHER at +0x11C is normal MOV R0,R4 return; early returns bypass it."
 0x0062E728,line,"IDA-gpt-6-F001 / gpt-6 / 2026-10-11, MEDIUM static: normal weather-return path. Original MOV R0,R4; AR Cloudy E3A00002 returns 2. JOKER Misc.cpp ChangeWeather menu index 2 = cloudy; gohan.md 17.8 independently records 0..6 weather mapping. Earlier 3->5 and 4->6 seasonal remapping is overridden by a constant at this return. Special-room early returns are outside this patch. No new hardware test."
 0x0062E728,repeatable,"Vapecord plugin ADDRESSES: WEATHER
 他地域: USA=0062FC30  EUR=0062EC68  KOR=0062E2D0
@@ -213,6 +214,7 @@ IDA-gpt-6-F001: current-state history: +0x1AA <- old state; +0x1A9 <- new state.
 手持ちアイテムのフラグ (this+2245/2247/2248) をクリアして中立状態へ戻す。
 FOXXY は 0x670A48 を #6 にしてここへ飛ばせる。
 IDA-gpt-6-F002 MEDIUM: state6 table0x843634 stride28 selects this idle entry (separate PUSH R4-R7,LR). Plugin supplies current packed X/Z and zeroed speed argument. IDA currently merges this block into sub_658A20; separate function rename deferred until full boundary repair."
+0x00658EEC,func,"[ACNL-F0744] MEDIUM static: Frame caller 0x653038; gates and dispatches input/state/field-object actions, returns handled flag. Range [0x658EEC,0x6591C8); vc_NOTRAPS1 at +0x274 is BNE to return 1 after sub_682AF0 already ran."
 0x00659160,line,IDA-gpt-6-F001 MEDIUM: unconditional branch goes to return1 after sub_682AF0 regardless of its result; that callee has already executed. Skips subsequent field-object action checks; do not label this first word alone as a complete trap or trip prevention.
 0x00659160,repeatable,"Vapecord plugin ADDRESSES: NOTRAPS1
 他地域: USA=0065A668  EUR=006596A0  KOR=00658D08

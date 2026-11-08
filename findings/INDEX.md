@@ -6,7 +6,7 @@
 
 | scope | 件数 | active |
 |---|---|---|
-| acnl | 746 | 659 |
+| acnl | 747 | 660 |
 | hhd | 20 | 9 |
 | 3ds | 0 | 0 |
 
@@ -24,7 +24,7 @@
 | acnl | render | 140 |
 | acnl | save | 5 |
 | acnl | sound | 11 |
-| acnl | system | 55 |
+| acnl | system | 56 |
 | acnl | text | 61 |
 | acnl | time | 2 |
 | acnl | ui | 16 |
@@ -1293,6 +1293,7 @@
 - ACNL-F0741 Controller計算の装置更新直後に必要な値はR4と旧状態R8/R9である
 - ACNL-F0742 保持0x800はSTARTでありSELECTは読み替え前なら0x1000へ転写される
 - ACNL-F0743 CtrControllerのオブジェクト先頭仮想表を大域変数と型で登録
+- ACNL-F0744 パッチ位置を含む関数と木の作業領域、および text ページ末尾の詰め物を識別した
 - ACNL-F0745 8 バイト暗号化値の復号・暗号化と検査和
 - ACNL-F0746 通信枠からプレイヤーセーブを得る関数と resident 配列
 - ACNL-F0747 所持金・貯金・メダル・ふるさとチケットのセーブ欄と加算上限
@@ -1887,10 +1888,11 @@
 - acnl_jpn_v15 0x0097C0B4: ACNL-F0328, ACNL-F0330, ACNL-F0711, ACNL-F0719
 - acnl_jpn_v15 0x0097F69C: ACNL-F0429, ACNL-F0660
 - acnl_jpn_v15 0x00986500: ACNL-F0424, ACNL-F0486
-- acnl_jpn_v15 0x009AE15C: ACNL-F0051, ACNL-F0052, ACNL-F0057, ACNL-F0061, ACNL-F0080, ACNL-F0082, ACNL-F0648, ACNL-F0649, ACNL-F0673
+- acnl_jpn_v15 0x009AE15C: ACNL-F0051, ACNL-F0052, ACNL-F0057, ACNL-F0061, ACNL-F0080, ACNL-F0082, ACNL-F0648, ACNL-F0649, ACNL-F0673, ACNL-F0744
 - acnl_jpn_v15 0x009AE1A4: ACNL-F0061, ACNL-F0080, ACNL-F0673
 - acnl_jpn_v15 0x009AE22E: ACNL-F0063, ACNL-F0077
 - acnl_jpn_v15 0x009AE244: ACNL-F0051, ACNL-F0063, ACNL-F0073, ACNL-F0077, ACNL-F0080, ACNL-F0673
+- acnl_jpn_v15 0x009AE504: ACNL-F0080, ACNL-F0744
 - acnl_jpn_v15 0x009B0000: ACNL-F0187, ACNL-F0191, ACNL-F0305, ACNL-F0308
 - acnl_jpn_v15 0x009B0010: ACNL-F0239, ACNL-F0252, ACNL-F0258, ACNL-F0306
 - acnl_jpn_v15 0x009B0D00: ACNL-F0252, ACNL-F0254, ACNL-F0258, ACNL-F0304, ACNL-F0305, ACNL-F0308, ACNL-F0343
@@ -1938,6 +1940,6 @@
 - acnl/network: 14件
 - acnl/render: 140件
 - acnl/sound: 11件
-- acnl/system: 55件
+- acnl/system: 56件
 - acnl/text: 61件
 - acnl/ui: 16件

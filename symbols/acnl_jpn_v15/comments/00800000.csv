@@ -40,6 +40,7 @@ address,kind,text
 
 ★これまで使っていた 0x01E81000 の頁は **boot によって未マップ**だった。
   こちらはコード像内な_"
+0x00838018,line,"[ACNL-F0744] MEDIUM static: Original file page tail [0x838018,0x839000), all zero; nominal .text ends 0x838018. No IDB xrefs or ARM B/BL targets; no aligned interior pointers. Data 0x97803C holds exclusive text-end marker 0x838018 paired with text-start 0x100000 at 0x978038; unaligned matches cross instruction words or the literal pair 0x008EA4C0 / 0x00008388 at 0x2880F8. Mapped separately for symbols; no game code or runtime allocation guarantee."
 0x0083E200,line,offset vbase
 0x008435F4,line,"IDA-opus-5.5-F070: ゆうめいなキノコ(0x209D)の状態 0xD6 の拡大率 11 段 {1,1,1.08,1.35,1.8,1.8,1.8,1.35,1.08,1,1}。6 フレームごとに 1 段。各端末が自分の表で計算する(パケットに倍率は乗らない)"
 0x00843634,line,"IDA-opus-5.5-F070: プレイヤーの状態表 0xEB 項目 x 28B {始め pmf, 毎フレーム pmf, 終わり pmf, 受信した状態パケットを相手側で当てる関数(+0x18, 普通の関数ポインタ)}。Actor_SetState / PlayerState_ApplyRemotePacket が引く"

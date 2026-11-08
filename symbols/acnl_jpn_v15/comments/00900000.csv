@@ -269,7 +269,8 @@ IDA-gpt-6.1-sol-F011 / MEDIUM。nwlyt全体allocatorポインタ。Layout/AnimTr
 0x009ADAA0,repeatable,"Vapecord plugin ADDRESSES: D_EXHIBITION
 他地域: USA=009B4AC0  EUR=009B3AC0  KOR=009ACAC0
 （プラグイン作者のラベル。検証済みの識別ではない）"
-0x009AE15C,line,"ACNL_Item::s_DropDataTable  18バイト x 4スロット (F-44)
+0x009AE15C,line,"[ACNL-F0744] MEDIUM static: Four 0x12-byte slots; Item_PlaceItem allocates by State +0xF, initializes 3 ItemIDs and flags; 0x596C84 reads completion state. Ends at 0x9AE1A4, distinct from 32-entry active table.
+ACNL_Item::s_DropDataTable  18バイト x 4スロット (F-44)
 +0 ItemToReplace, +4 ItemToPlace, +8 ItemToShow, +12 wX, +13 wY,
 +14 DropType, +15 State, +16 スロット番号, +17 Flags
 Flags: bit0 IsInside / bit1 PlayerSide / bit2-4 FruitTree / bit5 CrashTree / bit6-7 HitCount"
@@ -285,7 +286,8 @@ Flags: bit0 IsInside / bit1 PlayerSide / bit2-4 FruitTree / bit5 CrashTree / bit
   +14 wX  +15 wY  +16 actionID  +17 state  +18..20 pad  +21 roomID
 ★満杯時 FieldObj_ApplyDigRecord の探索ループが v12 = -1 を返し、
   &g_DigRecordArray[-1] = 0x9AE22E へ書く（F-39 の SIGSEGV の正体）。"
-0x009AE504,line,木の打撃カウンタ 2bit/マス (F-42)。t = X + 80*Y - 0x510、word = [t>>4]、shift = (t&0xF)*2
+0x009AE504,line,"[ACNL-F0744] MEDIUM static: Packed 2-bit hits/cell: t=X+80*Y-0x510, word=t>>4, shift=(t&15)*2. 0x597CE0 reads, 0x59F830 validates; 0x5A037C updates. Independent clears 0x30808C and 0x5A19EC set 0x500 bytes to zero.
+木の打撃カウンタ 2bit/マス (F-42)。t = X + 80*Y - 0x510、word = [t>>4]、shift = (t&0xF)*2"
 0x009C3098,line,"★g_SceneContexts[3] — nw::gfx::SceneContext × 3 (F-111)。
 Render_InitGlobal(0x4E97CC) が sub_48E384 で生成。
 [0]=0x9C3098 [1]=0x9C309C [2]=0x9C30A0(g_SceneContext_2)
