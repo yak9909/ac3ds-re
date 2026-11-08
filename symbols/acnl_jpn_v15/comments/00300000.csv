@@ -11,10 +11,14 @@ address,kind,text
 0x00302300,repeatable,V2-F014 MEDIUM: 掲示板(TownBase+451128)へ記事を追加。呼出 20 箇所(日替わり系 0x107xxx/0x108xxx、SvProc 種別 0/2/7 の sub_1082E4 ほか)
 0x00303128,line,IDA-opus-5.5-F050: 家具の大きさ = ItemParam+23 & 0xF（0 1x1 / 1 1x2 / 2 2x2 / 3 2x3 / 4 3x3、5 以上は 0、記録なしは 5）。模様替えのチップの大きさ
 0x00303128,repeatable,IDA-opus-5.5-F050: 家具の大きさ = ItemParam+23 & 0xF（0 1x1 / 1 1x2 / 2 2x2 / 3 2x3 / 4 3x3、5 以上は 0、記録なしは 5）。模様替えのチップの大きさ
-0x00303404,repeatable,"Vapecord plugin ADDRESSES: MONEYSET
+0x00303404,repeatable,"[ACNL-F0745] MEDIUM; writes salt, rotation, ciphertext and checksum. Returns ciphertext, NOT plaintext/status. No resource-specific cap. Uses game RNG.
+Previous label: vc_MONEYSET (unverified plugin label).
+Vapecord plugin ADDRESSES: MONEYSET
 他地域: USA=003036A4  EUR=00303738  KOR=003034C0
 （プラグイン作者のラベル。検証済みの識別ではない）"
-0x00303530,repeatable,"Vapecord plugin ADDRESSES: MONEYGET
+0x00303530,repeatable,"[ACNL-F0745] MEDIUM; validates ciphertext-byte checksum, returns plaintext or zero on mismatch. Zero is ambiguous. Salt and rotation are not checksummed.
+Previous label: vc_MONEYGET (unverified plugin label).
+Vapecord plugin ADDRESSES: MONEYGET
 他地域: USA=003037DC  EUR=00303874  KOR=003035EC
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x003046C0,line,V2-F013 MEDIUM: 『SvProc Thread』(ProcThread) を作り desc を +144 に保持、desc+44=1 にして開始。フラグで byte_956354/955F99 等

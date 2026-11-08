@@ -657,7 +657,9 @@ IDA-gpt-6-F002 MEDIUM: actual fifth argument is float bits at caller SP+0 (FLDS 
 0x002FEAAC,repeatable,"Vapecord plugin ADDRESSES: GET_ITEM_NAME
 他地域: USA=002FEA78  EUR=002FEA0C  KOR=002FE9E4
 （プラグイン作者のラベル。検証済みの識別ではない）"
-0x002FEB60,repeatable,"Vapecord plugin ADDRESSES: PSOFFSET
+0x002FEB60,repeatable,"[ACNL-F0746] MEDIUM; online slot 0..3, or >=4 for local player. Local branch returns [0xAA914C]; other slots resolve a save ID. Returns NULL during save IO or invalid mapping. Not a resident-array index.
+Previous label: vc_PSOFFSET (unverified plugin label).
+Vapecord plugin ADDRESSES: PSOFFSET
 他地域: USA=002FEB2C  EUR=002FEBB4  KOR=002FEA98
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x002FEB98,repeatable,"Vapecord plugin ADDRESSES: PLAYERDATACONDITION
