@@ -67,6 +67,10 @@ REQUIRED = {
     "tags": list, "supersedes": list, "by": str, "original_by": str, "reviewed_by": list,
     "state": str, "consolidated_into": str, "duplicate_of": str, "superseded_by": str,
 }
+DRAFT_KEYS = ("title", "summary", "date", "category", "build", "confidence",
+              "tool", "addresses", "tags", "supersedes")
+DRAFT_PATH_RE = re.compile(r"inbox/webchat/[0-9]+/[0-9]+\.md")
+
 STATES = ("active", "consolidated", "superseded", "duplicate")
 
 
@@ -575,6 +579,121 @@ def cmd_addr(a) -> int:
     return 0
 
 
+def validate_fields(m: dict, required: dict, err) -> bool:
+    bad = False
+    for k, t in required.items():
+        if k not in m:
+            err("必須項目が無い: " + k)
+            bad = True
+        elif m[k] is None and t is str:
+            err("%s が空（null）。\"\" と書く" % k)
+            bad = True
+        elif not isinstance(m[k], t):
+            err("%s の型が違う" % k)
+            bad = True
+    return not bad
+
+
+def validate_content(r: Rec, builds: dict, cats: dict, tags: dict, allids: set, err, *, draft=False) -> None:
+    m = r.meta
+    allowed = set(cats.get("scopes", {}).get(r.scope, {}).get("categories", [])) | set(
+        cats.get("special", {}).get("categories", []))
+    if m["category"] not in allowed:
+        err("category が台帳に無い: %s" % m["category"])
+    if m["build"] not in builds:
+        err("build が台帳に無い: %s" % m["build"])
+    for t in m["tags"]:
+        if not isinstance(t, str) or t not in tags:
+            err("tag が台帳に無い: %s" % t)
+    if m["confidence"] not in (("LOW", "MEDIUM") if draft else ("LOW", "MEDIUM", "HIGH")) and not (not draft and m["confidence"] == "" and "source" in m):
+        err("confidence の値が不正: %r" % m["confidence"])
+    for x in m["addresses"]:
+        if not isinstance(x, int) or isinstance(x, bool):
+            err("addresses に整数でない値: %r" % (x,))
+    for x in m["supersedes"]:
+        if not isinstance(x, str) or x not in allids:
+            err("supersedes の参照先が無い: %s" % x)
+
+
+def load_drafts(base: Path | None = None) -> list[Rec]:
+    base = base if base is not None else root() / "inbox"
+    return [Rec(p, "") for p in sorted(base.rglob("*")) if p.is_file()]
+
+
+def validate_draft(r: Rec, allids: set) -> list[str]:
+    errors = []
+
+    def err(msg):
+        errors.append("%s: %s" % (r.rel, msg))
+
+    if not DRAFT_PATH_RE.fullmatch(r.rel):
+        err("inbox/ に許可されていないファイル")
+    if r.err:
+        err(r.err)
+        return errors
+    m = r.meta
+    # YAML のマッピング順序と重複した鍵も確認する。
+    node = yaml.compose(FM_RE.match(r.raw).group(1))
+    keys = [key.value for key, _ in node.value]
+    if keys != list(DRAFT_KEYS):
+        err("下書きの鍵と並びは " + "・".join(DRAFT_KEYS))
+    if not validate_fields(m, {k: REQUIRED[k] for k in DRAFT_KEYS}, err):
+        return errors
+    builds = load_toml("builds.toml").get("builds", {})
+    r.scope = builds.get(m["build"], {}).get("scope", "")
+    if m["build"] in builds and r.scope not in PREFIX:
+        err("build のスコープが不正: %s" % r.scope)
+    validate_content(r, builds, load_toml("categories.toml"),
+                     load_toml("tags.toml").get("tags", {}), allids, err, draft=True)
+    body = r.raw[FM_RE.match(r.raw).end():]
+    for heading in ("結論", "根拠", "反証条件・未確認点"):
+        if not re.search(r"^## " + re.escape(heading) + r"[ \t]*$", body, re.M):
+            err("本文の見出しが無い: ## " + heading)
+    return errors
+
+
+def cmd_intake(a) -> int:
+    if not re.fullmatch(r"[0-9]+", a.issue):
+        print("issue は数字で指定する", file=sys.stderr)
+        return 1
+    if canonical_model(a.by, load_toml("models.toml")) is None:
+        print("by が models.toml に無い: " + a.by, file=sys.stderr)
+        return 1
+    base = root() / "inbox" / "webchat" / a.issue
+    drafts = load_drafts(base)
+    allids = {r.id for r in load_records() if not r.err}
+    errors = [e for r in drafts for e in validate_draft(r, allids)]
+    if errors:
+        for e in errors:
+            print("エラー: " + e)
+        return 1
+    # 全件検査した後で初めて採番する。
+    ids = []
+    for r in sorted(drafts, key=lambda r: (int(r.path.stem), r.path.name)):
+        n = reserve_number(r.scope)
+        rid = "%s-F%04d" % (PREFIX[r.scope], n)
+        text = TEMPLATE.format(id=rid, title='""', date=r.get("date"),
+                               category=r.get("category"), build=r.get("build"), tool='""')
+        for k in DRAFT_KEYS:
+            value = r.meta[k]
+            if isinstance(value, datetime.date):
+                value = value.isoformat()
+            text = set_field(text, k, json.dumps(value, ensure_ascii=False))
+        text = set_field(text, "by", json.dumps(a.by, ensure_ascii=False))
+        text = text[:FM_RE.match(text).end()] + r.raw[FM_RE.match(r.raw).end():]
+        write_text(root() / "findings" / r.scope / folder_for(n) / (rid + ".md"), text)
+        r.path.unlink()
+        ids.append(rid)
+    # 他の Issue が残る親フォルダは消さない。
+    for directory in (base, base.parent, base.parent.parent):
+        if directory.is_dir() and not any(directory.iterdir()):
+            directory.rmdir()
+    cmd_index(a)
+    for rid in ids:
+        print(rid)
+    return 0
+
+
 # ---------- lint ----------
 def cmd_lint(a) -> int:
     recs = load_records()
@@ -607,18 +726,7 @@ def cmd_lint(a) -> int:
             err(r.err)
             continue
         m = r.meta
-        bad = False
-        for k, t in REQUIRED.items():
-            if k not in m:
-                err("必須項目が無い: " + k)
-                bad = True
-            elif m[k] is None and t is str:
-                err("%s が空（null）。\"\" と書く" % k)
-                bad = True
-            elif m[k] is not None and not isinstance(m[k], t):
-                err("%s の型が違う" % k)
-                bad = True
-        if bad:
+        if not validate_fields(m, REQUIRED, err):
             continue
         mm = ID_RE.match(r.id)
         if not mm:
@@ -630,29 +738,13 @@ def cmd_lint(a) -> int:
                 err("ID の接頭辞とスコープが一致しない")
             if r.path.parent.name != folder_for(int(mm.group(2))):
                 err("フォルダが番号と合わない（%s）" % folder_for(int(mm.group(2))))
-        allowed = set(cats.get("scopes", {}).get(r.scope, {}).get("categories", [])) | set(
-            cats.get("special", {}).get("categories", []))
-        if m["category"] not in allowed:
-            err("category が台帳に無い: %s" % m["category"])
-        if m["build"] not in builds:
-            err("build が台帳に無い: %s" % m["build"])
-        for t in m["tags"]:
-            if t not in tags:
-                err("tag が台帳に無い: %s" % t)
-        if m["confidence"] not in ("LOW", "MEDIUM", "HIGH") and not (m["confidence"] == "" and "source" in m):
-            err("confidence の値が不正: %r" % m["confidence"])
-        for x in m["addresses"]:
-            if not isinstance(x, int) or isinstance(x, bool):
-                err("addresses に整数でない値: %r" % (x,))
+        validate_content(r, builds, cats, tags, allids, err)
         if m["state"] not in STATES:
             err("state の値が不正: %s" % m["state"])
         else:
             need = {"superseded": "superseded_by", "consolidated": "consolidated_into", "duplicate": "duplicate_of"}
             if m["state"] in need and not m[need[m["state"]]]:
                 err("state %s なのに %s が空" % (m["state"], need[m["state"]]))
-        for x in m["supersedes"]:
-            if x not in allids:
-                err("supersedes の参照先が無い: %s" % x)
         for k in ("superseded_by", "duplicate_of"):
             if m[k] and m[k] not in allids:
                 err("%s の参照先が無い: %s" % (k, m[k]))
@@ -674,6 +766,9 @@ def cmd_lint(a) -> int:
                     err("corrected_by は自分自身を指せない: %s" % x)
         if m["by"] != "auto" and canonical_model(m["by"], models) is None:
             err("by が models.toml に無い: %s" % m["by"])
+    for r in load_drafts():
+        if targets is None or r.path.resolve() in targets:
+            errors.extend(validate_draft(r, allids))
     exp = build_index(recs)
     stale = []
     for rel, text in exp.items():
@@ -774,6 +869,10 @@ def main(argv=None) -> int:
     s.add_argument("--build")
     s.add_argument("--tool", default="IDA")
     s.set_defaults(f=cmd_new)
+    s = sub.add_parser("intake")
+    s.add_argument("--issue", required=True)
+    s.add_argument("--by", default="gpt-6-sol")
+    s.set_defaults(f=cmd_intake)
     s = sub.add_parser("index")
     s.set_defaults(f=cmd_index)
     s = sub.add_parser("search")

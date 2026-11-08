@@ -23,7 +23,7 @@ TASK_FILES = {".task/notes.md", ".task/report.md"}
 # .gitignore のホワイトリストと同じ一覧
 ALLOWED_TOP_FILES = {".gitignore", ".gitattributes", "README.md", "AGENTS.md", "CLAUDE.md", "LICENSE"}
 ALLOWED_TOP_DIRS = {".github", ".githooks", "skills", "meta", "findings", "topics", "symbols", "archive",
-                    "docs", "tools", ".task"}
+                    "docs", "tools", ".task", "inbox"}
 
 
 @dataclass
@@ -186,6 +186,8 @@ def scan_file(path: str, data: bytes, allow: list[dict], main_mode: bool = False
             add("許可された場所の外のファイル")
     elif top not in ALLOWED_TOP_DIRS:
         add("許可された場所の外のファイル")
+    if top == "inbox" and not re.fullmatch(r"inbox/webchat/[0-9]+/[0-9]+\.md", path):
+        add("inbox/ に許可されていないファイル")
     if top == ".task":
         if path not in TASK_FILES:
             add(".task/ に許可されていないファイル")
