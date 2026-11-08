@@ -6,7 +6,7 @@
 
 | scope | 件数 | active |
 |---|---|---|
-| acnl | 743 | 656 |
+| acnl | 747 | 660 |
 | hhd | 20 | 9 |
 | 3ds | 0 | 0 |
 
@@ -22,7 +22,7 @@
 | acnl | misc | 2 |
 | acnl | network | 14 |
 | acnl | render | 140 |
-| acnl | save | 1 |
+| acnl | save | 5 |
 | acnl | sound | 11 |
 | acnl | system | 56 |
 | acnl | text | 61 |
@@ -1294,6 +1294,10 @@
 - ACNL-F0742 保持0x800はSTARTでありSELECTは読み替え前なら0x1000へ転写される
 - ACNL-F0743 CtrControllerのオブジェクト先頭仮想表を大域変数と型で登録
 - ACNL-F0744 パッチ位置を含む関数と木の作業領域、および text ページ末尾の詰め物を識別した
+- ACNL-F0745 8 バイト暗号化値の復号・暗号化と検査和
+- ACNL-F0746 通信枠からプレイヤーセーブを得る関数と resident 配列
+- ACNL-F0747 所持金・貯金・メダル・ふるさとチケットのセーブ欄と加算上限
+- ACNL-F0748 カブ売却価格 12 個の暗号化配列と週次生成
 - HHD-F0001 慣性と、選択枠・ボタンの縞の合成（2026-10-05、MEDIUM〜HIGH: 静的 + HHD のスクショ 2 枚で合成の意味を照合）
 - HHD-F0002 髪のページ送り — ドラッグ・弾き・滑りの規則（2026-10-05、MEDIUM: 静的のみ。定数はすべて逆アセンブルの即値・リテラル）
 - HHD-F0003 髪・目の形の番号 → モデルのファイル（2026-10-05、MEDIUM: 静的のみ。ACNL のファイル名と照合）
@@ -1318,6 +1322,7 @@
 ## 重複候補（同じ addresses を持つ active の記録の組）
 
 - acnl_jpn_v15 0x00100000: ACNL-F0034, ACNL-F0083, ACNL-F0084, ACNL-F0086, ACNL-F0090, ACNL-F0093, ACNL-F0140, ACNL-F0173, ACNL-F0176, ACNL-F0187, ACNL-F0258, ACNL-F0376, ACNL-F0387, ACNL-F0388, ACNL-F0414, ACNL-F0547, ACNL-F0581, ACNL-F0608, ACNL-F0719
+- acnl_jpn_v15 0x00103A18: ACNL-F0568, ACNL-F0748
 - acnl_jpn_v15 0x0010494C: ACNL-F0085, ACNL-F0086
 - acnl_jpn_v15 0x00104B54: ACNL-F0567, ACNL-F0568
 - acnl_jpn_v15 0x00111FD4: ACNL-F0390, ACNL-F0412
@@ -1405,18 +1410,18 @@
 - acnl_jpn_v15 0x002D52D4: ACNL-F0622, ACNL-F0633
 - acnl_jpn_v15 0x002D5728: ACNL-F0622, ACNL-F0633
 - acnl_jpn_v15 0x002F75CC: ACNL-F0107, ACNL-F0386, ACNL-F0548, ACNL-F0668, ACNL-F0671
-- acnl_jpn_v15 0x002FAF48: ACNL-F0098, ACNL-F0388, ACNL-F0459
+- acnl_jpn_v15 0x002FAF48: ACNL-F0098, ACNL-F0388, ACNL-F0459, ACNL-F0746
 - acnl_jpn_v15 0x002FB0B6: ACNL-F0085, ACNL-F0086
 - acnl_jpn_v15 0x002FB354: ACNL-F0388, ACNL-F0513
 - acnl_jpn_v15 0x002FB3A4: ACNL-F0093, ACNL-F0570
-- acnl_jpn_v15 0x002FB900: ACNL-F0388, ACNL-F0486
-- acnl_jpn_v15 0x002FB920: ACNL-F0601, ACNL-F0608
+- acnl_jpn_v15 0x002FB900: ACNL-F0388, ACNL-F0486, ACNL-F0746
+- acnl_jpn_v15 0x002FB920: ACNL-F0601, ACNL-F0608, ACNL-F0746
 - acnl_jpn_v15 0x002FBB8C: ACNL-F0152, ACNL-F0153, ACNL-F0736
 - acnl_jpn_v15 0x002FC878: ACNL-F0092, ACNL-F0633, ACNL-F0645
 - acnl_jpn_v15 0x002FC950: ACNL-F0429, ACNL-F0482, ACNL-F0567
 - acnl_jpn_v15 0x002FCBA0: ACNL-F0465, ACNL-F0478
 - acnl_jpn_v15 0x002FCE5C: ACNL-F0085, ACNL-F0465
-- acnl_jpn_v15 0x002FEB60: ACNL-F0106, ACNL-F0592
+- acnl_jpn_v15 0x002FEB60: ACNL-F0106, ACNL-F0592, ACNL-F0746
 - acnl_jpn_v15 0x002FEE38: ACNL-F0060, ACNL-F0092, ACNL-F0465
 - acnl_jpn_v15 0x00307D08: ACNL-F0128, ACNL-F0129
 - acnl_jpn_v15 0x00308110: ACNL-F0387, ACNL-F0388
@@ -1851,7 +1856,7 @@
 - acnl_jpn_v15 0x0094D644: ACNL-F0606, ACNL-F0633
 - acnl_jpn_v15 0x0094D648: ACNL-F0106, ACNL-F0633, ACNL-F0634
 - acnl_jpn_v15 0x0095133A: ACNL-F0093, ACNL-F0386, ACNL-F0387, ACNL-F0388, ACNL-F0395, ACNL-F0454
-- acnl_jpn_v15 0x00955F8C: ACNL-F0459, ACNL-F0513, ACNL-F0587, ACNL-F0631
+- acnl_jpn_v15 0x00955F8C: ACNL-F0459, ACNL-F0513, ACNL-F0587, ACNL-F0631, ACNL-F0746
 - acnl_jpn_v15 0x00955FF4: ACNL-F0040, ACNL-F0053, ACNL-F0058, ACNL-F0078, ACNL-F0084, ACNL-F0085, ACNL-F0482, ACNL-F0648, ACNL-F0673
 - acnl_jpn_v15 0x009564F0: ACNL-F0093, ACNL-F0098
 - acnl_jpn_v15 0x009564F8: ACNL-F0093, ACNL-F0098

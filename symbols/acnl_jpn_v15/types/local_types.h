@@ -16,6 +16,7 @@ struct AcnlEncryptedValueF010;
 struct AcnlFurnitureFootprint_F016;
 struct AcnlFurnitureLifecyclePrefix_F016;
 struct AcnlFurniturePlacementRecord_F016;
+struct AcnlGardenSavePrefix;
 struct AcnlIntrusiveNodeF010;
 struct AcnlItemDragIconNodeF009;
 struct AcnlItemOptionDescriptorF010;
@@ -30,6 +31,7 @@ struct AcnlPadState;
 struct AcnlPartsDragNodeF010;
 struct AcnlPartsDragNodeF012;
 struct AcnlPlayerInventoryFinanceF010;
+struct AcnlPlayerSave;
 struct AcnlRoomCameraPrefix;
 struct AcnlUiAnimStorageF010;
 struct AcnlUiMtx34F005;
@@ -168,23 +170,11 @@ struct UiAnim;
 struct UserBreakExceptionEvent;
 struct WeatherParticleGroupPrefix;
 struct WeatherParticleSlot;
+union __n128;
+union __n64;
 struct cxxabi_class_type_info;
 struct cxxabi_si_class_type_info;
 struct cxxabi_vmi_class_type_info;
-struct svbool_t;
-struct svfloat16_t;
-struct svfloat32_t;
-struct svfloat64_t;
-struct svint16_t;
-struct svint32_t;
-struct svint64_t;
-struct svint8_t;
-struct svuint16_t;
-struct svuint32_t;
-struct svuint64_t;
-struct svuint8_t;
-union __n128;
-union __n64;
 union float16x2_t;
 union float16x4_t;
 union float16x8_t;
@@ -204,6 +194,18 @@ union poly16x4_t;
 union poly16x8_t;
 union poly8x16_t;
 union poly8x8_t;
+struct svbool_t;
+struct svfloat16_t;
+struct svfloat32_t;
+struct svfloat64_t;
+struct svint16_t;
+struct svint32_t;
+struct svint64_t;
+struct svint8_t;
+struct svuint16_t;
+struct svuint32_t;
+struct svuint64_t;
+struct svuint8_t;
 union uint16x2_t;
 union uint16x4_t;
 union uint16x8_t;
@@ -527,12 +529,13 @@ struct AcnlDragIconGroupF012
 
 // type: AcnlEncryptedValueF010
 #pragma pack(push, 2)
+/// [ACNL-F0745] MEDIUM; 8 bytes. checksum=(sum of ciphertext bytes+0xBA)&0xFF; salt/rotation are not checksummed. Encrypt returns ciphertext; decrypt returns 0 on mismatch. Normal rotation 0..25. See finding for rotate/add formula.
 struct AcnlEncryptedValueF010
 {
-  unsigned int ciphertext;
-  unsigned __int16 salt;
-  unsigned __int8 rotation;
-  unsigned __int8 checksum;
+  unsigned int ciphertext;              ///< [ACNL-F0745] ROL32(plaintext+salt+0x8F187432, rotation+4), arithmetic modulo 2^32.
+  unsigned __int16 salt;                ///< [ACNL-F0745] 16-bit RNG result; not protected by checksum.
+  unsigned __int8 rotation;             ///< [ACNL-F0745] RNG(26), normal values 0..25; stored rotation omits the additional 4 bits used by encryption.
+  unsigned __int8 checksum;             ///< [ACNL-F0745] (sum of four ciphertext bytes+0xBA)&0xFF; mismatch decrypts as zero.
 };
 #pragma pack(pop)
 
@@ -612,6 +615,35 @@ enum AcnlFurnitureState_F016
   FtrStateReady_F016 = 0x2,
   FtrStateDestroyImmediately_F016 = 0x7,
 };
+
+// type: AcnlPlayerSave
+#pragma pack(push, 4)
+/// [ACNL-F0746] [ACNL-F0747] MEDIUM; 0xA480-byte resident/cache record stride. Only four resource fields are interpreted; unk_* is padding, not a claim about other save fields.
+struct AcnlPlayerSave
+{
+  unsigned __int8 unk_0[27532];
+  AcnlEncryptedValueF010 bank;          ///< [ACNL-F0747] +0x6B8C savings; add helper cap 999999999.
+  unsigned __int8 unk_6B94[8];
+  AcnlEncryptedValueF010 medals;        ///< [ACNL-F0747] +0x6B9C island medals; add helper cap 99999 (not proof of every UI limit).
+  unsigned __int8 unk_6BA4[868];
+  AcnlEncryptedValueF010 wallet;        ///< [ACNL-F0747] +0x6F08 wallet bells; native wallet setters cap 99999.
+  unsigned __int8 unk_6F10[7692];
+  AcnlEncryptedValueF010 meow_coupons;  ///< [ACNL-F0747] +0x8D1C MEOW coupons; add helper cap 99999; pending rewards occupy separate following fields.
+  unsigned __int8 unk_8D24[5980];
+};
+#pragma pack(pop)
+
+// type: AcnlGardenSavePrefix
+#pragma pack(push, 4)
+/// [ACNL-F0746] [ACNL-F0748] MEDIUM; prefix of the allocation pointed to by g_GardenSaveBasePtr, through offset 0x6AE40 only. This is NOT the complete save size. Town base is allocation+0x80; resident records begin at +0xA0.
+struct AcnlGardenSavePrefix
+{
+  unsigned __int8 unk_0[160];
+  AcnlPlayerSave players[4];            ///< [ACNL-F0746] +0xA0, four resident saves, stride 0xA480. Online slot is not a resident index.
+  unsigned __int8 unk_292A0[269120];
+  AcnlEncryptedValueF010 turnip_prices[12]; ///< [ACNL-F0748] +0x6ADE0, twelve consecutive encrypted sell prices. Index=2*(day-1)+half in 0x303510; weekday names and AM/PM mapping need further confirmation. No generic setter cap.
+};
+#pragma pack(pop)
 
 // type: AcnlItemDragIconNodeF009
 #pragma pack(push, 2)
@@ -2601,6 +2633,20 @@ struct SeadControllerWrapperPrefix
 };
 #pragma pack(pop)
 
+// type: SeadCtrControllerVtable
+struct SeadCtrControllerVtable
+{
+  void *unk_0;                          ///< [ACNL-F0743] MEDIUM; object vptr address point, 9 slots / 0x24 bytes. Unknown slots retain void *; no ABI inferred.
+  void *unk_4;
+  void *unk_8;
+  void *unk_C;
+  int (__fastcall *calc)(SeadControllerPrefix *controller);
+  void *unk_14;
+  void *(__fastcall *update_from_device)(SeadControllerPrefix *controller);
+  void *unk_1C;
+  void *unk_20;
+};
+
 // type: SeadExpHeapBlock
 #pragma pack(push, 1)
 /// [ACNL-F0713] MEDIUM, static producer/consumer evidence.
@@ -2625,20 +2671,6 @@ struct SeadExpHeapList
   int link_offset;
 };
 #pragma pack(pop)
-
-// type: SeadCtrControllerVtable
-struct SeadCtrControllerVtable
-{
-  void *unk_0;                          ///< [ACNL-F0743] MEDIUM; object vptr address point, 9 slots / 0x24 bytes. Unknown slots retain void *; no ABI inferred.
-  void *unk_4;
-  void *unk_8;
-  void *unk_C;
-  int (__fastcall *calc)(SeadControllerPrefix *controller);
-  void *unk_14;
-  void *(__fastcall *update_from_device)(SeadControllerPrefix *controller);
-  void *unk_1C;
-  void *unk_20;
-};
 
 // type: SeadExpHeapVtable
 #pragma pack(push, 1)

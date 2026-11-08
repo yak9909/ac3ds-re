@@ -747,3 +747,7 @@
 | ACNL-F0742 | 保持0x800はSTARTでありSELECTは読み替え前なら0x1000へ転写される | MEDIUM | A | active |  |  |
 | ACNL-F0743 | CtrControllerのオブジェクト先頭仮想表を大域変数と型で登録 | MEDIUM | A | active |  |  |
 | ACNL-F0744 | パッチ位置を含む関数と木の作業領域、および text ページ末尾の詰め物を識別した | MEDIUM | A | active |  |  |
+| ACNL-F0745 | 8 バイト暗号化値の復号・暗号化と検査和 | MEDIUM | A | active |  |  |
+| ACNL-F0746 | 通信枠からプレイヤーセーブを得る関数と resident 配列 | MEDIUM | A | active |  |  |
+| ACNL-F0747 | 所持金・貯金・メダル・ふるさとチケットのセーブ欄と加算上限 | MEDIUM | A | active |  |  |
+| ACNL-F0748 | カブ売却価格 12 個の暗号化配列と週次生成 | MEDIUM | A | active |  |  |

@@ -160,6 +160,8 @@ IDA-gpt-6-F001 (gpt-6): Current room ID. Getter, commit, and vc_ROOMNAME default
 IDA-gpt-6-F001 (gpt-6): Next room ID requested by Room_RequestChange, committed by Room_CommitNextId then reset to invalid 0xA5. Keep distinct from previous/current IDs; old F358 has independent hardware confirmation."
 0x009515F0,line,IDA-opus-5.5-F084: 部屋の内部名の表（部屋 ID の順、4 B 刻み）。0 Village / 1 Downtown / 2 Station … 0x47 CLUB444_Live / 0x48 BeautySalon / 0x49 Museum_Entrance。Vapecord の Room_IDS.txt（16 進）と一致。
 0x00955F8C,line,IDA-gpt-6-sol-F006: runtime pointer to garden save allocation. Save_GetTownBase returns this pointer plus 0x80. Receiver-side value must be measured before assessing out-of-town transfer offsets.
+0x00955F8C,repeatable,"[ACNL-F0746] [ACNL-F0748] MEDIUM; pointer to garden allocation prefix, not to town+0x80. Type stops at +0x6AE40; full save size unknown.
+"
 0x009563EC,repeatable,"Vapecord plugin ADDRESSES: EXGAMEDATA
 他地域: USA=0095D3F4  EUR=0095C3EC  KOR=009553EC
 （プラグイン作者のラベル。検証済みの識別ではない）"

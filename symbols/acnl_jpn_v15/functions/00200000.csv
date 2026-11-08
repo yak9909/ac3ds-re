@@ -279,7 +279,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x002FE9D4,12,vc_GET_ROOM_DATA,,,legacy-idb,,
 0x002FE9E5,18,StaticGuardAcquire,,,legacy-idb,,
 0x002FEAAC,16,vc_GET_ITEM_NAME,,,legacy-idb,,
-0x002FEB60,144,vc_PSOFFSET,,,legacy-idb,,
+0x002FEB60,144,Save_GetPlayerByOnlineSlot,AcnlPlayerSave *__fastcall(unsigned int online_slot),MEDIUM,analysis,ACNL-F0746,
 0x002FEE38,196,Field_GetItemAtXY,,,legacy-idb,,
 0x002FEEFC,40,TestObjSubFlags,,,legacy-idb,,
 0x002FEFA4,88,Field_CanPlantFlowerAt,,,legacy-idb,,
