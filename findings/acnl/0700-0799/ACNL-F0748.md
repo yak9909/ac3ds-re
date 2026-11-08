@@ -12,7 +12,7 @@ addresses: [0x00103A18, 0x001146AC, 0x00313CA0, 0x00303510, 0x005CCB5C, 0x0070B4
 tags: [save-data, player]
 supersedes: []
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
-by: auto
+by: gpt-6.1-sol
 original_by: ""
 reviewed_by: []
 state: active            # active / consolidated / superseded / duplicate
