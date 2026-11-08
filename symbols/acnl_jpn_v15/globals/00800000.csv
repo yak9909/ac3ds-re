@@ -1,4 +1,5 @@
 address,size,name,type,confidence,source,refs
+0x00838018,4072,g_TextPagePadding,u8[4072],,analysis,ACNL-F0744
 0x0083DEE8,4,_ZTV12AcFishCommon_0,,,legacy-idb,
 0x0083DF90,4,_ZTV12AcObjectBase_0,,,legacy-idb,
 0x0083E200,4,_ZTV15AcFishFieldBase,,,legacy-idb,

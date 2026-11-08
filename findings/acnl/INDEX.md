@@ -746,3 +746,4 @@
 | ACNL-F0741 | Controller計算の装置更新直後に必要な値はR4と旧状態R8/R9である | MEDIUM | A | active |  |  |
 | ACNL-F0742 | 保持0x800はSTARTでありSELECTは読み替え前なら0x1000へ転写される | MEDIUM | A | active |  |  |
 | ACNL-F0743 | CtrControllerのオブジェクト先頭仮想表を大域変数と型で登録 | MEDIUM | A | active |  |  |
+| ACNL-F0744 | パッチ位置を含む関数と木の作業領域、および text ページ末尾の詰め物を識別した | MEDIUM | A | active |  |  |
