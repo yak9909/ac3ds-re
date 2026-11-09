@@ -92,3 +92,4 @@
 | ACNL-F0728 | 画像キャッシュは ArcResourceAccessor 単位で、破棄時に参照が無効になる | ArcResourceAccessor は名前でTextureInfoをキャッシュし、hitなら画素もentryも追加確保しない。missはロードと156 B entry確保を伴い、accessor/arc破棄に伴って借用画像の参照が失効する。 | MEDIUM | A |  |  |
 | ACNL-F0731 | タイトルの地は16角の2画像を6枚のPictureで重ね、150フレームで動かす | opng_titl_bgの実資源はA4/L4の16×16各128 Bを6枚のPictureで共有する。明示TEV段は0、各材質の画像は1枚、4層のUVと親の位置を150フレームで動かす。 | MEDIUM | A |  |  |
 | ACNL-F0733 | 通常フォントの未収録文字と追加 JIS 書体の補完範囲 | 更新側の通常フォントCMAPには汎・符・濁など18漢字とU+301Cが無く、18漢字は追加GardenPlus_JisLevel1にはある。通常フォントだけで任意の日本語UI文字が揃うとはいえない。 | MEDIUM | A |  |  |
+| ACNL-F0750 | 地図メニュー準備旗 vc_MAPBOOL(0x949C30)の型と NetGameMgr 本体ポインタ g_NetGameMgrPtr(0x94D644)の型 | 0x949C30 vc_MAPBOOL は 1 バイトの旗（unsigned __int8）で、村の地図メニュー BsMenuMapVillage の作成完了で 1、破棄または別種の地図画面を開くときに 0 になる。0x94D644 g_NetGameMgrPtr は NetGameMgr 本体へのポインタ（構造体の型が無いので void *）。 | MEDIUM | A |  |  |
