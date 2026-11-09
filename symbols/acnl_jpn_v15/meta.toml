@@ -8,9 +8,9 @@ tool_version = "2"
 exported_at = "2026-11-09T07:49:53Z"
 
 [counts]
-functions = 1801
+functions = 1797
 globals = 8665
-comments = 2709
+comments = 2708
 vtables = 2586
 lvars = 9
-types = 294
+types = 283

@@ -47,3 +47,38 @@
 
 ## 訂正・統合・タグの提案
 - なし。
+
+---
+
+## 続きの実行の報告（2026-11-09T17:12:19+09:00）
+
+依頼の 4 点を取り除きました。`python tools/audit.py` は問題 0 件、`python tools/kb.py lint` はエラーなしで通っています。
+
+`symbols/acnl_jpn_v15` を main のチェックアウトの同じ場所と突き合わせました。残った差分は、依頼の 2 つの大域に関するものと、`meta.toml` の `exported_at` だけです。
+
+## 取り除いた物
+1. `functions/00100000.csv` の `j_GxQueue_OnRequestCompleted`・`_0`・`_1`（0x128330〜0x128338）と、`functions/00300000.csv` の `j_Weather_GetCurrentType`（0x30C35C）の 4 行。
+2. `comments/00200000.csv` の `0x0028E130,line,transition_arg2`。
+3. `types/local_types.h` の追加分。差分は追加だけだったので、main の `local_types.h` をそのままコピーして元に戻しました。
+4. `meta.toml` の `[counts]` は functions を 1797、comments を 2708、types を 283 にしました。
+
+## 残した物
+- `globals/00900000.csv` の型欄：`vc_MAPBOOL` が `unsigned __int8`、`g_NetGameMgrPtr` が `void *` です。
+- `comments/00900000.csv` の `[ACNL-F0750]` 付きコメント 2 行です。
+- ACNL-F0750 の中身は変えていません。
+- `exported_at` は書き出しをやり直さないので、今回の書き出しの時刻のままです。main の値とは違います。
+
+## 未確認点
+- 突き合わせた相手は、main のチェックアウト（`ac3ds-re/`）の現在のファイルです。`git` が使えないので、作業ツリーの基点コミットと同じ内容かは確かめていません。差分が上の範囲に収まっているので、基点と一致しているはずです。
+
+## 迷った判断
+- 型ヘッダーは差分の行を手で戻さず、main のファイルをコピーしました。結果は同じで、戻し漏れが出ないためです。
+
+## 依頼の範囲外の変更
+- なし。
+
+## 使ったゲームの事実
+- 前回の報告から変更なし。
+
+## 訂正・統合・タグの提案
+- なし。
