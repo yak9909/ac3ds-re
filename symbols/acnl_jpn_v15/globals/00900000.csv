@@ -480,6 +480,7 @@ address,size,name,type,confidence,source,refs
 0x009515F0,296,g_RoomInternalNames,char *[74],,legacy-idb,
 0x00955F8C,4,g_GardenSaveBasePtr,AcnlGardenSavePrefix *,MEDIUM,analysis,ACNL-F0746;ACNL-F0748
 0x00955FF4,4,,struct ItemID,,legacy-idb,
+0x00956231,1,g_VillagerDailyUpdateGuard,unsigned __int8,MEDIUM,analysis,ACNL-F0749
 0x009563EC,4,vc_EXGAMEDATA,,,legacy-idb,
 0x009563F4,4,vc_MAX,,,legacy-idb,
 0x00956500,8,vc_REALTIME,unsigned __int64,,legacy-idb,

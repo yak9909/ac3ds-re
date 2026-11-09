@@ -65,6 +65,7 @@ IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 202
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x003093F8,line,V2-F012 MEDIUM: Re-Tail の営業時間だけを見る(ShopHours_ReTail_IsOpen と同じ時間帯・player/GTYPE 判定なし・sub_56B504 もなし)。呼出: sub_112104(住民の外出先 5 の可否)で IsOpen と併用、ModuleShop.cro の条件分岐(case 0、引数 garden+0x668A0)。ShopsAlwaysOpen は未パッチ
 0x003093F8,repeatable,V2-F012 MEDIUM: Re-Tail の営業時間だけを見る(ShopHours_ReTail_IsOpen と同じ時間帯・player/GTYPE 判定なし・sub_56B504 もなし)。呼出: sub_112104(住民の外出先 5 の可否)で IsOpen と併用、ModuleShop.cro の条件分岐(case 0、引数 garden+0x668A0)。ShopsAlwaysOpen は未パッチ
+0x00309F18,func,"[ACNL-F0749] MEDIUM: r0=first player save, r1=save pointer; returns slot 0..3 for exact pointer matches at stride 0xA480, otherwise 4 (including null)."
 0x0030B820,line,アイテムIDを返す。LDRH [R0] して bit15 を落とすだけ。呼び出し元261箇所
 0x0030B820,repeatable,アイテムIDを返す。LDRH [R0] して bit15 を落とすだけ。呼び出し元261箇所
 0x0030B82C,line,"★Net_IsHost() — 自分がホスト（プレイヤー番号 0）か (F-61)。
@@ -88,6 +89,7 @@ Net_IsMultiplayer() と AND を取るので問題にならない。
 0x0030B844,repeatable,"Vapecord plugin ADDRESSES: DROPM2
 他地域: USA=0030B83C  EUR=0030B820  KOR=0030B7EC
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x0030C994,func,"[ACNL-F0749] MEDIUM: No arguments. Resolves current town -> town+0x29224 and tail-calls Villager_DailyUpdateOnce(data,0,0). Side-effect API; no stable return contract. Guard is set on entry, not completion."
 0x0030C9B8,func,"IDA-gpt-6-F001 MEDIUM: 3.4.1 JPN KEEP_GRASS_STATE points to this writer thunk. Town_DayChangeGrassAndStructures calls it after GrassBaldness data/daily recovery calculations, with grid descriptor, world cell x/y and computed byte. Master JPN row instead targets 0x30CB7C resource cleanup; do not treat the two regional tables as identical."
 0x0030C9C4,line,V2-F014 MEDIUM: 住民の日次処理(byte_956231 で boot 中 1 回、a2≠ 0 なら再実行)。sub_10D980(日次リセット)→sub_110CFC(住民イベントの抽選)→Villager_MailNpcBirthday→住民の品配置(ItemToPlace)→Villager_AssignStayHome→sub_10CCB8(外出先)→Villager_MailPlayerBirthday
 0x0030C9C4,repeatable,V2-F014 MEDIUM: 住民の日次処理(byte_956231 で boot 中 1 回、a2≠ 0 なら再実行)。sub_10D980(日次リセット)→sub_110CFC(住民イベントの抽選)→Villager_MailNpcBirthday→住民の品配置(ItemToPlace)→Villager_AssignStayHome→sub_10CCB8(外出先)→Villager_MailPlayerBirthday
@@ -119,9 +121,11 @@ Net_IsMultiplayer() と AND を取るので問題にならない。
 0x00315B08,repeatable,"Vapecord plugin ADDRESSES: NEVER_WILT_CALLER_2
 他地域: USA=00315B10  EUR=00315B88  KOR=003160F0
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x00316344,func,"[ACNL-F0749] MEDIUM: r0=growth context,r1=tile descriptor. Clears context+0xA54 bitmap bit, writes item ID 3 at tile+8/+C, clears context+0x1464 bit. Called by Field_GrowUpWiltSapling and failed-spot callback 0x116564. 0x316392 is BLX start (+0x4E), next PC=0x316396 (Thumb LR=0x316397). Species unconfirmed."
 0x00316392,repeatable,"Vapecord plugin ADDRESSES: NEVER_WILT_CALLER_4
 他地域: USA=0031607E  EUR=00315EEE  KOR=0031624A
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x003163C4,func,"[ACNL-F0749] MEDIUM: r0=growth context,r1=tile descriptor. Clears context+0xCD8 bitmap bit, writes item ID 4 at tile+8/+C, clears context+0x1464 bit. Called by Field_GrowUpWiltSapling and failed-spot callback 0x116870. 0x316412 is BLX start (+0x4E), next PC=0x316416 (Thumb LR=0x316417). Species unconfirmed."
 0x00316412,repeatable,"Vapecord plugin ADDRESSES: NEVER_WILT_CALLER_3
 他地域: USA=003160FE  EUR=0031602E  KOR=003162CA
 （プラグイン作者のラベル。検証済みの識別ではない）"

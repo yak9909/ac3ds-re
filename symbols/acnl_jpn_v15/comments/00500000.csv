@@ -1375,6 +1375,7 @@ Room_RequestChange(this=&dword_ABB948, nextRoom, fadeOutA, fadeOutB, fadeInA, fa
   word_94A3D0(0x0094A3D0) = 遷移種別（通常 1。g_RoomFlagTable[room] & 0x8000000 なら word_8810E0/E2）
 公開ラッパは vc_ROOMFUNC(0x00304A94)。実行は Room_PollTransitionRequest(0x00605FA4) が毎フレーム拾う。
 実機確認済（2026-09-08）"
+0x005B464C,func,"[ACNL-F0749] MEDIUM: r0=manager,r1=exit index,r2/r3=transition args0/1; entry sp+0/+4=args2/3. Inserts current room and forwards to 0x5B5798. Last arg is integer flag (low byte reaches 0x94A3CE via 0x605F38), NOT float. VLDR/VSTR in intermediate wrappers are bit copies. Return forwarded unchanged; not all lower paths define a success boolean."
 0x005B4F98,repeatable,"Vapecord plugin ADDRESSES: RELOADFUNC
 他地域: USA=005B6660  EUR=005B56A8  KOR=005B4C6C
 （プラグイン作者のラベル。検証済みの識別ではない）"
