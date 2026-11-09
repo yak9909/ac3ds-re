@@ -6,7 +6,7 @@
 
 | scope | 件数 | active |
 |---|---|---|
-| acnl | 747 | 660 |
+| acnl | 748 | 661 |
 | hhd | 20 | 9 |
 | 3ds | 0 | 0 |
 
@@ -24,7 +24,7 @@
 | acnl | render | 140 |
 | acnl | save | 5 |
 | acnl | sound | 11 |
-| acnl | system | 56 |
+| acnl | system | 57 |
 | acnl | text | 61 |
 | acnl | time | 2 |
 | acnl | ui | 16 |
@@ -1298,6 +1298,7 @@
 - ACNL-F0746 通信枠からプレイヤーセーブを得る関数と resident 配列
 - ACNL-F0747 所持金・貯金・メダル・ふるさとチケットのセーブ欄と加算上限
 - ACNL-F0748 カブ売却価格 12 個の暗号化配列と週次生成
+- ACNL-F0749 住民日次処理・出口遷移・苗の枯死処理の呼出契約と番地
 - HHD-F0001 慣性と、選択枠・ボタンの縞の合成（2026-10-05、MEDIUM〜HIGH: 静的 + HHD のスクショ 2 枚で合成の意味を照合）
 - HHD-F0002 髪のページ送り — ドラッグ・弾き・滑りの規則（2026-10-05、MEDIUM: 静的のみ。定数はすべて逆アセンブルの即値・リテラル）
 - HHD-F0003 髪・目の形の番号 → モデルのファイル（2026-10-05、MEDIUM: 静的のみ。ACNL のファイル名と照合）
@@ -1425,7 +1426,9 @@
 - acnl_jpn_v15 0x002FEE38: ACNL-F0060, ACNL-F0092, ACNL-F0465
 - acnl_jpn_v15 0x00307D08: ACNL-F0128, ACNL-F0129
 - acnl_jpn_v15 0x00308110: ACNL-F0387, ACNL-F0388
+- acnl_jpn_v15 0x00309F18: ACNL-F0388, ACNL-F0749
 - acnl_jpn_v15 0x0030B82C: ACNL-F0099, ACNL-F0100
+- acnl_jpn_v15 0x0030C994: ACNL-F0023, ACNL-F0749
 - acnl_jpn_v15 0x003170A4: ACNL-F0643, ACNL-F0644
 - acnl_jpn_v15 0x0031785C: ACNL-F0386, ACNL-F0444, ACNL-F0537
 - acnl_jpn_v15 0x00317920: ACNL-F0546, ACNL-F0557, ACNL-F0561, ACNL-F0613
@@ -1668,7 +1671,7 @@
 - acnl_jpn_v15 0x005B371C: ACNL-F0623, ACNL-F0625
 - acnl_jpn_v15 0x005B39B4: ACNL-F0631, ACNL-F0632, ACNL-F0633
 - acnl_jpn_v15 0x005B3AC4: ACNL-F0438, ACNL-F0638
-- acnl_jpn_v15 0x005B464C: ACNL-F0023, ACNL-F0387, ACNL-F0388
+- acnl_jpn_v15 0x005B464C: ACNL-F0023, ACNL-F0387, ACNL-F0388, ACNL-F0749
 - acnl_jpn_v15 0x005B5E18: ACNL-F0125, ACNL-F0562
 - acnl_jpn_v15 0x005C1F08: ACNL-F0111, ACNL-F0656
 - acnl_jpn_v15 0x005C27D8: ACNL-F0607, ACNL-F0653, ACNL-F0656
@@ -1858,6 +1861,7 @@
 - acnl_jpn_v15 0x0095133A: ACNL-F0093, ACNL-F0386, ACNL-F0387, ACNL-F0388, ACNL-F0395, ACNL-F0454
 - acnl_jpn_v15 0x00955F8C: ACNL-F0459, ACNL-F0513, ACNL-F0587, ACNL-F0631, ACNL-F0746
 - acnl_jpn_v15 0x00955FF4: ACNL-F0040, ACNL-F0053, ACNL-F0058, ACNL-F0078, ACNL-F0084, ACNL-F0085, ACNL-F0482, ACNL-F0648, ACNL-F0673
+- acnl_jpn_v15 0x00956231: ACNL-F0023, ACNL-F0749
 - acnl_jpn_v15 0x009564F0: ACNL-F0093, ACNL-F0098
 - acnl_jpn_v15 0x009564F8: ACNL-F0093, ACNL-F0098
 - acnl_jpn_v15 0x00956500: ACNL-F0093, ACNL-F0098
@@ -1940,6 +1944,6 @@
 - acnl/network: 14件
 - acnl/render: 140件
 - acnl/sound: 11件
-- acnl/system: 56件
+- acnl/system: 57件
 - acnl/text: 61件
 - acnl/ui: 16件

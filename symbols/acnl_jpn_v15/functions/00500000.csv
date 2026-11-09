@@ -274,6 +274,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x005B3AC4,120,Room_IsHouseTentForWallPlacement,,,legacy-idb,,
 0x005B40B4,40,Room_UsesCurvedWorld,,,legacy-idb,,
 0x005B419C,276,Room_RequestChange,,,legacy-idb,,
+0x005B464C,64,Room_UseExit,"int __fastcall(void *room_mgr, unsigned int exit_index, int transition_arg0, int transition_arg1, int transition_arg2, int transition_arg3)",MEDIUM,analysis,ACNL-F0749,
 0x005B4F98,152,vc_RELOADFUNC,,,legacy-idb,,
 0x005B5034,260,vc_PRELOAD,,,legacy-idb,,
 0x005B5E18,20,Room_GetFurnitureCapacity,,,legacy-idb,,

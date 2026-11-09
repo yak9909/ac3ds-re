@@ -162,6 +162,7 @@ IDA-gpt-6-F001 (gpt-6): Next room ID requested by Room_RequestChange, committed 
 0x00955F8C,line,IDA-gpt-6-sol-F006: runtime pointer to garden save allocation. Save_GetTownBase returns this pointer plus 0x80. Receiver-side value must be measured before assessing out-of-town transfer offsets.
 0x00955F8C,repeatable,"[ACNL-F0746] [ACNL-F0748] MEDIUM; pointer to garden allocation prefix, not to town+0x80. Type stops at +0x6AE40; full save size unknown.
 "
+0x00956231,repeatable,"[ACNL-F0749] MEDIUM: u8 guard for Villager_DailyUpdateOnce. Nonzero suppresses unforced execution. Set to 1 before body, reset to 0 at 0x110CF4 and 0x10F1CC. Not a completion flag or a boot-lifetime latch."
 0x009563EC,repeatable,"Vapecord plugin ADDRESSES: EXGAMEDATA
 他地域: USA=0095D3F4  EUR=0095C3EC  KOR=009553EC
 （プラグイン作者のラベル。検証済みの識別ではない）"
