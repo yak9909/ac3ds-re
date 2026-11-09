@@ -47,6 +47,7 @@ IDA-gpt-6-F013 / MEDIUM: Native BsMenuItem action PMF table base (legacy vc_POIN
 0x009499FC,repeatable,"Vapecord plugin ADDRESSES: POINTER_FUNC
 他地域: USA=009509FC  EUR=0094F9FC  KOR=009489FC
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x00949C30,line,[ACNL-F0750] BsMenuMapVillage の作成完了で1、破棄・別種の地図画面を開くとき0。型 unsigned __int8（MEDIUM）
 0x00949C30,repeatable,"Vapecord plugin ADDRESSES: MAPBOOL
 他地域: USA=00950C30  EUR=0094FC30  KOR=00948C30
 （プラグイン作者のラベル。検証済みの識別ではない）"
@@ -135,7 +136,7 @@ vtable（4 スロットのみ）:
 0x0094D238,repeatable,"Vapecord plugin ADDRESSES: ISLANDSHOPPOINTER
 他地域: USA=00954238  EUR=00953238  KOR=0094C238
 （プラグイン作者のラベル。検証済みの識別ではない）"
-0x0094D644,line,"IDA-gpt-6-sol-F007: pointer to network game manager. Observed offsets from static code: +0x13268 own network slot, +0x1326C registered peer mask, +0x1329D game type/readiness state, +0x132AC/+0x132AE connection flags. Host/guest live values still to measure."
+0x0094D644,line,"[ACNL-F0750] netgame::NetGameMgr 本体へのポインタ（型 void *）。IDA-gpt-6-sol-F007: pointer to network game manager. Observed offsets from static code: +0x13268 own network slot, +0x1326C registered peer mask, +0x1329D game type/readiness state, +0x132AC/+0x132AE connection flags. Host/guest live values still to measure."
 0x0094D648,line,IDA-gpt-6.1-sol-F007 / MEDIUM訂正: この欄はNetGameMgrのSingletonDisposerポインタ。0x616D8Cがsub_133778の返値とdisposer vtable0x904FC4をここへ保存、管理本体は別欄0x94D644へ保存。0x61769C/0x6176ECはthisとこの欄を比較し、disposer解除後に本体を破棄する。旧Vapecordラベルと0x1326F読取りの過去解釈は来歴として残す。今回依頼外のHhdScreen等は未変更。
 0x0094D648,repeatable,"Vapecord plugin ADDRESSES: GAMEPOINTER
 他地域: USA=00954648  EUR=00953648  KOR=0094C648
