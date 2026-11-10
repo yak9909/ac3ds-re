@@ -493,6 +493,7 @@ address,size,name,type,confidence,source,refs
 0x0096F0D4,4,g_TypeNode_nwgfx_Model,,,legacy-idb,
 0x0096F0F0,4,g_TypeNode_nwgfx_TransformNode,,,legacy-idb,
 0x0096F150,4,g_LayoutAllocator,SsysMaAllocator *,MEDIUM,analysis,ACNL-F0713
+0x0096F160,4,nw_lyt_Picture_runtimeTypeInfo,,,analysis,
 0x0096FC06,4,vc_U0DATA,,,legacy-idb,
 0x0096FC38,4,g_LayoutMgr,SsysMaLayoutMgr *,MEDIUM,analysis,ACNL-F0712
 0x0097C030,4,vc_D_FRIEND,,,legacy-idb,
