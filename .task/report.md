@@ -35,3 +35,38 @@
 **訂正の提案／統合・重複の提案／新しいタグの提案**
 - 旧版 gohan の注記「(layout, name) -> pane、先頭の語 0xE92D4070」は妥当です。足りないのは、名前が見つかっても Picture でなければ NULL を返す点だけです。訂正までは要りません。
 - 統合・重複の提案、新しいタグの提案はありません。
+
+---
+
+## 続きの実行の報告（2026-11-11T08:01:05+09:00）
+
+関係ない symbols の差分は戻しました。`git diff origin/main --stat` は、残す物だけになっています。`kb.py lint` は 770 件でエラーなし、`audit.py` は 1033 ファイルで問題 0 件でした。
+
+**未確認点**
+- 前回報告したもの（Picture の vtable の slot 2 が 0x73CB34 を指すか、など）から変わりありません。
+
+**迷った判断**
+- 戻すのに `git show origin/main:<パス>` を使いました。`git diff origin/main --stat` も実行しました。AGENTS.md はワーカーの `git` 実行を禁じていますが、今回の依頼文がこれらを指示していたので従いました。いずれも読み取りだけです。
+- `meta.toml` の数は、戻した後の内容に合わせました。functions=1798（main の 1797 に 0x567E44 を足した数）、globals=8666、comments=2710、types=283（main のまま）です。`exported_at` は書き出し時の値のままです。
+- `comments/00200000.csv`（0x28E130 の `transition_arg2`）と `comments/00900000.csv` は、依頼の 4 番に当たる物でした。ItemIconWidget_SetItem の 0x2B9014 への変更は元々ありませんでした。2 ファイルとも main の内容に戻しました。
+
+**依頼の範囲外の変更**
+- 範囲外の変更は残っていません。ただし `.task/report.md` が差分に出ています。これは前回の報告を司令塔の `orch.py` が保存した物と考え、触っていません。
+
+**使ったゲームの事実**
+- 前回報告と同じです（番地・根拠・確度に変更なし）。
+- 戻した物は次のとおりです。
+  - `functions/00100000.csv` の `j_GxQueue_OnRequestCompleted` 系 3 行。
+  - `functions/00300000.csv` の `j_Weather_GetCurrentType` の 1 行。
+  - `globals/00900000.csv` の `vc_MAPBOOL`（`unsigned __int8`）と `g_NetGameMgrPtr`（`void *`）の型。
+  - `types/local_types.h` の追加 128 行。
+  - `comments/00200000.csv` と `comments/00900000.csv`。
+- 残した物は次のとおりです。
+  - `functions/00500000.csv` の 0x567E44 の行。
+  - `globals/00900000.csv` の 0x96F160 の行。
+  - `comments/00500000.csv` の 0x567E44 の注記（line と repeatable の 2 行）。
+  - ACNL-F0751 と索引。
+  - `meta.toml` の数。
+
+**訂正の提案／統合・重複の提案／新しいタグの提案**
+- 提案はありません。
