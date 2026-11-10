@@ -6,7 +6,7 @@
 
 | scope | 件数 | active |
 |---|---|---|
-| acnl | 749 | 662 |
+| acnl | 750 | 663 |
 | hhd | 20 | 9 |
 | 3ds | 0 | 0 |
 
@@ -27,7 +27,7 @@
 | acnl | system | 57 |
 | acnl | text | 61 |
 | acnl | time | 2 |
-| acnl | ui | 17 |
+| acnl | ui | 18 |
 | hhd | input | 1 |
 | hhd | item | 4 |
 | hhd | render | 2 |
@@ -1300,6 +1300,7 @@
 - ACNL-F0748 カブ売却価格 12 個の暗号化配列と週次生成
 - ACNL-F0749 住民日次処理・出口遷移・苗の枯死処理の呼出契約と番地
 - ACNL-F0750 地図メニュー準備旗 vc_MAPBOOL(0x949C30)の型と NetGameMgr 本体ポインタ g_NetGameMgrPtr(0x94D644)の型
+- ACNL-F0751 SsysMaLayoutNode_FindPicture 0x567E44: レイアウトからペイン名で Picture を探す
 - HHD-F0001 慣性と、選択枠・ボタンの縞の合成（2026-10-05、MEDIUM〜HIGH: 静的 + HHD のスクショ 2 枚で合成の意味を照合）
 - HHD-F0002 髪のページ送り — ドラッグ・弾き・滑りの規則（2026-10-05、MEDIUM: 静的のみ。定数はすべて逆アセンブルの即値・リテラル）
 - HHD-F0003 髪・目の形の番号 → モデルのファイル（2026-10-05、MEDIUM: 静的のみ。ACNL のファイル名と照合）
@@ -1406,7 +1407,7 @@
 - acnl_jpn_v15 0x0028E89C: ACNL-F0147, ACNL-F0150, ACNL-F0151, ACNL-F0152
 - acnl_jpn_v15 0x0028FE0C: ACNL-F0151, ACNL-F0154, ACNL-F0157
 - acnl_jpn_v15 0x0028FE24: ACNL-F0145, ACNL-F0151
-- acnl_jpn_v15 0x002B8EAC: ACNL-F0484, ACNL-F0592, ACNL-F0690
+- acnl_jpn_v15 0x002B8EAC: ACNL-F0484, ACNL-F0592, ACNL-F0690, ACNL-F0751
 - acnl_jpn_v15 0x002BA8B0: ACNL-F0480, ACNL-F0481
 - acnl_jpn_v15 0x002C5FA8: ACNL-F0622, ACNL-F0631
 - acnl_jpn_v15 0x002D52D4: ACNL-F0622, ACNL-F0633
@@ -1777,6 +1778,7 @@
 - acnl_jpn_v15 0x007438B4: ACNL-F0168, ACNL-F0169, ACNL-F0171, ACNL-F0318, ACNL-F0322, ACNL-F0329, ACNL-F0338, ACNL-F0363, ACNL-F0711, ACNL-F0717, ACNL-F0729, ACNL-F0733
 - acnl_jpn_v15 0x00743A4C: ACNL-F0168, ACNL-F0329
 - acnl_jpn_v15 0x00745CA0: ACNL-F0142, ACNL-F0146, ACNL-F0150
+- acnl_jpn_v15 0x007461D0: ACNL-F0488, ACNL-F0751
 - acnl_jpn_v15 0x0074D744: ACNL-F0333, ACNL-F0450, ACNL-F0524, ACNL-F0534, ACNL-F0544, ACNL-F0713
 - acnl_jpn_v15 0x0074D8B0: ACNL-F0333, ACNL-F0444, ACNL-F0457, ACNL-F0632
 - acnl_jpn_v15 0x0074DB48: ACNL-F0632, ACNL-F0713
@@ -1947,4 +1949,4 @@
 - acnl/sound: 11件
 - acnl/system: 57件
 - acnl/text: 61件
-- acnl/ui: 17件
+- acnl/ui: 18件

@@ -440,6 +440,8 @@ while(1) { vtbl[0x64](this); }  = Framework_ProcOneFrame を回すだけ。
 0x00567DA4,repeatable,"Vapecord plugin ADDRESSES: DATA3
 他地域: USA=0056946C  EUR=005684B4  KOR=00567AC4
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x00567E44,line,"[ACNL-F0751] layout node (+0x20 = root pane) から name の pane を再帰探索（root vt+0x2C(name,1)）し、RTTI(vt+8)の親鎖に nw_lyt_Picture_runtimeTypeInfo(0x96F160) があればそれを返す、無ければ 0。= dynamic_cast<Picture*>(FindPane)。兄弟: 0x567EA0(0x96F164)、0x567EFC(0x96F14C)"
+0x00567E44,repeatable,"[ACNL-F0751] layout node (+0x20 = root pane) から name の pane を再帰探索（root vt+0x2C(name,1)）し、RTTI(vt+8)の親鎖に nw_lyt_Picture_runtimeTypeInfo(0x96F160) があればそれを返す、無ければ 0。= dynamic_cast<Picture*>(FindPane)。兄弟: 0x567EA0(0x96F164)、0x567EFC(0x96F14C)"
 0x00568030,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / MEDIUM。冒頭0x568048でR1=Layout+0xFC(flags)、R0=Layout+0x10を0x4B9718へ渡す。Paneの評価を終えてから行列/描画コマンド計算する。固定SPはPUSH16+VPUSH16+SUB0x128=328B（Python計算）。追加したApplyFrameはこの評価だけを呼び、時刻更新/AddLayout/二重Submitを足さない。根拠 ida_extra.json・linked_disasm.txt。実機未検証。
 IDA-gpt-6.1-sol-F015: actual symbol vc_ACSYSTEM_DATA2 retained. AnimatePanes then root CalculateMtx updates globalAlpha before deferred draw; no duplicate Submit for backdrop fade.
 IDA-gpt-6-F014: T017 calls native LayoutCalc for the current pocket background with a scoped DrawInfo+136 flag4, then restores the full original flag byte. No second AddLayout or animation clock step; letter animations are evaluated separately before the parent tree matrices. Original AnimatePanes and CalculateRootMtx callers verify offsets/ABI."

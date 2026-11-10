@@ -753,3 +753,4 @@
 | ACNL-F0748 | カブ売却価格 12 個の暗号化配列と週次生成 | MEDIUM | A | active |  |  |
 | ACNL-F0749 | 住民日次処理・出口遷移・苗の枯死処理の呼出契約と番地 | MEDIUM | A | active |  |  |
 | ACNL-F0750 | 地図メニュー準備旗 vc_MAPBOOL(0x949C30)の型と NetGameMgr 本体ポインタ g_NetGameMgrPtr(0x94D644)の型 | MEDIUM | A | active |  |  |
+| ACNL-F0751 | SsysMaLayoutNode_FindPicture 0x567E44: レイアウトからペイン名で Picture を探す | MEDIUM | 未記入 | active |  |  |
