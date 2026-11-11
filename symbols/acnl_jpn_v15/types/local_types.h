@@ -218,6 +218,8 @@ struct AcnlTouchState;
 struct CameraViewPrefix;
 struct ScriptWordFix38;
 struct SeadControllerMgrPrefix;
+struct ArcResAccReader;
+struct InstSelect8;
 
 // type: ACNL_BbsPost
 #pragma pack(push, 2)
@@ -3097,17 +3099,23 @@ struct TiledByteGridPrefix
 #pragma pack(pop)
 
 // type: UiAnim
-#pragma pack(push, 2)
+#pragma pack(push, 4)
+/// [ACNL-F0767] MEDIUM: object size 40 B. Unverified fields remain unk_. Pointers to undefined object/array element types remain void *.
 struct UiAnim
 {
-  void *res;
-  float totalFrames;
-  float curTime;
-  float prevTime;
+  void *vptr;
+  float total_frames;
+  float cur_time;
+  float prev_time;
   float rate;
   unsigned __int8 flags;
-  unsigned __int8 pad[3];
-  void *sub;
+  unsigned __int8 unk_15[3];
+  NwLytAnimTransform *transform;
+  unsigned __int8 bound;
+  unsigned __int8 unk_1D[1];
+  unsigned __int16 content_count;
+  void *content_work;
+  unsigned __int8 unk_24[4];
 };
 #pragma pack(pop)
 
@@ -3325,3 +3333,34 @@ typedef unsigned int uintptr_t;
 
 // type: va_list
 typedef void **va_list;
+
+// type: ArcResAccReader
+#pragma pack(push, 4)
+/// [ACNL-F0768] MEDIUM: object size 584 B. Unverified fields remain unk_. Pointers to undefined object/array element types remain void *.
+struct ArcResAccReader
+{
+  void *vptr;
+  void *resource_accessor;
+  void *arc_data;
+  void *accessor_vptr;
+  unsigned __int8 unk_10[328];
+  void *loaded_arc;
+  unsigned __int8 unk_15C[236];
+};
+#pragma pack(pop)
+
+// type: InstSelect8
+#pragma pack(push, 4)
+/// [ACNL-F0769] MEDIUM: object size 4812 B. Unverified fields remain unk_. Pointers to undefined object/array element types remain void *.
+struct InstSelect8
+{
+  void *vptr;
+  unsigned __int8 unk_4[540];
+  void *row_layouts;
+  unsigned __int8 unk_224[1948];
+  int row_count;
+  unsigned __int8 unk_9C4[56];
+  void *row_nodes;
+  unsigned __int8 unk_A00[2252];
+};
+#pragma pack(pop)

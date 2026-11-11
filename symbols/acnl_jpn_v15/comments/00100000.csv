@@ -80,7 +80,9 @@ address,kind,text
 ★TODO-37 の仮説「sub_11C7CC → ここ → sub_121E2C がフレームループ」は**誤り**。"
 0x0011D184,line,"IDA-opus-5.5-F022 MEDIUM(静的): ファイルパス {5,0,0} = 更新データの RomFS を開いてマウント。gohan RomfsIndex もこの開き方にした（fobj_barricade_L/R など更新にしか無い資源）。"
 0x0011D184,repeatable,"IDA-opus-5.5-F022 MEDIUM(静的): ファイルパス {5,0,0} = 更新データの RomFS を開いてマウント。gohan RomfsIndex もこの開き方にした（fobj_barricade_L/R など更新にしか無い資源）。"
-0x0011DA78,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。graphicHeap0x6AF000 Bをa1[2]へ、a1[5]=a1[2]。a1[3]/[4]はrootVramA/B、a1[6]/[7]がそれぞれを使う。FCRAM命令器とVRAMを混同しない。RTTI/vtable0x904FA4と初期化・0x616620経路を照合。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
+0x0011DA78,func,"IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。graphicHeap0x6AF000 Bをa1[2]へ、a1[5]=a1[2]。a1[3]/[4]はrootVramA/B、a1[6]/[7]がそれぞれを使う。FCRAM命令器とVRAMを混同しない。RTTI/vtable0x904FA4と初期化・0x616620経路を照合。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
+[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。11DA90 R2=入力R0→2F6D7Cの親heap。11DB80 R0=生成mgr、11CA9C直後に保存。 親heapの派生種別とMemoryMgr構造未定義のためvoid *。"
+0x00120D54,func,[ACNL-F0766] [ACNL-F0768] MEDIUM（静的命令列＋呼び元／vtable）。120D54..DA4 thisに3サブオブジェクトを構築し元thisを返す。11DDC0は戻りthis+248。
 0x001216BC,func,"[ACNL-F0709] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
 "
 0x001216BC,line,"F-259: マネージャ構造の確定。+0x00 id / +0x04 base / +0x08 size / +0x0C offset /
@@ -124,6 +126,8 @@ IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。R0=件数/R1=id出力�
 0x00124EA4,repeatable,"Vapecord plugin ADDRESSES: SUSPENDADDRESS
 他地域: USA=00124EB8  EUR=00124EDC
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x001261EC,func,[ACNL-F0766] [ACNL-F0767] MEDIUM（静的命令列＋呼び元／vtable）。1261F4..6224が+4..24を初期化。R0保持、11DDF0は戻りthis+28。
+0x0012653C,func,[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。12653C→12D2BCのbase ctor、vptr変更後this返却。11DDD8で戻り+14C。
 0x00126554,repeatable,"Vapecord plugin ADDRESSES: SAVING
 他地域: USA=00126568  EUR=0012658C
 （プラグイン作者のラベル。検証済みの識別ではない）"
@@ -326,7 +330,8 @@ GPU の排他権取得。呼び出し元 sub_12A9C8 / sub_12AB10。"
 0x001333C4,line,IDA-gpt-6.1-sol-F010 / MEDIUM: heap+0x50 はsigned確保方向（1/-1）。TryAlloc 0x55D8E8がLDRSBしalignmentへ乗算。反転heapで負alignment固定は先頭になるため、末尾選択はdirectionに合わせた符号が必要。
 0x00133A5C,func,"IDA-gpt-6.1-sol-F002: MEDIUM追補: Layout+16実装へ0x137B04→vslot+32(実装,0)を呼ぶ。Chip Out/Releaseはこれを呼ぶが、LayoutMgr intrusive nodeをUnlinkAllする関数ではない。
 IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
-旧記録F002の「Layout資源解放」は訂正。0x137B04→実装vslot+0x20→0x4B8F04→Pane再帰Unbindであり、Layout/UiAnimをfreeしない。資源破棄は0x5BEB4C→0x5688A0→0x4B9748など。"
+旧記録F002の「Layout資源解放」は訂正。0x137B04→実装vslot+0x20→0x4B8F04→Pane再帰Unbindであり、Layout/UiAnimをfreeしない。資源破棄は0x5BEB4C→0x5688A0→0x4B9748など。
+[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。133A5Cでthis+10を4B8F24へ渡す。1339F0で戻りを使わず次要素へ。"
 0x00133A64,func,"[ACNL-F0712] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. ABI and typed members: see record.
 "
 0x00133B20,func,IDA-gpt-6.1-sol-F002: MEDIUM追補: list+4先頭をnode+8で巡り、各node+4/+8を0にしlistのhead/tailも0へ。LayoutMgr_RenderBottomの通常終了経路で適用。
@@ -446,7 +451,8 @@ IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catal
 自前でコマンド列やテクスチャを作る場合も必須。
   tls[0]=0x00080082 tls[1]=addr tls[2]=size tls[3]=0 tls[4]=processHandle
 呼び出し元 sub_136ED8。"
-0x0013B9A8,func,"IDA-gpt-6.1-sol-F009 / T022 fix6 / MEDIUM: R0=TextBox, R1=N, R2=flags。通常flags bit0x8=0では文字器2*(N+1) Bと0x4D5480(N) Bの描画器を0x4B8CF0(size,align=4)から別々に確保。Ctor→InitFieldsのflags=0枝が対象。N127合計45744 B、N129合計46468 B、N15合計5632 B（管理領域を除外）。使わない文字ペイン8個を除去し残る名前器を縮小すると、家具窓の文字器413868→5632 B。原本ARM1176純整数計算2048ケース一致は実機Heap/GPUの成功を保証しない。"
+0x0013B9A8,func,"IDA-gpt-6.1-sol-F009 / T022 fix6 / MEDIUM: R0=TextBox, R1=N, R2=flags。通常flags bit0x8=0では文字器2*(N+1) Bと0x4D5480(N) Bの描画器を0x4B8CF0(size,align=4)から別々に確保。Ctor→InitFieldsのflags=0枝が対象。N127合計45744 B、N129合計46468 B、N15合計5632 B（管理領域を除外）。使わない文字ペイン8個を除去し残る名前器を縮小すると、家具窓の文字器413868→5632 B。原本ARM1176純整数計算2048ケース一致は実機Heap/GPUの成功を保証しない。
+[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。13B9A8..13BB04はR1=capacity,R2=flagsで文字器と描画器を確保する。TextBox vtable+70の実値が13B9A8、4BB084のInitFieldsが同slotへcapacity/flagsを渡す。戻りR0は確保・解放枝で不統一。"
 0x0013B9A8,line,"IDA-opus-5.5-F036: TextBox vt[28]。(箱, 文字数, 旗) で文字の器 (文字数+1)*2 と描画用の器(+260)をレイアウトのアロケータから確保。+212=器 / +248=器のバイト数。旗 = +260 の +9。旧い器は vt[29] で返す"
 0x0013B9A8,repeatable,"IDA-opus-5.5-F036: TextBox vt[28]。(箱, 文字数, 旗) で文字の器 (文字数+1)*2 と描画用の器(+260)をレイアウトのアロケータから確保。+212=器 / +248=器のバイト数。旗 = +260 の +9。旧い器は vt[29] で返す"
 0x0013BB08,func,"[ACNL-F0708] MEDIUM, static reanalysis, no hardware. Free wrapper: R0=ptr -> R1=ptr, R0=current off_96F150, tailcall allocator vslot+0x0C. Used by Picture/Material/coordinate array destruction."
@@ -857,7 +863,8 @@ IDA-gpt-6.1-sol-F002: MEDIUM: 模様替え固定カメラ。offset/distance prof
 0x001AF6C8,line,"V2-F013 MEDIUM: ProcThread vtable(0x008E55A8)+0x40 の実行関数。SaveProcess_Execute({vtbl_SaveProcess, this+144=desc})"
 0x001AF6C8,repeatable,"V2-F013 MEDIUM: ProcThread vtable(0x008E55A8)+0x40 の実行関数。SaveProcess_Execute({vtbl_SaveProcess, this+144=desc})"
 0x001AF858,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Visual focus change resets BAC and replaces +2792; calling this is focus movement, not a native decision. Client preview notifications should be separated from confirmation.
-IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). Native visual selection clears old node via SetSelect(0), which resets only +72; selected new node snaps +112/+152 to end. Owned lists retaining blue after A must clear all four old-node animations before selection moves, including reused physical rows after scroll."
+IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). Native visual selection clears old node via SetSelect(0), which resets only +72; selected new node snaps +112/+152 to end. Owned lists retaining blue after A must clear all four old-node animations before selection moves, including reused physical rows after scroll.
+[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。1AF858..F968 R1新選択/R2旧選択からtopを引き旧行解除・新行+AE8更新。29E65Cと6EDE84は戻りを不使用。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。"
 0x001AF858,line,"IDA-opus-5.5-F041: (list,new,old) slots = index - top(+2368), 0..7. P_slct_00 removed; old row: vt+32(0) = +215=0, select frame 0; new row: +215=1, touch_ok+select_ok at last frame on G_list_XX, then P_slct_00 PrependChild to N_list_XX (drawn behind the row text)."
 0x001AF858,repeatable,"IDA-opus-5.5-F041: (list,new,old) slots = index - top(+2368), 0..7. P_slct_00 removed; old row: vt+32(0) = +215=0, select frame 0; new row: +215=1, touch_ok+select_ok at last frame on G_list_XX, then P_slct_00 PrependChild to N_list_XX (drawn behind the row text)."
 0x001AF9A0,line,"IDA-opus-5.5-F041: loads <layout>_touch/_select/_touch_ok/_select_ok (ButtonActionControl), row nodes = N_list_XX pane + G_list_XX group; select_ok last frame on G_slct_00 (P_slct_00 alpha 255), then P_slct_00 removed from parent (no selection)."
@@ -866,7 +873,8 @@ IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent calle
 0x001B0698,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Reads BAC(+2560) decision bit before clearing it (0x1B078C); selected index alone does not distinguish re-deciding the current row. A wrapping vt[24] must observe IsDecided before this method. Row index + scroll top -> +2792 and +2380.
 IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). Native highlighted row disabled atnode+217, even every idle calc. F010 owned GameList reenables it and tracks separate touch-selected row: first tap focus only, same-row retap action. Native A uses StartDecide, giving both animations/sound. Foreign lists unchanged. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls.
 IDA-gpt-6-F011 supersedes F010 separate touch-armed policy per user hardware report: current selected row (including DPad/programmatic focus) executes on one touch; first touch of another row only focuses. Native WaitCalc deselects old row, then ClearDecided resets touched row Touch/Select, clearing color even when row unchanged. Owned GameList captures previous+2792, restores node vt+28 touch/select visual after native cleanup, then enables+217.
-IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). F012 supersedes F011 vt+28 color restoration: keep blue using decide endpoints112/152, and clear prior owned node's touch/select/decide animations on touch selection/row reuse. Current-selected one-touch execution and native StartDecide feedback remain."
+IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). F012 supersedes F011 vt+28 color restoration: keep blue using decide endpoints112/152, and clear prior owned node's touch/select/decide animations on touch selection/row reuse. Current-selected one-touch execution and native StartDecide feedback remain.
+[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。1B0698でthis+A00をIsDecidedへ、1B078CでClearDecided。29ED10の戻りを使わず次操作。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。"
 0x001B169C,func,IDA-gpt-6.1-sol-F005 / MEDIUM: 家記録+0x4で外観オブジェクトのデータ取得先を選ぶ。0なら0x1BCF74（tent、引数1）、1〜6なら0x1BD43C（my_house、種別が番号）、7以上なら0x1BD6F4（+0x5が番号）。種別8の完全な意味は未確定。
 0x001B1720,line,"IDA-opus-5.5-F001 MEDIUM: 建物の足元テンプレート（Strc/data/<名>.bin）を返す。16x16 マス x 10 B、基点 (行7,列7) = 建物の (x,y)。byte 8 = フィールド属性コード。建設中の予定地だけ別テンプレート。"
 0x001B1720,repeatable,"IDA-opus-5.5-F001 MEDIUM: 建物の足元テンプレート（Strc/data/<名>.bin）を返す。16x16 マス x 10 B、基点 (行7,列7) = 建物の (x,y)。byte 8 = フィールド属性コード。建設中の予定地だけ別テンプレート。"
@@ -918,10 +926,13 @@ IDA-gpt-6-F008 / GPT-6 (2026-10-12, MEDIUM): T011 shared setter hook only owned 
 0x001C4408,func,"IDA-gpt-6-F006 / GPT-6, MEDIUM (2026-10-12): BsMenuChest_Dtor. Native ARM independently checked against original code.bin; caller/RTTI/data accesses corroborate the contract.  Hardware unverified; no LOW rename."
 0x001C475C,line,IDA-opus-5.5-F030: BsPlayerMgr vtbl[20]。BsPlayerMgr_DestroyBanks が真なら 2（済み）、偽なら 3（次のフレームでやり直し）。vtbl[19] 0x1C4778 が先に大域 0x94A374 を 0 にする。
 0x001C475C,repeatable,IDA-opus-5.5-F030: BsPlayerMgr vtbl[20]。BsPlayerMgr_DestroyBanks が真なら 2（済み）、偽なら 3（次のフレームでやり直し）。vtbl[19] 0x1C4778 が先に大域 0x94A374 を 0 にする。
+0x001C513C,func,"[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。1C5144 R7=R1,1C5158 R5=R2。1C51E4にreader保存、1C52C4にheap、21CB14/2B59EC直後CMP R0,#0。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。 heapの具象型は制約されずvoid *。"
 0x001C513C,line,"IDA-opus-5.5-F036: 組み立て(list, holder, heap)。+2524 の段を進め、終われば 1。段0 Layout+in/out / 段1 vt[13]+文字箱 / 段2 N_frame_00+vt[12]+スクロール / 段3 状態表 0x874308"
 0x001C513C,repeatable,"IDA-opus-5.5-F036: 組み立て(list, holder, heap)。+2524 の段を進め、終われば 1。段0 Layout+in/out / 段1 vt[13]+文字箱 / 段2 N_frame_00+vt[12]+スクロール / 段3 状態表 0x874308"
 0x001C55F8,line,"IDA-opus-5.5-F039 (MEDIUM static): list clip rect. From N_frame_00 (list+536) global mtx + size: list+356 = 1 (enable), +360/+364 = rotated screen x/y, +368/+372 = w/h. = ssys Layout (list+44) +312.. scissor. Rows outside it are cut (row 7 half hidden)."
 0x001C55F8,repeatable,"IDA-opus-5.5-F039 (MEDIUM static): list clip rect. From N_frame_00 (list+536) global mtx + size: list+356 = 1 (enable), +360/+364 = rotated screen x/y, +368/+372 = w/h. = ssys Layout (list+44) +312.. scissor. Rows outside it are cut (row 7 half hidden)."
+0x001C58F4,func,"[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。1C5900でStateMachine_ChangeTo(this,入場PMF)を呼ぶ。21B914は戻り不使用。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。"
+0x001C5A34,func,"[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。1C5A40でStateMachine_ChangeTo(this,退場PMF)を呼ぶ。21BCE0は戻り不使用。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。"
 0x001C86E8,line,FaderMoment::Update — 待ちゼロで即完了 (F-51)。これが「瞬間」フェーダの実体。
 0x001C86E8,repeatable,FaderMoment::Update — 待ちゼロで即完了 (F-51)。これが「瞬間」フェーダの実体。
 0x001CBBA8,func,"IDA-gpt-6.1-sol-F015 MEDIUM: submits wrapper's embedded outer Layout at this+4 to LayoutMgr, screen selected by byte+429. Editor_SubmitLayouts invokes this at editor+660 so outer Layout editor+664. Owner class identity unresolved; preserve sub_ name until RTTI/vtable identity found."
@@ -1003,6 +1014,7 @@ Scene_SubmitNode(a1 + 28, 0);   ← a1+28 は sub_1F9A6C が生成に使った h
 
 ★**生成（sub_1F9A6C）と登録（ここ）は別の関数で、
 登録のほうは毎フレーム呼ばれる。**"
+0x001FA86C,func,"[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。1FA87C/+4D1,+4D0をクリアし6アニメのboundを読む。133B00と18F304は戻り不使用。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。"
 0x001FF9FC,func,"IDA-gpt-6-F010 / GPT-6, MEDIUM: native29B364 cleanup resets node's drag animation224 when resource248 present, applies layout28, unbinds, then node vt+28 clears selection. Valid native node has nonnull group and layout from AddNode; retain lifecycle when discarding pocket item."
 0x001FFA80,line,IDA-opus-5.5-F054: 持ち物のドラッグで枠を移るとき SE_SYS_ITEM_SLOT_ACTIVE 0x1000405 を sub_5827D0（BGM に合わせた音程）で鳴らす。
 0x001FFA80,repeatable,IDA-opus-5.5-F054: 持ち物のドラッグで枠を移るとき SE_SYS_ITEM_SLOT_ACTIVE 0x1000405 を sub_5827D0（BGM に合わせた音程）で鳴らす。

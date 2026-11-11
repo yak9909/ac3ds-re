@@ -22,6 +22,7 @@ address,kind,text
 0x0081F354,func,IDA-gpt-6.1-sol-F002: MEDIUM: 共通destroy。+102 bit5を設定、bit2未設定なら+132 Begin、+136 Waitが3なら継続、最後+140 Finalize。家具0x570330/0x5702BC/0x56F448とvtableを照合。破棄要求時点と表/資源解放完了は別。
 0x00822B98,line,IDA-opus-5.5-F030: BankTable<PlayerHeadBank> vt[0]。枠の読み込み先 2 つを PlayerHeadBank_UnloadBuffer で下ろし、両方済むと真。BankTable_Release はこれが真のときだけ空きにする。
 0x00822B98,repeatable,IDA-opus-5.5-F030: BankTable<PlayerHeadBank> vt[0]。枠の読み込み先 2 つを PlayerHeadBank_UnloadBuffer で下ろし、両方済むと真。BankTable_Release はこれが真のときだけ空きにする。
+0x008268E0,func,[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。826900/14でwriterを64Bコピー、R1文字列/R2長をCalcStringRectへ。826940でS0=右-左。5E94B8直後VFPで消費。 TextWriter構造未定義のためconst void *。原writerはコピー元のみ。
 0x00838014,line,"★★★.text の終端。この直後 0x00838018 から **0xFE8 バイトのゼロ埋め**が続く。
 
 ★F-161: **ここがコードケーブの置き場。**

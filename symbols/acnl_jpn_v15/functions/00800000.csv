@@ -15,4 +15,4 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x00822B98,144,BankTable_PlayerHeadBank_UnloadSlot,,,legacy-idb,,
 0x00822C28,48,BankTable_PlayerHeadBank_MarkUsed,,,legacy-idb,,
 0x008268A8,56,nwfont_TextWriter_GetLineAdvance,,,legacy-idb,,
-0x008268E0,104,nwfont_TextWriter_CalcStringWidth,,,legacy-idb,,
+0x008268E0,104,nwfont_TextWriter_CalcStringWidth,"float __usercall@<S0>(const void *writer@<R0>, const unsigned __int16 *text@<R1>, int length@<R2>)",MEDIUM,legacy-idb,ACNL-F0766,

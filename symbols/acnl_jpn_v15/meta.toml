@@ -10,7 +10,7 @@ exported_at = "2026-11-11T05:02:38Z"
 [counts]
 functions = 1811
 globals = 8686
-comments = 2744
+comments = 2773
 vtables = 2586
 lvars = 9
-types = 289
+types = 291

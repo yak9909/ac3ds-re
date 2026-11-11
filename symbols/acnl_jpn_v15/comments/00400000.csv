@@ -304,11 +304,13 @@ SceneNode 版（0x497D28）と違い、**visitor->vtbl[8]（+32）** を呼ぶ�
 0x004B5140,repeatable,IDA-opus-5.5-F040: pane anim apply. CLVI step curve; CLVC value+0.5 clamp 0..255 trunc.
 0x004B541C,line,IDA-opus-5.5-F040: material anim apply. CLMC value+0.5 clamp 0..255 trunc; CLTP step curve.
 0x004B541C,repeatable,IDA-opus-5.5-F040: material anim apply. CLMC value+0.5 clamp 0..255 trunc; CLTP step curve.
-0x004B5844,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。texture cache hitとmiss→vtable+20 load/cacheを区別。今回のchip合成は実texture accessor/GPU/実機の競合を代替しているため実測との差212 Bは未解決。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
+0x004B5844,func,"IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。texture cache hitとmiss→vtable+20 load/cacheを区別。今回のchip合成は実texture accessor/GPU/実機の競合を代替しているため実測との差212 Bは未解決。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
+[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。4B5848/50/54でR1 accessor,R0出力,R2名前を保存。4B5884..8Cが5wordを出力。568CFCの呼び元で20Bの出力先を渡す。 出力は20BのTextureInfo相当、accessorも構造未定義のためvoid *。隠れた集成体戻りの出力を明示したABI。"
 0x004B5844,line,"IDA-opus-5.5-F045 (MEDIUM static): ArcResourceAccessor vtable +0x10 GetTexture(out TextureInfo[20], this, name). Cached list at this+48 (sub_4B4C10); miss -> vtable +0x14 load (VRAM class: ssys_ArcResourceAccessorVRAM_LoadTexture) and cache (sub_4B4B68). TextureInfo: +0 ?, +4 address (goes to TexMap+0x04), +8 used size (w | h<<16), +12 pow2 size, +16 format byte."
 0x004B5844,repeatable,"IDA-opus-5.5-F045 (MEDIUM static): ArcResourceAccessor vtable +0x10 GetTexture(out TextureInfo[20], this, name). Cached list at this+48 (sub_4B4C10); miss -> vtable +0x14 load (VRAM class: ssys_ArcResourceAccessorVRAM_LoadTexture) and cache (sub_4B4B68). TextureInfo: +0 ?, +4 address (goes to TexMap+0x04), +8 used size (w | h<<16), +12 pow2 size, +16 format byte."
 0x004B5900,func,"IDA-opus-5.5-F073: 実機で確認（2026-10-05）。ゲームのヒープ（[[0x96FC40]+4] = sead::ExpHeap、vt+24 確保 / +28 解放、アライン [0x96FC2C]=0x80）に写した自前 DARC を holder+0x158/+8 に入れて Attach(holder+0xC, arc, ""."") → sub_568CFC（テクスチャ登録）→ Layout_Build で、下画面に HHD の地が描けた。
-IDA-gpt-6.1-sol-F009 / T022 fix6 / MEDIUM: Attach(this,DARC,prefix)は+0x4のArcLinkと+0x20の資源baseを更新する単一DARC契約。複数arcを同一accessorへ重ねて常駐させる案は採らず、家具/壁床それぞれのarcに必要な共通格子/名前資源を同梱する。IDA逆アセンブルと日本語更新原本64bytes一致。"
+IDA-gpt-6.1-sol-F009 / T022 fix6 / MEDIUM: Attach(this,DARC,prefix)は+0x4のArcLinkと+0x20の資源baseを更新する単一DARC契約。複数arcを同一accessorへ重ねて常駐させる案は採らず、家具/壁床それぞれのarcに必要な共通格子/名前資源を同梱する。IDA逆アセンブルと日本語更新原本64bytes一致。
+[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。4B5904 R5=R1,4B5910 R6=R2。DARC解読失敗は0、4B595C成功は1。5672C4呼出でreader+C/arc/root。 accessorとDARC領域の構造未定義のためvoid *。"
 0x004B5900,line,"IDA-opus-5.5-D005: nw::lyt::ArcResourceAccessor::Attach(アクセサ, アーカイブ先頭, ルート名)。sub_4B3EAC で DARC を解き(+4)、+32 = アーカイブ、+60 = ルート名(UTF-16, 63 字まで)。ArcResAccReader_LoadArcStep が読み込み後に呼ぶ。メモリ上の自前 DARC を直接渡せる見込み（未実機）"
 0x004B5900,repeatable,"IDA-opus-5.5-D005: nw::lyt::ArcResourceAccessor::Attach(アクセサ, アーカイブ先頭, ルート名)。sub_4B3EAC で DARC を解き(+4)、+32 = アーカイブ、+60 = ルート名(UTF-16, 63 字まで)。ArcResAccReader_LoadArcStep が読み込み後に呼ぶ。メモリ上の自前 DARC を直接渡せる見込み（未実機）"
 0x004B5EA0,line,IDA-opus-5.5-F040: hermite: count1/f<=first -> first; last<=f -> last; bsearch (f<=key[mid].f -> hi=mid); |f-key[hi].f|<0.001 -> key[hi] (or key[hi+1] if same frame); else hermite with slope*d.
@@ -587,6 +589,7 @@ IDA-opus-5.5-F082: 材質の TEV の段（bclyt mat1 の 12 B = rgb 語 / α 語
 0x004B8D14,repeatable,"★nw::lyt ペイン工場（種別 FourCC で分岐して確保＋構築）— F-291 / Picture=344B, TextBox=264B, 他 364/212B。★Picture の実体は 344 バイト(0x158)。以前の「約 0x320」は誤り。"
 0x004B8EA0,func,"IDA-gpt-6.1-sol-F015 MEDIUM: inner nw::lyt::Layout rootPane+16; dispatch root virtual CalculateMtx at vtable+92, forwarding drawInfo. Original caller vc_ACSYSTEM_DATA2 and Pane_CalculateMtx assembly independently agree.
 IDA-gpt-6-F014: DrawInfo is passed unchanged to root virtual+92 CalculateMtx. Native background includes attached letter root, so its force-hidden calculation bit2 updates descendants without making the letter drawable."
+0x004B8ECC,func,[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。4B8ED0でanim+1C=1、+18を取得、layout+10へ調整し4B8EE0に連続。194304で戻り不使用。
 0x004B8F04,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
 MEDIUM。DummyLayout vtable 0x900578の+0x20（0x900598）から到達。root+0x10へPane vslot+0x40(anim, recursive=1)を渡す。資源破棄ではない。"
 0x004B930C,func,"IDA-gpt-6.1-sol-F008 / 2026-10-08 / T022 fix5。根拠 ida_evidence.json・ida_extra.json。実機未検証。
@@ -620,6 +623,7 @@ MEDIUM。Layout実装の破棄。group/root pane/AnimTransformのdtorと対応fr
 引数 idx の >>1 は Itanium ABI のメンバ関数ポインタ形式
 （Obj_InvokePmfTriple と同じ規約）。
 **これにより +216 / +220 が文字色であることが確定した。**"
+0x004BACBC,func,"[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。4BACC8 R5=R2、4BAD28でR3を残容量と比較し4BAD68 UXTH R0,R6。4BB3E8は初期文字コピー。font=NULL枝もR0=0。"
 0x004BACBC,line,"★nwlyt_TextBox_SetString(this, wchar_t* str, dstIdx, len) — F-126 / F-162
 
 先頭 1 ワードをケーブへ差し替えて、特定の TextBox のときだけ
@@ -726,7 +730,8 @@ F-142 live: BP hit even with conversation closed. R0=0x0FFFFC58 (TextWriter), R1
 0x004D5148,line,"F-133: after optional transform update, glyph path calls generic GPU draw/state routine with (6,0,4); this is the native text draw bridge."
 0x004D5154,line,"F-134 static: immediate glyph path requests one texture ID from generic allocator nwgfx texture-ID routine (sub_7A8B08(1,&local_handle))."
 0x004D5160,line,"F-134 static: newly allocated handle is stored back to descriptor+0, then target 3553 is bound through sub_7A6558."
-0x004D51B0,func,F-133 static: recomputes CharWriter horizontal/vertical scales from requested dimensions divided by ResFont native metrics (vtable offsets +8/+12); stores scales at writer+0x24/+0x28.
+0x004D51B0,func,"F-133 static: recomputes CharWriter horizontal/vertical scales from requested dimensions divided by ResFont native metrics (vtable offsets +8/+12); stores scales at writer+0x24/+0x28.
+[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。4D51BC/C0でS0/S1を保存、font vt+8/+Cの幅高さで除算、+24/+28へ。4BADA4呼出前にTextBoxの幅高さをVFPロード。 CharWriter全体型が未登録のためvoid *。"
 0x004D520C,func,"F-144 static: if descriptor+0x44 batch count (+0x1C) is nonzero, builds PICA state commands and copies batch data from descriptor+0x68 buffer (+0x10/+0x18 depending flags) into the supplied command stream. This is the batch-to-command-buffer bridge."
 0x004D520C,line,"★★★TextBatch_CopyToCommandBuffer(desc, cursor, drawctx) — F-145 / F-156 / F-157
 
