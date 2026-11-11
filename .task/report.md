@@ -38,3 +38,38 @@
 
 **新しいタグの提案**
 - `animation` を提案します。`meta/tags.toml` に該当するタグが無く、F0764 では tags を空にしました。
+
+---
+
+## 続きの実行の報告（2026-11-11T18:18:34+09:00）
+
+無関係な symbols の差分は origin/main の内容に戻しました。`git diff origin/main --stat` は、残す物だけになっています。`kb.py lint` は 784 件でエラーなし、`audit.py` は 1047 ファイルで問題 0 件です。
+
+**戻した物**
+- `functions/00100000.csv`、`functions/00300000.csv`、`comments/00200000.csv`、`types/local_types.h` は、`git checkout origin/main -- <4 ファイル>` で丸ごと戻しました。
+- 4 ファイルとも、差分は無関係な物だけでした。0x4EDC74 や 0x94CC48 の行は含まれていません。
+- `meta.toml` の数は、戻した後の実際の行数に合わせました（functions=1811、comments=2745、types=289）。globals=8687 は変えていません。
+
+**残っている差分（12 ファイル）**
+- F0764・F0765 と、索引 4 ファイル（`findings/INDEX.md`、`findings/acnl/INDEX.md`、`by-category/_product.md`、`by-category/render.md`）。
+- symbols は `functions/00400000.csv`、`globals/00900000.csv`、`comments/00400000.csv`、`comments/00900000.csv`、`meta.toml`。
+- `.task/report.md`（40 行）も差分に出ています。私は書いていないので、`orch.py` が前回の報告として保存した物だと思います。
+
+**未確認点**
+- 0x49BB0C を呼ぶ vtable の位置（どのクラスの何番か）と、実機で rate を変えて再生が速くなるかは、これまでどおり未確認です。F0764 は MEDIUM のままです。
+- `meta.toml` の `exported_at` は書き出しの時刻（2026-11-11T09:08:45Z）のままです。数だけを手で直しました。
+
+**迷った判断**
+- ワーカーは git を実行しない規則です。ただ今回は、依頼が `git diff origin/main --stat` と「origin/main の内容に戻す」ことを明示していました。そのため、`git checkout origin/main -- <4 ファイル>` と `git diff` を使いました。`local_types.h` は前方宣言の並び替えまで戻す必要があり、元の並びを知るのに git が要ったためです。これ以外の git は使っていません。
+- `meta.toml` の数は、再書き出しではなく手で直しました。再書き出しをすると、また全体の差分が混ざるためです。
+
+**依頼の範囲外の変更**
+なし。
+
+**使ったゲームの事実**
+- 0x4EDC74 `Anim_SetRate`：+64 に 1 回の更新で進めるフレーム量を書きます。根拠は読み手 0x49BB0C、初期化 0x490D80（1.0f）、呼び出し側 0x227020 です。確度は MEDIUM（F0764）。
+- 0x94CC48 `g_ParentHeap`：sead::ExpHeap（15,433,728 B）への `void **` で、子ヒープの親になります。確度は HIGH（F0765）。
+
+**提案**
+- 訂正・統合・新タグの提案はありません。
+- `export_symbols.py` は全体の書き出しなので、ワーカーが使うたびに無関係な差分が混ざります。Issue に関係する行だけ書き出す道具か、手順書での注意があるとよいと思います。

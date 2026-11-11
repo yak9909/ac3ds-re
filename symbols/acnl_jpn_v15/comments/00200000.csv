@@ -209,7 +209,6 @@ IDA-gpt-6.1-sol-F005 / HIGH（引数対応は親実測と静的一致）: R0=min
 内部で SetDateTimeBg も作る（vtbl_SetDateTimeBg を 0x28D450 で参照）。
 ★これが「ゲーム内の日付/時刻設定ウィンドウ」の本体。
 開き方: Menu_Open(0x2E, 0)  もしくは UiScreen_Create(557)"
-0x0028E130,line,transition_arg2
 0x0028E89C,line,"★訂正 (F-115): ① の既製ブロック転送は
 **Mem_CopyBytes(0x12EC54)** であって Mem_Copy(0x2FBB8C) ではない。
 （Mem_Copy を使うのは BsShadowViewMgr_BuildShadowCmds の中のブロックコピー。）
