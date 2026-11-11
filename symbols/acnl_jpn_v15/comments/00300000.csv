@@ -129,6 +129,7 @@ Net_IsMultiplayer() と AND を取るので問題にならない。
 0x00316412,repeatable,"Vapecord plugin ADDRESSES: NEVER_WILT_CALLER_3
 他地域: USA=003160FE  EUR=0031602E  KOR=003162CA
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x00316E7C,func,"[ACNL-F0758] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Current request94B6B8: optional phase+24==3 and status+26!=2; kind14 accepts any existing request, otherwise compares+25. No audio access."
 0x00316ECC,repeatable,"Vapecord plugin ADDRESSES: GET_HOUSE_CHECK_DATA
 他地域: USA=00316F40  EUR=00316E84  KOR=00316EDC
 （プラグイン作者のラベル。検証済みの識別ではない）"

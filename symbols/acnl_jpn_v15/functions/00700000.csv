@@ -89,6 +89,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x007461D0,20,lyt_Object_FindPane,,,legacy-idb,,
 0x00746A38,40,NetConnection_GetActiveFlag,,,legacy-idb,,
 0x00747430,56,,,,legacy-idb,,
+0x00747528,64,Font_GetNameString,"const void *__fastcall(void *manager, int slot)",MEDIUM,analysis,ACNL-F0752,
 0x0074798C,64,ItemParam_IsWallMountedFurniture,int __fastcall(const ItemParamRecord *itemParam),,legacy-idb,,
 0x007479CC,44,ItemParam_GetFurnitureActorType,unsigned int __fastcall(const ItemParamRecord *itemParam),,legacy-idb,,
 0x00747B34,32,ItemParam_HasFurnitureActorFamily,int __fastcall(const ItemParamRecord *itemParam),,legacy-idb,,

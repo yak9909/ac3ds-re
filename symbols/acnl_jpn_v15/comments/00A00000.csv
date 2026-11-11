@@ -12,7 +12,9 @@ address,kind,text
   +0x38/+0x3C 区間, +0x40 再生レート(全スロット1.0), +0x44 現在フレーム,
   +0x48 総フレーム数, +0x4C 超過処理 (0x4D3EFC=clamp単発 / 0x4D3E70=wrapループ)
 IDA-gpt-6-sol-F006: four player-actor pointers indexed by player number. vc_PLAYERINSTANCE 0x5C27D8 reads base 0xAA7994; reset functions 0x5BEF9C/0x5BEFDC/0x5C85D4 clear four slots. Runtime outdoor slot 0 measured 0x33099E3C in 2026-09-19 evidence; not a universal address claim."
+0x00ABD380,repeatable,[ACNL-F0762] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Inline camera object used by fgobj_DrawList. Prefix only: Camera_GetViewMatrix returns+0xA4 for pass1024 and+0x144 otherwise. Not a camera pointer or CameraGame.
 0x00ACF6B0,line,IDA-gpt-6-F002: Date_GetRaw returns this 12-byte current date; Time_SetFromDate and original epoch conversion independently match GohanNativeDate layout. Changes must go through native time/save APIs.
+0x00ACF6E0,repeatable,"[ACNL-F0761] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Inline40-byte touch state (not pointer).1B6B84 passes its address to1B7874. +0 current,+0x1A previous held;+0x20/+0x24 centered layout coordinates."
 0x00AD0158,line,"IDA-gpt-6-F001 / gpt-6 / 2026-10-11, MEDIUM static: game text-input constraint flags, broader than the old Vapecord NUMBERS label. bit 0 enables numeric-character filter at 0x522894 (also guarded by word_AD0164); bit 0x20 selects submit-time numeric-count validation via BsSkb 0x57D840 / 0x57DA98 -> 0x57D9A8 -> 0x747430 -> 0x3DEBD8. Island chat initializes 0x20 at 0x193A88. Vapecord morenumberisland/JPN AR writes low byte 2, clearing submit-validation bit. Does not establish all input restrictions or a universal 3-character threshold."
 0x00AD0158,repeatable,"Vapecord plugin ADDRESSES: NUMBERS
 他地域: USA=00AD7158  EUR=00AD6158  KOR=00ACF158

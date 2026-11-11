@@ -207,6 +207,8 @@ IDA-gpt-6.1-sol-F002: MEDIUM追補: OpenChild後にactor+15(破棄要求)を見�
 0x0052958C,repeatable,"Fade の初期化 (F-51)。Layout/Wipe/fade.arc を読み、5 つの .bclan を UiAnim_Load で作る。
 ★起動時に 1 度だけ実行されるので、レートはその時点の g_UiAnimRate が焼き付く。"
 0x0052A068,func,"IDA-gpt-6.1-sol-F013 / MEDIUM; evidence work/evidence/t022_room_capabilities. RoomWallPart initialization: position locator decides model creation; part stride0x40, ModelInstance at part+0xC. Native Apply and Submit independently use same holder and m_wall. S0 is an incoming float captured as s16; do not assign an integer-only full prototype. F013 defines only verified prefix fields."
+0x0052B644,func,"[ACNL-F0758] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. If current kind13, sets request+26=1. Table8584FC kind13 Calc189AAC consumes this as completion; not sound resume."
+0x0052B678,func,"[ACNL-F0758] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. If current kind7, sets request+26=1. Table8584FC kind7 Calc189ABC consumes this as completion; not sound resume."
 0x0052CDD8,line,"IDA-opus-5-F032 HIGH（実機目視・村の屋外）: この関数を通して置いたモデルを 3DS の画面で見たときの向き。
 world +X = 画面の下 / world -Z = 画面の右。（十字キーで +X 方向へ動かすと画面では下へ、-Z 方向で右へ動いた。）
 したがって画面の横 c・縦 r へ格子状に並べるには x = 基点X + r*間隔 / z = 基点Z - c*間隔 とする。
@@ -431,7 +433,8 @@ while(1) { vtbl[0x64](this); }  = Framework_ProcOneFrame を回すだけ。
 0x00567A50,repeatable,"Vapecord plugin ADDRESSES: ACSYSTEM_DATA1
 他地域: USA=00569118  EUR=00568160  KOR=00567770
 （プラグイン作者のラベル。検証済みの識別ではない）"
-0x00567BAC,func,"IDA-gpt-6-F008: Layout wrapper+32 object's virtual+44 receives name inR1 and recursive flag1; callers use it for named CLYT panes. Original callsites + ChangeStockItem layout tree confirm pane resolution. Wrapper RTTI/class identity not confirmed, so retain sub-name; next trace ctor/vtable+44 before class-qualified rename."
+0x00567BAC,func,"[ACNL-F0754] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Recursively searches root at +0x20 via vtable+0x2C(name,1); no runtime type filter.
+IDA-gpt-6-F008: Layout wrapper+32 object's virtual+44 receives name inR1 and recursive flag1; callers use it for named CLYT panes. Original callsites + ChangeStockItem layout tree confirm pane resolution. Wrapper RTTI/class identity not confirmed, so retain sub-name; next trace ctor/vtable+44 before class-qualified rename."
 0x00567BC0,func,"[ACNL-F0696] MEDIUM/static reanalysis: base Layout reads its own +0x28/+0x2C through (Layout+0x10)+0x18/+0x1C; NOT root-Pane/tree bounds. +0x121==1 selects perspective. Ortho then rotation(1) produces m1=2/H,m4=-2/W,m10=.001,m11=-.5,m15=1, stored at +0x34. Cache gate +0x11F is in RecordPaneTree. Pixel scale Vw/W,Vh/H is conditional on no extra transforms/offsets; hardware untested."
 0x00567BC0,line,"[ACNL-F0696] MEDIUM/static reanalysis: base Layout reads its own +0x28/+0x2C through (Layout+0x10)+0x18/+0x1C; NOT root-Pane/tree bounds. +0x121==1 selects perspective. Ortho then rotation(1) produces m1=2/H,m4=-2/W,m10=.001,m11=-.5,m15=1, stored at +0x34. Cache gate +0x11F is in RecordPaneTree. Pixel scale Vw/W,Vh/H is conditional on no extra transforms/offsets; hardware untested."
 0x00567BC0,repeatable,"[ACNL-F0714] MEDIUM/static: R0 is Layout this; reads width/height +28/+2C and projection_mode +121, writes embedded DrawInfo projection +34. RecordPaneTree owns cache flag +11F.
@@ -442,6 +445,8 @@ while(1) { vtbl[0x64](this); }  = Framework_ProcOneFrame を回すだけ。
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x00567E44,line,"[ACNL-F0751] layout node (+0x20 = root pane) から name の pane を再帰探索（root vt+0x2C(name,1)）し、RTTI(vt+8)の親鎖に nw_lyt_Picture_runtimeTypeInfo(0x96F160) があればそれを返す、無ければ 0。= dynamic_cast<Picture*>(FindPane)。兄弟: 0x567EA0(0x96F164)、0x567EFC(0x96F14C)"
 0x00567E44,repeatable,"[ACNL-F0751] layout node (+0x20 = root pane) から name の pane を再帰探索（root vt+0x2C(name,1)）し、RTTI(vt+8)の親鎖に nw_lyt_Picture_runtimeTypeInfo(0x96F160) があればそれを返す、無ければ 0。= dynamic_cast<Picture*>(FindPane)。兄弟: 0x567EA0(0x96F164)、0x567EFC(0x96F14C)"
+0x00567EA0,func,"[ACNL-F0754] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Same search, then runtime type chain must include 96F164. TextBox vtable 8FC07C slot+8=73CF24 returns token."
+0x00567EFC,func,[ACNL-F0754] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Runtime type filter 96F14C is nw::lyt::Bounding: vtable8FC104+8=73CFEC. Bounding struct not defined; returns void*.
 0x00568030,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / MEDIUM。冒頭0x568048でR1=Layout+0xFC(flags)、R0=Layout+0x10を0x4B9718へ渡す。Paneの評価を終えてから行列/描画コマンド計算する。固定SPはPUSH16+VPUSH16+SUB0x128=328B（Python計算）。追加したApplyFrameはこの評価だけを呼び、時刻更新/AddLayout/二重Submitを足さない。根拠 ida_extra.json・linked_disasm.txt。実機未検証。
 IDA-gpt-6.1-sol-F015: actual symbol vc_ACSYSTEM_DATA2 retained. AnimatePanes then root CalculateMtx updates globalAlpha before deferred draw; no duplicate Submit for backdrop fade.
 IDA-gpt-6-F014: T017 calls native LayoutCalc for the current pocket background with a scoped DrawInfo+136 flag4, then restores the full original flag byte. No second AddLayout or animation clock step; letter animations are evaluated separately before the parent tree matrices. Original AnimatePanes and CalculateRootMtx callers verify offsets/ABI."
@@ -673,6 +678,7 @@ g_RealTimeNs を基準に g_TimeOffsetNs / g_SystemTimeNs を張り直す (F-60)
 0x0056C794,repeatable,"Vapecord plugin ADDRESSES: GAMEKEYBOARD_FUNC2
 他地域: USA=0056DE5C  EUR=0056CEA4  KOR=0056C4B4
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x0056CE48,func,"[ACNL-F0755] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Embedded UTF16 buffer at +0x18, capacity38, 100-byte object. 6EDEE0 independent array stride100."
 0x0056D274,line,"IDA-opus-5.5-F049 (MEDIUM static; matches Ghidra-gpt-sol-5.6-ITEM-T011): (phrase, &item, a3). Clears phrase (vt+28); normal ids -> STR_Item_name[(id&0x7FFF)-0x2000]; special kinds build names; if still empty assigns WordRes(""???"" 0x9303F8) via vt+20. gohan hooks this for hidden-item custom names."
 0x0056D274,repeatable,"IDA-opus-5.5-F049 (MEDIUM static; matches Ghidra-gpt-sol-5.6-ITEM-T011): (phrase, &item, a3). Clears phrase (vt+28); normal ids -> STR_Item_name[(id&0x7FFF)-0x2000]; special kinds build names; if still empty assigns WordRes(""???"" 0x9303F8) via vt+20. gohan hooks this for hidden-item custom names."
 0x0056D66C,func,IDA-gpt-6.1-sol-F002: MEDIUM追補: 初期matrix更新(vslot+208)→状態遷移→親/相対座標解決0x571148→親子登録0x56F1B4。上載せの場合、最初のmatrixは親解決前で、次の通常Update内+208で確定する。request flag1の初期状態は表0x83E6D4により0、通常状態2まで待つ。最終化成功後に共通createが+102 bit1を設定。

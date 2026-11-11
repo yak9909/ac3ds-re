@@ -82,6 +82,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x0012B110,1068,GameAPT_WaitForWakeup,"int __fastcall(unsigned int *sender, void *param, unsigned int capacity, unsigned int *actualSize, unsigned int *receivedHandle, __int64 timeoutNs)",,legacy-idb,,
 0x0012B6E8,96,GameAPT_CloseSessionAndUnlock,,,legacy-idb,,
 0x0012CC4C,244,sead_ExpHeap_TryCreate,,,legacy-idb,,
+0x0012D294,36,GpuCache_QueueFlushRange,"void __fastcall(const void *address, unsigned int bytes)",MEDIUM,analysis,ACNL-F0759,
 0x0012D2BC,188,ssys_ma_lyt_Layout_BaseCtor,,,legacy-idb,,
 0x0012E6B4,200,GxQueue_OnRequestCompleted,int(),MEDIUM,analysis,ACNL-F0734,
 0x0012E7D8,608,GxQueue_Dispatch,,,legacy-idb,,

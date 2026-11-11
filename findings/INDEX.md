@@ -6,7 +6,7 @@
 
 | scope | 件数 | active |
 |---|---|---|
-| acnl | 750 | 663 |
+| acnl | 762 | 675 |
 | hhd | 20 | 9 |
 | 3ds | 0 | 0 |
 
@@ -17,17 +17,17 @@
 | acnl | _product | 214 |
 | acnl | actor | 24 |
 | acnl | field | 56 |
-| acnl | input | 16 |
+| acnl | input | 17 |
 | acnl | item | 43 |
 | acnl | misc | 2 |
 | acnl | network | 14 |
-| acnl | render | 140 |
+| acnl | render | 141 |
 | acnl | save | 5 |
 | acnl | sound | 11 |
-| acnl | system | 57 |
-| acnl | text | 61 |
+| acnl | system | 59 |
+| acnl | text | 63 |
 | acnl | time | 2 |
-| acnl | ui | 18 |
+| acnl | ui | 24 |
 | hhd | input | 1 |
 | hhd | item | 4 |
 | hhd | render | 2 |
@@ -1301,6 +1301,18 @@
 - ACNL-F0749 住民日次処理・出口遷移・苗の枯死処理の呼出契約と番地
 - ACNL-F0750 地図メニュー準備旗 vc_MAPBOOL(0x949C30)の型と NetGameMgr 本体ポインタ g_NetGameMgrPtr(0x94D644)の型
 - ACNL-F0751 SsysMaLayoutNode_FindPicture 0x567E44: レイアウトからペイン名で Picture を探す
+- ACNL-F0752 フォントの登録は名前付き非所有エントリを作り、名前取得は SafeString を返す
+- ACNL-F0753 時計の大域変数は BsTimeBelWindow 本体を指し、時計ペインはその +1760 にある
+- ACNL-F0754 CLYT の組み立てとペイン・TextBox・Bounding・Group の名前検索の ABI
+- ACNL-F0755 PWorkList の slot13 は WordFix38 の行を使って候補一覧を構築する
+- ACNL-F0756 下画面のタブ・地図・補助画面は別々の命令と状態遷移で制御される
+- ACNL-F0757 メニュー要求状態と登録画面リストの先頭は別で、状態3は作成中を表す
+- ACNL-F0758 タブ復帰で呼ぶ3関数は音の再開ではなくメニューフローの完了確認と通知
+- ACNL-F0759 0x12D294 は即時 flush ではなく GPU キャッシュ範囲の登録ラッパである
+- ACNL-F0760 UI のレイアウトと資源は別のアロケータ変数を使い、描画命令は graphic MemoryMgr を経由する
+- ACNL-F0761 タッチ状態の実体と ControllerMgr のポインタは別で、座標系も異なる
+- ACNL-F0762 fgobj の公開 Proc と view 行列、BaseMgr のプロセス表は別の大域資源である
+- ACNL-F0763 TextWriter のデストラクタ 0x4D5BCC は何も解放しない
 - HHD-F0001 慣性と、選択枠・ボタンの縞の合成（2026-10-05、MEDIUM〜HIGH: 静的 + HHD のスクショ 2 枚で合成の意味を照合）
 - HHD-F0002 髪のページ送り — ドラッグ・弾き・滑りの規則（2026-10-05、MEDIUM: 静的のみ。定数はすべて逆アセンブルの即値・リテラル）
 - HHD-F0003 髪・目の形の番号 → モデルのファイル（2026-10-05、MEDIUM: 静的のみ。ACNL のファイル名と照合）
@@ -1500,6 +1512,7 @@
 - acnl_jpn_v15 0x004D520C: ACNL-F0028, ACNL-F0033, ACNL-F0034, ACNL-F0038, ACNL-F0182, ACNL-F0323, ACNL-F0325, ACNL-F0330, ACNL-F0363, ACNL-F0368
 - acnl_jpn_v15 0x004D5418: ACNL-F0182, ACNL-F0330
 - acnl_jpn_v15 0x004D5B18: ACNL-F0330, ACNL-F0363
+- acnl_jpn_v15 0x004D5BCC: ACNL-F0480, ACNL-F0763
 - acnl_jpn_v15 0x004D5CB0: ACNL-F0184, ACNL-F0217, ACNL-F0330, ACNL-F0368
 - acnl_jpn_v15 0x004D6570: ACNL-F0038, ACNL-F0322, ACNL-F0330, ACNL-F0331, ACNL-F0348, ACNL-F0363, ACNL-F0366, ACNL-F0367, ACNL-F0368, ACNL-F0718
 - acnl_jpn_v15 0x004D6CE0: ACNL-F0038, ACNL-F0363, ACNL-F0367, ACNL-F0718
@@ -1849,7 +1862,9 @@
 - acnl_jpn_v15 0x00904FA4: ACNL-F0340, ACNL-F0637
 - acnl_jpn_v15 0x0090B897: ACNL-F0112, ACNL-F0113
 - acnl_jpn_v15 0x00948E5C: ACNL-F0475, ACNL-F0482
-- acnl_jpn_v15 0x00948E70: ACNL-F0454, ACNL-F0478, ACNL-F0537
+- acnl_jpn_v15 0x00948E70: ACNL-F0454, ACNL-F0478, ACNL-F0537, ACNL-F0762
+- acnl_jpn_v15 0x00949D24: ACNL-F0466, ACNL-F0756
+- acnl_jpn_v15 0x00949D4C: ACNL-F0473, ACNL-F0756
 - acnl_jpn_v15 0x00949D68: ACNL-F0647, ACNL-F0651
 - acnl_jpn_v15 0x0094A374: ACNL-F0501, ACNL-F0503
 - acnl_jpn_v15 0x0094A3D0: ACNL-F0388, ACNL-F0396
@@ -1875,9 +1890,11 @@
 - acnl_jpn_v15 0x0096EAFA: ACNL-F0026, ACNL-F0410, ACNL-F0411
 - acnl_jpn_v15 0x0096F0F0: ACNL-F0144, ACNL-F0146
 - acnl_jpn_v15 0x0096F150: ACNL-F0320, ACNL-F0333, ACNL-F0335, ACNL-F0453, ACNL-F0713, ACNL-F0725, ACNL-F0736
-- acnl_jpn_v15 0x0096F304: ACNL-F0340, ACNL-F0629
+- acnl_jpn_v15 0x0096F2A4: ACNL-F0519, ACNL-F0762
+- acnl_jpn_v15 0x0096F304: ACNL-F0340, ACNL-F0629, ACNL-F0760
 - acnl_jpn_v15 0x0096FC38: ACNL-F0258, ACNL-F0282, ACNL-F0335, ACNL-F0712
-- acnl_jpn_v15 0x0096FC40: ACNL-F0629, ACNL-F0634, ACNL-F0637
+- acnl_jpn_v15 0x0096FC3C: ACNL-F0637, ACNL-F0760
+- acnl_jpn_v15 0x0096FC40: ACNL-F0629, ACNL-F0634, ACNL-F0637, ACNL-F0760
 - acnl_jpn_v15 0x00977810: ACNL-F0027, ACNL-F0385
 - acnl_jpn_v15 0x009778D8: ACNL-F0723, ACNL-F0738
 - acnl_jpn_v15 0x0097B6EC: ACNL-F0291, ACNL-F0292, ACNL-F0295, ACNL-F0493
@@ -1894,7 +1911,7 @@
 - acnl_jpn_v15 0x0097C0B0: ACNL-F0328, ACNL-F0711, ACNL-F0719
 - acnl_jpn_v15 0x0097C0B4: ACNL-F0328, ACNL-F0330, ACNL-F0711, ACNL-F0719
 - acnl_jpn_v15 0x0097F69C: ACNL-F0429, ACNL-F0660
-- acnl_jpn_v15 0x00986500: ACNL-F0424, ACNL-F0486
+- acnl_jpn_v15 0x00986500: ACNL-F0424, ACNL-F0486, ACNL-F0757
 - acnl_jpn_v15 0x009AE15C: ACNL-F0051, ACNL-F0052, ACNL-F0057, ACNL-F0061, ACNL-F0080, ACNL-F0082, ACNL-F0648, ACNL-F0649, ACNL-F0673, ACNL-F0744
 - acnl_jpn_v15 0x009AE1A4: ACNL-F0061, ACNL-F0080, ACNL-F0673
 - acnl_jpn_v15 0x009AE22E: ACNL-F0063, ACNL-F0077
@@ -1927,6 +1944,7 @@
 - acnl_jpn_v15 0x00AA7994: ACNL-F0084, ACNL-F0542, ACNL-F0592, ACNL-F0607, ACNL-F0609
 - acnl_jpn_v15 0x00AA914C: ACNL-F0388, ACNL-F0486
 - acnl_jpn_v15 0x00ABB948: ACNL-F0387, ACNL-F0388
+- acnl_jpn_v15 0x00ABD380: ACNL-F0474, ACNL-F0762
 - acnl_jpn_v15 0x00AD995C: ACNL-F0140, ACNL-F0198, ACNL-F0200, ACNL-F0222, ACNL-F0695, ACNL-F0720
 - acnl_jpn_v15 0x00ADF7D4: ACNL-F0524, ACNL-F0613
 - acnl_jpn_v15 0x00ADF848: ACNL-F0026, ACNL-F0409
@@ -1942,11 +1960,11 @@
 - acnl/_product: 214件
 - acnl/actor: 24件
 - acnl/field: 56件
-- acnl/input: 16件
+- acnl/input: 17件
 - acnl/item: 43件
 - acnl/network: 14件
-- acnl/render: 140件
+- acnl/render: 141件
 - acnl/sound: 11件
-- acnl/system: 57件
-- acnl/text: 61件
-- acnl/ui: 18件
+- acnl/system: 59件
+- acnl/text: 63件
+- acnl/ui: 24件

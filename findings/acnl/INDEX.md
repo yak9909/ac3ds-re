@@ -754,3 +754,15 @@
 | ACNL-F0749 | 住民日次処理・出口遷移・苗の枯死処理の呼出契約と番地 | MEDIUM | A | active |  |  |
 | ACNL-F0750 | 地図メニュー準備旗 vc_MAPBOOL(0x949C30)の型と NetGameMgr 本体ポインタ g_NetGameMgrPtr(0x94D644)の型 | MEDIUM | A | active |  |  |
 | ACNL-F0751 | SsysMaLayoutNode_FindPicture 0x567E44: レイアウトからペイン名で Picture を探す | MEDIUM | A | active |  |  |
+| ACNL-F0752 | フォントの登録は名前付き非所有エントリを作り、名前取得は SafeString を返す | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0753 | 時計の大域変数は BsTimeBelWindow 本体を指し、時計ペインはその +1760 にある | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0754 | CLYT の組み立てとペイン・TextBox・Bounding・Group の名前検索の ABI | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0755 | PWorkList の slot13 は WordFix38 の行を使って候補一覧を構築する | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0756 | 下画面のタブ・地図・補助画面は別々の命令と状態遷移で制御される | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0757 | メニュー要求状態と登録画面リストの先頭は別で、状態3は作成中を表す | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0758 | タブ復帰で呼ぶ3関数は音の再開ではなくメニューフローの完了確認と通知 | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0759 | 0x12D294 は即時 flush ではなく GPU キャッシュ範囲の登録ラッパである | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0760 | UI のレイアウトと資源は別のアロケータ変数を使い、描画命令は graphic MemoryMgr を経由する | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0761 | タッチ状態の実体と ControllerMgr のポインタは別で、座標系も異なる | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0762 | fgobj の公開 Proc と view 行列、BaseMgr のプロセス表は別の大域資源である | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0763 | TextWriter のデストラクタ 0x4D5BCC は何も解放しない | MEDIUM | 未記入 | active |  |  |

@@ -442,14 +442,22 @@ address,size,name,type,confidence,source,refs
 0x00948D84,4,vc_CHATPOINTER,,,legacy-idb,
 0x00948DE8,4,vc_POINT1,,,legacy-idb,
 0x00948DEC,4,g_BsCharRoomViewMgr,T022_RoomViewSurfacePrefix *,,legacy-idb,
+0x00948E70,4,g_FgobjProc,void *,MEDIUM,analysis,ACNL-F0762
 0x00949320,4,g_BsFtrMgr,,,legacy-idb,
 0x00949338,1,g_CatalogPreview,,,legacy-idb,
 0x00949534,4,vc_INSECT_DATA_POINTER,,,legacy-idb,
+0x00949718,4,g_BsMenuBg,void *,MEDIUM,analysis,ACNL-F0756
 0x009499EC,4,g_ActiveBsMenuItem,void *,,legacy-idb,
 0x009499FC,8,vc_POINTER_FUNC,struct GohanItemActionPmf8,,legacy-idb,
 0x00949C30,1,vc_MAPBOOL,unsigned __int8,,legacy-idb,
 0x00949C4C,4,vc_MAP_DATA,,,legacy-idb,
+0x00949D1E,1,g_MenuOpenState,unsigned __int8,MEDIUM,analysis,ACNL-F0757
+0x00949D24,1,g_BsMenuTabCommand,unsigned __int8,MEDIUM,analysis,ACNL-F0756
+0x00949D25,1,g_BsMenuMapCommand,unsigned __int8,MEDIUM,analysis,ACNL-F0756
+0x00949D29,1,g_BsMenuSubscreenCommand,unsigned __int8,MEDIUM,analysis,ACNL-F0756
+0x00949D4C,4,g_BsMenuMgr,void *,MEDIUM,analysis,ACNL-F0756
 0x00949D68,4,vc_MENU_FLAGS,,,legacy-idb,
+0x00949D88,1,g_BsMenuTabCloseSelectionFlag,unsigned __int8,MEDIUM,analysis,ACNL-F0756
 0x0094A010,4,vc_CURRENT_OPEN_TPC_MENU,,,legacy-idb,
 0x0094A02C,4,g_BsMenuRoomLightSwitch,BsMenuRoomLightSwitch_T022 *,,legacy-idb,
 0x0094A3D0,4,g_RoomTransitionRequestAndCurrentKind,struct RoomTransitionKindPair,,legacy-idb,
@@ -457,12 +465,14 @@ address,size,name,type,confidence,source,refs
 0x0094A6BC,1,g_BsStrcMgrCreateStep,,,legacy-idb,
 0x0094A6C0,4,g_BsStrcMgr,,,legacy-idb,
 0x0094A6FE,1,vc_ACMESSAGEBOX_2_POINT,,,legacy-idb,
+0x0094A720,4,g_BsTimeBelWindow,void *,MEDIUM,analysis,ACNL-F0753
 0x0094A82C,4,g_WeatherPaperActiveCount,,,legacy-idb,
 0x0094A850,4,g_WeatherSakuraActiveCount,,,legacy-idb,
 0x0094A880,4,vc_CAMERA1,AcnlRoomCameraPrefix *,,legacy-idb,
 0x0094A8F0,448,g_CameraGameModeTable,RoomCameraModeEntry16[28],,legacy-idb,
 0x0094B698,4,vc_CRODATA,,,legacy-idb,
 0x0094C704,4,vc_ISLPOINTER,struct IslandRuntimeData *,,legacy-idb,
+0x0094C9C8,4,g_FontMgr,void *,MEDIUM,analysis,ACNL-F0752
 0x0094CA08,20,g_FurnitureFootprintDescriptors,const FurnitureFootprintDescriptorPrefix_F016 *[5],,legacy-idb,
 0x0094CA30,4,g_GfxAllocator,,,legacy-idb,
 0x0094CA48,4,g_DrawContext,,,legacy-idb,
@@ -494,8 +504,14 @@ address,size,name,type,confidence,source,refs
 0x0096F0F0,4,g_TypeNode_nwgfx_TransformNode,,,legacy-idb,
 0x0096F150,4,g_LayoutAllocator,SsysMaAllocator *,MEDIUM,analysis,ACNL-F0713
 0x0096F160,4,nw_lyt_Picture_runtimeTypeInfo,,,analysis,
+0x0096F2A4,4,g_BaseMgr,void *,MEDIUM,analysis,ACNL-F0762
+0x0096F2EC,4,g_SeadControllerMgr,SeadControllerMgrPrefix *,MEDIUM,analysis,ACNL-F0761
+0x0096F304,4,g_GraphicMemoryMgr,T022_GraphicMemoryMgrPrefix *,MEDIUM,analysis,ACNL-F0760
 0x0096FC06,4,vc_U0DATA,,,legacy-idb,
+0x0096FC2C,4,g_UiResourceLoadAlignment,int,MEDIUM,analysis,ACNL-F0760
 0x0096FC38,4,g_LayoutMgr,SsysMaLayoutMgr *,MEDIUM,analysis,ACNL-F0712
+0x0096FC3C,4,g_UiLayoutAllocator,SsysMaAllocator *,MEDIUM,analysis,ACNL-F0760
+0x0096FC40,4,g_UiResourceAllocator,SsysMaAllocator *,MEDIUM,analysis,ACNL-F0760
 0x0097C030,4,vc_D_FRIEND,,,legacy-idb,
 0x0097C048,4,vc_D_MAIL,,,legacy-idb,
 0x0097C080,4,vc_D_DESIGN,,,legacy-idb,
@@ -503,6 +519,7 @@ address,size,name,type,confidence,source,refs
 0x0097C0B4,4,g_DefaultWideTagProcessor,NwFontTagProcessor,MEDIUM,analysis,ACNL-F0711
 0x0097F660,60,g_AcPlayerMovementProbeOffsets,float[15],,legacy-idb,
 0x0097F6F4,4,vc_CAMCOORD,,,legacy-idb,
+0x00986500,4,g_MenuScreenListHead,AcnlMenuScreenNodeF006 *,MEDIUM,analysis,ACNL-F0757
 0x009ADAA0,4,vc_D_EXHIBITION,,,legacy-idb,
 0x009AE15C,72,g_DropDataTable,DropData[4],,analysis,ACNL-F0744
 0x009AE504,1280,g_TreeHitCounts,u32[320],,analysis,ACNL-F0744

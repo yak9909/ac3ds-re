@@ -58,6 +58,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x00315A11,272,Field_GrowUpWiltSapling,,,legacy-idb,,
 0x00316345,100,Field_GrowUpWiltSaplingToItem3,,MEDIUM,analysis,ACNL-F0749,
 0x003163C5,100,Field_GrowUpWiltSaplingToItem4,,MEDIUM,analysis,ACNL-F0749,
+0x00316E7C,76,MenuFlow_IsCurrentKind,"bool __fastcall(unsigned int kind, bool require_running)",MEDIUM,analysis,ACNL-F0758,
 0x00316ECC,104,vc_GET_HOUSE_CHECK_DATA,,,legacy-idb,,
 0x00317090,140,Field_WorldToCellXZ,,,legacy-idb,,
 0x0031785C,116,Heap_CreateNamed_0,,,legacy-idb,,
