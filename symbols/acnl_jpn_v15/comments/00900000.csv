@@ -140,6 +140,7 @@ vtable（4 スロットのみ）:
   g3d_FuncNode_SetCallbacks(0x4EFF58) がこれと一致を確かめてから書き込む
 型ノードは +0 が親へのポインタ。親は 0x96F0F0。
 ※Itanium ABI の RTTI（ti_* / vtbl_*）とは別の、sead 風の簡易型情報。"
+0x0094CC48,line,[ACNL-F0765] HIGH: 子ヒープの親になる sead::ExpHeap へのポインタ。0x94CC68 は別の建物用ヒープ
 0x0094CC9C,repeatable,"Vapecord plugin ADDRESSES: KEEPCONNECTION_POINT
 他地域: USA=00953CA0  EUR=00952C9C  KOR=0094BC9C
 （プラグイン作者のラベル。検証済みの識別ではない）"

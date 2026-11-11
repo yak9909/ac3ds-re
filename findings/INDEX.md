@@ -6,7 +6,7 @@
 
 | scope | 件数 | active |
 |---|---|---|
-| acnl | 766 | 679 |
+| acnl | 768 | 681 |
 | hhd | 20 | 9 |
 | 3ds | 0 | 0 |
 
@@ -14,14 +14,14 @@
 
 | scope | category | 件数 |
 |---|---|---|
-| acnl | _product | 214 |
+| acnl | _product | 215 |
 | acnl | actor | 24 |
 | acnl | field | 56 |
 | acnl | input | 17 |
 | acnl | item | 43 |
 | acnl | misc | 2 |
 | acnl | network | 14 |
-| acnl | render | 141 |
+| acnl | render | 142 |
 | acnl | save | 5 |
 | acnl | sound | 11 |
 | acnl | system | 59 |
@@ -1313,6 +1313,8 @@
 - ACNL-F0761 タッチ状態の実体と ControllerMgr のポインタは別で、座標系も異なる
 - ACNL-F0762 fgobj の公開 Proc と view 行列、BaseMgr のプロセス表は別の大域資源である
 - ACNL-F0763 TextWriter のデストラクタ 0x4D5BCC は何も解放しない
+- ACNL-F0764 0x4EDC74 はアニメの再生速度（1 回の更新で進めるフレーム量）を設定する
+- ACNL-F0765 0x94CC48 は子ヒープの親になる sead::ExpHeap へのポインタ（0x94CC68 は別の建物用ヒープ）
 - ACNL-F0766 共通UIの49関数の引数とVFP呼出規約
 - ACNL-F0767 UiAnimの40バイト全体と結合状態欄
 - ACNL-F0768 ArcResAccReaderの584バイトと埋込みアクセサ
@@ -1554,7 +1556,7 @@
 - acnl_jpn_v15 0x004ED630: ACNL-F0149, ACNL-F0154, ACNL-F0445, ACNL-F0541, ACNL-F0546, ACNL-F0561
 - acnl_jpn_v15 0x004ED668: ACNL-F0452, ACNL-F0474
 - acnl_jpn_v15 0x004ED794: ACNL-F0539, ACNL-F0549, ACNL-F0692
-- acnl_jpn_v15 0x004EDC74: ACNL-F0537, ACNL-F0558
+- acnl_jpn_v15 0x004EDC74: ACNL-F0537, ACNL-F0558, ACNL-F0764
 - acnl_jpn_v15 0x004EDC98: ACNL-F0444, ACNL-F0450, ACNL-F0537, ACNL-F0558
 - acnl_jpn_v15 0x004EEDD8: ACNL-F0142, ACNL-F0498, ACNL-F0500, ACNL-F0560, ACNL-F0599
 - acnl_jpn_v15 0x004EF1B0: ACNL-F0500, ACNL-F0599
@@ -1895,7 +1897,7 @@
 - acnl_jpn_v15 0x0094A880: ACNL-F0516, ACNL-F0638, ACNL-F0656
 - acnl_jpn_v15 0x0094CA30: ACNL-F0157, ACNL-F0189, ACNL-F0190, ACNL-F0191, ACNL-F0244, ACNL-F0327
 - acnl_jpn_v15 0x0094CA48: ACNL-F0145, ACNL-F0204
-- acnl_jpn_v15 0x0094CC48: ACNL-F0454, ACNL-F0475, ACNL-F0513, ACNL-F0544
+- acnl_jpn_v15 0x0094CC48: ACNL-F0454, ACNL-F0475, ACNL-F0513, ACNL-F0544, ACNL-F0765
 - acnl_jpn_v15 0x0094CC68: ACNL-F0513, ACNL-F0522, ACNL-F0523
 - acnl_jpn_v15 0x0094D644: ACNL-F0606, ACNL-F0633, ACNL-F0750
 - acnl_jpn_v15 0x0094D648: ACNL-F0106, ACNL-F0633, ACNL-F0634
@@ -1980,13 +1982,13 @@
 
 ## 10件を超えた未消化カテゴリ
 
-- acnl/_product: 214件
+- acnl/_product: 215件
 - acnl/actor: 24件
 - acnl/field: 56件
 - acnl/input: 17件
 - acnl/item: 43件
 - acnl/network: 14件
-- acnl/render: 141件
+- acnl/render: 142件
 - acnl/sound: 11件
 - acnl/system: 59件
 - acnl/text: 63件

@@ -220,7 +220,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x004ED7F0,12,,,,legacy-idb,,
 0x004ED860,56,G3dResHolder_Ctor,,,legacy-idb,,
 0x004EDBD0,76,,,,legacy-idb,,
-0x004EDC74,36,,,,legacy-idb,,
+0x004EDC74,36,Anim_SetRate,"void __fastcall(void *anim, float rate)",,analysis,ACNL-F0764,
 0x004EDC98,84,Anim_SetFrame,,,legacy-idb,,
 0x004EDF60,276,SortMeshGroup_InitAll,,,legacy-idb,,
 0x004EEDD8,1164,Render_DrawSceneIndexed,,,legacy-idb,,
