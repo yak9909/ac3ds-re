@@ -433,8 +433,9 @@ while(1) { vtbl[0x64](this); }  = Framework_ProcOneFrame を回すだけ。
 0x00567A50,repeatable,"Vapecord plugin ADDRESSES: ACSYSTEM_DATA1
 他地域: USA=00569118  EUR=00568160  KOR=00567770
 （プラグイン作者のラベル。検証済みの識別ではない）"
-0x00567BAC,func,"[ACNL-F0754] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Recursively searches root at +0x20 via vtable+0x2C(name,1); no runtime type filter.
-IDA-gpt-6-F008: Layout wrapper+32 object's virtual+44 receives name inR1 and recursive flag1; callers use it for named CLYT panes. Original callsites + ChangeStockItem layout tree confirm pane resolution. Wrapper RTTI/class identity not confirmed, so retain sub-name; next trace ctor/vtable+44 before class-qualified rename."
+0x00567BAC,func,"IDA-gpt-6-F008: Layout wrapper+32 object's virtual+44 receives name inR1 and recursive flag1; callers use it for named CLYT panes. Original callsites + ChangeStockItem layout tree confirm pane resolution. Wrapper RTTI/class identity not confirmed, so retain sub-name; next trace ctor/vtable+44 before class-qualified rename.
+[ACNL-F0754] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Recursively searches root at +0x20 via vtable+0x2C(name,1); no runtime type filter.
+前の注記の実クラス未確定という留保は維持する。今回のSsysMaLayoutNodeは既存の部分型名を使った命名で、実クラス名を特定したという意味ではない。"
 0x00567BC0,func,"[ACNL-F0696] MEDIUM/static reanalysis: base Layout reads its own +0x28/+0x2C through (Layout+0x10)+0x18/+0x1C; NOT root-Pane/tree bounds. +0x121==1 selects perspective. Ortho then rotation(1) produces m1=2/H,m4=-2/W,m10=.001,m11=-.5,m15=1, stored at +0x34. Cache gate +0x11F is in RecordPaneTree. Pixel scale Vw/W,Vh/H is conditional on no extra transforms/offsets; hardware untested."
 0x00567BC0,line,"[ACNL-F0696] MEDIUM/static reanalysis: base Layout reads its own +0x28/+0x2C through (Layout+0x10)+0x18/+0x1C; NOT root-Pane/tree bounds. +0x121==1 selects perspective. Ortho then rotation(1) produces m1=2/H,m4=-2/W,m10=.001,m11=-.5,m15=1, stored at +0x34. Cache gate +0x11F is in RecordPaneTree. Pixel scale Vw/W,Vh/H is conditional on no extra transforms/offsets; hardware untested."
 0x00567BC0,repeatable,"[ACNL-F0714] MEDIUM/static: R0 is Layout this; reads width/height +28/+2C and projection_mode +121, writes embedded DrawInfo projection +34. RecordPaneTree owns cache flag +11F.

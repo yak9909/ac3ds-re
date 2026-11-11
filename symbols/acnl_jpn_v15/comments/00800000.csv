@@ -11,8 +11,8 @@ address,kind,text
 0x0081A8AC,repeatable,"Vapecord plugin ADDRESSES: ACMESSAGEBOX_FUNC5
 他地域: USA=0081C104  EUR=0081B10C  KOR=0081A44C
 （プラグイン作者のラベル。検証済みの識別ではない）"
-0x0081B41C,func,"[ACNL-F0756] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. state_machine=tab+0x14; lookup PMF pair in 20-byte state records, stores calc at sm+0xC/+0x10 and calls matching enter immediately. No match leaves current state unchanged.
-IDA-gpt-6-F007: native PMF transition used by tab state machine. T010 only enters chat-tabs-out calc6D6214 with this=tab+20 and adjustor0 after actual field idle; following native state issues menu5, no direct screen constructor shortcut."
+0x0081B41C,func,"IDA-gpt-6-F007: native PMF transition used by tab state machine. T010 only enters chat-tabs-out calc6D6214 with this=tab+20 and adjustor0 after actual field idle; following native state issues menu5, no direct screen constructor shortcut.
+[ACNL-F0756] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. state_machine=tab+0x14; lookup PMF pair in 20-byte state records, stores calc at sm+0xC/+0x10 and calls matching enter immediately. No match leaves current state unchanged."
 0x0081E150,repeatable,"Vapecord plugin ADDRESSES: SETUPSTACKDATA
 他地域: USA=0081F9D0  EUR=0081E9D8  KOR=0081DD10
 （プラグイン作者のラベル。検証済みの識別ではない）"
