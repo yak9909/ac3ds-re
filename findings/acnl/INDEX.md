@@ -766,7 +766,7 @@
 | ACNL-F0761 | タッチ状態の実体と ControllerMgr のポインタは別で、座標系も異なる | MEDIUM | A | active |  |  |
 | ACNL-F0762 | fgobj の公開 Proc と view 行列、BaseMgr のプロセス表は別の大域資源である | MEDIUM | A | active |  |  |
 | ACNL-F0763 | TextWriter のデストラクタ 0x4D5BCC は何も解放しない | MEDIUM | A | active |  |  |
-| ACNL-F0766 | 共通UIの49関数の引数とVFP呼出規約 | MEDIUM | ? | active |  |  |
-| ACNL-F0767 | UiAnimの40バイト全体と結合状態欄 | MEDIUM | ? | active |  |  |
-| ACNL-F0768 | ArcResAccReaderの584バイトと埋込みアクセサ | MEDIUM | ? | active |  |  |
-| ACNL-F0769 | InstSelect8のコンストラクタと4812バイトの境界 | MEDIUM | ? | active |  |  |
+| ACNL-F0766 | 共通UIの49関数の引数とVFP呼出規約 | MEDIUM | A | active |  |  |
+| ACNL-F0767 | UiAnimの40バイト全体と結合状態欄 | MEDIUM | A | active |  |  |
+| ACNL-F0768 | ArcResAccReaderの584バイトと埋込みアクセサ | MEDIUM | A | active |  |  |
+| ACNL-F0769 | InstSelect8のコンストラクタと4812バイトの境界 | MEDIUM | A | active |  |  |
