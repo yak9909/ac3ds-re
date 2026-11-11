@@ -143,6 +143,7 @@ V2-F025 訂正（HIGH）: FileRes 部分は **holder+28**（a1+7 語）。した
 0x00317958,func,"V2-F021 MEDIUM: 読み込んだ G3D 資源の Setup（GPU 側の割り当て）。holder[2]（資源先頭）を sub_4A5A74 で初期化し、各 CMDL の各マテリアルを見て ""DefaultShader"" 以外なら +652 を差し替える。**読み込み完了後に必ず呼ぶ**（ScStage_LoadIndoorRes: G3dResHolder_Setup(holder, ヒープ, 0, 1)）"
 0x00317BD0,func,"V2-F008 (2026-09-14), MEDIUM, supersedes historical name ModelInstance_SetRenderLayer: R0 is a model RESOURCE returned by 0x4A5F20, not a holder or its instance pointer. Independent caller 0x58EA60->0x58EA78 uses the resource before 0x58EA98/0x58EEC0 creates an instance; AcFtr uses vtable+0xD8 resource getter at 0x56D9A4. Assembly walks self-relative entries via resource+0xBC/+0xC0, stride 0x10, entry relptr +0x28; writes entry+0x298 and clears +0x2BC/+0x2C0/+0x2C4. Do not change a shared source resource for one display instance. This layer value is not Scene_SubmitNode's sceneIndex or a display ID. Exact per-instance isolation still unverified."
 0x0031C128,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): RTTI ChangeStockWarehouse branch for menu137, cng_strg_base/cng_strg_itm and separate tab group table. Same observed prefix size but backing getter/setter differ; do not mix it with normal ChangeStockItem."
+0x0031D340,line,rate
 0x0031D908,line,"IDA-opus-5.5-F050: 位置 = 基準ペインの大域位置(+140,+156)+ずれ。y+高さ/2 > 120 なら下側へ反転、横は ±160 に収める"
 0x0031D908,repeatable,"IDA-opus-5.5-F050: 位置 = 基準ペインの大域位置(+140,+156)+ずれ。y+高さ/2 > 120 なら下側へ反転、横は ±160 に収める"
 0x0031DB88,line,"IDA-opus-5.5-F050: (窓, 語, 基準ペイン(+964), &ずれ[3](+1248))。語の文字列を T_itm_nm_00 へ。出ていなければ状態 1（入場）へ、出ていれば幅と位置を直す"
@@ -189,6 +190,8 @@ V2-F025 訂正（HIGH）: FileRes 部分は **holder+28**（a1+7 語）。した
 0x00329994,repeatable,IDA-opus-5.5-F029: 頭の読み込みキー = pm+548 の髪型[0]・髪色/目の色[4..11]・[16..19] + 帽子の Item + 日焼け色。
 0x0032C1EC,func,IDA-gpt-6.1-sol-F005 / MEDIUM: 家記録の現在外観種別+0x4=0と外観属性を初期化し、予定領域+0xDへ写す。0x1B169C→0x1BCF74の独立表示経路では0がテント資源に対応。0x32C234は同じ命令列の別入口。
 0x0032C234,func,IDA-gpt-6.1-sol-F005 / MEDIUM: 現在外観種別+0x4=0、予定+0xDへ同じ外観を書き初期化。0x24E098から呼ばれ、部屋の壁紙/床初期化も続く。0x32C1ECの同内容の別入口と命令列照合。
+0x00342440,line,layout
+0x00342470,line,layout
 0x0034F8C8,func,"[IDA-gpt-6-F001 MEDIUM] Reads 4 bytes of system configuration block 0xB0000 and returns its high byte as country ID. Corroboration: JOKER OnlineIsland.cpp patches return site 0x34F8F8 with JP/GB/KR/FR/US IDs; index/stride and code bytes of 0x96EBC8 map those to matching ISO strings. Caller 0x604BC4 also uses this for news URLs, so the patch is not exclusive to island selection. Original cheat build and runtime destination unverified."
 0x0034FA24,func,"[IDA-gpt-6-F001 MEDIUM] Country ID -> nullable ISO country string. CMP #0xBB bounds check; pointer table 0x96EBC8 indexed with LSL #2. Whole table compared against current input code bytes; sample IDs 1 JP, 0x31 US, 0x6E GB, 0x88 KR, 0x4D FR. Missing entries return NULL."
 0x003533D0,func,"[ACNL-F0738] MEDIUM; +0xF8/0x003534C8 LDR R0,[R4] is after whole-pad zeroing joins, before previous_held store at 0x003534CC and conditional merge. Failure returns bypass it. The loaded value may already be zeroed.

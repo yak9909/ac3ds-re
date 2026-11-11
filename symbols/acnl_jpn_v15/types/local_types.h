@@ -8,6 +8,10 @@ struct ACNL_TownTransferState;
 struct AcnlBsMenuChestPrefixF006;
 struct AcnlButtonNodeSetupF011;
 struct AcnlChangeStockItemPrefixF006;
+struct AcnlControllerOffsetListF103;
+struct AcnlControllerPrefixF005;
+struct AcnlControllerPrefixF103;
+struct AcnlControllerWrapperPrefixF103;
 struct AcnlDragControlPrefixF010;
 struct AcnlDragEndpointsF008;
 struct AcnlDragIconGroupF010;
@@ -27,22 +31,29 @@ struct AcnlLayoutRecordPrefix_F016;
 struct AcnlMenuScreenListF006;
 struct AcnlMenuScreenNodeF006;
 struct AcnlPadReaderPrefix;
+struct AcnlPadReaderPrefixF103;
 struct AcnlPadState;
+struct AcnlPadStateF103;
 struct AcnlPartsDragNodeF010;
 struct AcnlPartsDragNodeF012;
 struct AcnlPlayerInventoryFinanceF010;
 struct AcnlPlayerSave;
 struct AcnlRoomCameraPrefix;
+struct AcnlTouchState;
 struct AcnlUiAnimStorageF010;
 struct AcnlUiMtx34F005;
 struct AcnlUiPoint2;
+struct AcnlUiPoint2F005;
 struct AcnlUiPoint2I;
+struct AcnlUiPoint2IF005;
 struct AcnlUiPoint3F005;
 struct AcnlUiRectF005;
 struct AcnlWordFix65F011;
+struct ArcResAccReader;
 struct AttachProcessEvent;
 struct AttachThreadEvent;
 struct BsMenuRoomLightSwitch_T022;
+struct CameraViewPrefix;
 struct CodeSetHeader;
 struct CpuRegisters;
 struct DebugEventInfo;
@@ -68,6 +79,7 @@ struct GohanItemActionPmf8;
 struct GohanNativeDate;
 struct GpuCmdListStoragePrefix;
 struct IPCStaticBuffer;
+struct InstSelect8;
 struct IslandRuntimeBuilding;
 struct IslandRuntimeData;
 struct IslandRuntimeItem;
@@ -131,7 +143,9 @@ struct RoomCameraPmf8;
 struct RoomCameraProfile20;
 struct RoomTransitionKindPair;
 struct ScheduleInOutEvent;
+struct ScriptWordFix38;
 struct SeadControllerBasePrefix;
+struct SeadControllerMgrPrefix;
 struct SeadControllerPrefix;
 struct SeadControllerWrapperPrefix;
 struct SeadCtrControllerVtable;
@@ -214,12 +228,6 @@ union uint32x4_t;
 union uint64x2_t;
 union uint8x16_t;
 union uint8x8_t;
-struct AcnlTouchState;
-struct CameraViewPrefix;
-struct ScriptWordFix38;
-struct SeadControllerMgrPrefix;
-struct ArcResAccReader;
-struct InstSelect8;
 
 // type: ACNL_BbsPost
 #pragma pack(push, 2)
@@ -404,6 +412,102 @@ enum AcnlClosetMenuIdF006
   AcnlClosetMenu_Normal_F006 = 0x3D,
   AcnlClosetMenu_Warehouse_F006 = 0x89,
 };
+
+// type: AcnlControllerOffsetListF103
+#pragma pack(push, 2)
+struct AcnlControllerOffsetListF103
+{
+  void *prev;
+  void *next;
+  unsigned int count;
+  unsigned int node_offset;
+};
+#pragma pack(pop)
+
+// type: AcnlPointerFlagsF005
+enum __bitmask AcnlPointerFlagsF005
+{
+  AcnlPointerValid_F005 = 0x1,
+  AcnlPointerPressed_F005 = 0x2,
+  AcnlPointerReleased_F005 = 0x4,
+  AcnlPointerClearPosition_F005 = 0x8,
+};
+
+// type: AcnlUiPoint2F005
+#pragma pack(push, 2)
+struct AcnlUiPoint2F005
+{
+  float x;
+  float y;
+};
+#pragma pack(pop)
+
+// type: AcnlUiPoint2IF005
+#pragma pack(push, 2)
+struct AcnlUiPoint2IF005
+{
+  int x;
+  int y;
+};
+#pragma pack(pop)
+
+// type: AcnlControllerPrefixF005
+#pragma pack(push, 2)
+struct AcnlControllerPrefixF005
+{
+  void *vtable;
+  unsigned int pressed;
+  unsigned int released;
+  unsigned int repeat;
+  AcnlPointerFlagsF005 pointer_flags;
+  AcnlUiPoint2IF005 pixel_int;
+  AcnlUiPoint2F005 pointer_min;
+  AcnlUiPoint2F005 pointer_max;
+  unsigned int held_frames[32];
+  unsigned __int8 repeat_delay[32];
+  unsigned __int8 repeat_interval[32];
+  float axis0_press_threshold;
+  float axis1_press_threshold;
+  float axis0_release_threshold;
+  float axis1_release_threshold;
+  int button_count;
+  int axis0_bit;
+  int axis1_bit;
+  int pointer_bit;
+  unsigned int idle_frames;
+  unsigned int held;
+  AcnlUiPoint2F005 pixel_float;
+  AcnlUiPoint2F005 axis0;
+  AcnlUiPoint2F005 axis1;
+  AcnlUiPoint2F005 unk_12C;
+};
+#pragma pack(pop)
+
+// type: AcnlControllerPrefixF103
+#pragma pack(push, 2)
+struct AcnlControllerPrefixF103
+{
+  AcnlControllerPrefixF005 base;
+  unsigned __int8 unk_134;
+  unsigned __int8 unk_135[3];
+  void *manager;
+  AcnlControllerOffsetListF103 addons;
+  AcnlControllerOffsetListF103 wrappers;
+};
+#pragma pack(pop)
+
+// type: AcnlControllerWrapperPrefixF103
+#pragma pack(push, 2)
+struct AcnlControllerWrapperPrefixF103
+{
+  AcnlControllerPrefixF005 base;
+  unsigned __int8 unk_134[16];
+  AcnlControllerPrefixF103 *source;
+  unsigned __int8 enabled;
+  unsigned __int8 unk_149[43];
+  unsigned __int8 source_bit_index[32];
+};
+#pragma pack(pop)
 
 // type: AcnlMenuScreenNodeF006
 #pragma pack(push, 2)
@@ -783,10 +887,34 @@ struct AcnlPadReaderPrefix
 };
 #pragma pack(pop)
 
+// type: AcnlPadReaderPrefixF103
+#pragma pack(push, 2)
+struct AcnlPadReaderPrefixF103
+{
+  void *handle;
+  unsigned int unk_4;
+  unsigned int previous_held;
+  unsigned __int8 unk_C[36];
+  unsigned __int8 seed_previous_held;
+};
+#pragma pack(pop)
+
 // type: AcnlPadState
 #pragma pack(push, 2)
 /// [ACNL-F0737] MEDIUM; 0x10-byte pad output: held/pressed/released at +0/+4/+8 and signed circle x/y at +0xC/+0xE. This is the device cache after ReadPadState, not necessarily raw HID.
 struct AcnlPadState
+{
+  unsigned int held;
+  unsigned int pressed;
+  unsigned int released;
+  __int16 circle_x;
+  __int16 circle_y;
+};
+#pragma pack(pop)
+
+// type: AcnlPadStateF103
+#pragma pack(push, 2)
+struct AcnlPadStateF103
 {
   unsigned int held;
   unsigned int pressed;
@@ -1008,6 +1136,21 @@ enum ArbitrationType
   ARBITRATION_WAIT_IF_LESS_THAN_TIMEOUT = 0x3,
   ARBITRATION_DECREMENT_AND_WAIT_IF_LESS_THAN_TIMEOUT = 0x4,
 };
+
+// type: ArcResAccReader
+#pragma pack(push, 4)
+/// [ACNL-F0768] MEDIUM: object size 584 B. Unverified fields remain unk_. Pointers to undefined object/array element types remain void *.
+struct ArcResAccReader
+{
+  void *vptr;
+  void *resource_accessor;
+  void *arc_data;
+  void *accessor_vptr;
+  unsigned __int8 unk_10[328];
+  void *loaded_arc;
+  unsigned __int8 unk_15C[236];
+};
+#pragma pack(pop)
 
 // type: uint32_t
 typedef unsigned int uint32_t;
@@ -1663,6 +1806,22 @@ struct IPCStaticBuffer
   void *p;
 };
 
+// type: InstSelect8
+#pragma pack(push, 4)
+/// [ACNL-F0769] MEDIUM: object size 4812 B. Unverified fields remain unk_. Pointers to undefined object/array element types remain void *.
+struct InstSelect8
+{
+  void *vptr;
+  unsigned __int8 unk_4[540];
+  void *row_layouts;
+  unsigned __int8 unk_224[1948];
+  int row_count;
+  unsigned __int8 unk_9C4[56];
+  void *row_nodes;
+  unsigned __int8 unk_A00[2252];
+};
+#pragma pack(pop)
+
 // type: IslandRuntimeBuilding
 #pragma pack(push, 2)
 struct __attribute__((packed)) IslandRuntimeBuilding
@@ -1776,6 +1935,14 @@ enum MemOp
   MEMOP_REGION_MASK = 0xF00,
   MEMOP_LINEAR_FLAG = 0x10000,
   MEMOP_ALLOC_LINEAR = 0x10003,
+};
+
+// type: MenuFlags
+enum __bitmask MenuFlags
+{
+  MenuFlags_EnterStarted = 0x8,
+  MenuFlags_EnterDone = 0x10,
+  MenuFlags_CloseRequested = 0x20,
 };
 
 // type: MsgStreamCode
@@ -3333,34 +3500,3 @@ typedef unsigned int uintptr_t;
 
 // type: va_list
 typedef void **va_list;
-
-// type: ArcResAccReader
-#pragma pack(push, 4)
-/// [ACNL-F0768] MEDIUM: object size 584 B. Unverified fields remain unk_. Pointers to undefined object/array element types remain void *.
-struct ArcResAccReader
-{
-  void *vptr;
-  void *resource_accessor;
-  void *arc_data;
-  void *accessor_vptr;
-  unsigned __int8 unk_10[328];
-  void *loaded_arc;
-  unsigned __int8 unk_15C[236];
-};
-#pragma pack(pop)
-
-// type: InstSelect8
-#pragma pack(push, 4)
-/// [ACNL-F0769] MEDIUM: object size 4812 B. Unverified fields remain unk_. Pointers to undefined object/array element types remain void *.
-struct InstSelect8
-{
-  void *vptr;
-  unsigned __int8 unk_4[540];
-  void *row_layouts;
-  unsigned __int8 unk_224[1948];
-  int row_count;
-  unsigned __int8 unk_9C4[56];
-  void *row_nodes;
-  unsigned __int8 unk_A00[2252];
-};
-#pragma pack(pop)

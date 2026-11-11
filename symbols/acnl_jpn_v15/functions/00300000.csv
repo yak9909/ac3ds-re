@@ -37,6 +37,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x0030AB78,4,j_IslandRuntime_GetData,,,legacy-idb,,
 0x0030B820,12,Item_GetId,unsigned __int16 __fastcall(void *item),,legacy-idb,,
 0x0030B82C,32,Net_IsHost,,,legacy-idb,,
+0x0030C35C,4,j_Weather_GetCurrentType,,,analysis,,
 0x0030C378,4,j_GetPlayerObject,,,legacy-idb,,
 0x0030C600,4,j_Field_TileToWorld,,,legacy-idb,,
 0x0030C994,32,Villager_RunDailyUpdateOnce,void __fastcall(),MEDIUM,analysis,ACNL-F0749,
