@@ -224,3 +224,4 @@
 | ACNL-F0677 | Ghidra-gpt-sol-5.6-F036 crash-dump root cause and ABI-safe bridge | Hardware: |  | B |  |  |
 | ACNL-F0678 | e-analysis after Ghidra-gpt-sol-5.6-F037 | Current implementation status: |  | B |  |  |
 | ACNL-F0679 | inventory completionはnative DropDataではなく非同期synthetic handle 4で十分 | **確度: HIGH（UI/FieldAction構造はGhidra独立静的確認、handle 4成功経路はGhidra-gpt-sol-5.6-F032実機確認）。Ghidra-gpt-sol-5.6-F038実装自体は未実機。** | HIGH | B |  |  |
+| ACNL-F0765 | 0x94CC48 は子ヒープの親になる sead::ExpHeap へのポインタ（0x94CC68 は別の建物用ヒープ） | 0x94CC48 は sead::ExpHeap（15,433,728 B）へのポインタ変数 void**。BsLightMgr_Create など約 350 箇所が子ヒープの親として読む、起動後に設定される共有の親ヒープ。0x94CC68 は別の建物用ヒープ変数。 | HIGH | 未記入 |  |  |

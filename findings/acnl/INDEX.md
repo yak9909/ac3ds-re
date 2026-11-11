@@ -766,3 +766,5 @@
 | ACNL-F0761 | タッチ状態の実体と ControllerMgr のポインタは別で、座標系も異なる | MEDIUM | A | active |  |  |
 | ACNL-F0762 | fgobj の公開 Proc と view 行列、BaseMgr のプロセス表は別の大域資源である | MEDIUM | A | active |  |  |
 | ACNL-F0763 | TextWriter のデストラクタ 0x4D5BCC は何も解放しない | MEDIUM | A | active |  |  |
+| ACNL-F0764 | 0x4EDC74 はアニメの再生速度（1 回の更新で進めるフレーム量）を設定する | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0765 | 0x94CC48 は子ヒープの親になる sead::ExpHeap へのポインタ（0x94CC68 は別の建物用ヒープ） | HIGH | 未記入 | active |  |  |

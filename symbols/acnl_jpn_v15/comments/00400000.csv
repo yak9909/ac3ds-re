@@ -1036,7 +1036,8 @@ Render_FrameEnd(0x4F1CE4) がフレーム末に全配列を空にする。
 0x004ED7F0,func,V2-F022 MEDIUM: byte_94CA2C の getter。呼び出し元 12 件に BsMenuCatalog_End などメニュー系があり、プレビュー描画への切替えと推定（LOW）
 0x004ED860,func,V2-F023 MEDIUM: G3D 資源ホルダ（g3d::ResourceLoader＋ResourceSet）の初期化。ScStage の ctor 0x7F195C は ScStage+0x418 へ HeapAllocator_Ctor、+0x420 へこれを呼ぶ。**ホルダは 264 B（0x420〜0x528）**で、+232 が FileRes の状態。破棄は G3dResHolder_Dtor 0x317CFC
 0x004EDBD0,func,"V2-F024 MEDIUM: アニメの**評価モード選択**。`(anim, mode)`。mode==0 なら オブジェクト[19]＝sub_4D3EFC、mode==1 なら sub_4D3E70 を毎フレームの評価関数として入れ、**どちらの場合も anim+4 に mode を保存**する（mode>=2 は保存だけで関数を変えない）"
-0x004EDC74,func,"V2-F024 MEDIUM: アニメの float を 1 つ設定する。`(anim, value)` で value は **VFP s0** 渡し（R1 ではない）。vtable+8 で内部オブジェクトを引き、その **+64** へ書く。+64 は 0x4EDC98 が触る +56/+60/+68 とは別の欄"
+0x004EDC74,func,"V2-F024 MEDIUM: アニメの float を 1 つ設定する。`(anim, value)` で value は **VFP s0** 渡し（R1 ではない）。vtable+8 で内部オブジェクトを引き、その **+64** へ書く。+64 は 0x4EDC98 が触る +56/+60/+68 とは別の欄
+[ACNL-F0764] MEDIUM: 再生速度。+64 に 1 回の更新で進めるフレーム量を書く（0x49BB0C が読む、初期値 1.0）"
 0x004EDC98,func,V2-F024 MEDIUM: アニメの**フレーム確定（毎フレームの進める側）**。vtable+8 で内部オブジェクト v を引き、`v+76` の関数を `v+80` を引数に呼んだあと、`v+60 = v+56`（前回値の退避）、`v+56 = v+68`（次の値を現在値へ）、`v+88 = 1`（更新済み印）。常に 1 を返すので戻り値は判定に使えない
 0x004EEDD8,func,V2-F008 correction: legacy comment calling Render_DrawScene2 unconditional is too broad. Its body requires BsShadowMapMgr at off_94A44C and wraps target/state changes. Distinguish sceneIndex from resource render-layer and display ID. See 0x4E976C and docs/topics/models3d.md.
 0x004EEDD8,line,"★Render_DrawSceneIndexed(a1, sceneIndex) (F-104 / F-111)。
