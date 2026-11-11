@@ -424,12 +424,15 @@ while(1) { vtbl[0x64](this); }  = Framework_ProcOneFrame を回すだけ。
 0x00566E64,line,"[ACNL-F0693][ACNL-F0695] end of this pass list callback walk; R5 preserves display (0x400/0x410 top eyes, 0x401 bottom). Not GPU completion, fixed projection, or unlimited capacity."
 0x00566E68,line,"[ACNL-F0694] insertion body: LDRB priorities; BLS advances over <=, so equal values preserve registration order."
 0x00566EA0,func,"F-236 MEDIUM: RTTI LayoutList vtable entry. Static body walks list+4, follows each node+8, and calls child vslot +0x14. Layout's vslot +0x14 is Layout_RecordPaneTree (0x5686D4); this is the record-children walk (external render.txt matches the shape but is non-primary)."
-0x00567244,func,IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。ArcResAccReader_LoadArcStepのarc写しは0x96FC40側のallocator/heapへ渡る。nwlytのBuild/UiAnim実体は別の全体allocator0x96F150だが初期化では同じheap。arc写しの移設は今回未採用。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
+0x00567244,func,"IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。ArcResAccReader_LoadArcStepのarc写しは0x96FC40側のallocator/heapへ渡る。nwlytのBuild/UiAnim実体は別の全体allocator0x96F150だが初期化では同じheap。arc写しの移設は今回未採用。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
+[ACNL-F0766] [ACNL-F0768] MEDIUM（静的命令列＋呼び元／vtable）。567254..読込helperへpathのSafeString、完了時+158を+8へ。192C58/70は戻り値を検査。"
 0x00567244,line,"IDA-opus-5.5-F036: arc 読み込み(holder, path)。終わるまで 0 を返すので毎フレーム呼ぶ。テクスチャは VRAM"
 0x00567244,repeatable,"IDA-opus-5.5-F036: arc 読み込み(holder, path)。終わるまで 0 を返すので毎フレーム呼ぶ。テクスチャは VRAM"
+0x00567310,func,"[ACNL-F0766] [ACNL-F0768] MEDIUM（静的命令列＋呼び元／vtable）。567318.. +15CのLoadSplit、+C accessorを破棄しSUB R0,#C。18E37Cの戻りにthis補正を加える。"
 0x005676C8,line,"IDA-opus-5.5-F045 (MEDIUM static): BCLIM (CLIM footer) -> VRAM, fills TextureInfo {0, addr, w|h<<16, pow2w|pow2h<<16, format}."
 0x005676C8,repeatable,"IDA-opus-5.5-F045 (MEDIUM static): BCLIM (CLIM footer) -> VRAM, fills TextureInfo {0, addr, w|h<<16, pow2w|pow2h<<16, format}."
 0x0056795C,func,[ACNL-F0728] MEDIUM。ArcResourceAccessorVRAM破棄。FCRAM以外ではTexBufListの各画素を同じmemoryTypeのfree callbackで返し、cache entryとaccessorを破棄。浅いTextureInfoのコピーに所有やpinは付かない。
+0x00567A50,func,"[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。567A54でR0を上書きしlayout不使用。R1=anim,R2=group,R3→Pane vt+3Cの再帰指定。18EB00はR3=0。 groupの完全型未登録のためvoid *。第1引数は読まないが既存呼出形を維持。"
 0x00567A50,repeatable,"Vapecord plugin ADDRESSES: ACSYSTEM_DATA1
 他地域: USA=00569118  EUR=00568160  KOR=00567770
 （プラグイン作者のラベル。検証済みの識別ではない）"
@@ -441,6 +444,7 @@ while(1) { vtbl[0x64](this); }  = Framework_ProcOneFrame を回すだけ。
 0x00567BC0,repeatable,"[ACNL-F0714] MEDIUM/static: R0 is Layout this; reads width/height +28/+2C and projection_mode +121, writes embedded DrawInfo projection +34. RecordPaneTree owns cache flag +11F.
 [ACNL-F0696] MEDIUM/static reanalysis: base Layout reads its own +0x28/+0x2C through (Layout+0x10)+0x18/+0x1C; NOT root-Pane/tree bounds. +0x121==1 selects perspective. Ortho then rotation(1) produces m1=2/H,m4=-2/W,m10=.001,m11=-.5,m15=1, stored at +0x34. Cache gate +0x11F is in RecordPaneTree. Pixel scale Vw/W,Vh/H is conditional on no extra transforms/offsets; hardware untested."
 0x00567BD8,line,[ACNL-F0696] Argument R1=Layout+0x10; callee reads +0x18/+0x1C => Layout width/height +0x28/+0x2C. No root Pane dereference.
+0x00567DA4,func,[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。567DA8でR0上書き。anim+1C=0、R3をPane vt+40へ、4B6600のR2は子巡回フラグ。18EF4CでR3=0。 groupの完全型未登録のためvoid *。第1引数は既存の呼出形を維持。
 0x00567DA4,repeatable,"Vapecord plugin ADDRESSES: DATA3
 他地域: USA=0056946C  EUR=005684B4  KOR=00567AC4
 （プラグイン作者のラベル。検証済みの識別ではない）"
@@ -502,6 +506,7 @@ F-259: render.txt の ssys::ma::lyt::Layout::RenderFrame と 1:1 で一致する
 0x0056876C,line,"F-145: records the Pane tree into the command list selected by Layout+0x100. Live conversation used list 32, base 0x327DDC80, size 0x9000."
 0x00568770,line,F-236 HIGH: exact source word is architectural NOP 0xE320F000 (not E1A00000). This is immediately after DrawPaneTree and before DrawEnd/Commit at 0x56879C. At this point g_GpuCmdPtr-base is live written length; manager+0x0C is stale until Commit.
 0x0056879C,line,F-145: commits selected list offset and records byte/GX-queue deltas into Layout+0x104..+0x110 after pane-tree recording.
+0x00568840,func,[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。568844でanim+1C=0、+18をR1へ、layout+10→4B8F04。194380直後戻り不使用。
 0x005688A0,func,IDA-gpt-6.1-sol-F002: MEDIUM: wrapper0x5BEB4Cから呼ばれるLayout dtor本体。外部親子Chipリンク/Editor選択参照やLayoutMgrリストからの個別除去を代行する関数ではない。0xB4355CがChip+36へ呼ぶ。
 0x00568928,line,"IDA-opus-5.5-F041: frame = totalFrames(+4, = pai1 frameSize) - 1.0, via vt+8 SetFrame."
 0x00568928,repeatable,"IDA-opus-5.5-F041: frame = totalFrames(+4, = pai1 frameSize) - 1.0, via vt+8 SetFrame."
@@ -509,17 +514,21 @@ F-259: render.txt の ssys::ma::lyt::Layout::RenderFrame と 1:1 で一致する
 0x00568964,repeatable,IDA-opus-5.5-F108: +0x14 bit0 = ループしない（frameSize(+4) − 1 で頭打ち）、bit0 なし = frame − frameSize で巻き戻し。bit1 = 逆再生。ACNL の BCLAN は最後のキーを frameSize − 1 に置く（527 件）。HHD の BFLAN は frameSize に置くので、そのまま写すと最後のキーに届かない（T022 ゴミ箱のふた）
 0x00568A04,func,"IDA-gpt-6.1-sol-F008 / T022 fix5。0戻りは0x4B930C factory=NULL/資源なしに限られ、ctor済みanim+0x18/+0x20は0のまま。『falseの再試行で保持資源が漏れる』説は今回の契約では成立しない。二次確保0x568B44の失敗を戻り0で伝える検査は無い。OOM全般の安全保証とは区別する。
 IDA-gpt-6.1-sol-F010 / MEDIUM: 0x568B24→B44でAnimTransform資源+0xCのpai1からcontentCount u16(+0xE)を取り、補助器contentCount×0x10 Bをalignment4で確保。独立DARC/CLAN readerと直接header読みが一致。日本語更新chip.arc全202アニメの補助器最大240 B。UiAnim全量/全ゲームUIの最大確保を意味しない（chip_resources.json）。
-IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。CPU側AnimTransform本体/配列とUiAnim補助器を確保。補助器contentCount*16 Bは前者0x96FC3C側。chip16本合成消費2,720 B、全実測5,616 Bの完全内訳ではない。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。"
+IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。CPU側AnimTransform本体/配列とUiAnim補助器を確保。補助器contentCount*16 Bは前者0x96FC3C側。chip16本合成消費2,720 B、全実測5,616 Bの完全内訳ではない。 根拠 work/codex/out/t022_catalog_fix8/report.md。実機適用は親。
+[ACNL-F0766] [ACNL-F0767] MEDIUM（静的命令列＋呼び元／vtable）。568A04..reader+4のaccessorからname検索。factoryの結果を検査して失敗時0/成功時1を返す。18EAECはR0=anim,R1=name,R2=readerを設定して呼ぶ。"
 0x00568BF8,line,"★UI レイアウトアニメの再生レート初期値 = 1.0f (F-50)。
 参照するのは UiAnim_Init 内の VLDR @0x568BC4 の 1 命令だけ。
 ★ただし Fade/Wipe は起動時に 1 度だけ作られ、そのとき値をコピーするので
   後から書き換えてもフェードには効かない (F-51)。"
 0x00568C00,func,"IDA-gpt-6.1-sol-F008 / T022 fix5 / 2026-10-08。根拠 work/codex/out/t022_catalog_fix5/ida_evidence.json・native_checks.json。実機未検証。
-SetFrame: UiAnim+0x08/+0x0C、AnimTransform+0x10へ時刻値を設定する。PaneのSRT/色の評価は別入口0x4B9718。Animation vtable0x90062Cの+0x08はこのSetFrameであり、VFP S0=float引数（Indoor0xB43240～のVLDR S0=0→BLX vt+0x08で確認）。"
+SetFrame: UiAnim+0x08/+0x0C、AnimTransform+0x10へ時刻値を設定する。PaneのSRT/色の評価は別入口0x4B9718。Animation vtable0x90062Cの+0x08はこのSetFrameであり、VFP S0=float引数（Indoor0xB43240～のVLDR S0=0→BLX vt+0x08で確認）。
+[ACNL-F0766] [ACNL-F0767] MEDIUM（静的命令列＋呼び元／vtable）。568C00/04でS0を+C/+8へ、+18のtransform+10へ。18EFA4直前にS0=0。"
 0x00568C00,line,IDA-opus-5.5-F036: UiAnim_SetFrame(anim)。値は VFP s0。+8/+12 と結合先(+24)+16 に書く
 0x00568C00,repeatable,IDA-opus-5.5-F036: UiAnim_SetFrame(anim)。値は VFP s0。+8/+12 と結合先(+24)+16 に書く
+0x00568CAC,func,"[ACNL-F0766] [ACNL-F0767] MEDIUM（静的命令列＋呼び元／vtable）。568CB4でvptrを設定し+18/+20を破棄、568CF0 MOV R0,R4。18E374以降戻りthisを補正して次のdtor。"
 0x00568CFC,func,"IDA-opus-5.5-F073: ArcResAccReader のテクスチャ登録。holder+8 の DARC の timg/*.bclim を nwlyt_ArcResourceAccessor_GetTexture で VRAM へ。holder+8 とアクセサだけを読む（読み込み係 +0x15C は見ない）。
-IDA-gpt-6.1-sol-F009 / T022 fix6 / MEDIUM: T022では所属arcのtimg全件登録が対象。未使用mainのBCLIMとBCLANを分離するため、家具329256 B/壁床184488 Bの各DARCへ必要な参照だけを同梱。CPU解析・独立DARC/BCLYT/CLANの所属参照検査で照合。GPUが読むテクスチャの割当先やアドレス変換は変更していない。"
+IDA-gpt-6.1-sol-F009 / T022 fix6 / MEDIUM: T022では所属arcのtimg全件登録が対象。未使用mainのBCLIMとBCLANを分離するため、家具329256 B/壁床184488 Bの各DARCへ必要な参照だけを同梱。CPU解析・独立DARC/BCLYT/CLANの所属参照検査で照合。GPUが読むテクスチャの割当先やアドレス変換は変更していない。
+[ACNL-F0766] [ACNL-F0768] MEDIUM（静的命令列＋呼び元／vtable）。568CFC..reader+8のDARCのtimgを巡回しreader+Cからtexture登録。対象ディレクトリなしは0、巡回後1。21C828はR0=readerを渡す。"
 0x00568F98,func,"[ACNL-F0693] MEDIUM: bottom Layout phase: RecordChildren(mgr+0x10), viewport 320x240, replay 0x401, then clear list/node links.
 IDA-gpt-6.1-sol-F002: MEDIUM追補: 下画面リストmgr+16の記録/replay後0x133B20で全nodeのnext/prevを0にする。inactive chipだけではリスト未所属を保証できず、再構築にはこの終了境界/所属照合が必要。"
 0x00568F98,line,"F-253 HIGH: ★下画面の LayoutMgr 側。mgr+0x10 のリストを記録し、SetDisplaySize(0x140,0xF0)=320x240 を設定し、display=0x401 で replay してから UnlinkAll する。render.txt の LayoutMgr::RenderBottom はこの関数に対応する（0x5692B0 ではない）。"
@@ -1394,6 +1403,7 @@ Room_RequestChange(this=&dword_ABB948, nextRoom, fadeOutA, fadeOutB, fadeInA, fa
 0x005B5E18,func,V2-F020 MEDIUM: g_RoomFurnitureCapacity（0x8835BC、部屋 ID → 家具の収容数、ID>=0xA5 は 0）。**屋外の部屋でも 0 ではない**: 村 0x00 が 38、Downtown 0x01 が 2、オートキャンプ場 0x9F が 10、キャンピングカー内部 0xA1/0xA2 が 36、プレイヤーの家 1F 0x03 が 48。BsFtrMgr_CreateResources がこの数だけ家具の枠を作る
 0x005B685C,line,V2-F014 MEDIUM: 住民の引越し判定(月日 12/23 は入居判定しない)。入居: 住民数≤7 で状態 bit1 の住民がいなければ許可、=8 は +104288×12.5>100 で許可 → Villager_TryMoveIn。転出: 候補(+104290)が未設定かつ player[+22277] bit2 のとき、住民 10 人なら +104288×12.5>100、9 人なら +104288≥12 か ×8.33>100 で Villager_PickMoveOutCandidate、+104288=0
 0x005B685C,repeatable,V2-F014 MEDIUM: 住民の引越し判定(月日 12/23 は入居判定しない)。入居: 住民数≤7 で状態 bit1 の住民がいなければ許可、=8 は +104288×12.5>100 で許可 → Villager_TryMoveIn。転出: 候補(+104290)が未設定かつ player[+22277] bit2 のとき、住民 10 人なら +104288×12.5>100、9 人なら +104288≥12 か ×8.33>100 で Villager_PickMoveOutCandidate、+104288=0
+0x005BEB4C,func,[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。5BEB4C→5688A0。5688C8 this+30→+10のLayoutを破棄、5688DCで元thisへ。18E384後戻り補正。
 0x005BEF9C,func,IDA-gpt-6-sol-F006: resets four player actor slots at 0xAA7994 and related runtime state. Full caller lifecycle not yet established.
 0x005BF32C,func,"IDA-gpt-6-F013 / MEDIUM: Eat request wrapper used by action16; obtains local player4, checks player+2245 bit0x20, then delegates Player_StartEatItem(item, resultItem, mode). ROM builder label and PMF table independently identify use."
 0x005BFCE4,repeatable,"Vapecord plugin ADDRESSES: WORLDCOORDS

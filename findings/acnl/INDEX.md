@@ -768,3 +768,7 @@
 | ACNL-F0763 | TextWriter のデストラクタ 0x4D5BCC は何も解放しない | MEDIUM | A | active |  |  |
 | ACNL-F0764 | 0x4EDC74 はアニメの再生速度（1 回の更新で進めるフレーム量）を設定する | MEDIUM | A | active |  |  |
 | ACNL-F0765 | 0x94CC48 は子ヒープの親になる sead::ExpHeap へのポインタ（0x94CC68 は別の建物用ヒープ） | HIGH | A | active |  |  |
+| ACNL-F0766 | 共通UIの49関数の引数とVFP呼出規約 | MEDIUM | A | active |  |  |
+| ACNL-F0767 | UiAnimの40バイト全体と結合状態欄 | MEDIUM | A | active |  |  |
+| ACNL-F0768 | ArcResAccReaderの584バイトと埋込みアクセサ | MEDIUM | A | active |  |  |
+| ACNL-F0769 | InstSelect8のコンストラクタと4812バイトの境界 | MEDIUM | A | active |  |  |
