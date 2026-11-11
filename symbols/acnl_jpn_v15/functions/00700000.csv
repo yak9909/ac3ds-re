@@ -35,7 +35,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x0071F770,12,RoomData_GetWallpaper,,,legacy-idb,,
 0x0071F844,12,RoomData_GetFlooring,,,legacy-idb,,
 0x0071FA0C,12,CommonButtonSingle_PlayDecideSound,,,legacy-idb,,
-0x0072294C,80,ButtonActionControl_GetDecidedIndex,,,legacy-idb,,
+0x0072294C,80,ButtonActionControl_GetDecidedIndex,int __fastcall(void *this),,legacy-idb,,
 0x00722A6C,208,ButtonActionControl_IsNextKey,,,legacy-idb,,
 0x00722B40,208,ButtonActionControl_IsPrevKey,,,legacy-idb,,
 0x00722C34,68,ButtonActionControl_IsDecided,bool __fastcall(const void *control),MEDIUM,legacy-idb,ACNL-F0766,

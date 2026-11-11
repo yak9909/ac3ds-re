@@ -1778,6 +1778,14 @@ enum MemOp
   MEMOP_ALLOC_LINEAR = 0x10003,
 };
 
+// type: MenuFlags
+enum __bitmask MenuFlags
+{
+  MenuFlags_EnterStarted = 0x8,
+  MenuFlags_EnterDone = 0x10,
+  MenuFlags_CloseRequested = 0x20,
+};
+
 // type: MsgStreamCode
 enum MsgStreamCode
 {

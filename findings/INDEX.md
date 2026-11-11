@@ -6,7 +6,7 @@
 
 | scope | 件数 | active |
 |---|---|---|
-| acnl | 768 | 681 |
+| acnl | 769 | 682 |
 | hhd | 20 | 9 |
 | 3ds | 0 | 0 |
 
@@ -27,7 +27,7 @@
 | acnl | system | 59 |
 | acnl | text | 63 |
 | acnl | time | 2 |
-| acnl | ui | 28 |
+| acnl | ui | 29 |
 | hhd | input | 1 |
 | hhd | item | 4 |
 | hhd | render | 2 |
@@ -1319,6 +1319,7 @@
 - ACNL-F0767 UiAnimの40バイト全体と結合状態欄
 - ACNL-F0768 ArcResAccReaderの584バイトと埋込みアクセサ
 - ACNL-F0769 InstSelect8のコンストラクタと4812バイトの境界
+- ACNL-F0770 vc_MENU_FLAGS の 0x08/0x10/0x20 の意味と ButtonActionControl_GetDecidedIndex の戻り値
 - HHD-F0001 慣性と、選択枠・ボタンの縞の合成（2026-10-05、MEDIUM〜HIGH: 静的 + HHD のスクショ 2 枚で合成の意味を照合）
 - HHD-F0002 髪のページ送り — ドラッグ・弾き・滑りの規則（2026-10-05、MEDIUM: 静的のみ。定数はすべて逆アセンブルの即値・リテラル）
 - HHD-F0003 髪・目の形の番号 → モデルのファイル（2026-10-05、MEDIUM: 静的のみ。ACNL のファイル名と照合）
@@ -1388,7 +1389,10 @@
 - acnl_jpn_v15 0x0019392C: ACNL-F0683, ACNL-F0684
 - acnl_jpn_v15 0x00193944: ACNL-F0684, ACNL-F0685
 - acnl_jpn_v15 0x00193A40: ACNL-F0024, ACNL-F0683
-- acnl_jpn_v15 0x0019AAC0: ACNL-F0647, ACNL-F0654
+- acnl_jpn_v15 0x00199F44: ACNL-F0647, ACNL-F0770
+- acnl_jpn_v15 0x00199F9C: ACNL-F0647, ACNL-F0770
+- acnl_jpn_v15 0x0019AAC0: ACNL-F0647, ACNL-F0654, ACNL-F0770
+- acnl_jpn_v15 0x0019AB74: ACNL-F0647, ACNL-F0770
 - acnl_jpn_v15 0x0019AD30: ACNL-F0656, ACNL-F0679
 - acnl_jpn_v15 0x0019C57C: ACNL-F0622, ACNL-F0631
 - acnl_jpn_v15 0x0019DF78: ACNL-F0622, ACNL-F0631
@@ -1787,10 +1791,10 @@
 - acnl_jpn_v15 0x006D3CB4: ACNL-F0096, ACNL-F0097
 - acnl_jpn_v15 0x006D3F04: ACNL-F0466, ACNL-F0766
 - acnl_jpn_v15 0x006D474C: ACNL-F0423, ACNL-F0466, ACNL-F0766
-- acnl_jpn_v15 0x006D6060: ACNL-F0113, ACNL-F0119, ACNL-F0647
+- acnl_jpn_v15 0x006D6060: ACNL-F0113, ACNL-F0119, ACNL-F0647, ACNL-F0770
 - acnl_jpn_v15 0x006D6338: ACNL-F0110, ACNL-F0112, ACNL-F0113, ACNL-F0115, ACNL-F0119
 - acnl_jpn_v15 0x006D6AB8: ACNL-F0115, ACNL-F0119
-- acnl_jpn_v15 0x006D7194: ACNL-F0119, ACNL-F0647, ACNL-F0654
+- acnl_jpn_v15 0x006D7194: ACNL-F0119, ACNL-F0647, ACNL-F0654, ACNL-F0770
 - acnl_jpn_v15 0x006DE198: ACNL-F0508, ACNL-F0527
 - acnl_jpn_v15 0x006E3A10: ACNL-F0128, ACNL-F0129
 - acnl_jpn_v15 0x006FA828: ACNL-F0482, ACNL-F0567
@@ -1890,7 +1894,7 @@
 - acnl_jpn_v15 0x00948E70: ACNL-F0454, ACNL-F0478, ACNL-F0537, ACNL-F0762
 - acnl_jpn_v15 0x00949D24: ACNL-F0466, ACNL-F0756
 - acnl_jpn_v15 0x00949D4C: ACNL-F0473, ACNL-F0756
-- acnl_jpn_v15 0x00949D68: ACNL-F0647, ACNL-F0651
+- acnl_jpn_v15 0x00949D68: ACNL-F0647, ACNL-F0651, ACNL-F0770
 - acnl_jpn_v15 0x0094A374: ACNL-F0501, ACNL-F0503
 - acnl_jpn_v15 0x0094A3D0: ACNL-F0388, ACNL-F0396
 - acnl_jpn_v15 0x0094A654: ACNL-F0025, ACNL-F0423
@@ -1992,4 +1996,4 @@
 - acnl/sound: 11件
 - acnl/system: 59件
 - acnl/text: 63件
-- acnl/ui: 28件
+- acnl/ui: 29件

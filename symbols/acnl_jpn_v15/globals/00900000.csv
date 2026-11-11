@@ -456,7 +456,7 @@ address,size,name,type,confidence,source,refs
 0x00949D25,1,g_BsMenuMapCommand,unsigned __int8,MEDIUM,analysis,ACNL-F0756
 0x00949D29,1,g_BsMenuSubscreenCommand,unsigned __int8,MEDIUM,analysis,ACNL-F0756
 0x00949D4C,4,g_BsMenuMgr,void *,MEDIUM,analysis,ACNL-F0756
-0x00949D68,4,vc_MENU_FLAGS,,,legacy-idb,
+0x00949D68,4,vc_MENU_FLAGS,MenuFlags,,legacy-idb,
 0x00949D88,1,g_BsMenuTabCloseSelectionFlag,unsigned __int8,MEDIUM,analysis,ACNL-F0756
 0x0094A010,4,vc_CURRENT_OPEN_TPC_MENU,,,legacy-idb,
 0x0094A02C,4,g_BsMenuRoomLightSwitch,BsMenuRoomLightSwitch_T022 *,,legacy-idb,

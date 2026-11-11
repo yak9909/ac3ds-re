@@ -64,6 +64,7 @@ IDA-gpt-6-F013 / MEDIUM: Native BsMenuItem action PMF table base (legacy vc_POIN
 0x00949D4C,line,"IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Menu-manager ordinary chat owner slot+0x1EC is independent of shared-input binding and live keyboard; chat/HHD handoff waits for its retirement.
 IDA-gpt-6-T008 (2026-10-12 user correction; gohan integration): CORRECTION to F005's HHD handoff requirement: native chat lifetime above remains valid, but does not require a separate command-side close/wait. HhdScreen::Show already owns field retirement and waiting. hair/style/eye/eyes now delegate directly while chat is bound; external CloseChat/parent-keyboard gate is retained only for the time-menu path. The prior CPU fixture showed the added gate, not that early HHD invocation was a defect. fix2 scroll was user hardware-confirmed; hair was still broken."
 0x00949D4C,repeatable,"[ACNL-F0756] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. BsMenuMgr_Init6D3144 publishes this; +480 tabs,+484 map,+488 screen0x261,+500 hand cursor. No complete struct; void*."
+0x00949D68,line,[ACNL-F0770] 0x08=入場を始めた 0x10=入場し終えた(排他) 0x20=終了要求。他のビットは未確認
 0x00949D68,repeatable,"Vapecord plugin ADDRESSES: MENU_FLAGS
 他地域: USA=00950D68  EUR=0094FD68  KOR=00948D68
 （プラグイン作者のラベル。検証済みの識別ではない）"

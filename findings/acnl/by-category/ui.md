@@ -104,3 +104,4 @@
 | ACNL-F0767 | UiAnimの40バイト全体と結合状態欄 | UiAnim は40バイト。先頭はvptr、+0x18はAnimTransform、+0x1Cは結合状態、+0x1E/+0x20はcontent作業器の件数とポインタである。 | MEDIUM | A |  |  |
 | ACNL-F0768 | ArcResAccReaderの584バイトと埋込みアクセサ | ArcResAccReader は584バイト。+4は埋込みaccessor(+0xC)を指し、+8はDARC、+0x158は読み込み完了側のDARC pointer。 | MEDIUM | A |  |  |
 | ACNL-F0769 | InstSelect8のコンストラクタと4812バイトの境界 | InstSelect8_Ctor はthisのみを受け取りthisを返す。基底の後に8個ずつの28B/224B要素を構築し、全体境界は4812Bである。 | MEDIUM | A |  |  |
+| ACNL-F0770 | vc_MENU_FLAGS の 0x08/0x10/0x20 の意味と ButtonActionControl_GetDecidedIndex の戻り値 | vc_MENU_FLAGS(0x949D68) の 0x08=入場を始めた、0x10=入場し終えた（互いに排他の段階値）、0x20=終了要求。ButtonActionControl_GetDecidedIndex(0x72294C) は int を返し、決定なし=-1、this+0xB4 が NULL なら -2。 | MEDIUM | A |  |  |
