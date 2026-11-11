@@ -148,3 +148,4 @@
 | ACNL-F0730 | nw::lyt は最大6段のTEVと3組の通常テクスチャ・UVを記録へ送る | MaterialはTEV最大6段、通常TexMap/SRT/UV生成は各最大3。Pictureの記録経路でTEV・Repeat・UV変換・blendを送出できるが、6段は6回の独立テクスチャ参照を意味しない。 | MEDIUM | A |  |  |
 | ACNL-F0734 | GX 完了カウンタと Framework の前回リスト待ち | 実行中GXリスト+0x28は要求の完了割り込みで進み、+0x24の提出数と別。Frameworkは前回リストの実行終了を待ってからクリアする。VBlankや経過フレーム数だけでは画像の最終参照完了にならない。 | MEDIUM | A |  |  |
 | ACNL-F0762 | fgobj の公開 Proc と view 行列、BaseMgr のプロセス表は別の大域資源である | fgobj Procは公開/破棄で変わるポインタ、描画カメラはview行列を含むインライン実体、BaseMgrはプロセス表を持つ管理体へのポインタである。 | MEDIUM | A |  |  |
+| ACNL-F0764 | 0x4EDC74 はアニメの再生速度（1 回の更新で進めるフレーム量）を設定する | 0x4EDC74(anim, rate) は AnimEvaluator の +64 に float を書く。+64 は 0x49BB0C が「1 回の更新で現在フレームに足す量」として読む（0 なら更新しない、初期値 1.0）。再生速度の設定。 | MEDIUM | A |  |  |

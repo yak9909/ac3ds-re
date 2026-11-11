@@ -477,6 +477,7 @@ address,size,name,type,confidence,source,refs
 0x0094CA30,4,g_GfxAllocator,,,legacy-idb,
 0x0094CA48,4,g_DrawContext,,,legacy-idb,
 0x0094CA60,4,g_TypeNode_g3d_FuncNode,,,legacy-idb,
+0x0094CC48,4,g_ParentHeap,void **,,analysis,ACNL-F0765
 0x0094CC68,4,g_BsStrcMgrParentHeap,,,legacy-idb,
 0x0094CC9C,4,vc_KEEPCONNECTION_POINT,,,legacy-idb,
 0x0094D238,4,vc_ISLANDSHOPPOINTER,,,legacy-idb,
