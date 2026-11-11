@@ -20,3 +20,4 @@
 | ACNL-F0741 | Controller計算の装置更新直後に必要な値はR4と旧状態R8/R9である | 0x0053CDE8ではR4=selfとR8/R9の旧保持・旧有効旗が後続で使われる。R0〜R3/R12や呼出し側保存VFPに残る装置更新の値は、その後のedge計算を越えて利用されない。 | MEDIUM | A |  |  |
 | ACNL-F0742 | 保持0x800はSTARTでありSELECTは読み替え前なら0x1000へ転写される | 装置入力はpad START bit3を保持0x800、SELECT bit2を保持0x1000へ別々に転写する。SELECT統合後の装置キャッシュはSTART bit3になり、旧記録のSELECT=0x800という観測を説明できる。 | MEDIUM | A |  |  |
 | ACNL-F0743 | CtrControllerのオブジェクト先頭仮想表を大域変数と型で登録 | CtrController本体の先頭に書かれる仮想表は0x008FE6F8で、9項目・36バイト。vtbl_sead_CtrControllerをSeadCtrControllerVtable型のglobalsとして登録し、calcと装置更新の項目を既存関数型で表した。 | MEDIUM | A |  |  |
+| ACNL-F0761 | タッチ状態の実体と ControllerMgr のポインタは別で、座標系も異なる | 0xACF6E0は40バイトのタッチ状態そのもの、0x96F2ECはsead::ControllerMgrへのポインタ。Controllerの画素座標からタッチ状態の中央基準座標を作る。 | MEDIUM | A |  |  |

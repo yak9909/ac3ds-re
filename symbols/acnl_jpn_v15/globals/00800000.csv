@@ -29,6 +29,7 @@ address,size,name,type,confidence,source,refs
 0x00846380,4,_ZTIN42_GLOBAL__N__18_dBsBalloonChat_cpp_9c217f7b11SearchNpcCBE,,,legacy-idb,
 0x0084638C,60,_ZTSN42_GLOBAL__N__18_dBsBalloonChat_cpp_9c217f7b11SearchNpcCBE,,,legacy-idb,
 0x0084886C,4,vc_ARGDATA,,,legacy-idb,
+0x00848B18,44,kCatalogListKindFrameTable,const float[11],MEDIUM,analysis,ACNL-F0755
 0x00848BA0,4,vc_WINDOW_OUT,,,legacy-idb,
 0x00849FE8,4,_ZTVN39_GLOBAL__N__15_dBsMenuEdit_cpp_42fdf88a10EditHostIOE,,,legacy-idb,
 0x0084A000,4,_ZTIN39_GLOBAL__N__15_dBsMenuEdit_cpp_42fdf88a10EditHostIOE,,,legacy-idb,

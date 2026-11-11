@@ -214,6 +214,10 @@ union uint32x4_t;
 union uint64x2_t;
 union uint8x16_t;
 union uint8x8_t;
+struct AcnlTouchState;
+struct CameraViewPrefix;
+struct ScriptWordFix38;
+struct SeadControllerMgrPrefix;
 
 // type: ACNL_BbsPost
 #pragma pack(push, 2)
@@ -934,6 +938,36 @@ struct AcnlRoomCameraPrefix
 };
 #pragma pack(pop)
 
+// type: AcnlTouchState
+#pragma pack(push, 1)
+/// [ACNL-F0761] MEDIUM; static producer/consumer evidence, no hardware. Complete observed storage size.
+struct AcnlTouchState
+{
+  unsigned __int8 held;
+  unsigned __int8 changed;
+  __int16 raw_x;
+  __int16 raw_y;
+  __int16 start_x;
+  __int16 start_y;
+  __int16 position_x;
+  __int16 position_y;
+  unsigned __int8 held_frames;
+  unsigned __int8 released_frames;
+  __int16 previous_start_x;
+  __int16 previous_start_y;
+  __int16 previous_position_x;
+  __int16 previous_position_y;
+  unsigned __int8 previous_held_frames;
+  unsigned __int8 previous_released_frames;
+  unsigned __int8 previous_held;
+  unsigned __int8 previous_changed;
+  __int16 previous_raw_y;
+  unsigned __int8 unk_1E[2];
+  float layout_x;
+  float layout_y;
+};
+#pragma pack(pop)
+
 // type: AcnlUiMtx34F005
 #pragma pack(push, 2)
 struct AcnlUiMtx34F005
@@ -1014,6 +1048,18 @@ struct BsMenuRoomLightSwitch_T022
   unsigned __int8 unknown_184[752];
   void *angleGuidePane;                 ///< IDA-gpt-6.1-sol-F004 / 0x32592CのBuild/FindPaneとrom_lgt資源で照合。MEDIUM。
 };
+
+// type: CameraViewPrefix
+#pragma pack(push, 1)
+/// [ACNL-F0762] MEDIUM; static producer/consumer evidence, no hardware. Partial prefix only; size is not complete class size.
+struct CameraViewPrefix
+{
+  unsigned __int8 unk_0[164];
+  float view_pass1024[3][4];
+  unsigned __int8 unk_D4[112];
+  float view_other_pass[3][4];
+};
+#pragma pack(pop)
 
 // type: uint16_t
 typedef unsigned __int16 uint16_t;
@@ -2593,6 +2639,19 @@ struct RoomTransitionKindPair
 };
 #pragma pack(pop)
 
+// type: ScriptWordFix38
+#pragma pack(push, 1)
+/// [ACNL-F0755] MEDIUM; static producer/consumer evidence, no hardware. Complete observed storage size.
+struct ScriptWordFix38
+{
+  void *vptr;
+  unsigned __int16 *buffer;
+  unsigned int capacity;
+  unsigned __int8 unk_C[12];
+  unsigned __int16 text[38];
+};
+#pragma pack(pop)
+
 // type: SeadOffsetList
 #pragma pack(push, 2)
 /// [ACNL-F0737] MEDIUM; Same shape as sead::OffsetList: prev/next list node, element count, byte offset from an element address to its list node. Used at controller +0x13C (addons, offset 4) and +0x14C (wrappers, offset 0x14C); initial values at 0x0053CF3C..0x0053CF64 (empty list points to itself).
@@ -2616,6 +2675,18 @@ struct SeadControllerPrefix
   void *manager;
   SeadOffsetList addons;
   SeadOffsetList wrappers;
+};
+#pragma pack(pop)
+
+// type: SeadControllerMgrPrefix
+#pragma pack(push, 1)
+/// [ACNL-F0761] MEDIUM; static producer/consumer evidence, no hardware. Partial prefix only; size is not complete class size.
+struct SeadControllerMgrPrefix
+{
+  unsigned __int8 unk_0[208];
+  unsigned int controller_count;
+  unsigned __int8 unk_D4[4];
+  SeadControllerPrefix **controllers;
 };
 #pragma pack(pop)
 

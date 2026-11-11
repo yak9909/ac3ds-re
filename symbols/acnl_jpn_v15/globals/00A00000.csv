@@ -6,6 +6,8 @@ address,size,name,type,confidence,source,refs
 0x00AA7998,4,g_PlayerActorSlot1,,,legacy-idb,
 0x00AA799C,4,g_PlayerActorSlot2,,,legacy-idb,
 0x00AA79A0,4,g_PlayerActorSlot3,,,legacy-idb,
+0x00ABD380,372,g_FgobjRenderCamera,CameraViewPrefix,MEDIUM,analysis,ACNL-F0762
+0x00ACF6E0,40,g_TouchState,AcnlTouchState,MEDIUM,analysis,ACNL-F0761
 0x00AD0050,1,vc_ISOPEN,,,legacy-idb,
 0x00AD0158,4,vc_NUMBERS,TextInputConstraintFlags,,legacy-idb,
 0x00AD0253,1,vc_KEYENTER,,,legacy-idb,

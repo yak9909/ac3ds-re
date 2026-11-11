@@ -37,10 +37,12 @@ address,kind,text
 他地域: USA=0094FDE8  EUR=0094EDE8  KOR=00947DE8
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x00948DEC,line,"IDA-gpt-6.1-sol-F013 / MEDIUM; evidence work/evidence/t022_room_capabilities. Live BsCharRoomViewMgr pointer; written by Activate 0x2C55B8 and cleared by Deactivate 0x2C6350. Partial verified surface layout: floor holder +0x3834, wall part array +0x3ADC, stride0x40, each holder +0xC."
+0x00948E70,repeatable,"[ACNL-F0762] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. fgobj::Proc published by59C974, cleared59D878. FuncNode holder at+0x45B0 (create/destroy). No complete struct; void*."
 0x00949320,line,IDA-gpt-6.1-sol-F001 / MEDIUM: BsFtrMgr*。0x68FA90→Actor_SpawnByProfile parent。実行中の家の管理体を使い、CRO g_FtrMgr（ModuleFtr seg2+0x48）と取り違えない。
 0x00949534,repeatable,"Vapecord plugin ADDRESSES: INSECT_DATA_POINTER
 他地域: USA=00950534  EUR=0094F534  KOR=00948534
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x00949718,repeatable,[ACNL-F0756] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. BsMenuBg_InitStep6944DC publishes this; teardown6947A8 clears it; BsMenuBg_StartLeave called by menu-out update. No struct; void*.
 0x009499EC,line,"IDA-gpt-6-F013: Current BsMenuItem pointer, assigned by LoadStep and cleared by Dispose (original STR/callers). Lookup must not assume menu-list head. Former name dword_9499EC retained in evidence."
 0x009499FC,line,"IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: PMF表[0]は0x19AD30/this調整0。通常action0と壁掛けaction42（flag+0x1E9Cを1にしてaction0へ振替）が同じdecorate入口を呼ぶ。
 IDA-gpt-6-F013 / MEDIUM: Native BsMenuItem action PMF table base (legacy vc_POINTER_FUNC label). ARM dispatch index action*8, pair method/encodedThisAdjustment. Confirmed action0=Place,15=Release,16=Eat; ROM labels independently verified. Type describes first entry, not a guessed table bound. GohanPocketAction preserves confirmed cancel41 and wall42 remapping."
@@ -54,12 +56,18 @@ IDA-gpt-6-F013 / MEDIUM: Native BsMenuItem action PMF table base (legacy vc_POIN
 0x00949C4C,repeatable,"Vapecord plugin ADDRESSES: MAP_DATA
 他地域: USA=00950C4C  EUR=0094FC4C  KOR=00948C4C
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x00949D1E,repeatable,"[ACNL-F0757] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Request state byte:1 idle,2 pending,3 creating. AttachScreenNode resets3 to1 even with a live screen in list. Not a screen-visible flag."
+0x00949D24,repeatable,"[ACNL-F0756] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Single-byte command: consumer6D3F04 snapshots then resets11; 7 all tabs out, 3 menu out, 2 map-sync entry with room-dependent exceptions."
+0x00949D25,repeatable,"[ACNL-F0756] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Single-byte map command consumed6D1428: 0 out, 1 in, 2 idle; reset is conditional, not unconditional per-frame."
+0x00949D29,repeatable,"[ACNL-F0756] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Single-byte command consumed6D1E14 for manager+488, screen profile0x261. 0 out,1 in,2 idle. Exact screen class is not assigned."
 0x00949D3B,line,"IDA-gpt-6-F007: keyboard completion handshake also consumed by BsMenuTab WaitChatEnd (6D5510). Normal chat cancellation writes0; publish(1,1) alone does not. Shared by other input screens; no chat-only global rename."
 0x00949D4C,line,"IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Menu-manager ordinary chat owner slot+0x1EC is independent of shared-input binding and live keyboard; chat/HHD handoff waits for its retirement.
 IDA-gpt-6-T008 (2026-10-12 user correction; gohan integration): CORRECTION to F005's HHD handoff requirement: native chat lifetime above remains valid, but does not require a separate command-side close/wait. HhdScreen::Show already owns field retirement and waiting. hair/style/eye/eyes now delegate directly while chat is bound; external CloseChat/parent-keyboard gate is retained only for the time-menu path. The prior CPU fixture showed the added gate, not that early HHD invocation was a defect. fix2 scroll was user hardware-confirmed; hair was still broken."
+0x00949D4C,repeatable,"[ACNL-F0756] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. BsMenuMgr_Init6D3144 publishes this; +480 tabs,+484 map,+488 screen0x261,+500 hand cursor. No complete struct; void*."
 0x00949D68,repeatable,"Vapecord plugin ADDRESSES: MENU_FLAGS
 他地域: USA=00950D68  EUR=0094FD68  KOR=00948D68
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x00949D88,repeatable,"[ACNL-F0756] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Flag set1 at6D4928 for index10 or index0 with previous index!=-1 and cleared at6D4E88/6D4D8C/6D7B9C. Name limited to verified selection/cleanup use, not generic menu-visible."
 0x0094A010,repeatable,"Vapecord plugin ADDRESSES: CURRENT_OPEN_TPC_MENU
 他地域: USA=00951014  EUR=00950010  KOR=00949010
 （プラグイン作者のラベル。検証済みの識別ではない）"
@@ -76,6 +84,7 @@ IDA-gpt-6-T008 (2026-10-12 user correction; gohan integration): CORRECTION to F0
 0x0094A6FE,repeatable,"Vapecord plugin ADDRESSES: ACMESSAGEBOX_2_POINT
 他地域: USA=00951702  EUR=009506FE  KOR=009496FE
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x0094A720,repeatable,"[ACNL-F0753] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. BsTimeBelWindow_Init2939C8 publishes this after building time_bel_win layout; +1760 is N_time pane, not object base. No complete struct; void*."
 0x0094A82C,line,"IDA-gpt-6-F001 (gpt-6): Cached active particle count for BsWeatherPaper; updater stores it into actor+0x58AC, consumer loops that many slots. Initial/static vs reused cache branch kept distinct; event selector9 not identified."
 0x0094A850,line,"IDA-gpt-6-F001 (gpt-6): Cached active particle count for BsWeatherSakura; date/season updater selects0/60/120, consumer uses it as loop length, not a delay or frame count."
 0x0094A880,line,IDA-gpt-6.1-sol-F012 / MEDIUM。vc_CAMERA1の既存実名を維持。0x765620→0x1A1910がcurrent cameraの壁alphaを読む。rot0/1/2/3はobject+0x68/0x60/0x58/0x50、s16角度0/0x4000/0x8000/0xC000。呼出し側RoomWall更新0x529E84も壁角度をR2で渡してS0を使用。HHDはobject+0x5C起点、ACNLは+0x50起点で同じtail分岐。T022は関数呼出しせず欄を読む。
@@ -90,6 +99,7 @@ IDA-gpt-6-T008 (2026-10-12 user correction; gohan integration): CORRECTION to F0
 0x0094C704,repeatable,"Vapecord plugin ADDRESSES: ISLPOINTER
 他地域: USA=00953708  EUR=00952704  KOR=0094B704
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x0094C9C8,repeatable,"[ACNL-F0752] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. font::Mgr singleton. Structure not defined; void* intentionally. Init 52D418, consumer Font_GetLoadedFont and Font_GetNameString."
 0x0094CA08,line,"IDA-gpt-6.1-sol-F001 / MEDIUM: 5個のFurnitureFootprint descriptorポインタ。descriptor+0..12=4方向セル列int32(dx,dz)*、+16=u8セル数。0x744BFC/0x744BDCの添字とcode.bin原本で独立照合。"
 0x0094CA30,line,"★★g_GfxAllocator — **ssys::ma::Allocator**（vtbl 0x9006A4）— F-164
 
@@ -230,14 +240,20 @@ confidence **HIGH**（静的 + 実機観測。F-102）。
 ModelInstance_Create(0x4F048C) が参照する。"
 0x0096F150,line,"[ACNL-F0713] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Typed object/holder; see record.
 IDA-gpt-6.1-sol-F011 / MEDIUM。nwlyt全体allocatorポインタ。Layout/AnimTransformの確保と解放が共有するため、holder変更だけでは移設されない。今回書換えない。"
+0x0096F2A4,repeatable,"[ACNL-F0762] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Base process manager published51FBFC, getter51EE40; process slots20 bytes. No full struct; void*."
+0x0096F2EC,repeatable,"[ACNL-F0761] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. sead::ControllerMgr singleton from540488/540748. Prefix only through table+0xD8; +0xD0 count,+0xD4 unknown,+0xD8 SeadControllerPrefix**."
 0x0096F304,line,"IDA-gpt-6.1-sol-F011 / MEDIUM。graphic::MemoryMgrポインタ。初期a1[5]はFCRAM commandHeap、a1[6]/[7]はVRAM。icon98,304 Bの条件付き借用は割当時heapを保持して同じheapへ返す。固定boot番地0x3228A7C8を埋め込まない。"
+0x0096F304,repeatable,"[ACNL-F0760] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. graphic::MemoryMgr pointer, existing prefix type. Global dispatch120A18, vtable904FA4, memoryType0x10000 uses manager+0x14 heap."
 0x0096FC06,repeatable,"Vapecord plugin ADDRESSES: U0DATA
 他地域: USA=00976C0E  EUR=00975C06  KOR=0096EC06
 （プラグイン作者のラベル。検証済みの識別ではない）"
+0x0096FC2C,repeatable,[ACNL-F0760] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. Default signed alignment word initially0x80.5671BC loads toR2;5671CC passes to569EB8 heap allocation path. Not a pointer.
 0x0096FC38,line,"[ACNL-F0712] MEDIUM. Static export producer/consumer and original code.bin checked; no hardware. Typed object/holder; see record.
 "
 0x0096FC3C,line,IDA-gpt-6.1-sol-F011 / MEDIUM。nwlyt全体allocatorとUiAnim補助器へ渡るssys::ma::Allocator。+4の2D_UI_Heapは0x96FC40+4と同じ。
+0x0096FC3C,repeatable,"[ACNL-F0760] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. UI layout allocator object, distinct global from g_LayoutAllocator96F150.5691F4 constructs it; +4 heap shared with g_UiResourceAllocator."
 0x0096FC40,line,IDA-gpt-6.1-sol-F011 / MEDIUM。arc読込のssys::ma::Allocator。+4の2D_UI_Heapは家具chipも使用。窓の余白は総/連続128 KiB、別ヒープiconなら負担をpayload約98 KiB削減（未実機）。
+0x0096FC40,repeatable,[ACNL-F0760] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. UI archive resource allocator; constructor5691F4 and consumer5671CC via5691E4. Same2D_UI_Heap initially as96FC3C; not a heap pointer itself.
 0x00978624,line,"IDA-opus-5.5-F072: Window frame flip table, 6 entries x 10 B (flip 0..5). [0..7] = corner texcoords TLu TLv TRu TRv BLu BLv BRu BRv (0/1), [8] = component that follows the quad width, [9] = component that follows the quad height. Read by nwlyt_Window_CalcFrameTexCoordLT/RT/RB/LB."
 0x0097C030,repeatable,"Vapecord plugin ADDRESSES: D_FRIEND
 他地域: USA=00983038  EUR=00982030  KOR=0097B030
@@ -268,6 +284,7 @@ IDA-gpt-6.1-sol-F011 / MEDIUM。nwlyt全体allocatorポインタ。Layout/AnimTr
   0x2F/0x30/0x31   -> 557  （同じ画面を用途違いで使う）
   0x8B すぐ閉まる   -> 669  ★範囲外(0-668)なので factory が NULL
 一覧は REFERENCES/IDS/MenuID.txt。"
+0x00986500,repeatable,"[ACNL-F0757] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. List head (list base9864FC +4), NOT direct menu-screen pointer. Node+0xC is screen actor; next+8. 6D1074 tests empty;6D2D40 traverses."
 0x009ADAA0,repeatable,"Vapecord plugin ADDRESSES: D_EXHIBITION
 他地域: USA=009B4AC0  EUR=009B3AC0  KOR=009ACAC0
 （プラグイン作者のラベル。検証済みの識別ではない）"
