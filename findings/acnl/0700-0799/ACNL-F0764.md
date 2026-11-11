@@ -13,7 +13,7 @@ addresses:
 tags: []
 supersedes: []
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
-by: auto
+by: sonnet-5.5
 original_by: ""
 reviewed_by: []
 state: active            # active / consolidated / superseded / duplicate
