@@ -76,8 +76,8 @@ address,kind,text
 0x0071FBB4,repeatable,"Vapecord plugin ADDRESSES: PARTC3
 他地域: USA=00721418  EUR=00720420  KOR=0071F75C
 （プラグイン作者のラベル。検証済みの識別ではない）"
-0x0072294C,line,[ACNL-F0770] 決定なし=-1。this+0xB4==NULL なら -2。決定あり=*(this+0xB4+0xC8)
-0x0072294C,repeatable,[ACNL-F0770] 決定なし=-1。this+0xB4==NULL なら -2。決定あり=*(this+0xB4+0xC8)
+0x0072294C,line,[ACNL-F0770] 決定なし=-1。this+0xB4==NULL なら -2。決定あり=*(*(this+0xB4)+0xC8)（this+0xB4 は選択中のノード、その +0xC8）
+0x0072294C,repeatable,[ACNL-F0770] 決定なし=-1。this+0xB4==NULL なら -2。決定あり=*(*(this+0xB4)+0xC8)（this+0xB4 は選択中のノード、その +0xC8）
 0x00722C34,func,"[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。722C34..+D4 bit0またはPMF条件からR0=0/1。18F0C8/190F60直後CMP R0,#0。 Control全体型未登録。読取り専用のthisはconst void *。"
 0x00723854,func,IDA-gpt-6-F006 / GPT-6 MEDIUM: ItemDragWindow/UI get reads current player's real inventory at Save_GetCurrentPlayer()+27600 via Inventory_GetSlot. No deferred UI copy; this is distinct from closet Save+0x92F0. Original ARM and Chest get/transfer caller corroborate. Preserve prior vc alias and provenance.
 0x00723854,repeatable,"Vapecord plugin ADDRESSES: GET_ITEM

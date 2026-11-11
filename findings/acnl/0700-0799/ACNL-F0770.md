@@ -28,7 +28,7 @@ corrected_by: []
 - 0x08 = 入場を始めた。0x10 = 入場し終えた。この 2 つは排他的な段階値で、一方を立てるとき他方を消す（`& 0xFFFFFFE7 | 8` など）。
 - 0x20 = 終了要求（close broadcast）。
 
-`ButtonActionControl_GetDecidedIndex`（0x72294C）は `int f(void *this)`。決定が無い時は -1。`this+0xB4` が NULL の時は -2。決定があれば `*(this+0xB4+0xC8)`。
+`ButtonActionControl_GetDecidedIndex`（0x72294C）は `int f(void *this)`。決定が無い時は -1。`this+0xB4` が NULL の時は -2。決定があれば `*(*(this+0xB4)+0xC8)`（`this+0xB4` は選択中のノードへのポインタ、その +0xC8 を返す）。
 
 確度 MEDIUM（書き手の命令列と読み手の命令列の 2 系統の静的根拠。実測はしていない）。
 
@@ -56,7 +56,7 @@ L72296C: LDR R1,=dword_94A874; LDR R1,[R1]; CMP R1,#0; BEQ L722994
 L722994: MOV R0,#-1; BX LR
 ```
 - 引数は R0 の 1 つ（this）。戻りは int。
-- `this+0xD4` のビット 0 が立つ、または（`dword_94A874` が非 0 で `this+0xB8` が `ButtonActionControl_StateDecideAnim`（0x2F6694）かつ `this+0xBC==0`）のとき、`this+0xB4` を見る。非 NULL なら `*(this+0xB4+0xC8)`、NULL なら -2。
+- `this+0xD4` のビット 0 が立つ、または（`dword_94A874` が非 0 で `this+0xB8` が `ButtonActionControl_StateDecideAnim`（0x2F6694）かつ `this+0xBC==0`）のとき、`this+0xB4` を見る。非 NULL なら `*(*(this+0xB4)+0xC8)`（`LDR R0,[R0,#0xB4]` → `LDRNE R0,[R0,#0xC8]`。選択ノードの +0xC8）、NULL なら -2。
 - それ以外は -1。
 
 IDB の作業用コピーに `enum MenuFlags`（ビット列挙。EnterStarted=8、EnterDone=0x10、CloseRequested=0x20）を作り 0x949D68 に付けた。0x72294C には `int __fastcall ButtonActionControl_GetDecidedIndex(void *this)` を付けた。

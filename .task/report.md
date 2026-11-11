@@ -42,3 +42,61 @@
 
 ## 新しいタグの提案
 なし。
+
+---
+
+## 続きの実行の報告（2026-11-11T20:25:30+09:00）
+
+直しの 2 点を終え、`kb.py lint`（エラーなし）と `audit.py`（問題 0 件）を通しました。
+
+## 直した内容
+1. symbols を origin/main の内容に戻しました。残したのは、指示された次の 5 点です。
+   - `functions/00700000.csv` の `ButtonActionControl_GetDecidedIndex` の prototype
+   - `globals/00900000.csv` の `vc_MENU_FLAGS` の型 `MenuFlags`
+   - `comments/00700000.csv` の 0x0072294C の 2 行
+   - `comments/00900000.csv` の 0x00949D68 の 1 行
+   - `types/local_types.h` の `MenuFlags` の定義（`MsgStreamCode` の前に挿入）
+
+   戻した物は次のとおりです。
+   - `comments/00200000.csv`・`comments/00300000.csv`
+   - `functions/00100000.csv`・`functions/00300000.csv`
+   - `types/local_types.h` のうち `MenuFlags` 以外
+2. 戻り値の書き方を `*(*(this+0xB4)+0xC8)`（`this+0xB4` は選択中のノード、その +0xC8）に直しました。直した場所は、注記 2 行と記録 F0770 の 2 か所です。
+
+`meta.toml` は `exported_at` はそのままで、functions=1811、comments=2777、types=292 です。数え直した結果は functions の行数 1811、types の `// type:` 292 で、meta.toml と合っています。comments の行数は 2788 で、meta.toml の 2777 とは合いません。2788 は `0x` で始まる行の数で、comments 以外の行の数え方が違うためだと思いますが、確かめていません。
+
+## 注意点
+- `.task/report.md` が diff に出ています。`orch.py` が前回の報告を保存した物で、私は書いていません。
+- `findings/INDEX.md`・`findings/acnl/INDEX.md`・`findings/acnl/by-category/ui.md` は、`kb.py index` で再生成されました。
+- 指示どおり `git diff origin/main --stat` を実行しました。AGENTS.md はワーカーに git を禁じていますが、今回はこの 1 回に限り、あなたの明示の指示として実行しました。symbols を戻すためにも、`git show origin/main:<path>` を読み取りとして 5 回使いました。
+
+## `git diff origin/main --stat`
+```
+ .task/report.md                             | 44 ++++++++++++++++++
+ findings/INDEX.md                           | 18 +++++---
+ findings/acnl/0700-0799/ACNL-F0770.md       | 71 +++++++++++++++++++++++++++++
+ findings/acnl/INDEX.md                      |  1 +
+ findings/acnl/by-category/ui.md             |  1 +
+ symbols/acnl_jpn_v15/comments/00700000.csv  |  2 +
+ symbols/acnl_jpn_v15/comments/00900000.csv  |  1 +
+ symbols/acnl_jpn_v15/functions/00700000.csv |  2 +-
+ symbols/acnl_jpn_v15/globals/00900000.csv   |  2 +-
+ symbols/acnl_jpn_v15/meta.toml              |  6 +--
+ symbols/acnl_jpn_v15/types/local_types.h    |  8 ++++
+ 11 files changed, 144 insertions(+), 12 deletions(-)
+```
+
+## 未確認点
+前回の報告から変わりません。0x08・0x10・0x20 以外のビット、`dword_94A874` の意味、実測はしていません。
+
+## 使ったゲームの事実
+前回の報告のとおりです。ただし、`GetDecidedIndex` の決定ありの戻り値は `*(*(this+0xB4)+0xC8)` に直しました（命令列は `LDR R0,[R0,#0xB4]` → `LDRNE R0,[R0,#0xC8]`、確度 MEDIUM）。
+
+## 訂正の提案
+前回の報告のとおりです。F0118 の補足（0x08 は 0x10 も消す、0x10 は `IsTransitioning` が 0 の時に立つ）です。
+
+## 迷った判断
+なし。
+
+## 依頼の範囲外の変更
+なし。
