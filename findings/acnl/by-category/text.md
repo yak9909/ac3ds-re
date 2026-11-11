@@ -66,5 +66,5 @@
 | ACNL-F0688 | player/town name tag sanitizer | group5/type0 current player name -> Insert method 0x5ECAB8. |  | B |  |  |
 | ACNL-F0689 | dedicated ruby font | Conversation ruby/furigana uses a dedicated logical font resource `Garden_ruby`, separate from `Garden_msg_size16`. |  | B |  |  |
 | ACNL-F0729 | 通常の字形シートは専用 FontHeap にあり、CMAP と状態を通して参照できる | 更新側通常フォントはA4・128×128の154枚（画素1,261,568 B）を持ち、通常は専用FontHeapからロードされる。Mgrの状態3の取得関数からResFontを無確保で参照でき、ASCIIと私用記号をCMAPで確認した。 | MEDIUM | A |  |  |
-| ACNL-F0752 | フォントの登録は名前付き非所有エントリを作り、名前取得は SafeString を返す | フォントの名前・登録・所有者を識別できる。名前取得の返り値は文字列本体ではなく SafeString、登録の返り値は登録エントリである。 | MEDIUM | 未記入 |  |  |
-| ACNL-F0763 | TextWriter のデストラクタ 0x4D5BCC は何も解放しない | 0x4D5BCCはTextWriterの使用終了時に呼ばれる空のデストラクタであり、フォントや文字バッチを解放しない。 | MEDIUM | 未記入 |  |  |
+| ACNL-F0752 | フォントの登録は名前付き非所有エントリを作り、名前取得は SafeString を返す | フォントの名前・登録・所有者を識別できる。名前取得の返り値は文字列本体ではなく SafeString、登録の返り値は登録エントリである。 | MEDIUM | A |  |  |
+| ACNL-F0763 | TextWriter のデストラクタ 0x4D5BCC は何も解放しない | 0x4D5BCCはTextWriterの使用終了時に呼ばれる空のデストラクタであり、フォントや文字バッチを解放しない。 | MEDIUM | A |  |  |

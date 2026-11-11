@@ -94,9 +94,9 @@
 | ACNL-F0733 | 通常フォントの未収録文字と追加 JIS 書体の補完範囲 | 更新側の通常フォントCMAPには汎・符・濁など18漢字とU+301Cが無く、18漢字は追加GardenPlus_JisLevel1にはある。通常フォントだけで任意の日本語UI文字が揃うとはいえない。 | MEDIUM | A |  |  |
 | ACNL-F0750 | 地図メニュー準備旗 vc_MAPBOOL(0x949C30)の型と NetGameMgr 本体ポインタ g_NetGameMgrPtr(0x94D644)の型 | 0x949C30 vc_MAPBOOL は 1 バイトの旗（unsigned __int8）で、村の地図メニュー BsMenuMapVillage の作成完了で 1、破棄または別種の地図画面を開くときに 0 になる。0x94D644 g_NetGameMgrPtr は NetGameMgr 本体へのポインタ（構造体の型が無いので void *）。 | MEDIUM | A |  |  |
 | ACNL-F0751 | SsysMaLayoutNode_FindPicture 0x567E44: レイアウトからペイン名で Picture を探す | 0x567E44 は (layout ノード, ペイン名) を取り、ルート pane（+0x20）の vt+0x2C で再帰検索したあと、型情報の親鎖が nw::lyt::Picture の実行時型 0x96F160 と一致する時だけ pane を返す（違えば NULL）。lyt_Object_FindPane 0x7461D0 は型を絞らない別の関数。 | MEDIUM | A |  |  |
-| ACNL-F0753 | 時計の大域変数は BsTimeBelWindow 本体を指し、時計ペインはその +1760 にある | 0x94A720 は BsTimeBelWindow 本体へのポインタであり、時計ペインを直接指す変数ではない。 | MEDIUM | 未記入 |  |  |
-| ACNL-F0754 | CLYT の組み立てとペイン・TextBox・Bounding・Group の名前検索の ABI | Layoutの名前検索は、無条件Pane検索と実行時型で絞る検索に分かれる。Group検索は第3引数を使わず、CLYT Buildはリソースアクセサを第3引数で受け取る。 | MEDIUM | 未記入 |  |  |
-| ACNL-F0755 | PWorkList の slot13 は WordFix38 の行を使って候補一覧を構築する | PWorkListのslot13は候補を走査して一覧を構築し、行の語に100バイトのWordFix38を使う。カタログの枠種別フレームは別のfloat表で選ぶ。 | MEDIUM | 未記入 |  |  |
-| ACNL-F0756 | 下画面のタブ・地図・補助画面は別々の命令と状態遷移で制御される | BsMenuTab、地図、manager+488の画面は別のu8命令を使う。タブ状態の切替はcalcのPMFペアを検索し、一致したenterをその場で呼ぶ。 | MEDIUM | 未記入 |  |  |
-| ACNL-F0757 | メニュー要求状態と登録画面リストの先頭は別で、状態3は作成中を表す | 0x949D1Eは要求処理のu8状態、0x986500は登録画面ノードの先頭ポインタ。画面登録時に状態3から1へ戻るため、1だけでは画面が無いとは判定できない。 | MEDIUM | 未記入 |  |  |
-| ACNL-F0758 | タブ復帰で呼ぶ3関数は音の再開ではなくメニューフローの完了確認と通知 | 0x316E7Cは現在のメニューフロー要求の種別を検査する。0x52B678と0x52B644は種別7/13の要求の状態バイトへ1を書き、対応する処理の完了を通知する。 | MEDIUM | 未記入 |  |  |
+| ACNL-F0753 | 時計の大域変数は BsTimeBelWindow 本体を指し、時計ペインはその +1760 にある | 0x94A720 は BsTimeBelWindow 本体へのポインタであり、時計ペインを直接指す変数ではない。 | MEDIUM | A |  |  |
+| ACNL-F0754 | CLYT の組み立てとペイン・TextBox・Bounding・Group の名前検索の ABI | Layoutの名前検索は、無条件Pane検索と実行時型で絞る検索に分かれる。Group検索は第3引数を使わず、CLYT Buildはリソースアクセサを第3引数で受け取る。 | MEDIUM | A |  |  |
+| ACNL-F0755 | PWorkList の slot13 は WordFix38 の行を使って候補一覧を構築する | PWorkListのslot13は候補を走査して一覧を構築し、行の語に100バイトのWordFix38を使う。カタログの枠種別フレームは別のfloat表で選ぶ。 | MEDIUM | A |  |  |
+| ACNL-F0756 | 下画面のタブ・地図・補助画面は別々の命令と状態遷移で制御される | BsMenuTab、地図、manager+488の画面は別のu8命令を使う。タブ状態の切替はcalcのPMFペアを検索し、一致したenterをその場で呼ぶ。 | MEDIUM | A |  |  |
+| ACNL-F0757 | メニュー要求状態と登録画面リストの先頭は別で、状態3は作成中を表す | 0x949D1Eは要求処理のu8状態、0x986500は登録画面ノードの先頭ポインタ。画面登録時に状態3から1へ戻るため、1だけでは画面が無いとは判定できない。 | MEDIUM | A |  |  |
+| ACNL-F0758 | タブ復帰で呼ぶ3関数は音の再開ではなくメニューフローの完了確認と通知 | 0x316E7Cは現在のメニューフロー要求の種別を検査する。0x52B678と0x52B644は種別7/13の要求の状態バイトへ1を書き、対応する処理の完了を通知する。 | MEDIUM | A |  |  |

@@ -12,7 +12,7 @@ addresses: [0x96fc3c, 0x96fc40, 0x96fc2c, 0x96f304]
 tags: ["heap", "layout"]
 supersedes: []
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
-by: auto
+by: gpt-6.1-sol
 original_by: ""
 reviewed_by: []
 state: active            # active / consolidated / superseded / duplicate
