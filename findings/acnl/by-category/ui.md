@@ -111,3 +111,4 @@
 | ACNL-F0774 | CommonScrollBarの実体境界とドラッグ用の欄 | CommonScrollBarは1944B（0x798）。埋込みLayoutは+0x24C、ドラッグ中の旗は+0x6FA、入力モードは+0x744。先頭行と最大値は+0x71C/+0x720である。 | MEDIUM | A |  |  |
 | ACNL-F0775 | TextWriterの100バイト実体と書体倍率設定 | nw::font::TextWriterは100B（0x64）。書体は+0x3C、倍率floatは+0x24/+0x28。RecomputeScaleは要求する幅・高さをS0/S1で受け、書体の固有寸法で割る。 | MEDIUM | A |  |  |
 | ACNL-F0776 | CommonScrollBarの開始フレームのドラッグ抑止フラグ | CommonScrollBar+0x6FBは1の間、そのUpdate内の通常ドラッグ更新を抑止し、次のUpdate冒頭で消される。drag_blocked_this_frameとして1バイト整数で定義する。 | MEDIUM | A |  |  |
+| ACNL-F0778 | 共通UIの呼出契約と生成時の未設定prototype | 共通UIの呼出側とARM命令から、未設定だった23関数のprototypeを部分型とVFPレジスタ指定で表す。全体不明のクラスはvoid *のまま公開する。 | MEDIUM | A |  |  |

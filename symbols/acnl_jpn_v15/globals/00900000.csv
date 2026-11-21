@@ -495,7 +495,7 @@ address,size,name,type,confidence,source,refs
 0x009563EC,4,vc_EXGAMEDATA,,,legacy-idb,
 0x009563F4,4,vc_MAX,,,legacy-idb,
 0x00956500,8,vc_REALTIME,unsigned __int64,,legacy-idb,
-0x00957ED4,4,vc_DATAPOINTER,,,legacy-idb,
+0x00957ED4,4,vc_DATAPOINTER,void *,MEDIUM,legacy-idb,ACNL-F0777
 0x009580E6,1,g_guiButtonsBusy,,,legacy-idb,
 0x00958114,4,vc_CHATPOINT,,,legacy-idb,
 0x0096EA94,4,g_GpuCmdPtr,,,legacy-idb,

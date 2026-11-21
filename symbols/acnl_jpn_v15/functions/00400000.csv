@@ -163,7 +163,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x004D6570,1824,TextBatch_BuildCommandStream,,,legacy-idb,,
 0x004D6C90,76,nwlyt_Drawer_EmitProjectionUniform,,,legacy-idb,,
 0x004D6CE0,796,,,,legacy-idb,,
-0x004D7164,12,GpuCmd_GetCurrentWritePtr,,,legacy-idb,,
+0x004D7164,12,GpuCmd_GetCurrentWritePtr,void *__fastcall(void),MEDIUM,legacy-idb,ACNL-F0778,
 0x004D7174,92,nwlyt_DrawPaneTreeToCurrentList,"unsigned int *__fastcall(NwLytDrawContext *draw_context, void *layout, NwLytDrawInfo *draw_info)",MEDIUM,analysis,ACNL-F0712,
 0x004D7434,12,nwfont_ResFont_SetLineFeed,,,legacy-idb,,
 0x004D7440,40,nwfont_ResFont_SetAlternateChar,,,legacy-idb,,
