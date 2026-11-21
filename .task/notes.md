@@ -1,0 +1,1 @@
+Issue 158 完了。F0773/F0774/F0775をkb.py newで作成し、symbols typesと4関数CSV/4コメントCSVを更新。IDB/git未使用。evidenceは _local/evidence/158/。precheck.txtにS/A/?の格付けあり。最終lint794件エラーなし、audit1057ファイル問題0。F0775のスタック計算は20+8+0x74=144Bに訂正（整列結論は同じ）。+AB4（control+B4）はノードpointer書込/解除まで確認、厳密な役割が未確定でコメントのみ。+6FB、TextWriter+58も意味名保留。旧GameLabelは概算実装、実TextWriter計測例はDecorLayout。F0711のEC/F0表の字間/行間語順の訂正を提案。

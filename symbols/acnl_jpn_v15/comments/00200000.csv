@@ -337,7 +337,8 @@ BsShadowViewMgr_Create が部屋カテゴリに応じて 0 か 2 を入れる。
 0x00297B2C,line,slot
 0x00297BA0,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): Refresh ten storage indices item_index_base+i via virtual12; no fixed total-page traversal. Enables query buffer republish/extended page counts using provider replacement."
 0x00297BDC,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): RTTI ChangeStockItem derives Cabinet/ChangeListBase;15528B,10 ItemIconWidget objects876B at6280, cursor15040. cng_base/cng_itm/N_itm_pos_00; tab_groups0x94D3DC = A/B/C/null."
-0x00298018,func,[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。298024でrootの親を解除、298038以降R1親へAppendChild。21CB3C直後戻り不使用。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。
+0x00298018,func,"[ACNL-F0774] MEDIUM/static: typed storage and verified member offsets in local_types.h; no IDB used. 
+[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。298024でrootの親を解除、298038以降R1親へAppendChild。21CB3C直後戻り不使用。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。"
 0x00298018,line,IDA-opus-5.5-F041: scroll layout root pane (Layout+0x20) AppendChild to the given pane (InstSelect: ctlg_list N_scrl_pos_00) -> drawn with the frame layout.
 0x00298018,repeatable,IDA-opus-5.5-F041: scroll layout root pane (Layout+0x20) AppendChild to the given pane (InstSelect: ctlg_list N_scrl_pos_00) -> drawn with the frame layout.
 0x00298094,func,"IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): After knob translation, native update calls sub_2993E4 then offsets bound row panes by scroll+1828. Existing names of callback/row-binding primitives retained; full binding semantics not re-established here."
@@ -345,11 +346,13 @@ BsShadowViewMgr_Create が部屋カテゴリに応じて 0 か 2 を入れる。
 0x002980F8,repeatable,"IDA-opus-5.5-F041: (ng, node) acts only when node enabled == ng. ng=1: scrl_bar_ng frame 0 (grey) on G_triX, enabled=0. ng=0: frame 1, enabled=1."
 0x0029823C,func,"IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): Mode=2: GameInput_IsMaskPressed/Released(0x8000) read Controller+4/+8. Press transforms GetTouchPosition float pair and hit-tests knob or track; release ends drag. TouchState alone is insufficient.
 IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Press/track hit-test uses GameInput_GetTouchPixelPosition followed by Layout_TransformTouchPixelsToLocal; passing already-centered TouchState floats offsets the hit away from visible bar."
-0x00298664,func,"IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): Active drag in mode2 requires Touch_IsDragHoldReady then GameInput_GetTouchPosition; converts float pair through layout transform and invokes vt[4](scroll, point).
+0x00298664,func,"[ACNL-F0774] MEDIUM/static: typed storage and verified member offsets in local_types.h; no IDB used. 
+IDA-gpt-6-F004 (MEDIUM; native ARM + independent input/source/F041 evidence; 2026-10-12): Active drag in mode2 requires Touch_IsDragHoldReady then GameInput_GetTouchPosition; converts float pair through layout transform and invokes vt[4](scroll, point).
 IDA-gpt-6-F005 (MEDIUM; native producer/consumer ARM + source + ARM1176 fixture; hardware unverified): Active drag uses the same pixel->layout transform as press; tests now run viewport rect, affine matrix inverse/transform and pane bounds rather than identity geometry.
 IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). F010 owned GameList drag transforms pointer from fresh touch start then halves displacement once per drag; press/track path29823C unchanged. User rejected continuous half-follow interpolation. Other native scrollbars/hand mode retain original. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls.
 [ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。298664..各分岐がtouch/hand状態から座標を作りvt+10へ渡す。299D6Cの呼び元は戻りR0を使わずVFPの座標処理を続ける。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。"
-0x002987A8,func,[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。2987B0でR1をthis+71Cへ保存、signed clamp。1C5444後R0を別値に上書き。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。
+0x002987A8,func,"[ACNL-F0774] MEDIUM/static: typed storage and verified member offsets in local_types.h; no IDB used. 
+[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。2987B0でR1をthis+71Cへ保存、signed clamp。1C5444後R0を別値に上書き。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。"
 0x002987A8,line,"IDA-opus-5.5-F041: pos clamp [0,R]; N_btn_00.y = base + (-pos*pitch)/scale; arrows: pos 0 -> ng(top) ok(bottom); pos R -> ok(top) ng(bottom); else ok both."
 0x002987A8,repeatable,"IDA-opus-5.5-F041: pos clamp [0,R]; N_btn_00.y = base + (-pos*pitch)/scale; arrows: pos 0 -> ng(top) ok(bottom); pos R -> ok(top) ng(bottom); else ok both."
 0x00298BA8,line,"IDA-opus-5.5-F041: L=top-bottom; knob = L/N*(V-1), 0 if <1.0; scale(+1804) = R*pitch/(L-knob); P_btnC(_sh)/B_btnC size h = knob; T parts y = C.y + knob/2, B parts y = C.y - knob/2."

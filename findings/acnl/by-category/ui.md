@@ -107,3 +107,6 @@
 | ACNL-F0770 | vc_MENU_FLAGS の 0x08/0x10/0x20 の意味と ButtonActionControl_GetDecidedIndex の戻り値 | vc_MENU_FLAGS(0x949D68) の 0x08=入場を始めた、0x10=入場し終えた（互いに排他の段階値）、0x20=終了要求。ButtonActionControl_GetDecidedIndex(0x72294C) は int を返し、決定なし=-1、this+0xB4 が NULL なら -2。 | MEDIUM | A |  |  |
 | ACNL-F0771 | MenuFlags 下位三ビットは地図側の入場開始・完了・退場完了を通知し、状態7は0x02を待つ | 0x01=地図側入場開始、0x02=入場完了、0x04=退場完了または対象なし。状態18は0x01、状態7は0x02を待つ。F0756のbit2という記述はマスク0x02へ訂正する。 | MEDIUM | A |  |  |
 | ACNL-F0772 | 地図復帰を省いた終了経路のフラグ残留と、タブ状態6・18・7の待機条件 | 地図側を退場済みとするには0x04と旧0x01/0x02の解除、終了要求解除には0x20の解除が別々に必要。フラグ更新だけ省いても必ず状態18で止まるとは限らず、実体と通る状態に依存する。 | MEDIUM | A |  |  |
+| ACNL-F0773 | InstSelect8の一覧操作欄と埋込み部品 | InstSelect8の4812B境界を保ち、Layout・UiAnim・CommonScrollBarと一覧操作用の欄を型付けした。先頭行は埋込みscroll_bar.top_rowであり、行の語はvt[25]から取得する。 | MEDIUM | 未記入 |  |  |
+| ACNL-F0774 | CommonScrollBarの実体境界とドラッグ用の欄 | CommonScrollBarは1944B（0x798）。埋込みLayoutは+0x24C、ドラッグ中の旗は+0x6FA、入力モードは+0x744。先頭行と最大値は+0x71C/+0x720である。 | MEDIUM | 未記入 |  |  |
+| ACNL-F0775 | TextWriterの100バイト実体と書体倍率設定 | nw::font::TextWriterは100B（0x64）。書体は+0x3C、倍率floatは+0x24/+0x28。RecomputeScaleは要求する幅・高さをS0/S1で受け、書体の固有寸法で割る。 | MEDIUM | 未記入 |  |  |

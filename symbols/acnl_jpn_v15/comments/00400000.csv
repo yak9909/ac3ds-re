@@ -730,7 +730,8 @@ F-142 live: BP hit even with conversation closed. R0=0x0FFFFC58 (TextWriter), R1
 0x004D5148,line,"F-133: after optional transform update, glyph path calls generic GPU draw/state routine with (6,0,4); this is the native text draw bridge."
 0x004D5154,line,"F-134 static: immediate glyph path requests one texture ID from generic allocator nwgfx texture-ID routine (sub_7A8B08(1,&local_handle))."
 0x004D5160,line,"F-134 static: newly allocated handle is stored back to descriptor+0, then target 3553 is bound through sub_7A6558."
-0x004D51B0,func,"F-133 static: recomputes CharWriter horizontal/vertical scales from requested dimensions divided by ResFont native metrics (vtable offsets +8/+12); stores scales at writer+0x24/+0x28.
+0x004D51B0,func,"[ACNL-F0775] MEDIUM/static: typed storage and verified member offsets in local_types.h; no IDB used. 
+F-133 static: recomputes CharWriter horizontal/vertical scales from requested dimensions divided by ResFont native metrics (vtable offsets +8/+12); stores scales at writer+0x24/+0x28.
 [ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。4D51BC/C0でS0/S1を保存、font vt+8/+Cの幅高さで除算、+24/+28へ。4BADA4呼出前にTextBoxの幅高さをVFPロード。 CharWriter全体型が未登録のためvoid *。"
 0x004D520C,func,"F-144 static: if descriptor+0x44 batch count (+0x1C) is nonzero, builds PICA state commands and copies batch data from descriptor+0x68 buffer (+0x10/+0x18 depending flags) into the supplied command stream. This is the batch-to-command-buffer bridge."
 0x004D520C,line,"★★★TextBatch_CopyToCommandBuffer(desc, cursor, drawctx) — F-145 / F-156 / F-157
@@ -813,7 +814,8 @@ TextDraw_BuildFourCornerColors で再展開するので、
 0x004D5788,repeatable,"F-131 HIGH: resolves one UTF-16 code unit to a glyph through Font vtable+0x40, emits its quad, then advances cursor X by CWDH advance*horizontalScale (or fixed width)."
 0x004D581C,line,F-131 HIGH: normal cursor advance = signed glyph CWDH advance byte (+6) * writer horizontal scale (+0x24).
 0x004D5858,func,"F-140 static: R0=TextWriter; writer+0x40 is the persistent font/GPU context. The routine clears context+0xE4, configures texture/shader/attribute state, calls sub_4D54B4, then prepares immediate/batch text drawing. Live call-site capture is pending."
-0x004D5BCC,func,[ACNL-F0763] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. NOP;BX LR empty destructor used after TextWriter lifetime in5E9430/4BAFB0/4BB1E8. Does not free text batch or font.
+0x004D5BCC,func,"[ACNL-F0775] MEDIUM/static: typed storage and verified member offsets in local_types.h; no IDB used. 
+[ACNL-F0763] MEDIUM; static original instructions and independent producer/consumer/vtable evidence. NOP;BX LR empty destructor used after TextWriter lifetime in5E9430/4BAFB0/4BB1E8. Does not free text batch or font."
 0x004D5C9C,func,"[ACNL-F0698] MEDIUM/static reanalysis: existing GetDrawCtxForList name is misleading. R0=Drawer; writes S0,S1,S2,0 to +0x74..+0x80 and returns that address. Sole direct caller 0x5683A8 passes stereo offset, LayoutMgr+0x350,0. This updates c4 before projection-uniform emission; initialization zeros do not persist necessarily. Shader effect/hardware values unverified."
 0x004D5C9C,line,"[ACNL-F0698] MEDIUM/static reanalysis: existing GetDrawCtxForList name is misleading. R0=Drawer; writes S0,S1,S2,0 to +0x74..+0x80 and returns that address. Sole direct caller 0x5683A8 passes stereo offset, LayoutMgr+0x350,0. This updates c4 before projection-uniform emission; initialization zeros do not persist necessarily. Shader effect/hardware values unverified."
 0x004D5C9C,repeatable,"[ACNL-F0698] MEDIUM/static reanalysis: existing GetDrawCtxForList name is misleading. R0=Drawer; writes S0,S1,S2,0 to +0x74..+0x80 and returns that address. Sole direct caller 0x5683A8 passes stereo offset, LayoutMgr+0x350,0. This updates c4 before projection-uniform emission; initialization zeros do not persist necessarily. Shader effect/hardware values unverified."
