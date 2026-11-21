@@ -778,4 +778,4 @@
 | ACNL-F0773 | InstSelect8の一覧操作欄と埋込み部品 | MEDIUM | A | active |  |  |
 | ACNL-F0774 | CommonScrollBarの実体境界とドラッグ用の欄 | MEDIUM | A | active |  |  |
 | ACNL-F0775 | TextWriterの100バイト実体と書体倍率設定 | MEDIUM | A | active |  |  |
-| ACNL-F0776 | CommonScrollBarの開始フレームのドラッグ抑止フラグ | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0776 | CommonScrollBarの開始フレームのドラッグ抑止フラグ | MEDIUM | A | active |  |  |

@@ -110,4 +110,4 @@
 | ACNL-F0773 | InstSelect8の一覧操作欄と埋込み部品 | InstSelect8の4812B境界を保ち、Layout・UiAnim・CommonScrollBarと一覧操作用の欄を型付けした。先頭行は埋込みscroll_bar.top_rowであり、行の語はvt[25]から取得する。 | MEDIUM | A |  |  |
 | ACNL-F0774 | CommonScrollBarの実体境界とドラッグ用の欄 | CommonScrollBarは1944B（0x798）。埋込みLayoutは+0x24C、ドラッグ中の旗は+0x6FA、入力モードは+0x744。先頭行と最大値は+0x71C/+0x720である。 | MEDIUM | A |  |  |
 | ACNL-F0775 | TextWriterの100バイト実体と書体倍率設定 | nw::font::TextWriterは100B（0x64）。書体は+0x3C、倍率floatは+0x24/+0x28。RecomputeScaleは要求する幅・高さをS0/S1で受け、書体の固有寸法で割る。 | MEDIUM | A |  |  |
-| ACNL-F0776 | CommonScrollBarの開始フレームのドラッグ抑止フラグ | CommonScrollBar+0x6FBは1の間、そのUpdate内の通常ドラッグ更新を抑止し、次のUpdate冒頭で消される。drag_blocked_this_frameとして1バイト整数で定義する。 | MEDIUM | 未記入 |  |  |
+| ACNL-F0776 | CommonScrollBarの開始フレームのドラッグ抑止フラグ | CommonScrollBar+0x6FBは1の間、そのUpdate内の通常ドラッグ更新を抑止し、次のUpdate冒頭で消される。drag_blocked_this_frameとして1バイト整数で定義する。 | MEDIUM | A |  |  |
