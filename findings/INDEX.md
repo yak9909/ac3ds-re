@@ -6,7 +6,7 @@
 
 | scope | 件数 | active |
 |---|---|---|
-| acnl | 774 | 687 |
+| acnl | 775 | 688 |
 | hhd | 20 | 9 |
 | 3ds | 0 | 0 |
 
@@ -27,7 +27,7 @@
 | acnl | system | 59 |
 | acnl | text | 63 |
 | acnl | time | 2 |
-| acnl | ui | 34 |
+| acnl | ui | 35 |
 | hhd | input | 1 |
 | hhd | item | 4 |
 | hhd | render | 2 |
@@ -1325,6 +1325,7 @@
 - ACNL-F0773 InstSelect8の一覧操作欄と埋込み部品
 - ACNL-F0774 CommonScrollBarの実体境界とドラッグ用の欄
 - ACNL-F0775 TextWriterの100バイト実体と書体倍率設定
+- ACNL-F0776 CommonScrollBarの開始フレームのドラッグ抑止フラグ
 - HHD-F0001 慣性と、選択枠・ボタンの縞の合成（2026-10-05、MEDIUM〜HIGH: 静的 + HHD のスクショ 2 枚で合成の意味を照合）
 - HHD-F0002 髪のページ送り — ドラッグ・弾き・滑りの規則（2026-10-05、MEDIUM: 静的のみ。定数はすべて逆アセンブルの即値・リテラル）
 - HHD-F0003 髪・目の形の番号 → モデルのファイル（2026-10-05、MEDIUM: 静的のみ。ACNL のファイル名と照合）
@@ -1440,7 +1441,7 @@
 - acnl_jpn_v15 0x0028E89C: ACNL-F0147, ACNL-F0150, ACNL-F0151, ACNL-F0152
 - acnl_jpn_v15 0x0028FE0C: ACNL-F0151, ACNL-F0154, ACNL-F0157
 - acnl_jpn_v15 0x0028FE24: ACNL-F0145, ACNL-F0151
-- acnl_jpn_v15 0x00298664: ACNL-F0722, ACNL-F0766, ACNL-F0774
+- acnl_jpn_v15 0x00298664: ACNL-F0722, ACNL-F0766, ACNL-F0774, ACNL-F0776
 - acnl_jpn_v15 0x002987A8: ACNL-F0766, ACNL-F0774
 - acnl_jpn_v15 0x0029915C: ACNL-F0722, ACNL-F0774
 - acnl_jpn_v15 0x002993E4: ACNL-F0427, ACNL-F0774
@@ -2014,4 +2015,4 @@
 - acnl/sound: 11件
 - acnl/system: 59件
 - acnl/text: 63件
-- acnl/ui: 34件
+- acnl/ui: 35件
