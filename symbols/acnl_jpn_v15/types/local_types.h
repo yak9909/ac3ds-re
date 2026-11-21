@@ -1779,8 +1779,13 @@ enum MemOp
 };
 
 // type: MenuFlags
+/// [ACNL-F0771] MEDIUM; static map producer/tab consumer evidence, no hardware.
+/// Map* includes room/subscreen and no-map completion paths; these are not pointer-presence bits.
 enum __bitmask MenuFlags
 {
+  MenuFlags_MapEnterStarted = 0x1,
+  MenuFlags_MapEnterDone = 0x2,
+  MenuFlags_MapOutDone = 0x4,
   MenuFlags_EnterStarted = 0x8,
   MenuFlags_EnterDone = 0x10,
   MenuFlags_CloseRequested = 0x20,
