@@ -3380,7 +3380,8 @@ struct CommonScrollBar
   unsigned __int8 input_disabled; ///< +0x6F8: 299E40 setter; controller flags bit8 at 6DC
   unsigned __int8 unk_6F9[1];
   unsigned __int8 drag_active; ///< +0x6FA: 2982F8=1; 2997BC=0; 298674 gate
-  unsigned __int8 unk_6FB[33];
+  unsigned __int8 drag_blocked_this_frame; ///< +0x6FB: [ACNL-F0776] MEDIUM; 2990E0=1; 29867C..84 skips drag; 299C54..5C clears at next Update
+  unsigned __int8 unk_6FC[32];
   int top_row; ///< +0x71C: 2987B0 store; signed clamp at 2987BC..D4
   int max_top_row; ///< +0x720: 299AD4..AF0 max(0,N-V+1); SetPos clamp
   float row_offset; ///< +0x724: 299440/444 remainder; 29886C clears
