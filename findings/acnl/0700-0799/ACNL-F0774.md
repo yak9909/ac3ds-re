@@ -12,7 +12,7 @@ addresses: [0x299FE8, 0x298664, 0x2987A8, 0x299910, 0x298BA8, 0x2993E4, 0x299590
 tags: []
 supersedes: []
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
-by: auto
+by: gpt-6.1-sol
 original_by: ""
 reviewed_by: []
 state: active            # active / consolidated / superseded / duplicate

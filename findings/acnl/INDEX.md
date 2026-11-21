@@ -775,6 +775,6 @@
 | ACNL-F0770 | vc_MENU_FLAGS の 0x08/0x10/0x20 の意味と ButtonActionControl_GetDecidedIndex の戻り値 | MEDIUM | A | active |  |  |
 | ACNL-F0771 | MenuFlags 下位三ビットは地図側の入場開始・完了・退場完了を通知し、状態7は0x02を待つ | MEDIUM | A | active |  |  |
 | ACNL-F0772 | 地図復帰を省いた終了経路のフラグ残留と、タブ状態6・18・7の待機条件 | MEDIUM | A | active |  |  |
-| ACNL-F0773 | InstSelect8の一覧操作欄と埋込み部品 | MEDIUM | 未記入 | active |  |  |
-| ACNL-F0774 | CommonScrollBarの実体境界とドラッグ用の欄 | MEDIUM | 未記入 | active |  |  |
-| ACNL-F0775 | TextWriterの100バイト実体と書体倍率設定 | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0773 | InstSelect8の一覧操作欄と埋込み部品 | MEDIUM | A | active |  |  |
+| ACNL-F0774 | CommonScrollBarの実体境界とドラッグ用の欄 | MEDIUM | A | active |  |  |
+| ACNL-F0775 | TextWriterの100バイト実体と書体倍率設定 | MEDIUM | A | active |  |  |
