@@ -21,3 +21,13 @@
 - 今回のaudit: `A:/Disassemble/ac3ds-workspace/_local/py/Scripts/python.exe -B tools/audit.py`。上限1200秒で1回実行。終了コード0、1054ファイル、問題0件。
 - 正式化コマンド・lint・auditはすべて終了状態を回収済み。
 - git/ghの直接実行・gitへの書き込み・IDA/IDB操作は行っていない。作業ツリー外への書き込みを指定する操作は行っていない。
+
+## 深い検証後の修正
+- 依頼された各点をall_functions.txtで再確認した。
+- F0771の0x01解除欄から0x22556Cを削除。0x225690のTST #1と0x225694のBNEにより、0x01が既に0の時だけ0x02を補う。0x225698のBIC #1は立っている0x01を落とす経路ではない。
+- manager+488は部屋メニューBsMenuRoomMgr（命令byte_949D29）と明記。地図manager+484（byte_949D25）と完了通知を共有することをF0771・MenuFlagsコメントに追記。
+- 0x6D4CB4の地図退場命令／地図なし完了と部屋メニュー退場命令の分岐、0x22556Cの状態名、0x225778の+488クリア、0x6D1E14の生成・命令処理を確認。
+- 地図なし分岐で0x04を立てる0x1A0C64・0x1A0F80・0x6D6440の3例を追加。F0772、列挙名と値、F0756は変更していない。
+- 今回の書き出し抜粋: _local/evidence/154/review_followup_exports.txt。
+- 検査: A:/Disassemble/ac3ds-workspace/_local/py/Scripts/python.exe -B tools/kb.py lint。終了コード0、791件の記録、エラー・警告なし。
+- 今回はauditを実行していない。gitへの書き込み・IDA/IDB操作なし。
