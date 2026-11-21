@@ -199,7 +199,8 @@ Vapecord Game::SetCurrentTime (USA 0x95D508) はここへ差分を加算する�
 他地域: USA=0095D508  EUR=0095C500  KOR=00955500
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x00957B34,line,IDA-opus-5.5-F017: 属性コードの衝突分類表（255 B）。FieldAttr_CollisionClass 0x5CD3C0 が引く。
-0x00957ED4,repeatable,"Vapecord plugin ADDRESSES: DATAPOINTER
+0x00957ED4,repeatable,"[ACNL-F0777] MEDIUM/static: void * message_data object; load value into R0 for vc_NPC_2_SETUP; destructor clears global.
+Vapecord plugin ADDRESSES: DATAPOINTER
 他地域: USA=0095EEDC  EUR=0095DED4  KOR=00956ED4
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x00958114,repeatable,"Vapecord plugin ADDRESSES: CHATPOINT

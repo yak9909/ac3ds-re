@@ -488,11 +488,16 @@ IDA-gpt-6-F009 / GPT-6 (MEDIUM): Touch repeat independently confirms control216 
 0x002F62C8,func,"IDA-gpt-6-F009 / GPT-6 additional timing/memory fix (2026-10-12, MEDIUM): ButtonActionControl_HandInput. Original ARM + RTTI/caller/state-table corroboration. Native child outer exit uses996; pocket exit uses active animation pointer1988 and native unbind/idle. Parent leave waits both before Actor_RequestDestroy. DragControl finish retains selection in hand mode but clears decided and returns native wait. Hand/touch repeat uses counters216/threshold220 (11 then3). Owned search accelerates only exit/page animations and completes parent page wait same Calc. Source ERROR2/STAGE1 = 5MiB engine allocation failure; free search metadata/capacity before reopening. Evidence docs/topics/closet_followup_design.md and work/evidence/gohan_closet_followup/static_timing.json; new hardware behavior unverified.
 [ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。2F62C8..thisの入力・選択node・反復カウンタを更新。ButtonActionControl vtable+20。返りR0は分岐で不統一。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。"
 0x002F6694,func,"IDA-gpt-6-F013: Deciding state advances source anim via vt+48 while vt+44 reports unfinished; on completion sets flag+212 bit1, dispatches control completion and node vt+40. Native list wait cleanup can then run and T016 restore the blue decide endpoints; prior artificial decided-bit fixture did not test A entry."
+0x002F6694,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
 0x002F6810,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Touch dispatch occurs when TouchState+0 OR previousHeld(+26) is set, so release is meaningful; copying only the current held flag loses the native release path."
+0x002F6810,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
 0x002F6AE4,func,"IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). Clears control source+180 via node vt+28 SetTouch(0), then pointer0. This resets touch/select, so restoring decide endpoints alone requires explicit previous-row cleanup on movement."
+0x002F6AE4,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
+0x002F6B1C,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
 0x002F6C28,func,"IDA-gpt-6-F013: Real A decision entry for BAC. Source at +180 must be selected node; calls node StartDecide, sets flags+212 bit2 and PMF+184 to StateDecideAnim 0x2F6694. Node StartDecide alone cannot publish completion. T016 queues acquisition immediately and suppresses its duplicate at animation completion.
 [ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。2F6C28..選択nodeのStartDecide、+D4 bit1と+B8のPMFを書込。ButtonActionControlのvirtual+2Cから呼ばれ、2F62C8の入力処理では戻りを消費しない。29B620は同じthisでの末尾呼出。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。"
 0x002F6E78,func,"IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original ARM + actual DragIconControl vtable/callers and CPU fixture). Clears active nodes' vt+28 touch state, then source+180=0; no state/decision-bit transition itself. Resource fixture must execute native29BAB4/2F72C4 to test click cleanup: prior closet timing fixture replaced29BAB4 and left native-looking flags stale."
+0x002F6E78,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
 0x002F72C4,func,"IDA-gpt-6-F011 (MEDIUM: original ARM + control vtable/independent 1B0698 caller). On decided flags, invokes control vt+52 (clears source touch via node vt+28), clears source+180/flags212 bits0..1 and returns state Wait. Retapping native selected row therefore clears the row's selected-color animations unless owner restores them.
 [ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。2F72CCでflags、2F72EC..7308に選択ptr/flags/PMFを戻す。1B078C等でR0不使用。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。"
 0x002F75CC,line,"現在の部屋 ID を返す。実体は g_CurrentRoomId(0x95133A) を読むだけ (F-55)。
@@ -517,8 +522,10 @@ IDA-gpt-6-F009 / GPT-6 (MEDIUM): Touch repeat independently confirms control216 
       FieldObj_ResolveAxeAction の Room_HasFlags(32, ...)"
 0x002F7744,func,"IDA-gpt-6.1-sol-F015 incidental check: dispatch PMF stored at object+184/+188. Owner/class/input purpose remains unresolved; not evidence of X gating. Preserve name; next verify RTTI/constructors before class rename.
 IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Confirmed dispatcher of ButtonActionControl state PMF at+184/+188; existing RTTI-based name retained."
+0x002F7744,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
 0x002F7B04,line,IDA-opus-5.5-F036: ButtonActionControl ctor。+212 bit0=決定済み(+180=決定した行ボタン、その+200=行番号) / bit3=入力処理を飛ばす。十字は BsMenuMgr(off_949D4C)+508 と手カーソル+500
-0x002F7B04,repeatable,IDA-opus-5.5-F036: ButtonActionControl ctor。+212 bit0=決定済み(+180=決定した行ボタン、その+200=行番号) / bit3=入力処理を飛ばす。十字は BsMenuMgr(off_949D4C)+508 と手カーソル+500
+0x002F7B04,repeatable,"[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
+IDA-opus-5.5-F036: ButtonActionControl ctor。+212 bit0=決定済み(+180=決定した行ボタン、その+200=行番号) / bit3=入力処理を飛ばす。十字は BsMenuMgr(off_949D4C)+508 と手カーソル+500"
 0x002F836C,line,"Mem_ZeroFill(dst, bytes) = Mem_WordFill(dst, bytes, 0)。"
 0x002F836C,repeatable,"Mem_ZeroFill(dst, bytes) = Mem_WordFill(dst, bytes, 0)。"
 0x002F8370,line,"Mem_WordFill(dst, bytes, value) — ワード単位 memset。

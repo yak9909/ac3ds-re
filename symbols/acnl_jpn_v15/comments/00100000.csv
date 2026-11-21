@@ -182,7 +182,8 @@ IDA-gpt-6.1-sol-F011 / T022 fix8 / 2026-10-09。MEDIUM。R0=件数/R1=id出力�
 0x001280B4,line,"GpuCmd_Advance(bytes) — g_GpuCmdPtr を bytes 進めて新しい値を返す (F-95)。
   g_GpuCmdPtr += bytes; return g_GpuCmdPtr;
 コマンド領域の予約に使われる最小プリミティブ。"
-0x001280B4,repeatable,"GpuCmd_Advance(bytes) — g_GpuCmdPtr を bytes 進めて新しい値を返す (F-95)。
+0x001280B4,repeatable,"[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
+GpuCmd_Advance(bytes) — g_GpuCmdPtr を bytes 進めて新しい値を返す (F-95)。
   g_GpuCmdPtr += bytes; return g_GpuCmdPtr;
 コマンド領域の予約に使われる最小プリミティブ。"
 0x001280CC,line,"★★GpuCmd_SplitAndSubmit() — 現在のコマンドリストを終端して提出 (F-96 / F-99 / F-201)
@@ -869,12 +870,15 @@ IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent calle
 0x001AF858,repeatable,"IDA-opus-5.5-F041: (list,new,old) slots = index - top(+2368), 0..7. P_slct_00 removed; old row: vt+32(0) = +215=0, select frame 0; new row: +215=1, touch_ok+select_ok at last frame on G_list_XX, then P_slct_00 PrependChild to N_list_XX (drawn behind the row text)."
 0x001AF9A0,line,"IDA-opus-5.5-F041: loads <layout>_touch/_select/_touch_ok/_select_ok (ButtonActionControl), row nodes = N_list_XX pane + G_list_XX group; select_ok last frame on G_slct_00 (P_slct_00 alpha 255), then P_slct_00 removed from parent (no selection)."
 0x001AF9A0,repeatable,"IDA-opus-5.5-F041: loads <layout>_touch/_select/_touch_ok/_select_ok (ButtonActionControl), row nodes = N_list_XX pane + G_list_XX group; select_ok last frame on G_slct_00 (P_slct_00 alpha 255), then P_slct_00 removed from parent (no selection)."
+0x001B0288,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
 0x001B0314,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Input lock list+2513 maps to BAC+212 bit3; BAC update runs before SelectBase state PMF. This orders touch/decision animation before vt[24] consumes the result."
+0x001B0314,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
 0x001B0698,func,"IDA-gpt-6-F003 (MEDIUM, static ARM + independent source/caller/previous evidence; 2026-10-12): Reads BAC(+2560) decision bit before clearing it (0x1B078C); selected index alone does not distinguish re-deciding the current row. A wrapping vt[24] must observe IsDecided before this method. Row index + scroll top -> +2792 and +2380.
 IDA-gpt-6-F010 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/RTTI/source/vendor/ARM1176 fixture; hardware unverified). Native highlighted row disabled atnode+217, even every idle calc. F010 owned GameList reenables it and tracks separate touch-selected row: first tap focus only, same-row retap action. Native A uses StartDecide, giving both animations/sound. Foreign lists unchanged. Evidence docs/topics/inventory_controls_design.md, work/evidence/gohan_inventory_controls.
 IDA-gpt-6-F011 supersedes F010 separate touch-armed policy per user hardware report: current selected row (including DPad/programmatic focus) executes on one touch; first touch of another row only focuses. Native WaitCalc deselects old row, then ClearDecided resets touched row Touch/Select, clearing color even when row unchanged. Owned GameList captures previous+2792, restores node vt+28 touch/select visual after native cleanup, then enables+217.
 IDA-gpt-6-F012 / GPT-6 (2026-10-13, MEDIUM: original JPN ARM + independent caller/vtable/source; hardware pending). F012 supersedes F011 vt+28 color restoration: keep blue using decide endpoints112/152, and clear prior owned node's touch/select/decide animations on touch selection/row reuse. Current-selected one-touch execution and native StartDecide feedback remain.
 [ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。1B0698でthis+A00をIsDecidedへ、1B078CでClearDecided。29ED10の戻りを使わず次操作。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。"
+0x001B07D8,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
 0x001B169C,func,IDA-gpt-6.1-sol-F005 / MEDIUM: 家記録+0x4で外観オブジェクトのデータ取得先を選ぶ。0なら0x1BCF74（tent、引数1）、1〜6なら0x1BD43C（my_house、種別が番号）、7以上なら0x1BD6F4（+0x5が番号）。種別8の完全な意味は未確定。
 0x001B1720,line,"IDA-opus-5.5-F001 MEDIUM: 建物の足元テンプレート（Strc/data/<名>.bin）を返す。16x16 マス x 10 B、基点 (行7,列7) = 建物の (x,y)。byte 8 = フィールド属性コード。建設中の予定地だけ別テンプレート。"
 0x001B1720,repeatable,"IDA-opus-5.5-F001 MEDIUM: 建物の足元テンプレート（Strc/data/<名>.bin）を返す。16x16 マス x 10 B、基点 (行7,列7) = 建物の (x,y)。byte 8 = フィールド属性コード。建設中の予定地だけ別テンプレート。"
@@ -929,10 +933,15 @@ IDA-gpt-6-F008 / GPT-6 (2026-10-12, MEDIUM): T011 shared setter hook only owned 
 0x001C513C,func,"[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。1C5144 R7=R1,1C5158 R5=R2。1C51E4にreader保存、1C52C4にheap、21CB14/2B59EC直後CMP R0,#0。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。 heapの具象型は制約されずvoid *。"
 0x001C513C,line,"IDA-opus-5.5-F036: 組み立て(list, holder, heap)。+2524 の段を進め、終われば 1。段0 Layout+in/out / 段1 vt[13]+文字箱 / 段2 N_frame_00+vt[12]+スクロール / 段3 状態表 0x874308"
 0x001C513C,repeatable,"IDA-opus-5.5-F036: 組み立て(list, holder, heap)。+2524 の段を進め、終われば 1。段0 Layout+in/out / 段1 vt[13]+文字箱 / 段2 N_frame_00+vt[12]+スクロール / 段3 状態表 0x874308"
+0x001C55B4,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
 0x001C55F8,line,"IDA-opus-5.5-F039 (MEDIUM static): list clip rect. From N_frame_00 (list+536) global mtx + size: list+356 = 1 (enable), +360/+364 = rotated screen x/y, +368/+372 = w/h. = ssys Layout (list+44) +312.. scissor. Rows outside it are cut (row 7 half hidden)."
 0x001C55F8,repeatable,"IDA-opus-5.5-F039 (MEDIUM static): list clip rect. From N_frame_00 (list+536) global mtx + size: list+356 = 1 (enable), +360/+364 = rotated screen x/y, +368/+372 = w/h. = ssys Layout (list+44) +312.. scissor. Rows outside it are cut (row 7 half hidden)."
+0x001C5660,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
+0x001C58D0,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
 0x001C58F4,func,"[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。1C5900でStateMachine_ChangeTo(this,入場PMF)を呼ぶ。21B914は戻り不使用。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。"
+0x001C59C8,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
 0x001C5A34,func,"[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。1C5A40でStateMachine_ChangeTo(this,退場PMF)を呼ぶ。21BCE0は戻り不使用。 対象クラスの全欄・型の登録を確かめていないためthisはvoid *。"
+0x001C5A58,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
 0x001C86E8,line,FaderMoment::Update — 待ちゼロで即完了 (F-51)。これが「瞬間」フェーダの実体。
 0x001C86E8,repeatable,FaderMoment::Update — 待ちゼロで即完了 (F-51)。これが「瞬間」フェーダの実体。
 0x001CBBA8,func,"IDA-gpt-6.1-sol-F015 MEDIUM: submits wrapper's embedded outer Layout at this+4 to LayoutMgr, screen selected by byte+429. Editor_SubmitLayouts invokes this at editor+660 so outer Layout editor+664. Owner class identity unresolved; preserve sub_ name until RTTI/vtable identity found."
