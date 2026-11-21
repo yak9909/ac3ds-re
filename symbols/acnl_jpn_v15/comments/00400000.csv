@@ -653,8 +653,8 @@ PATCHES/cave_textbox.py。
   （別の boot では「話しかけ直したとき」）。
   **変わらないことを「フックが効いていない」と即断しないこと。"
 0x004BAD78,func,F-133: TextBox alignment bytes are read from textbox+0xFC/+0xFD. Low 2-bit selector maps horizontal flags (0x10/0x20); selector/3 maps vertical flags (0x100/0x200). Exact UI enum names remain to be dynamically validated.
-0x004BAD78,line,"F-131 HIGH: copies nw::lyt::TextBox state into a 0x64-byte nw::font::TextWriter. TextBox+0xE0 font, +0xE4/+0xE8 requested font size, +0xEC char spacing, +0xF0 line spacing, +0x48 pane width."
-0x004BAD78,repeatable,"F-131 HIGH: copies nw::lyt::TextBox state into a 0x64-byte nw::font::TextWriter. TextBox+0xE0 font, +0xE4/+0xE8 requested font size, +0xEC char spacing, +0xF0 line spacing, +0x48 pane width.
+0x004BAD78,line,"F-131 HIGH: copies nw::lyt::TextBox state into a 0x64-byte nw::font::TextWriter. TextBox+0xE0 font, +0xE4/+0xE8 requested font size, +0xEC line spacing, +0xF0 char spacing, +0x48 pane width."
+0x004BAD78,repeatable,"F-131 HIGH: copies nw::lyt::TextBox state into a 0x64-byte nw::font::TextWriter. TextBox+0xE0 font, +0xE4/+0xE8 requested font size, +0xEC line spacing, +0xF0 char spacing, +0x48 pane width.
 IDA-gpt-6.1-sol-F004 / MEDIUM追補: TextBox+0xFCは位置寄せ（mod3=水平、div3=垂直）、+0xFD=行寄せ。資源+0x54/+0x55をCtor0x4BB36C/0x4BB374がそのまま写す。中央位置=4、中央行=2。TextBox+0x48をTextWriter+0x4Cへ写して折返し幅とする。名前の窓だけ拡幅しても文字の折返しは変わらない。"
 0x004BADBC,line,F-131 HIGH: TextBox pane width (+0x48) -> TextWriter wrap limit (+0x4C). Pane height is not copied into the writer.
 0x004BAFB0,func,"F-143 static: initializes local TextWriter, stores TextBox+0x104 into writer+0x44 (batch buffer), configures font/size/spacing, resets batch via sub_4D5194, then calls sub_7E7F48. writer+0x40 remains zero on this path; no immediate texture setup."

@@ -57,7 +57,7 @@ InstSelect8の4812B境界を保ち、Layout・UiAnim・CommonScrollBarと一覧�
 - CatalogBase_Ctor 0x1C5B10..48はLayout、4個のUiAnim、CommonScrollBarを連続構築。SetupStep 0x1C5218/21Cは+2CをBuild、0x1C5254/58と5288/8Cは+178/+1A0へアニメ資源をLoadする。EnterEnter 0x1C55BC..D0は+178を結合しframe0に戻す。
 - 0x7C6EC4..6F08は+AECに28*8、+BCCに224*8を構築し、+220/+9FCにその先頭を保存する。全体4812B境界はF0769の独立した派生ctorとも一致。既存row_layouts/row_nodes/row_countの名前は維持した。
 - +940は独立欄ではない。0x224 + 0x71C = 0x940でありscroll_bar.top_rowとして公開。+944の最大値も同様。重複した直接メンバーを作らない。
-- +9C4は件数、+9C0は再利用行の数。0x1C5414..5438はrows-1と件数をスクロールへ渡す。+9C8は0x1C52F0/F4で行ごとの文字器確保へ渡る容量で、UTF-16列へのpointerではない。
+- +9C4は件数、+9C0は再利用行の数。CatalogBase_Ctorは0x1C5B58 ADD R2,R0,#0x9C0、0x1C5B5C MOV R3,#0xFFFFFFFF、0x1C5B60 STM R2,{R3,R4}で+9C0を−1に初期化する。その後InstSelect8_Ctorの0x7C6EEC MOV R1,#8 / 0x7C6EFC STR R1,[R0,#0x9C0]が8へ上書きする。0x1C5414..5438はrows-1と件数をスクロールへ渡す。+9C8は0x1C52F0/F4で行ごとの文字器確保へ渡る容量で、UTF-16列へのpointerではない。
 - 選択+AE8: 0x1AF8D4 STR R7,[R4,#0xAE8]、独立WaitCalc 0x1B06C0/C4で-1判定、0x1B0724..30で決定行+topを保存。+AE4: SetupRowsがP_slct_00を検索保存、選択側がPrependChildする。
 - +9D0: 0x1C55DCと5688で入退場時1、0x1C59F0/5A80で完了時0。+9D1: 0x1B0320..338がLDRB→ORRNE/BICEQ #8→ButtonActionControlフラグ+AD4へ反映する。独立0x1C56F4はアニメ解除後0にする。
 - 行の語はF0460のvt[25]。旧版ListWordAtも自己の配列から返すだけで、InstSelect8にその配列欄は存在するとの根拠がない。

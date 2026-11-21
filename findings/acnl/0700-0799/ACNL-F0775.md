@@ -38,8 +38,8 @@ nw::font::TextWriterは100B（0x64）。書体は+0x3C、倍率floatは+0x24/+0x
 |0x28|float|scale_y|4D5BAC default1; 4D5200 height/font height|
 |0x3c|void *|font|4BAD80/88 TextBox font; 4D51C4 virtual metrics; abstract Font type undefined|
 |0x4c|float|width_limit|7E84A8 FLT_MAX; 4BADBC pane width; 7E7C38 consumer|
-|0x50|float|line_spacing|4BADB0/B4; 5E947C/80; 7E7D5C consumer|
-|0x54|float|char_spacing|4BADA8/AC; 5E946C/78; 7E7B08 consumer|
+|0x50|float|char_spacing|7E7D58..64 conditional horizontal advance; 7E83A0..AC cursor X|
+|0x54|float|line_spacing|7E7AFC..7E7B48 vertical extent; 8268CC..D8 line advance|
 |0x5c|unsigned int|draw_flags|4BAE74 alignment flags; ctor7E84B0 zero|
 |0x60|NwFontTagProcessor *|tag_processor|7E849C default; 4BADCC override; 7E7BFC dispatch|
 
@@ -50,7 +50,13 @@ nw::font::TextWriterは100B（0x64）。書体は+0x3C、倍率floatは+0x24/+0x
 - +0はvptrではない。0x4D5B7Cは0を書き、+4など色に-1を保存する。別CharWriter型は必須でないため追加しない。TextWriterのraw prefixに含め、基底の範囲+0..4Bをコメントした。
 - ConfigureTextWriter 0x4BAD80/88はTextBox+E0の書体を+3Cへ保存。0x4BADA0は+E4/+E8からS0/S1を読みRecomputeScaleへ。独立MeasureText 0x5E9458..68も同じ手順。
 - RecomputeScale 0x4D51C4..5200は+3Cのfont vt+8/+Cの固有幅高さで要求寸法を割り、0x4D51F4/5200に+24/+28へfloat保存する。倍率そのものを関数へ渡す仕様ではない。直接倍率floatを変える場合の場所は+24/+28。
-- +54=char spacing / +50=line spacing は0x4BADA8..B4と独立0x5E946C..80のコピーが一致。CalcLineRect 0x7E7B08が+54、0x7E7D5Cが+50をfloatとして使う。+4Cは0x4BADBCのpane幅設定と0x7E7C38の幅制限消費で確認。
+- +50=char_spacing（字間）、+54=line_spacing（行間）。意味はコピー元の名前ではなく、独立した縦・横の消費側で判定した。
+  - CalcLineRect 0x7E7AFCのLDR R1,[R1,#0x24] / 0x7E7B00 BLX R1はfontのget_line_feedを呼ぶ。0x7E7B08 VLDR S0,[R5,#0x54]、0x7E7B0C VLDR S2,[R5,#0x28]（scale_y）、0x7E7B28 VMLA.F32 S1,S3,S2から、0x7E7B44/48で矩形の縦（+4/+C）へ保存する。
+  - 独立したGetLineAdvance 0x8268A8もfont vt+0x24を呼び、0x8268CC VLDR S0,[R4,#0x54]、0x8268D0 VLDR S2,[R4,#0x28]、0x8268D8 VMLA.F32 S0,S1,S2で「+54 + lineFeed×scale_y」を返す。
+  - CalcLineRect 0x7E7D58 CMP R7,#0 / 0x7E7D5C VLDRNE S0,[R5,#0x50] / 0x7E7D64 VADDNE.F32 S17,S0,S17は先頭以外の文字で横の送りに+50を加える。独立したDrawString 0x7E8328も+50を条件付きで読み、0x7E83A0..ACのVLDR/VADD/VSTRはカーソルX（+2C）へ+50を加算する。
+  - ConfigureTextWriter 0x4BADA8/ACはTextBox+EC→writer+54（行間）、0x4BADB0/B4はTextBox+F0→writer+50（字間）を写す。旧版DecorLayout.cppの87行のkBoxCharSpace=0xECとkBoxLineSpace=0xF0は名前が逆。407/408行はゲームと同じずれのコピーであり、名前の根拠にはならない。
+  - symbolsの0x4BAD78のF-131コメントにあった「+0xEC char spacing, +0xF0 line spacing」も逆なので「+0xEC line spacing, +0xF0 char spacing」へ訂正した。F0711の「+EC/F0=行間/字間」は正しく、訂正対象ではない。
+- +4Cは0x4BADBCのpane幅設定と0x7E7C38の幅制限消費で確認。
 - +5CはConfigureTextWriter 0x4BAE74が寄せの組合せflagsを設定。+60はCtorの既定processorとConfigureのoverride、CalcLineRect 0x7E7BFCのdispatchで確認。xrefs.tsvも既定processor 0x97C0B4の初期化→Ctorのreadを示す。
 - Dtor 0x4D5BCCはNOP / 0x4D5BD0 BX LR（F0763のAと今回書き出しが一致）。何も解放しない。CalcStringWidthの結果は0x826934..940で矩形right-leftをS0に返す（F0766のABIを維持）。
 - 指定の旧版GameLabel.cppは概算の幅を足す実装でTextWriterを呼ばない。実際の計測例はDecorLayout.cppのMeasureText。そこでの0x74確保の+64以降は独自TagProcessorと倍率控えで、本体ではない。ゲーム0x5E9488..98も末尾processorを別に組む。
@@ -58,6 +64,6 @@ nw::font::TextWriterは100B（0x64）。書体は+0x3C、倍率floatは+0x24/+0x
 ## 反証条件・未確認点
 
 
-+58（既定4）の意味名、raw prefixの色・描画状態、base CharWriterの全メンバー名は保留。fontは抽象Fontの型が未登録のためvoid *（ResFont限定と誤らせない）。実機で自前の呼出・整列制約の限界値は未検証。旧F0711本文の表は+EC/F0を「行間/字間」と書くが、コピー命令と旧版定数は逆順「字間/行間」。表の語順訂正を提案する（旧記録は未変更）。
++58（既定4）はNWのtabWidthに当たる候補（LOW）だが、今回タブ幅としての消費命令は再照合していないため名前を付けない。raw prefixの色・描画状態、base CharWriterの全メンバー名は保留。fontは抽象Fontの型が未登録のためvoid *（ResFont限定と誤らせない）。実機で自前の呼出・整列制約の限界値は未検証。
 
 別ビルド・異なるstride・範囲外アクセスが見つかれば再検討する。

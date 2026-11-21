@@ -3401,7 +3401,7 @@ struct CommonScrollBar
 
 // type: NwFontTextWriter
 #pragma pack(push, 4)
-/// [ACNL-F0775] MEDIUM/static. nw::font::TextWriter storage, 100 B. Natural member alignment 4; observed callers use 8-aligned stack. CharWriter base occupies +0..4B; no vptr at +0. +58 initialized to 4, semantic name withheld. +64 onward belongs to caller/processor, not this object.
+/// [ACNL-F0775] MEDIUM/static. nw::font::TextWriter storage, 100 B. Natural member alignment 4; observed callers use 8-aligned stack. CharWriter base occupies +0..4B; no vptr at +0. +58 initialized to 4: candidate for NW tabWidth (LOW, unnamed). +64 onward belongs to caller/processor, not this object.
 struct NwFontTextWriter
 {
   unsigned __int8 unk_0[36];
@@ -3411,8 +3411,8 @@ struct NwFontTextWriter
   void * font; ///< +0x3C: 4BAD80/88 TextBox font; 4D51C4 virtual metrics; abstract Font type undefined
   unsigned __int8 unk_40[12];
   float width_limit; ///< +0x4C: 7E84A8 FLT_MAX; 4BADBC pane width; 7E7C38 consumer
-  float line_spacing; ///< +0x50: 4BADB0/B4; 5E947C/80; 7E7D5C consumer
-  float char_spacing; ///< +0x54: 4BADA8/AC; 5E946C/78; 7E7B08 consumer
+  float char_spacing; ///< +0x50: 7E7D5C/64 horizontal advance; 7E83A0..AC cursor X
+  float line_spacing; ///< +0x54: 7E7B08/28 vertical extent; 8268CC..D8 lineFeed*scale_y plus spacing
   unsigned __int8 unk_58[4];
   unsigned int draw_flags; ///< +0x5C: 4BAE74 alignment flags; ctor7E84B0 zero
   NwFontTagProcessor * tag_processor; ///< +0x60: 7E849C default; 4BADCC override; 7E7BFC dispatch
