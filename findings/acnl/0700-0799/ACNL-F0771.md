@@ -10,7 +10,7 @@ confidence: "MEDIUM"
 tool: "exports"
 addresses: [0x949D68, 0x2B2720, 0x2B266C, 0x6D0E30, 0x6D1428, 0x22556C, 0x225778, 0x326720, 0x6D67F0, 0x6D6F60, 0x6D701C, 0x6D6AC4, 0x6D4700]
 tags: ["menu", "map", "layout"]
-supersedes: []
+supersedes: [ACNL-F0756]
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
 by: gpt-6.1-sol
 original_by: ""
