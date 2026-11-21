@@ -1779,8 +1779,13 @@ enum MemOp
 };
 
 // type: MenuFlags
+/// [ACNL-F0771] MEDIUM; static map/room-menu producer and tab consumer evidence, no hardware.
+/// Map* shares completion notifications between the map (manager+484, byte_949D25) and BsMenuRoomMgr (manager+488, byte_949D29), including no-map completion paths; these are not pointer-presence bits.
 enum __bitmask MenuFlags
 {
+  MenuFlags_MapEnterStarted = 0x1,
+  MenuFlags_MapEnterDone = 0x2,
+  MenuFlags_MapOutDone = 0x4,
   MenuFlags_EnterStarted = 0x8,
   MenuFlags_EnterDone = 0x10,
   MenuFlags_CloseRequested = 0x20,
