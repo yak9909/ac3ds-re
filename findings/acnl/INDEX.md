@@ -758,7 +758,7 @@
 | ACNL-F0753 | 時計の大域変数は BsTimeBelWindow 本体を指し、時計ペインはその +1760 にある | MEDIUM | A | active |  |  |
 | ACNL-F0754 | CLYT の組み立てとペイン・TextBox・Bounding・Group の名前検索の ABI | MEDIUM | A | active |  |  |
 | ACNL-F0755 | PWorkList の slot13 は WordFix38 の行を使って候補一覧を構築する | MEDIUM | A | active |  |  |
-| ACNL-F0756 | 下画面のタブ・地図・補助画面は別々の命令と状態遷移で制御される | MEDIUM | A | active |  |  |
+| ACNL-F0756 | 下画面のタブ・地図・補助画面は別々の命令と状態遷移で制御される | MEDIUM | A | active |  | 訂正あり |
 | ACNL-F0757 | メニュー要求状態と登録画面リストの先頭は別で、状態3は作成中を表す | MEDIUM | A | active |  |  |
 | ACNL-F0758 | タブ復帰で呼ぶ3関数は音の再開ではなくメニューフローの完了確認と通知 | MEDIUM | A | active |  |  |
 | ACNL-F0759 | 0x12D294 は即時 flush ではなく GPU キャッシュ範囲の登録ラッパである | MEDIUM | A | active |  |  |
