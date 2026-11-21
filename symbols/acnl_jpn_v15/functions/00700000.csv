@@ -182,7 +182,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x007E7E60,228,nwfont_TextWriter_CalcStringRect,,,legacy-idb,,
 0x007E7F48,92,,,,legacy-idb,,
 0x007E7FA4,1252,nwfont_TextWriter_DrawString,,,legacy-idb,,
-0x007E8488,56,nwfont_TextWriter_Ctor,void *__fastcall(void *writer),MEDIUM,legacy-idb,ACNL-F0766,
+0x007E8488,56,nwfont_TextWriter_Ctor,NwFontTextWriter *__fastcall(NwFontTextWriter *writer),MEDIUM,legacy-idb,ACNL-F0766;ACNL-F0775,
 0x007EA690,84,AcFtrCloth_Factory,,,legacy-idb,,
 0x007EAF50,32,BsMenuChest_Factory,AcnlBsMenuChestPrefixF006 *__fastcall(),,legacy-idb,,
 0x007ECF98,32,Factory_AcStrcFieldObj,,,legacy-idb,,

@@ -493,7 +493,8 @@ g_GpuCmdPtr を記録長ぶん進める（＝場所を予約する）。
 **記録したバイト列はここで物理的に主リストへコピーされる。**
 直後の ADD g_GpuCmdPtr, (len - copied) & ~3 はカーソルを進めるだけ。"
 0x007B1138,func,[ACNL-F0734] MEDIUM。byte_AD98D1が0になるまでyield。ただしqword_AD9A38 timeoutでもcallback/returnするため、戻っただけで全完了とはしない。Framework 0x54C5D8が前回listをclearする前に使用。
-0x007C6EB0,func,[ACNL-F0766] [ACNL-F0769] MEDIUM（静的命令列＋呼び元／vtable）。7C6EB4でSelectBase ctor、+AECに28*8、+BCCに224*8の配列を構築。+9C0=8、+220/+9FCを設定してthis返却。1C7A48後派生vptrと+12CC以降。
+0x007C6EB0,func,"[ACNL-F0773] MEDIUM/static: typed storage and verified member offsets in local_types.h; no IDB used. 
+[ACNL-F0766] [ACNL-F0769] MEDIUM（静的命令列＋呼び元／vtable）。7C6EB4でSelectBase ctor、+AECに28*8、+BCCに224*8の配列を構築。+9C0=8、+220/+9FCを設定してthis返却。1C7A48後派生vptrと+12CC以降。"
 0x007C6EB0,line,IDA-opus-5.5-F036 MEDIUM: InstSelect<8> ctor (4812 B). ゲーム共通の 8 行リスト。純粋仮想 vt[13]=一覧を作る(件数+2500) / vt[25]=i 行目の語(vt[3] が UTF-16)。docs/topics/game_list.md
 0x007C6EB0,repeatable,IDA-opus-5.5-F036 MEDIUM: InstSelect<8> ctor (4812 B). ゲーム共通の 8 行リスト。純粋仮想 vt[13]=一覧を作る(件数+2500) / vt[25]=i 行目の語(vt[3] が UTF-16)。docs/topics/game_list.md
 0x007C847C,line,"IDA-opus-5.5-F086 (MEDIUM, static): head slot double buffer step. cur = [data+36]&1, loaded keys data+64+20*cur, pending key +40, loading flags +60/+61/+62. Key mismatch -> load into the other buffer (PlayerHeadSlot_LoadStep) then ++[data+36]. gohan PlayerClone::ReloadRealFace breaks byte 0 of the current key (0xFE) to force a reload with new face slots."
@@ -510,7 +511,8 @@ g_GpuCmdPtr を記録長ぶん進める（＝場所を予約する）。
 0x007E8378,line,F-131 HIGH: load wrap limit (writer+0x4C) and compare it with accumulated scaled line width.
 0x007E8388,line,"F-131 HIGH: when accumulated width exceeds the limit, synthesize U+000A/newline and re-enter the line-layout path."
 0x007E83B8,line,F-131 HIGH: obtain Font linefeed through vtable+0x4C; scaled by writer vertical scale and applied to the cursor. There is no pane-height comparison.
-0x007E8488,func,[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。7E848CでCharWriter ctor、+4C..60初期化。4B497Cの戻りからF8を引き、4BAFC4はSP上64Bへ。 TextWriterの全体型未登録のためvoid *。旧版は0x74Bを予約するが、ゲームのローカルwriterとコピー範囲は0x64B。
+0x007E8488,func,"[ACNL-F0775] MEDIUM/static: typed storage and verified member offsets in local_types.h; no IDB used. 
+[ACNL-F0766] MEDIUM（静的命令列＋呼び元／vtable）。7E848CでCharWriter ctor、+4C..60初期化。4B497Cの戻りからF8を引き、4BAFC4はSP上64Bへ。 TextWriterの全体型未登録のためvoid *。旧版は0x74Bを予約するが、ゲームのローカルwriterとコピー範囲は0x64B。"
 0x007EA690,func,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: profile0xCDのfactory。descriptor0x94E964の実名AcFtrCloth、8 B ctor/destructor表0x950424のctorポインタで照合。服/ワンピースの通常・壁対はItem.bin家具族30で同じprofileへ。派生実体/描画は未ロードCROのstub0x15048C以降で未確認。
 0x007EAF50,func,"IDA-gpt-6-F006 (MEDIUM; original ARM/caller/RTTI/data-table corroboration; hardware unverified, 2026-10-12): Allocates 38708 bytes then Chest ctor; registry entry 0x950F3C points here. RTTI/vtable ctor corroboration; ordinary menu61 vs Warehouse137 chosen later."
 0x007ECF98,line,"IDA-opus-5.5-F004: profile 0x80 AcStrcFieldObj factory: new 0x254 then ModuleOutdoor ctor via import veneer 0x1507CC (static.crs anonymous import, CRO seg0 0x00B28D98 at convenience base)."

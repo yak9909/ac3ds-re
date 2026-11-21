@@ -220,6 +220,8 @@ struct ScriptWordFix38;
 struct SeadControllerMgrPrefix;
 struct ArcResAccReader;
 struct InstSelect8;
+struct CommonScrollBar;
+struct NwFontTextWriter;
 
 // type: ACNL_BbsPost
 #pragma pack(push, 2)
@@ -3362,18 +3364,90 @@ struct ArcResAccReader
 };
 #pragma pack(pop)
 
-// type: InstSelect8
+// type: CommonScrollBar
 #pragma pack(push, 4)
-/// [ACNL-F0769] MEDIUM: object size 4812 B. Unverified fields remain unk_. Pointers to undefined object/array element types remain void *.
-struct InstSelect8
+/// [ACNL-F0774] MEDIUM/static. Size 0x798, bounded by CatalogBase next field. +6FB: UpdateDrag suppresses when 1; Update clears each frame; exact role unknown. +6DC is nested controller flags (bit 8 input lock). Unnamed callback and geometry fields remain raw.
+struct CommonScrollBar
 {
-  void *vptr;
-  unsigned __int8 unk_4[540];
-  void *row_layouts;
-  unsigned __int8 unk_224[1948];
-  int row_count;
-  unsigned __int8 unk_9C4[56];
-  void *row_nodes;
-  unsigned __int8 unk_A00[2252];
+  void * vptr; ///< +0x0: 299FF0/FF4; vt[4] takes local point
+  ArcResAccReader arc_reader; ///< +0x4: 299FF8; F0768
+  SsysMaLayoutNode layout; ///< +0x24C: 29A000 ctor; 2986D4/D8 touch transform
+  UiAnim select_anim; ///< +0x398: 299958/95C select resource
+  UiAnim touch_anim; ///< +0x3C0: 299968/96C touch resource
+  UiAnim kind_anim; ///< +0x3E8: 299978/97C kind resource
+  UiAnim ng_anim; ///< +0x410: 299988/98C ng resource
+  unsigned __int8 unk_438[704];
+  unsigned __int8 input_disabled; ///< +0x6F8: 299E40 setter; controller flags bit8 at 6DC
+  unsigned __int8 unk_6F9[1];
+  unsigned __int8 drag_active; ///< +0x6FA: 2982F8=1; 2997BC=0; 298674 gate
+  unsigned __int8 unk_6FB[33];
+  int top_row; ///< +0x71C: 2987B0 store; signed clamp at 2987BC..D4
+  int max_top_row; ///< +0x720: 299AD4..AF0 max(0,N-V+1); SetPos clamp
+  float row_offset; ///< +0x724: 299440/444 remainder; 29886C clears
+  unsigned __int8 unk_728[28];
+  unsigned __int8 input_mode; ///< +0x744: 299194/198=2 touch; 29931C/338=3 hand
+  unsigned __int8 unk_745[3];
+  float row_pitch; ///< +0x748: 299998/9A4; 299414/41C divide
+  unsigned int row_limit; ///< +0x74C: 2999C4/C8 rows-1; CalcKnob uses row_limit-1
+  unsigned int item_count; ///< +0x750: 2999A8/9B4; CalcKnob division
+  unsigned __int8 unk_754[12];
+  void * callback_context; ///< +0x760: 29A10C stores ctor R1; 29950C loads before callback
+  NwLytPane * knob_pane; ///< +0x764: 2995A4 N_btn_00; 2987E0/8818 translate
+  unsigned __int8 unk_768[32];
+  NwLytPane * all_pane; ///< +0x788: 299634 N_All; 299B2C/B44 visible
+  unsigned __int8 unk_78C[12];
 };
 #pragma pack(pop)
+
+// type: NwFontTextWriter
+#pragma pack(push, 4)
+/// [ACNL-F0775] MEDIUM/static. nw::font::TextWriter storage, 100 B. Natural member alignment 4; observed callers use 8-aligned stack. CharWriter base occupies +0..4B; no vptr at +0. +58 initialized to 4: candidate for NW tabWidth (LOW, unnamed). +64 onward belongs to caller/processor, not this object.
+struct NwFontTextWriter
+{
+  unsigned __int8 unk_0[36];
+  float scale_x; ///< +0x24: 4D5BA8 default1; 4D51F4 width/font width
+  float scale_y; ///< +0x28: 4D5BAC default1; 4D5200 height/font height
+  unsigned __int8 unk_2C[16];
+  void * font; ///< +0x3C: 4BAD80/88 TextBox font; 4D51C4 virtual metrics; abstract Font type undefined
+  unsigned __int8 unk_40[12];
+  float width_limit; ///< +0x4C: 7E84A8 FLT_MAX; 4BADBC pane width; 7E7C38 consumer
+  float char_spacing; ///< +0x50: 7E7D5C/64 horizontal advance; 7E83A0..AC cursor X
+  float line_spacing; ///< +0x54: 7E7B08/28 vertical extent; 8268CC..D8 lineFeed*scale_y plus spacing
+  unsigned __int8 unk_58[4];
+  unsigned int draw_flags; ///< +0x5C: 4BAE74 alignment flags; ctor7E84B0 zero
+  NwFontTagProcessor * tag_processor; ///< +0x60: 7E849C default; 4BADCC override; 7E7BFC dispatch
+};
+#pragma pack(pop)
+
+// type: InstSelect8
+#pragma pack(push, 4)
+/// [ACNL-F0773] MEDIUM/static. Size 4812 B (F0769). top_row is scroll_bar.top_row, absolute +0x940. Row words are obtained via vt[25], not stored in a verified member. +0xAB4: legacy reads controller+0xB4 to compare an acquired node; exact role/type not verified (2F7234 stores node, 2F72F0 clears). +0xAEC: 8*28B row-layout storage; +0xBCC: 8*224B node storage; left raw.
+struct InstSelect8
+{
+  void * vptr; ///< +0x0: F0769
+  unsigned __int8 unk_4[40];
+  SsysMaLayoutNode layout; ///< +0x2C: 1C5B10 ctor; 1C5218/21C build
+  UiAnim enter_anim; ///< +0x178: 1C5254/258; 1C55BC..D0 bind/start
+  UiAnim leave_anim; ///< +0x1A0: 1C5288/28C; CatalogBase ctor
+  unsigned __int8 unk_1C8[80];
+  NwLytPane * frame_pane; ///< +0x218: 1C5374/37C N_frame_00; 1C55F8 consumer
+  void * row_messages; ///< +0x21C: 1C52C0..CC alloc row_count*196; 1B02D8..F4 consumer; element type undefined
+  void * row_layouts; ///< +0x220: F0769; 28B elements, +C pane, +10..18 position
+  CommonScrollBar scroll_bar; ///< +0x224: 1C5B48 ctor; 1C5434/438 init
+  unsigned __int8 scroll_kind; ///< +0x9BC: 1C5B54 default2; 1C5354 init kind
+  unsigned __int8 unk_9BD[3];
+  int row_count; ///< +0x9C0: F0769=8, number of reusable rows
+  int item_count; ///< +0x9C4: 1C5424..30 init N; 1C5518 refresh count
+  unsigned int text_capacity; ///< +0x9C8: 1C52F0..F4 alloc message buffer; ctor1C5B6C=0
+  float row_pitch; ///< +0x9CC: 1C53B0..BC row0.y-row1.y; scroll init
+  unsigned __int8 animation_active; ///< +0x9D0: 1C55DC/5688 set on transition; 1C59F0/5A80 clear
+  unsigned __int8 input_disabled; ///< +0x9D1: 1B0320..338 maps to controller bit8; 1C56F4 clear
+  unsigned __int8 unk_9D2[42];
+  void * row_nodes; ///< +0x9FC: F0769; 1AF898..B0 224B stride
+  unsigned __int8 unk_A00[228];
+  NwLytPane * selection_pane; ///< +0xAE4: 1AFC38/40 P_slct_00; 1AF958..968 prepend
+  int selected_index; ///< +0xAE8: 1AF8D4 new index; 1B06C0/C4 -1 sentinel
+  unsigned __int8 unk_AEC[2016];
+};
+#pragma pack(pop)
+
