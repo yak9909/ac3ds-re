@@ -779,5 +779,5 @@
 | ACNL-F0774 | CommonScrollBarの実体境界とドラッグ用の欄 | MEDIUM | A | active |  |  |
 | ACNL-F0775 | TextWriterの100バイト実体と書体倍率設定 | MEDIUM | A | active |  |  |
 | ACNL-F0776 | CommonScrollBarの開始フレームのドラッグ抑止フラグ | MEDIUM | A | active |  |  |
-| ACNL-F0777 | メッセージ管理体ポインタ vc_DATAPOINTER の型 | MEDIUM | 未記入 | active |  |  |
-| ACNL-F0778 | 共通UIの呼出契約と生成時の未設定prototype | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0777 | メッセージ管理体ポインタ vc_DATAPOINTER の型 | MEDIUM | A | active |  |  |
+| ACNL-F0778 | 共通UIの呼出契約と生成時の未設定prototype | MEDIUM | A | active |  |  |
