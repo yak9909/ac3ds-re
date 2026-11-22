@@ -99,6 +99,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x0074D8B0,500,sead_ExpHeap_getMaxAllocatableSize,"unsigned int __fastcall(SeadExpHeapPrefix *heap, int alignment)",MEDIUM,legacy-idb,ACNL-F0766,
 0x0074DB48,208,sead_ExpHeap_FindFreeBlockHeadAligned,,,legacy-idb,,
 0x0074DC18,224,sead_ExpHeap_FindFreeBlockTailAligned,"void *__fastcall(void *heap, unsigned int size, unsigned int alignment, unsigned int searchMode)",,legacy-idb,,
+0x0074F2A0,8,FaderBase_GetState,int __fastcall(struct FaderBase *self),MEDIUM,static-analysis,ACNL-F0784,
 0x0074F2A8,68,ssys_ma_VramExpHeap_GetFreeSize,unsigned int __fastcall(void *heap),MEDIUM,analysis,ACNL-F0732,
 0x0074F2EC,140,ssys_ma_VramExpHeap_GetMaxAllocatableSize,"unsigned int __fastcall(void *heap, int alignment)",MEDIUM,analysis,ACNL-F0732,
 0x0074F3FC,144,Layout_TransformTouchPixelsToLocal,"void __fastcall(void *layout, const AcnlUiPoint2 *pixels, AcnlUiPoint2 *local)",,legacy-idb,ACNL-F0737,

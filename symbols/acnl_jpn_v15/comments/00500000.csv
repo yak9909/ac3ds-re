@@ -1542,3 +1542,4 @@ NOP にすると R0 = R4 (非ゼロ) のまま CMP/MOVNE を通るので即座�
 他地域: USA=005FD774  EUR=005FC7AC  KOR=005FBCB4
 （プラグイン作者のラベル。検証済みの識別ではない）"
 0x005FC344,repeatable,[ACNL-F0778] MEDIUM/static: Prototype verified against exported ARM and callers.
+0x00565794,repeatable,[ACNL-F0784] No arguments. Returns int 1 iff active top/bottom faders are null or virtual state==1 (fade-out-side state). State1 also comes from Ctor mode=1 or sub_5658E8; return 1 does not prove an actual fade-out occurred. State0 returns 0. Read-only for stock getters; not room-command acceptance or actor teardown completion.
