@@ -112,3 +112,7 @@
 | ACNL-F0775 | TextWriterの100バイト実体と書体倍率設定 | nw::font::TextWriterは100B（0x64）。書体は+0x3C、倍率floatは+0x24/+0x28。RecomputeScaleは要求する幅・高さをS0/S1で受け、書体の固有寸法で割る。 | MEDIUM | A |  |  |
 | ACNL-F0776 | CommonScrollBarの開始フレームのドラッグ抑止フラグ | CommonScrollBar+0x6FBは1の間、そのUpdate内の通常ドラッグ更新を抑止し、次のUpdate冒頭で消される。drag_blocked_this_frameとして1バイト整数で定義する。 | MEDIUM | A |  |  |
 | ACNL-F0778 | 共通UIの呼出契約と生成時の未設定prototype | 共通UIの呼出側とARM命令から、未設定だった23関数のprototypeを部分型とVFPレジスタ指定で表す。全体不明のクラスはvoid *のまま公開する。 | MEDIUM | A |  |  |
+| ACNL-F0779 | 下画面managerの所有欄とメニュー登録リストは別の寿命を表す | manager+472〜504は常設/動的画面の参照欄で、画面factory・actor親子・メニューリスト・描画リストは別契約。全タブ退場でmanagerの全画面が破棄されるわけではない。 | MEDIUM | 未記入 |  |  |
+| ACNL-F0780 | 通常フィールドの全タブ退場7と地図同期復帰2は別命令の組合せで成立する | 命令7は有効タブmaskの退場だけ。通常フィールドでは地図0/部屋0を併用し、復帰2は状態18の0x01待ちから状態7の0x02待ちへ進む。 | MEDIUM | 未記入 |  |  |
+| ACNL-F0781 | 通常チャットはkeyboardと親actorの退場完了を別々に通知する | チャット0x193764は終了要求0x20を処理し、keyboard Releaseでliveポインタが0、その後親Releaseでmanager+492が0になる。タブ命令7だけではチャットは退場しない。 | MEDIUM | 未記入 |  |  |
+| ACNL-F0782 | 通常メニューの0x08と0x10は入場完了時に併存する | BsMenuItem OpenUpdateのmask0xFFFFF7EFは0x08を保存する。F0770の排他的段階値という説明を訂正し、開始8→完了0x18→終了で両方解除という通常経路を採用する。 | MEDIUM | 未記入 |  |  |
