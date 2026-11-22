@@ -1,3 +1,16 @@
+# #164 ゲームの事実だけにする追加修正
+
+依頼に従いtopics/acnl/bottom-screen-widgets.mdの製品比較の6節を全削除。
+他節の製品利用手順/比較/履歴・製品側未確認点を削除または既存のゲーム側の命令/寿命の説明へ変更。
+topics/acnl/ui.mdのFOXXY/Vapecord比較とTextWriter新方式の記述を除去。
+F0780の参照を§2〜5へ修正。F0779/F0781/F0782には該当する製品比較なし。
+対象6文書で製品名/実装名/旧版・現行/#108/6節/古い節参照をrg検索、該当0件。
+新たな解析は行わず、前回のprecheckと既存ゲーム根拠を使用。
+検査ログは_local/evidence/164/game-only-*。lint/index/index後lint/auditすべてexit0。lintは801件エラーなし、indexは24ファイル生成。auditの件数はgame-only-audit.txtを参照。
+git/gh直接実行なし。.taskではnotes.mdだけ更新。
+
+--- 前回までのメモ ---
+
 # #164 修正メモ（2026-11-22）
 
 AGENTS.md、precheck/report読了。レビュー164.mdは共有範囲から読めず、依頼文の要点を採用。

@@ -37,8 +37,8 @@ corrected_by: []
 - 地図既存かつ部屋なしなら0x6D1428の命令1は新規inを出さない。0x01なしで18へ重ねれば止まり得る。
 - ゲームの0x1A0F80はmap0/other0/chat等へ0x20/tab0、待ち0x1A0F28は実体なしとリスト空を待つ。0x6D4E5Cの通常menu-outはback退場とリスト空の後18へ。
 - 今回の追加根拠は_local/evidence/164/revision-evidence.json（export命令列とxref）。
-- _local/evidence/164/selected_functions.txt・xrefs.tsv。F0771/F0772の低位契約と一致。詳しい条件・比較はtopics/acnl/bottom-screen-widgets.md §2〜6。
+- _local/evidence/164/selected_functions.txt・xrefs.tsv。F0771/F0772の低位契約と一致。詳しい条件はtopics/acnl/bottom-screen-widgets.md §2〜5。
 
 ## 反証条件・未確認点
 
-特殊部屋では命令2が18→7を通らない。任意の旧タブmaskやチャット入力まで同一に復元する保証はない。全場面の実測なし。
+特殊部屋では命令2が18→7を通らない。退場前の任意のタブmaskやチャット入力まで同一に復元する保証はない。全場面の実測なし。
