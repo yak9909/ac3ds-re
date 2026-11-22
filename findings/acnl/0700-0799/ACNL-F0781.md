@@ -27,11 +27,11 @@ corrected_by: []
 
 ## 根拠
 
-- LoadStep0x193A40でmanager+492を公開、0x193890で子screen0x23Eを生成。
+- BsMenuChat_LoadStep0x193A40でmanager+492を公開、0x193890で子screen0x23Eを生成。
 - 0x193764が0x20を読む。Out enter0x193988が子+220のvt+68へ閉じる要求。
-- keyboard Out0x57CF04はアニメ完了後破棄要求。Release0x57F944は0x94A654=0、MENU_FLAGS &=0xFFFFFFC7。
+- keyboardのBsSkb_WindowOut_Calc0x57CF04はアニメ完了後破棄要求。Release0x57F944は0x94A654=0、vc_MENU_FLAGS &=0xFFFFFFC7。
 - 親0x1938D0はlive0を待ってActor_RequestDestroy、0x193C3Cがmanager+492=0。
-- タブ0x6D5510はbyte_949D3Bを見てChatReturn0x6D5FB0へ。そこではoutとメニュー空を待つ。無条件にTabSelectを待つだけではこの経路を代替しない。
+- タブ0x6D5510はbyte_949D3Bを見てBsMenuTab_ChatReturnUpdate0x6D5FB0へ。そこではoutとメニュー空を待つ。無条件にBsMenuTab_TabSelectUpdateを待つだけではこの経路を代替しない。
 - チャット再生成はtab index6→0x6D6214/0x6D72C0→menu5→screen0x23F。古いactorの再利用ではない。
 - 元code.bin状態record0x851430はenter0x57CC9C/update0x57CA00。enterが0x10を立て、update完了が0xC0を立てる。親0x193850は0x80を待つ。
 - したがって既存F008関数コメントの「normal chatに0x10を要求してはいけない」を、update単独からの結論としては採用しない。0x10の生産元はenterにある。

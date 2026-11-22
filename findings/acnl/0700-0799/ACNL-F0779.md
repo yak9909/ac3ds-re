@@ -31,7 +31,7 @@ corrected_by: []
 - 0x6D3144はmanager+500/472/476/480へscreen0x216/217/260/218を生成し、+484/488/492/496/504を0初期化。
 - 表の実名は順にBsHandCursor/BsMenuMain/BsMenuBg/BsMenuTab。BsMenuMap0x219とBsMenuRoomMgr0x261は動的。
 - 0x6D102Cは0x9864FCへnodeを追加、0x6D1B34は除去。0x6D1074が見るのはopen state1とhead0のみ。
-- 地図Release0x6D0E30、部屋Release0x225778、チャットRelease0x193C3Cが別々のmanager欄を0にする。
+- 地図Release0x6D0E30、部屋Release0x225778、BsMenuChat_Release0x193C3Cが別々のmanager欄を0にする。
 - BsMenuTabは11ボタンを内部配列（+1948/stride388）に持つ。0x6D3B98のpane/group名配列で確認。11 screenのリストではない。
 - vtable0x8F3710のslot3/6/9は0x6D7E58/0x6D808C/0x6D7F58、地図0x8F3658は0x6D0928/0x6D0E30/0x6D0BF0、部屋0x8E82CCは0x22556C/0x225778/0x2256D8。元bytesで照合。
 - _local/evidence/164/selected_functions.txt、xrefs.tsv、tables.json。全欄・子画面はtopics/acnl/bottom-screen-widgets.md §1。
