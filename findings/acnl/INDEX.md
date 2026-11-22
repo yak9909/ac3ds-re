@@ -781,7 +781,7 @@
 | ACNL-F0776 | CommonScrollBarの開始フレームのドラッグ抑止フラグ | MEDIUM | A | active |  |  |
 | ACNL-F0777 | メッセージ管理体ポインタ vc_DATAPOINTER の型 | MEDIUM | A | active |  |  |
 | ACNL-F0778 | 共通UIの呼出契約と生成時の未設定prototype | MEDIUM | A | active |  |  |
-| ACNL-F0779 | 下画面managerの所有欄とメニュー登録リストは別の寿命を表す | MEDIUM | 未記入 | active |  |  |
-| ACNL-F0780 | 通常フィールドの全タブ退場7と地図同期復帰2は別命令の組合せで成立する | MEDIUM | 未記入 | active |  |  |
-| ACNL-F0781 | 通常チャットはkeyboardと親actorの退場完了を別々に通知する | MEDIUM | 未記入 | active |  |  |
-| ACNL-F0782 | 通常メニューの0x08と0x10は入場完了時に併存する | MEDIUM | 未記入 | active |  |  |
+| ACNL-F0779 | 下画面managerの所有欄とメニュー登録リストは別の寿命を表す | MEDIUM | A | active |  |  |
+| ACNL-F0780 | 通常フィールドの全タブ退場7と地図同期復帰2は別命令の組合せで成立する | MEDIUM | A | active |  |  |
+| ACNL-F0781 | 通常チャットはkeyboardと親actorの退場完了を別々に通知する | MEDIUM | A | active |  |  |
+| ACNL-F0782 | 通常メニューの0x08と0x10は入場完了時に併存する | MEDIUM | A | active |  |  |

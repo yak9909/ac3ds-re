@@ -12,7 +12,7 @@ addresses: [0x199f9c, 0x199f44, 0x19aac0, 0x949d68]
 tags: ["menu", "inventory"]
 supersedes: ["ACNL-F0770"]
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
-by: auto
+by: gpt-6.1-sol
 original_by: ""
 reviewed_by: []
 state: active            # active / consolidated / superseded / duplicate
