@@ -786,4 +786,4 @@
 | ACNL-F0781 | 通常チャットはkeyboardと親actorの退場完了を別々に通知する | MEDIUM | A | active |  |  |
 | ACNL-F0782 | 通常メニューの0x08と0x10は入場完了時に併存する | MEDIUM | A | active |  |  |
 | ACNL-F0783 | 単一タブ退場の更新0x6D5110はアニメ進行と後片付けを行い地図復帰を開始しない | MEDIUM | A | active |  |  |
-| ACNL-F0784 | 部屋命令の入口0x565794は上下activeフェーダーのフェードアウト完了を要求する | MEDIUM | A | active |  |  |
+| ACNL-F0784 | 部屋命令の入口0x565794は上下activeフェーダーの状態1またはnullを要求する | MEDIUM | A | active |  |  |

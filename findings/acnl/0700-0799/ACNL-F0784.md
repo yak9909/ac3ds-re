@@ -1,8 +1,8 @@
 ---
 id: ACNL-F0784
 aliases: []
-title: "部屋命令の入口0x565794は上下activeフェーダーのフェードアウト完了を要求する"
-summary: "0x565794 は引数なしの32bit 0/1判定で、上下activeフェーダーの各参照がnullかvirtual GetState()==1の時だけ1。部屋命令処理0x6D1E14はこれに加えmanager+57と部屋別条件を使い、命令0の退場には+488とready byteを要求する。"
+title: "部屋命令の入口0x565794は上下activeフェーダーの状態1またはnullを要求する"
+summary: "0x565794 は引数なしの32bit 0/1判定で、上下activeフェーダーの各参照がnullかvirtual GetState()==1の時だけ1。状態1は初期化や直接設定でも生じ、実際のfade-out履歴を保証しない。部屋命令処理0x6D1E14はこれに加えmanager+57と部屋別条件を使い、命令0の退場には+488とready byteを要求する。"
 date: 2026-11-22
 category: ui
 build: acnl_jpn_v15
@@ -23,7 +23,7 @@ corrected_by: []
 ---
 ## 結論
 
-0x00565794 に `Fader_IsFadeOutComplete`、prototype `int __cdecl(void)` を付ける。引数はなく、32bit R0 に0/1を返す。1の条件は上下それぞれの active フェーダーが null または vt+12 の状態値1であること。状態0も停止状態だが本判定は0を返す。
+0x00565794 に `Fader_IsFadeOutComplete`、prototype `int __cdecl(void)` を付ける。引数はなく、32bit R0 に0/1を返す。1の条件は上下それぞれの active フェーダーが null または vt+12 の状態値1であること。状態0も停止状態だが本判定は0を返す。状態1へは ctor の mode=1 や直接設定でも入れるため、戻り値1は「実際にフェードアウトした」履歴を保証しない。
 
 0x006D1E14 は `BsMenuMgr_ProcessRoomCommand`、prototype `void __fastcall(void *manager)`。完了や受付を表す戻り値はなく、逆コンパイルの int は経路ごとのR0残値。部屋命令の消費とactorの最終退場も別である。
 
@@ -31,13 +31,13 @@ corrected_by: []
 
 ## 根拠
 
-一次資料は export/all_functions.txt と xrefs.tsv の rg 結果。_local/evidence/167/selected_functions.txt、xrefs.txt、vtables.json、calculations.json に採録。vtableの値は tools/codebytes.py の read_bytes で確認する。書き出しの過去コメントは根拠に数えない。
+一次資料は export/all_functions.txt と xrefs.tsv の rg 結果。_local/evidence/167/selected_functions.txt、xrefs.txt、vtables.json、calculations.json に採録。vtableの値は tools/codebytes.py の read_bytes で確認する。追加確認は _local/evidence/167/recheck-functions.txt、recheck-xrefs.txt、recheck-rg.txt に採録。書き出しの過去コメントは根拠に数えない。
 
 - 0x56579C〜0x5657B8 は *0x96F3F8 があればその vt+12 を this のみで呼び、戻りが厳密に1でなければ0。通過後だけ *0x96F3FC へ同じ検査を行う。両nullでも1。本体に書込みもアニメ進行も無い。
 - Fader_SetActive 0x5655B8 は第1引数を0x96F3F8、第2引数を0x96F3FCへ設定する。Fader_SetKind 0x6A52B4 の第1/第2引数は上/下のフェーダー選択で、Fader_CreateAll 0x6A4ED0 が screen=0/1 の FaderColor / FaderMoment と上側 FaderWipe を生成する。
 - 両参照の基底型は既存の FaderBase（RTTI は ssys::co::FaderBase）。先頭vptr、+4 screen、+5 state、+6 doneFlags、+8 duration、+12 counter。動的型は選択中の FaderColor / FaderWipe / FaderMoment。
-- vt+12 は state getter（thisだけ、状態値をR0に返す）。実体は全4表で 0x0074F2A0（LDRB R0,[R0,#5]; BX LR）。名前は ssys_co_FaderBase_GetState、型は this に既存 FaderBase のポインタを1個取り、状態値を int で返す（完全な宣言は symbols に保存）。表は FaderColor 0x8E5458、FaderMoment 0x8E5E34、FaderWipe 0x8F3964、基底 0x90044C。対応は vtables.json と getter-functions.txt。
-- FaderBase_StartFadeOut 0x565884 は state0から2へ、FaderBase_Update 0x5657F0 は2の終了で1へ書く。StartFadeIn 0x5658B8 は1から3へ、Update は3の終了で0へ戻す。従って値1はfade-out終了側。FaderMoment_Update 0x1C86E8 の即時遷移も同じ状態値を使う。「ready全般」「フェードが動いていない」とは呼ばない。
+- vt+12 は state getter（thisだけ、状態値をR0に返す）。実体は全4表で 0x0074F2A0（LDRB R0,[R0,#5]; BX LR）。名前は FaderBase_GetState、型は this に既存 FaderBase のポインタを1個取り、状態値を int で返す（完全な宣言は symbols に保存）。表は FaderColor 0x8E5458、FaderMoment 0x8E5E34、FaderWipe 0x8F3964、基底 0x90044C。対応は vtables.json と getter-functions.txt。
+- FaderBase_StartFadeOut 0x565884 は state0から2へ、FaderBase_Update 0x5657F0 は2の終了で1へ書く。StartFadeIn 0x5658B8 は1から3へ、Update は3の終了で0へ戻す。ただし FaderBase_Ctor 0x5658F8 は mode=1 なら0x565930で state1を直接初期化し、sub_5658E8 は引数が0または1なら0x5658F0でその値を stateへ直接書く。従って値1はfade-out終了側の状態を表すが、実際のフェードアウト実行・完了を必須としない。FaderMoment_Update 0x1C86E8 の即時遷移も同じ状態値を使う。「ready全般」「フェードが動いていない」とは呼ばない。
 
 ### 部屋命令側の入口と戻り値
 
@@ -48,7 +48,7 @@ corrected_by: []
 
 ### 外部からの呼出条件・副作用
 
-Fader_IsFadeOutComplete は、ゲームのフェーダー初期化後、その参照の生存が保証される同じ直列のゲーム/UI更新文脈で照会できる。確認したgetterは状態読取りのみで、進行・命令消費・actorの生成/破棄を行わない。null は成功扱いなので「フェーダー初期化済み」までこの返値で確認することはできない。終了・参照切替と競合する他スレッドからの照会は保証しない。OSスレッドIDは未測定。
+Fader_IsFadeOutComplete は、ゲームのフェーダー初期化後、その参照の生存が保証される同じ直列のゲーム/UI更新文脈で照会できる。確認したgetterは状態読取りのみで、進行・命令消費・actorの生成/破棄を行わない。null は成功扱いなので「フェーダー初期化済み」までこの返値で確認することはできない。状態1の観測だけから StartFadeOut→Update の履歴は復元できない。終了・参照切替と競合する他スレッドからの照会は保証しない。OSスレッドIDは未測定。
 
 部屋処理はゲーム自身が manager 更新0x6D34ACから実行する。外部で入口ゲートだけを調べても、manager+57、部屋別分岐、+488、ready、以降の通常actor更新とReleaseを代替しない。処理本体を追加で呼ぶと命令上書き、画面生成、退場要求、manager/global更新が起こり得る。通常更新中の重複呼出や、非生存manager・初期化前・破棄中の呼出は契約外とする。具体的スレッド名を静的解析だけで断定しない。
 
