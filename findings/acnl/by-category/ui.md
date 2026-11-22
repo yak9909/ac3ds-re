@@ -104,7 +104,7 @@
 | ACNL-F0767 | UiAnimの40バイト全体と結合状態欄 | UiAnim は40バイト。先頭はvptr、+0x18はAnimTransform、+0x1Cは結合状態、+0x1E/+0x20はcontent作業器の件数とポインタである。 | MEDIUM | A |  |  |
 | ACNL-F0768 | ArcResAccReaderの584バイトと埋込みアクセサ | ArcResAccReader は584バイト。+4は埋込みaccessor(+0xC)を指し、+8はDARC、+0x158は読み込み完了側のDARC pointer。 | MEDIUM | A |  |  |
 | ACNL-F0769 | InstSelect8のコンストラクタと4812バイトの境界 | InstSelect8_Ctor はthisのみを受け取りthisを返す。基底の後に8個ずつの28B/224B要素を構築し、全体境界は4812Bである。 | MEDIUM | A |  |  |
-| ACNL-F0770 | vc_MENU_FLAGS の 0x08/0x10/0x20 の意味と ButtonActionControl_GetDecidedIndex の戻り値 | vc_MENU_FLAGS(0x949D68) の 0x08=入場を始めた、0x10=入場し終えた（互いに排他の段階値）、0x20=終了要求。ButtonActionControl_GetDecidedIndex(0x72294C) は int を返し、決定なし=-1、this+0xB4 が NULL なら -2。 | MEDIUM | A |  |  |
+| ACNL-F0770 | vc_MENU_FLAGS の 0x08/0x10/0x20 の意味と ButtonActionControl_GetDecidedIndex の戻り値 | vc_MENU_FLAGS(0x949D68) の 0x08=入場を始めた、0x10=入場し終えた（互いに排他の段階値）、0x20=終了要求。ButtonActionControl_GetDecidedIndex(0x72294C) は int を返し、決定なし=-1、this+0xB4 が NULL なら -2。 | MEDIUM | A |  | 訂正あり |
 | ACNL-F0771 | MenuFlags 下位三ビットは地図側の入場開始・完了・退場完了を通知し、状態7は0x02を待つ | 0x01=地図側入場開始、0x02=入場完了、0x04=退場完了または対象なし。状態18は0x01、状態7は0x02を待つ。F0756のbit2という記述はマスク0x02へ訂正する。 | MEDIUM | A |  |  |
 | ACNL-F0772 | 地図復帰を省いた終了経路のフラグ残留と、タブ状態6・18・7の待機条件 | 地図側を退場済みとするには0x04と旧0x01/0x02の解除、終了要求解除には0x20の解除が別々に必要。フラグ更新だけ省いても必ず状態18で止まるとは限らず、実体と通る状態に依存する。 | MEDIUM | A |  |  |
 | ACNL-F0773 | InstSelect8の一覧操作欄と埋込み部品 | InstSelect8の4812B境界を保ち、Layout・UiAnim・CommonScrollBarと一覧操作用の欄を型付けした。先頭行は埋込みscroll_bar.top_rowであり、行の語はvt[25]から取得する。 | MEDIUM | A |  |  |
