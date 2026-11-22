@@ -772,7 +772,7 @@
 | ACNL-F0767 | UiAnimの40バイト全体と結合状態欄 | MEDIUM | A | active |  |  |
 | ACNL-F0768 | ArcResAccReaderの584バイトと埋込みアクセサ | MEDIUM | A | active |  |  |
 | ACNL-F0769 | InstSelect8のコンストラクタと4812バイトの境界 | MEDIUM | A | active |  |  |
-| ACNL-F0770 | vc_MENU_FLAGS の 0x08/0x10/0x20 の意味と ButtonActionControl_GetDecidedIndex の戻り値 | MEDIUM | A | active |  |  |
+| ACNL-F0770 | vc_MENU_FLAGS の 0x08/0x10/0x20 の意味と ButtonActionControl_GetDecidedIndex の戻り値 | MEDIUM | A | active |  | 訂正あり |
 | ACNL-F0771 | MenuFlags 下位三ビットは地図側の入場開始・完了・退場完了を通知し、状態7は0x02を待つ | MEDIUM | A | active |  |  |
 | ACNL-F0772 | 地図復帰を省いた終了経路のフラグ残留と、タブ状態6・18・7の待機条件 | MEDIUM | A | active |  |  |
 | ACNL-F0773 | InstSelect8の一覧操作欄と埋込み部品 | MEDIUM | A | active |  |  |
