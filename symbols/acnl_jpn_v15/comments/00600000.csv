@@ -761,3 +761,5 @@ IDA-gpt-6-F008 / GPT-6 (2026-10-12, MEDIUM): T010 actual user hardware showed ch
 0x006FED3C,line,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: ローカルItemを壁掛け→通常品番（147→6/148→7/49→47）に正規化するcaller。元入力を直接書き換えない。この上位処理の全用途は今回未確定のため推測renameしない。
 0x006FEDBC,line,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: ローカルItemを壁掛け→通常品番（147→6/148→7/49→47）に正規化するcaller。元入力を直接書き換えない。この上位処理の全用途は今回未確定のため推測renameしない。
 0x006FEE24,line,IDA-gpt-6.1-sol-F003 / MEDIUM（静的2経路）: ローカルItemを壁掛け→通常品番（147→6/148→7/49→47）に正規化するcaller。元入力を直接書き換えない。この上位処理の全用途は今回未確定のため推測renameしない。
+0x006D5110,repeatable,"[ACNL-F0783] R0=tabs, R1=index; stock caller uses 10. Returns int 1 if absent or cleanup complete, else steps shared UiAnim+1012 and Layout+640 and returns 0. Requires initialized live tabs and matching exit animation. Call in serialized UI update, once per frame; does not request map recreation."
+0x006D1E14,repeatable,[ACNL-F0784] Room command processor. Requires Fader_IsFadeOutComplete and manager+57==1; room-specific overrides precede command dispatch. Command0 requires manager+488 and byte_949D34!=0. No meaningful return value; may create/request exit and mutate globals.

@@ -508,6 +508,8 @@ address,size,name,type,confidence,source,refs
 0x0096F2A4,4,g_BaseMgr,void *,MEDIUM,analysis,ACNL-F0762
 0x0096F2EC,4,g_SeadControllerMgr,SeadControllerMgrPrefix *,MEDIUM,analysis,ACNL-F0761
 0x0096F304,4,g_GraphicMemoryMgr,T022_GraphicMemoryMgrPrefix *,MEDIUM,analysis,ACNL-F0760
+0x0096F3F8,4,g_ActiveTopFader,struct FaderBase *,MEDIUM,static-analysis,ACNL-F0784
+0x0096F3FC,4,g_ActiveBottomFader,struct FaderBase *,MEDIUM,static-analysis,ACNL-F0784
 0x0096FC06,4,vc_U0DATA,,,legacy-idb,
 0x0096FC2C,4,g_UiResourceLoadAlignment,int,MEDIUM,analysis,ACNL-F0760
 0x0096FC38,4,g_LayoutMgr,SsysMaLayoutMgr *,MEDIUM,analysis,ACNL-F0712

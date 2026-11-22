@@ -104,6 +104,7 @@ address,size,name,prototype,confidence,source,refs,clone_of
 0x005650E0,432,vc_ADDR2,,,legacy-idb,,
 0x00565320,112,Fader_SetDurationAndStart,,,legacy-idb,,
 0x005655B8,472,Fader_SetActive,,,legacy-idb,,
+0x00565794,88,Fader_IsFadeOutComplete,int __cdecl(void),MEDIUM,static-analysis,ACNL-F0784,
 0x005657F0,144,FaderBase_Update,int __fastcall(struct FaderBase *self),,legacy-idb,,
 0x00565884,48,FaderBase_StartFadeOut,,,legacy-idb,,
 0x005658B8,44,FaderBase_StartFadeIn,,,legacy-idb,,

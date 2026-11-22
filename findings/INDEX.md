@@ -6,7 +6,7 @@
 
 | scope | 件数 | active |
 |---|---|---|
-| acnl | 781 | 694 |
+| acnl | 783 | 696 |
 | hhd | 20 | 9 |
 | 3ds | 0 | 0 |
 
@@ -27,7 +27,7 @@
 | acnl | system | 59 |
 | acnl | text | 64 |
 | acnl | time | 2 |
-| acnl | ui | 40 |
+| acnl | ui | 42 |
 | hhd | input | 1 |
 | hhd | item | 4 |
 | hhd | render | 2 |
@@ -1332,6 +1332,8 @@
 - ACNL-F0780 通常フィールドの全タブ退場7と地図同期復帰2は別命令の組合せで成立する
 - ACNL-F0781 通常チャットはkeyboardと親actorの退場完了を別々に通知する
 - ACNL-F0782 通常メニューの0x08と0x10は入場完了時に併存する
+- ACNL-F0783 単一タブ退場の更新0x6D5110はアニメ進行と後片付けを行い地図復帰を開始しない
+- ACNL-F0784 部屋命令の入口0x565794は上下activeフェーダーのフェードアウト完了を要求する
 - HHD-F0001 慣性と、選択枠・ボタンの縞の合成（2026-10-05、MEDIUM〜HIGH: 静的 + HHD のスクショ 2 枚で合成の意味を照合）
 - HHD-F0002 髪のページ送り — ドラッグ・弾き・滑りの規則（2026-10-05、MEDIUM: 静的のみ。定数はすべて逆アセンブルの即値・リテラル）
 - HHD-F0003 髪・目の形の番号 → モデルのファイル（2026-10-05、MEDIUM: 静的のみ。ACNL のファイル名と照合）
@@ -1819,8 +1821,8 @@
 - acnl_jpn_v15 0x006D3F04: ACNL-F0466, ACNL-F0766, ACNL-F0780
 - acnl_jpn_v15 0x006D4700: ACNL-F0771, ACNL-F0772
 - acnl_jpn_v15 0x006D474C: ACNL-F0423, ACNL-F0466, ACNL-F0766
-- acnl_jpn_v15 0x006D4E5C: ACNL-F0766, ACNL-F0772
-- acnl_jpn_v15 0x006D4EE8: ACNL-F0756, ACNL-F0772
+- acnl_jpn_v15 0x006D4E5C: ACNL-F0766, ACNL-F0772, ACNL-F0783
+- acnl_jpn_v15 0x006D4EE8: ACNL-F0756, ACNL-F0772, ACNL-F0783
 - acnl_jpn_v15 0x006D5510: ACNL-F0423, ACNL-F0781
 - acnl_jpn_v15 0x006D6060: ACNL-F0113, ACNL-F0119, ACNL-F0647, ACNL-F0770
 - acnl_jpn_v15 0x006D6338: ACNL-F0110, ACNL-F0112, ACNL-F0113, ACNL-F0115, ACNL-F0119
@@ -2033,4 +2035,4 @@
 - acnl/sound: 11件
 - acnl/system: 59件
 - acnl/text: 64件
-- acnl/ui: 40件
+- acnl/ui: 42件
