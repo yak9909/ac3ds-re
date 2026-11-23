@@ -12,7 +12,7 @@ addresses: [0x949D68, 0x57CA00, 0x57CF04, 0x57F944, 0x193850, 0x57D444]
 tags: ["menu", "keyboard", "chat"]
 supersedes: []
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
-by: auto
+by: gpt-6.1-sol
 original_by: ""
 reviewed_by: []
 state: active            # active / consolidated / superseded / duplicate
