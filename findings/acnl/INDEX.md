@@ -787,3 +787,5 @@
 | ACNL-F0782 | 通常メニューの0x08と0x10は入場完了時に併存する | MEDIUM | A | active |  |  |
 | ACNL-F0783 | 単一タブ退場の更新0x6D5110はアニメ進行と後片付けを行い地図復帰を開始しない | MEDIUM | A | active |  |  |
 | ACNL-F0784 | 部屋命令の入口0x565794は上下activeフェーダーの状態1またはnullを要求する | MEDIUM | A | active |  |  |
+| ACNL-F0785 | 下画面の静止とタブcalcの後処理責任は別である | MEDIUM | A | active |  |  |
+| ACNL-F0786 | キーボードのMenuFlags0x40と0x80は全体の切り替え中を示さない | MEDIUM | A | active |  |  |
