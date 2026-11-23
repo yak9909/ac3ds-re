@@ -9,7 +9,7 @@ build: acnl_jpn_v15
 confidence: MEDIUM
 tool: "exports+codebytes+supplied-trace"
 addresses: [0x949D68, 0x57CA00, 0x57CF04, 0x57F944, 0x193850, 0x57D444]
-tags: ["menu","keyboard","chat"]
+tags: ["menu", "keyboard", "chat"]
 supersedes: []
 # ── 管理項目（編集しない。kb.py と仕上げが書く）──
 by: auto
@@ -29,7 +29,8 @@ vc_MENU_FLAGSの0x40はキーボードの表示を伴う退場段の要否に使
 
 ## 根拠
 
-対象acnl_jpn_v15。直接xref185関数の参照行は_local/evidence/169/flag-uses.txt、
+対象acnl_jpn_v15。以下のflags/maskは0xを省いた表記も16進とする。
+直接xref185関数の参照行は_local/evidence/169/flag-uses.txt、
 関連疑似Cはflag-functions.txt。詳細と全trace対応はanalysis.md。
 原本SHA256、マスクの検算はcheck.py/check.json。関数の過去コメントは根拠に数えない。
 

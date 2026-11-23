@@ -1,24 +1,25 @@
-# #169 作業メモ
+# #169 再開後のメモ
 
-## 事前確認
+## 確認済み
 
-AGENTS/brief全文、precheck・record-finding・reportスキルを読んだ。依頼文の格付け付き索引、topics/acnl/bottom-screen-widgets.md、F0756/F0757/F0771/F0772/F0781/F0783/F0784を確認。C/?だけを根拠にしない。git/ghの直接実行、IDB変更なし。
+AGENTS/brief全文とprecheck・record-finding・reportスキルは前半で読了。同じ決まりを継続。git/ghの直接操作、コミット、IDB変更なし。既存知見はtopics/acnl/bottom-screen-widgets.mdと格付け付き記録で確認済み。C/?のコメントだけには依存しない。
 
-## 結果と根拠
+最初の再検査（j57）は終了0。_local/evidence/169/verify-resumed-initial.json: lint805件エラーなし（知見索引古い警告のみ）、audit1069ファイル問題0。j61のreview.pyも終了0、原本のタブPMF群とBsMenuMain21状態をreview.jsonへ採録。
 
-_local/evidence/169/analysis.mdに目的0〜5の詳細、全27登録状態の責任表、通常復帰列、trace全13行の説明。
-states.tsv/check.jsonはcodebytes.read_bytesで得た原本状態表（全adjustor0）、SHA256一致、before/停止ダンプの値とマスク検算。
-selected.txt/more-tabs.txt/flag-functions.txt/flag-uses.txtは書き出し抜粋（既存コメントは削除し一次命令・疑似Cを根拠とする）。map-out.mdは村地図全体Outと地図内リストの区別。
-finding-general.md/finding-flags.mdは新規記録の本文。
+## 記録と結論
 
-結論: アニメ静止はcalc差替え時に後処理を失わない十分条件でない。13/24/25/26など静止した画面の終了監視にも復帰責任が残る。0x8080はチャット入場11が0x10待ちで保持した値で、正常完了ならEが0にする。n28で0へ、n49で3へ外部からcalcを差し替えたため、入場処理と後続復帰が失われた。停止ダンプ+6419=1/+6420=0も一致。
-flags40は表示を伴う退場段の要否、80は準備完了通知。80はReleaseで消されず84残留を説明する。
+ACNL-F0785/F0786をkb.py newで作成済み。新しい本文はfinding-general.md/finding-flags.md。analysis.mdに目的0〜5、27登録状態、通常復帰の部分順序、trace全13行、最狭の限定条件。
 
-## 未確認範囲
+再開後にcommand-writers.txt（直接xrefの全20生産/初期化関数）、supplement.md（命令入口、キャンセル通知、補助子の静止値）、review.json、resume-calculations.jsonを追加。普通チャットのnativeキャンセル生産枝は0x57B778。keyboard+4424非0かつ2ボタンindex0確定で949D3B=0、+4580=1、結果1を通知。constructorの既定+4424=1も確認。
 
-全画面型×全27状態の自然到達と全命令発行元、全補助子/地図型/特殊部屋は未確定。12/23の全入口、持ち物X直接起動の全閉じ方、正常チャットのM=0とキャンセル通しの新規実測はない。trace開始前の80生産元、ms3時刻、949D3Bが落ちる時刻は未確認。
+中心の結論: アニメが終端に来ただけでは、最後のcalcによるbinding解除/S/M/通知処理が終わったとは言えない。さらに入退場が完了して画面が静止しても、13/24等には将来の終了監視と復帰責任が残る。共有値だけで一律にcalcを差し替えても後処理を失わないとは判断できない。0x8080は差し替え前の正常な入場準備値で、11のEと後続経路を外したため残った。flags40/80は全体の切替中フラグではない。
 
-## 検査の再開点
+## 範囲の区別
 
-既定pythonはyaml/pip無し。Python310のpipから依存を_local/evidence/169/depsへ導入した（j48成功）。初期j41はimport失敗、j45はtimeout。
-kb_work.pyは依存パスを加えkb.mainでprecheck各検索・addr/showとkb.py new相当を実行する。j49はtimeout_sec600で実行中。実行結果はget_command_resultで確認する。precheck.json/kb-create.txtと新規findings2件の存在を確認し、finish_records.pyで本文を入れkb lintを実行する。最後にtools/audit.pyを実行する。既存記録は変更しない。新規IDは固定しない。最終報告はreportスキル形式で、未確定範囲を残す。
+全27行の登録と、その表にある命令契約/入口/待ち/副作用は記録。全画面型×状態の自然な同時到達は登録表だけから証明しない。12は定型PMF群に無く自然な入口未検出。23は命令10の入口があり、enter0x6D5804の原本24byteをcodebytesで確認済み（j65終了0）。M|=0xC0後NOPでBeginEnterへfall-throughする。enter23.jsonに採録。
+
+全地図型/補助子/特殊部屋/持ち物X直接起動の全終了方法の通し実測はない。共有flagsの必要十分式を新設したとの主張はしない。trace n1より前の80生産元、ms3の時刻、キャンセル通知を各actorが読むフレーム順は未確認。
+
+## 最後の検査
+
+j65は終了0、表23を補完済み。verify.py resumed-final は本文2件を正式記録へ同期し、追加抜粋を採録し、kb.py index→lint→auditを実行しverify-resumed-final.jsonへ保存する。最終結果まで取得してからreportスキル形式で返す。報告は.task/report.mdへ自分では書かない。
